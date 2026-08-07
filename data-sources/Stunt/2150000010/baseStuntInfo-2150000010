@@ -1,0 +1,11 @@
+{
+  "__active": true,
+  "level": 1,
+  "group": 2150000010,
+  "name": "天赋-心眼",
+  "text": "10秒内连续释放4次攻击技能时获得[心眼]状态\\n[心眼]：攻击速度额外增加8%；技能范围额外增加8%，上限为3层，持续2秒",
+  "skillIcon": "linshi/4",
+  "bundlingStunts": [],
+  "normalTag": [],
+  "skillLevelAdd": 0
+}

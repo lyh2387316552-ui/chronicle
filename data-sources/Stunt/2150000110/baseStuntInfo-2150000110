@@ -1,0 +1,11 @@
+{
+  "__active": true,
+  "level": 1,
+  "group": 2150000110,
+  "name": "天赋-法杖-强化之力",
+  "text": "每成功触发一次强化技能，可以获得一层强化之力，提高20%的伤害，最大可以获得5层，持续6秒",
+  "skillIcon": "",
+  "bundlingStunts": [],
+  "normalTag": [],
+  "skillLevelAdd": 0
+}

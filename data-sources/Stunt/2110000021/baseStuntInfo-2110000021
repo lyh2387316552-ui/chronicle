@@ -1,0 +1,10 @@
+{
+  "__active": true,
+  "level": 1,
+  "group": 2110000010,
+  "name": "灰烬之捷-附加火焰伤害",
+  "text": "激活时，受到你的非捷技能攻击造成的火焰伤害击杀时有几率的敌人会产生爆炸，并根据敌人生命值上限对周围的敌人造成伤害",
+  "skillIcon": "linshi/17",
+  "bundlingStunts": [],
+  "normalTag": []
+}

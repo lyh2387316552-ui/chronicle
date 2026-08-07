@@ -1,0 +1,20 @@
+{
+  "__active": true,
+  "name": "火球术爆炸",
+  "priority": 1,
+  "mainTag": 2,
+  "remarks": "",
+  "skillTime": 100,
+  "desc": "",
+  "detailedDesc": "",
+  "skillIcon": "",
+  "normalTag": [
+    0,
+    3,
+    7,
+    11
+  ],
+  "attackSpeed": 1,
+  "moreDamage": [],
+  "skillLevelAdd": 0
+}

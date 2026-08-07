@@ -1,0 +1,14 @@
+{
+  "__active": true,
+  "name": "闪电之捷-子技能",
+  "priority": 1,
+  "mainTag": 1,
+  "remarks": "",
+  "skillTime": 0,
+  "desc": "激活时，非捷技能攻击击中并击败感电敌人会使后续的攻击击中释放出闪电，对周围所有的敌人造成攻击伤害",
+  "detailedDesc": "",
+  "skillIcon": "gongji/shandianzhijie",
+  "normalTag": [],
+  "attackSpeed": 0,
+  "moreDamage": []
+}

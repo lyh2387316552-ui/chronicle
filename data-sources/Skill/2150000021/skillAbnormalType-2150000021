@@ -1,0 +1,18 @@
+{
+  "__active": true,
+  "fireAilmentState": [
+    0
+  ],
+  "coldailmentstate": [
+    0
+  ],
+  "lightningailmentstate": [
+    0
+  ],
+  "physicalailmentstate": [
+    0
+  ],
+  "chaosailmentstate": [
+    0
+  ]
+}

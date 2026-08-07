@@ -1,0 +1,10 @@
+{
+  "__active": true,
+  "triggerMode": "1",
+  "triggerValue": [],
+  "triggerValue2": [],
+  "skillAttackMode": [],
+  "gettriggerTargetCon": "(!bullet||(bullet.bulletId!=2111000020&&bullet.bulletId!=2111000010))&&attacker.hasBuff(2112000010)",
+  "gettriggeChance": "1",
+  "triggerFilterType": 0
+}

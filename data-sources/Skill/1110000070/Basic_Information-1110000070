@@ -1,0 +1,20 @@
+{
+  "__active": true,
+  "name": "旋龙",
+  "priority": 10,
+  "mainTag": 1,
+  "remarks": "",
+  "skillTime": 849,
+  "desc": "舞动战矛扇起一阵旋龙，旋龙会不规则移动，致盲并反复击中内部的敌人。",
+  "detailedDesc": "",
+  "skillIcon": "",
+  "normalTag": [
+    0,
+    2,
+    7,
+    8
+  ],
+  "attackSpeed": 1,
+  "moreDamage": [],
+  "skillLevelAdd": 0
+}

@@ -1,0 +1,20 @@
+{
+  "__active": true,
+  "name": "月光斩",
+  "priority": 1,
+  "mainTag": 1,
+  "remarks": "",
+  "skillTime": 399,
+  "desc": "对前方小范围的敌人快速造成两次攻击伤害，伤害的60%转化为冰冷伤害。\n攻击冻结敌人时会出现月光残影，对范围内敌人造成伤害",
+  "detailedDesc": "",
+  "skillIcon": "jianke/2",
+  "normalTag": [
+    1,
+    4,
+    7,
+    10
+  ],
+  "attackSpeed": 1,
+  "moreDamage": [],
+  "skillLevelAdd": 0
+}

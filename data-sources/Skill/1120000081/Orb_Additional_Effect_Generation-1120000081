@@ -1,0 +1,21 @@
+{
+  "__active": true,
+  "extraTpye": [
+    3
+  ],
+  "extraConsume": [
+    "1"
+  ],
+  "extraEffect": [
+    1123000080
+  ],
+  "extraTime": [
+    "1"
+  ],
+  "extraConsumeBuff": [
+    200000
+  ],
+  "extraGroupID": [
+    0
+  ]
+}

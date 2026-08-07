@@ -1,0 +1,11 @@
+{
+  "__active": true,
+  "level": 1,
+  "group": 2140000060,
+  "name": "狂怒",
+  "text": "激活时，近战技能获得暴击几率增加70%，额外25%近战伤害增加",
+  "skillIcon": "zengyi/kuangnu",
+  "bundlingStunts": [],
+  "mainTag": 4,
+  "normalTag": []
+}

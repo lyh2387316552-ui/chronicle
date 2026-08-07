@@ -1,0 +1,11 @@
+{
+  "__active": true,
+  "level": 1,
+  "group": 2150200070,
+  "name": "天赋-透支3",
+  "text": "每缺少25%的魔力，法术伤害提升20%，魔力恢复率提高20%",
+  "skillIcon": "",
+  "bundlingStunts": [],
+  "mainTag": 2,
+  "normalTag": []
+}

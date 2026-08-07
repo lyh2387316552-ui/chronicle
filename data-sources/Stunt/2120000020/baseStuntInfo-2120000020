@@ -1,0 +1,14 @@
+{
+  "__active": true,
+  "level": 1,
+  "group": 2120000020,
+  "name": "魔典幻影",
+  "text": "使用法术技能造成伤害后，在原地生成“幻影”，持续4秒，冷却10秒，幻影上限为1",
+  "skillIcon": "",
+  "bundlingStunts": [],
+  "mainTag": 2,
+  "normalTag": [
+    13
+  ],
+  "skillLevelAdd": 0
+}

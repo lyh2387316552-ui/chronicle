@@ -1,0 +1,16 @@
+{
+  "__active": true,
+  "name": "闪现",
+  "priority": 5,
+  "mainTag": 2,
+  "remarks": "",
+  "skillTime": 683,
+  "desc": "",
+  "detailedDesc": "",
+  "skillIcon": "",
+  "normalTag": [
+    14
+  ],
+  "attackSpeed": 1,
+  "moreDamage": []
+}

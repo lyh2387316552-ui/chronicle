@@ -1,0 +1,15 @@
+{
+  "__active": true,
+  "level": 1,
+  "group": 2110000040,
+  "name": "月光残影",
+  "text": "攻击冻结中的敌人时会出现残影重击范围内的敌人",
+  "skillIcon": "",
+  "bundlingStunts": [],
+  "mainTag": 1,
+  "normalTag": [
+    1,
+    4,
+    7
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "__active": true,
+  "name": "混沌刺击",
+  "priority": 1,
+  "mainTag": 1,
+  "remarks": "",
+  "skillTime": 666,
+  "desc": "向前单个敌人刺击造成50%混沌伤害，击中时产生3个穿透幻影冲刺造成20%混沌伤害",
+  "detailedDesc": "",
+  "skillIcon": "linshi/1",
+  "normalTag": [
+    1
+  ],
+  "attackSpeed": 1,
+  "moreDamage": [],
+  "skillLevelAdd": 0
+}

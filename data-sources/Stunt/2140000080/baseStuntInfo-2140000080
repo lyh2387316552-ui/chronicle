@@ -1,0 +1,12 @@
+{
+  "__active": true,
+  "level": 1,
+  "group": 2140000080,
+  "name": "元素脉冲",
+  "text": "每4秒对周围4米的敌人释放元素脉冲，降低范围内敌人30%的元素抗性，持续4秒",
+  "skillIcon": "zengyi/yuansumaichong",
+  "bundlingStunts": [],
+  "mainTag": 4,
+  "normalTag": [],
+  "skillLevelAdd": 0
+}

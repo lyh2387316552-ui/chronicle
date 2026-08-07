@@ -1,0 +1,24 @@
+{
+  "__active": true,
+  "sourceBuff": [],
+  "deleteSourceBuff": 1,
+  "wearBuff": [],
+  "targetBuff": [],
+  "hitEffect": "",
+  "skillId": [],
+  "skillIdP": [],
+  "wearSkill": [
+    2340000081
+  ],
+  "spawnBullet": [
+    2341100080
+  ],
+  "buffLayer": [
+    1
+  ],
+  "skillCurrentCooldownChange": [],
+  "spreadAilment": [],
+  "spreadRadius": [],
+  "spreadTarget": 0,
+  "spreadEffect": []
+}

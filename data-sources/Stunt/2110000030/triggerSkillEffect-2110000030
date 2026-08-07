@@ -1,0 +1,16 @@
+{
+  "__active": true,
+  "sourceBuff": [],
+  "deleteSourceBuff": 1,
+  "wearBuff": [],
+  "targetBuff": [],
+  "hitEffect": "",
+  "skillId": [
+    2110000031
+  ],
+  "skillIdP": [],
+  "wearSkill": [],
+  "spawnBullet": [],
+  "buffLayer": [],
+  "skillCurrentCooldownChange": []
+}

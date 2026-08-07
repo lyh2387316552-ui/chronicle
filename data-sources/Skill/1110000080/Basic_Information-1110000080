@@ -1,0 +1,20 @@
+{
+  "__active": true,
+  "name": "回旋挥斩",
+  "priority": 10,
+  "mainTag": 1,
+  "remarks": "",
+  "skillTime": 849,
+  "desc": "施展环形挥斩，在你周围踢起一阵的旋风，使效果范围内的敌人减速并致盲。",
+  "detailedDesc": "",
+  "skillIcon": "",
+  "normalTag": [
+    1,
+    2,
+    7,
+    8
+  ],
+  "attackSpeed": 1,
+  "moreDamage": [],
+  "skillLevelAdd": 0
+}

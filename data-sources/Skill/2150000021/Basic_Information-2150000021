@@ -1,0 +1,15 @@
+{
+  "__active": true,
+  "name": "天赋-巅峰",
+  "priority": 1,
+  "mainTag": 0,
+  "remarks": "",
+  "skillTime": 0,
+  "desc": "击中时，向前斩击，造成1000%的攻击物理伤害，冷却时间10秒",
+  "detailedDesc": "",
+  "skillIcon": "linshi/4",
+  "normalTag": [],
+  "attackSpeed": 1,
+  "moreDamage": [],
+  "skillLevelAdd": 0
+}

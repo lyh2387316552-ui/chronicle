@@ -1,0 +1,11 @@
+{
+  "__active": true,
+  "triggerMode": "127",
+  "triggerValue": [
+    "2"
+  ],
+  "triggerValue2": [],
+  "skillAttackMode": [],
+  "gettriggeChance": "1",
+  "triggerFilterType": 0
+}

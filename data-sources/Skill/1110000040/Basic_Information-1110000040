@@ -1,0 +1,19 @@
+{
+  "__active": true,
+  "name": "旋风斩",
+  "priority": 2,
+  "mainTag": 1,
+  "remarks": "",
+  "skillTime": 849,
+  "desc": "对自身一定范围内的敌人造成一次高额武器攻击伤害。",
+  "detailedDesc": "",
+  "skillIcon": "linshi/9",
+  "normalTag": [
+    1,
+    2,
+    7
+  ],
+  "attackSpeed": 1,
+  "moreDamage": [],
+  "skillLevelAdd": 0
+}

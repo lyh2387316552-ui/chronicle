@@ -1,0 +1,17 @@
+{
+  "__active": true,
+  "name": "回响",
+  "priority": 3,
+  "mainTag": 2,
+  "remarks": "",
+  "skillTime": 849,
+  "desc": "可以使下一个可重复技能额外释放2次。\n消耗当前拥有的所有毁灭注能，每消耗一层毁灭注能，回响的额外释放次数增加1次",
+  "detailedDesc": "",
+  "skillIcon": "linshi/27",
+  "normalTag": [
+    17
+  ],
+  "attackSpeed": 1,
+  "moreDamage": [],
+  "skillLevelAdd": 0
+}

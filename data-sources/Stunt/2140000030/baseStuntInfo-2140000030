@@ -1,0 +1,10 @@
+{
+  "__active": true,
+  "level": 1,
+  "group": 2140000030,
+  "name": "辅助宝石-迎寒而上",
+  "text": "被辅助技能冻结敌人时，获得30%的额外冰冷伤害，持续6秒",
+  "skillIcon": "",
+  "bundlingStunts": [],
+  "normalTag": []
+}

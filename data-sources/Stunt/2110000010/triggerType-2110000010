@@ -1,0 +1,10 @@
+{
+  "__active": true,
+  "triggerMode": "205",
+  "triggerValue": [],
+  "triggerValue2": [],
+  "skillAttackMode": [],
+  "gettriggerTargetCon": "(!bullet||(bullet.bulletId!=2111000020&&bullet.bulletId!=2111000010&&bullet.bulletId!=2111000030))&&!!target.ganDianTimerId",
+  "gettriggeChance": "1",
+  "triggerFilterType": 0
+}

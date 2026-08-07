@@ -1,0 +1,12 @@
+{
+  "_说明": "数据源统一放在 data-sources 文件夹下，路径为相对路径（相对本项目目录）。将对应文件放入指定文件夹/文件名即可，无需修改本配置。",
+  "skillFolder": "data-sources/Skill",
+  "skillModuleFolder": "data-sources/SkillModule",
+  "stuntFolder": "data-sources/Stunt",
+  "stuntModuleFolder": "data-sources/StuntModule",
+  "affixPath": "data-sources/属性表",
+  "equipPath": "data-sources/装备表",
+  "gemPath": "data-sources/宝石表",
+  "attrPath": "data-sources/属性表",
+  "skillExcelPath": "data-sources/技能表"
+}

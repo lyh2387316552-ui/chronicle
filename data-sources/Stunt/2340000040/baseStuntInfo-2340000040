@@ -1,0 +1,12 @@
+{
+  "__active": true,
+  "level": 1,
+  "group": 2340000040,
+  "name": "装备-暗金鞋子-烈火行军",
+  "text": "每隔5秒在脚下生成一片火焰地面，造成相当于生命值上限10%的点燃伤害",
+  "skillIcon": "",
+  "bundlingStunts": [],
+  "mainTag": 2,
+  "normalTag": [],
+  "skillLevelAdd": 0
+}

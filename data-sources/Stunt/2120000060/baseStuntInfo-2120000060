@@ -1,0 +1,11 @@
+{
+  "__active": true,
+  "level": 1,
+  "group": 0,
+  "name": "魔典-幻影耗蓝转伤",
+  "text": "幻影释放技能时会消耗你的魔力，其数值释放技能的魔力消耗，每次消耗技能额外增加5%你和幻影造成的伤害，上限为10层",
+  "skillIcon": "",
+  "bundlingStunts": [],
+  "normalTag": [],
+  "skillLevelAdd": 0
+}

@@ -1,0 +1,19 @@
+{
+  "__active": true,
+  "childSkillId": [
+    1120000083
+  ],
+  "childSkillWeight": [
+    0
+  ],
+  "childSkillTrigger": 0,
+  "childSkilAutoRelease": 0,
+  "skillConnectionTime": [
+    0
+  ],
+  "childSkillByHp": 0,
+  "childSkillNotDel": 0,
+  "childSkillDelBuff": 0,
+  "childSkillDirection": 1,
+  "subSkillAfterHit": 1
+}

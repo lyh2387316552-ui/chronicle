@@ -1,0 +1,21 @@
+{
+  "__active": true,
+  "name": "火球术",
+  "priority": 1,
+  "mainTag": 2,
+  "remarks": "",
+  "skillTime": 1200,
+  "desc": "扔出1枚火球，碰到敌人时产生爆炸。\n火球的数量无法修改\n爆炸时尽量消耗一层毁灭注能，产生更大的爆炸，在爆炸位置生成火焰地面，并在爆炸时产生8发小型火球",
+  "detailedDesc": "",
+  "skillIcon": "linshi/25",
+  "normalTag": [
+    0,
+    3,
+    7,
+    11,
+    17
+  ],
+  "attackSpeed": 1,
+  "moreDamage": [],
+  "skillLevelAdd": 0
+}

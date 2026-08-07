@@ -1,0 +1,10 @@
+{
+  "__active": true,
+  "level": 1,
+  "group": 2110000010,
+  "name": "冰霜之捷-附加冰冷伤害",
+  "text": "激活时，非捷技能攻击击中一名冰冻敌人并击杀时会产生冰霜爆炸，对周围的敌人造成攻击伤害。",
+  "skillIcon": "linshi/7",
+  "bundlingStunts": [],
+  "normalTag": []
+}

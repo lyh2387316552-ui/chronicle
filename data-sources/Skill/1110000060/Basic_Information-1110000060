@@ -1,0 +1,19 @@
+{
+  "__active": true,
+  "name": "气刃纵斩",
+  "priority": 1,
+  "mainTag": 1,
+  "remarks": "",
+  "skillTime": 933,
+  "desc": "对前方发出一道巨大的剑波，将伤害的60%转化为冰冷伤害，攻击沿途的所有敌人\n在目标位置生成一片冰冷地面，每秒产生100%的冰冷伤害，持续4秒",
+  "detailedDesc": "",
+  "skillIcon": "jianke/3",
+  "normalTag": [
+    1,
+    4,
+    7,
+    10
+  ],
+  "attackSpeed": 1,
+  "moreDamage": []
+}

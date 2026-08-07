@@ -1,0 +1,10 @@
+{
+  "__active": true,
+  "triggerMode": "124",
+  "triggerValue": [],
+  "triggerValue2": [],
+  "skillAttackMode": [],
+  "gettriggerTargetCon": "target.bingDongTimerId",
+  "gettriggeChance": "1",
+  "triggerFilterType": 0
+}

@@ -1,0 +1,13 @@
+{
+  "__active": true,
+  "buffTime": [],
+  "targetBuff": [],
+  "targetBuffWeight": [
+    "1"
+  ],
+  "hitSourceBuff": [],
+  "hitBuffNum": [],
+  "sourceBuff": [],
+  "buffLayer": [],
+  "targetSkillBuff": []
+}

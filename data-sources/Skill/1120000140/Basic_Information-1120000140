@@ -1,0 +1,20 @@
+{
+  "__active": true,
+  "name": "混沌陨星",
+  "priority": 1,
+  "mainTag": 2,
+  "remarks": "",
+  "skillTime": 1033,
+  "desc": "在目标位置产生混沌冲击，造成小范围的混沌伤害，并产生一片中毒云雾，中毒强度为生命值上限的20%；混沌云雾碰撞到点燃单位或者火焰子弹时，会对敌人产生爆炸造成大量火焰伤害",
+  "detailedDesc": "",
+  "skillIcon": "fashu/hundunyunxing",
+  "normalTag": [
+    6,
+    7,
+    8,
+    12
+  ],
+  "attackSpeed": 1,
+  "moreDamage": [],
+  "skillLevelAdd": 0
+}

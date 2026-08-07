@@ -1,0 +1,15 @@
+{
+  "__active": true,
+  "name": "天赋-注能轮转-缓冲",
+  "priority": 1,
+  "mainTag": 2,
+  "remarks": "",
+  "skillTime": 0,
+  "desc": "",
+  "detailedDesc": "",
+  "skillIcon": "",
+  "normalTag": [],
+  "attackSpeed": 0,
+  "moreDamage": [],
+  "skillLevelAdd": 0
+}

@@ -1,0 +1,14 @@
+{
+  "__active": true,
+  "name": "魔典-中毒爆炸子技能",
+  "priority": 1,
+  "mainTag": 2,
+  "remarks": "",
+  "skillTime": 0,
+  "desc": "中毒目标被击败时10%几率爆炸，对半径3米内的敌人造成被击败的敌人最大生命 125% 的混沌伤害",
+  "detailedDesc": "",
+  "skillIcon": "linshi/17",
+  "normalTag": [],
+  "attackSpeed": 0,
+  "moreDamage": []
+}

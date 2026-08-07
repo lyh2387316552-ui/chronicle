@@ -1,0 +1,10 @@
+{
+  "__active": true,
+  "triggerMode": "7",
+  "triggerValue": [],
+  "triggerValue2": [],
+  "skillAttackMode": [],
+  "gettriggerTargetCon": "attacker.mp/attacker.mpMax>=0.75",
+  "gettriggeChance": "1",
+  "triggerFilterType": 0
+}

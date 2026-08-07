@@ -1,0 +1,10 @@
+{
+  "__active": true,
+  "triggerMode": "7",
+  "triggerValue": [],
+  "triggerValue2": [],
+  "skillAttackMode": [],
+  "gettriggerTargetCon": "!(attacker.buffIdBuffs[200001]&&attacker.buffIdBuffs[200001].length)",
+  "gettriggeChance": "1",
+  "triggerFilterType": 0
+}

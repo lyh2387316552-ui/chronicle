@@ -1,0 +1,12 @@
+{
+  "__active": true,
+  "level": 1,
+  "group": 0,
+  "name": "宠物-不洁之力",
+  "text": "占位技能",
+  "skillIcon": "",
+  "bundlingStunts": [],
+  "mainTag": 4,
+  "normalTag": [],
+  "skillLevelAdd": 0
+}

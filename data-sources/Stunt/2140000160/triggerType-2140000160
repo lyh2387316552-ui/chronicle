@@ -1,0 +1,10 @@
+{
+  "__active": true,
+  "triggerMode": "1",
+  "triggerValue": [],
+  "triggerValue2": [],
+  "skillAttackMode": [],
+  "gettriggerTargetCon": "shootC.skillDmgBase[4]>0",
+  "gettriggeChance": "1",
+  "triggerFilterType": 0
+}

@@ -1,0 +1,10 @@
+{
+  "__active": true,
+  "triggerMode": "5",
+  "triggerValue": [],
+  "triggerValue2": [],
+  "skillAttackMode": [],
+  "gettriggerTargetCon": "target.isInZhongDu",
+  "gettriggeChance": "0.15",
+  "triggerFilterType": 0
+}

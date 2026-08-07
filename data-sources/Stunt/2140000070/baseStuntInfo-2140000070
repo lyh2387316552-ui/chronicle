@@ -1,0 +1,11 @@
+{
+  "__active": true,
+  "level": 1,
+  "group": 2140000070,
+  "name": "生命再生",
+  "text": "激活时，每秒回复75点生命值",
+  "skillIcon": "zengyi/huifu",
+  "bundlingStunts": [],
+  "mainTag": 4,
+  "normalTag": []
+}

@@ -1,0 +1,11 @@
+{
+  "__active": true,
+  "level": 1,
+  "group": 2150100080,
+  "name": "元素掌握2",
+  "text": "敌人处于元素异常状态时，可以使敌人对该类型元素的抗性降低40%",
+  "skillIcon": "",
+  "bundlingStunts": [],
+  "mainTag": 4,
+  "normalTag": []
+}

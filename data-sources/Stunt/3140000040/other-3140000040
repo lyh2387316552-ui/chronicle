@@ -1,0 +1,6 @@
+{
+  "__active": true,
+  "triggerSource": [],
+  "formulaBuff": 0,
+  "executeCommands": "SkillHurtAboDeal.addZhongDuHurt(target,0.05,Math.round(5))"
+}

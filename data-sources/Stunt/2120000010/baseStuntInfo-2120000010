@@ -1,0 +1,15 @@
+{
+  "__active": true,
+  "level": 1,
+  "group": 2120000010,
+  "name": "移形换影-闪现（子）",
+  "text": "向移动方向闪现，并在原地留下一个幻影。幻影不可移动，不可攻击，在持续时间内持续释放技能1，幻影的上限为3",
+  "skillIcon": "",
+  "bundlingStunts": [],
+  "mainTag": 2,
+  "normalTag": [
+    13,
+    14
+  ],
+  "skillLevelAdd": 0
+}

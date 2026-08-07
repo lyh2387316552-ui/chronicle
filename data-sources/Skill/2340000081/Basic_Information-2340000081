@@ -1,0 +1,15 @@
+{
+  "__active": true,
+  "name": "装备-点燃头",
+  "priority": 1,
+  "mainTag": 2,
+  "remarks": "",
+  "skillTime": 0,
+  "desc": "",
+  "detailedDesc": "",
+  "skillIcon": "",
+  "normalTag": [],
+  "attackSpeed": 0,
+  "moreDamage": [],
+  "skillLevelAdd": 0
+}
