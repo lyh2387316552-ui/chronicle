@@ -1,0 +1,23 @@
+# 依赖
+node_modules/
+
+# 系统文件
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 编辑器
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 临时文件
+*.tmp
+*.log
+*.bak
+
+# 自动生成的数据文件（每次运行 import.js 重新生成）
+# 如需保留示例数据，可注释掉下一行
+# auto-import-data.js

@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>编年史 - 游戏数据库</title>
+    <link rel="stylesheet" href="style.css?v=4">
+</head>
+<body>
+    <div class="background-image"></div>
+    <div id="app">
+        <!-- Top Navbar -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <a href="#" class="logo" onclick="navigateTo('home');return false;">📜 编年史</a>
+            </div>
+            <div class="sidebar-search">
+                <input type="text" id="globalSearch" placeholder="🔍 搜索..." class="sidebar-search-input">
+            </div>
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active" data-page="home">
+                        <span class="nav-icon">🏠</span> 首页
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-page="equipment">
+                        <span class="nav-icon">📦</span> 暗金装备
+                        <span class="nav-badge" id="equipmentCount">0</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-page="gems">
+                        <span class="nav-icon">💎</span> 辅助宝石
+                        <span class="nav-badge" id="gemCount">0</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-page="custom-skills">
+                        <span class="nav-icon">🏹</span> 技能库
+                        <span class="nav-badge" id="customSkillCount">0</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-page="battle-data">
+                        <span class="nav-icon">⚔️</span> 战斗数据
+                        <span class="nav-badge" id="battleDataCount">0</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-page="stats">
+                        <span class="nav-icon">📊</span> 统计
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-page="skill-rules">
+                        <span class="nav-icon">📐</span> ID规则
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Home Page -->
+            <div class="page active" id="page-home">
+                <div class="hero-banner">
+                    <h2 class="hero-title">欢迎来到编年史</h2>
+                    <p class="hero-desc">游戏数据百科全书 · 技能 · 词缀 · 装备</p>
+                    <div class="hero-stats">
+                        <div class="hero-stat">
+                            <span class="hero-stat-num" id="heroActive">0</span>
+                            <span class="hero-stat-label">主动技能</span>
+                        </div>
+                        <div class="hero-stat">
+                            <span class="hero-stat-num" id="heroPassive">0</span>
+                            <span class="hero-stat-label">被动技能</span>
+                        </div>
+                        <div class="hero-stat">
+                            <span class="hero-stat-num" id="heroTotal">0</span>
+                            <span class="hero-stat-label">总技能数</span>
+                        </div>
+                        <div class="hero-stat">
+                            <span class="hero-stat-num" id="heroAffix">0</span>
+                            <span class="hero-stat-label">词缀总数</span>
+                        </div>
+                        <div class="hero-stat">
+                            <span class="hero-stat-num" id="heroEquipment">0</span>
+                            <span class="hero-stat-label">装备数量</span>
+                        </div>
+                        <div class="hero-stat">
+                            <span class="hero-stat-num" id="heroAttr">0</span>
+                            <span class="hero-stat-label">属性数量</span>
+                        </div>
+                        <div class="hero-stat">
+                            <span class="hero-stat-num" id="heroGem">0</span>
+                            <span class="hero-stat-label">辅助宝石</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="home-modules">
+                    <h3 class="section-title">核心模块</h3>
+                    <div class="module-grid">
+                        <div class="module-card" onclick="navigateTo('battle-data')">
+                            <div class="module-icon">⚔️</div>
+                            <h4>战斗数据</h4>
+                            <p>主动技能与被动技能统一管理</p>
+                        </div>
+                        <div class="module-card" onclick="showSyncBattleDataModal()">
+                            <div class="module-icon">🔄</div>
+                            <h4>同步战斗数据</h4>
+                            <p>从本地项目文件夹拉取最新技能数据</p>
+                        </div>
+                        <div class="module-card" onclick="navigateTo('skill-rules')">
+                            <div class="module-icon">📐</div>
+                            <h4>ID规则说明</h4>
+                            <p>了解技能ID命名规则，掌握A+B+C+D+E+000F+G编码体系</p>
+                        </div>
+                        <div class="module-card" onclick="navigateTo('equipment')">
+                            <div class="module-icon">📦</div>
+                            <h4>暗金装备</h4>
+                            <p>暗金装备效果与词条管理</p>
+                        </div>
+                        <div class="module-card" onclick="navigateTo('gems')">
+                            <div class="module-icon">💎</div>
+                            <h4>辅助宝石</h4>
+                            <p>辅助技能宝石效果管理</p>
+                        </div>
+                        <div class="module-card" onclick="navigateTo('stats')">
+                            <div class="module-icon">📊</div>
+                            <h4>数据统计</h4>
+                            <p>技能分布统计、ID段位分析和数据可视化</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="home-recent">
+                    <h3 class="section-title">新增内容</h3>
+                    <div class="new-badge-list" id="newSkillList"></div>
+                </div>
+            </div>
+
+            <!-- Active Skills Page -->
+            <!-- Battle Data Page (Active + Passive Skills) -->
+            <div class="page" id="page-battle-data">
+                <div class="page-header">
+                    <h2 class="page-title">⚔️ 战斗数据</h2>
+                    <p class="page-desc">主动 <span id="activeSkillCount">0</span> · 被动 <span id="passiveSkillCount">0</span> · 词缀 <span id="affixTabCount">0</span> · 属性 <span id="attrTabCount">0</span></p>
+                </div>
+
+                <!-- Tab Switcher -->
+                <div class="battle-data-tabs">
+                    <button class="battle-tab active" id="tab-active" onclick="switchBattleTab('active')">⚔️ 主动技能</button>
+                    <button class="battle-tab" id="tab-passive" onclick="switchBattleTab('passive')">🛡️ 被动技能</button>
+                    <button class="battle-tab" id="tab-affix" onclick="switchBattleTab('affix')">✨ 词缀库</button>
+                    <button class="battle-tab" id="tab-attr" onclick="switchBattleTab('attr')">🔧 属性库</button>
+                </div>
+
+                <!-- Active Skills Tab Content -->
+                <div class="battle-tab-content" id="battle-tab-active">
+                    <div class="filter-bar">
+                        <div class="filter-group">
+                            <label>分类:</label>
+                            <select id="activeCategoryFilter" class="filter-select" onchange="filterSkills('active')">
+                                <option value="">全部</option>
+                                <option value="战斗技能">战斗技能</option>
+                                <option value="法术技能">法术技能</option>
+                                <option value="增益技能">增益技能</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>搜索:</label>
+                            <input type="text" id="activeSearchInput" class="filter-input" placeholder="技能名称或ID..." oninput="filterSkills('active')">
+                        </div>
+                        <div class="filter-group">
+                            <label>
+                                <input type="checkbox" id="activeNewOnly" onchange="filterSkills('active')">
+                                仅看新增
+                            </label>
+                        </div>
+                        <div class="filter-group">
+                            <button class="equipment-btn equipment-btn-add" onclick="showAddSkillForm('active')">+ 新增技能</button>
+                        </div>
+                    </div>
+                    <div class="skill-grid" id="activeSkillGrid"></div>
+                </div>
+
+                <!-- Passive Skills Tab Content -->
+                <div class="battle-tab-content" id="battle-tab-passive" style="display:none">
+                    <div class="filter-bar">
+                        <div class="filter-group">
+                            <label>分类:</label>
+                            <select id="passiveCategoryFilter" class="filter-select" onchange="filterSkills('passive')">
+                                <option value="">全部</option>
+                                <option value="捷系列">捷系列</option>
+                                <option value="战斗特技">战斗特技</option>
+                                <option value="传奇特技">传奇特技</option>
+                                <option value="天赋特技">天赋特技</option>
+                                <option value="其他特技">其他特技</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>搜索:</label>
+                            <input type="text" id="passiveSearchInput" class="filter-input" placeholder="技能名称或ID..." oninput="filterSkills('passive')">
+                        </div>
+                        <div class="filter-group">
+                            <label>
+                                <input type="checkbox" id="passiveNewOnly" onchange="filterSkills('passive')">
+                                仅看新增
+                            </label>
+                        </div>
+                        <div class="filter-group">
+                            <button class="equipment-btn equipment-btn-add" onclick="showAddSkillForm('passive')">+ 新增技能</button>
+                        </div>
+                    </div>
+                    <div class="skill-grid" id="passiveSkillGrid"></div>
+                </div>
+
+                <!-- Affix Tab Content -->
+                <div class="battle-tab-content" id="battle-tab-affix" style="display:none">
+                    <div class="filter-bar">
+                        <div class="filter-group">
+                            <label>分类:</label>
+                            <select id="affixCategoryFilter" class="filter-select" onchange="filterAffixes()">
+                                <option value="">全部</option>
+                                <option value="通用词缀">通用词缀</option>
+                                <option value="特殊词缀">特殊词缀</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>搜索:</label>
+                            <input type="text" id="affixSearchInput" class="filter-input" placeholder="词缀名称或ID..." oninput="filterAffixes()">
+                        </div>
+                        <div class="filter-group">
+                            <label>
+                                <input type="checkbox" id="affixNewOnly" onchange="filterAffixes()">
+                                仅看新增
+                            </label>
+                        </div>
+                        <div class="filter-group">
+                            <button class="equipment-btn equipment-btn-add" onclick="showAddAffixForm()">+ 新增词缀</button>
+                        </div>
+                    </div>
+                    <div class="affix-grid" id="affixGrid"></div>
+                </div>
+
+                <!-- Attribute Tab Content -->
+                <div class="battle-tab-content" id="battle-tab-attr" style="display:none">
+                    <div class="filter-bar">
+                        <div class="filter-group">
+                            <label>分类:</label>
+                            <select id="attrCategoryFilter" class="filter-select" onchange="filterAttributes()">
+                                <option value="">全部</option>
+                                <option value="基础属性">基础属性</option>
+                                <option value="特殊属性">特殊属性</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>搜索:</label>
+                            <input type="text" id="attrSearchInput" class="filter-input" placeholder="属性名称或ID..." oninput="filterAttributes()">
+                        </div>
+                    </div>
+                    <div class="affix-grid" id="attrGrid"></div>
+                </div>
+            </div>
+
+            <!-- Skill Rules Page -->
+            <div class="page" id="page-skill-rules">
+                <div class="page-header">
+                    <h2 class="page-title">📐 ID规则说明</h2>
+                    <p class="page-desc">战斗编辑器配置技能ID规则</p>
+                </div>
+                <div class="rules-content">
+                    <div class="rule-card">
+                        <h3>ID结构公式</h3>
+                        <div class="id-formula">A + B + C + D + E + 000F + G</div>
+                        <p class="rule-desc">技能ID由7个段位组成，共10位数字。每个段位代表不同的含义。</p>
+                    </div>
+
+                    <div class="rule-segments">
+                        <h3>段位说明</h3>
+                        <table class="rule-table">
+                            <thead>
+                                <tr>
+                                    <th>段位</th>
+                                    <th>名称</th>
+                                    <th>说明</th>
+                                    <th>取值</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>A</strong></td>
+                                    <td>技能类型</td>
+                                    <td>区分主动/被动</td>
+                                    <td>
+                                        <span class="code-tag tag-active">1 = 主动技能</span><br>
+                                        <span class="code-tag tag-passive">2 = 被动技能</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>B</strong></td>
+                                    <td>技能大类</td>
+                                    <td>技能归属的大分类，区分常规技能系与装备系</td>
+                                    <td>1~9（数字越大分类越特殊）</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>C</strong></td>
+                                    <td>技能子类</td>
+                                    <td>在B段大类下细分的功能类型</td>
+                                    <td>1~9</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>D</strong></td>
+                                    <td>效果类型</td>
+                                    <td>技能的效果方向，如伤害/控制/位移等</td>
+                                    <td>0~9</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>E</strong></td>
+                                    <td>元素/属性</td>
+                                    <td>元素属性标记，如火焰/冰霜/闪电等</td>
+                                    <td>0~9</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>000F</strong></td>
+                                    <td>序号</td>
+                                    <td>4位序号（000前缀+F序号）</td>
+                                    <td>0001~0009</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>G</strong></td>
+                                    <td>等级标识</td>
+                                    <td>版本/等级标记</td>
+                                    <td>通常为0</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="rule-examples">
+                        <h3>实例解析</h3>
+                        <div class="example-cards">
+                            <div class="example-card">
+                                <div class="example-id">1110000010</div>
+                                <div class="example-breakdown">
+                                    <span class="seg seg-a">A=1</span>
+                                    <span class="seg">B=1</span>
+                                    <span class="seg">C=1</span>
+                                    <span class="seg">D=0</span>
+                                    <span class="seg">E=0</span>
+                                    <span class="seg">000F=001</span>
+                                    <span class="seg">G=0</span>
+                                </div>
+                                <div class="example-result">
+                                    <strong>月光斩</strong> · 主动技能 · 战斗技能类
+                                </div>
+                            </div>
+                            <div class="example-card">
+                                <div class="example-id">1120000030</div>
+                                <div class="example-breakdown">
+                                    <span class="seg seg-a">A=1</span>
+                                    <span class="seg">B=1</span>
+                                    <span class="seg seg-c">C=2</span>
+                                    <span class="seg">D=0</span>
+                                    <span class="seg">E=0</span>
+                                    <span class="seg">000F=003</span>
+                                    <span class="seg">G=0</span>
+                                </div>
+                                <div class="example-result">
+                                    <strong>闪现</strong> · 主动技能 · 法术技能类 (新增)
+                                </div>
+                            </div>
+                            <div class="example-card">
+                                <div class="example-id">2150000010</div>
+                                <div class="example-breakdown">
+                                    <span class="seg seg-a2">A=2</span>
+                                    <span class="seg">B=1</span>
+                                    <span class="seg seg-c5">C=5</span>
+                                    <span class="seg">D=0</span>
+                                    <span class="seg">E=0</span>
+                                    <span class="seg">000F=001</span>
+                                    <span class="seg">G=0</span>
+                                </div>
+                                <div class="example-result">
+                                    <strong>天赋-巅峰</strong> · 被动技能 · 天赋被动类
+                                </div>
+                            </div>
+                            <div class="example-card">
+                                <div class="example-id">2340000010</div>
+                                <div class="example-breakdown">
+                                    <span class="seg seg-a2">A=2</span>
+                                    <span class="seg seg-b3">B=3</span>
+                                    <span class="seg seg-c4">C=4</span>
+                                    <span class="seg">D=0</span>
+                                    <span class="seg">E=0</span>
+                                    <span class="seg">000F=001</span>
+                                    <span class="seg">G=0</span>
+                                </div>
+                                <div class="example-result">
+                                    <strong>装备-手套暗金-位移技能回复</strong> · 被动技能 · 装备暗金类
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="rule-categories">
+                        <h3>主动技能 B段位分类 (A=1)</h3>
+                        <table class="rule-table">
+                            <thead>
+                                <tr><th>B段位</th><th>分类名称</th><th>说明</th><th>数量</th></tr>
+                            </thead>
+                            <tbody id="activeBTable"></tbody>
+                        </table>
+
+                        <h3 style="margin-top:24px">主动技能 C段位分类</h3>
+                        <table class="rule-table">
+                            <thead>
+                                <tr><th>C段位</th><th>分类名称</th><th>说明</th><th>数量</th></tr>
+                            </thead>
+                            <tbody id="activeCTable"></tbody>
+                        </table>
+
+                        <h3 style="margin-top:24px">主动技能 B+C组合分类</h3>
+                        <table class="rule-table">
+                            <thead>
+                                <tr><th>B+C段位</th><th>分类名称</th><th>说明</th><th>数量</th></tr>
+                            </thead>
+                            <tbody id="activeCategoryTable"></tbody>
+                        </table>
+
+                        <h3 style="margin-top:32px">被动技能 B段位分类 (A=2)</h3>
+                        <table class="rule-table">
+                            <thead>
+                                <tr><th>B段位</th><th>分类名称</th><th>说明</th><th>数量</th></tr>
+                            </thead>
+                            <tbody id="passiveBTable"></tbody>
+                        </table>
+
+                        <h3 style="margin-top:24px">被动技能 C段位分类</h3>
+                        <table class="rule-table">
+                            <thead>
+                                <tr><th>C段位</th><th>分类名称</th><th>说明</th><th>数量</th></tr>
+                            </thead>
+                            <tbody id="passiveCTable"></tbody>
+                        </table>
+
+                        <h3 style="margin-top:24px">被动技能 B+C组合分类</h3>
+                        <table class="rule-table">
+                            <thead>
+                                <tr><th>B+C段位</th><th>分类名称</th><th>说明</th><th>数量</th></tr>
+                            </thead>
+                            <tbody id="passiveCategoryTable"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Affixes Page -->
+            <!-- Equipment Page -->
+            <div class="page" id="page-equipment">
+                <div class="page-header">
+                    <h2 class="page-title">📦 暗金装备</h2>
+                    <p class="page-desc">共 <span id="equipmentTotalCount">0</span> 件装备</p>
+                </div>
+                <div class="filter-bar">
+                    <div class="filter-group">
+                        <label>搜索:</label>
+                        <input type="text" id="equipmentSearchInput" class="filter-input" placeholder="装备名称或ID..." oninput="filterEquipments()">
+                    </div>
+                    <div class="filter-group">
+                        <label>类型:</label>
+                        <select id="equipmentTypeFilter" class="filter-input" onchange="filterEquipments()">
+                            <option value="">全部类型</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>
+                            <input type="checkbox" id="equipmentNewOnly" onchange="filterEquipments()">
+                            仅看新增
+                        </label>
+                    </div>
+                    <div class="filter-group">
+                        <button class="equipment-btn equipment-btn-add" onclick="showAddEquipmentForm()">+ 添加装备</button>
+                    </div>
+                    <div class="filter-group">
+                        <button class="equipment-btn" style="background:#e67e22;color:white" onclick="showSyncEquipModal()">🔄 来源同步</button>
+                    </div>
+                </div>
+                <div class="equipment-grid" id="equipmentGrid"></div>
+            </div>
+
+            <!-- Gems Page -->
+            <div class="page" id="page-gems">
+                <div class="page-header">
+                    <h2 class="page-title">💎 辅助技能宝石库</h2>
+                    <p class="page-desc">共 <span id="gemTotalCount">0</span> 个辅助技能宝石</p>
+                </div>
+                <div class="filter-bar">
+                    <div class="filter-group">
+                        <label>搜索:</label>
+                        <input type="text" id="gemSearchInput" class="filter-input" placeholder="宝石名称、ID或效果..." oninput="filterGems()">
+                    </div>
+                    <div class="filter-group">
+                        <label>类型:</label>
+                        <select id="gemTypeFilter" class="filter-input" onchange="filterGems()">
+                            <option value="">全部类型</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>
+                            <input type="checkbox" id="gemNewOnly" onchange="filterGems()">
+                            仅看新增
+                        </label>
+                    </div>
+                    <div class="filter-group">
+                        <button class="equipment-btn equipment-btn-add" onclick="showAddGemForm()">+ 添加辅助宝石</button>
+                    </div>
+                    <div class="filter-group">
+                        <button class="equipment-btn" style="background:#9b59b6;color:white" onclick="showSyncGemModal()">🔄 来源同步</button>
+                    </div>
+                </div>
+                <div class="equipment-grid" id="gemGrid"></div>
+            </div>
+
+            <!-- Custom Skills Page -->
+            <div class="page" id="page-custom-skills">
+                <div class="page-header">
+                    <h2 class="page-title">🏹 技能库</h2>
+                    <p class="page-desc">共 <span id="customSkillTotalCount">0</span> 个技能</p>
+                </div>
+                <div class="filter-bar">
+                    <div class="filter-group">
+                        <label>搜索:</label>
+                        <input type="text" id="customSkillSearchInput" class="filter-input" placeholder="技能名称或ID..." oninput="filterCustomSkills()">
+                    </div>
+                    <div class="filter-group">
+                        <label>类型:</label>
+                        <select id="customSkillTypeFilter" class="filter-input" onchange="filterCustomSkills()">
+                            <option value="">全部类型</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>
+                            <input type="checkbox" id="customSkillNewOnly" onchange="filterCustomSkills()">
+                            仅看新增
+                        </label>
+                    </div>
+                    <div class="filter-group">
+                        <button class="equipment-btn equipment-btn-add" onclick="showAddCustomSkillForm()">+ 添加技能</button>
+                    </div>
+                    <div class="filter-group">
+                        <button class="equipment-btn" style="background:#e67e22;color:white" onclick="showSyncCustomSkillModal()">🔄 来源同步</button>
+                    </div>
+                </div>
+                <div class="equipment-grid" id="customSkillGrid"></div>
+            </div>
+
+            <!-- Stats Page -->
+            <div class="page" id="page-stats">
+                <div class="page-header">
+                    <h2 class="page-title">📊 数据统计</h2>
+                    <p class="page-desc">技能分布统计与可视化</p>
+                </div>
+                <div class="stats-content">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">⚔️</div>
+                            <div class="stat-info">
+                                <span class="stat-num" id="statActive">0</span>
+                                <span class="stat-label">主动技能</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">🛡️</div>
+                            <div class="stat-info">
+                                <span class="stat-num" id="statPassive">0</span>
+                                <span class="stat-label">被动技能</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">✨</div>
+                            <div class="stat-info">
+                                <span class="stat-num" id="statAffix">0</span>
+                                <span class="stat-label">词缀</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">📦</div>
+                            <div class="stat-info">
+                                <span class="stat-num" id="statEquipment">0</span>
+                                <span class="stat-label">装备</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">🔧</div>
+                            <div class="stat-info">
+                                <span class="stat-num" id="statAttr">0</span>
+                                <span class="stat-label">属性</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">💎</div>
+                            <div class="stat-info">
+                                <span class="stat-num" id="statGem">0</span>
+                                <span class="stat-label">辅助宝石</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">🆕</div>
+                            <div class="stat-info">
+                                <span class="stat-num" id="statNew">0</span>
+                                <span class="stat-label">新增</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="section-title">主动技能分类分布</h3>
+                    <div class="chart-container" id="activeChart"></div>
+
+                    <h3 class="section-title">被动技能分类分布</h3>
+                    <div class="chart-container" id="passiveChart"></div>
+
+                    <h3 class="section-title">词缀分类分布</h3>
+                    <div class="chart-container" id="affixChart"></div>
+
+                    <h3 class="section-title">ID段位B+C分布</h3>
+                    <div class="chart-container" id="segmentChart"></div>
+
+                    <h3 class="section-title">数据管理</h3>
+                    <div class="data-mgmt-section">
+                        <p class="data-mgmt-desc">导出你添加的装备和辅助宝石数据（保存在浏览器本地），可用于备份或迁移到其他设备。</p>
+                        <div class="data-mgmt-buttons">
+                            <button class="data-mgmt-btn data-mgmt-export" onclick="exportUserData()">📥 导出我的数据</button>
+                            <label class="data-mgmt-btn data-mgmt-import">
+                                📤 导入数据
+                                <input type="file" id="importFileInput" accept=".json" style="display:none" onchange="importUserData(event)">
+                            </label>
+                            <button class="data-mgmt-btn" style="background:#e74c3c;color:white" onclick="clearAllUserData()">🗑️ 清除所有数据</button>
+                        </div>
+                        <p class="data-mgmt-hint" id="importResult"></p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Skill Detail Modal -->
+    <div class="modal-overlay" id="skillModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">✕</button>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script src="xlsx.min.js"></script>
+    <script src="auto-import-data.js?v=4" onerror="console.error('⚠️ auto-import-data.js 加载失败！请先运行 node import.js 生成数据文件。')"></script>
+    <script src="data.js?v=4"></script>
+    <script src="app.js?v=4"></script>
+</body>
+</html>

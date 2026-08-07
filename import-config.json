@@ -1,0 +1,11 @@
+{
+  "_说明": "填入各数据源的完整路径，不需要的项留空字符串即可。文件夹和文件路径均支持。",
+  "skillFolder": "D:\\NewProject\\battleEdit\\Skill",
+  "skillModuleFolder": "D:\\NewProject\\battleEdit\\SkillModule",
+  "stuntFolder": "D:\\NewProject\\battleEdit\\Stunt",
+  "stuntModuleFolder": "D:\\NewProject\\battleEdit\\StuntModule",
+  "affixPath": "E:\\策划\\1.表格目录\\XLS表格\\属性表",
+  "equipPath": "E:\\策划\\1.表格目录\\XLS表格\\装备表",
+  "gemPath": "",
+  "attrPath": "E:\\策划\\1.表格目录\\XLS表格\\属性表"
+}
