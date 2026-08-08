@@ -5,8 +5,8 @@ cd /d "%~dp0"
 
 echo ==================================================
 echo    Chronicle Data Sync Tool
-echo    Step 1: Copy local tables to data-sources
-echo    Step 2: Parse data and generate web data
+echo    Step 1: Copy local tables to data-sources (增量)
+echo    Step 2: Parse data, sync icons, generate web data
 echo ==================================================
 echo.
 

@@ -1,5 +1,5 @@
 // 此文件由 import.js 自动生成，请勿手动编辑
-// 生成时间: 2026-08-07T09:09:30.163Z
+// 生成时间: 2026-08-08T07:29:32.642Z
 window.__AUTO_IMPORT_DATA__ = {
   "activeSkills": [
     {
@@ -8,7 +8,26 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "战斗技能",
       "subCategory": "战斗攻击",
       "isNew": false,
-      "description": "对前方小范围的敌人快速造成两次攻击伤害，伤害的60%转化为冰冷伤害。\n攻击冻结敌人时会出现月光残影，对范围内敌人造成伤害"
+      "description": "对前方小范围的敌人快速造成两次攻击伤害，伤害的60%转化为冰冷伤害。\n攻击冻结敌人时会出现月光残影，对范围内敌人造成伤害",
+      "tags": {
+        "main": "1",
+        "normal": [
+          "1",
+          "4",
+          "7",
+          "10"
+        ]
+      },
+      "tagsText": {
+        "main": "攻击",
+        "normal": [
+          "近战",
+          "冰霜",
+          "范围",
+          "阴义"
+        ]
+      },
+      "icon": "skill/jianke/2"
     },
     {
       "id": "1110000011",
@@ -16,7 +35,22 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "战斗技能",
       "subCategory": "战斗攻击",
       "isNew": false,
-      "description": ""
+      "description": "",
+      "tags": {
+        "main": "1",
+        "normal": [
+          "4",
+          "7"
+        ]
+      },
+      "tagsText": {
+        "main": "攻击",
+        "normal": [
+          "冰霜",
+          "范围"
+        ]
+      },
+      "icon": ""
     },
     {
       "id": "1110000012",
@@ -24,7 +58,26 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "战斗技能",
       "subCategory": "战斗攻击",
       "isNew": false,
-      "description": "无法造成冰冻。\n对前方小范围的敌人快速造成两次攻击伤害。\n攻击冻结敌人时会出现月光残影，对范围内敌人造成伤害。"
+      "description": "无法造成冰冻。\n对前方小范围的敌人快速造成两次攻击伤害。\n攻击冻结敌人时会出现月光残影，对范围内敌人造成伤害。",
+      "tags": {
+        "main": "1",
+        "normal": [
+          "1",
+          "4",
+          "7",
+          "10"
+        ]
+      },
+      "tagsText": {
+        "main": "攻击",
+        "normal": [
+          "近战",
+          "冰霜",
+          "范围",
+          "阴义"
+        ]
+      },
+      "icon": "skill/jianke/2"
     },
     {
       "id": "1110000020",
@@ -32,7 +85,26 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "战斗技能",
       "subCategory": "战斗攻击",
       "isNew": false,
-      "description": "对前方大范围内的敌人造成伤害，将伤害的80%转化为冰冷伤害\n冻结积蓄额外增加160%"
+      "description": "对前方大范围内的敌人造成伤害，将伤害的80%转化为冰冷伤害\n冻结积蓄额外增加160%",
+      "tags": {
+        "main": "1",
+        "normal": [
+          "1",
+          "4",
+          "7",
+          "10"
+        ]
+      },
+      "tagsText": {
+        "main": "攻击",
+        "normal": [
+          "近战",
+          "冰霜",
+          "范围",
+          "阴义"
+        ]
+      },
+      "icon": "skill/jianke/1"
     },
     {
       "id": "1110000030",
@@ -40,7 +112,20 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "战斗技能",
       "subCategory": "战斗攻击",
       "isNew": false,
-      "description": "向前单个敌人刺击造成50%混沌伤害，击中时产生3个穿透幻影冲刺造成20%混沌伤害"
+      "description": "向前单个敌人刺击造成50%混沌伤害，击中时产生3个穿透幻影冲刺造成20%混沌伤害",
+      "tags": {
+        "main": "1",
+        "normal": [
+          "1"
+        ]
+      },
+      "tagsText": {
+        "main": "攻击",
+        "normal": [
+          "近战"
+        ]
+      },
+      "icon": "skill/linshi/1"
     },
     {
       "id": "1110000031",
@@ -48,7 +133,24 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "战斗技能",
       "subCategory": "战斗攻击",
       "isNew": false,
-      "description": "向前刺击造成混沌伤害，击中时产生3个幻影冲刺造成小额的混沌伤害"
+      "description": "向前刺击造成混沌伤害，击中时产生3个幻影冲刺造成小额的混沌伤害",
+      "tags": {
+        "main": "1",
+        "normal": [
+          "0",
+          "1",
+          "6"
+        ]
+      },
+      "tagsText": {
+        "main": "攻击",
+        "normal": [
+          "投射物",
+          "近战",
+          "混沌"
+        ]
+      },
+      "icon": "skill/linshi/1"
     },
     {
       "id": "1110000040",
@@ -56,7 +158,24 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "战斗技能",
       "subCategory": "战斗攻击",
       "isNew": false,
-      "description": "对自身一定范围内的敌人造成一次高额武器攻击伤害。"
+      "description": "对自身一定范围内的敌人造成一次高额武器攻击伤害。",
+      "tags": {
+        "main": "1",
+        "normal": [
+          "1",
+          "2",
+          "7"
+        ]
+      },
+      "tagsText": {
+        "main": "攻击",
+        "normal": [
+          "近战",
+          "物理",
+          "范围"
+        ]
+      },
+      "icon": "skill/linshi/9"
     },
     {
       "id": "1110000050",
@@ -64,7 +183,22 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "战斗技能",
       "subCategory": "战斗攻击",
       "isNew": false,
-      "description": "向前方目标连续造成3次物理伤害，再造成更高的物理伤害"
+      "description": "向前方目标连续造成3次物理伤害，再造成更高的物理伤害",
+      "tags": {
+        "main": "1",
+        "normal": [
+          "1",
+          "2"
+        ]
+      },
+      "tagsText": {
+        "main": "攻击",
+        "normal": [
+          "近战",
+          "物理"
+        ]
+      },
+      "icon": "skill/linshi/8"
     },
     {
       "id": "1110000051",
@@ -72,7 +206,22 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "战斗技能",
       "subCategory": "战斗攻击",
       "isNew": false,
-      "description": "向前方目标连续造成3次物理伤害，再造成更高的物理伤害"
+      "description": "向前方目标连续造成3次物理伤害，再造成更高的物理伤害",
+      "tags": {
+        "main": "1",
+        "normal": [
+          "1",
+          "2"
+        ]
+      },
+      "tagsText": {
+        "main": "攻击",
+        "normal": [
+          "近战",
+          "物理"
+        ]
+      },
+      "icon": "skill/linshi/8"
     },
     {
       "id": "1110000052",
@@ -80,7 +229,22 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "战斗技能",
       "subCategory": "战斗攻击",
       "isNew": false,
-      "description": "向前方目标连续造成3次物理伤害，再造成更高的物理伤害"
+      "description": "向前方目标连续造成3次物理伤害，再造成更高的物理伤害",
+      "tags": {
+        "main": "1",
+        "normal": [
+          "1",
+          "2"
+        ]
+      },
+      "tagsText": {
+        "main": "攻击",
+        "normal": [
+          "近战",
+          "物理"
+        ]
+      },
+      "icon": "skill/linshi/8"
     },
     {
       "id": "1110000053",
@@ -88,7 +252,22 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "战斗技能",
       "subCategory": "战斗攻击",
       "isNew": false,
-      "description": "向前方目标连续造成3次物理伤害，再造成更高的物理伤害"
+      "description": "向前方目标连续造成3次物理伤害，再造成更高的物理伤害",
+      "tags": {
+        "main": "1",
+        "normal": [
+          "1",
+          "2"
+        ]
+      },
+      "tagsText": {
+        "main": "攻击",
+        "normal": [
+          "近战",
+          "物理"
+        ]
+      },
+      "icon": "skill/linshi/8"
     },
     {
       "id": "1110000060",
@@ -96,7 +275,26 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "战斗技能",
       "subCategory": "战斗攻击",
       "isNew": false,
-      "description": "对前方发出一道巨大的剑波，将伤害的60%转化为冰冷伤害，攻击沿途的所有敌人\n在目标位置生成一片冰冷地面，每秒产生100%的冰冷伤害，持续4秒"
+      "description": "对前方发出一道巨大的剑波，将伤害的60%转化为冰冷伤害，攻击沿途的所有敌人\n在目标位置生成一片冰冷地面，每秒产生100%的冰冷伤害，持续4秒",
+      "tags": {
+        "main": "1",
+        "normal": [
+          "1",
+          "4",
+          "7",
+          "10"
+        ]
+      },
+      "tagsText": {
+        "main": "攻击",
+        "normal": [
+          "近战",
+          "冰霜",
+          "范围",
+          "阴义"
+        ]
+      },
+      "icon": "skill/jianke/3"
     },
     {
       "id": "1110000061",
@@ -104,7 +302,24 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "战斗技能",
       "subCategory": "战斗攻击",
       "isNew": false,
-      "description": ""
+      "description": "",
+      "tags": {
+        "main": "1",
+        "normal": [
+          "4",
+          "7",
+          "8"
+        ]
+      },
+      "tagsText": {
+        "main": "攻击",
+        "normal": [
+          "冰霜",
+          "范围",
+          "持续"
+        ]
+      },
+      "icon": ""
     },
     {
       "id": "1110000070",
@@ -112,7 +327,26 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "战斗技能",
       "subCategory": "战斗攻击",
       "isNew": false,
-      "description": "舞动战矛扇起一阵旋龙，旋龙会不规则移动，致盲并反复击中内部的敌人。"
+      "description": "舞动战矛扇起一阵旋龙，旋龙会不规则移动，致盲并反复击中内部的敌人。",
+      "tags": {
+        "main": "1",
+        "normal": [
+          "0",
+          "2",
+          "7",
+          "8"
+        ]
+      },
+      "tagsText": {
+        "main": "攻击",
+        "normal": [
+          "投射物",
+          "物理",
+          "范围",
+          "持续"
+        ]
+      },
+      "icon": ""
     },
     {
       "id": "1110000080",
@@ -120,7 +354,26 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "战斗技能",
       "subCategory": "战斗攻击",
       "isNew": false,
-      "description": "施展环形挥斩，在你周围踢起一阵的旋风，使效果范围内的敌人减速并致盲。"
+      "description": "施展环形挥斩，在你周围踢起一阵的旋风，使效果范围内的敌人减速并致盲。",
+      "tags": {
+        "main": "1",
+        "normal": [
+          "1",
+          "2",
+          "7",
+          "8"
+        ]
+      },
+      "tagsText": {
+        "main": "攻击",
+        "normal": [
+          "近战",
+          "物理",
+          "范围",
+          "持续"
+        ]
+      },
+      "icon": ""
     },
     {
       "id": "1110000090",
@@ -128,7 +381,20 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "战斗技能",
       "subCategory": "战斗攻击",
       "isNew": false,
-      "description": "连续造成4段火焰伤害"
+      "description": "连续造成4段火焰伤害",
+      "tags": {
+        "main": "1",
+        "normal": [
+          "0"
+        ]
+      },
+      "tagsText": {
+        "main": "攻击",
+        "normal": [
+          "投射物"
+        ]
+      },
+      "icon": ""
     },
     {
       "id": "1110000091",
@@ -136,7 +402,20 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "战斗技能",
       "subCategory": "战斗攻击",
       "isNew": false,
-      "description": ""
+      "description": "",
+      "tags": {
+        "main": "1",
+        "normal": [
+          "0"
+        ]
+      },
+      "tagsText": {
+        "main": "攻击",
+        "normal": [
+          "投射物"
+        ]
+      },
+      "icon": ""
     },
     {
       "id": "1110000092",
@@ -144,7 +423,20 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "战斗技能",
       "subCategory": "战斗攻击",
       "isNew": false,
-      "description": ""
+      "description": "",
+      "tags": {
+        "main": "1",
+        "normal": [
+          "0"
+        ]
+      },
+      "tagsText": {
+        "main": "攻击",
+        "normal": [
+          "投射物"
+        ]
+      },
+      "icon": ""
     },
     {
       "id": "1120000010",
@@ -152,7 +444,20 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "法术技能",
       "subCategory": "法术释放",
       "isNew": false,
-      "description": "可以使下一个可重复技能额外释放2次。\n消耗当前拥有的所有毁灭注能，每消耗一层毁灭注能，回响的额外释放次数增加1次"
+      "description": "可以使下一个可重复技能额外释放2次。\n消耗当前拥有的所有毁灭注能，每消耗一层毁灭注能，回响的额外释放次数增加1次",
+      "tags": {
+        "main": "2",
+        "normal": [
+          "17"
+        ]
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": [
+          "强化"
+        ]
+      },
+      "icon": "skill/linshi/27"
     },
     {
       "id": "1120000020",
@@ -160,7 +465,32 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "法术技能",
       "subCategory": "法术释放",
       "isNew": false,
-      "description": "释放一道旋龙，旋龙会不规则移动，穿透并对沿途的所有敌人造成100%的法术物理伤害，持续4秒。\n当旋龙碰到其他技能产生的旋风时，可以吸收并生成一个新的旋龙，旋龙只可以分裂一次。"
+      "description": "释放一道旋龙，旋龙会不规则移动，穿透并对沿途的所有敌人造成{}的法术物理伤害，持续4秒。\n当旋龙碰到其他技能产生的旋风时，可以吸收并生成一个新的旋龙，旋龙只可以分裂一次。",
+      "tags": {
+        "main": "2",
+        "normal": [
+          "0",
+          "2",
+          "7",
+          "8",
+          "11",
+          "15",
+          "19"
+        ]
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": [
+          "投射物",
+          "物理",
+          "范围",
+          "持续",
+          "可重复",
+          "15",
+          "旋风"
+        ]
+      },
+      "icon": "skill/linshi/26"
     },
     {
       "id": "1120000030",
@@ -168,7 +498,20 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "法术技能",
       "subCategory": "法术释放",
       "isNew": false,
-      "description": ""
+      "description": "",
+      "tags": {
+        "main": "2",
+        "normal": [
+          "14"
+        ]
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": [
+          "位移"
+        ]
+      },
+      "icon": ""
     },
     {
       "id": "1120000031",
@@ -176,7 +519,24 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "法术技能",
       "subCategory": "法术释放",
       "isNew": false,
-      "description": ""
+      "description": "",
+      "tags": {
+        "main": "1",
+        "normal": [
+          "4",
+          "7",
+          "9"
+        ]
+      },
+      "tagsText": {
+        "main": "攻击",
+        "normal": [
+          "冰霜",
+          "范围",
+          "触发"
+        ]
+      },
+      "icon": ""
     },
     {
       "id": "1120000040",
@@ -184,7 +544,26 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "法术技能",
       "subCategory": "法术释放",
       "isNew": false,
-      "description": "在目标脚下生成混沌裂隙，短暂延迟后对范围内目标造成2次混沌伤害"
+      "description": "在目标脚下生成混沌裂隙，短暂延迟后对范围内目标造成2次混沌伤害",
+      "tags": {
+        "main": "2",
+        "normal": [
+          "6",
+          "7",
+          "11",
+          "12"
+        ]
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": [
+          "混沌",
+          "范围",
+          "可重复",
+          "回响"
+        ]
+      },
+      "icon": "skill/fashu/mindipenyong"
     },
     {
       "id": "1120000050",
@@ -192,7 +571,28 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "法术技能",
       "subCategory": "法术释放",
       "isNew": false,
-      "description": "在身边召唤3个围绕自身盘旋的龙卷旋风，对碰到的敌人造成100%的法术物理伤害。"
+      "description": "在身边召唤3个围绕自身盘旋的龙卷旋风，对碰到的敌人造成100%的法术物理伤害。",
+      "tags": {
+        "main": "2",
+        "normal": [
+          "2",
+          "7",
+          "8",
+          "16",
+          "19"
+        ]
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": [
+          "物理",
+          "范围",
+          "持续",
+          "环绕",
+          "旋风"
+        ]
+      },
+      "icon": "skill/linshi/14"
     },
     {
       "id": "1120000051",
@@ -200,7 +600,20 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "法术技能",
       "subCategory": "法术释放",
       "isNew": false,
-      "description": ""
+      "description": "",
+      "tags": {
+        "main": "2",
+        "normal": [
+          "10"
+        ]
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": [
+          "阴义"
+        ]
+      },
+      "icon": ""
     },
     {
       "id": "1120000080",
@@ -208,7 +621,28 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "法术技能",
       "subCategory": "法术释放",
       "isNew": false,
-      "description": "扔出1枚火球，碰到敌人时产生爆炸。\n火球的数量无法修改\n爆炸时尽量消耗一层毁灭注能，产生更大的爆炸，在爆炸位置生成火焰地面，并在爆炸时产生8发小型火球"
+      "description": "扔出1枚火球，碰到敌人时产生爆炸。\n火球的数量无法修改\n爆炸时尽量消耗一层毁灭注能，产生更大的爆炸，在爆炸位置生成火焰地面，并在爆炸时产生8发小型火球",
+      "tags": {
+        "main": "2",
+        "normal": [
+          "0",
+          "3",
+          "7",
+          "11",
+          "17"
+        ]
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": [
+          "投射物",
+          "火焰",
+          "范围",
+          "可重复",
+          "强化"
+        ]
+      },
+      "icon": "skill/linshi/25"
     },
     {
       "id": "1120000081",
@@ -216,7 +650,26 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "法术技能",
       "subCategory": "法术释放",
       "isNew": false,
-      "description": ""
+      "description": "",
+      "tags": {
+        "main": "2",
+        "normal": [
+          "0",
+          "3",
+          "7",
+          "11"
+        ]
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": [
+          "投射物",
+          "火焰",
+          "范围",
+          "可重复"
+        ]
+      },
+      "icon": ""
     },
     {
       "id": "1120000082",
@@ -224,7 +677,24 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "法术技能",
       "subCategory": "法术释放",
       "isNew": false,
-      "description": "扔出1枚火球，碰到敌人时产生爆炸。\n尽量消耗一层毁灭注能，产生更大的爆炸，在爆炸位置生成并在爆炸时产生8发小型火球"
+      "description": "扔出1枚火球，碰到敌人时产生爆炸。\n尽量消耗一层毁灭注能，产生更大的爆炸，在爆炸位置生成并在爆炸时产生8发小型火球",
+      "tags": {
+        "main": "2",
+        "normal": [
+          "3",
+          "7",
+          "11"
+        ]
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": [
+          "火焰",
+          "范围",
+          "可重复"
+        ]
+      },
+      "icon": ""
     },
     {
       "id": "1120000083",
@@ -232,7 +702,16 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "法术技能",
       "subCategory": "法术释放",
       "isNew": false,
-      "description": ""
+      "description": "",
+      "tags": {
+        "main": "2",
+        "normal": []
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": []
+      },
+      "icon": ""
     },
     {
       "id": "1120000100",
@@ -240,7 +719,16 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "法术技能",
       "subCategory": "法术释放",
       "isNew": false,
-      "description": "化身成为闪电，对碰撞到的敌人造成100%的闪电伤害。\n生成一片闪电场，吸收场内敌人的感电状态并触发一次200%的雷击，雷击不会造成感电状态"
+      "description": "化身成为闪电，对碰撞到的敌人造成100%的闪电伤害。\n生成一片闪电场，吸收场内敌人的感电状态并触发一次200%的雷击，雷击不会造成感电状态",
+      "tags": {
+        "main": "2",
+        "normal": []
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": []
+      },
+      "icon": ""
     },
     {
       "id": "1120000130",
@@ -248,7 +736,26 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "法术技能",
       "subCategory": "法术释放",
       "isNew": false,
-      "description": "释放该技能在自身一定范围内形成一圈冰环，造成法术冰冷伤害"
+      "description": "释放该技能在自身一定范围内形成一圈冰环，造成法术冰冷伤害",
+      "tags": {
+        "main": "2",
+        "normal": [
+          "4",
+          "11",
+          "12",
+          "7"
+        ]
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": [
+          "冰霜",
+          "可重复",
+          "回响",
+          "范围"
+        ]
+      },
+      "icon": "skill/fashu/bingshuangxinxing"
     },
     {
       "id": "1120000140",
@@ -256,7 +763,26 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "法术技能",
       "subCategory": "法术释放",
       "isNew": false,
-      "description": "在目标位置产生混沌冲击，造成小范围的混沌伤害，并产生一片中毒云雾，中毒强度为生命值上限的20%；混沌云雾碰撞到点燃单位或者火焰子弹时，会对敌人产生爆炸造成大量火焰伤害"
+      "description": "在目标位置产生混沌冲击，造成小范围的混沌伤害，并产生一片中毒云雾，中毒强度为生命值上限的20%；混沌云雾碰撞到点燃单位或者火焰子弹时，会对敌人产生爆炸造成大量火焰伤害",
+      "tags": {
+        "main": "2",
+        "normal": [
+          "6",
+          "7",
+          "8",
+          "12"
+        ]
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": [
+          "混沌",
+          "范围",
+          "持续",
+          "回响"
+        ]
+      },
+      "icon": "skill/fashu/hundunyunxing"
     },
     {
       "id": "1140000010",
@@ -264,7 +790,24 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "增益技能",
       "subCategory": "增益辅助",
       "isNew": false,
-      "description": "获得相当于伤害10%的冰冷伤害。\n每次使用阴义技能攻击敌人时会召唤4发剑影，击中敌人时产生小范围的爆炸，持续8秒\n1发剑影最多攻击5名敌人"
+      "description": "获得相当于伤害10%的冰冷伤害。\n每次使用阴义技能攻击敌人时会召唤4发剑影，击中敌人时产生小范围的爆炸，持续8秒\n1发剑影最多攻击5名敌人",
+      "tags": {
+        "main": "1",
+        "normal": [
+          "1",
+          "4",
+          "8"
+        ]
+      },
+      "tagsText": {
+        "main": "攻击",
+        "normal": [
+          "近战",
+          "冰霜",
+          "持续"
+        ]
+      },
+      "icon": "skill/jianke/5"
     },
     {
       "id": "1140000011",
@@ -272,7 +815,24 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "增益技能",
       "subCategory": "增益辅助",
       "isNew": false,
-      "description": ""
+      "description": "",
+      "tags": {
+        "main": "1",
+        "normal": [
+          "1",
+          "4",
+          "7"
+        ]
+      },
+      "tagsText": {
+        "main": "攻击",
+        "normal": [
+          "近战",
+          "冰霜",
+          "范围"
+        ]
+      },
+      "icon": ""
     },
     {
       "id": "1140000020",
@@ -280,7 +840,22 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "增益技能",
       "subCategory": "增益辅助",
       "isNew": false,
-      "description": "发出极地战吼，对周围5米范围内的敌人造成伤害，冰冻积蓄值额外增加80%。\n范围内每存在1名敌人则+5%的伤害，最多可以+50%的伤害，持续10秒"
+      "description": "发出极地战吼，对周围5米范围内的敌人造成伤害，冰冻积蓄值额外增加80%。\n范围内每存在1名敌人则+5%的伤害，最多可以+50%的伤害，持续10秒",
+      "tags": {
+        "main": "2",
+        "normal": [
+          "4",
+          "7"
+        ]
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": [
+          "冰霜",
+          "范围"
+        ]
+      },
+      "icon": "skill/zengyi/jidizhanhou"
     },
     {
       "id": "1140000030",
@@ -288,7 +863,13 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "增益技能",
       "subCategory": "增益辅助",
       "isNew": false,
-      "description": "每隔3秒会发出一道元素脉冲，降低范围内所有敌人30%的元素抗性，"
+      "description": "每隔3秒会发出一道元素脉冲，降低范围内所有敌人30%的元素抗性，",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
     },
     {
       "id": "1210000030",
@@ -296,7 +877,13 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "其他技能",
       "subCategory": "战斗攻击",
       "isNew": false,
-      "description": ""
+      "description": "",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
     },
     {
       "id": "1210000031",
@@ -304,7 +891,13 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "其他技能",
       "subCategory": "战斗攻击",
       "isNew": false,
-      "description": ""
+      "description": "",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
     }
   ],
   "passiveSkills": [
@@ -314,7 +907,22 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "攻击",
       "isNew": false,
-      "description": "激活时，非捷技能攻击击中并击败感电敌人会使后续的攻击击中释放出闪电，对周围所有的敌人造成攻击伤害\\n\\n伤害附带0.1倍的闪电伤害"
+      "description": "激活时，非捷技能攻击击中并击败感电敌人会使后续的攻击击中释放出闪电，对周围所有的敌人造成攻击伤害\\n\\n伤害附带0.1倍的闪电伤害",
+      "tags": {
+        "main": "1",
+        "normal": [
+          "5",
+          "9"
+        ]
+      },
+      "tagsText": {
+        "main": "攻击",
+        "normal": [
+          "闪电",
+          "触发"
+        ]
+      },
+      "icon": "skill/gongji/shandianzhijie"
     },
     {
       "id": "2110000011",
@@ -322,7 +930,13 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "攻击",
       "isNew": false,
-      "description": "激活时，非捷技能攻击击中并击败感电敌人会使后续的攻击击中释放出闪电，对周围所有的敌人造成攻击伤害"
+      "description": "激活时，非捷技能攻击击中并击败感电敌人会使后续的攻击击中释放出闪电，对周围所有的敌人造成攻击伤害",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": "skill/kuangzhan/6"
     },
     {
       "id": "2110000012",
@@ -330,7 +944,13 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "攻击",
       "isNew": false,
-      "description": "激活时，非捷技能攻击击中并击败感电敌人会使后续的攻击击中释放出闪电，对周围所有的敌人造成攻击伤害"
+      "description": "激活时，非捷技能攻击击中并击败感电敌人会使后续的攻击击中释放出闪电，对周围所有的敌人造成攻击伤害",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": "skill/kuangzhan/6"
     },
     {
       "id": "2110000020",
@@ -338,7 +958,24 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "攻击",
       "isNew": false,
-      "description": "激活时，受到你的非捷技能攻击造成的火焰伤害击杀时有几率的敌人会产生爆炸，并根据敌人生命值上限对周围的敌人造成伤害\\n\\n伤害附带0.1倍的火焰伤害"
+      "description": "激活时，受到你的非捷技能攻击造成的火焰伤害击杀时有几率的敌人会产生爆炸，并根据敌人生命值上限对周围的敌人造成伤害\\n\\n伤害附带0.1倍的火焰伤害",
+      "tags": {
+        "main": "1",
+        "normal": [
+          "3",
+          "7",
+          "9"
+        ]
+      },
+      "tagsText": {
+        "main": "攻击",
+        "normal": [
+          "火焰",
+          "范围",
+          "触发"
+        ]
+      },
+      "icon": "skill/linshi/17"
     },
     {
       "id": "2110000021",
@@ -346,7 +983,13 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "攻击",
       "isNew": false,
-      "description": "激活时，受到你的非捷技能攻击造成的火焰伤害击杀时有几率的敌人会产生爆炸，并根据敌人生命值上限对周围的敌人造成伤害"
+      "description": "激活时，受到你的非捷技能攻击造成的火焰伤害击杀时有几率的敌人会产生爆炸，并根据敌人生命值上限对周围的敌人造成伤害",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": "skill/linshi/17"
     },
     {
       "id": "2110000030",
@@ -354,7 +997,24 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "攻击",
       "isNew": false,
-      "description": "激活时，非捷技能攻击击中一名冰冻敌人并击杀时会产生冰霜爆炸，对周围的敌人造成攻击伤害。\\n\\n伤害附带0.1倍的冰冷伤害"
+      "description": "激活时，非捷技能攻击击中一名冰冻敌人并击杀时会产生冰霜爆炸，对周围的敌人造成攻击伤害。\\n\\n伤害附带0.1倍的冰冷伤害",
+      "tags": {
+        "main": "1",
+        "normal": [
+          "4",
+          "7",
+          "9"
+        ]
+      },
+      "tagsText": {
+        "main": "攻击",
+        "normal": [
+          "冰霜",
+          "范围",
+          "触发"
+        ]
+      },
+      "icon": "skill/linshi/7"
     },
     {
       "id": "2110000031",
@@ -362,7 +1022,13 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "攻击",
       "isNew": false,
-      "description": "激活时，非捷技能攻击击中一名冰冻敌人并击杀时会产生冰霜爆炸，对周围的敌人造成攻击伤害。"
+      "description": "激活时，非捷技能攻击击中一名冰冻敌人并击杀时会产生冰霜爆炸，对周围的敌人造成攻击伤害。",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": "skill/linshi/7"
     },
     {
       "id": "2110000040",
@@ -370,7 +1036,24 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "攻击",
       "isNew": false,
-      "description": "攻击冻结中的敌人时会出现残影重击范围内的敌人"
+      "description": "攻击冻结中的敌人时会出现残影重击范围内的敌人",
+      "tags": {
+        "main": "1",
+        "normal": [
+          "1",
+          "4",
+          "7"
+        ]
+      },
+      "tagsText": {
+        "main": "攻击",
+        "normal": [
+          "近战",
+          "冰霜",
+          "范围"
+        ]
+      },
+      "icon": ""
     },
     {
       "id": "2114000020",
@@ -378,7 +1061,16 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "攻击",
       "isNew": false,
-      "description": "激活时，移动速度增加50%"
+      "description": "激活时，移动速度增加50%",
+      "tags": {
+        "main": "4",
+        "normal": []
+      },
+      "tagsText": {
+        "main": "光环",
+        "normal": []
+      },
+      "icon": "skill/gonghuizhan/1"
     },
     {
       "id": "2120000010",
@@ -386,7 +1078,22 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "法术",
       "isNew": false,
-      "description": "向移动方向闪现，并在原地留下一个幻影。幻影不可移动，不可攻击，在持续时间内持续释放技能1，幻影的上限为3"
+      "description": "向移动方向闪现，并在原地留下一个幻影。幻影不可移动，不可攻击，在持续时间内持续释放技能1，幻影的上限为3",
+      "tags": {
+        "main": "2",
+        "normal": [
+          "13",
+          "14"
+        ]
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": [
+          "幻影",
+          "位移"
+        ]
+      },
+      "icon": ""
     },
     {
       "id": "2120000011",
@@ -394,7 +1101,22 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "法术",
       "isNew": false,
-      "description": "向移动方向闪现，并在原地留下一个幻影。幻影不可移动，不可攻击，在持续时间内持续释放技能1，幻影的上限为1"
+      "description": "向移动方向闪现，并在原地留下一个幻影。幻影不可移动，不可攻击，在持续时间内持续释放技能1，幻影的上限为1",
+      "tags": {
+        "main": "2",
+        "normal": [
+          "13",
+          "14"
+        ]
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": [
+          "幻影",
+          "位移"
+        ]
+      },
+      "icon": "skill/fashu/yixinghuanying"
     },
     {
       "id": "2120000020",
@@ -402,7 +1124,20 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "法术",
       "isNew": false,
-      "description": "使用法术技能造成伤害后，在原地生成“幻影”，持续4秒，冷却10秒，幻影上限为1"
+      "description": "使用法术技能造成伤害后，在原地生成“幻影”，持续4秒，冷却10秒，幻影上限为1",
+      "tags": {
+        "main": "2",
+        "normal": [
+          "13"
+        ]
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": [
+          "幻影"
+        ]
+      },
+      "icon": ""
     },
     {
       "id": "2120000030",
@@ -410,7 +1145,24 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "法术",
       "isNew": false,
-      "description": "激活时，造成暴击时会产生获取层数，满40层后会释放大地之怒，产生冰霜爆炸对范围内敌人造成伤害"
+      "description": "激活时，造成暴击时会产生获取层数，满40层后会释放大地之怒，产生冰霜爆炸对范围内敌人造成伤害",
+      "tags": {
+        "main": "1",
+        "normal": [
+          "4",
+          "7",
+          "9"
+        ]
+      },
+      "tagsText": {
+        "main": "攻击",
+        "normal": [
+          "冰霜",
+          "范围",
+          "触发"
+        ]
+      },
+      "icon": "skill/zengyi/dadizhinu"
     },
     {
       "id": "2120000040",
@@ -418,7 +1170,24 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "法术",
       "isNew": false,
-      "description": "魔典-中毒爆炸"
+      "description": "魔典-中毒爆炸",
+      "tags": {
+        "main": "2",
+        "normal": [
+          "6",
+          "7",
+          "9"
+        ]
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": [
+          "混沌",
+          "范围",
+          "触发"
+        ]
+      },
+      "icon": "skill/linshi/17"
     },
     {
       "id": "2120000060",
@@ -426,7 +1195,13 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "法术",
       "isNew": false,
-      "description": "幻影释放技能时会消耗你的魔力，其数值释放技能的魔力消耗，每次消耗技能额外增加5%你和幻影造成的伤害，上限为10层"
+      "description": "幻影释放技能时会消耗你的魔力，其数值释放技能的魔力消耗，每次消耗技能额外增加5%你和幻影造成的伤害，上限为10层",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
     },
     {
       "id": "2120000080",
@@ -434,7 +1209,13 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "法术",
       "isNew": false,
-      "description": "激活时，击败中毒的敌人会将其中毒效果扩散给周围的其他敌人，并有几率使他们缓速"
+      "description": "激活时，击败中毒的敌人会将其中毒效果扩散给周围的其他敌人，并有几率使他们缓速",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
     },
     {
       "id": "2120100030",
@@ -442,7 +1223,13 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "法术",
       "isNew": false,
-      "description": "占位技能"
+      "description": "占位技能",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
     },
     {
       "id": "2120200030",
@@ -450,7 +1237,13 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "法术",
       "isNew": false,
-      "description": "占位技能"
+      "description": "占位技能",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
     },
     {
       "id": "2140000010",
@@ -458,7 +1251,20 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "增益",
       "isNew": false,
-      "description": "占位技能"
+      "description": "占位技能",
+      "tags": {
+        "main": "2",
+        "normal": [
+          "8"
+        ]
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": [
+          "持续"
+        ]
+      },
+      "icon": ""
     },
     {
       "id": "2140000020",
@@ -466,7 +1272,16 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "增益",
       "isNew": false,
-      "description": "激活时，移动速度增加50%"
+      "description": "激活时，移动速度增加50%",
+      "tags": {
+        "main": "4",
+        "normal": []
+      },
+      "tagsText": {
+        "main": "光环",
+        "normal": []
+      },
+      "icon": "skill/gonghuizhan/1"
     },
     {
       "id": "2140000030",
@@ -474,7 +1289,13 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "增益",
       "isNew": false,
-      "description": "被辅助技能冻结敌人时，获得30%的额外冰冷伤害，持续6秒"
+      "description": "被辅助技能冻结敌人时，获得30%的额外冰冷伤害，持续6秒",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": "skill/linshi/3"
     },
     {
       "id": "2140000040",
@@ -482,7 +1303,16 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "增益",
       "isNew": false,
-      "description": "激活时，投射物数量+2，投射物速度增加40%"
+      "description": "激活时，投射物数量+2，投射物速度增加40%",
+      "tags": {
+        "main": "4",
+        "normal": []
+      },
+      "tagsText": {
+        "main": "光环",
+        "normal": []
+      },
+      "icon": "skill/linshi/3"
     },
     {
       "id": "2140000050",
@@ -490,7 +1320,16 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "增益",
       "isNew": false,
-      "description": "激活时，范围技能范围增加25%，范围技能伤害额外增加25%"
+      "description": "激活时，范围技能范围增加25%，范围技能伤害额外增加25%",
+      "tags": {
+        "main": "4",
+        "normal": []
+      },
+      "tagsText": {
+        "main": "光环",
+        "normal": []
+      },
+      "icon": "skill/linshi/16"
     },
     {
       "id": "2140000060",
@@ -498,7 +1337,16 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "增益",
       "isNew": false,
-      "description": "激活时，近战技能获得暴击几率增加70%，额外25%近战伤害增加"
+      "description": "激活时，近战技能获得暴击几率增加70%，额外25%近战伤害增加",
+      "tags": {
+        "main": "4",
+        "normal": []
+      },
+      "tagsText": {
+        "main": "光环",
+        "normal": []
+      },
+      "icon": "skill/zengyi/kuangnu"
     },
     {
       "id": "2140000070",
@@ -506,7 +1354,16 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "增益",
       "isNew": false,
-      "description": "激活时，每秒回复75点生命值"
+      "description": "激活时，每秒回复75点生命值",
+      "tags": {
+        "main": "4",
+        "normal": []
+      },
+      "tagsText": {
+        "main": "光环",
+        "normal": []
+      },
+      "icon": "skill/zengyi/huifu"
     },
     {
       "id": "2140000080",
@@ -514,7 +1371,16 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "增益",
       "isNew": false,
-      "description": "每4秒对周围4米的敌人释放元素脉冲，降低范围内敌人30%的元素抗性，持续4秒"
+      "description": "每4秒对周围4米的敌人释放元素脉冲，降低范围内敌人30%的元素抗性，持续4秒",
+      "tags": {
+        "main": "4",
+        "normal": []
+      },
+      "tagsText": {
+        "main": "光环",
+        "normal": []
+      },
+      "icon": "skill/zengyi/yuansumaichong"
     },
     {
       "id": "2140000090",
@@ -522,7 +1388,13 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "增益",
       "isNew": false,
-      "description": "占位技能"
+      "description": "占位技能",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
     },
     {
       "id": "2140000100",
@@ -530,7 +1402,13 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "增益",
       "isNew": false,
-      "description": "占位技能"
+      "description": "占位技能",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
     },
     {
       "id": "2140000110",
@@ -538,7 +1416,13 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "增益",
       "isNew": false,
-      "description": "对敌人造成暴击时有10%的概率获得一层毁灭注能"
+      "description": "对敌人造成暴击时有10%的概率获得一层毁灭注能",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": "skill/linshi/24"
     },
     {
       "id": "2140000140",
@@ -546,7 +1430,16 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "增益",
       "isNew": false,
-      "description": "魔力每次消耗30%的魔力时，就可以获得一层毁灭注能"
+      "description": "魔力每次消耗30%的魔力时，就可以获得一层毁灭注能",
+      "tags": {
+        "main": "2",
+        "normal": []
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": []
+      },
+      "icon": "skill/gonghuizhan/2"
     },
     {
       "id": "2140000150",
@@ -554,7 +1447,16 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "增益",
       "isNew": false,
-      "description": "宠物-攻击必定瘫痪"
+      "description": "宠物-攻击必定瘫痪",
+      "tags": {
+        "main": "1",
+        "normal": []
+      },
+      "tagsText": {
+        "main": "攻击",
+        "normal": []
+      },
+      "icon": ""
     },
     {
       "id": "2140000160",
@@ -562,7 +1464,16 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "增益",
       "isNew": false,
-      "description": "占位技能"
+      "description": "占位技能",
+      "tags": {
+        "main": "4",
+        "normal": []
+      },
+      "tagsText": {
+        "main": "光环",
+        "normal": []
+      },
+      "icon": ""
     },
     {
       "id": "2140000170",
@@ -570,7 +1481,13 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "增益",
       "isNew": false,
-      "description": "近战伤害每次命中获得[霸体]"
+      "description": "近战伤害每次命中获得[霸体]",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
     },
     {
       "id": "2140000180",
@@ -578,7 +1495,16 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "增益",
       "isNew": false,
-      "description": "宠物-攻击必定软弱"
+      "description": "宠物-攻击必定软弱",
+      "tags": {
+        "main": "2",
+        "normal": []
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": []
+      },
+      "icon": ""
     },
     {
       "id": "2150000010",
@@ -586,7 +1512,13 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "特殊",
       "isNew": false,
-      "description": "10秒内连续释放4次攻击技能时获得[心眼]状态\\n[心眼]：攻击速度额外增加8%；技能范围额外增加8%，上限为3层，持续2秒"
+      "description": "10秒内连续释放4次攻击技能时获得[心眼]状态\\n[心眼]：攻击速度额外增加8%；技能范围额外增加8%，上限为3层，持续2秒",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": "skill/linshi/4"
     },
     {
       "id": "2150000020",
@@ -594,7 +1526,13 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "特殊",
       "isNew": false,
-      "description": "心眼到法屋数上限时，获得[巅峰]\\n[巅峰]:向前斩击造成500%的攻击物理伤害，冷却时间5秒"
+      "description": "心眼到法屋数上限时，获得[巅峰]\\n[巅峰]:向前斩击造成500%的攻击物理伤害，冷却时间5秒",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": "skill/linshi/4"
     },
     {
       "id": "2150000030",
@@ -602,7 +1540,13 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "特殊",
       "isNew": false,
-      "description": "占位技能"
+      "description": "占位技能",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
     },
     {
       "id": "2150000050",
@@ -610,7 +1554,13 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "特殊",
       "isNew": false,
-      "description": "魔力每次消耗30%的魔力时，就可以获得一层毁灭注能"
+      "description": "魔力每次消耗30%的魔力时，就可以获得一层毁灭注能",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
     },
     {
       "id": "2150000060",
@@ -618,7 +1568,16 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "特殊",
       "isNew": false,
-      "description": "每获得一层注能时，可以额外获得一层注能"
+      "description": "每获得一层注能时，可以额外获得一层注能",
+      "tags": {
+        "main": "4",
+        "normal": []
+      },
+      "tagsText": {
+        "main": "光环",
+        "normal": []
+      },
+      "icon": ""
     },
     {
       "id": "2150000070",
@@ -626,7 +1585,16 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "特殊",
       "isNew": false,
-      "description": "每缺少25%的魔力，法术伤害提升20%，魔力恢复率提高20%"
+      "description": "每缺少25%的魔力，法术伤害提升20%，魔力恢复率提高20%",
+      "tags": {
+        "main": "2",
+        "normal": []
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": []
+      },
+      "icon": ""
     },
     {
       "id": "2150000080",
@@ -634,7 +1602,16 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "特殊",
       "isNew": false,
-      "description": "敌人处于元素异常状态时，可以使敌人对该类型元素的抗性降低40%"
+      "description": "敌人处于元素异常状态时，可以使敌人对该类型元素的抗性降低40%",
+      "tags": {
+        "main": "4",
+        "normal": []
+      },
+      "tagsText": {
+        "main": "光环",
+        "normal": []
+      },
+      "icon": ""
     },
     {
       "id": "2150000090",
@@ -642,7 +1619,13 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "特殊",
       "isNew": false,
-      "description": "每拥有一种不同种类的注能，法术伤害总增10%，魔力回复率提高20%。"
+      "description": "每拥有一种不同种类的注能，法术伤害总增10%，魔力回复率提高20%。",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
     },
     {
       "id": "2150000091",
@@ -650,7 +1633,13 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "特殊",
       "isNew": false,
-      "description": "每拥有一种不同种类的注能，法术伤害总增10%，魔力回复率提高20%。"
+      "description": "每拥有一种不同种类的注能，法术伤害总增10%，魔力回复率提高20%。",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
     },
     {
       "id": "2150000100",
@@ -658,7 +1647,13 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "特殊",
       "isNew": false,
-      "description": "每6秒获得一层随机注能，注能的持续时间降低20%"
+      "description": "每6秒获得一层随机注能，注能的持续时间降低20%",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
     },
     {
       "id": "2150000110",
@@ -666,7 +1661,13 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "特殊",
       "isNew": false,
-      "description": "每成功触发一次强化技能，可以获得一层强化之力，提高20%的伤害，最大可以获得5层，持续6秒"
+      "description": "每成功触发一次强化技能，可以获得一层强化之力，提高20%的伤害，最大可以获得5层，持续6秒",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
     },
     {
       "id": "2150000130",
@@ -674,7 +1675,16 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "特殊",
       "isNew": false,
-      "description": "占位技能"
+      "description": "占位技能",
+      "tags": {
+        "main": "2",
+        "normal": []
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": []
+      },
+      "icon": ""
     },
     {
       "id": "2150100060",
@@ -682,7 +1692,16 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "特殊",
       "isNew": false,
-      "description": "每获得一层注能时，可以额外获得一层注能"
+      "description": "每获得一层注能时，可以额外获得一层注能",
+      "tags": {
+        "main": "4",
+        "normal": []
+      },
+      "tagsText": {
+        "main": "光环",
+        "normal": []
+      },
+      "icon": ""
     },
     {
       "id": "2150100070",
@@ -690,7 +1709,16 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "特殊",
       "isNew": false,
-      "description": "每缺少25%的魔力，法术伤害提升20%，魔力恢复率提高20%"
+      "description": "每缺少25%的魔力，法术伤害提升20%，魔力恢复率提高20%",
+      "tags": {
+        "main": "2",
+        "normal": []
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": []
+      },
+      "icon": ""
     },
     {
       "id": "2150100080",
@@ -698,7 +1726,16 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "特殊",
       "isNew": false,
-      "description": "敌人处于元素异常状态时，可以使敌人对该类型元素的抗性降低40%"
+      "description": "敌人处于元素异常状态时，可以使敌人对该类型元素的抗性降低40%",
+      "tags": {
+        "main": "4",
+        "normal": []
+      },
+      "tagsText": {
+        "main": "光环",
+        "normal": []
+      },
+      "icon": ""
     },
     {
       "id": "2150100090",
@@ -706,7 +1743,13 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "特殊",
       "isNew": false,
-      "description": "每拥有一种不同种类的注能，法术伤害总增10%，魔力回复率提高20%。"
+      "description": "每拥有一种不同种类的注能，法术伤害总增10%，魔力回复率提高20%。",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
     },
     {
       "id": "2150100091",
@@ -714,7 +1757,13 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "特殊",
       "isNew": false,
-      "description": "每拥有一种不同种类的注能，法术伤害总增10%，魔力回复率提高20%。"
+      "description": "每拥有一种不同种类的注能，法术伤害总增10%，魔力回复率提高20%。",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
     },
     {
       "id": "2150200060",
@@ -722,7 +1771,16 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "特殊",
       "isNew": false,
-      "description": "每获得一层注能时，可以额外获得一层注能"
+      "description": "每获得一层注能时，可以额外获得一层注能",
+      "tags": {
+        "main": "4",
+        "normal": []
+      },
+      "tagsText": {
+        "main": "光环",
+        "normal": []
+      },
+      "icon": ""
     },
     {
       "id": "2150200070",
@@ -730,7 +1788,16 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "特殊",
       "isNew": false,
-      "description": "每缺少25%的魔力，法术伤害提升20%，魔力恢复率提高20%"
+      "description": "每缺少25%的魔力，法术伤害提升20%，魔力恢复率提高20%",
+      "tags": {
+        "main": "2",
+        "normal": []
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": []
+      },
+      "icon": ""
     },
     {
       "id": "2150200080",
@@ -738,7 +1805,16 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "特殊",
       "isNew": false,
-      "description": "敌人处于元素异常状态时，可以使敌人对该类型元素的抗性降低40%"
+      "description": "敌人处于元素异常状态时，可以使敌人对该类型元素的抗性降低40%",
+      "tags": {
+        "main": "4",
+        "normal": []
+      },
+      "tagsText": {
+        "main": "光环",
+        "normal": []
+      },
+      "icon": ""
     },
     {
       "id": "2150200090",
@@ -746,7 +1822,13 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "特殊",
       "isNew": false,
-      "description": "每拥有一种不同种类的注能，法术伤害总增10%，魔力回复率提高20%。"
+      "description": "每拥有一种不同种类的注能，法术伤害总增10%，魔力回复率提高20%。",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
     },
     {
       "id": "2150200091",
@@ -754,7 +1836,13 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "特殊",
       "isNew": false,
-      "description": "每拥有一种不同种类的注能，法术伤害总增10%，魔力回复率提高20%。"
+      "description": "每拥有一种不同种类的注能，法术伤害总增10%，魔力回复率提高20%。",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
     },
     {
       "id": "2150300060",
@@ -762,7 +1850,16 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "特殊",
       "isNew": false,
-      "description": "每获得一层注能时，可以额外获得一层注能"
+      "description": "每获得一层注能时，可以额外获得一层注能",
+      "tags": {
+        "main": "4",
+        "normal": []
+      },
+      "tagsText": {
+        "main": "光环",
+        "normal": []
+      },
+      "icon": ""
     },
     {
       "id": "2150300070",
@@ -770,7 +1867,16 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "特殊",
       "isNew": false,
-      "description": "每缺少25%的魔力，法术伤害提升20%，魔力恢复率提高20%"
+      "description": "每缺少25%的魔力，法术伤害提升20%，魔力恢复率提高20%",
+      "tags": {
+        "main": "2",
+        "normal": []
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": []
+      },
+      "icon": ""
     },
     {
       "id": "2150300090",
@@ -778,7 +1884,13 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "特殊",
       "isNew": false,
-      "description": "每拥有一种不同种类的注能，法术伤害总增10%，魔力回复率提高20%。"
+      "description": "每拥有一种不同种类的注能，法术伤害总增10%，魔力回复率提高20%。",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
     },
     {
       "id": "2150300091",
@@ -786,7 +1898,13 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "特殊",
       "isNew": false,
-      "description": "每拥有一种不同种类的注能，法术伤害总增10%，魔力回复率提高20%。"
+      "description": "每拥有一种不同种类的注能，法术伤害总增10%，魔力回复率提高20%。",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
     },
     {
       "id": "2150400060",
@@ -794,7 +1912,16 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "特殊",
       "isNew": false,
-      "description": "每获得一层注能时，可以额外获得一层注能"
+      "description": "每获得一层注能时，可以额外获得一层注能",
+      "tags": {
+        "main": "4",
+        "normal": []
+      },
+      "tagsText": {
+        "main": "光环",
+        "normal": []
+      },
+      "icon": ""
     },
     {
       "id": "2150400090",
@@ -802,7 +1929,13 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "特殊",
       "isNew": false,
-      "description": "每拥有一种不同种类的注能，法术伤害总增10%，魔力回复率提高20%。"
+      "description": "每拥有一种不同种类的注能，法术伤害总增10%，魔力回复率提高20%。",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
     },
     {
       "id": "2150400091",
@@ -810,7 +1943,13 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "特殊",
       "isNew": false,
-      "description": "每拥有一种不同种类的注能，法术伤害总增10%，魔力回复率提高20%。"
+      "description": "每拥有一种不同种类的注能，法术伤害总增10%，魔力回复率提高20%。",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
     },
     {
       "id": "2240000010",
@@ -818,7 +1957,13 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "战斗特技",
       "subCategory": "增益",
       "isNew": false,
-      "description": "占位技能"
+      "description": "占位技能",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
     },
     {
       "id": "2240100010",
@@ -826,7 +1971,13 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "战斗特技",
       "subCategory": "增益",
       "isNew": false,
-      "description": "占位技能"
+      "description": "占位技能",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
     },
     {
       "id": "2340000010",
@@ -834,7 +1985,13 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "传奇特技",
       "subCategory": "增益",
       "isNew": false,
-      "description": "击败冰结的敌人，回复位移技能的15%当前冷却时间"
+      "description": "击败冰结的敌人，回复位移技能的15%当前冷却时间",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
     },
     {
       "id": "2340000020",
@@ -842,7 +1999,13 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "传奇特技",
       "subCategory": "增益",
       "isNew": false,
-      "description": "衣服暗金词缀：当生命大于2000时，中毒伤害提高50%-100%"
+      "description": "衣服暗金词缀：当生命大于2000时，中毒伤害提高50%-100%",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
     },
     {
       "id": "2340000030",
@@ -850,7 +2013,13 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "传奇特技",
       "subCategory": "增益",
       "isNew": false,
-      "description": "衣服暗金词缀：当冷却回复效率高于40%时，中毒持续时间增加50%-100%。"
+      "description": "衣服暗金词缀：当冷却回复效率高于40%时，中毒持续时间增加50%-100%。",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
     },
     {
       "id": "2340000040",
@@ -858,7 +2027,16 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "传奇特技",
       "subCategory": "增益",
       "isNew": false,
-      "description": "每隔5秒在脚下生成一片火焰地面，造成相当于生命值上限10%的点燃伤害"
+      "description": "每隔5秒在脚下生成一片火焰地面，造成相当于生命值上限10%的点燃伤害",
+      "tags": {
+        "main": "2",
+        "normal": []
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": []
+      },
+      "icon": ""
     },
     {
       "id": "2340000050",
@@ -866,7 +2044,13 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "传奇特技",
       "subCategory": "增益",
       "isNew": false,
-      "description": "每移动20米可以获得一层毁灭注能"
+      "description": "每移动20米可以获得一层毁灭注能",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
     },
     {
       "id": "2340000080",
@@ -874,7 +2058,16 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "传奇特技",
       "subCategory": "增益",
       "isNew": false,
-      "description": "装备-点燃头"
+      "description": "周围敌人受到生命值上限1%的点燃强度的点燃",
+      "tags": {
+        "main": "2",
+        "normal": []
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": []
+      },
+      "icon": ""
     },
     {
       "id": "3140000020",
@@ -882,7 +2075,13 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "传奇特技",
       "subCategory": "增益",
       "isNew": false,
-      "description": "击中时,回复2点魔力"
+      "description": "击中时,回复2点魔力",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
     },
     {
       "id": "3140000030",
@@ -890,7 +2089,13 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "传奇特技",
       "subCategory": "增益",
       "isNew": false,
-      "description": "击中时,回复5点生命"
+      "description": "击中时,回复5点生命",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
     },
     {
       "id": "3140000040",
@@ -898,7 +2103,13 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "传奇特技",
       "subCategory": "增益",
       "isNew": false,
-      "description": "被辅助技能，击中中毒目标时，每层中毒效果伤害总增5%，上限5-8层"
+      "description": "被辅助技能，击中中毒目标时，每层中毒效果伤害总增5%，上限5-8层",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
     },
     {
       "id": "3140000050",
@@ -906,7 +2117,13 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "传奇特技",
       "subCategory": "增益",
       "isNew": false,
-      "description": "占位技能"
+      "description": "占位技能",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
     },
     {
       "id": "99998",
@@ -914,7 +2131,13 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "天赋特技",
       "subCategory": "天赋",
       "isNew": false,
-      "description": "连续释放10次攻击技能时获得\"心眼\"状态；心眼：攻击速度额外增加8%；技能范围额外增加8%，上限为3层，持续2秒"
+      "description": "连续释放10次攻击技能时获得\"心眼\"状态；心眼：攻击速度额外增加8%；技能范围额外增加8%，上限为3层，持续2秒",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": "skill/linshi/4"
     },
     {
       "id": "99999",
@@ -922,7 +2145,13 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "天赋特技",
       "subCategory": "天赋",
       "isNew": false,
-      "description": "击中时，向前斩击，造成500%的攻击物理伤害，冷却时间10秒"
+      "description": "击中时，向前斩击，造成500%的攻击物理伤害，冷却时间10秒",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": "skill/linshi/4"
     }
   ],
   "affixes": [
@@ -1320,8 +2549,8 @@ window.__AUTO_IMPORT_DATA__ = {
     },
     {
       "id": "10080",
-      "name": "近战技能范围效果增加",
-      "description": "近战技能范围效果增加{0}",
+      "name": "近战技能范围效果提高",
+      "description": "近战技能范围效果提高{0}",
       "category": "装备",
       "subCategory": "通用",
       "isNew": false
@@ -3204,7 +4433,9 @@ window.__AUTO_IMPORT_DATA__ = {
       ],
       "sourceId": "1100103",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "zhuangbei/110/109",
+      "spIcon": "zhuangbei/110/109_big"
     },
     {
       "id": "EQ0002",
@@ -3232,7 +4463,9 @@ window.__AUTO_IMPORT_DATA__ = {
       ],
       "sourceId": "1100201",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "zhuangbei/104/106",
+      "spIcon": "zhuangbei/104/106_big"
     },
     {
       "id": "EQ0003",
@@ -3260,7 +4493,9 @@ window.__AUTO_IMPORT_DATA__ = {
       ],
       "sourceId": "1100202",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "zhuangbei/131/106",
+      "spIcon": "zhuangbei/131/106_big"
     },
     {
       "id": "EQ0004",
@@ -3285,7 +4520,9 @@ window.__AUTO_IMPORT_DATA__ = {
       ],
       "sourceId": "1200101",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "zhuangbei/118/202",
+      "spIcon": ""
     },
     {
       "id": "EQ0005",
@@ -3307,7 +4544,9 @@ window.__AUTO_IMPORT_DATA__ = {
       ],
       "sourceId": "1200102",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "zhuangbei/130/202",
+      "spIcon": ""
     },
     {
       "id": "EQ0006",
@@ -3332,7 +4571,9 @@ window.__AUTO_IMPORT_DATA__ = {
       ],
       "sourceId": "1200103",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "zhuangbei/118/202",
+      "spIcon": ""
     },
     {
       "id": "EQ0007",
@@ -3357,7 +4598,9 @@ window.__AUTO_IMPORT_DATA__ = {
       ],
       "sourceId": "1300101",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "zhuangbei/132/304",
+      "spIcon": ""
     },
     {
       "id": "EQ0008",
@@ -3379,7 +4622,9 @@ window.__AUTO_IMPORT_DATA__ = {
       ],
       "sourceId": "1300102",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "zhuangbei/117/302",
+      "spIcon": ""
     },
     {
       "id": "EQ0009",
@@ -3404,7 +4649,9 @@ window.__AUTO_IMPORT_DATA__ = {
       ],
       "sourceId": "1300103",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "zhuangbei/132/304",
+      "spIcon": ""
     },
     {
       "id": "EQ0010",
@@ -3426,7 +4673,9 @@ window.__AUTO_IMPORT_DATA__ = {
       ],
       "sourceId": "1500103",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "zhuangbei/120/401",
+      "spIcon": ""
     },
     {
       "id": "EQ0011",
@@ -3445,7 +4694,9 @@ window.__AUTO_IMPORT_DATA__ = {
       ],
       "sourceId": "1500103",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "zhuangbei/118/401",
+      "spIcon": ""
     },
     {
       "id": "EQ0012",
@@ -3461,7 +4712,9 @@ window.__AUTO_IMPORT_DATA__ = {
       ],
       "sourceId": "1500103",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "zhuangbei/133/403",
+      "spIcon": ""
     },
     {
       "id": "EQ0013",
@@ -3486,7 +4739,9 @@ window.__AUTO_IMPORT_DATA__ = {
       ],
       "sourceId": "1600101",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "zhuangbei/121/501",
+      "spIcon": ""
     },
     {
       "id": "EQ0014",
@@ -3511,7 +4766,9 @@ window.__AUTO_IMPORT_DATA__ = {
       ],
       "sourceId": "1600101",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "zhuangbei/133/504",
+      "spIcon": ""
     },
     {
       "id": "EQ0015",
@@ -3533,7 +4790,9 @@ window.__AUTO_IMPORT_DATA__ = {
       ],
       "sourceId": "1600101",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "zhuangbei/129/504",
+      "spIcon": ""
     },
     {
       "id": "EQ0016",
@@ -3561,7 +4820,9 @@ window.__AUTO_IMPORT_DATA__ = {
       ],
       "sourceId": "1600101",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "zhuangbei/125/501",
+      "spIcon": ""
     },
     {
       "id": "EQ0017",
@@ -3583,7 +4844,9 @@ window.__AUTO_IMPORT_DATA__ = {
       ],
       "sourceId": "1600102",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "zhuangbei/129/501",
+      "spIcon": ""
     },
     {
       "id": "EQ0018",
@@ -3608,7 +4871,9 @@ window.__AUTO_IMPORT_DATA__ = {
       ],
       "sourceId": "1600102",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "zhuangbei/125/502",
+      "spIcon": ""
     },
     {
       "id": "EQ0019",
@@ -3633,7 +4898,9 @@ window.__AUTO_IMPORT_DATA__ = {
       ],
       "sourceId": "1700106",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "zhuangbei/110/601",
+      "spIcon": ""
     },
     {
       "id": "EQ0020",
@@ -3652,7 +4919,9 @@ window.__AUTO_IMPORT_DATA__ = {
       ],
       "sourceId": "1900101",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "zhuangbei/121/801",
+      "spIcon": ""
     },
     {
       "id": "EQ0021",
@@ -3677,7 +4946,9 @@ window.__AUTO_IMPORT_DATA__ = {
       ],
       "sourceId": "1900101",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "zhuangbei/129/801",
+      "spIcon": ""
     },
     {
       "id": "EQ0022",
@@ -3702,7 +4973,9 @@ window.__AUTO_IMPORT_DATA__ = {
       ],
       "sourceId": "1900101",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "zhuangbei/124/801",
+      "spIcon": ""
     },
     {
       "id": "EQ0023",
@@ -3727,7 +5000,9 @@ window.__AUTO_IMPORT_DATA__ = {
       ],
       "sourceId": "1900102",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "zhuangbei/130/801",
+      "spIcon": ""
     },
     {
       "id": "EQ0024",
@@ -3749,7 +5024,9 @@ window.__AUTO_IMPORT_DATA__ = {
       ],
       "sourceId": "2000101",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "zhuangbei/121/901",
+      "spIcon": ""
     },
     {
       "id": "EQ0025",
@@ -3771,7 +5048,9 @@ window.__AUTO_IMPORT_DATA__ = {
       ],
       "sourceId": "2000102",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "zhuangbei/131/901",
+      "spIcon": ""
     }
   ],
   "gems": [
@@ -3785,9 +5064,12 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "10032"
         }
       ],
+      "rank": "1",
       "sourceId": "100101",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "baoshi/101101",
+      "iconSrc": "skill/sect/101101"
     },
     {
       "id": "GEM0002",
@@ -3799,9 +5081,12 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "10032"
         }
       ],
+      "rank": "4",
       "sourceId": "100102",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "baoshi/101102",
+      "iconSrc": "skill/sect/101102"
     },
     {
       "id": "GEM0003",
@@ -3816,9 +5101,12 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "10046"
         }
       ],
+      "rank": "1",
       "sourceId": "100201",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "baoshi/101201",
+      "iconSrc": "skill/sect/101201"
     },
     {
       "id": "GEM0004",
@@ -3833,9 +5121,12 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "10046"
         }
       ],
+      "rank": "4",
       "sourceId": "100202",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "baoshi/101201",
+      "iconSrc": "skill/sect/101201"
     },
     {
       "id": "GEM0005",
@@ -3847,9 +5138,12 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "10043"
         }
       ],
+      "rank": "5",
       "sourceId": "100204",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "baoshi/101201",
+      "iconSrc": "skill/sect/101201"
     },
     {
       "id": "GEM0006",
@@ -3861,9 +5155,12 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "10031"
         }
       ],
+      "rank": "1",
       "sourceId": "100301",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "baoshi/101301",
+      "iconSrc": "skill/sect/101301"
     },
     {
       "id": "GEM0007",
@@ -3875,9 +5172,12 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "10031"
         }
       ],
+      "rank": "4",
       "sourceId": "100302",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "baoshi/101302",
+      "iconSrc": "skill/sect/101302"
     },
     {
       "id": "GEM0008",
@@ -3889,9 +5189,12 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "10037"
         }
       ],
+      "rank": "2",
       "sourceId": "100401",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "baoshi/102101",
+      "iconSrc": "skill/sect/102101"
     },
     {
       "id": "GEM0009",
@@ -3903,9 +5206,12 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "10037"
         }
       ],
+      "rank": "4",
       "sourceId": "100402",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "baoshi/102102",
+      "iconSrc": "skill/sect/102102"
     },
     {
       "id": "GEM0010",
@@ -3917,9 +5223,12 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "10033"
         }
       ],
+      "rank": "2",
       "sourceId": "100501",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "baoshi/102103",
+      "iconSrc": "skill/sect/102103"
     },
     {
       "id": "GEM0011",
@@ -3931,9 +5240,12 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "10033"
         }
       ],
+      "rank": "5",
       "sourceId": "100502",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "baoshi/102104",
+      "iconSrc": "skill/sect/102104"
     },
     {
       "id": "GEM0012",
@@ -3945,9 +5257,12 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "10034"
         }
       ],
+      "rank": "2",
       "sourceId": "100601",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "baoshi/102104",
+      "iconSrc": "skill/sect/102104"
     },
     {
       "id": "GEM0013",
@@ -3959,9 +5274,12 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "10034"
         }
       ],
+      "rank": "4",
       "sourceId": "100602",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "baoshi/102201",
+      "iconSrc": "skill/sect/102201"
     },
     {
       "id": "GEM0014",
@@ -3973,9 +5291,12 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "10106"
         }
       ],
+      "rank": "2",
       "sourceId": "100701",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "baoshi/102202",
+      "iconSrc": "skill/sect/102202"
     },
     {
       "id": "GEM0015",
@@ -3987,9 +5308,12 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "10106"
         }
       ],
+      "rank": "5",
       "sourceId": "100702",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "baoshi/102203",
+      "iconSrc": "skill/sect/102203"
     },
     {
       "id": "GEM0016",
@@ -4001,9 +5325,12 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "10036"
         }
       ],
+      "rank": "3",
       "sourceId": "100801",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "baoshi/102204",
+      "iconSrc": "skill/sect/102204"
     },
     {
       "id": "GEM0017",
@@ -4015,9 +5342,12 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "10040"
         }
       ],
+      "rank": "2",
       "sourceId": "100901",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "baoshi/102204",
+      "iconSrc": "skill/sect/102204"
     },
     {
       "id": "GEM0018",
@@ -4029,9 +5359,12 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "10040"
         }
       ],
+      "rank": "4",
       "sourceId": "100902",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "baoshi/102204",
+      "iconSrc": "skill/sect/102204"
     },
     {
       "id": "GEM0019",
@@ -4043,9 +5376,12 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "10041"
         }
       ],
+      "rank": "2",
       "sourceId": "101001",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "baoshi/102204",
+      "iconSrc": "skill/sect/102204"
     },
     {
       "id": "GEM0020",
@@ -4057,9 +5393,12 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "10041"
         }
       ],
+      "rank": "5",
       "sourceId": "101002",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "baoshi/102204",
+      "iconSrc": "skill/sect/102204"
     },
     {
       "id": "GEM0021",
@@ -4071,9 +5410,12 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "10042"
         }
       ],
+      "rank": "1",
       "sourceId": "101101",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "baoshi/102204",
+      "iconSrc": "skill/sect/102204"
     },
     {
       "id": "GEM0022",
@@ -4085,9 +5427,12 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "10042"
         }
       ],
+      "rank": "5",
       "sourceId": "101102",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "baoshi/102204",
+      "iconSrc": "skill/sect/102204"
     },
     {
       "id": "GEM0023",
@@ -4099,9 +5444,12 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "10044"
         }
       ],
+      "rank": "1",
       "sourceId": "101201",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "baoshi/102204",
+      "iconSrc": "skill/sect/102204"
     },
     {
       "id": "GEM0024",
@@ -4113,9 +5461,12 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "10045"
         }
       ],
+      "rank": "1",
       "sourceId": "101301",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "baoshi/102204",
+      "iconSrc": "skill/sect/102204"
     },
     {
       "id": "GEM0025",
@@ -4127,9 +5478,12 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "10046"
         }
       ],
+      "rank": "1",
       "sourceId": "101401",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "baoshi/102204",
+      "iconSrc": "skill/sect/102204"
     },
     {
       "id": "GEM0026",
@@ -4141,9 +5495,12 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "10047"
         }
       ],
+      "rank": "2",
       "sourceId": "101501",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "baoshi/102101",
+      "iconSrc": "skill/sect/102101"
     },
     {
       "id": "GEM0027",
@@ -4155,9 +5512,12 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "10047"
         }
       ],
+      "rank": "4",
       "sourceId": "101502",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "baoshi/102102",
+      "iconSrc": "skill/sect/102102"
     },
     {
       "id": "GEM0028",
@@ -4169,9 +5529,12 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "10048"
         }
       ],
+      "rank": "1",
       "sourceId": "101601",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "baoshi/102101",
+      "iconSrc": "skill/sect/102101"
     },
     {
       "id": "GEM0029",
@@ -4183,9 +5546,12 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "10048"
         }
       ],
+      "rank": "5",
       "sourceId": "101602",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "baoshi/102102",
+      "iconSrc": "skill/sect/102102"
     },
     {
       "id": "GEM0030",
@@ -4197,9 +5563,12 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "3140000040"
         }
       ],
+      "rank": "2",
       "sourceId": "101701",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "baoshi/102101",
+      "iconSrc": "skill/sect/102101"
     },
     {
       "id": "GEM0031",
@@ -4211,9 +5580,12 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "3140000040"
         }
       ],
+      "rank": "5",
       "sourceId": "101702",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "baoshi/102102",
+      "iconSrc": "skill/sect/102102"
     },
     {
       "id": "GEM0032",
@@ -4228,9 +5600,12 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "10051"
         }
       ],
+      "rank": "1",
       "sourceId": "101801",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "baoshi/102101",
+      "iconSrc": "skill/sect/102101"
     },
     {
       "id": "GEM0033",
@@ -4245,9 +5620,12 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "10051"
         }
       ],
+      "rank": "4",
       "sourceId": "101802",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "baoshi/102102",
+      "iconSrc": "skill/sect/102102"
     },
     {
       "id": "GEM0034",
@@ -4262,9 +5640,12 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "10046"
         }
       ],
+      "rank": "2",
       "sourceId": "101901",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "baoshi/102101",
+      "iconSrc": "skill/sect/102101"
     },
     {
       "id": "GEM0035",
@@ -4276,9 +5657,12 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "10131"
         }
       ],
+      "rank": "4",
       "sourceId": "101902",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "baoshi/102102",
+      "iconSrc": "skill/sect/102102"
     },
     {
       "id": "GEM0036",
@@ -4290,9 +5674,12 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "10132"
         }
       ],
+      "rank": "2",
       "sourceId": "102001",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "baoshi/102101",
+      "iconSrc": "skill/sect/102101"
     },
     {
       "id": "GEM0037",
@@ -4304,9 +5691,12 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "10132"
         }
       ],
+      "rank": "4",
       "sourceId": "102002",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "baoshi/102102",
+      "iconSrc": "skill/sect/102102"
     },
     {
       "id": "GEM0038",
@@ -4318,9 +5708,12 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "10147"
         }
       ],
+      "rank": "1",
       "sourceId": "102101",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "baoshi/102101",
+      "iconSrc": "skill/sect/102101"
     },
     {
       "id": "GEM0039",
@@ -4332,9 +5725,12 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "10147"
         }
       ],
+      "rank": "3",
       "sourceId": "102102",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "baoshi/102102",
+      "iconSrc": "skill/sect/102102"
     },
     {
       "id": "GEM0040",
@@ -4349,9 +5745,12 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "10064"
         }
       ],
+      "rank": "5",
       "sourceId": "102103",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "baoshi/102103",
+      "iconSrc": "skill/sect/102103"
     },
     {
       "id": "GEM0041",
@@ -4363,9 +5762,12 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "3140000050"
         }
       ],
+      "rank": "1",
       "sourceId": "102201",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "baoshi/102101",
+      "iconSrc": "skill/sect/102101"
     },
     {
       "id": "GEM0042",
@@ -4377,9 +5779,12 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "10050"
         }
       ],
+      "rank": "1",
       "sourceId": "102301",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "baoshi/101301",
+      "iconSrc": "skill/sect/101301"
     },
     {
       "id": "GEM0043",
@@ -4391,9 +5796,12 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "10050"
         }
       ],
+      "rank": "4",
       "sourceId": "102302",
       "isNew": true,
-      "source": "sync"
+      "source": "sync",
+      "icon": "baoshi/101302",
+      "iconSrc": "skill/sect/101302"
     }
   ],
   "skills": [
@@ -4403,6 +5811,14 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "主动技能",
       "desc": "",
       "sourceId": "1110000050",
+      "tags": {
+        "main": "攻击",
+        "normal": [
+          "近战",
+          "物理"
+        ]
+      },
+      "icon": "skill/linshi/8",
       "effects": [
         {
           "refId": "1110000050"
@@ -4417,6 +5833,15 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "主动技能",
       "desc": "",
       "sourceId": "1110000040",
+      "tags": {
+        "main": "攻击",
+        "normal": [
+          "近战",
+          "物理",
+          "范围"
+        ]
+      },
+      "icon": "skill/linshi/9",
       "effects": [
         {
           "refId": "1110000040"
@@ -4431,6 +5856,16 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "主动技能",
       "desc": "",
       "sourceId": "1110000010",
+      "tags": {
+        "main": "攻击",
+        "normal": [
+          "近战",
+          "冰霜",
+          "范围",
+          "阴义"
+        ]
+      },
+      "icon": "skill/jianke/2",
       "effects": [
         {
           "refId": "1110000010"
@@ -4445,6 +5880,13 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "主动技能",
       "desc": "",
       "sourceId": "1110000030",
+      "tags": {
+        "main": "攻击",
+        "normal": [
+          "近战"
+        ]
+      },
+      "icon": "skill/linshi/1",
       "effects": [
         {
           "refId": "1110000030"
@@ -4459,6 +5901,16 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "主动技能",
       "desc": "",
       "sourceId": "1120000040",
+      "tags": {
+        "main": "法术",
+        "normal": [
+          "混沌",
+          "范围",
+          "可重复",
+          "回响"
+        ]
+      },
+      "icon": "skill/fashu/mindipenyong",
       "effects": [
         {
           "refId": "1120000040"
@@ -4473,6 +5925,16 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "主动技能",
       "desc": "",
       "sourceId": "1120000130",
+      "tags": {
+        "main": "法术",
+        "normal": [
+          "冰霜",
+          "可重复",
+          "回响",
+          "范围"
+        ]
+      },
+      "icon": "skill/fashu/bingshuangxinxing",
       "effects": [
         {
           "refId": "1120000130"
@@ -4487,6 +5949,14 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "被动技能",
       "desc": "",
       "sourceId": "2120000011",
+      "tags": {
+        "main": "法术",
+        "normal": [
+          "幻影",
+          "位移"
+        ]
+      },
+      "icon": "skill/fashu/yixinghuanying",
       "effects": [
         {
           "refId": "2120000011"
@@ -4501,6 +5971,19 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "主动技能",
       "desc": "",
       "sourceId": "1120000020",
+      "tags": {
+        "main": "法术",
+        "normal": [
+          "投射物",
+          "物理",
+          "范围",
+          "持续",
+          "可重复",
+          "15",
+          "旋风"
+        ]
+      },
+      "icon": "skill/linshi/26",
       "effects": [
         {
           "refId": "1120000020"
@@ -4515,6 +5998,17 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "主动技能",
       "desc": "",
       "sourceId": "1120000080",
+      "tags": {
+        "main": "法术",
+        "normal": [
+          "投射物",
+          "火焰",
+          "范围",
+          "可重复",
+          "强化"
+        ]
+      },
+      "icon": "skill/linshi/25",
       "effects": [
         {
           "refId": "1120000080"
@@ -4529,6 +6023,16 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "主动技能",
       "desc": "",
       "sourceId": "1120000140",
+      "tags": {
+        "main": "法术",
+        "normal": [
+          "混沌",
+          "范围",
+          "持续",
+          "回响"
+        ]
+      },
+      "icon": "skill/fashu/hundunyunxing",
       "effects": [
         {
           "refId": "1120000140"
@@ -4543,6 +6047,14 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "被动技能",
       "desc": "",
       "sourceId": "2110000010",
+      "tags": {
+        "main": "攻击",
+        "normal": [
+          "闪电",
+          "触发"
+        ]
+      },
+      "icon": "skill/gongji/shandianzhijie",
       "effects": [
         {
           "refId": "2110000010"
@@ -4557,6 +6069,16 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "主动技能",
       "desc": "",
       "sourceId": "1110000020",
+      "tags": {
+        "main": "攻击",
+        "normal": [
+          "近战",
+          "冰霜",
+          "范围",
+          "阴义"
+        ]
+      },
+      "icon": "skill/jianke/1",
       "effects": [
         {
           "refId": "1110000020"
@@ -4571,6 +6093,16 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "主动技能",
       "desc": "",
       "sourceId": "1110000060",
+      "tags": {
+        "main": "攻击",
+        "normal": [
+          "近战",
+          "冰霜",
+          "范围",
+          "阴义"
+        ]
+      },
+      "icon": "skill/jianke/3",
       "effects": [
         {
           "refId": "1110000060"
@@ -4585,6 +6117,17 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "主动技能",
       "desc": "",
       "sourceId": "1120000050",
+      "tags": {
+        "main": "法术",
+        "normal": [
+          "物理",
+          "范围",
+          "持续",
+          "环绕",
+          "旋风"
+        ]
+      },
+      "icon": "skill/linshi/14",
       "effects": [
         {
           "refId": "1120000050"
@@ -4599,6 +6142,11 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "被动技能",
       "desc": "",
       "sourceId": "2140000140",
+      "tags": {
+        "main": "法术",
+        "normal": []
+      },
+      "icon": "skill/gonghuizhan/2",
       "effects": [
         {
           "refId": "2140000140"
@@ -4613,6 +6161,15 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "被动技能",
       "desc": "",
       "sourceId": "2110000020",
+      "tags": {
+        "main": "攻击",
+        "normal": [
+          "火焰",
+          "范围",
+          "触发"
+        ]
+      },
+      "icon": "skill/linshi/17",
       "effects": [
         {
           "refId": "2110000020"
@@ -4627,6 +6184,15 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "主动技能",
       "desc": "",
       "sourceId": "1140000010",
+      "tags": {
+        "main": "攻击",
+        "normal": [
+          "近战",
+          "冰霜",
+          "持续"
+        ]
+      },
+      "icon": "skill/jianke/5",
       "effects": [
         {
           "refId": "1140000010"
@@ -4641,6 +6207,13 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "主动技能",
       "desc": "",
       "sourceId": "1120000010",
+      "tags": {
+        "main": "法术",
+        "normal": [
+          "强化"
+        ]
+      },
+      "icon": "skill/linshi/27",
       "effects": [
         {
           "refId": "1120000010"
@@ -4655,6 +6228,14 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "主动技能",
       "desc": "",
       "sourceId": "1140000020",
+      "tags": {
+        "main": "法术",
+        "normal": [
+          "冰霜",
+          "范围"
+        ]
+      },
+      "icon": "skill/zengyi/jidizhanhou",
       "effects": [
         {
           "refId": "1140000020"
@@ -4669,6 +6250,15 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "被动技能",
       "desc": "",
       "sourceId": "2110000030",
+      "tags": {
+        "main": "攻击",
+        "normal": [
+          "冰霜",
+          "范围",
+          "触发"
+        ]
+      },
+      "icon": "skill/linshi/7",
       "effects": [
         {
           "refId": "2110000030"
@@ -4683,6 +6273,15 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "被动技能",
       "desc": "",
       "sourceId": "2120000030",
+      "tags": {
+        "main": "攻击",
+        "normal": [
+          "冰霜",
+          "范围",
+          "触发"
+        ]
+      },
+      "icon": "skill/zengyi/dadizhinu",
       "effects": [
         {
           "refId": "2120000030"
@@ -4697,6 +6296,11 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "被动技能",
       "desc": "",
       "sourceId": "2140000080",
+      "tags": {
+        "main": "光环",
+        "normal": []
+      },
+      "icon": "skill/zengyi/yuansumaichong",
       "effects": [
         {
           "refId": "2140000080"
@@ -4711,6 +6315,8 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "被动技能",
       "desc": "",
       "sourceId": "2140000110",
+      "tags": null,
+      "icon": "skill/linshi/24",
       "effects": [
         {
           "refId": "2140000110"
@@ -4725,6 +6331,11 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "被动技能",
       "desc": "",
       "sourceId": "2114000020",
+      "tags": {
+        "main": "光环",
+        "normal": []
+      },
+      "icon": "skill/gonghuizhan/1",
       "effects": [
         {
           "refId": "2114000020"
@@ -4739,6 +6350,8 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "被动技能",
       "desc": "",
       "sourceId": "2150000020",
+      "tags": null,
+      "icon": "skill/linshi/4",
       "effects": [
         {
           "refId": "2150000020"
@@ -4753,6 +6366,11 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "被动技能",
       "desc": "",
       "sourceId": "2114000020",
+      "tags": {
+        "main": "光环",
+        "normal": []
+      },
+      "icon": "skill/gonghuizhan/1",
       "effects": [
         {
           "refId": "2114000020"
@@ -4767,6 +6385,11 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "被动技能",
       "desc": "",
       "sourceId": "2140000040",
+      "tags": {
+        "main": "光环",
+        "normal": []
+      },
+      "icon": "skill/linshi/3",
       "effects": [
         {
           "refId": "2140000040"
@@ -4781,6 +6404,11 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "被动技能",
       "desc": "",
       "sourceId": "2140000050",
+      "tags": {
+        "main": "光环",
+        "normal": []
+      },
+      "icon": "skill/linshi/16",
       "effects": [
         {
           "refId": "2140000050"
@@ -4795,6 +6423,11 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "被动技能",
       "desc": "",
       "sourceId": "2140000060",
+      "tags": {
+        "main": "光环",
+        "normal": []
+      },
+      "icon": "skill/zengyi/kuangnu",
       "effects": [
         {
           "refId": "2140000060"
@@ -4809,6 +6442,11 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "被动技能",
       "desc": "",
       "sourceId": "2140000070",
+      "tags": {
+        "main": "光环",
+        "normal": []
+      },
+      "icon": "skill/zengyi/huifu",
       "effects": [
         {
           "refId": "2140000070"
@@ -4818,5 +6456,5 @@ window.__AUTO_IMPORT_DATA__ = {
       "source": "sync"
     }
   ],
-  "importTime": "2026-08-07T09:09:30.163Z"
+  "importTime": "2026-08-08T07:29:32.642Z"
 };

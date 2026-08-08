@@ -3,7 +3,7 @@
   "level": 1,
   "group": 0,
   "name": "装备-点燃头",
-  "text": "装备-点燃头",
+  "text": "周围敌人受到生命值上限1%的点燃强度的点燃",
   "skillIcon": "",
   "bundlingStunts": [],
   "mainTag": 2,

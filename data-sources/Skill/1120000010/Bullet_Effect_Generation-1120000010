@@ -9,5 +9,6 @@
   "ammoTrajectory": [],
   "ammoInterval": [],
   "ammoBatch": [],
-  "ammoBatchInterval": []
+  "ammoBatchInterval": [],
+  "pluralHitTime": []
 }

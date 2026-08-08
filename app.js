@@ -27,6 +27,11 @@ function navigateTo(pageName) {
     // 装备/辅助宝石/技能库 使用纯黑底图（暂不设置背景图），其他页面保留背景图
     document.body.classList.toggle('page-black', ['equipment', 'gems', 'custom-skills'].includes(pageName));
 
+    // 技能库页渲染标签筛选栏 (filterCustomSkills 内部会同步渲染)
+    if (pageName === 'custom-skills') {
+        filterCustomSkills();
+    }
+
     // 滚动到顶部
     document.querySelector('.main-content').scrollTop = 0;
 }
@@ -45,29 +50,131 @@ function switchBattleTab(tab) {
         filterAffixes();
     } else if (tab === 'attr') {
         filterAttributes();
+    } else if (tab === 'active' || tab === 'passive') {
+        renderTagFilterBar(tab);
     }
+}
+
+// ---- 标签筛选状态 (主动/被动/技能库，数组 = 多选) ----
+const tagFilterState = { active: [], passive: [], custom: [] };
+
+// ---- 渲染标签筛选栏 (mainTag/normalTag 聚合) ----
+function renderTagFilterBar(type) {
+    const bar = document.getElementById(type + 'TagFilters');
+    if (!bar) return;
+    const skills = type === 'active' ? activeSkills : passiveSkills;
+
+    // 聚合所有 main + normal 标签 (去重，过滤未映射的数字标签)
+    const tagSet = new Set();
+    skills.forEach(s => {
+        if (!s.tagsText) return;
+        if (s.tagsText.main && s.tagsText.main !== '' && !isUnmappedTag(s.tagsText.main)) tagSet.add(s.tagsText.main);
+        (s.tagsText.normal || []).forEach(t => { if (t && t !== '' && t !== null && t !== undefined && !isUnmappedTag(t)) tagSet.add(t); });
+    });
+    const tags = [...tagSet].sort((a, b) => a.localeCompare(b, 'zh'));
+
+    const current = tagFilterState[type] || [];
+    const typeColor = type === 'active' ? '#e74c3c' : '#3498db';
+
+    const btn = (tag, label) => {
+        const active = tag === '' ? current.length === 0 : current.includes(tag);
+        const esc = String(tag).replace(/'/g, "\\'");
+        return `<button class="tag-filter-btn${active ? ' active' : ''}" style="${active ? 'background:' + typeColor + ';border-color:' + typeColor + ';color:#fff' : ''}" onclick="setTagFilter('${type}', '${esc}')">${label}</button>`;
+    };
+
+    bar.innerHTML = `
+        <div class="tag-filter-bar-inner">
+            <span class="tag-filter-label">标签(可多选):</span>
+            ${btn('', '全部')}
+            ${tags.map(t => btn(t, t)).join('')}
+        </div>
+    `;
+}
+
+// ---- 设置标签筛选 (多选：点击切换选中/取消) ----
+function setTagFilter(type, tag) {
+    const state = tagFilterState[type];
+    if (!tag) {
+        // 点击"全部"清空所有选择
+        state.length = 0;
+    } else {
+        const idx = state.indexOf(tag);
+        if (idx >= 0) state.splice(idx, 1);
+        else state.push(tag);
+    }
+    renderTagFilterBar(type);
+    filterSkills(type);
+}
+
+// ---- 渲染技能库标签筛选栏 (mainTag/normalTag 聚合，s.tags 为文本格式) ----
+function renderCustomSkillTagFilterBar() {
+    const bar = document.getElementById('customSkillTagFilters');
+    if (!bar) return;
+
+    // 聚合所有 main + normal 标签 (去重，过滤未映射的数字标签)
+    const tagSet = new Set();
+    customSkillData.forEach(s => {
+        if (!s.tags) return;
+        if (s.tags.main && s.tags.main !== '' && !isUnmappedTag(s.tags.main)) tagSet.add(s.tags.main);
+        (s.tags.normal || []).forEach(t => { if (t && t !== '' && t !== null && t !== undefined && !isUnmappedTag(t)) tagSet.add(t); });
+    });
+    const tags = [...tagSet].sort((a, b) => a.localeCompare(b, 'zh'));
+
+    const current = tagFilterState.custom || [];
+    const btn = (tag, label) => {
+        const active = tag === '' ? current.length === 0 : current.includes(tag);
+        const esc = String(tag).replace(/'/g, "\\'");
+        return `<button class="tag-filter-btn${active ? ' active' : ''}" style="${active ? 'background:#e67e22;border-color:#e67e22;color:#fff' : ''}" onclick="setCustomSkillTagFilter('${esc}')">${label}</button>`;
+    };
+
+    bar.innerHTML = `
+        <div class="tag-filter-bar-inner">
+            <span class="tag-filter-label">标签(可多选):</span>
+            ${btn('', '全部')}
+            ${tags.map(t => btn(t, t)).join('')}
+        </div>
+    `;
+}
+
+// ---- 设置技能库标签筛选 (多选：点击切换选中/取消) ----
+function setCustomSkillTagFilter(tag) {
+    const state = tagFilterState.custom;
+    if (!tag) {
+        // 点击"全部"清空所有选择
+        state.length = 0;
+    } else {
+        const idx = state.indexOf(tag);
+        if (idx >= 0) state.splice(idx, 1);
+        else state.push(tag);
+    }
+    renderCustomSkillTagFilterBar();
+    filterCustomSkills();
 }
 
 // ---- 渲染技能卡片 ----
 function renderSkillCard(skill, type) {
     const color = getCategoryColor(skill.category);
     const icon = getCategoryIcon(skill.category);
-    const newBadge = skill.isNew ? '<span class="new-tag">新增</span>' : '';
     const parsed = parseSkillId(skill.id);
+    const iconHtml = skill.icon
+        ? `<span class="skill-icon" style="background:${color}20;color:${color}"><img class="card-icon" src="icon/${skill.icon}.png" alt="" onerror="this.style.display='none'">${icon}</span>`
+        : `<span class="skill-icon" style="background:${color}20;color:${color}">${icon}</span>`;
 
     return `
         <div class="skill-card" data-skill-id="${skill.id}" onclick="openSkillDetail('${skill.id}', '${type}')" style="border-left-color: ${color}">
             <div class="skill-card-header">
-                <span class="skill-icon" style="background:${color}20;color:${color}">${icon}</span>
+                ${iconHtml}
                 <div class="skill-card-info">
-                    <h4 class="skill-name">${skill.name}${newBadge}</h4>
+                    <h4 class="skill-name">${skill.name}</h4>
                     <span class="skill-id">${skill.id}</span>
                 </div>
             </div>
-            <div class="skill-card-tags">
-                <span class="skill-tag" style="background:${color}20;color:${color}">${skill.category}</span>
-                <span class="skill-tag-sub">${skill.subCategory}</span>
+            <div class="item-stats">
+                <div class="item-stats-cell"><span class="item-stats-label">类别</span><span class="item-stats-value" style="color:${color}">${skill.category}</span></div>
+                <div class="item-stats-cell"><span class="item-stats-label">子类别</span><span class="item-stats-value">${skill.subCategory}</span></div>
+                <div class="item-stats-cell"><span class="item-stats-label">类型</span><span class="item-stats-value">${type === 'active' ? '主动技能' : '被动技能'}</span></div>
             </div>
+            ${renderSkillTags(skill.tagsText)}
             <div class="skill-card-id-segments">
                 <span class="id-seg seg-a">A=${parsed.A}</span>
                 <span class="id-seg">B=${parsed.B}</span>
@@ -108,16 +215,21 @@ function filterSkills(type) {
     const skills = type === 'active' ? activeSkills : passiveSkills;
     const catEl = document.getElementById(`${type}CategoryFilter`);
     const searchEl = document.getElementById(`${type}SearchInput`);
-    const newEl = document.getElementById(`${type}NewOnly`);
     if (!catEl || !searchEl) return;
 
     const categoryFilter = catEl.value;
     const searchInput = searchEl.value.toLowerCase();
-    const newOnly = newEl ? newEl.checked : false;
+    const tagFilter = tagFilterState[type] || [];
 
     const filtered = skills.filter(s => {
         if (categoryFilter && s.category !== categoryFilter) return false;
-        if (newOnly && !s.isNew) return false;
+        if (tagFilter.length > 0) {
+            const tt = s.tagsText;
+            if (!tt) return false;
+            // 必须同时包含所有选中标签 (AND)：每个选中标签命中 main 或 normal 之一
+            const matched = tagFilter.every(tag => tt.main === tag || (tt.normal || []).includes(tag));
+            if (!matched) return false;
+        }
         if (searchInput) {
             const matchName = s.name.toLowerCase().includes(searchInput);
             const matchId = s.id.includes(searchInput);
@@ -279,17 +391,15 @@ function openSkillDetail(id, type) {
     const icon = getCategoryIcon(skill.category);
     const typeName = type === 'active' ? '主动技能' : '被动技能';
     const typeColor = type === 'active' ? '#e74c3c' : '#3498db';
-    const newBadge = skill.isNew ? '<span class="new-tag">新增</span>' : '';
     const hasEdits = checkHasEdits(SKILL_EDIT_KEY, id);
 
     const modalBody = document.getElementById('modalBody');
     modalBody.innerHTML = `
         <div class="detail-header" style="border-bottom-color:${color}">
-            <div class="detail-icon" style="background:${color}20;color:${color};font-size:36px;width:64px;height:64px;display:flex;align-items:center;justify-content:center;border-radius:12px">${icon}</div>
+            <div class="detail-icon" style="background:${color}20;color:${color};font-size:36px;width:64px;height:64px;display:flex;align-items:center;justify-content:center;border-radius:12px;position:relative;overflow:hidden">${skill.icon ? `<img class="card-icon" src="icon/${skill.icon}.png" alt="" onerror="this.style.display='none'">` : ''}${icon}</div>
             <div style="flex:1">
                 <h2 class="detail-name">
                     <input type="text" class="affix-edit-input affix-edit-name" value="${skill.name.replace(/"/g, '&quot;')}" oninput="onSkillEdit('${skill.id}', 'name', this.value)" placeholder="技能名称">
-                    ${newBadge}
                 </h2>
                 <div class="detail-type">
                     <span class="type-badge" style="background:${typeColor}20;color:${typeColor}">${typeName}</span>
@@ -358,24 +468,6 @@ function openSkillDetail(id, type) {
             ${hasEdits ? `<button class="affix-reset-btn" onclick="resetSkillDetail('${skill.id}', '${type}')">↺ 恢复默认</button>` : ''}
         </div>
 
-        ${skill.isNew ? `
-        <div class="detail-section">
-            <div class="detail-new-banner">
-                🆕 此技能为 <strong>2026年7月版本</strong> 新增内容
-            </div>
-        </div>
-        ` : ''}
-
-        <div class="detail-section">
-            <div class="new-toggle-row">
-                <label class="new-toggle-label">
-                    <input type="checkbox" id="newStatusCheckbox" ${skill.isNew ? 'checked' : ''} onchange="toggleNewStatus('${skill.id}', 'skill', '${type}', this.checked)">
-                    <span class="new-toggle-text">标记为版本新增</span>
-                </label>
-                <span class="new-toggle-hint">勾选后，外层列表将显示"新增"标签，并出现在"仅看新增"筛选结果中</span>
-            </div>
-        </div>
-
         <div class="detail-section">
             <button class="equipment-btn equipment-btn-delete" onclick="deleteSkill('${skill.id}', '${type}')">🗑 删除技能</button>
         </div>
@@ -397,105 +489,7 @@ function resetSkillDetail(id, type) {
         skill.description = original.description;
     }
     openSkillDetail(id, type);
-    if (type === 'active') {
-        const f = document.getElementById('activeCategoryFilter');
-        if (f) renderActiveSkills(activeSkills.filter(s => {
-            const cat = f.value;
-            const si = document.getElementById('activeSearchInput');
-            const no = document.getElementById('activeNewOnly');
-            if (cat && s.category !== cat) return false;
-            if (no && no.checked && !s.isNew) return false;
-            return true;
-        }));
-    } else {
-        const f = document.getElementById('passiveCategoryFilter');
-        if (f) renderPassiveSkills(passiveSkills.filter(s => {
-            const cat = f.value;
-            const no = document.getElementById('passiveNewOnly');
-            if (cat && s.category !== cat) return false;
-            if (no && no.checked && !s.isNew) return false;
-            return true;
-        }));
-    }
-}
-
-// ---- 切换"新增"标记状态 ----
-function toggleNewStatus(id, itemType, subType, isChecked) {
-    let target = null;
-    let targetArr = null;
-
-    if (itemType === 'skill') {
-        targetArr = subType === 'active' ? activeSkills : passiveSkills;
-        target = targetArr.find(s => s.id === id);
-    } else if (itemType === 'affix') {
-        targetArr = affixes;
-        target = affixes.find(a => a.id === id);
-    } else if (itemType === 'equipment') {
-        targetArr = equipmentData;
-        target = equipmentData.find(e => e.id === id);
-    } else if (itemType === 'gem') {
-        targetArr = gemData;
-        target = gemData.find(g => g.id === id);
-    }
-
-    if (!target) return;
-    target.isNew = isChecked;
-
-    // 持久化到 localStorage
-    try {
-        const key = 'chronicle_new_status';
-        let saved = {};
-        const raw = localStorage.getItem(key);
-        if (raw) saved = JSON.parse(raw);
-        saved[id] = isChecked;
-        localStorage.setItem(key, JSON.stringify(saved));
-    } catch (e) {}
-
-    // 更新弹窗中的新增标签显示
-    const bannerEl = document.querySelector('.detail-new-banner');
-    if (isChecked && !bannerEl) {
-        // 如果勾选了但没有banner，重新渲染弹窗
-        if (itemType === 'skill') {
-            openSkillDetail(id, subType);
-        } else if (itemType === 'affix') {
-            openAffixDetail(id);
-        } else if (itemType === 'equipment') {
-            openEquipmentDetail(id);
-        } else if (itemType === 'gem') {
-            openGemDetail(id);
-        }
-    } else if (!isChecked && bannerEl) {
-        // 如果取消勾选但有banner，重新渲染弹窗
-        if (itemType === 'skill') {
-            openSkillDetail(id, subType);
-        } else if (itemType === 'affix') {
-            openAffixDetail(id);
-        } else if (itemType === 'equipment') {
-            openEquipmentDetail(id);
-        } else if (itemType === 'gem') {
-            openGemDetail(id);
-        }
-    }
-
-    // 更新统计数字
-    renderStats();
-    if (typeof renderHome === 'function') renderHome();
-
-    // 刷新各列表以反映新增标记变化
-    if (itemType === 'skill') {
-        filterSkills(subType);
-    } else if (itemType === 'affix') {
-        filterAffixes();
-        // 如果有装备引用了该词缀，刷新装备列表
-        const usedInEquipment = equipmentData.some(eq =>
-            (eq.effects || []).some(e => e.refId === id)
-        );
-        if (usedInEquipment) filterEquipments();
-    } else if (itemType === 'equipment') {
-        filterEquipments();
-    } else if (itemType === 'gem') {
-        filterGems();
-    }
+    filterSkills(type);
 }
 
 function closeModal() {
@@ -577,7 +571,7 @@ function applySkillIdChange(oldId, type) {
             }
         });
     });
-    if (equipmentChanged) saveEquipmentData();
+    if (equipmentChanged) { /* 装备库仅只读展示，无需持久化 */ }
 
     // 同步编辑记录（迁移 key）
     try {
@@ -677,7 +671,7 @@ function applyAffixIdChange(oldId) {
             }
         });
     });
-    if (equipmentChanged) saveEquipmentData();
+    if (equipmentChanged) { /* 装备库仅只读展示，无需持久化 */ }
 
     // 同步编辑记录（迁移 key）
     try {
@@ -850,8 +844,7 @@ function syncAffixCard(id) {
     const nameEl = document.querySelector(`[data-affix-id="${id}"] .affix-name`);
     const descEl = document.querySelector(`[data-affix-id="${id}"] .affix-desc`);
     if (nameEl) {
-        const newTag = affix.isNew ? '<span class="new-tag">新增</span>' : '';
-        nameEl.innerHTML = affix.name + newTag;
+        nameEl.textContent = affix.name;
     }
     if (descEl) descEl.textContent = affix.description;
 }
@@ -861,8 +854,7 @@ function syncSkillCard(id) {
     if (!skill) return;
     const nameEl = document.querySelector(`[data-skill-id="${id}"] .skill-name`);
     if (nameEl) {
-        const newTag = skill.isNew ? '<span class="new-tag">新增</span>' : '';
-        nameEl.innerHTML = skill.name + newTag;
+        nameEl.textContent = skill.name;
     }
 }
 
@@ -881,9 +873,6 @@ function renderAffixes(filteredAffixes = affixes) {
         const catAffixes = filteredAffixes.filter(a => a.category === cat.key);
         if (catAffixes.length === 0) return;
 
-        const newCount = catAffixes.filter(a => a.isNew).length;
-        const newBadge = newCount > 0 ? `<span class="cat-new-badge">+${newCount}新增</span>` : '';
-
         html += `
             <div class="affix-category-section">
                 <div class="affix-cat-header" style="border-left-color:${cat.color}">
@@ -893,17 +882,15 @@ function renderAffixes(filteredAffixes = affixes) {
                         <span class="affix-cat-desc">${cat.desc}</span>
                     </div>
                     <span class="affix-cat-count" style="background:${cat.color}20;color:${cat.color}">${catAffixes.length}</span>
-                    ${newBadge}
                 </div>
                 <div class="affix-cat-grid">
                     ${catAffixes.map(a => {
-                        const newTag = a.isNew ? '<span class="new-tag">新增</span>' : '';
                         return `
                             <div class="affix-card" data-affix-id="${a.id}" onclick="openAffixDetail('${a.id}')" style="border-left-color:${cat.color}">
                                 <div class="affix-header">
                                     <span class="affix-icon" style="background:${cat.color}20;color:${cat.color}">${cat.icon}</span>
                                     <div>
-                                        <h4 class="affix-name">${a.name}${newTag}</h4>
+                                        <h4 class="affix-name">${a.name}</h4>
                                         <span class="affix-id">ID: ${a.id}</span>
                                     </div>
                                 </div>
@@ -933,13 +920,12 @@ function renderAffixes(filteredAffixes = affixes) {
                 </div>
                 <div class="affix-cat-grid">
                     ${otherAffixes.map(a => {
-                        const newTag = a.isNew ? '<span class="new-tag">新增</span>' : '';
                         return `
                             <div class="affix-card" data-affix-id="${a.id}" onclick="openAffixDetail('${a.id}')" style="border-left-color:#7f8c8d">
                                 <div class="affix-header">
                                     <span class="affix-icon" style="background:#7f8c8d20;color:#7f8c8d">📋</span>
                                     <div>
-                                        <h4 class="affix-name">${a.name}${newTag}</h4>
+                                        <h4 class="affix-name">${a.name}</h4>
                                         <span class="affix-id">ID: ${a.id}</span>
                                     </div>
                                 </div>
@@ -1266,7 +1252,6 @@ function openAffixDetail(id) {
     const cat = affixCategories.find(c => c.key === affix.category);
     const color = cat ? cat.color : '#7f8c8d';
     const icon = cat ? cat.icon : '📋';
-    const newBadge = affix.isNew ? '<span class="new-tag">新增</span>' : '';
 
     // 检查是否有自定义编辑
     const hasEdits = checkHasEdits(AFFIX_EDIT_KEY, id);
@@ -1282,7 +1267,6 @@ function openAffixDetail(id) {
             <div style="flex:1">
                 <h2 class="detail-name">
                     <input type="text" id="affixNameInput" class="affix-edit-input affix-edit-name" value="${affix.name.replace(/"/g, '&quot;')}" oninput="onAffixEdit('${affix.id}', 'name', this.value)" placeholder="词缀名称">
-                    ${newBadge}
                 </h2>
                 <div class="detail-type">
                     <span class="type-badge" style="background:${color}20;color:${color}">${affix.category}</span>
@@ -1324,28 +1308,6 @@ function openAffixDetail(id) {
                     <span class="detail-info-label">ID前缀</span>
                     <span class="detail-info-value">${prefix} (${prefixMap[prefix] || '未知'})</span>
                 </div>
-                <div class="detail-info-item">
-                    <span class="detail-info-label">版本状态</span>
-                    <span class="detail-info-value">${affix.isNew ? '🆕 新增' : '已有词缀'}</span>
-                </div>
-            </div>
-        </div>
-
-        ${affix.isNew ? `
-        <div class="detail-section">
-            <div class="detail-new-banner">
-                🆕 此词缀为 <strong>2026年7月版本</strong> 新增内容
-            </div>
-        </div>
-        ` : ''}
-
-        <div class="detail-section">
-            <div class="new-toggle-row">
-                <label class="new-toggle-label">
-                    <input type="checkbox" id="newStatusCheckbox" ${affix.isNew ? 'checked' : ''} onchange="toggleNewStatus('${affix.id}', 'affix', '', this.checked)">
-                    <span class="new-toggle-text">标记为版本新增</span>
-                </label>
-                <span class="new-toggle-hint">勾选后，外层列表将显示"新增"标签，并出现在"仅看新增"筛选结果中</span>
             </div>
         </div>
 
@@ -1398,8 +1360,7 @@ function deleteSkill(id, type) {
         const before = eq.effects.length;
         eq.effects = eq.effects.filter(e => e.refId !== id);
         if (eq.effects.length !== before) {
-            equipmentChanged = true;
-            saveEquipmentData();
+            equipmentChanged = true; // 装备库仅只读展示，无需持久化
         }
     });
 
@@ -1443,8 +1404,7 @@ function deleteAffix(id) {
         const before = eq.effects.length;
         eq.effects = eq.effects.filter(e => e.refId !== id);
         if (eq.effects.length !== before) {
-            equipmentChanged = true;
-            saveEquipmentData();
+            equipmentChanged = true; // 装备库仅只读展示，无需持久化
         }
     });
 
@@ -1470,11 +1430,9 @@ function filterAffixes() {
     if (!catEl || !searchEl) return;
     const categoryFilter = catEl.value;
     const searchInput = searchEl.value.toLowerCase();
-    const newOnly = document.getElementById('affixNewOnly') ? document.getElementById('affixNewOnly').checked : false;
 
     const filtered = affixes.filter(a => {
         if (categoryFilter && a.category !== categoryFilter) return false;
-        if (newOnly && !a.isNew) return false;
         if (searchInput) {
             const matchName = a.name.toLowerCase().includes(searchInput);
             const matchId = a.id.includes(searchInput);
@@ -1593,8 +1551,6 @@ function renderStats() {
     _set('statEquipment', equipmentData.length);
     _set('statAttr', attributes.length);
     _set('statGem', gemData.length);
-    _set('statNew',
-        activeSkills.filter(s => s.isNew).length + passiveSkills.filter(s => s.isNew).length + affixes.filter(a => a.isNew).length + equipmentData.filter(e => e.isNew).length + gemData.filter(g => g.isNew).length);
 
     // 主动技能分类图表
     const activeCats = {};
@@ -1660,56 +1616,6 @@ function renderHome() {
     _set('heroEquipment', equipmentData.length);
     _set('heroGem', gemData.length);
     _set('heroCustomSkill', customSkillData.length);
-
-    // 新增列表
-    const newSkills = [...activeSkills, ...passiveSkills].filter(s => s.isNew);
-    const newAffixes = affixes.filter(a => a.isNew);
-    const newEquipments = equipmentData.filter(e => e.isNew);
-    const newGems = gemData.filter(g => g.isNew);
-    const newList = document.getElementById('newSkillList');
-    if (!newList) return;
-    newList.innerHTML = newSkills.map(s => {
-        const color = getCategoryColor(s.category);
-        const icon = getCategoryIcon(s.category);
-        const type = activeSkills.includes(s) ? 'active' : 'passive';
-        return `
-            <div class="new-skill-item" onclick="openSkillDetail('${s.id}', '${type}')" style="border-left-color:${color}">
-                <span class="new-skill-icon">${icon}</span>
-                <span class="new-skill-name">${s.name}</span>
-                <span class="new-skill-tag" style="background:${color}20;color:${color}">${s.category}</span>
-                <span class="new-skill-id">${s.id}</span>
-            </div>
-        `;
-    }).join('') + newAffixes.map(a => {
-        const cat = affixCategories.find(c => c.key === a.category);
-        const color = cat ? cat.color : '#f39c12';
-        return `
-            <div class="new-skill-item" onclick="openAffixDetail('${a.id}')" style="border-left-color:${color}">
-                <span class="new-skill-icon">${cat ? cat.icon : '✨'}</span>
-                <span class="new-skill-name">${a.name}</span>
-                <span class="new-skill-tag" style="background:${color}20;color:${color}">${a.category}</span>
-                <span class="new-skill-id">${a.id}</span>
-            </div>
-        `;
-    }).join('') + newEquipments.map(e => {
-        return `
-            <div class="new-skill-item" onclick="openEquipmentDetail('${e.id}')" style="border-left-color:#9b59b6">
-                <span class="new-skill-icon">📦</span>
-                <span class="new-skill-name">${e.name}</span>
-                <span class="new-skill-tag" style="background:#9b59b620;color:#9b59b6">${e.type || '装备'}</span>
-                <span class="new-skill-id">${e.id}</span>
-            </div>
-        `;
-    }).join('') + newGems.map(g => {
-        return `
-            <div class="new-skill-item" onclick="openGemDetail('${g.id}')" style="border-left-color:#9b59b6">
-                <span class="new-skill-icon">💎</span>
-                <span class="new-skill-name">${g.name}</span>
-                <span class="new-skill-tag" style="background:#9b59b620;color:#9b59b6">${g.type || '辅助宝石'}</span>
-                <span class="new-skill-id">${g.id}</span>
-            </div>
-        `;
-    }).join('');
 }
 
 // ---- 装备系统 ----
@@ -1722,7 +1628,7 @@ function renderEquipment(filteredData) {
             <div class="equipment-empty">
                 <div class="equipment-empty-icon">📦</div>
                 <p>${equipmentData.length === 0 ? '暂无装备数据' : '未找到匹配的装备'}</p>
-                <p class="equipment-empty-hint">${equipmentData.length === 0 ? '点击上方"添加装备"按钮创建第一件装备' : '尝试其他搜索关键词'}</p>
+                <p class="equipment-empty-hint">${equipmentData.length === 0 ? '装备数据仅由一键导入提供，请先运行一键导入' : '尝试其他搜索关键词'}</p>
             </div>
         `;
         document.getElementById('equipmentTotalCount').textContent = equipmentData.length;
@@ -1781,13 +1687,18 @@ function renderEquipment(filteredData) {
         return `
             <div class="equipment-card" data-equipment-id="${eq.id}" onclick="openEquipmentDetail('${eq.id}')">
                 <div class="equipment-card-header">
-                    <span class="equipment-card-icon">📦</span>
+                    <span class="equipment-card-icon" style="background:${style.color}18">${eq.icon ? `<img class="card-icon" src="icon/${eq.icon}.png" alt="" onerror="this.style.display='none'">` : ''}${style.icon}</span>
                     <div>
-                        <h4 class="equipment-card-name">${eq.name} ${eq.isNew ? '<span class="new-tag">新增</span>' : ''}</h4>
+                        <h4 class="equipment-card-name">${eq.name}</h4>
                         <span class="equipment-card-id">${eq.id}</span>
                     </div>
                 </div>
                 <span class="equipment-card-type">${eq.type || '未分类'}</span>
+                <div class="item-stats">
+                    <div class="item-stats-cell"><span class="item-stats-label">词缀数</span><span class="item-stats-value">${effectCount} 条</span></div>
+                    ${passives.length > 0 ? `<div class="item-stats-cell"><span class="item-stats-label">被动</span><span class="item-stats-value">${passives.length} 条</span></div>` : ''}
+                    <div class="item-stats-cell"><span class="item-stats-label">装备ID</span><span class="item-stats-value">${eq.id}</span></div>
+                </div>
                 <div class="equipment-card-effects">
                     <span class="equipment-effect-count">效果 (${effectCount} 条)${passives.length > 0 ? ' · 被动 (' + passives.length + ' 条)' : ''}</span>
                     <div class="equipment-card-effect-list">
@@ -1822,10 +1733,8 @@ function renderEquipment(filteredData) {
 
 function filterEquipments() {
     const search = document.getElementById('equipmentSearchInput').value.toLowerCase();
-    const newOnly = document.getElementById('equipmentNewOnly') ? document.getElementById('equipmentNewOnly').checked : false;
     const typeFilter = document.getElementById('equipmentTypeFilter') ? document.getElementById('equipmentTypeFilter').value : '';
     const filtered = equipmentData.filter(eq => {
-        if (newOnly && !eq.isNew) return false;
         if (typeFilter && (eq.type || '未分类') !== typeFilter) return false;
         if (!search) return true;
         if (eq.name.toLowerCase().includes(search)) return true;
@@ -1864,216 +1773,15 @@ function toggleEquipTypeGroup(type) {
     if (icon) icon.textContent = isCollapsed ? '▼' : '▶';
 }
 
-function showAddEquipmentForm() {
-    const modalBody = document.getElementById('modalBody');
-    modalBody.innerHTML = `
-        <div class="detail-header" style="border-bottom-color:#9b59b6">
-            <div class="detail-icon" style="background:#9b59b620;color:#9b59b6;font-size:36px;width:64px;height:64px;display:flex;align-items:center;justify-content:center;border-radius:12px">📦</div>
-            <div>
-                <h2 class="detail-name">添加新装备</h2>
-                <div class="detail-type">
-                    <span class="type-badge" style="background:#9b59b620;color:#9b59b6">装备系统</span>
-                </div>
-            </div>
-        </div>
 
-        <div class="detail-section">
-            <h3 class="detail-section-title">基本信息</h3>
-            <div class="equipment-form-group">
-                <label class="equipment-form-label">装备名称 <span class="required">*</span></label>
-                <input type="text" id="eqName" class="equipment-form-input" placeholder="如：暴风之剑">
-            </div>
-            <div class="equipment-form-group">
-                <label class="equipment-form-label">装备类型</label>
-                <input type="text" id="eqType" class="equipment-form-input" placeholder="如：武器/防具/饰品">
-            </div>
-        </div>
 
-        <div class="detail-section">
-            <h3 class="detail-section-title">装备效果（填写技能ID或词缀ID）</h3>
-            <p class="equipment-form-hint">每条效果填写一个技能ID或词缀ID，输入文字可自动匹配词缀或属性，也可直接输入ID。无需全部填写，有几个填几个。</p>
-            <div class="equipment-form-group">
-                <label class="equipment-form-label">效果 1</label>
-                <input type="text" id="eqEffect1" class="equipment-form-input" placeholder="如：1110000010 或 10031 或 输入文字搜索" oninput="onEffectInput(this, 'preview1', 'dropdown1')">
-                <div class="autocomplete-dropdown" id="dropdown1"></div>
-                <div class="effect-preview" id="preview1"></div>
-            </div>
-            <div class="equipment-form-group">
-                <label class="equipment-form-label">效果 2</label>
-                <input type="text" id="eqEffect2" class="equipment-form-input" placeholder="技能ID或词缀ID 或 输入文字搜索" oninput="onEffectInput(this, 'preview2', 'dropdown2')">
-                <div class="autocomplete-dropdown" id="dropdown2"></div>
-                <div class="effect-preview" id="preview2"></div>
-            </div>
-            <div class="equipment-form-group">
-                <label class="equipment-form-label">效果 3</label>
-                <input type="text" id="eqEffect3" class="equipment-form-input" placeholder="技能ID或词缀ID 或 输入文字搜索" oninput="onEffectInput(this, 'preview3', 'dropdown3')">
-                <div class="autocomplete-dropdown" id="dropdown3"></div>
-                <div class="effect-preview" id="preview3"></div>
-            </div>
-            <div class="equipment-form-group">
-                <label class="equipment-form-label">效果 4</label>
-                <input type="text" id="eqEffect4" class="equipment-form-input" placeholder="技能ID或词缀ID 或 输入文字搜索" oninput="onEffectInput(this, 'preview4', 'dropdown4')">
-                <div class="autocomplete-dropdown" id="dropdown4"></div>
-                <div class="effect-preview" id="preview4"></div>
-            </div>
-            <div class="equipment-form-group">
-                <label class="equipment-form-label">效果 5</label>
-                <input type="text" id="eqEffect5" class="equipment-form-input" placeholder="技能ID或词缀ID 或 输入文字搜索" oninput="onEffectInput(this, 'preview5', 'dropdown5')">
-                <div class="autocomplete-dropdown" id="dropdown5"></div>
-                <div class="effect-preview" id="preview5"></div>
-            </div>
-            <div class="equipment-form-group">
-                <label class="equipment-form-label">效果 6</label>
-                <input type="text" id="eqEffect6" class="equipment-form-input" placeholder="技能ID或词缀ID 或 输入文字搜索" oninput="onEffectInput(this, 'preview6', 'dropdown6')">
-                <div class="autocomplete-dropdown" id="dropdown6"></div>
-                <div class="effect-preview" id="preview6"></div>
-            </div>
-        </div>
 
-        <div class="equipment-form-actions">
-            <button class="equipment-btn equipment-btn-cancel" onclick="closeModal()">取消</button>
-            <button class="equipment-btn equipment-btn-save" onclick="submitAddEquipment()">保存装备</button>
-        </div>
-    `;
-    document.getElementById('skillModal').classList.add('active');
-}
 
-function onEffectInput(inputEl, previewId, dropdownId) {
-    const val = inputEl.value.trim();
-    const dropdownEl = document.getElementById(dropdownId);
 
-    // 先显示ID预览
-    previewEffect(inputEl, previewId);
 
-    // 如果输入为空，关闭下拉
-    if (!val) {
-        if (dropdownEl) dropdownEl.innerHTML = '';
-        return;
-    }
 
-    // 如果输入是纯数字且已找到匹配，不显示下拉
-    const refData = findRefData(val);
-    if (refData && /^\d+$/.test(val)) {
-        if (dropdownEl) dropdownEl.innerHTML = '';
-        return;
-    }
 
-    // 搜索匹配的词缀和属性
-    const search = val.toLowerCase();
-    let matches = [];
 
-    // 搜索词缀
-    affixes.forEach(a => {
-        if (a.name.toLowerCase().includes(search) || a.id.includes(search) || a.description.toLowerCase().includes(search)) {
-            matches.push({ id: a.id, name: a.name, desc: a.description, type: 'affix', typeLabel: '词缀', typeColor: '#f39c12' });
-        }
-    });
-
-    // 搜索属性
-    attributes.forEach(a => {
-        if (a.name.toLowerCase().includes(search) || a.id.includes(search) || a.description.toLowerCase().includes(search)) {
-            matches.push({ id: a.id, name: a.name, desc: a.description, type: 'attribute', typeLabel: '属性', typeColor: '#27ae60' });
-        }
-    });
-
-    // 搜索主动技能
-    activeSkills.forEach(s => {
-        if (s.name.toLowerCase().includes(search) || s.id.includes(search)) {
-            matches.push({ id: s.id, name: s.name, desc: s.description, type: 'active-skill', typeLabel: '主动', typeColor: '#e74c3c' });
-        }
-    });
-
-    // 搜索被动技能
-    passiveSkills.forEach(s => {
-        if (s.name.toLowerCase().includes(search) || s.id.includes(search)) {
-            matches.push({ id: s.id, name: s.name, desc: s.description, type: 'passive-skill', typeLabel: '被动', typeColor: '#3498db' });
-        }
-    });
-
-    // 限制最多20条
-    matches = matches.slice(0, 20);
-
-    if (matches.length === 0) {
-        if (dropdownEl) dropdownEl.innerHTML = '<div class="autocomplete-empty">无匹配结果</div>';
-        return;
-    }
-
-    if (!dropdownEl) return;
-    dropdownEl.innerHTML = '<div class="autocomplete-list">' + matches.map(m => `
-        <div class="autocomplete-item" onclick="selectEffectItem('${inputEl.id}', '${previewId}', '${dropdownId}', '${m.id}')">
-            <span class="autocomplete-item-type" style="background:${m.typeColor}20;color:${m.typeColor}">${m.typeLabel}</span>
-            <span class="autocomplete-item-id">${m.id}</span>
-            <span class="autocomplete-item-name">${m.name}</span>
-            <span class="autocomplete-item-desc">${m.desc.substring(0, 30)}</span>
-        </div>
-    `).join('') + '</div>';
-}
-
-function selectEffectItem(inputId, previewId, dropdownId, selectedId) {
-    const inputEl = document.getElementById(inputId);
-    const dropdownEl = document.getElementById(dropdownId);
-    if (inputEl) {
-        inputEl.value = selectedId;
-        previewEffect(inputEl, previewId);
-    }
-    if (dropdownEl) dropdownEl.innerHTML = '';
-}
-
-function previewEffect(inputEl, previewId) {
-    const refId = inputEl.value.trim();
-    const previewEl = document.getElementById(previewId);
-    if (!refId) {
-        previewEl.innerHTML = '';
-        return;
-    }
-    const refData = findRefData(refId);
-    if (refData) {
-        const typeLabel = refData.type === 'active-skill' ? '主动技能' :
-                          refData.type === 'passive-skill' ? '被动技能' :
-                          refData.type === 'attribute' ? '属性' : '词缀';
-        const typeColor = refData.type === 'active-skill' ? '#e74c3c' :
-                          refData.type === 'passive-skill' ? '#3498db' :
-                          refData.type === 'attribute' ? '#27ae60' : '#f39c12';
-        previewEl.innerHTML = `
-            <div class="effect-preview-card" style="border-left-color:${typeColor}">
-                <div class="effect-preview-header">
-                    <span class="effect-preview-type" style="background:${typeColor}20;color:${typeColor}">${typeLabel}</span>
-                    <span class="effect-preview-name">${refData.name}</span>
-                </div>
-                <p class="effect-preview-desc">${refData.desc}</p>
-            </div>
-        `;
-    } else {
-        previewEl.innerHTML = '<div class="effect-preview-error">⚠ 未找到ID: ' + refId + '</div>';
-    }
-}
-
-function submitAddEquipment() {
-    const name = document.getElementById('eqName').value.trim();
-    if (!name) {
-        alert('请填写装备名称');
-        return;
-    }
-    const type = document.getElementById('eqType').value.trim();
-    const effects = [];
-    for (let i = 1; i <= 6; i++) {
-        const val = document.getElementById('eqEffect' + i).value.trim();
-        if (val) effects.push({ refId: val });
-    }
-    const newEq = {
-        id: generateEquipmentId(),
-        name,
-        type,
-        effects,
-        source: 'manual',
-        createdAt: new Date().toISOString()
-    };
-    equipmentData.push(newEq);
-    saveEquipmentData();
-    closeModal();
-    renderEquipment();
-    updateNavCounts();
-}
 
 function openEquipmentDetail(id) {
     const eq = equipmentData.find(e => e.id === id);
@@ -2084,150 +1792,50 @@ function openEquipmentDetail(id) {
     const modalBody = document.getElementById('modalBody');
     modalBody.innerHTML = `
         <div class="detail-header" style="border-bottom-color:#9b59b6">
-            <div class="detail-icon" style="background:#9b59b620;color:#9b59b6;font-size:36px;width:64px;height:64px;display:flex;align-items:center;justify-content:center;border-radius:12px">📦</div>
+            <div class="detail-icon" style="background:#9b59b620;color:#9b59b6;font-size:36px;width:64px;height:64px;display:flex;align-items:center;justify-content:center;border-radius:12px;position:relative;overflow:hidden">${eq.icon ? `<img class="card-icon" src="icon/${eq.icon}.png" alt="" onerror="this.style.display='none'">` : ''}📦</div>
             <div style="flex:1">
-                <h2 class="detail-name">
-                    <input type="text" class="affix-edit-input affix-edit-name" value="${eq.name.replace(/"/g, '&quot;')}" oninput="updateEquipmentField('${eq.id}', 'name', this.value)" placeholder="装备名称">
-                </h2>
+                <h2 class="detail-name">${eq.name}</h2>
                 <div class="detail-type">
                     <span class="type-badge" style="background:#9b59b620;color:#9b59b6">装备系统</span>
                     <span class="type-badge-sub">${eq.id}</span>
+                    <span class="type-badge-sub">${eq.type || '未分类'}</span>
                 </div>
             </div>
         </div>
 
         <div class="detail-section">
-            <div class="detail-section-title-row">
-                <h3 class="detail-section-title">装备类型</h3>
-                <span class="save-indicator" id="saveIndicator">编辑后自动保存</span>
-            </div>
-            <input type="text" class="affix-edit-input" style="font-size:15px;padding:8px 12px;border:1px solid #ddd;border-radius:8px;width:100%;box-sizing:border-box" value="${(eq.type || '').replace(/"/g, '&quot;')}" oninput="updateEquipmentField('${eq.id}', 'type', this.value)" placeholder="如：武器/防具/饰品">
-        </div>
-
-        <div class="detail-section">
-            <h3 class="detail-section-title">装备效果（<span id="effectCount">${effects.filter(e => e.refId).length}</span> 条）</h3>
+            <h3 class="detail-section-title">装备效果（${effects.filter(e => e.refId).length} 条）</h3>
             <div id="equipmentEffectList">
-            ${effects.length === 0 ? '<p class="empty-hint">暂无效果，点击下方按钮添加</p>' : ''}
+            ${effects.length === 0 ? '<p class="empty-hint">暂无效果</p>' : ''}
             ${effects.map((eff, idx) => {
                 const refData = eff.refId ? findRefData(eff.refId) : null;
                 const typeColor = refData ? (refData.type === 'active-skill' ? '#e74c3c' : refData.type === 'passive-skill' ? '#3498db' : refData.type === 'attribute' ? '#27ae60' : '#f39c12') : '#bbb';
                 const typeLabel = refData ? (refData.type === 'active-skill' ? '主动技能' : refData.type === 'passive-skill' ? '被动技能' : refData.type === 'attribute' ? '属性效果' : '词缀') : '待填写';
                 return `
-                    <div class="equipment-effect-item" id="effectItem-${idx}" style="border-left-color:${typeColor}">
+                    <div class="equipment-effect-item" style="border-left-color:${typeColor}">
                         <div class="equipment-effect-header">
-                            <span class="effect-type-badge" id="effectBadge-${idx}" style="background:${typeColor}20;color:${typeColor}">${typeLabel}</span>
-                            <input type="text" class="equipment-effect-input" value="${eff.refId}" oninput="onEditEffectInput(this, '${eq.id}', ${idx})" placeholder="技能ID或词缀ID 或输入文字搜索">
-                            <button class="equipment-effect-delete" onclick="deleteEquipmentEffect('${eq.id}', ${idx})">✕</button>
+                            <span class="effect-type-badge" style="background:${typeColor}20;color:${typeColor}">${typeLabel}</span>
+                            <span class="effect-ref-id">${eff.refId || '—'}</span>
                         </div>
-                        <div class="autocomplete-dropdown" id="editDropdown-${idx}"></div>
-                        <div id="effectInfo-${idx}">
                         ${refData ? `
                             <div class="equipment-effect-info">
                                 <span class="equipment-effect-name">${refData.name}</span>
                                 <span class="equipment-effect-cat">${refData.category} · ${refData.subCategory}</span>
                                 <p class="equipment-effect-desc">${refData.desc}</p>
                             </div>
-                        ` : (eff.refId ? '<div class="equipment-effect-error">⚠ 未找到ID: ' + eff.refId + '</div>' : '<div class="equipment-effect-hint">请输入技能ID或词缀ID</div>')}
-                        </div>
+                        ` : (eff.refId ? '<div class="equipment-effect-error">⚠ 未找到ID: ' + eff.refId + '</div>' : '')}
                     </div>
                 `;
             }).join('')}
             </div>
-            <button class="equipment-add-effect-btn" onclick="addEquipmentEffect('${eq.id}')">+ 添加效果</button>
-        </div>
-
-        <div class="detail-section">
-            <div class="new-toggle-row">
-                <label class="new-toggle-label">
-                    <input type="checkbox" id="newStatusCheckbox" ${eq.isNew ? 'checked' : ''} onchange="toggleNewStatus('${eq.id}', 'equipment', '', this.checked)">
-                    <span class="new-toggle-text">标记为版本新增</span>
-                </label>
-                <span class="new-toggle-hint">勾选后，外层列表将显示"新增"标签，并出现在"仅看新增"筛选结果中</span>
-            </div>
-        </div>
-
-        <div class="detail-section">
-            <button class="equipment-btn equipment-btn-delete" onclick="deleteEquipment('${eq.id}')">🗑 删除装备</button>
         </div>
     `;
     document.getElementById('skillModal').classList.add('active');
 }
 
-function updateEquipmentField(id, field, value) {
-    const eq = equipmentData.find(e => e.id === id);
-    if (!eq) return;
-    eq[field] = value;
-    saveEquipmentData();
-    updateSaveIndicator();
-    // 实时同步卡片
-    const nameEl = document.querySelector(`[data-equipment-id="${id}"] .equipment-card-name`);
-    if (nameEl && field === 'name') nameEl.textContent = value;
-    const typeEl = document.querySelector(`[data-equipment-id="${id}"] .equipment-card-type`);
-    if (typeEl && field === 'type') typeEl.textContent = value || '未分类';
-}
 
-function onEditEffectInput(inputEl, eqId, effectIdx) {
-    const val = inputEl.value.trim();
-    const dropdownEl = document.getElementById('editDropdown-' + effectIdx);
 
-    // 先更新数据
-    updateEquipmentEffect(eqId, effectIdx, val);
 
-    // 如果输入为空，关闭下拉
-    if (!val) {
-        if (dropdownEl) dropdownEl.innerHTML = '';
-        return;
-    }
-
-    // 如果输入是纯数字且已找到匹配，不显示下拉
-    const refData = findRefData(val);
-    if (refData && /^\d+$/.test(val)) {
-        if (dropdownEl) dropdownEl.innerHTML = '';
-        return;
-    }
-
-    // 搜索匹配的词缀和属性
-    const search = val.toLowerCase();
-    let matches = [];
-
-    affixes.forEach(a => {
-        if (a.name.toLowerCase().includes(search) || a.id.includes(search) || a.description.toLowerCase().includes(search)) {
-            matches.push({ id: a.id, name: a.name, desc: a.description, typeLabel: '词缀', typeColor: '#f39c12' });
-        }
-    });
-    attributes.forEach(a => {
-        if (a.name.toLowerCase().includes(search) || a.id.includes(search) || a.description.toLowerCase().includes(search)) {
-            matches.push({ id: a.id, name: a.name, desc: a.description, typeLabel: '属性', typeColor: '#27ae60' });
-        }
-    });
-    activeSkills.forEach(s => {
-        if (s.name.toLowerCase().includes(search) || s.id.includes(search)) {
-            matches.push({ id: s.id, name: s.name, desc: s.description, typeLabel: '主动', typeColor: '#e74c3c' });
-        }
-    });
-    passiveSkills.forEach(s => {
-        if (s.name.toLowerCase().includes(search) || s.id.includes(search)) {
-            matches.push({ id: s.id, name: s.name, desc: s.description, typeLabel: '被动', typeColor: '#3498db' });
-        }
-    });
-
-    matches = matches.slice(0, 20);
-
-    if (matches.length === 0) {
-        if (dropdownEl) dropdownEl.innerHTML = '<div class="autocomplete-empty">无匹配结果</div>';
-        return;
-    }
-
-    if (!dropdownEl) return;
-    dropdownEl.innerHTML = '<div class="autocomplete-list">' + matches.map(m => `
-        <div class="autocomplete-item" onclick="selectEditEffectItem('${eqId}', ${effectIdx}, '${m.id}')">
-            <span class="autocomplete-item-type" style="background:${m.typeColor}20;color:${m.typeColor}">${m.typeLabel}</span>
-            <span class="autocomplete-item-id">${m.id}</span>
-            <span class="autocomplete-item-name">${m.name}</span>
-            <span class="autocomplete-item-desc">${m.desc.substring(0, 30)}</span>
-        </div>
-    `).join('') + '</div>';
-}
 
 function selectEditEffectItem(eqId, effectIdx, selectedId) {
     const inputEl = document.querySelector('#effectItem-' + effectIdx + ' .equipment-effect-input');
@@ -2239,86 +1847,13 @@ function selectEditEffectItem(eqId, effectIdx, selectedId) {
     if (dropdownEl) dropdownEl.innerHTML = '';
 }
 
-function updateEquipmentEffect(eqId, effectIdx, value) {
-    const eq = equipmentData.find(e => e.id === eqId);
-    if (!eq || !eq.effects[effectIdx]) return;
-    eq.effects[effectIdx].refId = value.trim();
-    saveEquipmentData();
-    updateSaveIndicator();
-    // 只更新该效果的信息区域，不重新渲染整个弹窗
-    const refData = findRefData(value.trim());
-    const infoEl = document.getElementById('effectInfo-' + effectIdx);
-    const badgeEl = document.getElementById('effectBadge-' + effectIdx);
-    const itemEl = document.getElementById('effectItem-' + effectIdx);
-    if (!infoEl || !badgeEl || !itemEl) return;
 
-    const typeColor = refData ? (refData.type === 'active-skill' ? '#e74c3c' : refData.type === 'passive-skill' ? '#3498db' : refData.type === 'attribute' ? '#27ae60' : '#f39c12') : '#e74c3c';
-    const typeLabel = refData ? (refData.type === 'active-skill' ? '主动技能' : refData.type === 'passive-skill' ? '被动技能' : refData.type === 'attribute' ? '属性' : '词缀') : '未知';
 
-    badgeEl.style.background = typeColor + '20';
-    badgeEl.style.color = typeColor;
-    badgeEl.textContent = typeLabel;
-    itemEl.style.borderLeftColor = typeColor;
 
-    if (refData) {
-        const badge = document.getElementById('effectBadge-' + idx);
-        if (badge) {
-            const typeColor = refData.type === 'active-skill' ? '#e74c3c' : refData.type === 'passive-skill' ? '#3498db' : refData.type === 'attribute' ? '#27ae60' : '#f39c12';
-            const typeLabel = refData.type === 'active-skill' ? '主动技能' : refData.type === 'passive-skill' ? '被动技能' : refData.type === 'attribute' ? '属性效果' : '词缀';
-            badge.style.background = typeColor + '20';
-            badge.style.color = typeColor;
-            badge.textContent = typeLabel;
-        }
-        infoEl.innerHTML = `
-            <div class="equipment-effect-info">
-                <span class="equipment-effect-name">${refData.name}</span>
-                <span class="equipment-effect-cat">${refData.category} · ${refData.subCategory}</span>
-                <p class="equipment-effect-desc">${refData.desc}</p>
-            </div>
-        `;
-    } else {
-        infoEl.innerHTML = value.trim() ? '<div class="equipment-effect-error">⚠ 未找到ID: ' + value.trim() + '</div>' : '<div class="equipment-effect-hint">请输入技能ID或词缀ID</div>';
-    }
-    // 更新效果计数
-    const countEl = document.getElementById('effectCount');
-    if (countEl) {
-        const eq2 = equipmentData.find(e => e.id === eqId);
-        countEl.textContent = (eq2.effects || []).filter(e => e.refId).length;
-    }
-    // 同步外部卡片效果数量
-    syncEquipmentCard(eqId);
-}
 
-function addEquipmentEffect(eqId) {
-    const eq = equipmentData.find(e => e.id === eqId);
-    if (!eq) return;
-    if (!eq.effects) eq.effects = [];
-    if (eq.effects.length >= 10) {
-        alert('最多支持10条效果');
-        return;
-    }
-    eq.effects.push({ refId: '' });
-    saveEquipmentData();
-    openEquipmentDetail(eqId);
-}
 
-function deleteEquipmentEffect(eqId, effectIdx) {
-    const eq = equipmentData.find(e => e.id === eqId);
-    if (!eq || !eq.effects) return;
-    eq.effects.splice(effectIdx, 1);
-    saveEquipmentData();
-    openEquipmentDetail(eqId);
-    syncEquipmentCard(eqId);
-}
 
-function deleteEquipment(id) {
-    if (!confirm('确定删除此装备吗？此操作不可撤销。')) return;
-    equipmentData = equipmentData.filter(e => e.id !== id);
-    saveEquipmentData();
-    closeModal();
-    renderEquipment();
-    updateNavCounts();
-}
+
 
 function syncEquipmentCard(id) {
     const eq = equipmentData.find(e => e.id === id);
@@ -2373,33 +1908,40 @@ function renderGems(filteredData) {
         grid.innerHTML = `
             <div class="equipment-empty">
                 <p>${gemData.length === 0 ? '暂无辅助宝石数据' : '未找到匹配的宝石'}</p>
-                <p class="equipment-empty-hint">${gemData.length === 0 ? '点击上方"添加辅助宝石"按钮创建第一个' : '尝试其他搜索关键词'}</p>
+                <p class="equipment-empty-hint">${gemData.length === 0 ? '辅助宝石数据仅由一键导入提供，请先运行一键导入' : '尝试其他搜索关键词'}</p>
             </div>
         `;
         document.getElementById('gemTotalCount').textContent = gemData.length;
         return;
     }
 
-    // 按类型分组，向下堆叠（同一行最多 4 个）
-    const typeGroups = {};
+    // 按 rank(所属阶级) 分组，向下堆叠（同一行最多 4 个）
+    const rankGroups = {};
     data.forEach(gem => {
-        const type = gem.type || '辅助宝石';
-        if (!typeGroups[type]) typeGroups[type] = [];
-        typeGroups[type].push(gem);
+        const rank = (gem.rank || '').toString().trim() || '0';
+        if (!rankGroups[rank]) rankGroups[rank] = [];
+        rankGroups[rank].push(gem);
     });
 
-    const typeStyles = {
-        '辅助宝石': { icon: '💎', color: '#9b59b6' },
-        '火焰': { icon: '🔥', color: '#e74c3c' },
-        '冰冷': { icon: '❄️', color: '#3498db' },
-        '物理': { icon: '⚔️', color: '#95a5a6' },
-        '通用': { icon: '✨', color: '#f39c12' },
-        '未分类': { icon: '💎', color: '#95a5a6' }
+    const rankStyles = {
+        '1': { icon: '💎', color: '#95a5a6' },
+        '2': { icon: '💎', color: '#3498db' },
+        '3': { icon: '💎', color: '#27ae60' },
+        '4': { icon: '💎', color: '#9b59b6' },
+        '5': { icon: '💎', color: '#f39c12' },
+        '0': { icon: '💎', color: '#7f8c8d' }
     };
+    const rankNames = { '1': '1 阶', '2': '2 阶', '3': '3 阶', '4': '4 阶', '5': '5 阶', '0': '未分类' };
 
-    grid.innerHTML = Object.keys(typeGroups).sort().map(type => {
-        const style = typeStyles[type] || typeStyles['辅助宝石'];
-        const gems = typeGroups[type];
+    const rankOrder = Object.keys(rankGroups).sort((a, b) => {
+        const na = parseInt(a, 10), nb = parseInt(b, 10);
+        if (!isNaN(na) && !isNaN(nb)) return na - nb;
+        return isNaN(na) ? 1 : -1;
+    });
+
+    grid.innerHTML = rankOrder.map(rank => {
+        const style = rankStyles[rank] || rankStyles['0'];
+        const gems = rankGroups[rank];
         const cards = gems.map(gem => {
             const effects = (gem.effects || []).filter(e => e.refId);
             const effectCount = effects.length;
@@ -2418,13 +1960,18 @@ function renderGems(filteredData) {
             return `
                 <div class="equipment-card" data-gem-id="${gem.id}" onclick="openGemDetail('${gem.id}')" style="border-left-color:${style.color}">
                     <div class="equipment-card-header">
-                        <span class="equipment-card-icon">${style.icon}</span>
+                        <span class="equipment-card-icon" style="background:${style.color}18">${gem.icon ? `<img class="card-icon" src="icon/${gem.icon}.png" alt="" onerror="this.style.display='none'">` : ''}${style.icon}</span>
                         <div>
-                            <h4 class="equipment-card-name">${gem.name} ${gem.isNew ? '<span class="new-tag">新增</span>' : ''}</h4>
+                            <h4 class="equipment-card-name">${gem.name}</h4>
                             <span class="equipment-card-id">${gem.id}</span>
                         </div>
                     </div>
-                    <span class="equipment-card-type">${gem.type || '辅助宝石'}</span>
+                    <span class="equipment-card-type" style="color:${style.color}">${gem.rank ? gem.rank + ' 阶' : '未分类'}</span>
+                    <div class="item-stats">
+                        <div class="item-stats-cell"><span class="item-stats-label">类型</span><span class="item-stats-value">${gem.type || '辅助宝石'}</span></div>
+                        <div class="item-stats-cell"><span class="item-stats-label">效果</span><span class="item-stats-value">${effectCount} 条</span></div>
+                        <div class="item-stats-cell"><span class="item-stats-label">宝石ID</span><span class="item-stats-value">${gem.id}</span></div>
+                    </div>
                     ${gem.desc ? `<p class="equipment-card-effect-desc" style="margin:4px 0;padding:4px 8px;background:#f8f8f8;border-radius:6px;font-size:12px;color:#666">${gem.desc}</p>` : ''}
                     <div class="equipment-card-effects">
                         <span class="equipment-effect-count">关联效果 (${effectCount} 条)</span>
@@ -2436,13 +1983,13 @@ function renderGems(filteredData) {
             `;
         }).join('');
 
-        const safeType = type.replace(/[^a-zA-Z0-9\u4e00-\u9fa5]/g, '_');
+        const safeRank = 'rank-' + rank;
         return `
-            <div class="equipment-type-group expanded" id="gem-type-group-${safeType}">
-                <div class="equipment-type-header" style="border-left-color:${style.color}" onclick="toggleGemTypeGroup('${safeType}')">
+            <div class="equipment-type-group expanded" id="gem-type-group-${safeRank}">
+                <div class="equipment-type-header" style="border-left-color:${style.color}" onclick="toggleGemTypeGroup('${safeRank}')">
                     <span class="equipment-type-toggle-icon">▼</span>
                     <span class="equipment-type-icon">${style.icon}</span>
-                    <span class="equipment-type-name">${type}</span>
+                    <span class="equipment-type-name">${rankNames[rank] || (rank + ' 阶')}</span>
                     <span class="equipment-type-count">${gems.length} 个</span>
                 </div>
                 <div class="equipment-type-content">
@@ -2454,7 +2001,7 @@ function renderGems(filteredData) {
         `;
     }).join('');
     document.getElementById('gemTotalCount').textContent = gemData.length;
-    updateGemTypeFilter();
+    updateGemRankFilter();
 }
 
 // ---- 切换宝石类型分组折叠/展开 ----
@@ -2475,14 +2022,14 @@ function toggleGemTypeGroup(type) {
 
 function filterGems() {
     const search = document.getElementById('gemSearchInput').value.toLowerCase();
-    const newOnly = document.getElementById('gemNewOnly') ? document.getElementById('gemNewOnly').checked : false;
-    const typeFilter = document.getElementById('gemTypeFilter') ? document.getElementById('gemTypeFilter').value : '';
+    const rankFilter = document.getElementById('gemRankFilter') ? document.getElementById('gemRankFilter').value : '';
     const filtered = gemData.filter(gem => {
-        if (newOnly && !gem.isNew) return false;
-        if (typeFilter && (gem.type || '辅助宝石') !== typeFilter) return false;
+        const rank = (gem.rank || '').toString().trim() || '0';
+        if (rankFilter && rank !== rankFilter) return false;
         if (!search) return true;
         if (gem.name.toLowerCase().includes(search)) return true;
         if ((gem.id || '').toLowerCase().includes(search)) return true;
+        if (rank !== '0' && (rank + ' 阶').includes(search)) return true;
         if (gem.type && gem.type.toLowerCase().includes(search)) return true;
         if (gem.desc && gem.desc.toLowerCase().includes(search)) return true;
         const hasEffect = (gem.effects || []).some(e => e.refId && e.refId.includes(search));
@@ -2490,95 +2037,24 @@ function filterGems() {
         return false;
     });
     renderGems(filtered);
-    updateGemTypeFilter();
+    updateGemRankFilter();
 }
 
-function updateGemTypeFilter() {
-    const select = document.getElementById('gemTypeFilter');
+function updateGemRankFilter() {
+    const select = document.getElementById('gemRankFilter');
     if (!select) return;
     const currentVal = select.value;
-    const types = [...new Set(gemData.map(g => g.type || '辅助宝石'))].sort();
-    select.innerHTML = '<option value="">全部类型</option>' + types.map(t => `<option value="${t}">${t}</option>`).join('');
+    const rankNames = { '0': '未分类' };
+    const ranks = [...new Set(gemData.map(g => (g.rank || '').toString().trim() || '0'))].sort((a, b) => {
+        const na = parseInt(a, 10), nb = parseInt(b, 10);
+        if (!isNaN(na) && !isNaN(nb)) return na - nb;
+        return isNaN(na) ? 1 : -1;
+    });
+    select.innerHTML = '<option value="">全部阶级</option>' + ranks.map(r => `<option value="${r}">${rankNames[r] || (r + ' 阶')}</option>`).join('');
     select.value = currentVal;
 }
 
-function showAddGemForm() {
-    const modalBody = document.getElementById('modalBody');
-    modalBody.innerHTML = `
-        <div class="detail-header" style="border-bottom-color:#9b59b6">
-            <div class="detail-icon" style="background:#9b59b620;color:#9b59b6;font-size:36px;width:64px;height:64px;display:flex;align-items:center;justify-content:center;border-radius:12px">💎</div>
-            <div style="flex:1">
-                <h2 class="detail-name">添加辅助技能宝石</h2>
-                <div class="detail-type">
-                    <span class="type-badge" style="background:#9b59b620;color:#9b59b6">辅助宝石</span>
-                </div>
-            </div>
-        </div>
 
-        <div class="detail-section">
-            <h3 class="detail-section-title">基本信息</h3>
-            <div class="equipment-form-group">
-                <label class="equipment-form-label">宝石名称</label>
-                <input type="text" id="gemName" class="equipment-form-input" placeholder="如：辅助·火焰增幅">
-            </div>
-            <div class="equipment-form-group">
-                <label class="equipment-form-label">宝石类型</label>
-                <input type="text" id="gemType" class="equipment-form-input" placeholder="如：火焰/冰冷/物理/通用">
-            </div>
-            <div class="equipment-form-group">
-                <label class="equipment-form-label">宝石效果描述</label>
-                <textarea id="gemDesc" class="equipment-form-input" rows="3" placeholder="辅助技能宝石的效果描述" style="resize:vertical;font-family:inherit"></textarea>
-            </div>
-        </div>
-
-        <div class="detail-section">
-            <h3 class="detail-section-title">关联效果ID（词缀/属性/被动技能）</h3>
-            <p class="equipment-form-hint">每条填写一个词缀ID、属性ID或被动技能ID，输入文字可自动匹配，也可直接输入ID。</p>
-            <div class="equipment-form-group">
-                <label class="equipment-form-label">效果 1</label>
-                <input type="text" id="gemEffect1" class="equipment-form-input" placeholder="词缀/属性/被动技能ID 或输入文字搜索" oninput="onGemEffectInput(this, 'gemPreview1', 'gemDropdown1')">
-                <div class="autocomplete-dropdown" id="gemDropdown1"></div>
-                <div class="effect-preview" id="gemPreview1"></div>
-            </div>
-            <div class="equipment-form-group">
-                <label class="equipment-form-label">效果 2</label>
-                <input type="text" id="gemEffect2" class="equipment-form-input" placeholder="词缀/属性/被动技能ID 或输入文字搜索" oninput="onGemEffectInput(this, 'gemPreview2', 'gemDropdown2')">
-                <div class="autocomplete-dropdown" id="gemDropdown2"></div>
-                <div class="effect-preview" id="gemPreview2"></div>
-            </div>
-            <div class="equipment-form-group">
-                <label class="equipment-form-label">效果 3</label>
-                <input type="text" id="gemEffect3" class="equipment-form-input" placeholder="词缀/属性/被动技能ID 或输入文字搜索" oninput="onGemEffectInput(this, 'gemPreview3', 'gemDropdown3')">
-                <div class="autocomplete-dropdown" id="gemDropdown3"></div>
-                <div class="effect-preview" id="gemPreview3"></div>
-            </div>
-            <div class="equipment-form-group">
-                <label class="equipment-form-label">效果 4</label>
-                <input type="text" id="gemEffect4" class="equipment-form-input" placeholder="词缀/属性/被动技能ID 或输入文字搜索" oninput="onGemEffectInput(this, 'gemPreview4', 'gemDropdown4')">
-                <div class="autocomplete-dropdown" id="gemDropdown4"></div>
-                <div class="effect-preview" id="gemPreview4"></div>
-            </div>
-            <div class="equipment-form-group">
-                <label class="equipment-form-label">效果 5</label>
-                <input type="text" id="gemEffect5" class="equipment-form-input" placeholder="词缀/属性/被动技能ID 或输入文字搜索" oninput="onGemEffectInput(this, 'gemPreview5', 'gemDropdown5')">
-                <div class="autocomplete-dropdown" id="gemDropdown5"></div>
-                <div class="effect-preview" id="gemPreview5"></div>
-            </div>
-            <div class="equipment-form-group">
-                <label class="equipment-form-label">效果 6</label>
-                <input type="text" id="gemEffect6" class="equipment-form-input" placeholder="词缀/属性/被动技能ID 或输入文字搜索" oninput="onGemEffectInput(this, 'gemPreview6', 'gemDropdown6')">
-                <div class="autocomplete-dropdown" id="gemDropdown6"></div>
-                <div class="effect-preview" id="gemPreview6"></div>
-            </div>
-        </div>
-
-        <div class="equipment-form-actions">
-            <button class="equipment-btn equipment-btn-cancel" onclick="closeModal()">取消</button>
-            <button class="equipment-btn equipment-btn-save" onclick="submitAddGem()">保存宝石</button>
-        </div>
-    `;
-    document.getElementById('skillModal').classList.add('active');
-}
 
 function onGemEffectInput(inputEl, previewId, dropdownId) {
     const val = inputEl.value.trim();
@@ -2635,34 +2111,7 @@ function onGemEffectInput(inputEl, previewId, dropdownId) {
     `).join('') + '</div>';
 }
 
-function submitAddGem() {
-    const name = document.getElementById('gemName').value.trim();
-    if (!name) {
-        alert('请填写宝石名称');
-        return;
-    }
-    const type = document.getElementById('gemType').value.trim();
-    const desc = document.getElementById('gemDesc').value.trim();
-    const effects = [];
-    for (let i = 1; i <= 6; i++) {
-        const val = document.getElementById('gemEffect' + i).value.trim();
-        if (val) effects.push({ refId: val });
-    }
-    const newGem = {
-        id: generateGemId(),
-        name,
-        type,
-        desc,
-        effects,
-        source: 'manual',
-        createdAt: new Date().toISOString()
-    };
-    gemData.push(newGem);
-    saveGemData();
-    closeModal();
-    renderGems();
-    updateNavCounts();
-}
+
 
 function openGemDetail(id) {
     const gem = gemData.find(g => g.id === id);
@@ -2673,142 +2122,58 @@ function openGemDetail(id) {
     const modalBody = document.getElementById('modalBody');
     modalBody.innerHTML = `
         <div class="detail-header" style="border-bottom-color:#9b59b6">
-            <div class="detail-icon" style="background:#9b59b620;color:#9b59b6;font-size:36px;width:64px;height:64px;display:flex;align-items:center;justify-content:center;border-radius:12px">💎</div>
+            <div class="detail-icon" style="background:#9b59b620;color:#9b59b6;font-size:36px;width:64px;height:64px;display:flex;align-items:center;justify-content:center;border-radius:12px;position:relative;overflow:hidden">${gem.icon ? `<img class="card-icon" src="icon/${gem.icon}.png" alt="" onerror="this.style.display='none'">` : ''}💎</div>
             <div style="flex:1">
-                <h2 class="detail-name">
-                    <input type="text" class="affix-edit-input affix-edit-name" value="${gem.name.replace(/"/g, '&quot;')}" oninput="updateGemField('${gem.id}', 'name', this.value)" placeholder="宝石名称">
-                </h2>
+                <h2 class="detail-name">${gem.name}</h2>
                 <div class="detail-type">
                     <span class="type-badge" style="background:#9b59b620;color:#9b59b6">辅助宝石</span>
+                    ${gem.rank ? `<span class="type-badge-sub">${gem.rank} 阶</span>` : ''}
                     <span class="type-badge-sub">${gem.id}</span>
+                    ${gem.type ? `<span class="type-badge-sub">${gem.type}</span>` : ''}
                 </div>
             </div>
         </div>
 
+        ${gem.desc ? `
         <div class="detail-section">
-            <div class="detail-section-title-row">
-                <h3 class="detail-section-title">宝石类型</h3>
-                <span class="save-indicator">编辑后自动保存</span>
-            </div>
-            <input type="text" class="affix-edit-input" style="font-size:15px;padding:8px 12px;border:1px solid #ddd;border-radius:8px;width:100%;box-sizing:border-box" value="${(gem.type || '').replace(/"/g, '&quot;')}" oninput="updateGemField('${gem.id}', 'type', this.value)" placeholder="如：火焰/冰冷/物理/通用">
+            <h3 class="detail-section-title">宝石效果描述</h3>
+            <p class="detail-desc-text">${gem.desc.replace(/</g, '&lt;').replace(/\n/g, '<br>')}</p>
         </div>
+        ` : ''}
 
         <div class="detail-section">
-            <div class="detail-section-title-row">
-                <h3 class="detail-section-title">宝石效果描述</h3>
-            </div>
-            <textarea class="affix-edit-input" style="font-size:14px;padding:8px 12px;border:1px solid #ddd;border-radius:8px;width:100%;box-sizing:border-box;resize:vertical;font-family:inherit;min-height:60px" oninput="updateGemField('${gem.id}', 'desc', this.value)" placeholder="辅助技能宝石的效果描述">${(gem.desc || '').replace(/</g, '&lt;')}</textarea>
-        </div>
-
-        <div class="detail-section">
-            <h3 class="detail-section-title">关联效果（<span id="gemEffectCount">${effects.filter(e => e.refId).length}</span> 条）</h3>
+            <h3 class="detail-section-title">关联效果（${effects.filter(e => e.refId).length} 条）</h3>
             <div id="gemEffectList">
-            ${effects.length === 0 ? '<p class="empty-hint">暂无关联效果，点击下方按钮添加</p>' : ''}
+            ${effects.length === 0 ? '<p class="empty-hint">暂无关联效果</p>' : ''}
             ${effects.map((eff, idx) => {
                 const refData = eff.refId ? findRefData(eff.refId) : null;
                 const typeColor = refData ? (refData.type === 'active-skill' ? '#e74c3c' : refData.type === 'passive-skill' ? '#3498db' : refData.type === 'attribute' ? '#27ae60' : '#f39c12') : '#bbb';
                 const typeLabel = refData ? (refData.type === 'active-skill' ? '主动技能' : refData.type === 'passive-skill' ? '被动技能' : refData.type === 'attribute' ? '属性效果' : '词缀') : '待填写';
                 return `
-                    <div class="equipment-effect-item" id="gemEffectItem-${idx}" style="border-left-color:${typeColor}">
+                    <div class="equipment-effect-item" style="border-left-color:${typeColor}">
                         <div class="equipment-effect-header">
-                            <span class="effect-type-badge" id="gemEffectBadge-${idx}" style="background:${typeColor}20;color:${typeColor}">${typeLabel}</span>
-                            <input type="text" class="equipment-effect-input" value="${eff.refId}" oninput="onEditGemEffectInput(this, '${gem.id}', ${idx})" placeholder="词缀/属性/被动技能ID 或输入文字搜索">
-                            <button class="equipment-effect-delete" onclick="deleteGemEffect('${gem.id}', ${idx})">✕</button>
+                            <span class="effect-type-badge" style="background:${typeColor}20;color:${typeColor}">${typeLabel}</span>
+                            <span class="effect-ref-id">${eff.refId || '—'}</span>
                         </div>
-                        <div class="autocomplete-dropdown" id="editGemDropdown-${idx}"></div>
-                        <div id="gemEffectInfo-${idx}">
                         ${refData ? `
                             <div class="equipment-effect-info">
                                 <span class="equipment-effect-name">${refData.name}</span>
                                 <span class="equipment-effect-cat">${refData.category} · ${refData.subCategory}</span>
                                 <p class="equipment-effect-desc">${refData.desc}</p>
                             </div>
-                        ` : (eff.refId ? '<div class="equipment-effect-error">⚠ 未找到ID: ' + eff.refId + '</div>' : '<div class="equipment-effect-hint">请输入词缀/属性/被动技能ID</div>')}
-                        </div>
+                        ` : (eff.refId ? '<div class="equipment-effect-error">⚠ 未找到ID: ' + eff.refId + '</div>' : '')}
                     </div>
                 `;
             }).join('')}
             </div>
-            <button class="equipment-add-effect-btn" onclick="addGemEffect('${gem.id}')">+ 添加关联效果</button>
-        </div>
-
-        <div class="detail-section">
-            <div class="new-toggle-row">
-                <label class="new-toggle-label">
-                    <input type="checkbox" id="newStatusCheckbox" ${gem.isNew ? 'checked' : ''} onchange="toggleNewStatus('${gem.id}', 'gem', '', this.checked)">
-                    <span class="new-toggle-text">标记为版本新增</span>
-                </label>
-                <span class="new-toggle-hint">勾选后，外层列表将显示"新增"标签，并出现在"仅看新增"筛选结果中</span>
-            </div>
-        </div>
-
-        <div class="detail-section">
-            <button class="equipment-btn equipment-btn-delete" style="width:100%" onclick="deleteGem('${gem.id}')">删除此宝石</button>
         </div>
     `;
     document.getElementById('skillModal').classList.add('active');
 }
 
-function updateGemField(gemId, field, value) {
-    const gem = gemData.find(g => g.id === gemId);
-    if (!gem) return;
-    gem[field] = value;
-    saveGemData();
-    syncGemCard(gemId);
-}
 
-function onEditGemEffectInput(inputEl, gemId, effectIdx) {
-    const val = inputEl.value.trim();
-    const dropdownEl = document.getElementById('editGemDropdown-' + effectIdx);
 
-    updateGemEffect(gemId, effectIdx, val);
 
-    if (!val) {
-        if (dropdownEl) dropdownEl.innerHTML = '';
-        return;
-    }
-
-    const refData = findRefData(val);
-    if (refData && /^\d+$/.test(val)) {
-        if (dropdownEl) dropdownEl.innerHTML = '';
-        return;
-    }
-
-    const search = val.toLowerCase();
-    let matches = [];
-    affixes.forEach(a => {
-        if (a.name.toLowerCase().includes(search) || a.id.includes(search) || a.description.toLowerCase().includes(search)) {
-            matches.push({ id: a.id, name: a.name, desc: a.description, typeLabel: '词缀', typeColor: '#f39c12' });
-        }
-    });
-    attributes.forEach(a => {
-        if (a.name.toLowerCase().includes(search) || a.id.includes(search) || a.description.toLowerCase().includes(search)) {
-            matches.push({ id: a.id, name: a.name, desc: a.description, typeLabel: '属性', typeColor: '#27ae60' });
-        }
-    });
-    passiveSkills.forEach(s => {
-        if (s.name.toLowerCase().includes(search) || s.id.includes(search) || s.description.toLowerCase().includes(search)) {
-            matches.push({ id: s.id, name: s.name, desc: s.description, typeLabel: '被动', typeColor: '#3498db' });
-        }
-    });
-
-    matches = matches.slice(0, 20);
-
-    if (matches.length === 0) {
-        if (dropdownEl) dropdownEl.innerHTML = '<div class="autocomplete-empty">无匹配结果</div>';
-        return;
-    }
-
-    if (!dropdownEl) return;
-    dropdownEl.innerHTML = '<div class="autocomplete-list">' + matches.map(m => `
-        <div class="autocomplete-item" onclick="selectEditGemEffectItem('${gemId}', ${effectIdx}, '${m.id}')">
-            <span class="autocomplete-item-type" style="background:${m.typeColor}20;color:${m.typeColor}">${m.typeLabel}</span>
-            <span class="autocomplete-item-id">${m.id}</span>
-            <span class="autocomplete-item-name">${m.name}</span>
-            <span class="autocomplete-item-desc">${m.desc.substring(0, 30)}</span>
-        </div>
-    `).join('') + '</div>';
-}
 
 function selectEditGemEffectItem(gemId, effectIdx, selectedId) {
     const inputEl = document.querySelector('#gemEffectItem-' + effectIdx + ' .equipment-effect-input');
@@ -2820,77 +2185,13 @@ function selectEditGemEffectItem(gemId, effectIdx, selectedId) {
     if (dropdownEl) dropdownEl.innerHTML = '';
 }
 
-function updateGemEffect(gemId, effectIdx, value) {
-    const gem = gemData.find(g => g.id === gemId);
-    if (!gem) return;
-    if (!gem.effects) gem.effects = [];
-    if (!gem.effects[effectIdx]) gem.effects[effectIdx] = { refId: '' };
-    gem.effects[effectIdx].refId = value;
 
-    const refData = findRefData(value);
-    const infoEl = document.getElementById('gemEffectInfo-' + effectIdx);
-    const badgeEl = document.getElementById('gemEffectBadge-' + effectIdx);
 
-    if (badgeEl) {
-        if (refData) {
-            const label = refData.type === 'passive-skill' ? '被动技能' : refData.type === 'attribute' ? '属性效果' : refData.type === 'affix' ? '词缀' : refData.type === 'active-skill' ? '主动技能' : '效果';
-            badgeEl.textContent = label;
-        } else {
-            badgeEl.textContent = '待填写';
-        }
-    }
 
-    if (infoEl) {
-        if (refData) {
-            infoEl.innerHTML = `
-                <div class="equipment-effect-info">
-                    <span class="equipment-effect-name">${refData.name}</span>
-                    <span class="equipment-effect-cat">${refData.category} · ${refData.subCategory}</span>
-                    <p class="equipment-effect-desc">${refData.desc}</p>
-                </div>
-            `;
-        } else if (value) {
-            infoEl.innerHTML = '<div class="equipment-effect-error">⚠ 未找到ID: ' + value + '</div>';
-        } else {
-            infoEl.innerHTML = '<div class="equipment-effect-hint">请输入词缀/属性/被动技能ID</div>';
-        }
-    }
 
-    const countEl = document.getElementById('gemEffectCount');
-    if (countEl) {
-        countEl.textContent = gem.effects.filter(e => e.refId).length;
-    }
 
-    saveGemData();
-    syncGemCard(gemId);
-}
 
-function addGemEffect(gemId) {
-    const gem = gemData.find(g => g.id === gemId);
-    if (!gem) return;
-    if (!gem.effects) gem.effects = [];
-    gem.effects.push({ refId: '' });
-    saveGemData();
-    openGemDetail(gemId);
-}
 
-function deleteGemEffect(gemId, effectIdx) {
-    const gem = gemData.find(g => g.id === gemId);
-    if (!gem || !gem.effects) return;
-    gem.effects.splice(effectIdx, 1);
-    saveGemData();
-    openGemDetail(gemId);
-    syncGemCard(gemId);
-}
-
-function deleteGem(id) {
-    if (!confirm('确定删除此辅助宝石吗？此操作不可撤销。')) return;
-    gemData = gemData.filter(g => g.id !== id);
-    saveGemData();
-    closeModal();
-    renderGems();
-    updateNavCounts();
-}
 
 function syncGemCard(id) {
     const gem = gemData.find(g => g.id === id);
@@ -2922,866 +2223,29 @@ function syncGemCard(id) {
 }
 
 // ============================================================
-// 来源同步系统（技能库 / 辅助宝石 / 暗金装备）
+// 三库（装备库/辅助技能宝石/技能库）数据仅由一键导入提供，
+// 来源同步功能已移除。
 // ============================================================
-
-// 通用CSV解析（支持逗号和Tab分隔，自动检测3行表头格式）
-function parseCSVText(text) {
-    const lines = text.split(/\r?\n/).filter(l => l.trim());
-    if (lines.length === 0) return { headers: [], rows: [] };
-    const sep = lines[0].includes('\t') ? '\t' : ',';
-
-    // 检测是否为3行表头格式（中文 | 英文字段名 | 类型说明）
-    const row1 = lines[0].split(sep).map(h => h.trim().replace(/^"|"$/g, ''));
-    const row2 = lines.length > 1 ? lines[1].split(sep).map(h => h.trim().replace(/^"|"$/g, '')) : [];
-    const row3 = lines.length > 2 ? lines[2].split(sep).map(h => h.trim().replace(/^"|"$/g, '')) : [];
-
-    // 判断row3是否为类型说明行（包含number/string/numberArr等关键词）
-    const typeKeywords = ['number', 'string', 'bool', 'object', 'numberArr', 'number2', 'stringArr'];
-    const isRow3TypeHints = row3.length > 0 && row3.some(h => typeKeywords.some(kw => h.toLowerCase().includes(kw)));
-
-    // 判断row2是否为英文字段名行（包含字母和.符号，不含中文）
-    const isRow2English = row2.length > 0 && row2.some(h => /[a-zA-Z]/.test(h)) && !row2.some(h => /[\u4e00-\u9fa5]/.test(h));
-
-    let headers, dataStartIdx;
-    if (isRow2English && isRow3TypeHints) {
-        // 3行表头：使用英文行(row2)作为字段名，跳过row1和row3
-        headers = row2;
-        dataStartIdx = 3;
-    } else if (isRow2English) {
-        // 2行表头：英文行(row2)作为字段名
-        headers = row2;
-        dataStartIdx = 2;
-    } else {
-        // 标准格式：row1为表头
-        headers = row1;
-        dataStartIdx = 1;
-    }
-
-    const rows = [];
-    for (let i = dataStartIdx; i < lines.length; i++) {
-        const cols = lines[i].split(sep).map(c => c.trim().replace(/^"|"$/g, ''));
-        const row = {};
-        headers.forEach((h, idx) => { row[h] = cols[idx] !== undefined ? cols[idx] : ''; });
-        rows.push(row);
-    }
-    return { headers, rows };
-}
-
-function readCSVFile(file) {
-    return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = e => {
-            try { resolve(parseCSVText(e.target.result)); }
-            catch (err) { reject(err); }
-        };
-        reader.onerror = () => reject(new Error('文件读取失败'));
-        reader.readAsText(file, 'utf-8');
-    });
-}
-
-// 清理Excel数值格式：90001.0 → 90001
-function cleanNum(v) {
-    return String(v).replace(/\.0+$/, '').trim();
-}
-
-// 从Excel文件中读取指定子表，返回 { headers, rows } 格式
-// sheetKeywords: 用于匹配子表名的关键词数组（如 ['SkillActive', '技能']）
-function readExcelSheet(file, sheetKeywords) {
-    return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = e => {
-            try {
-                const data = new Uint8Array(e.target.result);
-                const wb = XLSX.read(data, { type: 'array' });
-
-                // 查找匹配的子表
-                let targetSheet = null;
-                if (sheetKeywords && sheetKeywords.length > 0) {
-                    for (const name of wb.SheetNames) {
-                        for (const kw of sheetKeywords) {
-                            if (name.includes(kw) || name.toLowerCase().includes(kw.toLowerCase())) {
-                                targetSheet = name;
-                                break;
-                            }
-                        }
-                        if (targetSheet) break;
-                    }
-                }
-                // 未找到匹配子表，使用第一个表
-                if (!targetSheet) {
-                    targetSheet = wb.SheetNames[0];
-                }
-
-                const sheet = wb.Sheets[targetSheet];
-                // 转为二维数组（header:1 模式），raw:true 确保读取原始值不被格式化
-                const rawRows = XLSX.utils.sheet_to_json(sheet, { header: 1, defval: '', raw: true });
-                if (rawRows.length === 0) {
-                    resolve({ headers: [], rows: [], sheetName: targetSheet });
-                    return;
-                }
-
-                // 检测3行表头格式（与CSV解析逻辑一致）
-                const row1 = rawRows[0].map(h => String(h).trim());
-                const row2 = rawRows.length > 1 ? rawRows[1].map(h => String(h).trim()) : [];
-                const row3 = rawRows.length > 2 ? rawRows[2].map(h => String(h).trim()) : [];
-
-                const typeKeywords = ['number', 'string', 'bool', 'object', 'numberArr', 'number2', 'stringArr'];
-                const isRow3TypeHints = row3.length > 0 && row3.some(h => typeKeywords.some(kw => h.toLowerCase().includes(kw)));
-                const isRow2English = row2.length > 0 && row2.some(h => /[a-zA-Z]/.test(h)) && !row2.some(h => /[\u4e00-\u9fa5]/.test(h));
-
-                let headers, dataStartIdx;
-                if (isRow2English && isRow3TypeHints) {
-                    headers = row2;
-                    dataStartIdx = 3;
-                } else if (isRow2English) {
-                    headers = row2;
-                    dataStartIdx = 2;
-                } else {
-                    headers = row1;
-                    dataStartIdx = 1;
-                }
-
-                const rows = [];
-                for (let i = dataStartIdx; i < rawRows.length; i++) {
-                    const cols = rawRows[i].map(c => String(c).trim());
-                    const row = {};
-                    headers.forEach((h, idx) => { row[h] = cols[idx] !== undefined ? cols[idx] : ''; });
-                    rows.push(row);
-                }
-
-                resolve({ headers, rows, sheetName: targetSheet });
-            } catch (err) {
-                reject(err);
-            }
-        };
-        reader.onerror = () => reject(new Error('Excel文件读取失败'));
-        reader.readAsArrayBuffer(file);
-    });
-}
-
-// 从Excel中查找包含指定列的工作表（按列内容匹配，不只按名称）
-// requiredCols: 必须包含的列名数组（如 ['stunt', 'affix', 'attr']）
-// sheetKeywords: 优先按名称匹配的工作表关键词
-function readExcelSheetByCols(file, requiredCols, sheetKeywords) {
-    return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = e => {
-            try {
-                const data = new Uint8Array(e.target.result);
-                const wb = XLSX.read(data, { type: 'array' });
-
-                // 解析单个sheet的表头
-                const parseSheetHeaders = (sheetName) => {
-                    const sheet = wb.Sheets[sheetName];
-                    const rawRows = XLSX.utils.sheet_to_json(sheet, { header: 1, defval: '', raw: true });
-                    if (rawRows.length === 0) return [];
-
-                    const row1 = rawRows[0].map(h => String(h).trim());
-                    const row2 = rawRows.length > 1 ? rawRows[1].map(h => String(h).trim()) : [];
-                    const row3 = rawRows.length > 2 ? rawRows[2].map(h => String(h).trim()) : [];
-
-                    const typeKeywords = ['number', 'string', 'bool', 'object', 'numberArr', 'number2', 'stringArr'];
-                    const isRow3TypeHints = row3.length > 0 && row3.some(h => typeKeywords.some(kw => h.toLowerCase().includes(kw)));
-                    const isRow2English = row2.length > 0 && row2.some(h => /[a-zA-Z]/.test(h)) && !row2.some(h => /[\u4e00-\u9fa5]/.test(h));
-
-                    if (isRow2English && isRow3TypeHints) return row2;
-                    if (isRow2English) return row2;
-                    return row1;
-                };
-
-                // 检查表头是否包含所有必需列（不区分大小写）
-                const hasAllCols = (headers, cols) => {
-                    return cols.every(col => headers.some(h => h.toLowerCase() === col.toLowerCase()));
-                };
-
-                let targetSheet = null;
-
-                // 策略1: 先按名称匹配，再验证列
-                if (sheetKeywords) {
-                    for (const name of wb.SheetNames) {
-                        for (const kw of sheetKeywords) {
-                            if (name.includes(kw) || name.toLowerCase().includes(kw.toLowerCase())) {
-                                const headers = parseSheetHeaders(name);
-                                if (hasAllCols(headers, requiredCols)) {
-                                    targetSheet = name;
-                                    break;
-                                }
-                            }
-                        }
-                        if (targetSheet) break;
-                    }
-                }
-
-                // 策略2: 遍历所有工作表，找包含所有必需列的
-                if (!targetSheet) {
-                    for (const name of wb.SheetNames) {
-                        const headers = parseSheetHeaders(name);
-                        if (hasAllCols(headers, requiredCols)) {
-                            targetSheet = name;
-                            break;
-                        }
-                    }
-                }
-
-                // 策略3: 回退到按名称匹配（不验证列）
-                if (!targetSheet && sheetKeywords) {
-                    for (const name of wb.SheetNames) {
-                        for (const kw of sheetKeywords) {
-                            if (name.includes(kw) || name.toLowerCase().includes(kw.toLowerCase())) {
-                                targetSheet = name;
-                                break;
-                            }
-                        }
-                        if (targetSheet) break;
-                    }
-                }
-
-                // 策略4: 使用第一个工作表
-                if (!targetSheet) targetSheet = wb.SheetNames[0];
-
-                // 用 readExcelSheet 的逻辑解析目标工作表
-                const sheet = wb.Sheets[targetSheet];
-                const rawRows = XLSX.utils.sheet_to_json(sheet, { header: 1, defval: '', raw: true });
-                if (rawRows.length === 0) {
-                    resolve({ headers: [], rows: [], sheetName: targetSheet });
-                    return;
-                }
-
-                const row1 = rawRows[0].map(h => String(h).trim());
-                const row2 = rawRows.length > 1 ? rawRows[1].map(h => String(h).trim()) : [];
-                const row3 = rawRows.length > 2 ? rawRows[2].map(h => String(h).trim()) : [];
-
-                const typeKeywords = ['number', 'string', 'bool', 'object', 'numberArr', 'number2', 'stringArr'];
-                const isRow3TypeHints = row3.length > 0 && row3.some(h => typeKeywords.some(kw => h.toLowerCase().includes(kw)));
-                const isRow2English = row2.length > 0 && row2.some(h => /[a-zA-Z]/.test(h)) && !row2.some(h => /[\u4e00-\u9fa5]/.test(h));
-
-                let headers, dataStartIdx;
-                if (isRow2English && isRow3TypeHints) {
-                    headers = row2;
-                    dataStartIdx = 3;
-                } else if (isRow2English) {
-                    headers = row2;
-                    dataStartIdx = 2;
-                } else {
-                    headers = row1;
-                    dataStartIdx = 1;
-                }
-
-                const rows = [];
-                for (let i = dataStartIdx; i < rawRows.length; i++) {
-                    const cols = rawRows[i].map(c => String(c).trim());
-                    const row = {};
-                    headers.forEach((h, idx) => { row[h] = cols[idx] !== undefined ? cols[idx] : ''; });
-                    rows.push(row);
-                }
-
-                resolve({ headers, rows, sheetName: targetSheet });
-            } catch (err) {
-                reject(err);
-            }
-        };
-        reader.onerror = () => reject(new Error('Excel文件读取失败'));
-        reader.readAsArrayBuffer(file);
-    });
-}
-
-// ---- 技能库来源同步 ----
-const syncCSFile = { file: null };
-
-function showSyncCustomSkillModal() {
-    const lastFile = (() => { try { return localStorage.getItem('sync_cs_file'); } catch(e) { return null; } })();
-    const hasCached = !!syncCSFile.file;
-
-    document.getElementById('modalBody').innerHTML = `
-        <div class="detail-header" style="border-bottom-color:#e67e22">
-            <div class="detail-icon" style="background:#e67e2220;color:#e67e22;font-size:36px;width:64px;height:64px;display:flex;align-items:center;justify-content:center;border-radius:12px">🔄</div>
-            <div style="flex:1">
-                <h2 class="detail-name">技能库来源同步</h2>
-                <div class="detail-type"><span class="type-badge" style="background:#e67e2220;color:#e67e22">Excel同步</span></div>
-            </div>
-        </div>
-        <div class="detail-section">
-            <p class="equipment-form-hint" style="margin-bottom:16px">
-                选择包含 <strong>SkillActive</strong> 子表的Excel文件。<br>
-                系统自动查找名为"SkillActive"或"技能"的工作表<br>
-                <strong>skill/stunt</strong> → 映射战斗数据中的技能ID，读取效果描述<br>
-                ${lastFile ? '<span style="color:#27ae60">上次: ' + lastFile + '</span>' : ''}
-            </p>
-        </div>
-        ${hasCached ? `
-        <div class="detail-section" style="background:#27ae6010;border:1px solid #27ae6030;border-radius:8px;padding:16px">
-            <p style="color:#27ae60;font-weight:600;font-size:14px;margin-bottom:12px">✓ 已缓存文件：${syncCSFile.file.name}</p>
-            <button class="equipment-btn equipment-btn-save" style="width:100%" onclick="executeSyncCustomSkill()">⚡ 直接同步</button>
-        </div>
-        ` : ''}
-        <div class="detail-section">
-            <div class="sync-folder-group">
-                <label class="sync-folder-label">选择 Excel 文件（含SkillActive子表）</label>
-                <div class="sync-folder-row">
-                    <input type="file" id="syncCSFileInput" accept=".xlsx,.xls" style="display:none" onchange="onSyncCSFileSelected(this)">
-                    <button class="equipment-btn" onclick="document.getElementById('syncCSFileInput').click()">选择文件</button>
-                    <span class="sync-status" id="syncCSStatus">${hasCached ? '已缓存' : '未选择'}</span>
-                </div>
-            </div>
-        </div>
-        <div class="detail-section">
-            <div class="sync-result" id="syncCSResult"></div>
-            <button class="equipment-btn equipment-btn-save" style="width:100%;margin-top:12px" onclick="executeSyncCustomSkill()" id="syncCSExecBtn" ${hasCached ? '' : 'disabled'}>开始同步</button>
-        </div>
-        <div class="equipment-form-actions">
-            <button class="equipment-btn equipment-btn-cancel" onclick="closeModal()">关闭</button>
-        </div>
-    `;
-    document.getElementById('skillModal').classList.add('active');
-}
-
-function onSyncCSFileSelected(input) {
-    const file = input.files[0];
-    const statusEl = document.getElementById('syncCSStatus');
-    if (!file) {
-        statusEl.textContent = '未选择';
-        syncCSFile.file = null;
-    } else {
-        syncCSFile.file = file;
-        statusEl.textContent = '✓ 已选择 ' + file.name;
-        statusEl.className = 'sync-status sync-status-ok';
-        try { localStorage.setItem('sync_cs_file', file.name); } catch(e) {}
-    }
-    const btn = document.getElementById('syncCSExecBtn');
-    if (btn) btn.disabled = !syncCSFile.file;
-}
-
-function executeSyncCustomSkill() {
-    if (!syncCSFile.file) return;
-    const resultEl = document.getElementById('syncCSResult');
-    resultEl.innerHTML = '<p style="color:#999">正在解析...</p>';
-
-    readExcelSheet(syncCSFile.file, ['SkillActive', '技能']).then(({ headers, rows, sheetName }) => {
-        const findCol = (names) => {
-            for (const n of names) {
-                const idx = headers.findIndex(h => h === n || h.toLowerCase() === n.toLowerCase());
-                if (idx >= 0) return headers[idx];
-            }
-            return null;
-        };
-        // SkillActive.CSV字段：id.p(技能ID), skill(对应战斗技能表id), stunt(对应特技id)
-        const idCol = findCol(['id.p', 'id', 'ID']);
-        const skillCol = findCol(['skill', 'Skill', 'SKILL']);
-        const stuntCol = findCol(['stunt', 'Stunt', 'STUNT']);
-        const desc999Col = findCol(['desc999', 'Desc999', 'DESC999']);
-
-        // 同步前：清除旧的 sync 来源技能数据，保留手动添加的数据
-        const manualSkills = customSkillData.filter(s => s.source === 'manual');
-        customSkillData.length = 0;
-        customSkillData.push(...manualSkills);
-
-        // 去重：以 sourceId 作为唯一标识（针对手动添加的数据）
-        const existingSkillMap = {};
-        customSkillData.forEach(s => { if (s.sourceId) existingSkillMap[s.sourceId] = s; });
-        let newSkillCount = 0;
-        let skipSkillCount = 0;
-        let updateSkillCount = 0;
-        rows.forEach(row => {
-            const skillId = skillCol ? (row[skillCol] || '').trim() : '';
-            const stuntId = stuntCol ? (row[stuntCol] || '').trim() : '';
-            const refId = skillId || stuntId;
-            if (!refId) return;
-
-            // 技能名：优先从desc999取，否则从战斗数据映射ID查找名称
-            let name = desc999Col ? (row[desc999Col] || '').trim() : '';
-            let desc = '';
-            let type = '未分类';
-
-            const refData = findRefData(refId);
-            if (refData) {
-                if (!name) name = refData.name || '';
-                desc = refData.desc || '';
-                if (refId[0] === '1') {
-                    type = '主动技能';
-                } else {
-                    type = '被动技能';
-                }
-            }
-            if (!name) name = '未命名技能_' + refId;
-
-            // 已存在：效果为空则更新，有效果则跳过
-            if (existingSkillMap[refId]) {
-                const existing = existingSkillMap[refId];
-                const hasEffects = existing.effects && existing.effects.some(e => e.refId);
-                if (!hasEffects) {
-                    existing.effects = [{ refId: refId }];
-                    if (desc) existing.desc = desc;
-                    if (type) existing.type = type;
-                    updateSkillCount++;
-                } else {
-                    skipSkillCount++;
-                }
-                return;
-            }
-
-            const newSkill = {
-                id: '',
-                name: name,
-                type: type,
-                desc: desc,
-                sourceId: refId,
-                effects: [{ refId: refId }],
-                isNew: true,
-                source: 'sync',
-                createdAt: new Date().toISOString()
-            };
-            customSkillData.push(newSkill);
-            newSkill.id = generateCustomSkillId();
-            newSkillCount++;
-            existingSkillMap[refId] = { effects: [{ refId: refId }] };
-        });
-
-        saveCustomSkillData();
-        renderCustomSkills();
-        updateCustomSkillNavCount();
-
-        resultEl.innerHTML = `
-            <div style="background:#27ae6010;border:1px solid #27ae6030;border-radius:8px;padding:16px">
-                <p style="color:#27ae60;font-weight:600;font-size:15px;margin-bottom:8px">✓ 同步完成！</p>
-                <p style="color:#666;font-size:13px">新增技能：${newSkillCount} 个</p>
-                <p style="color:#666;font-size:13px">更新效果：${updateSkillCount} 个</p>
-                <p style="color:#666;font-size:13px">跳过重复：${skipSkillCount} 个</p>
-                <p style="color:#666;font-size:13px">当前技能总数：${customSkillData.length} 个</p>
-            </div>
-        `;
-    }).catch(err => {
-        resultEl.innerHTML = '<div style="color:#e74c3c;padding:12px">✗ 同步失败：' + err.message + '</div>';
-    });
-}
-
-// ---- 辅助技能宝石库来源同步 ----
-const syncGemFile = { file: null };
-
-function showSyncGemModal() {
-    const lastFile = (() => { try { return localStorage.getItem('sync_gem_file'); } catch(e) { return null; } })();
-    const hasCached = !!syncGemFile.file;
-
-    document.getElementById('modalBody').innerHTML = `
-        <div class="detail-header" style="border-bottom-color:#9b59b6">
-            <div class="detail-icon" style="background:#9b59b620;color:#9b59b6;font-size:36px;width:64px;height:64px;display:flex;align-items:center;justify-content:center;border-radius:12px">🔄</div>
-            <div style="flex:1">
-                <h2 class="detail-name">辅助宝石来源同步</h2>
-                <div class="detail-type"><span class="type-badge" style="background:#9b59b620;color:#9b59b6">Excel同步</span></div>
-            </div>
-        </div>
-        <div class="detail-section">
-            <p class="equipment-form-hint" style="margin-bottom:16px">
-                选择包含 <strong>SkillGem</strong> 子表的Excel文件。<br>
-                系统自动查找名为"SkillGem"或"宝石"的工作表<br>
-                <strong>name</strong> → 宝石名称<br>
-                <strong>desc</strong> → 宝石描述<br>
-                <strong>skillAffix / stunt / attr</strong> → 映射战斗数据中的词缀/被动/属性，展示ID和效果<br>
-                ${lastFile ? '<span style="color:#27ae60">上次: ' + lastFile + '</span>' : ''}
-            </p>
-        </div>
-        ${hasCached ? `
-        <div class="detail-section" style="background:#27ae6010;border:1px solid #27ae6030;border-radius:8px;padding:16px">
-            <p style="color:#27ae60;font-weight:600;font-size:14px;margin-bottom:12px">✓ 已缓存文件：${syncGemFile.file.name}</p>
-            <button class="equipment-btn equipment-btn-save" style="width:100%" onclick="executeSyncGem()">⚡ 直接同步</button>
-        </div>
-        ` : ''}
-        <div class="detail-section">
-            <div class="sync-folder-group">
-                <label class="sync-folder-label">选择 Excel 文件（含SkillGem子表）</label>
-                <div class="sync-folder-row">
-                    <input type="file" id="syncGemFileInput" accept=".xlsx,.xls" style="display:none" onchange="onSyncGemFileSelected(this)">
-                    <button class="equipment-btn" onclick="document.getElementById('syncGemFileInput').click()">选择文件</button>
-                    <span class="sync-status" id="syncGemStatus">${hasCached ? '已缓存' : '未选择'}</span>
-                </div>
-            </div>
-        </div>
-        <div class="detail-section">
-            <div class="sync-result" id="syncGemResult"></div>
-            <button class="equipment-btn equipment-btn-save" style="width:100%;margin-top:12px" onclick="executeSyncGem()" id="syncGemExecBtn" ${hasCached ? '' : 'disabled'}>开始同步</button>
-        </div>
-        <div class="equipment-form-actions">
-            <button class="equipment-btn equipment-btn-cancel" onclick="closeModal()">关闭</button>
-        </div>
-    `;
-    document.getElementById('skillModal').classList.add('active');
-}
-
-function onSyncGemFileSelected(input) {
-    const file = input.files[0];
-    const statusEl = document.getElementById('syncGemStatus');
-    if (!file) {
-        statusEl.textContent = '未选择';
-        syncGemFile.file = null;
-    } else {
-        syncGemFile.file = file;
-        statusEl.textContent = '✓ 已选择 ' + file.name;
-        statusEl.className = 'sync-status sync-status-ok';
-        try { localStorage.setItem('sync_gem_file', file.name); } catch(e) {}
-    }
-    const btn = document.getElementById('syncGemExecBtn');
-    if (btn) btn.disabled = !syncGemFile.file;
-}
-
-function executeSyncGem() {
-    if (!syncGemFile.file) return;
-    const resultEl = document.getElementById('syncGemResult');
-    resultEl.innerHTML = '<p style="color:#999">正在解析...</p>';
-
-    readExcelSheet(syncGemFile.file, ['SkillGem', '宝石']).then(({ headers, rows }) => {
-        const findCol = (names) => {
-            for (const n of names) {
-                const idx = headers.findIndex(h => h === n || h.toLowerCase() === n.toLowerCase());
-                if (idx >= 0) return headers[idx];
-            }
-            return null;
-        };
-        const nameCol = findCol(['name', 'Name', 'NAME', '名称']);
-        const descCol = findCol(['desc', 'Desc', 'DESC', '描述']);
-        const affixCol = findCol(['skillAffix', 'SkillAffix', 'affix', 'Affix', '词缀id']);
-        const stuntCol = findCol(['stunt', 'Stunt', 'STUNT', '被动表id']);
-        const attrCol = findCol(['attr', 'Attr', 'ATTR', '提供属性-启用加属性', '提供属性']);
-        const gemIdCol = findCol(['id.p', 'id', 'ID']);
-
-        if (!nameCol) {
-            resultEl.innerHTML = '<div style="color:#e74c3c;padding:12px">✗ 未找到 name 列</div>';
-            return;
-        }
-
-        // 同步前：清除旧的 sync 来源宝石数据，保留手动添加的数据
-        const manualGems = gemData.filter(g => g.source === 'manual');
-        gemData.length = 0;
-        gemData.push(...manualGems);
-
-        // 去重：以 id.p (sourceId) 作为唯一标识（针对手动添加的数据）
-        const existingGemMap = {};
-        gemData.forEach(g => { if (g.sourceId) existingGemMap[g.sourceId] = g; });
-        let newGemCount = 0;
-        let skipGemCount = 0;
-        let updateGemCount = 0;
-        let gemEffectTotal = 0;
-        rows.forEach(row => {
-            const name = row[nameCol] || '';
-            if (!name.trim()) return;
-            const gemSourceId = gemIdCol ? cleanNum(row[gemIdCol]) : '';
-            const desc = descCol ? row[descCol] : '';
-            const effects = [];
-            if (affixCol && row[affixCol] && String(row[affixCol]).trim()) {
-                String(row[affixCol]).split(/[;|]/).forEach(id => { const tid = id.trim(); if (tid) effects.push({ refId: tid }); });
-            }
-            if (stuntCol && row[stuntCol] && String(row[stuntCol]).trim()) {
-                String(row[stuntCol]).split(/[;|]/).forEach(id => { const tid = id.trim(); if (tid) effects.push({ refId: tid }); });
-            }
-            if (attrCol && row[attrCol] && String(row[attrCol]).trim()) {
-                const attrVal = String(row[attrCol]).trim();
-                if (attrVal && attrVal !== '0' && attrVal !== '{}') {
-                    attrVal.split(/[;|]/).forEach(id => { const tid = id.trim(); if (tid && tid !== '0') effects.push({ refId: tid }); });
-                }
-            }
-
-            // 以 sourceId (id.p) 去重：已存在则更新，不存在则新增
-            if (gemSourceId && existingGemMap[gemSourceId]) {
-                const existing = existingGemMap[gemSourceId];
-                existing.name = name.trim();
-                existing.desc = desc.trim();
-                existing.effects = effects;
-                updateGemCount++;
-                return;
-            }
-
-            const newGem = {
-                id: '',
-                name: name.trim(),
-                type: '辅助宝石',
-                desc: desc.trim(),
-                effects: effects,
-                sourceId: gemSourceId,
-                isNew: true,
-                source: 'sync',
-                createdAt: new Date().toISOString()
-            };
-            gemData.push(newGem);
-            newGem.id = generateGemId();
-            newGemCount++;
-            gemEffectTotal += effects.length;
-            if (gemSourceId) existingGemMap[gemSourceId] = { effects };
-        });
-
-        saveGemData();
-        renderGems();
-        const _gemNav = document.getElementById('gemCount'); if (_gemNav) _gemNav.textContent = gemData.length;
-
-        resultEl.innerHTML = `
-            <div style="background:#27ae6010;border:1px solid #27ae6030;border-radius:8px;padding:16px">
-                <p style="color:#27ae60;font-weight:600;font-size:15px;margin-bottom:8px">✓ 同步完成！</p>
-                <p style="color:#666;font-size:13px">新增宝石：${newGemCount} 个</p>
-                <p style="color:#666;font-size:13px">更新效果：${updateGemCount} 个</p>
-                <p style="color:#666;font-size:13px">跳过重复：${skipGemCount} 个</p>
-                <p style="color:#666;font-size:13px">关联效果总数：${gemEffectTotal} 条</p>
-            </div>
-        `;
-    }).catch(err => {
-        resultEl.innerHTML = '<div style="color:#e74c3c;padding:12px">✗ 同步失败：' + err.message + '</div>';
-    });
-}
-
-// ---- 暗金装备来源同步 ----
-const syncEquipFile = { file: null };
-
-function showSyncEquipModal() {
-    const lastFile = (() => { try { return localStorage.getItem('sync_equip_file'); } catch(e) { return null; } })();
-    const hasCached = !!syncEquipFile.file;
-
-    document.getElementById('modalBody').innerHTML = `
-        <div class="detail-header" style="border-bottom-color:#e67e22">
-            <div class="detail-icon" style="background:#e67e2220;color:#e67e22;font-size:36px;width:64px;height:64px;display:flex;align-items:center;justify-content:center;border-radius:12px">🔄</div>
-            <div style="flex:1">
-                <h2 class="detail-name">暗金装备来源同步</h2>
-                <div class="detail-type"><span class="type-badge" style="background:#e67e2220;color:#e67e22">Excel同步</span></div>
-            </div>
-        </div>
-        <div class="detail-section">
-            <p class="equipment-form-hint" style="margin-bottom:16px">
-                选择包含 <strong>LegendEquip</strong> 和 <strong>Modifier</strong> 两个子表的Excel文件。<br>
-                系统自动查找名为"LegendEquip"/"装备"和"Modifier"/"词条"的工作表<br>
-                <strong>LegendEquip子表</strong>：name + desc999 → 装备名称，modifier1 + modifier2 → 词条ID<br>
-                <strong>Modifier子表</strong>：词条ID映射，stunt/affix/attr → 战斗数据中的被动/词缀/属性效果<br>
-                ${lastFile ? '<span style="color:#27ae60">上次: ' + lastFile + '</span>' : ''}
-            </p>
-        </div>
-        ${hasCached ? `
-        <div class="detail-section" style="background:#27ae6010;border:1px solid #27ae6030;border-radius:8px;padding:16px">
-            <p style="color:#27ae60;font-weight:600;font-size:14px;margin-bottom:12px">✓ 已缓存文件：${syncEquipFile.file.name}</p>
-            <button class="equipment-btn equipment-btn-save" style="width:100%" onclick="executeSyncEquip()">⚡ 直接同步</button>
-        </div>
-        ` : ''}
-        <div class="detail-section">
-            <div class="sync-folder-group">
-                <label class="sync-folder-label">选择 Excel 文件（含LegendEquip + Modifier子表）</label>
-                <div class="sync-folder-row">
-                    <input type="file" id="syncEquipFileInput" accept=".xlsx,.xls" style="display:none" onchange="onSyncEquipFileSelected(this)">
-                    <button class="equipment-btn" onclick="document.getElementById('syncEquipFileInput').click()">选择文件</button>
-                    <span class="sync-status" id="syncEquipStatus">${hasCached ? '✓ 已缓存' : '未选择'}</span>
-                </div>
-            </div>
-        </div>
-        <div class="detail-section">
-            <div class="sync-result" id="syncEquipResult"></div>
-            <button class="equipment-btn equipment-btn-save" style="width:100%;margin-top:12px" onclick="executeSyncEquip()" id="syncEquipExecBtn" ${hasCached ? '' : 'disabled'}>开始同步</button>
-        </div>
-        <div class="equipment-form-actions">
-            <button class="equipment-btn equipment-btn-cancel" onclick="closeModal()">关闭</button>
-        </div>
-    `;
-    document.getElementById('skillModal').classList.add('active');
-}
-
-function onSyncEquipFileSelected(input) {
-    const file = input.files[0];
-    const statusEl = document.getElementById('syncEquipStatus');
-    if (!file) {
-        statusEl.textContent = '未选择';
-        syncEquipFile.file = null;
-    } else {
-        syncEquipFile.file = file;
-        statusEl.textContent = '✓ 已选择 ' + file.name;
-        statusEl.className = 'sync-status sync-status-ok';
-        try { localStorage.setItem('sync_equip_file', file.name); } catch(e) {}
-    }
-    const btn = document.getElementById('syncEquipExecBtn');
-    if (btn) btn.disabled = !syncEquipFile.file;
-}
-
-function executeSyncEquip() {
-    if (!syncEquipFile.file) return;
-    const resultEl = document.getElementById('syncEquipResult');
-    resultEl.innerHTML = '<p style="color:#999">正在解析...</p>';
-
-    // 从同一个Excel文件中分别读取LegendEquip和Modifier两个子表
-    Promise.all([
-        readExcelSheet(syncEquipFile.file, ['LegendEquip', '装备']),
-        readExcelSheetByCols(syncEquipFile.file, ['stunt', 'affix', 'attr'], ['Modifier', '词条', 'modifier'])
-    ]).then(([legendData, modData]) => {
-        const { headers: legendHeaders, rows: legendRows } = legendData;
-        const { headers: modHeaders, rows: modRows } = modData;
-
-        const findCol = (headers, names) => {
-            for (const n of names) {
-                const idx = headers.findIndex(h => h === n || h.toLowerCase() === n.toLowerCase());
-                if (idx >= 0) return headers[idx];
-            }
-            return null;
-        };
-
-        // 解析 Modifier → 构建词条映射表（每个id取第一条记录）
-        const modIdCol = findCol(modHeaders, ['id', 'ID', 'Id', 'id.p', 'modifierId', 'ModifierId']);
-        const modStuntCol = findCol(modHeaders, ['stunt', 'Stunt', 'STUNT', '特技']);
-        const modAffixCol = findCol(modHeaders, ['affix', 'Affix', 'AFFIX', 'skillAffix', 'SkillAffix', '效果']);
-        const modAttrCol = findCol(modHeaders, ['attr', 'Attr', 'ATTR', 'attribute', 'Attribute', '提供属性']);
-        const modDescCol = findCol(modHeaders, ['desc', 'Desc', 'DESC', '描述']);
-
-        const modifierMap = {};
-        let modDebugCount = 0;
-        modRows.forEach(row => {
-            const modId = modIdCol ? cleanNum(row[modIdCol]) : '';
-            if (!modId) return;
-            if (modifierMap[modId]) return;
-
-            const effects = [];
-            if (modStuntCol && row[modStuntCol] && cleanNum(row[modStuntCol])) {
-                cleanNum(row[modStuntCol]).split(/[;|]/).forEach(id => { const tid = cleanNum(id); if (tid) effects.push({ refId: tid }); });
-            }
-            if (modAffixCol && row[modAffixCol] && cleanNum(row[modAffixCol])) {
-                cleanNum(row[modAffixCol]).split(/[;|]/).forEach(id => { const tid = cleanNum(id); if (tid) effects.push({ refId: tid }); });
-            }
-            if (modAttrCol && row[modAttrCol] && cleanNum(row[modAttrCol])) {
-                const attrVal = cleanNum(row[modAttrCol]);
-                if (attrVal && attrVal !== '0' && attrVal !== '{}') {
-                    attrVal.split(/[;|]/).forEach(id => { const tid = cleanNum(id); if (tid && tid !== '0') effects.push({ refId: tid }); });
-                }
-            }
-            const modDesc = modDescCol ? (row[modDescCol] || '').trim() : '';
-            modifierMap[modId] = { effects, desc: modDesc };
-            modDebugCount++;
-        });
-
-        // 解析 LegendEquip → 生成装备
-        const nameCol = findCol(legendHeaders, ['name', 'Name', 'NAME', '前称号']);
-        const desc998Col = findCol(legendHeaders, ['desc998', 'Desc998', 'DESC998']);
-        const desc999Col = findCol(legendHeaders, ['desc999', 'Desc999', 'DESC999']);
-        const mod1Col = findCol(legendHeaders, ['modifier1', 'Modifier1', 'MODIFIER1', 'mod1', 'Mod1', '前缀词条']);
-        const mod2Col = findCol(legendHeaders, ['modifier2', 'Modifier2', 'MODIFIER2', 'mod2', 'Mod2', '后缀词条']);
-        const idCol = findCol(legendHeaders, ['id.p', 'id', 'ID', 'ID.p']);
-
-        if (!nameCol) {
-            resultEl.innerHTML = '<div style="color:#e74c3c;padding:12px">✗ 未找到 name 列<br><span style="font-size:12px;color:#999">LegendEquip子表列: ' + legendHeaders.join(', ') + '</span></div>';
-            return;
-        }
-
-        // 同步前：清除旧的 sync 来源装备数据，保留手动添加的数据
-        const manualEquips = equipmentData.filter(e => e.source === 'manual');
-        equipmentData.length = 0;
-        equipmentData.push(...manualEquips);
-
-        // 去重：以 id.p (sourceId) 作为唯一标识（针对手动添加的数据）
-        const existingEquipMap = {};
-        equipmentData.forEach(e => { if (e.sourceId) existingEquipMap[e.sourceId] = e; });
-        let newEquipCount = 0;
-        let skipEquipCount = 0;
-        let updateEquipCount = 0;
-        let equipEffectTotal = 0;
-        legendRows.forEach(row => {
-            const name = row[nameCol] || '';
-            if (!name.trim()) return;
-
-            const desc999 = desc999Col ? (row[desc999Col] || '').trim() : '';
-            const equipName = name.trim() + (desc999 ? ' - ' + desc999 : '');
-            const equipSourceId = idCol ? cleanNum(row[idCol]) : '';
-
-            // 计算装备类型
-            let equipType = '暗金装备';
-            if (desc998Col && row[desc998Col] && row[desc998Col].trim()) {
-                equipType = row[desc998Col].trim();
-            } else if (equipSourceId) {
-                const prefix = equipSourceId.substring(0, 3);
-                const idTypeMap = {
-                    '110': '武器', '120': '头盔', '130': '护甲',
-                    '140': '护盾', '150': '鞋子', '160': '手套', '190': '饰品'
-                };
-                if (idTypeMap[prefix]) equipType = idTypeMap[prefix];
-            }
-
-            // 计算效果：modifier1 + modifier2 → Modifier表 → stunt/affix/attr
-            const mod1Ids = mod1Col ? String(row[mod1Col] || '').split('|').map(s => cleanNum(s)).filter(s => s) : [];
-            const mod2Ids = mod2Col ? String(row[mod2Col] || '').split('|').map(s => cleanNum(s)).filter(s => s) : [];
-            const allModIds = [...mod1Ids, ...mod2Ids];
-
-            const effects = [];
-            allModIds.forEach(modId => {
-                const cleanModId = cleanNum(modId);
-                if (modifierMap[cleanModId]) {
-                    modifierMap[cleanModId].effects.forEach(eff => effects.push({ refId: eff.refId }));
-                }
-            });
-
-            // 以 sourceId (id.p) 去重：已存在则更新效果，不存在则新增
-            if (equipSourceId && existingEquipMap[equipSourceId]) {
-                const existing = existingEquipMap[equipSourceId];
-                existing.name = equipName;
-                existing.type = equipType;
-                existing.effects = effects;
-                updateEquipCount++;
-                return;
-            }
-
-            const newEq = {
-                id: '',
-                name: equipName,
-                type: equipType,
-                effects: effects,
-                sourceId: equipSourceId,
-                isNew: true,
-                source: 'sync',
-                createdAt: new Date().toISOString()
-            };
-            equipmentData.push(newEq);
-            newEq.id = generateEquipmentId();
-            newEquipCount++;
-            equipEffectTotal += effects.length;
-            if (equipSourceId) existingEquipMap[equipSourceId] = { effects };
-        });
-
-        saveEquipmentData();
-        renderEquipment();
-        const _eqNav = document.getElementById('equipmentCount'); if (_eqNav) _eqNav.textContent = equipmentData.length;
-
-        resultEl.innerHTML = `
-            <div style="background:#27ae6010;border:1px solid #27ae6030;border-radius:8px;padding:16px">
-                <p style="color:#27ae60;font-weight:600;font-size:15px;margin-bottom:8px">✓ 同步完成！</p>
-                <p style="color:#666;font-size:13px">LegendEquip子表：${legendData.sheetName}（${legendRows.length}行）</p>
-                <p style="color:#666;font-size:13px">Modifier子表：${modData.sheetName}（${modRows.length}行）</p>
-                <p style="color:#666;font-size:13px">LegendEquip列名：${legendHeaders.join(', ')}</p>
-                <p style="color:#666;font-size:13px">Modifier列名：${modHeaders.join(', ')}</p>
-                <p style="color:#666;font-size:13px">词条映射：${Object.keys(modifierMap).length} 条</p>
-                <p style="color:#666;font-size:13px">新增装备：${newEquipCount} 件</p>
-                <p style="color:#666;font-size:13px">更新效果：${updateEquipCount} 件</p>
-                <p style="color:#666;font-size:13px">跳过重复：${skipEquipCount} 件</p>
-                <p style="color:#666;font-size:13px">关联效果总数：${equipEffectTotal} 条</p>
-                ${(() => {
-                    // 显示第一条装备的详细调试信息
-                    if (legendRows.length === 0) return '';
-                    const r = legendRows[0];
-                    const rName = nameCol ? String(r[nameCol] || '') : '(无name列)';
-                    const rId = idCol ? String(r[idCol] || '') : '(无id列)';
-                    const rMod1 = mod1Col ? String(r[mod1Col] || '') : '(无mod1列)';
-                    const rMod2 = mod2Col ? String(r[mod2Col] || '') : '(无mod2列)';
-                    const m1Ids = rMod1.split('|').map(s => cleanNum(s)).filter(s => s);
-                    const m2Ids = rMod2.split('|').map(s => cleanNum(s)).filter(s => s);
-                    const debugEffects = [];
-                    [...m1Ids, ...m2Ids].forEach(mid => {
-                        const cmid = cleanNum(mid);
-                        const found = modifierMap[cmid];
-                        debugEffects.push(`${cmid} → ${found ? '[' + found.effects.map(e => e.refId).join(',') + ']' : '未找到'}`);
-                    });
-                    return `<div style="margin-top:8px;padding:8px;background:#fff;border-radius:4px;font-size:12px;color:#999">
-                        <b>调试-第一条装备:</b><br>
-                        name列值: "${rName}"<br>
-                        id列值: "${rId}"<br>
-                        modifier1列值: "${rMod1}" → [${m1Ids.join(', ')}]<br>
-                        modifier2列值: "${rMod2}" → [${m2Ids.join(', ')}]<br>
-                        映射结果: ${debugEffects.join(' | ')}
-                    </div>`;
-                })()}
-            </div>
-        `;
-    }).catch(err => {
-        resultEl.innerHTML = '<div style="color:#e74c3c;padding:12px">✗ 同步失败：' + err.message + '</div>';
-    });
-}
-
 // ============================================================
 // 自定义技能系统
 // ============================================================
+// 技能标签渲染: tags = { main: '攻击', normal: ['近战', '冰霜'] }
+// 未映射到字典的纯数字标签(如 15)直接过滤，不显示
+function isUnmappedTag(t) {
+    return t !== null && t !== undefined && t !== '' && /^\d+$/.test(String(t));
+}
+
+function renderSkillTags(tags) {
+    if (!tags) return '';
+    const mainHtml = (tags.main && tags.main !== '' && !isUnmappedTag(tags.main))
+        ? `<span class="skill-tag skill-tag-main">${tags.main}</span>` : '';
+    const normalHtml = (tags.normal || [])
+        .filter(t => t !== '' && t !== null && t !== undefined && !isUnmappedTag(t))
+        .map(t => `<span class="skill-tag skill-tag-normal">${t}</span>`).join('');
+    if (!mainHtml && !normalHtml) return '';
+    return `<div class="skill-tag-row">${mainHtml}${normalHtml}</div>`;
+}
+
 function renderCustomSkills(filteredData) {
     const grid = document.getElementById('customSkillGrid');
     if (!grid) return;
@@ -3792,7 +2256,7 @@ function renderCustomSkills(filteredData) {
             <div class="equipment-empty">
                 <div class="equipment-empty-icon">🏹</div>
                 <p>${customSkillData.length === 0 ? '暂无技能数据' : '未找到匹配的技能'}</p>
-                <p class="equipment-empty-hint">${customSkillData.length === 0 ? '点击上方"添加技能"按钮创建第一个技能' : '尝试其他搜索关键词'}</p>
+                <p class="equipment-empty-hint">${customSkillData.length === 0 ? '技能库数据仅由一键导入提供，请先运行一键导入' : '尝试其他搜索关键词'}</p>
             </div>
         `;
         const _c = document.getElementById('customSkillTotalCount'); if (_c) _c.textContent = customSkillData.length;
@@ -3836,13 +2300,19 @@ function renderCustomSkills(filteredData) {
             return `
                 <div class="equipment-card" data-custom-skill-id="${s.id}" onclick="openCustomSkillDetail('${s.id}')" style="border-left-color:${style.color}">
                     <div class="equipment-card-header">
-                        <span class="equipment-card-icon">${style.icon}</span>
+                        <span class="equipment-card-icon" style="background:${style.color}18">${s.icon ? `<img class="card-icon" src="icon/${s.icon}.png" alt="" onerror="this.style.display='none'">` : ''}${style.icon}</span>
                         <div>
-                            <h4 class="equipment-card-name">${s.name} ${s.isNew ? '<span class="new-tag">新增</span>' : ''}</h4>
+                            <h4 class="equipment-card-name">${s.name}</h4>
                             <span class="equipment-card-id">${s.id}</span>
                         </div>
                     </div>
                     <span class="equipment-card-type">${s.type || '未分类'}</span>
+                    <div class="item-stats">
+                        <div class="item-stats-cell"><span class="item-stats-label">类型</span><span class="item-stats-value">${s.type || '未分类'}</span></div>
+                        <div class="item-stats-cell"><span class="item-stats-label">效果</span><span class="item-stats-value">${effectCount} 条</span></div>
+                        <div class="item-stats-cell"><span class="item-stats-label">技能ID</span><span class="item-stats-value">${s.id}</span></div>
+                    </div>
+                    ${renderSkillTags(s.tags)}
                     ${s.desc ? `<p class="equipment-card-effect-desc" style="margin:4px 0;padding:4px 8px;background:#f8f8f8;border-radius:6px;font-size:12px;color:#666">${s.desc}</p>` : ''}
                     <div class="equipment-card-effects">
                         <span class="equipment-effect-count">关联效果 (${effectCount} 条)</span>
@@ -3876,14 +2346,21 @@ function renderCustomSkills(filteredData) {
 }
 
 function filterCustomSkills() {
+    renderCustomSkillTagFilterBar();
     const searchEl = document.getElementById('customSkillSearchInput');
     if (!searchEl) return;
     const search = searchEl.value.toLowerCase();
-    const newOnly = document.getElementById('customSkillNewOnly') ? document.getElementById('customSkillNewOnly').checked : false;
     const typeFilter = document.getElementById('customSkillTypeFilter') ? document.getElementById('customSkillTypeFilter').value : '';
+    const tagFilter = tagFilterState.custom || [];
     const filtered = customSkillData.filter(s => {
-        if (newOnly && !s.isNew) return false;
         if (typeFilter && (s.type || '未分类') !== typeFilter) return false;
+        if (tagFilter.length > 0) {
+            const t = s.tags;
+            if (!t) return false;
+            // 必须同时包含所有选中标签 (AND)：每个选中标签命中 main 或 normal 之一
+            const matched = tagFilter.every(tag => t.main === tag || (t.normal || []).includes(tag));
+            if (!matched) return false;
+        }
         if (!search) return true;
         if (s.name.toLowerCase().includes(search)) return true;
         if ((s.id || '').toLowerCase().includes(search)) return true;
@@ -3921,117 +2398,7 @@ function toggleCustomSkillTypeGroup(type) {
 }
 
 // 新增技能弹窗 - 支持从战斗数据中选择
-function showAddCustomSkillForm() {
-    const modalBody = document.getElementById('modalBody');
 
-    // 构建战斗数据中主动+被动技能的选项列表
-    const battleSkills = [...activeSkills, ...passiveSkills];
-    const battleOptionsHTML = battleSkills.map(s => {
-        const typeLabel = s.id[0] === '1' ? '主动' : '被动';
-        const typeColor = s.id[0] === '1' ? '#e74c3c' : '#3498db';
-        return `<option value="${s.id}" data-name="${s.name}" data-desc="${(s.description || '').replace(/"/g, '&quot;')}" data-type="${typeLabel}技能">${typeLabel} ${s.id} - ${s.name}</option>`;
-    }).join('');
-
-    modalBody.innerHTML = `
-        <div class="detail-header" style="border-bottom-color:#e67e22">
-            <div class="detail-icon" style="background:#e67e2220;color:#e67e22;font-size:36px;width:64px;height:64px;display:flex;align-items:center;justify-content:center;border-radius:12px">🏹</div>
-            <div style="flex:1">
-                <h2 class="detail-name">添加技能</h2>
-                <div class="detail-type">
-                    <span class="type-badge" style="background:#e67e2220;color:#e67e22">技能系统</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="detail-section">
-            <h3 class="detail-section-title">从战斗数据导入</h3>
-            <p class="equipment-form-hint" style="margin-bottom:12px">选择战斗数据中的主动/被动技能，系统会自动填充技能信息。也可手动填写。</p>
-            <div class="equipment-form-group">
-                <label class="equipment-form-label">选择战斗数据中的技能</label>
-                <select id="csBattleImport" class="equipment-form-input" onchange="onBattleSkillImport(this)" style="height:auto;padding:8px 12px">
-                    <option value="">-- 不导入，手动填写 --</option>
-                    ${battleOptionsHTML}
-                </select>
-            </div>
-        </div>
-
-        <div class="detail-section">
-            <h3 class="detail-section-title">基本信息</h3>
-            <div class="equipment-form-group">
-                <label class="equipment-form-label">技能名称 <span class="required">*</span></label>
-                <input type="text" id="csName" class="equipment-form-input" placeholder="如：烈焰风暴">
-            </div>
-            <div class="equipment-form-group">
-                <label class="equipment-form-label">技能类型</label>
-                <input type="text" id="csType" class="equipment-form-input" placeholder="如：主动技能/被动技能/辅助技能">
-            </div>
-            <div class="equipment-form-group">
-                <label class="equipment-form-label">技能效果描述</label>
-                <textarea id="csDesc" class="equipment-form-input" rows="3" placeholder="技能的效果描述" style="resize:vertical;font-family:inherit"></textarea>
-            </div>
-            <div class="equipment-form-group">
-                <label class="equipment-form-label">来源技能ID</label>
-                <input type="text" id="csSourceId" class="equipment-form-input" placeholder="从战斗数据导入的技能ID（可选）">
-            </div>
-        </div>
-
-        <div class="detail-section">
-            <h3 class="detail-section-title">关联效果ID（词缀/属性/被动技能）</h3>
-            <p class="equipment-form-hint">每条填写一个词缀ID、属性ID或被动技能ID，输入文字可自动匹配，也可直接输入ID。</p>
-            <div class="equipment-form-group">
-                <label class="equipment-form-label">效果 1</label>
-                <input type="text" id="csEffect1" class="equipment-form-input" placeholder="词缀/属性/被动技能ID 或输入文字搜索" oninput="onCustomSkillEffectInput(this, 'csPreview1', 'csDropdown1')">
-                <div class="autocomplete-dropdown" id="csDropdown1"></div>
-                <div class="effect-preview" id="csPreview1"></div>
-            </div>
-            <div class="equipment-form-group">
-                <label class="equipment-form-label">效果 2</label>
-                <input type="text" id="csEffect2" class="equipment-form-input" placeholder="词缀/属性/被动技能ID 或输入文字搜索" oninput="onCustomSkillEffectInput(this, 'csPreview2', 'csDropdown2')">
-                <div class="autocomplete-dropdown" id="csDropdown2"></div>
-                <div class="effect-preview" id="csPreview2"></div>
-            </div>
-            <div class="equipment-form-group">
-                <label class="equipment-form-label">效果 3</label>
-                <input type="text" id="csEffect3" class="equipment-form-input" placeholder="词缀/属性/被动技能ID 或输入文字搜索" oninput="onCustomSkillEffectInput(this, 'csPreview3', 'csDropdown3')">
-                <div class="autocomplete-dropdown" id="csDropdown3"></div>
-                <div class="effect-preview" id="csPreview3"></div>
-            </div>
-            <div class="equipment-form-group">
-                <label class="equipment-form-label">效果 4</label>
-                <input type="text" id="csEffect4" class="equipment-form-input" placeholder="词缀/属性/被动技能ID 或输入文字搜索" oninput="onCustomSkillEffectInput(this, 'csPreview4', 'csDropdown4')">
-                <div class="autocomplete-dropdown" id="csDropdown4"></div>
-                <div class="effect-preview" id="csPreview4"></div>
-            </div>
-            <div class="equipment-form-group">
-                <label class="equipment-form-label">效果 5</label>
-                <input type="text" id="csEffect5" class="equipment-form-input" placeholder="词缀/属性/被动技能ID 或输入文字搜索" oninput="onCustomSkillEffectInput(this, 'csPreview5', 'csDropdown5')">
-                <div class="autocomplete-dropdown" id="csDropdown5"></div>
-                <div class="effect-preview" id="csPreview5"></div>
-            </div>
-            <div class="equipment-form-group">
-                <label class="equipment-form-label">效果 6</label>
-                <input type="text" id="csEffect6" class="equipment-form-input" placeholder="词缀/属性/被动技能ID 或输入文字搜索" oninput="onCustomSkillEffectInput(this, 'csPreview6', 'csDropdown6')">
-                <div class="autocomplete-dropdown" id="csDropdown6"></div>
-                <div class="effect-preview" id="csPreview6"></div>
-            </div>
-        </div>
-
-        <div class="detail-section">
-            <div class="equipment-form-group">
-                <label>
-                    <input type="checkbox" id="csIsNew" checked>
-                    <span style="font-size:14px;font-weight:600;color:#e74c3c">标记为新增技能</span>
-                </label>
-            </div>
-        </div>
-
-        <div class="equipment-form-actions">
-            <button class="equipment-btn equipment-btn-cancel" onclick="closeModal()">取消</button>
-            <button class="equipment-btn equipment-btn-save" onclick="submitAddCustomSkill()">保存技能</button>
-        </div>
-    `;
-    document.getElementById('skillModal').classList.add('active');
-}
 
 function onBattleSkillImport(select) {
     const opt = select.selectedOptions[0];
@@ -4080,35 +2447,7 @@ function onCustomSkillEffectInput(inputEl, previewId, dropdownId) {
     `).join('') + '</div>';
 }
 
-function submitAddCustomSkill() {
-    const name = document.getElementById('csName').value.trim();
-    if (!name) { alert('请填写技能名称'); return; }
-    const type = document.getElementById('csType').value.trim();
-    const desc = document.getElementById('csDesc').value.trim();
-    const sourceId = document.getElementById('csSourceId').value.trim();
-    const isNew = document.getElementById('csIsNew').checked;
-    const effects = [];
-    for (let i = 1; i <= 6; i++) {
-        const val = document.getElementById('csEffect' + i).value.trim();
-        if (val) effects.push({ refId: val });
-    }
-    const newSkill = {
-        id: generateCustomSkillId(),
-        name,
-        type,
-        desc,
-        sourceId,
-        effects,
-        isNew,
-        source: 'manual',
-        createdAt: new Date().toISOString()
-    };
-    customSkillData.push(newSkill);
-    saveCustomSkillData();
-    closeModal();
-    renderCustomSkills();
-    updateCustomSkillNavCount();
-}
+
 
 function openCustomSkillDetail(id) {
     const skill = customSkillData.find(s => s.id === id);
@@ -4119,188 +2458,70 @@ function openCustomSkillDetail(id) {
     const modalBody = document.getElementById('modalBody');
     modalBody.innerHTML = `
         <div class="detail-header" style="border-bottom-color:#e67e22">
-            <div class="detail-icon" style="background:#e67e2220;color:#e67e22;font-size:36px;width:64px;height:64px;display:flex;align-items:center;justify-content:center;border-radius:12px">🏹</div>
+            <div class="detail-icon" style="background:#e67e2220;color:#e67e22;font-size:36px;width:64px;height:64px;display:flex;align-items:center;justify-content:center;border-radius:12px;position:relative;overflow:hidden">${skill.icon ? `<img class="card-icon" src="icon/${skill.icon}.png" alt="" onerror="this.style.display='none'">` : ''}🏹</div>
             <div style="flex:1">
-                <h2 class="detail-name">
-                    <input type="text" class="affix-edit-input affix-edit-name" value="${skill.name.replace(/"/g, '&quot;')}" oninput="updateCustomSkillField('${skill.id}', 'name', this.value)" placeholder="技能名称">
-                </h2>
+                <h2 class="detail-name">${skill.name}</h2>
                 <div class="detail-type">
                     <span class="type-badge" style="background:#e67e2220;color:#e67e22">技能系统</span>
                     <span class="type-badge-sub">${skill.id}</span>
                     ${skill.sourceId ? `<span class="type-badge-sub">来源: ${skill.sourceId}</span>` : ''}
+                    ${skill.type ? `<span class="type-badge-sub">${skill.type}</span>` : ''}
                 </div>
             </div>
         </div>
 
+        ${skill.desc ? `
         <div class="detail-section">
-            <div class="detail-section-title-row">
-                <h3 class="detail-section-title">技能类型</h3>
-                <span class="save-indicator">编辑后自动保存</span>
-            </div>
-            <input type="text" class="affix-edit-input" style="font-size:15px;padding:8px 12px;border:1px solid #ddd;border-radius:8px;width:100%;box-sizing:border-box" value="${(skill.type || '').replace(/"/g, '&quot;')}" oninput="updateCustomSkillField('${skill.id}', 'type', this.value)" placeholder="如：主动技能/被动技能/辅助技能">
+            <h3 class="detail-section-title">技能效果描述</h3>
+            <p class="detail-desc-text">${skill.desc.replace(/</g, '&lt;').replace(/\n/g, '<br>')}</p>
         </div>
+        ` : ''}
 
         <div class="detail-section">
-            <div class="detail-section-title-row">
-                <h3 class="detail-section-title">技能效果描述</h3>
-            </div>
-            <textarea class="affix-edit-input" style="font-size:14px;padding:8px 12px;border:1px solid #ddd;border-radius:8px;width:100%;box-sizing:border-box;resize:vertical;font-family:inherit;min-height:60px" oninput="updateCustomSkillField('${skill.id}', 'desc', this.value)" placeholder="技能的效果描述">${(skill.desc || '').replace(/</g, '&lt;')}</textarea>
-        </div>
-
-        <div class="detail-section">
-            <div class="detail-section-title-row">
-                <h3 class="detail-section-title">新增标记</h3>
-            </div>
-            <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
-                <input type="checkbox" ${skill.isNew ? 'checked' : ''} onchange="updateCustomSkillField('${skill.id}', 'isNew', this.checked)" style="width:18px;height:18px">
-                <span style="font-size:14px;font-weight:600;color:#e74c3c">标记为新增技能</span>
-            </label>
-        </div>
-
-        <div class="detail-section">
-            <h3 class="detail-section-title">关联效果（<span id="csEffectCount">${effects.filter(e => e.refId).length}</span> 条）</h3>
+            <h3 class="detail-section-title">关联效果（${effects.filter(e => e.refId).length} 条）</h3>
             <div id="csEffectList">
-            ${effects.length === 0 ? '<p class="empty-hint">暂无关联效果，点击下方按钮添加</p>' : ''}
+            ${effects.length === 0 ? '<p class="empty-hint">暂无关联效果</p>' : ''}
             ${effects.map((eff, idx) => {
                 const refData = eff.refId ? findRefData(eff.refId) : null;
                 const typeColor = refData ? (refData.type === 'active-skill' ? '#e74c3c' : refData.type === 'passive-skill' ? '#3498db' : refData.type === 'attribute' ? '#27ae60' : '#f39c12') : '#bbb';
                 const typeLabel = refData ? (refData.type === 'active-skill' ? '主动技能' : refData.type === 'passive-skill' ? '被动技能' : refData.type === 'attribute' ? '属性效果' : '词缀') : '待填写';
                 return `
-                    <div class="equipment-effect-item" id="csEffectItem-${idx}" style="border-left-color:${typeColor}">
+                    <div class="equipment-effect-item" style="border-left-color:${typeColor}">
                         <div class="equipment-effect-header">
-                            <span class="effect-type-badge" id="csEffectBadge-${idx}" style="background:${typeColor}20;color:${typeColor}">${typeLabel}</span>
-                            <input type="text" class="equipment-effect-input" value="${eff.refId}" oninput="onEditCustomSkillEffectInput(this, '${skill.id}', ${idx})" placeholder="词缀/属性/被动技能ID 或输入文字搜索">
-                            <button class="equipment-effect-delete" onclick="deleteCustomSkillEffect('${skill.id}', ${idx})">✕</button>
+                            <span class="effect-type-badge" style="background:${typeColor}20;color:${typeColor}">${typeLabel}</span>
+                            <span class="effect-ref-id">${eff.refId || '—'}</span>
                         </div>
-                        <div class="autocomplete-dropdown" id="editCsDropdown-${idx}"></div>
-                        <div class="effect-preview" id="editCsPreview-${idx}"></div>
+                        ${refData ? `
+                            <div class="equipment-effect-info">
+                                <span class="equipment-effect-name">${refData.name}</span>
+                                <span class="equipment-effect-cat">${refData.category} · ${refData.subCategory}</span>
+                                <p class="equipment-effect-desc">${refData.desc}</p>
+                            </div>
+                        ` : (eff.refId ? '<div class="equipment-effect-error">⚠ 未找到ID: ' + eff.refId + '</div>' : '')}
                     </div>
                 `;
             }).join('')}
             </div>
-            <button class="equipment-btn" style="margin-top:8px" onclick="addCustomSkillEffect('${skill.id}')">+ 添加效果</button>
         </div>
 
         <div class="equipment-form-actions">
             <button class="equipment-btn equipment-btn-cancel" onclick="closeModal()">关闭</button>
-            <button class="equipment-btn" style="background:#e74c3c;color:white" onclick="deleteCustomSkill('${skill.id}')">删除技能</button>
         </div>
     `;
     document.getElementById('skillModal').classList.add('active');
 }
 
-function updateCustomSkillField(id, field, value) {
-    const skill = customSkillData.find(s => s.id === id);
-    if (!skill) return;
-    skill[field] = value;
-    saveCustomSkillData();
-}
 
-function addCustomSkillEffect(id) {
-    const skill = customSkillData.find(s => s.id === id);
-    if (!skill) return;
-    if (!skill.effects) skill.effects = [];
-    skill.effects.push({ refId: '' });
-    saveCustomSkillData();
-    openCustomSkillDetail(id);
-}
 
-function deleteCustomSkillEffect(id, idx) {
-    const skill = customSkillData.find(s => s.id === id);
-    if (!skill) return;
-    skill.effects.splice(idx, 1);
-    saveCustomSkillData();
-    openCustomSkillDetail(id);
-}
 
-function onEditCustomSkillEffectInput(inputEl, skillId, idx) {
-    const skill = customSkillData.find(s => s.id === skillId);
-    if (!skill || !skill.effects[idx]) return;
-    skill.effects[idx].refId = inputEl.value.trim();
-    saveCustomSkillData();
-    previewEffect(inputEl, 'editCsPreview-' + idx);
 
-    // 更新badge
-    const refData = findRefData(skill.effects[idx].refId);
-    const badge = document.getElementById('csEffectBadge-' + idx);
-    if (badge && refData) {
-        const typeColor = refData.type === 'active-skill' ? '#e74c3c' : refData.type === 'passive-skill' ? '#3498db' : refData.type === 'attribute' ? '#27ae60' : '#f39c12';
-        const typeLabel = refData.type === 'active-skill' ? '主动技能' : refData.type === 'passive-skill' ? '被动技能' : refData.type === 'attribute' ? '属性效果' : '词缀';
-        badge.style.background = typeColor + '20';
-        badge.style.color = typeColor;
-        badge.textContent = typeLabel;
-    }
 
-    // 自动补全
-    const val = inputEl.value.trim();
-    const dropdownEl = document.getElementById('editCsDropdown-' + idx);
-    if (!val || /^\d+$/.test(val)) { if (dropdownEl) dropdownEl.innerHTML = ''; return; }
 
-    const refData2 = findRefData(val);
-    if (refData2) { if (dropdownEl) dropdownEl.innerHTML = ''; return; }
 
-    const search = val.toLowerCase();
-    let matches = [];
-    affixes.forEach(a => { if (a.name.toLowerCase().includes(search) || a.id.includes(search)) matches.push({ id: a.id, name: a.name, desc: a.description, typeLabel: '词缀', typeColor: '#f39c12' }); });
-    attributes.forEach(a => { if (a.name.toLowerCase().includes(search) || a.id.includes(search)) matches.push({ id: a.id, name: a.name, desc: a.description, typeLabel: '属性', typeColor: '#27ae60' }); });
-    passiveSkills.forEach(s => { if (s.name.toLowerCase().includes(search) || s.id.includes(search)) matches.push({ id: s.id, name: s.name, desc: s.description, typeLabel: '被动', typeColor: '#3498db' }); });
-    matches = matches.slice(0, 20);
-    if (!dropdownEl) return;
-    if (matches.length === 0) { dropdownEl.innerHTML = '<div class="autocomplete-empty">无匹配结果</div>'; return; }
-    dropdownEl.innerHTML = '<div class="autocomplete-list">' + matches.map(m => `
-        <div class="autocomplete-item" onclick="selectEditCustomSkillEffect('${skillId}', ${idx}, '${m.id}')">
-            <span class="autocomplete-item-type" style="background:${m.typeColor}20;color:${m.typeColor}">${m.typeLabel}</span>
-            <span class="autocomplete-item-id">${m.id}</span>
-            <span class="autocomplete-item-name">${m.name}</span>
-        </div>
-    `).join('') + '</div>';
-}
 
-function selectEditCustomSkillEffect(skillId, idx, refId) {
-    const skill = customSkillData.find(s => s.id === skillId);
-    if (!skill || !skill.effects[idx]) return;
-    skill.effects[idx].refId = refId;
-    saveCustomSkillData();
-    openCustomSkillDetail(skillId);
-}
 
-function deleteCustomSkill(id) {
-    if (!confirm('确定删除此技能吗？此操作不可撤销。')) return;
-    customSkillData = customSkillData.filter(s => s.id !== id);
-    saveCustomSkillData();
-    closeModal();
-    renderCustomSkills();
-    updateCustomSkillNavCount();
-}
 
-function syncCustomSkillCard(id) {
-    const skill = customSkillData.find(s => s.id === id);
-    if (!skill) return;
-    const card = document.querySelector(`[data-custom-skill-id="${id}"]`);
-    if (!card) return;
-    const effects = (skill.effects || []).filter(e => e.refId);
-    const countEl = card.querySelector('.equipment-effect-count');
-    if (countEl) countEl.textContent = '关联效果 (' + effects.length + ' 条)';
-    const listEl = card.querySelector('.equipment-card-effect-list');
-    if (listEl) {
-        if (effects.length === 0) {
-            listEl.innerHTML = '<p class="equipment-card-effect-empty">暂无关联效果</p>';
-        } else {
-            listEl.innerHTML = effects.map(eff => {
-                const refData = findRefData(eff.refId);
-                const typeColor = refData ? (refData.type === 'active-skill' ? '#e74c3c' : refData.type === 'passive-skill' ? '#3498db' : refData.type === 'attribute' ? '#27ae60' : '#f39c12') : '#e74c3c';
-                const typeLabel = refData ? (refData.type === 'active-skill' ? '主动' : refData.type === 'passive-skill' ? '被动' : refData.type === 'attribute' ? '属性' : '词缀') : '未知';
-                return `
-                    <div class="equipment-card-effect" style="border-left-color:${typeColor}">
-                        <span class="equipment-card-effect-type" style="background:${typeColor}20;color:${typeColor}">${typeLabel}</span>
-                        <span class="equipment-card-effect-name">${refData ? refData.name : eff.refId}</span>
-                        <p class="equipment-card-effect-desc">${refData ? refData.desc : '⚠ 未找到ID: ' + eff.refId}</p>
-                    </div>
-                `;
-            }).join('');
-        }
-    }
-}
+
 
 function updateCustomSkillNavCount() {
     const el = document.getElementById('customSkillCount');
@@ -4501,23 +2722,6 @@ function loadCustomAffixes() {
     }
 }
 
-// ---- 加载新增标记覆盖 ----
-function loadNewStatusOverrides() {
-    try {
-        const raw = localStorage.getItem('chronicle_new_status');
-        if (!raw) return;
-        const saved = JSON.parse(raw);
-        // 应用到所有数据
-        activeSkills.forEach(s => { if (saved[s.id] !== undefined) s.isNew = saved[s.id]; });
-        passiveSkills.forEach(s => { if (saved[s.id] !== undefined) s.isNew = saved[s.id]; });
-        affixes.forEach(a => { if (saved[a.id] !== undefined) a.isNew = saved[a.id]; });
-        equipmentData.forEach(e => { if (saved[e.id] !== undefined) e.isNew = saved[e.id]; });
-        gemData.forEach(g => { if (saved[g.id] !== undefined) g.isNew = saved[g.id]; });
-    } catch (e) {
-        console.warn('加载新增标记失败:', e);
-    }
-}
-
 function init() {
     console.log('=== 初始化开始 ===');
     console.log('  自动导入数据:', window.__AUTO_IMPORT_DATA__ ? '已加载' : '未加载');
@@ -4534,7 +2738,6 @@ function init() {
             localStorage.removeItem('chronicle_custom_affixes');
             localStorage.removeItem('chronicle_affix_edits');
             localStorage.removeItem('chronicle_skill_edits');
-            localStorage.removeItem('chronicle_new_status');
         } else {
             console.log('  检测到自动导入数据，跳过缓存清除');
         }
@@ -4543,10 +2746,8 @@ function init() {
 
     loadAffixEdits();
     loadSkillEdits();
-    loadEquipmentData();
     loadCustomSkills();
     loadCustomAffixes();
-    loadNewStatusOverrides();
 
     console.log('  数据统计: 主动=' + activeSkills.length, '被动=' + passiveSkills.length, '词缀=' + affixes.length, '属性=' + attributes.length, '装备=' + equipmentData.length, '技能库=' + customSkillData.length, '宝石=' + gemData.length);
 
@@ -4560,6 +2761,9 @@ function init() {
     renderHome();
     filterSkills('active');
     filterSkills('passive');
+    renderTagFilterBar('active');
+    renderTagFilterBar('passive');
+    renderCustomSkillTagFilterBar();
     renderAffixes();
     renderAttributes();
     renderEquipment();
@@ -4840,16 +3044,6 @@ function executeSyncBattleData() {
             newActiveSkills.sort((a, b) => a.id.localeCompare(b.id));
             newPassiveSkills.sort((a, b) => a.id.localeCompare(b.id));
 
-            // 保留用户自定义的新增标记
-            newActiveSkills.forEach(s => {
-                const old = activeSkills.find(o => o.id === s.id);
-                if (old && old.isNew) s.isNew = true;
-            });
-            newPassiveSkills.forEach(s => {
-                const old = passiveSkills.find(o => o.id === s.id);
-                if (old && old.isNew) s.isNew = true;
-            });
-
             // 替换数据
             activeSkills.length = 0;
             activeSkills.push(...newActiveSkills);
@@ -4859,11 +3053,6 @@ function executeSyncBattleData() {
             // 词缀Excel
             let affixCount = 0;
             if (affixExcelData && affixExcelData.length > 0) {
-                // 保留新增标记
-                affixExcelData.forEach(a => {
-                    const old = affixes.find(o => o.id === a.id);
-                    if (old && old.isNew) a.isNew = true;
-                });
                 affixes.length = 0;
                 affixes.push(...affixExcelData);
                 affixCount = affixExcelData.length;
@@ -4873,10 +3062,6 @@ function executeSyncBattleData() {
             // 属性CSV
             let attrCount = 0;
             if (attrCSVData && attrCSVData.length > 0) {
-                attrCSVData.forEach(a => {
-                    const old = attributes.find(o => o.id === a.id);
-                    if (old && old.isNew) a.isNew = true;
-                });
                 attributes.length = 0;
                 attributes.push(...attrCSVData);
                 attrCount = attrCSVData.length;
@@ -5212,141 +3397,8 @@ function updateBattleDataCount() {
 
 
 // ============================================================
-// 数据导出/导入
+// 三库（装备库/辅助技能宝石/技能库）数据仅由一键导入提供，只读展示。
+// 首页新增功能产生的数据请存放于独立 localStorage key，勿与导入数据冲突。
 // ============================================================
-function clearAllUserData() {
-    // 统计手动添加的数据量
-    const manualEquip = equipmentData.filter(e => e.source === 'manual');
-    const manualGems = gemData.filter(g => g.source === 'manual');
-    const manualSkills = customSkillData.filter(s => s.source === 'manual');
-    const totalManual = manualEquip.length + manualGems.length + manualSkills.length;
-
-    if (totalManual === 0) {
-        alert('当前没有手动添加的数据可清除。');
-        return;
-    }
-
-    const msg = '确定清除以下手动添加的数据吗？\n\n' +
-        '暗金装备：' + manualEquip.length + ' 件\n' +
-        '辅助宝石：' + manualGems.length + ' 个\n' +
-        '自定义技能：' + manualSkills.length + ' 个\n\n' +
-        '文件导入的数据不受影响。\n此操作不可撤销！';
-
-    // 使用 window.confirm 并严格检查返回值
-    const confirmed = window.confirm(msg);
-    if (confirmed !== true) return;
-
-    // 仅移除手动添加的数据，保留文件同步的数据
-    const newEquip = equipmentData.filter(e => e.source !== 'manual');
-    const newGems = gemData.filter(g => g.source !== 'manual');
-    const newSkills = customSkillData.filter(s => s.source !== 'manual');
-
-    equipmentData.length = 0;
-    equipmentData.push(...newEquip);
-    saveEquipmentData();
-
-    gemData.length = 0;
-    gemData.push(...newGems);
-    saveGemData();
-
-    customSkillData.length = 0;
-    customSkillData.push(...newSkills);
-    saveCustomSkillData();
-
-    // 重新渲染
-    renderEquipment();
-    renderGems();
-    renderCustomSkills();
-    renderHome();
-    renderStats();
-    updateNavCounts();
-
-    alert('✓ 已清除 ' + totalManual + ' 条手动添加的数据，文件导入的数据保留不变。');
-}
-
-function exportUserData() {
-    const data = {
-        version: '1.0',
-        exportDate: new Date().toISOString(),
-        equipment: [],
-        gems: [],
-        newStatusOverrides: {}
-    };
-
-    try {
-        const eq = localStorage.getItem('chronicle_equipment');
-        if (eq) data.equipment = JSON.parse(eq);
-    } catch (e) { console.warn('读取装备数据失败', e); }
-
-    try {
-        const gems = localStorage.getItem('chronicle_gems');
-        if (gems) data.gems = JSON.parse(gems);
-    } catch (e) { console.warn('读取宝石数据失败', e); }
-
-    try {
-        const ns = localStorage.getItem('chronicle_newStatus');
-        if (ns) data.newStatusOverrides = JSON.parse(ns);
-    } catch (e) { console.warn('读取新增状态失败', e); }
-
-    const json = JSON.stringify(data, null, 2);
-    const blob = new Blob([json], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    const dateStr = new Date().toISOString().slice(0, 10);
-    a.download = `chronicle-data-${dateStr}.json`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-}
-
-function importUserData(event) {
-    const file = event.target.files[0];
-    if (!file) return;
-    const resultEl = document.getElementById('importResult');
-
-    const reader = new FileReader();
-    reader.onload = function(e) {
-        try {
-            const data = JSON.parse(e.target.result);
-
-            if (data.equipment && Array.isArray(data.equipment)) {
-                localStorage.setItem('chronicle_equipment', JSON.stringify(data.equipment));
-                equipmentData = data.equipment;
-            }
-
-            if (data.gems && Array.isArray(data.gems)) {
-                localStorage.setItem('chronicle_gems', JSON.stringify(data.gems));
-                gemData = data.gems;
-            }
-
-            if (data.newStatusOverrides && typeof data.newStatusOverrides === 'object') {
-                localStorage.setItem('chronicle_newStatus', JSON.stringify(data.newStatusOverrides));
-            }
-
-            renderEquipment();
-            renderGems();
-            renderCustomSkills();
-            renderStats();
-            updateNavCounts();
-
-            const eqCount = data.equipment ? data.equipment.length : 0;
-            const gemCount = data.gems ? data.gems.length : 0;
-            if (resultEl) {
-                resultEl.className = 'data-mgmt-hint success';
-                resultEl.textContent = `✓ 导入成功！装备 ${eqCount} 件，辅助宝石 ${gemCount} 个`;
-            }
-        } catch (err) {
-            if (resultEl) {
-                resultEl.className = 'data-mgmt-hint error';
-                resultEl.textContent = '✗ 导入失败：文件格式错误';
-            }
-            console.error('导入失败', err);
-        }
-        event.target.value = '';
-    };
-    reader.readAsText(file);
-}
 
 document.addEventListener('DOMContentLoaded', init);

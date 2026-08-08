@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>古荒大陆 - 游戏数据库</title>
-    <link rel="stylesheet" href="style.css?v=14">
+    <link rel="stylesheet" href="style.css?v=23">
 </head>
 <body>
     <div class="background-image"></div>
@@ -149,15 +149,10 @@
                             <input type="text" id="activeSearchInput" class="filter-input" placeholder="技能名称或ID..." oninput="filterSkills('active')">
                         </div>
                         <div class="filter-group">
-                            <label>
-                                <input type="checkbox" id="activeNewOnly" onchange="filterSkills('active')">
-                                仅看新增
-                            </label>
-                        </div>
-                        <div class="filter-group">
                             <button class="equipment-btn equipment-btn-add" onclick="showAddSkillForm('active')">+ 新增技能</button>
                         </div>
                     </div>
+                    <div class="tag-filter-bar" id="activeTagFilters"></div>
                     <div class="skill-grid" id="activeSkillGrid"></div>
                 </div>
 
@@ -180,15 +175,10 @@
                             <input type="text" id="passiveSearchInput" class="filter-input" placeholder="技能名称或ID..." oninput="filterSkills('passive')">
                         </div>
                         <div class="filter-group">
-                            <label>
-                                <input type="checkbox" id="passiveNewOnly" onchange="filterSkills('passive')">
-                                仅看新增
-                            </label>
-                        </div>
-                        <div class="filter-group">
                             <button class="equipment-btn equipment-btn-add" onclick="showAddSkillForm('passive')">+ 新增技能</button>
                         </div>
                     </div>
+                    <div class="tag-filter-bar" id="passiveTagFilters"></div>
                     <div class="skill-grid" id="passiveSkillGrid"></div>
                 </div>
 
@@ -206,12 +196,6 @@
                         <div class="filter-group">
                             <label>搜索:</label>
                             <input type="text" id="affixSearchInput" class="filter-input" placeholder="词缀名称或ID..." oninput="filterAffixes()">
-                        </div>
-                        <div class="filter-group">
-                            <label>
-                                <input type="checkbox" id="affixNewOnly" onchange="filterAffixes()">
-                                仅看新增
-                            </label>
                         </div>
                         <div class="filter-group">
                             <button class="equipment-btn equipment-btn-add" onclick="showAddAffixForm()">+ 新增词缀</button>
@@ -450,18 +434,6 @@
                             <option value="">全部类型</option>
                         </select>
                     </div>
-                    <div class="filter-group">
-                        <label>
-                            <input type="checkbox" id="equipmentNewOnly" onchange="filterEquipments()">
-                            仅看新增
-                        </label>
-                    </div>
-                    <div class="filter-group">
-                        <button class="equipment-btn equipment-btn-add" onclick="showAddEquipmentForm()">+ 添加装备</button>
-                    </div>
-                    <div class="filter-group">
-                        <button class="equipment-btn" style="background:#e67e22;color:white" onclick="showSyncEquipModal()">🔄 来源同步</button>
-                    </div>
                 </div>
                 <div class="equipment-grid" id="equipmentGrid"></div>
             </div>
@@ -478,22 +450,10 @@
                         <input type="text" id="gemSearchInput" class="filter-input" placeholder="宝石名称、ID或效果..." oninput="filterGems()">
                     </div>
                     <div class="filter-group">
-                        <label>类型:</label>
-                        <select id="gemTypeFilter" class="filter-input" onchange="filterGems()">
-                            <option value="">全部类型</option>
+                        <label>阶级:</label>
+                        <select id="gemRankFilter" class="filter-input" onchange="filterGems()">
+                            <option value="">全部阶级</option>
                         </select>
-                    </div>
-                    <div class="filter-group">
-                        <label>
-                            <input type="checkbox" id="gemNewOnly" onchange="filterGems()">
-                            仅看新增
-                        </label>
-                    </div>
-                    <div class="filter-group">
-                        <button class="equipment-btn equipment-btn-add" onclick="showAddGemForm()">+ 添加辅助宝石</button>
-                    </div>
-                    <div class="filter-group">
-                        <button class="equipment-btn" style="background:#9b59b6;color:white" onclick="showSyncGemModal()">🔄 来源同步</button>
                     </div>
                 </div>
                 <div class="equipment-grid" id="gemGrid"></div>
@@ -516,19 +476,8 @@
                             <option value="">全部类型</option>
                         </select>
                     </div>
-                    <div class="filter-group">
-                        <label>
-                            <input type="checkbox" id="customSkillNewOnly" onchange="filterCustomSkills()">
-                            仅看新增
-                        </label>
-                    </div>
-                    <div class="filter-group">
-                        <button class="equipment-btn equipment-btn-add" onclick="showAddCustomSkillForm()">+ 添加技能</button>
-                    </div>
-                    <div class="filter-group">
-                        <button class="equipment-btn" style="background:#e67e22;color:white" onclick="showSyncCustomSkillModal()">🔄 来源同步</button>
-                    </div>
                 </div>
+                <div class="tag-filter-bar" id="customSkillTagFilters"></div>
                 <div class="equipment-grid" id="customSkillGrid"></div>
             </div>
 
@@ -582,13 +531,6 @@
                                 <span class="stat-label">辅助宝石</span>
                             </div>
                         </div>
-                        <div class="stat-card">
-                            <div class="stat-icon">🆕</div>
-                            <div class="stat-info">
-                                <span class="stat-num" id="statNew">0</span>
-                                <span class="stat-label">新增</span>
-                            </div>
-                        </div>
                     </div>
 
                     <h3 class="section-title">主动技能分类分布</h3>
@@ -602,20 +544,6 @@
 
                     <h3 class="section-title">ID段位B+C分布</h3>
                     <div class="chart-container" id="segmentChart"></div>
-
-                    <h3 class="section-title">数据管理</h3>
-                    <div class="data-mgmt-section">
-                        <p class="data-mgmt-desc">导出你添加的装备和辅助宝石数据（保存在浏览器本地），可用于备份或迁移到其他设备。</p>
-                        <div class="data-mgmt-buttons">
-                            <button class="data-mgmt-btn data-mgmt-export" onclick="exportUserData()">📥 导出我的数据</button>
-                            <label class="data-mgmt-btn data-mgmt-import">
-                                📤 导入数据
-                                <input type="file" id="importFileInput" accept=".json" style="display:none" onchange="importUserData(event)">
-                            </label>
-                            <button class="data-mgmt-btn" style="background:#e74c3c;color:white" onclick="clearAllUserData()">🗑️ 清除所有数据</button>
-                        </div>
-                        <p class="data-mgmt-hint" id="importResult"></p>
-                    </div>
                 </div>
             </div>
         </main>
@@ -630,8 +558,8 @@
     </div>
 
     <script src="xlsx.min.js"></script>
-    <script src="auto-import-data.js?v=4" onerror="console.error('⚠️ auto-import-data.js 加载失败！请先运行 node import.js 生成数据文件。')"></script>
-    <script src="data.js?v=4"></script>
-    <script src="app.js?v=6"></script>
+    <script src="auto-import-data.js?v=10" onerror="console.error('⚠️ auto-import-data.js 加载失败！请先运行一键导入生成数据文件。')"></script>
+    <script src="data.js?v=9"></script>
+    <script src="app.js?v=17"></script>
 </body>
 </html>

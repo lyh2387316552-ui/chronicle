@@ -53,7 +53,9 @@ const DEFAULT_CONFIG = {
     "equipPath":       "data-sources/装备表",
     "gemPath":         "data-sources/宝石表",
     "attrPath":        "data-sources/属性表",
-    "skillExcelPath":  "data-sources/技能表"
+    "skillExcelPath":  "data-sources/技能表",
+    "skillTagPath":    "data-sources/技能标签",
+    "iconPath":        "D:/NewProject/preview-templates/icon"
 };
 
 // ============================================================
@@ -169,64 +171,81 @@ function readFileText(filePath) {
     }
 }
 
+// 工作簿解析缓存 (同一文件 mtime 未变则复用解析结果，避免重复解析 Excel)
+const _wbCache = {};
+
 // 读取工作簿 (兼容 .xlsx/.xls/.csv，自动处理编码)
 function readWorkbook(filePath) {
+    // 缓存命中: 文件未变化时直接复用
+    try {
+        const mtime = fs.statSync(filePath).mtimeMs;
+        const key = filePath + '@' + mtime;
+        if (_wbCache[key]) return _wbCache[key];
+    } catch (e) {}
+
+    let wb;
     const ext = path.extname(filePath).toLowerCase();
     if (ext === '.csv') {
         const buf = fs.readFileSync(filePath);
         // 检查 UTF-8 BOM
         if (buf.length >= 3 && buf[0] === 0xEF && buf[1] === 0xBB && buf[2] === 0xBF) {
             const text = buf.slice(3).toString('utf-8');
-            return XLSX.read(text, { type: 'string' });
-        }
-        // 检查 UTF-16 LE BOM
-        if (buf.length >= 2 && buf[0] === 0xFF && buf[1] === 0xFE) {
+            wb = XLSX.read(text, { type: 'string' });
+        } else if (buf.length >= 2 && buf[0] === 0xFF && buf[1] === 0xFE) {
+            // 检查 UTF-16 LE BOM
             const text = buf.toString('utf16le');
-            return XLSX.read(text, { type: 'string' });
+            wb = XLSX.read(text, { type: 'string' });
+        } else if (isValidUTF8(buf)) {
+            // 尝试 UTF-8
+            wb = XLSX.read(buf.toString('utf-8'), { type: 'string' });
+        } else {
+            // 回退: GBK codepage 936
+            console.log('     ⚠️ CSV 文件非 UTF-8 编码，使用 GBK (codepage 936) 解码...');
+            wb = XLSX.read(buf, { type: 'buffer', codepage: 936 });
         }
-        // 尝试 UTF-8
-        if (isValidUTF8(buf)) {
-            return XLSX.read(buf.toString('utf-8'), { type: 'string' });
-        }
-        // 回退: GBK codepage 936
-        console.log('     ⚠️ CSV 文件非 UTF-8 编码，使用 GBK (codepage 936) 解码...');
-        return XLSX.read(buf, { type: 'buffer', codepage: 936 });
     } else {
         const buf = fs.readFileSync(filePath);
-        // .xls 文件可能需要 codepage
         if (ext === '.xls') {
-            return XLSX.read(buf, { type: 'buffer', codepage: 936 });
-        }
-        // .xlsx 文件: 先尝试正常读取，如果检测到中文乱码则使用 GBK 重读
-        const wb = XLSX.read(buf, { type: 'buffer' });
-        // 检测是否乱码: 检查第一个工作表的前3个单元格
-        let hasGarbled = false;
-        for (const sn of wb.SheetNames.slice(0, 1)) {
-            const sheet = wb.Sheets[sn];
-            const ref = sheet['!ref'];
-            if (!ref) continue;
-            const range = XLSX.utils.decode_range(ref);
-            let checked = 0;
-            for (let r = range.s.r; r <= range.e.r && checked < 3; r++) {
-                for (let c = range.s.c; c <= range.e.c && checked < 3; c++) {
-                    const cell = sheet[XLSX.utils.encode_cell({ r, c })];
-                    if (cell && cell.v && typeof cell.v === 'string') {
-                        const v = cell.v;
-                        // 检测 GBK 误读为 UTF-8 的典型乱码模式
-                        if (/[\u00c0-\u00df][\u0080-\u00bf]/.test(v) || /[\u00e0-\u00ef][\u0080-\u00bf]{2}/.test(v)) {
-                            hasGarbled = true;
+            // .xls 文件可能需要 codepage
+            wb = XLSX.read(buf, { type: 'buffer', codepage: 936 });
+        } else {
+            // .xlsx 文件: 先尝试正常读取，如果检测到中文乱码则使用 GBK 重读
+            wb = XLSX.read(buf, { type: 'buffer' });
+            // 检测是否乱码: 检查第一个工作表的前3个单元格
+            let hasGarbled = false;
+            for (const sn of wb.SheetNames.slice(0, 1)) {
+                const sheet = wb.Sheets[sn];
+                const ref = sheet['!ref'];
+                if (!ref) continue;
+                const range = XLSX.utils.decode_range(ref);
+                let checked = 0;
+                for (let r = range.s.r; r <= range.e.r && checked < 3; r++) {
+                    for (let c = range.s.c; c <= range.e.c && checked < 3; c++) {
+                        const cell = sheet[XLSX.utils.encode_cell({ r, c })];
+                        if (cell && cell.v && typeof cell.v === 'string') {
+                            const v = cell.v;
+                            // 检测 GBK 误读为 UTF-8 的典型乱码模式
+                            if (/[\u00c0-\u00df][\u0080-\u00bf]/.test(v) || /[\u00e0-\u00ef][\u0080-\u00bf]{2}/.test(v)) {
+                                hasGarbled = true;
+                            }
+                            checked++;
                         }
-                        checked++;
                     }
                 }
             }
+            if (hasGarbled) {
+                console.log('     ⚠️ 检测到 .xlsx 中文乱码，使用 GBK (codepage 936) 重新解码...');
+                wb = XLSX.read(buf, { type: 'buffer', codepage: 936 });
+            }
         }
-        if (hasGarbled) {
-            console.log('     ⚠️ 检测到 .xlsx 中文乱码，使用 GBK (codepage 936) 重新解码...');
-            return XLSX.read(buf, { type: 'buffer', codepage: 936 });
-        }
-        return wb;
     }
+
+    // 存入缓存
+    try {
+        const mtime = fs.statSync(filePath).mtimeMs;
+        _wbCache[filePath + '@' + mtime] = wb;
+    } catch (e) {}
+    return wb;
 }
 
 // 判断路径是文件还是文件夹
@@ -428,6 +447,7 @@ function parseSkillFolder(folderPath, type) {
             const fileName = path.basename(filePath);
             const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
             let sid = '', name = '', desc = '';
+            let mainTag, normalTag, icon = '';
 
             if (type === 'skill') {
                 sid = (fileName.match(/Basic_Information-(\d+)/) || [])[1] || '';
@@ -447,10 +467,28 @@ function parseSkillFolder(folderPath, type) {
                 desc = data.text || '';
             }
 
+            // 技能图标: JSON 中的 skillIcon 为相对路径(如 jianke/2)，资源存放在 icon/skill/ 下
+            if (data && data.skillIcon && String(data.skillIcon).trim()) {
+                icon = 'skill/' + String(data.skillIcon).trim();
+            }
+
+            // 从战斗数据中提取 mainTag / normalTag (主动技能 Skill、被动技能 Stunt)
+            if ((type === 'skill' || type === 'stunt') && data) {
+                if (data.mainTag !== undefined && data.mainTag !== null) mainTag = data.mainTag;
+                if (data.normalTag !== undefined && data.normalTag !== null) {
+                    normalTag = Array.isArray(data.normalTag)
+                        ? data.normalTag.map(v => String(v).trim()).filter(v => v !== '')
+                        : [String(data.normalTag).trim()].filter(v => v !== '');
+                }
+            }
+
             if (sid && sid !== '0') {
                 if (!result[sid]) result[sid] = { name: '', desc: '' };
                 if (name) result[sid].name = name;
                 if (desc) result[sid].desc = desc;
+                if (icon) result[sid].icon = icon;
+                if (mainTag !== undefined && mainTag !== null && mainTag !== '') result[sid].mainTag = mainTag;
+                if (normalTag !== undefined && normalTag !== null && normalTag.length) result[sid].normalTag = normalTag;
             }
         } catch (err) {
             // 忽略解析错误
@@ -460,7 +498,19 @@ function parseSkillFolder(folderPath, type) {
     return result;
 }
 
-function buildSkillObject(sid, name, desc, type) {
+function buildSkillObject(sid, name, desc, type, mainTag, normalTag, tagDict, icon) {
+    const tags = {
+        main: mainTag !== undefined && mainTag !== null ? String(mainTag).trim() : null,
+        normal: normalTag || []
+    };
+    // 文本标签 (通过 SkillMainTag/SkillNormalTag 字典映射)
+    let tagsText = null;
+    if (tags.main !== null || (tags.normal && tags.normal.length)) {
+        tagsText = {
+            main: tags.main !== null ? ((tagDict && tagDict.main[tags.main]) || tags.main) : '',
+            normal: (tags.normal || []).map(v => (tagDict && tagDict.normal[v]) || v).filter(v => v !== '' && v !== null && v !== undefined)
+        };
+    }
     if (type === 'active') {
         const b = sid[1], c = sid[2];
         const bc = b + c;
@@ -468,7 +518,7 @@ function buildSkillObject(sid, name, desc, type) {
         const category = catMap[bc] || '其他技能';
         const subMap = { '1': '战斗攻击', '2': '法术释放', '4': '增益辅助' };
         const subCategory = subMap[c] || '其他';
-        return { id: sid, name: name || '未命名技能', category, subCategory, isNew: false, description: desc || '' };
+        return { id: sid, name: name || '未命名技能', category, subCategory, isNew: false, description: desc || '', tags: tags, tagsText: tagsText, icon: icon || '' };
     } else {
         const a = sid[0], b = sid[1] || '';
         let category = '其他特技';
@@ -483,7 +533,7 @@ function buildSkillObject(sid, name, desc, type) {
         const c = sid[2] || '';
         const subMap = { '1': '攻击', '2': '法术', '4': '增益', '5': '特殊' };
         const subCategory = (sid === '99998' || sid === '99999') ? '天赋' : (subMap[c] || '通用');
-        return { id: sid, name: name || '未命名特技', category, subCategory, isNew: false, description: desc || '' };
+        return { id: sid, name: name || '未命名特技', category, subCategory, isNew: false, description: desc || '', tags: tags, tagsText: tagsText, icon: icon || '' };
     }
 }
 
@@ -507,6 +557,9 @@ function parseBattleData(config) {
         if (mergedActive[sid]) {
             if (skillMap[sid].name) mergedActive[sid].name = skillMap[sid].name;
             if (skillMap[sid].desc) mergedActive[sid].desc = skillMap[sid].desc;
+            if (skillMap[sid].icon) mergedActive[sid].icon = skillMap[sid].icon;
+            if (skillMap[sid].mainTag !== undefined) mergedActive[sid].mainTag = skillMap[sid].mainTag;
+            if (skillMap[sid].normalTag !== undefined) mergedActive[sid].normalTag = skillMap[sid].normalTag;
         } else {
             mergedActive[sid] = skillMap[sid];
         }
@@ -519,6 +572,9 @@ function parseBattleData(config) {
         if (mergedPassive[sid]) {
             if (stuntMap[sid].name) mergedPassive[sid].name = stuntMap[sid].name;
             if (stuntMap[sid].desc) mergedPassive[sid].desc = stuntMap[sid].desc;
+            if (stuntMap[sid].icon) mergedPassive[sid].icon = stuntMap[sid].icon;
+            if (stuntMap[sid].mainTag !== undefined) mergedPassive[sid].mainTag = stuntMap[sid].mainTag;
+            if (stuntMap[sid].normalTag !== undefined) mergedPassive[sid].normalTag = stuntMap[sid].normalTag;
         } else {
             mergedPassive[sid] = stuntMap[sid];
         }
@@ -526,9 +582,10 @@ function parseBattleData(config) {
 
     // 过滤主动技能：10位ID且首位为1
     const newActiveSkills = [];
+    const tagDict = config.tagDict || null;
     for (const sid in mergedActive) {
         if (sid.length === 10 && sid[0] === '1') {
-            newActiveSkills.push(buildSkillObject(sid, mergedActive[sid].name, mergedActive[sid].desc, 'active'));
+            newActiveSkills.push(buildSkillObject(sid, mergedActive[sid].name, mergedActive[sid].desc, 'active', mergedActive[sid].mainTag, mergedActive[sid].normalTag, tagDict, mergedActive[sid].icon));
         }
     }
 
@@ -536,9 +593,9 @@ function parseBattleData(config) {
     const newPassiveSkills = [];
     for (const sid in mergedPassive) {
         if (sid.length === 10 && (sid[0] === '2' || sid[0] === '3')) {
-            newPassiveSkills.push(buildSkillObject(sid, mergedPassive[sid].name, mergedPassive[sid].desc, 'passive'));
+            newPassiveSkills.push(buildSkillObject(sid, mergedPassive[sid].name, mergedPassive[sid].desc, 'passive', mergedPassive[sid].mainTag, mergedPassive[sid].normalTag, tagDict, mergedPassive[sid].icon));
         } else if (sid === '99998' || sid === '99999') {
-            newPassiveSkills.push(buildSkillObject(sid, mergedPassive[sid].name, mergedPassive[sid].desc, 'passive'));
+            newPassiveSkills.push(buildSkillObject(sid, mergedPassive[sid].name, mergedPassive[sid].desc, 'passive', mergedPassive[sid].mainTag, mergedPassive[sid].normalTag, tagDict, mergedPassive[sid].icon));
         }
     }
 
@@ -754,6 +811,8 @@ function parseEquipment(inputPath) {
     const mod1Col = findCol(legendHeaders, ['modifier1', 'Modifier1', '前缀词条']);
     const mod2Col = findCol(legendHeaders, ['modifier2', 'Modifier2', '后缀词条']);
     const idCol = findCol(legendHeaders, ['id.p', 'id', 'ID']);
+    const iconCol = findCol(legendHeaders, ['icon', 'Icon', 'ICON', '图标']);
+    const spIconCol = findCol(legendHeaders, ['spIcon', 'SpIcon', 'SPICON', '特殊图标']);
 
     const equips = [];
     let eqCounter = 0;
@@ -787,7 +846,9 @@ function parseEquipment(inputPath) {
         equips.push({
             id: 'EQ' + String(eqCounter).padStart(4, '0'),
             name: equipName, type: equipType, effects: effects,
-            sourceId: equipSourceId, isNew: true, source: 'sync'
+            sourceId: equipSourceId, isNew: true, source: 'sync',
+            icon: iconCol ? String(row[iconCol] || '').trim() : '',
+            spIcon: spIconCol ? String(row[spIconCol] || '').trim() : ''
         });
     });
     console.log('     ✓ 解析装备:', equips.length, '件, 效果总数:', equips.reduce((s, e) => s + e.effects.length, 0));
@@ -812,12 +873,15 @@ function parseGems(inputPath) {
     const stuntCol = findCol(headers, ['stunt', 'Stunt', '被动表id']);
     const attrCol = findCol(headers, ['attr', 'Attr', '提供属性']);
     const gemIdCol = findCol(headers, ['id.p', 'id', 'ID']);
+    const rankCol = findCol(headers, ['rank', 'Rank', 'stageLevel', '所属阶级', '阶级', '品阶', '稀有度']);
+    const iconCol = findCol(headers, ['icon', 'Icon', 'ICON', '图标']);
 
     const gems = [];
     let gemCounter = 0;
     rows.forEach(row => {
         const name = nameCol ? (row[nameCol] || '').trim() : '';
-        if (!name) return;
+        // 过滤空行与元数据行(如 stageLevel/string 类型说明行)
+        if (!name || name === 'stageLevel' || name === 'string') return;
         const gemSourceId = gemIdCol ? cleanNum(row[gemIdCol]) : '';
         const desc = descCol ? (row[descCol] || '').trim() : '';
         const effects = [];
@@ -834,10 +898,15 @@ function parseGems(inputPath) {
             }
         }
         gemCounter++;
+        const gemIconRaw = iconCol ? String(row[iconCol] || '').trim() : ''; // 原始引用: 如 skill/sect/101101
+        let gemIcon = gemIconRaw ? 'baoshi/' + gemIconRaw.split('/').pop() : ''; // 目标路径: baoshi/101101
         gems.push({
             id: 'GEM' + String(gemCounter).padStart(4, '0'),
             name: name, type: '辅助宝石', desc: desc, effects: effects,
-            sourceId: gemSourceId, isNew: true, source: 'sync'
+            rank: rankCol ? String(row[rankCol] || '').trim() : '',
+            sourceId: gemSourceId, isNew: true, source: 'sync',
+            icon: gemIcon,
+            iconSrc: gemIconRaw
         });
     });
     console.log('     ✓ 解析宝石:', gems.length, '个');
@@ -845,7 +914,39 @@ function parseGems(inputPath) {
 }
 
 // 技能库 (SkillActive 子表: skill/stunt → 映射战斗数据中的技能ID，读取效果描述)
-function parseSkills(inputPath, skillMap) {
+// 技能标签字典 (战斗技能相关表.xlsx: SkillMainTag / SkillNormalTag → 数字→文本)
+function parseSkillTagDict(inputPath) {
+    console.log('  📖 解析技能标签字典(SkillMainTag/SkillNormalTag)...');
+    let filePath = inputPath;
+    if (isDirectory(inputPath)) {
+        filePath = findDataFile(inputPath, ['.xlsx', '.xls', '.csv'], ['skill', '技能', '标签']);
+        if (!filePath) { console.log('  ⚠️ 文件夹中未找到 Excel/CSV 文件:', inputPath); return null; }
+    }
+    const dict = { main: {}, normal: {} };
+
+    const mt = readSheetByName(filePath, ['SkillMainTag', 'MainTag', '主标签']);
+    const mtIdCol = findCol(mt.headers, ['mainTag.p', 'id', 'ID', 'Id']);
+    const mtTextCol = findCol(mt.headers, ['mainTagText', 'text', 'Text', '名称', 'name']);
+    mt.rows.forEach(row => {
+        const id = mtIdCol ? String(row[mtIdCol] || '').trim() : '';
+        const text = mtTextCol ? String(row[mtTextCol] || '').trim() : '';
+        if (id !== '' && text) dict.main[id] = text;
+    });
+    console.log('     主标签:', Object.keys(dict.main).length, '个');
+
+    const nt = readSheetByName(filePath, ['SkillNormalTag', 'NormalTag', '常规标签']);
+    const ntIdCol = findCol(nt.headers, ['normalTag.p', 'id', 'ID', 'Id']);
+    const ntTextCol = findCol(nt.headers, ['normalTagText', 'text', 'Text', '名称', 'name']);
+    nt.rows.forEach(row => {
+        const id = ntIdCol ? String(row[ntIdCol] || '').trim() : '';
+        const text = ntTextCol ? String(row[ntTextCol] || '').trim() : '';
+        if (id !== '' && text) dict.normal[id] = text;
+    });
+    console.log('     常规标签:', Object.keys(dict.normal).length, '个');
+    return dict;
+}
+
+function parseSkills(inputPath, skillMap, tagDict) {
     console.log('  📖 解析技能库(SkillActive)...');
     let filePath = inputPath;
     if (isDirectory(inputPath)) {
@@ -880,10 +981,27 @@ function parseSkills(inputPath, skillMap) {
         }
         if (!name) name = '未命名技能_' + refId;
 
+        // 标签: 从战斗数据(activeSkills/passiveSkills)提取 mainTag/normalTag，再通过字典映射为文本
+        let tags = null;
+        if (refData && refData.tags) {
+            const mainRaw = refData.tags.main;
+            const normalRaw = refData.tags.normal || [];
+            const mainText = (mainRaw !== null && mainRaw !== '')
+                ? ((tagDict && tagDict.main[mainRaw]) || mainRaw) : '';
+            const normalTexts = normalRaw
+                .map(v => (tagDict && tagDict.normal[v]) || v)
+                .filter(v => v !== '' && v !== null && v !== undefined);
+            if (mainText !== '' || normalTexts.length) {
+                tags = { main: mainText, normal: normalTexts };
+            }
+        }
+
         skills.push({
             id: '',
             name: name, type: type, desc: desc,
             sourceId: refId,
+            tags: tags,
+            icon: refData && refData.icon ? refData.icon : '',
             effects: [{ refId: refId }],
             isNew: true, source: 'sync'
         });
@@ -895,6 +1013,49 @@ function parseSkills(inputPath, skillMap) {
 // ============================================================
 // 主流程
 // ============================================================
+
+// 同步图标资源到项目 icon/ 目录 (幂等: 已存在且大小一致则跳过)
+// 图标引用来自导入数据: 装备 icon/spIcon、宝石 icon、技能 skillIcon
+function syncIcons(importData, config) {
+    const iconRoot = config.iconPath && String(config.iconPath).trim()
+        ? String(config.iconPath).trim().replace(/[\\/]+$/, '')
+        : '';
+    if (!iconRoot) {
+        console.log('  ⚠️ 未配置 iconPath，跳过图标资源同步');
+        return;
+    }
+    const destRoot = path.join(__dirname, 'icon');
+
+    // 收集图标引用: {src: 源目录相对路径, dst: icon/ 下目标路径}
+    // 装备/技能源路径与目标路径一致；宝石源为原始引用(如 skill/sect/101101)，目标为扁平路径(baoshi/101101)
+    const refs = new Map();
+    const addRef = (src, dst) => { if (src && dst) refs.set(src + '|' + dst, { src, dst }); };
+    (importData.equipment || []).forEach(e => { addRef(e.icon, e.icon); addRef(e.spIcon, e.spIcon); });
+    (importData.gems || []).forEach(g => addRef(g.iconSrc || g.icon, g.icon));
+    [...(importData.activeSkills || []), ...(importData.passiveSkills || []), ...(importData.skills || [])].forEach(s => addRef(s.icon, s.icon));
+
+    if (refs.size === 0) {
+        console.log('  📦 图标资源: 无图标引用');
+        return;
+    }
+
+    let copied = 0, skipped = 0, missing = 0;
+    for (const { src, dst } of refs.values()) {
+        const srcPath = path.join(iconRoot, src.replace(/\//g, path.sep) + '.png');
+        const dstPath = path.join(destRoot, dst.replace(/\//g, path.sep) + '.png');
+        if (!fs.existsSync(srcPath)) { missing++; console.log('    ⚠️ 源图标缺失:', src); continue; }
+        if (fs.existsSync(dstPath)) {
+            try {
+                if (fs.statSync(dstPath).size === fs.statSync(srcPath).size) { skipped++; continue; }
+            } catch (e) {}
+        }
+        fs.mkdirSync(path.dirname(dstPath), { recursive: true });
+        fs.copyFileSync(srcPath, dstPath);
+        copied++;
+    }
+    console.log(`  📦 图标资源同步: 新增 ${copied} 个, 已存在跳过 ${skipped} 个, 源缺失 ${missing} 个`);
+}
+
 function main() {
     console.log('╔══════════════════════════════════════╗');
     console.log('║    古荒大陆数据导入工具 v2.0           ║');
@@ -912,10 +1073,11 @@ function main() {
         console.log('📋 读取配置: import-config.json');
     }
 
-    const config = JSON.parse(fs.readFileSync(CONFIG_FILE, 'utf-8'));
+    // 合并默认配置与文件配置 (文件配置优先，缺省字段回退到默认值)
+    const config = { ...DEFAULT_CONFIG, ...JSON.parse(fs.readFileSync(CONFIG_FILE, 'utf-8')) };
 
     // 规范化数据源路径：相对路径(如 data-sources/Skill)解析到本项目目录，绝对路径保持不变
-    const pathKeys = ['skillFolder', 'skillModuleFolder', 'stuntFolder', 'stuntModuleFolder', 'affixPath', 'equipPath', 'gemPath', 'attrPath', 'skillExcelPath'];
+    const pathKeys = ['skillFolder', 'skillModuleFolder', 'stuntFolder', 'stuntModuleFolder', 'affixPath', 'equipPath', 'gemPath', 'attrPath', 'skillExcelPath', 'skillTagPath', 'iconPath'];
     pathKeys.forEach(k => {
         if (config[k] && String(config[k]).trim()) {
             config[k] = resolvePath(String(config[k]).trim());
@@ -935,6 +1097,20 @@ function main() {
     };
 
     let hasAny = false;
+
+    // 0. 技能标签字典 (战斗技能相关表.xlsx: SkillMainTag / SkillNormalTag)
+    //    提前解析并写入 config.tagDict，供战斗数据(parseBattleData)与技能库(parseSkills)使用
+    let tagDict = null;
+    if (config.skillTagPath && config.skillTagPath.trim()) {
+        const tagFp = smartResolvePath(config.skillTagPath.trim());
+        if (tagFp && fs.existsSync(tagFp)) {
+            tagDict = parseSkillTagDict(tagFp);
+            config.tagDict = tagDict;
+        } else {
+            console.log('  ⚠️ 技能标签字典路径不存在:', config.skillTagPath.trim());
+        }
+        console.log('');
+    }
 
     // 1. 技能数据 (主动 + 被动)
     if ((config.skillFolder && config.skillFolder.trim()) ||
@@ -1019,10 +1195,12 @@ function main() {
         const fp = smartResolvePath(config.skillExcelPath.trim());
         if (fp && fs.existsSync(fp)) {
             try {
-                // 构建战斗数据技能映射 (id → {name, desc})
+                // 构建战斗数据技能映射 (id → {name, desc, tags})
                 const skillMap = {};
                 [...(importData.activeSkills || []), ...(importData.passiveSkills || [])].forEach(s => { if (s.id) skillMap[s.id] = s; });
-                importData.skills = parseSkills(fp, skillMap);
+                // 技能标签字典 (步骤0已解析)
+                const tagDict = config.tagDict || null;
+                importData.skills = parseSkills(fp, skillMap, tagDict);
                 if (importData.skills) hasAny = true;
             } catch (err) {
                 console.log('  ❌ 技能库解析失败:', err.message);
@@ -1056,6 +1234,11 @@ function main() {
     if (importData.equipment) console.log('  装备: ' + importData.equipment.length + ' 件');
     if (importData.gems) console.log('  宝石: ' + importData.gems.length + ' 个');
     if (importData.skills) console.log('  技能库: ' + importData.skills.length + ' 个');
+    console.log('');
+
+    // 7. 同步图标资源 (已有资源自动跳过)
+    syncIcons(importData, config);
+
     console.log('');
     console.log('现在可以打开 index.html 查看数据。');
 }

@@ -371,190 +371,26 @@ const originalActiveSkills = activeSkills.map(s => ({ ...s }));
 const originalPassiveSkills = passiveSkills.map(s => ({ ...s }));
 
 // ============================================================
-// 装备数据 - 用户自定义，存储于 localStorage
+// 装备数据 - 仅由一键导入 (auto-import-data.js) 填充
 // 结构: { id, name, type, effects: [{ refId, refType }] }
-// effects 中的 refId 填写技能ID或词缀ID，自动匹配对应描述
+// 只读展示，页面内不可新增/修改/删除
+// 首页新增功能产生的数据请存放于独立 localStorage key，勿与导入数据冲突
 // ============================================================
 let equipmentData = [];
 
 // ============================================================
-// 数据清理 (v6): 一次性清除暗金装备与技能库历史数据
-// 仅执行一次，之后用户手动添加/同步的数据不受影响
-// ============================================================
-(function clearLegacyEquipAndSkill() {
-    try {
-        const CLEAR_FLAG = 'v6_cleared_equip_skill';
-        if (localStorage.getItem('chronicle_clear_flag') !== CLEAR_FLAG) {
-            localStorage.removeItem('chronicle_equipment');
-            localStorage.removeItem('chronicle_equipment_version');
-            localStorage.removeItem('chronicle_custom_skills');
-            localStorage.setItem('chronicle_clear_flag', CLEAR_FLAG);
-            console.log('🧹 已清除暗金装备与技能库历史数据');
-        }
-    } catch (e) {}
-})();
-
-// ============================================================
-// 默认传奇装备数据 (从装备表 LegendEquip 导入)
-// ============================================================
-const defaultLegendEquipment = [
-    // 待填充：默认传奇装备数据
-];
-
-function loadEquipmentData() {
-    // 如果自动导入数据已加载，不再从 localStorage 重新读取（避免版本检查覆盖）
-    if (window.__AUTO_IMPORT_DATA__ && window.__AUTO_IMPORT_DATA__.equipment) {
-        console.log('  ℹ️ 装备数据已由自动导入加载，跳过 loadEquipmentData');
-        return;
-    }
-    try {
-        // 版本检查：数据清空重建，清除所有旧缓存
-        const EQUIP_DATA_VERSION = 'v5_autoimport';
-        const savedVersion = localStorage.getItem('chronicle_equipment_version');
-        const versionChanged = savedVersion !== EQUIP_DATA_VERSION;
-
-        const saved = localStorage.getItem('chronicle_equipment');
-        if (saved && !versionChanged) {
-            equipmentData = JSON.parse(saved);
-            // 合并：用默认数据更新已有传奇装备（更新effects + 移除isNew标记）
-            const defaultMap = {};
-            defaultLegendEquipment.forEach(eq => { defaultMap[eq.id] = eq; });
-            equipmentData.forEach(eq => {
-                if (defaultMap[eq.id]) {
-                    // 保留用户自定义的name和type，但更新effects为最新映射
-                    const def = defaultMap[eq.id];
-                    eq.effects = JSON.parse(JSON.stringify(def.effects));
-                    // 移除isNew标记（v3版本：传奇装备不再标记为新增）
-                    delete eq.isNew;
-                }
-            });
-            // 合并：添加默认传奇装备中不存在于已保存数据的项
-            const existingIds = new Set(equipmentData.map(e => e.id));
-            defaultLegendEquipment.forEach(eq => {
-                if (!existingIds.has(eq.id)) {
-                    equipmentData.push(JSON.parse(JSON.stringify(eq)));
-                }
-            });
-            // 清理：移除空效果条目（refId 为空字符串的）
-            equipmentData.forEach(eq => {
-                if (eq.effects) {
-                    eq.effects = eq.effects.filter(e => e && e.refId && e.refId.trim());
-                }
-            });
-            if (versionChanged) {
-                localStorage.setItem('chronicle_equipment_version', EQUIP_DATA_VERSION);
-                saveEquipmentData();
-                // 清除 chronicle_new_status 中默认传奇装备的isNew记录
-                try {
-                    const nsRaw = localStorage.getItem('chronicle_new_status');
-                    if (nsRaw) {
-                        const ns = JSON.parse(nsRaw);
-                        defaultLegendEquipment.forEach(eq => { delete ns[eq.id]; });
-                        localStorage.setItem('chronicle_new_status', JSON.stringify(ns));
-                    }
-                } catch (e) {}
-            }
-        } else {
-            // 首次加载或版本变更
-            if (saved) {
-                // 版本变更但有已保存数据：保留数据，只更新版本号
-                equipmentData = JSON.parse(saved);
-            } else {
-                // 首次加载，使用默认数据（当前为空）
-                equipmentData = JSON.parse(JSON.stringify(defaultLegendEquipment));
-            }
-            if (versionChanged) {
-                localStorage.setItem('chronicle_equipment_version', EQUIP_DATA_VERSION);
-                saveEquipmentData();
-            }
-        }
-    } catch (e) {
-        console.warn('加载装备数据失败:', e);
-        equipmentData = JSON.parse(JSON.stringify(defaultLegendEquipment));
-    }
-}
-
-function saveEquipmentData() {
-    try {
-        localStorage.setItem('chronicle_equipment', JSON.stringify(equipmentData));
-    } catch (e) {
-        console.warn('保存装备数据失败:', e);
-    }
-}
-
-function generateEquipmentId() {
-    const maxId = equipmentData.reduce((max, e) => {
-        const num = parseInt(e.id.replace('EQ', ''));
-        return num > max ? num : max;
-    }, 0);
-    return 'EQ' + String(maxId + 1).padStart(4, '0');
-}
-
-// ============================================================
-// 辅助技能宝石数据 (localStorage存储)
+// 辅助技能宝石数据 - 仅由一键导入 (auto-import-data.js) 填充
+// 只读展示，页面内不可新增/修改/删除
+// 首页新增功能产生的数据请存放于独立 localStorage key，勿与导入数据冲突
 // ============================================================
 let gemData = [];
 
-(function loadGemData() {
-    try {
-        const saved = localStorage.getItem('chronicle_gems');
-        if (saved) {
-            gemData = JSON.parse(saved);
-        }
-    } catch (e) {
-        console.warn('加载宝石数据失败:', e);
-        gemData = [];
-    }
-})();
-
-function saveGemData() {
-    try {
-        localStorage.setItem('chronicle_gems', JSON.stringify(gemData));
-    } catch (e) {
-        console.warn('保存宝石数据失败:', e);
-    }
-}
-
-function generateGemId() {
-    const maxId = gemData.reduce((max, g) => {
-        const num = parseInt(g.id.replace('GEM', ''));
-        return num > max ? num : max;
-    }, 0);
-    return 'GEM' + String(maxId + 1).padStart(4, '0');
-}
-
 // ============================================================
-// 自定义技能数据 (localStorage存储)
+// 技能库数据 - 仅由一键导入 (auto-import-data.js) 填充
+// 只读展示，页面内不可新增/修改/删除
+// 首页新增功能产生的数据请存放于独立 localStorage key，勿与导入数据冲突
 // ============================================================
 let customSkillData = [];
-
-(function loadCustomSkillData() {
-    try {
-        const saved = localStorage.getItem('chronicle_custom_skills');
-        if (saved) {
-            customSkillData = JSON.parse(saved);
-        }
-    } catch (e) {
-        console.warn('加载自定义技能数据失败:', e);
-        customSkillData = [];
-    }
-})();
-
-function saveCustomSkillData() {
-    try {
-        localStorage.setItem('chronicle_custom_skills', JSON.stringify(customSkillData));
-    } catch (e) {
-        console.warn('保存自定义技能数据失败:', e);
-    }
-}
-
-function generateCustomSkillId() {
-    const maxId = customSkillData.reduce((max, s) => {
-        const num = parseInt(s.id.replace('CS', ''));
-        return num > max ? num : max;
-    }, 0);
-    return 'CS' + String(maxId + 1).padStart(4, '0');
-}
 
 // ============================================================
 // 传奇装备词条映射表 (Modifier ID → 描述+效果ID)
@@ -622,7 +458,6 @@ function findRefData(refId) {
         if (data.equipment && data.equipment.length > 0) {
             equipmentData.length = 0;
             equipmentData.push(...data.equipment);
-            try { saveEquipmentData(); } catch(e) { console.warn('  ⚠️ saveEquipmentData 失败:', e); }
             console.log('  ✓ 装备:', equipmentData.length, '件');
         }
     } catch(e) { console.error('  ❌ 装备加载失败:', e); }
@@ -645,48 +480,35 @@ function findRefData(refId) {
         }
     } catch(e) { console.error('  ❌ 被动技能加载失败:', e); }
 
-    // 技能库: 不再自动同步导入的技能 (技能库仅保留手动添加的数据)
-
     // 宝石
     try {
         if (data.gems && data.gems.length > 0) {
             gemData.length = 0;
             gemData.push(...data.gems);
-            try { saveGemData(); } catch(e) { console.warn('  ⚠️ saveGemData 失败:', e); }
             console.log('  ✓ 宝石:', gemData.length, '个');
         }
     } catch(e) { console.error('  ❌ 宝石加载失败:', e); }
 
     // 技能库 (SkillActive 子表: skill/stunt → 映射战斗数据技能ID)
+    // 数据源仅为一键导入，导入时整体覆盖
     try {
         if (data.skills && data.skills.length > 0) {
-            // 保留手动添加的技能，清除旧的 sync 来源技能
-            const manualSkills = customSkillData.filter(s => s.source === 'manual');
             customSkillData.length = 0;
-            customSkillData.push(...manualSkills);
-
-            // 去重：已存在的手动技能不再添加
-            const existingIds = {};
-            customSkillData.forEach(s => { if (s.sourceId) existingIds[s.sourceId] = s; });
-
-            let skillCounter = customSkillData.length;
-            data.skills.forEach(skill => {
-                if (existingIds[skill.sourceId]) return; // 跳过已存在
-                skillCounter++;
+            data.skills.forEach((skill, idx) => {
                 customSkillData.push({
-                    id: 'CS' + String(skillCounter).padStart(4, '0'),
+                    id: skill.id || 'CS' + String(idx + 1).padStart(4, '0'),
                     name: skill.name || '未命名技能',
                     type: skill.type || '未分类',
                     desc: skill.desc || '',
                     sourceId: skill.sourceId,
+                    tags: skill.tags || null,
+                    icon: skill.icon || '',
                     effects: skill.effects || [],
                     isNew: true,
                     source: 'sync',
                     createdAt: new Date().toISOString()
                 });
-                existingIds[skill.sourceId] = true;
             });
-            try { saveCustomSkillData(); } catch(e) { console.warn('  ⚠️ saveCustomSkillData 失败:', e); }
             console.log('  ✓ 技能库:', customSkillData.length, '个');
         }
     } catch(e) { console.error('  ❌ 技能库加载失败:', e); }

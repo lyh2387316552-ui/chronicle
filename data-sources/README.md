@@ -14,6 +14,7 @@
 | `装备表/` | 装备数据（LegendEquip + Modifier 子表） | Excel(`.xlsx`/`.xls`)/CSV |
 | `宝石表/` | 辅助宝石数据（SkillGem 子表） | Excel(`.xlsx`/`.xls`)/CSV |
 | `技能表/` | 技能库数据（SkillActive 子表） | Excel(`.xlsx`/`.xls`)/CSV |
+| `技能标签/` | 技能标签字典（SkillMainTag + SkillNormalTag 子表） | Excel(`.xlsx`/`.xls`)/CSV |
 
 ## 使用步骤
 
@@ -30,7 +31,13 @@
 | 装备库 | `LegendEquip` / `装备` | name + desc999 → 装备名称；modifier1 + modifier2 → 词条ID |
 | 装备库词条 | `Modifier` / `词条` | id → 词条ID；stunt / affix / attr → 战斗数据中的被动/词缀/属性效果 |
 | 宝石库 | `SkillGem` / `宝石` | name → 名称；desc → 描述；skillAffix / stunt / attr → 映射词缀/被动/属性 |
-| 技能库 | `SkillActive` / `技能` | skill / stunt → 映射战斗数据中的技能ID，读取效果描述 |
+| 技能库 | `SkillActive` / `技能` | skill / stunt → 映射战斗数据中的技能ID，读取效果描述与标签（mainTag / normalTag） |
+| 技能标签 | `SkillMainTag` / `主标签` + `SkillNormalTag` / `常规标签` | 标签ID → 标签文本（如 1=攻击、2=法术；1=近战、3=火焰） |
+
+## 技能标签说明
+
+- 技能库中每个技能的 `mainTag` / `normalTag` 从战斗数据（`Skill/`、`Stunt/` 文件夹 JSON 中的 `mainTag`、`normalTag` 字段）提取
+- 数字标签通过"技能标签"文件夹 Excel 的 `SkillMainTag` / `SkillNormalTag` 子表映射为文本（如 `mainTag=1` → 攻击，`normalTag=[3,4]` → 火焰、冰霜）
 
 ## 词缀 / 属性表说明
 

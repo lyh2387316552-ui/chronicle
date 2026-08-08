@@ -77,10 +77,17 @@ node import.js
 | 属性 | `data-sources/属性表/` | Excel/CSV（含属性子表） |
 | 装备 | `data-sources/装备表/` | Excel（含 LegendEquip + Modifier 子表） |
 | 辅助宝石 | `data-sources/宝石表/` | Excel（含 SkillGem 子表） |
+| 技能标签字典 | `data-sources/技能标签/` | Excel（含 SkillMainTag + SkillNormalTag 子表） |
 
 **说明**：
 - 词缀与属性共用 `属性表` 文件夹，系统自动查找含"词缀/Affix"关键字的工作表作为词缀数据，含 `attrID/name/desc` 列的作为属性数据
 - 路径支持子目录递归扫描，也可在 `import-config.json` 中改用绝对路径指向其他位置
+
+### 技能标签
+
+- 主动技能从 `data-sources/Skill/*.json` 的 `mainTag`/`normalTag` 提取数字标签，被动技能从 `data-sources/Stunt/*.json` 提取
+- 标签文本由 `技能标签` Excel 的 SkillMainTag / SkillNormalTag 子表映射（1=攻击、2=法术、3=召唤、4=光环；0=投射物、1=近战、2=物理…）
+- 技能库卡片与战斗数据的主动/被动技能卡片均显示标签；战斗数据页顶部提供标签筛选栏（参考 tlidb 形态），可点击 `mainTag`（主标签）与 `normalTag`（常规标签）筛选对应类型技能
 
 ### 编码处理
 
@@ -112,7 +119,7 @@ ID 格式：`A+B+C+D+E+000F+G`（10 位数字）
 
 | 页面 | 功能 |
 |------|------|
-| 首页 | 数据概览、核心模块入口、新增内容 |
+| 首页 | 数据概览、核心模块入口、数据数量 |
 | 战斗数据 | 主动技能 / 被动技能 / 词缀库 / 属性库（Tab 切换） |
 | 暗金装备 | 装备列表与详情（效果词条、词缀映射） |
 | 辅助宝石 | 宝石效果展示 |
