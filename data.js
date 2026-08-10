@@ -393,6 +393,33 @@ let gemData = [];
 let customSkillData = [];
 
 // ============================================================
+// 职业天赋系统数据 - 仅由一键导入 (auto-import-data.js) 填充
+// 结构: [{ id, occupation, name, talentPoints: [{ id, name, desc, occupation, viewPos:{x,y}, size, icon, iconSrc, linkPoint }] }]
+// 只读展示，页面内不可新增/修改/删除
+// ============================================================
+let occupationData = [];
+
+// ============================================================
+// 视频库数据 - 视频资源清单
+// 结构: [{ name, file }]  name=技能名称(去除扩展名), file=视频文件名
+// 来源优先级: 一键导入生成的 auto-import-data.js (videos 字段) > 内置默认清单
+// 用户自行将视频文件放入 videos/ 文件夹后，重新运行一键导入即可自动更新清单
+// ============================================================
+let videoData = [];
+
+// 内置默认视频清单 (未运行一键导入时的兜底，与 videos/ 文件夹内容对应)
+const DEFAULT_VIDEO_FILES = [
+    '专注斩.mp4'
+];
+
+// ============================================================
+// 魔宠数据 - 由一键导入 (auto-import-data.js pets 字段) 填充
+// 结构: [{ id, name, quality(3蓝/4紫/6橙/8红), pic, getBg, getPic,
+//          stars: [{ star, skillAffix:[{id,value}], stunt:[id], attr:[{id,value}] }] }]
+// ============================================================
+let petData = [];
+
+// ============================================================
 // 传奇装备词条映射表 (Modifier ID → 描述+效果ID)
 // ============================================================
 const legendModifierMap = {
@@ -512,6 +539,39 @@ function findRefData(refId) {
             console.log('  ✓ 技能库:', customSkillData.length, '个');
         }
     } catch(e) { console.error('  ❌ 技能库加载失败:', e); }
+
+    // 职业天赋系统 (SkillPassive 子表: occupation >= 1 的天赋点)
+    try {
+        if (data.occupations && data.occupations.length > 0) {
+            occupationData.length = 0;
+            occupationData.push(...data.occupations);
+            const totalPoints = occupationData.reduce((s, o) => s + o.talentPoints.length, 0);
+            console.log('  ✓ 职业天赋:', occupationData.length, '个职业,', totalPoints, '个天赋点');
+        }
+    } catch(e) { console.error('  ❌ 职业天赋加载失败:', e); }
+
+    // 视频库 (videos 字段: import.js 扫描 videos/ 文件夹生成)
+    try {
+        if (data.videos && data.videos.length > 0) {
+            videoData.length = 0;
+            videoData.push(...data.videos.map(v => typeof v === 'string' ? { name: v.replace(/\.[^.]+$/, ''), file: v } : v));
+            console.log('  ✓ 视频库:', videoData.length, '个');
+        }
+    } catch(e) { console.error('  ❌ 视频库加载失败:', e); }
+
+    // 魔宠表 (pets 字段: import.js 解析魔宠表.xlsx 生成)
+    try {
+        if (data.pets && data.pets.length > 0) {
+            petData.length = 0;
+            petData.push(...data.pets);
+            console.log('  ✓ 魔宠表:', petData.length, '个魔宠');
+        }
+    } catch(e) { console.error('  ❌ 魔宠表加载失败:', e); }
+
+    // 无导入视频清单时使用内置默认清单 (与 videos/ 文件夹兜底对应)
+    if (videoData.length === 0) {
+        videoData = DEFAULT_VIDEO_FILES.map(f => ({ name: f.replace(/\.[^.]+$/, ''), file: f }));
+    }
 
     console.log('  自动导入完成');
 })();

@@ -7,7 +7,8 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>古荒大陆 - 游戏数据库</title>
-    <link rel="stylesheet" href="style.css?v=23">
+    <link rel="icon" type="image/png" href="assets/logo.png">
+    <link rel="stylesheet" href="style.css?v=62">
 </head>
 <body>
     <div class="background-image"></div>
@@ -15,43 +16,40 @@
         <!-- Top Navbar -->
         <nav class="sidebar">
             <div class="sidebar-header">
-                <a href="#" class="logo" onclick="navigateTo('home');return false;">📜 古荒大陆</a>
+                <a href="#" class="logo" onclick="navigateTo('home');return false;"><img src="assets/logo.png" alt="" class="logo-icon">古荒大陆</a>
             </div>
             <div class="sidebar-search">
-                <input type="text" id="globalSearch" placeholder="🔍 搜索..." class="sidebar-search-input">
+                <input type="text" id="globalSearch" placeholder="搜索..." class="sidebar-search-input">
             </div>
             <ul class="nav-list">
                 <li class="nav-item">
                     <a href="#" class="nav-link active" data-page="home">
-                        <span class="nav-icon">🏠</span> 首页
+                        首页
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link" data-page="equipment">
-                        <span class="nav-icon">📦</span> 装备
-                        <span class="nav-badge" id="equipmentCount">0</span>
+                        装备
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link" data-page="gems">
-                        <span class="nav-icon">💎</span> 辅助宝石
-                        <span class="nav-badge" id="gemCount">0</span>
+                        辅助宝石
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link" data-page="custom-skills">
-                        <span class="nav-icon">🏹</span> 技能库
-                        <span class="nav-badge" id="customSkillCount">0</span>
+                        技能库
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link" data-page="stats">
-                        <span class="nav-icon">📊</span> 统计
+                    <a href="#" class="nav-link" data-page="occupations">
+                        职业天赋
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link" data-page="skill-rules">
-                        <span class="nav-icon">📐</span> ID规则
+                    <a href="#" class="nav-link" data-page="pets">
+                        魔宠
                     </a>
                 </li>
             </ul>
@@ -77,6 +75,14 @@
                             <span class="hero-stat-num" id="heroCustomSkill">0</span>
                             <span class="hero-stat-label">技能库数量</span>
                         </div>
+                        <div class="hero-stat">
+                            <span class="hero-stat-num" id="heroOccupation">0</span>
+                            <span class="hero-stat-label">职业天赋数量</span>
+                        </div>
+                        <div class="hero-stat">
+                            <span class="hero-stat-num" id="heroPet">0</span>
+                            <span class="hero-stat-label">魔宠数量</span>
+                        </div>
                     </div>
                 </div>
 
@@ -98,19 +104,25 @@
                             <h4>辅助宝石</h4>
                             <p>辅助技能宝石效果管理</p>
                         </div>
+                        <div class="module-card" onclick="navigateTo('occupations')">
+                            <div class="module-icon">⚜️</div>
+                            <h4>职业天赋</h4>
+                            <p>职业天赋加点与效果预览</p>
+                        </div>
+                        <div class="module-card" onclick="navigateTo('pets')">
+                            <div class="module-icon">🐾</div>
+                            <h4>魔宠</h4>
+                            <p>魔宠星级效果与立绘展示</p>
+                        </div>
                         <div class="module-card" onclick="navigateTo('battle-data')">
                             <div class="module-icon">⚔️</div>
                             <h4>战斗数据</h4>
                             <p>主动技能、被动技能、词缀与属性</p>
                         </div>
-                        <div class="module-card">
+                        <div class="module-card" onclick="navigateTo('others')">
                             <div class="module-icon">🗂️</div>
                             <h4>其他</h4>
                             <p>更多功能模块</p>
-                            <div class="module-sub-links">
-                                <a href="#" onclick="navigateTo('skill-rules');return false;">📐 ID规则说明</a>
-                                <a href="#" onclick="navigateTo('stats');return false;">📊 数据统计</a>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -224,194 +236,298 @@
                 </div>
             </div>
 
-            <!-- Skill Rules Page -->
-            <div class="page" id="page-skill-rules">
+            <!-- Others Page -->
+            <div class="page" id="page-others">
                 <div class="page-header">
-                    <h2 class="page-title">📐 ID规则说明</h2>
-                    <p class="page-desc">战斗编辑器配置技能ID规则</p>
+                    <h2 class="page-title">🗂️ 其他功能</h2>
+                    <p class="page-desc">ID规则说明与数据统计</p>
                 </div>
-                <div class="rules-content">
-                    <div class="rule-card">
-                        <h3>ID结构公式</h3>
-                        <div class="id-formula">A + B + C + D + E + 000F + G</div>
-                        <p class="rule-desc">技能ID由7个段位组成，共10位数字。每个段位代表不同的含义。</p>
-                    </div>
 
-                    <div class="rule-segments">
-                        <h3>段位说明</h3>
-                        <table class="rule-table">
-                            <thead>
-                                <tr>
-                                    <th>段位</th>
-                                    <th>名称</th>
-                                    <th>说明</th>
-                                    <th>取值</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>A</strong></td>
-                                    <td>技能类型</td>
-                                    <td>区分主动/被动</td>
-                                    <td>
-                                        <span class="code-tag tag-active">1 = 主动技能</span><br>
-                                        <span class="code-tag tag-passive">2 = 被动技能</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><strong>B</strong></td>
-                                    <td>技能大类</td>
-                                    <td>技能归属的大分类，区分常规技能系与装备系</td>
-                                    <td>1~9（数字越大分类越特殊）</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>C</strong></td>
-                                    <td>技能子类</td>
-                                    <td>在B段大类下细分的功能类型</td>
-                                    <td>1~9</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>D</strong></td>
-                                    <td>效果类型</td>
-                                    <td>技能的效果方向，如伤害/控制/位移等</td>
-                                    <td>0~9</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>E</strong></td>
-                                    <td>元素/属性</td>
-                                    <td>元素属性标记，如火焰/冰霜/闪电等</td>
-                                    <td>0~9</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>000F</strong></td>
-                                    <td>序号</td>
-                                    <td>4位序号（000前缀+F序号）</td>
-                                    <td>0001~0009</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>G</strong></td>
-                                    <td>等级标识</td>
-                                    <td>版本/等级标记</td>
-                                    <td>通常为0</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                <!-- 页面内独有小导航 -->
+                <div class="others-tabs">
+                    <button class="others-tab active" id="others-tab-rules" onclick="switchOthersTab('rules')">📐 ID规则说明</button>
+                    <button class="others-tab" id="others-tab-stats" onclick="switchOthersTab('stats')">📊 数据统计</button>
+                </div>
 
-                    <div class="rule-examples">
-                        <h3>实例解析</h3>
-                        <div class="example-cards">
-                            <div class="example-card">
-                                <div class="example-id">1110000010</div>
-                                <div class="example-breakdown">
-                                    <span class="seg seg-a">A=1</span>
-                                    <span class="seg">B=1</span>
-                                    <span class="seg">C=1</span>
-                                    <span class="seg">D=0</span>
-                                    <span class="seg">E=0</span>
-                                    <span class="seg">000F=001</span>
-                                    <span class="seg">G=0</span>
+                <!-- ID规则说明面板 -->
+                <div class="others-panel active" id="others-panel-rules">
+                    <div class="rules-content">
+                        <div class="rule-card">
+                            <h3>ID结构公式</h3>
+                            <div class="id-formula">A + B + C + D + E + 000F + G</div>
+                            <p class="rule-desc">技能ID由7个段位组成，共10位数字。每个段位代表不同的含义。</p>
+                        </div>
+
+                        <div class="rule-segments">
+                            <h3>段位说明</h3>
+                            <table class="rule-table">
+                                <thead>
+                                    <tr>
+                                        <th>段位</th>
+                                        <th>名称</th>
+                                        <th>说明</th>
+                                        <th>取值</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>A</strong></td>
+                                        <td>技能类型</td>
+                                        <td>技能的分类</td>
+                                        <td>
+                                            <span class="code-tag tag-active">1-技能（主动）</span><br>
+                                            <span class="code-tag tag-passive">2-特技（被动）</span><br>
+                                            <span class="code-tag">3-辅助</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>B</strong></td>
+                                        <td>技能归属</td>
+                                        <td>技能归属于哪类单位</td>
+                                        <td>
+                                            <span class="code-tag">1-角色</span><br>
+                                            <span class="code-tag">2-怪物</span><br>
+                                            <span class="code-tag">3-装备</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>C</strong></td>
+                                        <td>技能类别</td>
+                                        <td>技能的功能类别</td>
+                                        <td>
+                                            <span class="code-tag">1-攻击</span><br>
+                                            <span class="code-tag">2-法术</span><br>
+                                            <span class="code-tag">3-召唤</span><br>
+                                            <span class="code-tag">4-增益</span><br>
+                                            <span class="code-tag">5-天赋/升华</span><br>
+                                            <span class="code-tag">6-宠物相关</span> <span class="unused-tag">已无用</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>D</strong></td>
+                                        <td>技能效果</td>
+                                        <td>效果的类型</td>
+                                        <td>
+                                            <span class="code-tag">0-技能相关（默认）</span><br>
+                                            <span class="code-tag">1-专属子弹相关</span><br>
+                                            <span class="code-tag">2-专属BUFF相关</span><br>
+                                            <span class="code-tag">3-专属词缀相关</span> <span class="unused-tag">已无用，查找词缀库寻找</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>E</strong></td>
+                                        <td>效果序号</td>
+                                        <td>技能配置默认填0；其他效果如子弹默认后延</td>
+                                        <td>0~9</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>000F</strong></td>
+                                        <td>技能序号</td>
+                                        <td>第几个技能</td>
+                                        <td>0001~0009</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>G</strong></td>
+                                        <td>子技能序号</td>
+                                        <td>默认填0（子技能拓展，向该技能衍生的第几个子技能）</td>
+                                        <td>0、1、2…</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="rule-examples">
+                            <h3>举例说明</h3>
+                            <div class="example-cards">
+                                <div class="example-card">
+                                    <div class="example-id">1110000010</div>
+                                    <div class="example-breakdown">
+                                        <span class="seg seg-a">A=1</span>
+                                        <span class="seg">B=1</span>
+                                        <span class="seg">C=1</span>
+                                        <span class="seg">D=0</span>
+                                        <span class="seg">E=0</span>
+                                        <span class="seg">000F=001</span>
+                                        <span class="seg">G=0</span>
+                                    </div>
+                                    <div class="example-result">
+                                        <strong>闪电箭</strong> · 技能（主动）· 角色 · 攻击
+                                    </div>
                                 </div>
-                                <div class="example-result">
-                                    <strong>月光斩</strong> · 主动技能 · 战斗技能类
+                                <div class="example-card">
+                                    <div class="example-id">1111000010</div>
+                                    <div class="example-breakdown">
+                                        <span class="seg seg-a">A=1</span>
+                                        <span class="seg">B=1</span>
+                                        <span class="seg">C=1</span>
+                                        <span class="seg seg-d">D=1</span>
+                                        <span class="seg">E=0</span>
+                                        <span class="seg">000F=001</span>
+                                        <span class="seg">G=0</span>
+                                    </div>
+                                    <div class="example-result">
+                                        <strong>闪电箭子弹1</strong> · 专属子弹（D=1）
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="example-card">
-                                <div class="example-id">1120000030</div>
-                                <div class="example-breakdown">
-                                    <span class="seg seg-a">A=1</span>
-                                    <span class="seg">B=1</span>
-                                    <span class="seg seg-c">C=2</span>
-                                    <span class="seg">D=0</span>
-                                    <span class="seg">E=0</span>
-                                    <span class="seg">000F=003</span>
-                                    <span class="seg">G=0</span>
+                                <div class="example-card">
+                                    <div class="example-id">1111100010</div>
+                                    <div class="example-breakdown">
+                                        <span class="seg seg-a">A=1</span>
+                                        <span class="seg">B=1</span>
+                                        <span class="seg">C=1</span>
+                                        <span class="seg seg-d">D=1</span>
+                                        <span class="seg seg-e">E=1</span>
+                                        <span class="seg">000F=001</span>
+                                        <span class="seg">G=0</span>
+                                    </div>
+                                    <div class="example-result">
+                                        <strong>闪电箭子弹2</strong> · 专属子弹（E=1 后延）
+                                    </div>
                                 </div>
-                                <div class="example-result">
-                                    <strong>闪现</strong> · 主动技能 · 法术技能类 (新增)
+                                <div class="example-card">
+                                    <div class="example-id">1110000011</div>
+                                    <div class="example-breakdown">
+                                        <span class="seg seg-a">A=1</span>
+                                        <span class="seg">B=1</span>
+                                        <span class="seg">C=1</span>
+                                        <span class="seg">D=0</span>
+                                        <span class="seg">E=0</span>
+                                        <span class="seg">000F=001</span>
+                                        <span class="seg seg-g">G=1</span>
+                                    </div>
+                                    <div class="example-result">
+                                        <strong>闪电箭子技能</strong> · 子技能（G=1）
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="example-card">
-                                <div class="example-id">2150000010</div>
-                                <div class="example-breakdown">
-                                    <span class="seg seg-a2">A=2</span>
-                                    <span class="seg">B=1</span>
-                                    <span class="seg seg-c5">C=5</span>
-                                    <span class="seg">D=0</span>
-                                    <span class="seg">E=0</span>
-                                    <span class="seg">000F=001</span>
-                                    <span class="seg">G=0</span>
-                                </div>
-                                <div class="example-result">
-                                    <strong>天赋-巅峰</strong> · 被动技能 · 天赋被动类
-                                </div>
-                            </div>
-                            <div class="example-card">
-                                <div class="example-id">2340000010</div>
-                                <div class="example-breakdown">
-                                    <span class="seg seg-a2">A=2</span>
-                                    <span class="seg seg-b3">B=3</span>
-                                    <span class="seg seg-c4">C=4</span>
-                                    <span class="seg">D=0</span>
-                                    <span class="seg">E=0</span>
-                                    <span class="seg">000F=001</span>
-                                    <span class="seg">G=0</span>
-                                </div>
-                                <div class="example-result">
-                                    <strong>装备-手套暗金-位移技能回复</strong> · 被动技能 · 装备暗金类
+                                <div class="example-card">
+                                    <div class="example-id">1111000011</div>
+                                    <div class="example-breakdown">
+                                        <span class="seg seg-a">A=1</span>
+                                        <span class="seg">B=1</span>
+                                        <span class="seg">C=1</span>
+                                        <span class="seg seg-d">D=1</span>
+                                        <span class="seg">E=0</span>
+                                        <span class="seg">000F=001</span>
+                                        <span class="seg seg-g">G=1</span>
+                                    </div>
+                                    <div class="example-result">
+                                        <strong>闪电箭子技能子弹</strong> · 子技能 + 专属子弹
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
+                        <div class="rule-categories">
+                            <h3>技能（主动）B段位归属分类 (A=1)</h3>
+                            <table class="rule-table">
+                                <thead>
+                                    <tr><th>B段位</th><th>分类名称</th><th>说明</th><th>数量</th></tr>
+                                </thead>
+                                <tbody id="activeBTable"></tbody>
+                            </table>
+
+                            <h3 style="margin-top:24px">技能（主动）C段位类别分类</h3>
+                            <table class="rule-table">
+                                <thead>
+                                    <tr><th>C段位</th><th>分类名称</th><th>说明</th><th>数量</th></tr>
+                                </thead>
+                                <tbody id="activeCTable"></tbody>
+                            </table>
+
+                            <h3 style="margin-top:24px">技能（主动）B+C组合分类</h3>
+                            <table class="rule-table">
+                                <thead>
+                                    <tr><th>B+C段位</th><th>分类名称</th><th>说明</th><th>数量</th></tr>
+                                </thead>
+                                <tbody id="activeCategoryTable"></tbody>
+                            </table>
+
+                            <h3 style="margin-top:32px">特技（被动）B段位归属分类 (A=2)</h3>
+                            <table class="rule-table">
+                                <thead>
+                                    <tr><th>B段位</th><th>分类名称</th><th>说明</th><th>数量</th></tr>
+                                </thead>
+                                <tbody id="passiveBTable"></tbody>
+                            </table>
+
+                            <h3 style="margin-top:24px">特技（被动）C段位类别分类</h3>
+                            <table class="rule-table">
+                                <thead>
+                                    <tr><th>C段位</th><th>分类名称</th><th>说明</th><th>数量</th></tr>
+                                </thead>
+                                <tbody id="passiveCTable"></tbody>
+                            </table>
+
+                            <h3 style="margin-top:24px">特技（被动）B+C组合分类</h3>
+                            <table class="rule-table">
+                                <thead>
+                                    <tr><th>B+C段位</th><th>分类名称</th><th>说明</th><th>数量</th></tr>
+                                </thead>
+                                <tbody id="passiveCategoryTable"></tbody>
+                            </table>
+                        </div>
                     </div>
+                </div>
 
-                    <div class="rule-categories">
-                        <h3>主动技能 B段位分类 (A=1)</h3>
-                        <table class="rule-table">
-                            <thead>
-                                <tr><th>B段位</th><th>分类名称</th><th>说明</th><th>数量</th></tr>
-                            </thead>
-                            <tbody id="activeBTable"></tbody>
-                        </table>
+                <!-- 数据统计面板 -->
+                <div class="others-panel" id="others-panel-stats">
+                    <div class="stats-content">
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-icon">⚔️</div>
+                                <div class="stat-info">
+                                    <span class="stat-num" id="statActive">0</span>
+                                    <span class="stat-label">主动技能</span>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">🛡️</div>
+                                <div class="stat-info">
+                                    <span class="stat-num" id="statPassive">0</span>
+                                    <span class="stat-label">被动技能</span>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">✨</div>
+                                <div class="stat-info">
+                                    <span class="stat-num" id="statAffix">0</span>
+                                    <span class="stat-label">词缀</span>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">📦</div>
+                                <div class="stat-info">
+                                    <span class="stat-num" id="statEquipment">0</span>
+                                    <span class="stat-label">装备</span>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">🔧</div>
+                                <div class="stat-info">
+                                    <span class="stat-num" id="statAttr">0</span>
+                                    <span class="stat-label">属性</span>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">💎</div>
+                                <div class="stat-info">
+                                    <span class="stat-num" id="statGem">0</span>
+                                    <span class="stat-label">辅助宝石</span>
+                                </div>
+                            </div>
+                        </div>
 
-                        <h3 style="margin-top:24px">主动技能 C段位分类</h3>
-                        <table class="rule-table">
-                            <thead>
-                                <tr><th>C段位</th><th>分类名称</th><th>说明</th><th>数量</th></tr>
-                            </thead>
-                            <tbody id="activeCTable"></tbody>
-                        </table>
+                        <h3 class="section-title">主动技能分类分布</h3>
+                        <div class="chart-container" id="activeChart"></div>
 
-                        <h3 style="margin-top:24px">主动技能 B+C组合分类</h3>
-                        <table class="rule-table">
-                            <thead>
-                                <tr><th>B+C段位</th><th>分类名称</th><th>说明</th><th>数量</th></tr>
-                            </thead>
-                            <tbody id="activeCategoryTable"></tbody>
-                        </table>
+                        <h3 class="section-title">被动技能分类分布</h3>
+                        <div class="chart-container" id="passiveChart"></div>
 
-                        <h3 style="margin-top:32px">被动技能 B段位分类 (A=2)</h3>
-                        <table class="rule-table">
-                            <thead>
-                                <tr><th>B段位</th><th>分类名称</th><th>说明</th><th>数量</th></tr>
-                            </thead>
-                            <tbody id="passiveBTable"></tbody>
-                        </table>
+                        <h3 class="section-title">词缀分类分布</h3>
+                        <div class="chart-container" id="affixChart"></div>
 
-                        <h3 style="margin-top:24px">被动技能 C段位分类</h3>
-                        <table class="rule-table">
-                            <thead>
-                                <tr><th>C段位</th><th>分类名称</th><th>说明</th><th>数量</th></tr>
-                            </thead>
-                            <tbody id="passiveCTable"></tbody>
-                        </table>
-
-                        <h3 style="margin-top:24px">被动技能 B+C组合分类</h3>
-                        <table class="rule-table">
-                            <thead>
-                                <tr><th>B+C段位</th><th>分类名称</th><th>说明</th><th>数量</th></tr>
-                            </thead>
-                            <tbody id="passiveCategoryTable"></tbody>
-                        </table>
+                        <h3 class="section-title">ID段位B+C分布</h3>
+                        <div class="chart-container" id="segmentChart"></div>
                     </div>
                 </div>
             </div>
@@ -481,70 +597,35 @@
                 <div class="equipment-grid" id="customSkillGrid"></div>
             </div>
 
-            <!-- Stats Page -->
-            <div class="page" id="page-stats">
+            <!-- Occupations Page -->
+            <div class="page" id="page-occupations">
                 <div class="page-header">
-                    <h2 class="page-title">📊 数据统计</h2>
-                    <p class="page-desc">技能分布统计与可视化</p>
+                    <h2 class="page-title">⚜️ 职业天赋</h2>
+                    <p class="page-desc">职业专精天赋树 · 共 <span id="occupationTotalCount">0</span> 个职业</p>
                 </div>
-                <div class="stats-content">
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <div class="stat-icon">⚔️</div>
-                            <div class="stat-info">
-                                <span class="stat-num" id="statActive">0</span>
-                                <span class="stat-label">主动技能</span>
-                            </div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-icon">🛡️</div>
-                            <div class="stat-info">
-                                <span class="stat-num" id="statPassive">0</span>
-                                <span class="stat-label">被动技能</span>
-                            </div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-icon">✨</div>
-                            <div class="stat-info">
-                                <span class="stat-num" id="statAffix">0</span>
-                                <span class="stat-label">词缀</span>
-                            </div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-icon">📦</div>
-                            <div class="stat-info">
-                                <span class="stat-num" id="statEquipment">0</span>
-                                <span class="stat-label">装备</span>
-                            </div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-icon">🔧</div>
-                            <div class="stat-info">
-                                <span class="stat-num" id="statAttr">0</span>
-                                <span class="stat-label">属性</span>
-                            </div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-icon">💎</div>
-                            <div class="stat-info">
-                                <span class="stat-num" id="statGem">0</span>
-                                <span class="stat-label">辅助宝石</span>
-                            </div>
-                        </div>
+                <div class="occupation-tabs" id="occupationTabs"></div>
+                <div class="occupation-canvas-area" id="occupationCanvasArea"></div>
+            </div>
+
+            <!-- Pets Page -->
+            <div class="page" id="page-pets">
+                <div class="page-header">
+                    <h2 class="page-title">🐾 魔宠</h2>
+                    <p class="page-desc">魔宠图鉴 · 共 <span id="petTotalCount">0</span> 个魔宠</p>
+                </div>
+                <div class="filter-bar">
+                    <div class="filter-group">
+                        <label>品质:</label>
+                        <select id="petQualityFilter" class="filter-select" onchange="filterPets()">
+                            <option value="">全部品质</option>
+                        </select>
                     </div>
-
-                    <h3 class="section-title">主动技能分类分布</h3>
-                    <div class="chart-container" id="activeChart"></div>
-
-                    <h3 class="section-title">被动技能分类分布</h3>
-                    <div class="chart-container" id="passiveChart"></div>
-
-                    <h3 class="section-title">词缀分类分布</h3>
-                    <div class="chart-container" id="affixChart"></div>
-
-                    <h3 class="section-title">ID段位B+C分布</h3>
-                    <div class="chart-container" id="segmentChart"></div>
+                    <div class="filter-group">
+                        <label>搜索:</label>
+                        <input type="text" id="petSearchInput" class="filter-input" placeholder="魔宠名称或ID..." oninput="filterPets()">
+                    </div>
                 </div>
+                <div class="pet-grid" id="petGrid"></div>
             </div>
         </main>
     </div>
@@ -558,8 +639,8 @@
     </div>
 
     <script src="xlsx.min.js"></script>
-    <script src="auto-import-data.js?v=10" onerror="console.error('⚠️ auto-import-data.js 加载失败！请先运行一键导入生成数据文件。')"></script>
-    <script src="data.js?v=9"></script>
-    <script src="app.js?v=17"></script>
+    <script src="auto-import-data.js?v=13" onerror="console.error('⚠️ auto-import-data.js 加载失败！请先运行一键导入生成数据文件。')"></script>
+    <script src="data.js?v=12"></script>
+    <script src="app.js?v=43"></script>
 </body>
 </html>

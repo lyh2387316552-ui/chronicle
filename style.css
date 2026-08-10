@@ -43,21 +43,18 @@
     z-index: -1;
 }
 
+/* 非首页: 通用底图 (透明度 30%, 其他逻辑与首页底图一致) */
+body:not([data-page="home"]) .background-image {
+    background-image: url("assets/town-nonhome.png");
+    opacity: 0.3;
+}
+
 body {
     font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", "WenQuanYi Micro Hei", system-ui, -apple-system, sans-serif;
     background-color: #14141c;
     color: var(--text-primary);
     overflow: hidden;
     height: 100vh;
-}
-
-/* ==================== 装备/辅助宝石/技能库: 纯黑底图（暂不设置背景图） ==================== */
-body.page-black .background-image {
-    display: none;
-}
-
-body.page-black {
-    background-color: #000000;
 }
 
 #app {
@@ -86,15 +83,27 @@ body.page-black {
     padding: 0;
     border-bottom: none;
     flex-shrink: 0;
+    /* 使 logo 图标左边缘与下方主内容区(hero-banner 等)左边缘对齐: sidebar 内边距 24px + 8px = 主内容区 32px */
+    margin-left: 8px;
 }
 
 .logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     font-size: 20px;
     font-weight: 700;
     color: #fff;
     margin-bottom: 0;
     text-decoration: none;
     white-space: nowrap;
+}
+
+.logo-icon {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    flex-shrink: 0;
 }
 
 .logo-sub {
@@ -159,9 +168,6 @@ body.page-black {
 }
 
 .nav-link {
-    display: flex;
-    align-items: center;
-    gap: 6px;
     padding: 6px 14px;
     color: #fff;
     text-decoration: none;
@@ -171,6 +177,7 @@ body.page-black {
     border-bottom: 2px solid transparent;
     border-radius: 0;
     white-space: nowrap;
+    text-align: center;
 }
 
 .nav-link:hover {
@@ -185,28 +192,6 @@ body.page-black {
     border-left: none;
     border-bottom-color: var(--accent);
     border-radius: 0;
-}
-
-.nav-icon {
-    font-size: 16px;
-    width: auto;
-    text-align: center;
-}
-
-.nav-badge {
-    margin-left: 4px;
-    background: var(--border);
-    color: var(--text-secondary);
-    font-size: 11px;
-    padding: 1px 7px;
-    border-radius: 10px;
-    min-width: 20px;
-    text-align: center;
-}
-
-.nav-link.active .nav-badge {
-    background: var(--accent);
-    color: #000;
 }
 
 .sidebar-footer {
@@ -320,14 +305,27 @@ body.page-black {
 
 /* ==================== Module Cards ==================== */
 .module-grid {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(4, 240px);
     justify-content: center;
     gap: 16px;
     margin-bottom: 32px;
 }
 
+@media (max-width: 1080px) {
+    .module-grid {
+        grid-template-columns: repeat(2, 240px);
+    }
+}
+
+@media (max-width: 560px) {
+    .module-grid {
+        grid-template-columns: repeat(1, 240px);
+    }
+}
+
 .module-card {
+    position: relative;
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: var(--radius);
@@ -337,6 +335,12 @@ body.page-black {
     text-align: center;
     backdrop-filter: blur(8px);
     width: 240px;
+    height: 170px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
 }
 
 .module-card:hover {
@@ -347,13 +351,13 @@ body.page-black {
 
 .module-icon {
     font-size: 36px;
-    margin-bottom: 12px;
+    margin-bottom: 2px;
 }
 
 .module-card h4 {
     font-size: 16px;
     font-weight: 600;
-    margin-bottom: 8px;
+    margin: 0;
     color: var(--accent-light);
 }
 
@@ -361,32 +365,46 @@ body.page-black {
     font-size: 13px;
     color: var(--text-secondary);
     line-height: 1.5;
+    margin: 0;
 }
 
-.module-card .module-sub-links {
+/* 其他页面内小导航 */
+.others-tabs {
     display: flex;
-    gap: 8px;
-    justify-content: center;
-    margin-top: 12px;
+    gap: 10px;
+    margin-bottom: 18px;
     flex-wrap: wrap;
 }
 
-.module-card .module-sub-links a {
-    display: inline-block;
-    padding: 6px 14px;
-    background: var(--bg-hover);
-    border: 1px solid var(--border);
-    border-radius: 6px;
+.others-tab {
+    padding: 7px 16px;
+    font-size: 13px;
     color: var(--text-secondary);
-    font-size: 12px;
-    text-decoration: none;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
     transition: all 0.2s;
 }
 
-.module-card .module-sub-links a:hover {
+.others-tab:hover {
+    color: var(--accent-light);
+    border-color: var(--border-hover);
+}
+
+.others-tab.active {
     background: var(--accent);
-    color: #fff;
+    color: #000;
     border-color: var(--accent);
+    font-weight: 600;
+}
+
+.others-panel {
+    display: none;
+}
+
+.others-panel.active {
+    display: block;
 }
 
 /* ==================== Filter Bar ==================== */
@@ -506,7 +524,7 @@ body.page-black {
 }
 
 .skill-card:hover {
-    background: #ffffff;
+    background: #f5f6f8;
     border-color: rgba(0, 0, 0, 0.22);
     transform: translateY(-2px);
 }
@@ -891,6 +909,35 @@ body.page-black {
     background: rgba(155, 89, 182, 0.15);
     color: #9b59b6;
     border-color: rgba(155, 89, 182, 0.3);
+}
+
+.seg.seg-d {
+    background: rgba(46, 204, 113, 0.15);
+    color: #27ae60;
+    border-color: rgba(46, 204, 113, 0.3);
+}
+
+.seg.seg-e {
+    background: rgba(230, 126, 34, 0.15);
+    color: #e67e22;
+    border-color: rgba(230, 126, 34, 0.3);
+}
+
+.seg.seg-g {
+    background: rgba(155, 89, 182, 0.15);
+    color: #9b59b6;
+    border-color: rgba(155, 89, 182, 0.3);
+}
+
+/* "已无用" 标记 */
+.unused-tag {
+    font-size: 11px;
+    padding: 1px 7px;
+    background: rgba(120, 120, 120, 0.15);
+    color: #888888;
+    border: 1px solid rgba(120, 120, 120, 0.3);
+    border-radius: 4px;
+    white-space: nowrap;
 }
 
 .example-result {
@@ -1680,7 +1727,7 @@ body.page-black {
 }
 
 .equipment-type-header:hover {
-    background: #ffffff;
+    background: #f5f6f8;
 }
 
 .equipment-type-toggle-icon {
@@ -1746,6 +1793,396 @@ body.page-black {
 .equipment-empty-hint {
     font-size: 13px !important;
     opacity: 0.7;
+}
+
+/* ==================== Skill Video Section ==================== */
+.skill-video-section {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.skill-video-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: #5a6270;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.skill-video-preview {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.skill-video-preview video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.skill-video-play-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: rgba(0, 0, 0, 0.35);
+    transition: background 0.2s;
+    pointer-events: none;
+}
+
+.skill-video-preview:hover .skill-video-play-overlay {
+    background: rgba(0, 0, 0, 0.15);
+}
+
+.skill-video-play-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(212, 160, 86, 0.9);
+    color: #fff;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 4px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+}
+
+.skill-video-play-text {
+    font-size: 12px;
+    color: #fff;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+}
+
+.skill-video-empty {
+    padding: 18px 12px;
+    text-align: center;
+    font-size: 12px;
+    color: #9aa0a8;
+    background: #f5f6f8;
+    border: 1px dashed #d0d4da;
+    border-radius: 8px;
+}
+
+/* 技能视频弹窗 (modal) */
+.skill-video-modal-player {
+    width: 100%;
+    max-height: 60vh;
+    background: #000;
+    border-radius: 10px;
+    display: block;
+}
+
+/* ==================== Pet System (魔宠) ==================== */
+.pet-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.pet-card {
+    background: #eef0f2;
+    border: 2px solid;
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.2s;
+}
+
+.pet-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+}
+
+/* 卡片头部: 头像 + 信息 */
+.pet-card-top {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    margin-bottom: 12px;
+}
+
+.pet-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 12px;
+    border: 2px solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0;
+    margin-top: -14px;
+}
+
+.pet-avatar-clickable {
+    cursor: pointer;
+    transition: transform 0.15s;
+}
+
+.pet-avatar-clickable:hover {
+    transform: scale(1.06);
+}
+
+.pet-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.pet-avatar-fallback {
+    font-size: 32px;
+    opacity: 0.6;
+}
+
+/* 星级效果区: 左侧效果 + 右侧展示区 (展示区对齐星级标签行) */
+.pet-stars {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #e5e5e5;
+    display: flex;
+    gap: 14px;
+    align-items: stretch;
+    min-height: 190px;
+}
+
+.pet-star-left {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 魔宠展示区: 背景铺底, 立绘居中叠加在上; 固定宽度, 上下撑满星级效果区; 点击查看原图 */
+.pet-showcase {
+    position: relative;
+    width: 150px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f0f0f0;
+    cursor: pointer;
+}
+
+.pet-showcase-zoom {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 26px;
+    height: 26px;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.45);
+    color: #fff;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    opacity: 0.85;
+}
+
+.pet-showcase:hover .pet-showcase-zoom {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.65);
+}
+
+.pet-showcase-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.pet-showcase-pic {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.pet-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.pet-name {
+    font-size: 17px;
+    font-weight: 700;
+    color: #111111;
+    margin-bottom: 6px;
+}
+
+.pet-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.pet-quality {
+    font-size: 11px;
+    padding: 2px 10px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.pet-id {
+    font-size: 12px;
+    color: #666666;
+    font-family: "Courier New", monospace;
+}
+
+.pet-stars-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #111111;
+    margin-bottom: 8px;
+}
+
+.pet-star-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 10px;
+}
+
+.pet-star-tab {
+    padding: 4px 12px;
+    font-size: 12px;
+    background: #f5f5f5;
+    border: 1px solid #d0d0d0;
+    border-radius: 0px 10px;
+    color: #333333;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.pet-star-tab:hover {
+    border-color: var(--accent);
+    color: #8a5a00;
+}
+
+.pet-star-tab.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #111111;
+    font-weight: 600;
+}
+
+.pet-star-panels {
+    min-height: 52px;
+}
+
+.pet-star-panel {
+    display: none;
+}
+
+.pet-star-panel.active {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+.pet-effect {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 8px;
+    line-height: 1.4;
+}
+
+.pet-effect-affix {
+    background: rgba(231, 76, 60, 0.12);
+    color: #c0392b;
+}
+
+.pet-effect-stunt {
+    background: rgba(52, 152, 219, 0.12);
+    color: #2471a3;
+}
+
+.pet-effect-attr {
+    background: rgba(46, 204, 113, 0.12);
+    color: #1e8449;
+}
+
+.pet-star-empty {
+    font-size: 12px;
+    color: #888888;
+}
+
+.pet-stars-empty {
+    margin-top: 12px;
+    padding: 12px;
+    text-align: center;
+    font-size: 12px;
+    color: #888888;
+    border: 1px dashed #cccccc;
+    border-radius: 8px;
+}
+
+/* 魔宠立绘/背景弹窗: 叠加展示, 背景在下立绘居中在上 */
+.pet-pic-single {
+    max-width: 100%;
+    max-height: 62vh;
+    border-radius: 10px;
+    display: block;
+    margin: 0 auto;
+}
+
+.pet-showcase-modal {
+    position: relative;
+    width: 100%;
+    height: 62vh;
+    max-height: 62vh;
+    background: #eaeaea;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.pet-showcase-modal-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.pet-showcase-modal-pic {
+    position: absolute;
+    inset: 0;
+    max-width: 100%;
+    max-height: 100%;
+    margin: auto;
+    object-fit: contain;
+    display: block;
 }
 
 /* ---- Equipment Form ---- */
@@ -2443,4 +2880,271 @@ body.page-black {
 /* ---- Nav scrollbar (horizontal) ---- */
 .nav-list::-webkit-scrollbar {
     height: 0;
+}
+
+/* ============================================================
+   职业天赋系统
+   ============================================================ */
+
+.occupation-tabs {
+    display: flex;
+    gap: 8px;
+    padding: 12px 0 16px;
+    flex-wrap: wrap;
+}
+
+.occupation-tab {
+    padding: 8px 20px;
+    border: 1px solid #d0d5dd;
+    border-radius: 20px;
+    background: #eef0f2;
+    color: #1c1e21;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.occupation-tab:hover {
+    background: #e0e3e8;
+    border-color: #b0b6c0;
+}
+
+.occupation-tab.active {
+    background: #1c1e21;
+    color: #ffffff;
+    border-color: #1c1e21;
+}
+
+.occupation-canvas-area {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.occupation-canvas-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.talent-frame-top,
+.talent-frame-bottom {
+    width: 375px;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 16px 16px 0 0;
+}
+
+.talent-frame-bottom {
+    border-radius: 0 0 16px 16px;
+}
+
+.occupation-canvas-header {
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.occupation-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.occupation-count {
+    font-size: 13px;
+    color: #5a6270;
+    font-weight: 400;
+    margin-left: 8px;
+}
+
+.occupation-canvas-scroll {
+    max-height: 85vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+
+.occupation-canvas {
+    position: relative;
+    background: #eef0f2;
+    border: 1px solid #e0e3e8;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    /* 缩放以适配容器宽度 */
+    max-width: 100%;
+    transform-origin: top center;
+}
+
+/* 底层: 角色立绘背景 — 以图片中心居中放大至边框 */
+.talent-canvas-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("assets/talent-bg-character.png");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* 上层: 武器图 — 等比放大至扩展到屏幕上下 */
+.talent-canvas-weapon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.85;
+}
+
+.occupation-canvas-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.35);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.talent-links-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.talent-link-line {
+    stroke: #ffffff;
+    stroke-width: 4;
+    fill: none;
+}
+
+.talent-point {
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    margin-left: -32px;
+    margin-top: -32px;
+    border-radius: 50%;
+    background: #f0f2f5;
+    border: 2px solid #c0c5cc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    z-index: 2;
+}
+
+.talent-point:hover {
+    transform: scale(1.2);
+    border-color: #1c1e21;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+    z-index: 3;
+}
+
+.talent-point-large {
+    width: 80px;
+    height: 80px;
+    margin-left: -40px;
+    margin-top: -40px;
+    border-width: 3px;
+    border-color: #8a91a0;
+}
+
+.talent-point-xlarge {
+    width: 96px;
+    height: 96px;
+    margin-left: -48px;
+    margin-top: -48px;
+    border-width: 3px;
+    border-color: #5a6270;
+    background: #e8eaef;
+}
+
+.talent-point-icon {
+    font-size: 32px;
+    line-height: 1;
+}
+
+.talent-point-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+.talent-point-label {
+    position: absolute;
+    transform: translate(-50%, 38px);
+    font-size: 10px;
+    line-height: 1.3;
+    color: #4a5568;
+    text-align: center;
+    white-space: normal;
+    word-break: break-all;
+    max-width: 72px;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 1px 4px;
+    border-radius: 3px;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.talent-point-large .talent-point-icon {
+    font-size: 40px;
+}
+
+.talent-point-xlarge .talent-point-icon {
+    font-size: 48px;
+}
+
+.occupation-empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: #5a6270;
+}
+
+.occupation-empty-hint {
+    font-size: 13px;
+    color: #8a91a0;
+    margin-top: 8px;
+}
+
+/* ---- 天赋详情弹窗 ---- */
+.talent-detail {
+    padding: 8px 4px;
+}
+
+.talent-detail-desc999 {
+    font-size: 13px;
+    color: #5a6270;
+    margin-bottom: 12px;
+    font-family: "Courier New", monospace;
+}
+
+.talent-detail-meta {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+}
+
+.talent-detail-links {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #e8eaef;
 }

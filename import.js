@@ -55,7 +55,10 @@ const DEFAULT_CONFIG = {
     "attrPath":        "data-sources/属性表",
     "skillExcelPath":  "data-sources/技能表",
     "skillTagPath":    "data-sources/技能标签",
-    "iconPath":        "D:/NewProject/preview-templates/icon"
+    "occupationPath":  "data-sources/技能表",
+    "iconPath":        "D:/NewProject/preview-templates/icon",
+    "videoPath":       "D:/Users/1250c/Desktop/技能视频",
+    "petPath":         "E:/策划/1.表格目录/XLS表格/魔宠表"
 };
 
 // ============================================================
@@ -1011,6 +1014,254 @@ function parseSkills(inputPath, skillMap, tagDict) {
 }
 
 // ============================================================
+// 职业天赋系统 (SkillPassive 子表)
+// occupation >= 1 的行按职业分组，desc999 即为职业名
+// ============================================================
+
+function parseOccupations(inputPath, skillMap) {
+    console.log('  📖 解析职业天赋系统(SkillPassive)...');
+    let filePath = inputPath;
+    if (isDirectory(inputPath)) {
+        filePath = findDataFile(inputPath, ['.xlsx', '.xls', '.csv'], ['skill', '技能', '养成']);
+        if (!filePath) { console.log('  ⚠️ 文件夹中未找到 Excel/CSV 文件:', inputPath); return null; }
+    }
+
+    const { headers, rows, sheetName } = readSheetByName(filePath, ['SkillPassive', 'Passive']);
+    console.log('     子表:', sheetName, '  行数:', rows.length);
+
+    const idCol       = findCol(headers, ['id.p', 'id', 'ID', 'Id']);
+    const desc999Col  = findCol(headers, ['desc999', 'Desc999']);
+    const occCol      = findCol(headers, ['occupation', 'Occupation', '职业']);
+    const viewPosCol  = findCol(headers, ['viewPos', 'ViewPos', '坐标']);
+    const iconCol     = findCol(headers, ['icon', 'Icon', 'ICON', '图标']);
+    const nameCol     = findCol(headers, ['name', 'Name', '名称']);
+    const descCol     = findCol(headers, ['desc', 'Desc', '描述']);
+    const sizeCol     = findCol(headers, ['size', 'Size', '节点大小']);
+    const linkCol     = findCol(headers, ['linkPoint', 'LinkPoint', '关联的节点id']);
+
+    const occMap = {};
+
+    rows.forEach(row => {
+        const occNum = parseInt(occCol ? String(row[occCol] || '').trim() : '');
+        if (isNaN(occNum) || occNum < 1) return;
+
+        const id = idCol ? cleanNum(row[idCol]) : '';
+        if (!id) return;
+
+        const desc999 = desc999Col ? String(row[desc999Col] || '').trim() : '';
+
+        let posX = 0, posY = 0;
+        const viewPos = viewPosCol ? String(row[viewPosCol] || '').trim() : '';
+        if (viewPos) {
+            const parts = viewPos.split('|');
+            if (parts.length >= 2) { posX = parseFloat(parts[0]) || 0; posY = parseFloat(parts[1]) || 0; }
+        }
+
+        const iconRaw = iconCol ? String(row[iconCol] || '').trim() : '';
+        let emoji = '⭐';
+        if (iconRaw.includes('attribute')) emoji = '🔵';
+        else if (iconRaw.includes('attack') || iconRaw.includes('atk')) emoji = '⚔️';
+        else if (iconRaw.includes('defense') || iconRaw.includes('def')) emoji = '🛡️';
+        else if (iconRaw.includes('skill')) emoji = '✨';
+        else if (iconRaw.includes('talent')) emoji = '🔶';
+
+        if (!occMap[occNum]) occMap[occNum] = { name: '', points: [] };
+        if (!occMap[occNum].name && desc999) occMap[occNum].name = desc999.includes('旧版') ? '通用' : desc999.split('-')[0].trim();
+        occMap[occNum].points.push({
+            id: id,
+            name: (nameCol ? String(row[nameCol] || '').trim() : '') || ('天赋' + id),
+            desc: descCol ? String(row[descCol] || '').trim() : '',
+            occupation: occNum,
+            viewPos: { x: posX, y: posY },
+            size: parseInt(sizeCol ? cleanNum(row[sizeCol]) : '1') || 1,
+            icon: emoji,
+            iconSrc: iconRaw,
+            linkPoint: linkCol ? String(row[linkCol] || '').trim() : ''
+        });
+    });
+
+    const occupations = Object.keys(occMap).map(occNum => {
+        const num = parseInt(occNum);
+        const entry = occMap[num];
+        return {
+            id: 'OCC' + String(num).padStart(2, '0'),
+            occupation: num,
+            name: entry.name || ('职业' + num),
+            talentPoints: entry.points
+        };
+    }).sort((a, b) => a.occupation - b.occupation);
+
+    // 剑客/通用职业: 删除攻速节点，将相邻非攻速节点直连
+    occupations.forEach(occ => {
+        if (!occ.name.includes('剑客') && occ.name !== '通用') return;
+        const pts = occ.talentPoints;
+        const asIds = new Set(pts.filter(p => p.name === '攻击速度').map(p => p.id));
+        if (asIds.size === 0) return;
+
+        // 构建邻接表
+        const adj = {};
+        pts.forEach(p => { adj[p.id] = (p.linkPoint || '').split('|').map(s => s.trim()).filter(s => s); });
+
+        // 将所有攻速节点视为一个整体，收集其所有非攻速邻居（边界节点）
+        const boundary = new Set();
+        asIds.forEach(asId => {
+            (adj[asId] || []).forEach(id => { if (!asIds.has(id)) boundary.add(id); });
+        });
+        // 边界节点之间互连（处理 AS 链式节点：A→AS1→AS2→B 的情况）
+        const boundaryArr = Array.from(boundary);
+        for (let i = 0; i < boundaryArr.length; i++) {
+            for (let j = i + 1; j < boundaryArr.length; j++) {
+                const a = boundaryArr[i], b = boundaryArr[j];
+                if (!adj[a].includes(b)) adj[a].push(b);
+                if (!adj[b].includes(a)) adj[b].push(a);
+            }
+        }
+
+        // 过滤攻速节点，更新 linkPoint
+        occ.talentPoints = pts
+            .filter(p => !asIds.has(p.id))
+            .map(p => {
+                const links = (adj[p.id] || []).filter(id => !asIds.has(id));
+                return { ...p, linkPoint: links.join('|') };
+            });
+    });
+
+    // 剑客1: 调整布局 — 流风增击/看破上移，重建4行链式连接(从下到上 1-2-3-4)
+    const jianke1 = occupations.find(o => o.name === '剑客1');
+    if (jianke1) {
+        const posAdjust = {
+            '1003006': { y: 320 },  // 流风增击 上移
+            '1003004': { y: 320 }   // 看破 上移
+        };
+        // 4行链式连接: 无心则利刃→心眼→快攻→流风增击/看破; 侧支: 暴血→流风增击, 极寒侵体→看破
+        const linkMap = {
+            '1003014': '1003012',                                           // 无心则利刃 → 心眼
+            '1003012': '1003002|1003014',                                   // 心眼 → 快攻, 无心则利刃
+            '1003002': '1003004|1003006|1003012',                           // 快攻 → 看破, 流风增击, 心眼
+            '1003006': '1003002|1003008',                                   // 流风增击 → 快攻, 暴血
+            '1003004': '1003002|1003010',                                   // 看破 → 快攻, 极寒侵体
+            '1003008': '1003006',                                           // 暴血 → 流风增击
+            '1003010': '1003004'                                            // 极寒侵体 → 看破
+        };
+        jianke1.talentPoints.forEach(p => {
+            if (posAdjust[p.id]) p.viewPos.y = posAdjust[p.id].y;
+            if (linkMap[p.id]) p.linkPoint = linkMap[p.id];
+        });
+    }
+
+    console.log('     ✓ 解析职业:', occupations.length, '个');
+    occupations.forEach(occ => {
+        console.log('       ' + occ.name + '(occupation=' + occ.occupation + '): ' + occ.talentPoints.length + ' 个天赋点');
+    });
+    return occupations;
+}
+
+// ============================================================
+// 魔宠表 (Pet / PetStar 子表)
+// Pet: id.p(魔宠id), name(名字), quality(品质: 3蓝/4紫/6橙/8红), pic(头像), getBg(背景), getPic(立绘)
+// PetStar: pet(魔宠id), star(星级), skillAffix(词缀id, |分隔), affixValue(词缀值 JSON), stunt(被动技能id), attr(属性id+值 JSON)
+// ============================================================
+function parsePets(inputPath) {
+    console.log('  📖 解析魔宠表...');
+    let filePath = inputPath;
+
+    if (isDirectory(inputPath)) {
+        filePath = findDataFile(inputPath, ['.xlsx', '.xls', '.csv'], ['魔宠', 'pet']);
+        if (!filePath) {
+            console.log('  ⚠️ 文件夹中未找到魔宠表:', inputPath);
+            return null;
+        }
+    } else if (!fs.existsSync(filePath)) {
+        // 尝试补全扩展名 (.xlsx/.xls/.csv)
+        const exts = ['.xlsx', '.xls', '.csv'];
+        for (const ext of exts) {
+            if (fs.existsSync(filePath + ext)) { filePath = filePath + ext; break; }
+        }
+        if (!fs.existsSync(filePath)) {
+            console.log('  ⚠️ 魔宠表不存在:', inputPath);
+            return null;
+        }
+    }
+    console.log('     文件:', filePath);
+
+    const petData = readSheetByName(filePath, ['Pet']);
+    const starData = readSheetByName(filePath, ['PetStar']);
+    console.log('     Pet子表:', petData.sheetName, '  行数:', petData.rows.length);
+    console.log('     PetStar子表:', starData.sheetName, '  行数:', starData.rows.length);
+
+    const idCol = findCol(petData.headers, ['id', 'ID', 'Id', 'id.p', '宠物id', '魔宠id']);
+    const nameCol = findCol(petData.headers, ['name', 'Name', '名称', '魔宠名称']);
+    const qualityCol = findCol(petData.headers, ['quality', '品质']);
+    const picCol = findCol(petData.headers, ['pic', '头像']);
+    const getBgCol = findCol(petData.headers, ['getBg', '背景']);
+    const getPicCol = findCol(petData.headers, ['getPic', '立绘']);
+
+    // 解析 attr "[[id,value],...]" → [{id, value}]
+    const parseAttrPairs = (raw) => {
+        try {
+            const arr = JSON.parse(raw || '[]');
+            if (!Array.isArray(arr)) return [];
+            return arr.map(pair => Array.isArray(pair) && pair.length >= 1 && pair[0]
+                ? { id: cleanNum(pair[0]), value: pair.length > 1 ? pair[1] : null }
+                : null).filter(Boolean);
+        } catch (e) { return []; }
+    };
+    // 解析 skillAffix "a|b|c" 与 affixValue "[[v1],[v2]]" → [{id, value}]
+    const parseAffixPairs = (affixRaw, valueRaw) => {
+        const ids = String(affixRaw || '').split('|').map(s => s.trim()).filter(Boolean);
+        let values = [];
+        try {
+            const v = JSON.parse(valueRaw || '[]');
+            if (Array.isArray(v)) values = v.map(sub => Array.isArray(sub) && sub.length ? sub[0] : sub);
+        } catch (e) {}
+        return ids.map((id, i) => ({ id: cleanNum(id), value: i < values.length ? values[i] : null }));
+    };
+    // 解析 stunt "a|b" → [ids]
+    const parseStuntIds = (raw) => String(raw || '').split('|').map(s => s.trim()).filter(Boolean).map(cleanNum);
+
+    // 按魔宠分组解析星级效果
+    const starCol = findCol(starData.headers, ['star', 'Star', '星级']);
+    const petCol = findCol(starData.headers, ['pet', 'Pet', '魔宠Id', '魔宠id']);
+    const skillAffixCol = findCol(starData.headers, ['skillAffix', '词缀id']);
+    const affixValueCol = findCol(starData.headers, ['affixValue', '词缀值']);
+    const stuntCol = findCol(starData.headers, ['stunt', '被动表id']);
+    const attrCol = findCol(starData.headers, ['attr', '提供属性']);
+
+    const starRows = {};
+    starData.rows.forEach(row => {
+        const petId = petCol ? cleanNum(row[petCol]) : '';
+        const star = starCol ? cleanNum(row[starCol]) : '';
+        if (!petId || star === '') return;
+        if (!starRows[petId]) starRows[petId] = [];
+        starRows[petId].push({
+            star: parseInt(star, 10) || 0,
+            skillAffix: parseAffixPairs(row[skillAffixCol], row[affixValueCol]),
+            stunt: parseStuntIds(row[stuntCol]),
+            attr: parseAttrPairs(row[attrCol])
+        });
+    });
+    Object.keys(starRows).forEach(k => starRows[k].sort((a, b) => a.star - b.star));
+
+    // 构建魔宠列表
+    const pets = [];
+    petData.rows.forEach(row => {
+        const id = idCol ? cleanNum(row[idCol]) : '';
+        if (!id) return;
+        pets.push({
+            id: id,
+            name: nameCol ? (row[nameCol] || '').trim() : '',
+            quality: qualityCol ? cleanNum(row[qualityCol]) : '',
+            pic: picCol ? (row[picCol] || '').trim() : '',
+            getBg: getBgCol ? (row[getBgCol] || '').trim() : '',
+            getPic: getPicCol ? (row[getPicCol] || '').trim() : '',
+            stars: starRows[id] || []
+        });
+    });
+    console.log('     ✓ 解析魔宠:', pets.length, '个');
+    return pets;
+}
+
+// ============================================================
 // 主流程
 // ============================================================
 
@@ -1033,6 +1284,10 @@ function syncIcons(importData, config) {
     (importData.equipment || []).forEach(e => { addRef(e.icon, e.icon); addRef(e.spIcon, e.spIcon); });
     (importData.gems || []).forEach(g => addRef(g.iconSrc || g.icon, g.icon));
     [...(importData.activeSkills || []), ...(importData.passiveSkills || []), ...(importData.skills || [])].forEach(s => addRef(s.icon, s.icon));
+    // 职业天赋点图标
+    (importData.occupations || []).forEach(o => (o.talentPoints || []).forEach(p => addRef(p.iconSrc, p.iconSrc)));
+    // 魔宠图标: 头像 pic / 获得背景 getBg / 获得立绘 getPic
+    (importData.pets || []).forEach(p => { addRef(p.pic, p.pic); addRef(p.getBg, p.getBg); addRef(p.getPic, p.getPic); });
 
     if (refs.size === 0) {
         console.log('  📦 图标资源: 无图标引用');
@@ -1077,7 +1332,7 @@ function main() {
     const config = { ...DEFAULT_CONFIG, ...JSON.parse(fs.readFileSync(CONFIG_FILE, 'utf-8')) };
 
     // 规范化数据源路径：相对路径(如 data-sources/Skill)解析到本项目目录，绝对路径保持不变
-    const pathKeys = ['skillFolder', 'skillModuleFolder', 'stuntFolder', 'stuntModuleFolder', 'affixPath', 'equipPath', 'gemPath', 'attrPath', 'skillExcelPath', 'skillTagPath', 'iconPath'];
+    const pathKeys = ['skillFolder', 'skillModuleFolder', 'stuntFolder', 'stuntModuleFolder', 'affixPath', 'equipPath', 'gemPath', 'attrPath', 'skillExcelPath', 'skillTagPath', 'occupationPath', 'iconPath', 'videoPath', 'petPath'];
     pathKeys.forEach(k => {
         if (config[k] && String(config[k]).trim()) {
             config[k] = resolvePath(String(config[k]).trim());
@@ -1093,6 +1348,9 @@ function main() {
         equipment: null,
         gems: null,
         skills: null,
+        occupations: null,
+        videos: null,
+        pets: null,
         importTime: new Date().toISOString()
     };
 
@@ -1211,6 +1469,91 @@ function main() {
         console.log('');
     }
 
+    // 7. 职业天赋系统 (SkillPassive 子表: occupation >= 1 的天赋点)
+    if (config.occupationPath && config.occupationPath.trim()) {
+        const fp = smartResolvePath(config.occupationPath.trim());
+        if (fp && fs.existsSync(fp)) {
+            try {
+                const skillMap = {};
+                [...(importData.activeSkills || []), ...(importData.passiveSkills || [])].forEach(s => { if (s.id) skillMap[s.id] = s; });
+                importData.occupations = parseOccupations(fp, skillMap);
+                if (importData.occupations) hasAny = true;
+            } catch (err) {
+                console.log('  ❌ 职业天赋系统解析失败:', err.message);
+            }
+        } else {
+            console.log('  ⚠️ 职业天赋系统路径不存在:', config.occupationPath.trim());
+        }
+        console.log('');
+    }
+
+    // 8. 视频库 (从 videoPath 源目录同步视频到 videos/ 文件夹，视频文件名 = 技能名称，生成清单)
+    {
+        const videoDir = path.join(__dirname, 'videos');
+        // 8.1 源目录同步: 若配置了 videoPath，把其中的视频文件复制到 videos/ 文件夹
+        if (config.videoPath && config.videoPath.trim()) {
+            const srcDir = resolvePath(config.videoPath.trim());
+            if (srcDir && fs.existsSync(srcDir)) {
+                try {
+                    if (!fs.existsSync(videoDir)) fs.mkdirSync(videoDir, { recursive: true });
+                    const srcFiles = fs.readdirSync(srcDir).filter(f => /\.(mp4|webm|ogg|mov|m4v)$/i.test(f));
+                    let synced = 0;
+                    for (const f of srcFiles) {
+                        const src = path.join(srcDir, f);
+                        const dst = path.join(videoDir, f);
+                        try {
+                            if (!fs.existsSync(dst) || fs.statSync(src).mtimeMs > fs.statSync(dst).mtimeMs) {
+                                fs.copyFileSync(src, dst);
+                                synced++;
+                            }
+                        } catch (e) {}
+                    }
+                    if (srcFiles.length > 0) console.log('  ✓ 视频源同步: 源目录 ' + srcFiles.length + ' 个视频 (更新 ' + synced + ' 个)');
+                } catch (err) {
+                    console.log('  ❌ 视频源目录同步失败:', err.message);
+                }
+            } else {
+                console.log('  ⚠️ 视频源目录不存在:', config.videoPath.trim());
+            }
+        }
+        // 8.2 扫描 videos/ 文件夹生成清单
+        if (fs.existsSync(videoDir)) {
+            try {
+                const files = fs.readdirSync(videoDir)
+                    .filter(f => /\.(mp4|webm|ogg|mov|m4v)$/i.test(f))
+                    .sort();
+                if (files.length > 0) {
+                    importData.videos = files.map(f => ({ name: f.replace(/\.[^.]+$/, ''), file: f }));
+                    hasAny = true;
+                    console.log('  ✓ 视频库: ' + files.length + ' 个视频');
+                } else {
+                    console.log('  ⚠️ videos/ 文件夹为空或没有视频文件');
+                }
+            } catch (err) {
+                console.log('  ❌ 视频库扫描失败:', err.message);
+            }
+        } else {
+            console.log('  ⚠️ videos/ 文件夹不存在，跳过视频库扫描');
+        }
+        console.log('');
+    }
+
+    // 9. 魔宠表 (Pet / PetStar 子表)
+    if (config.petPath && config.petPath.trim()) {
+        const fp = smartResolvePath(config.petPath.trim());
+        if (fp && fs.existsSync(fp)) {
+            try {
+                importData.pets = parsePets(fp);
+                if (importData.pets) hasAny = true;
+            } catch (err) {
+                console.log('  ❌ 魔宠表解析失败:', err.message);
+            }
+        } else {
+            console.log('  ⚠️ 魔宠表路径不存在:', config.petPath.trim());
+        }
+        console.log('');
+    }
+
     if (!hasAny) {
         console.log('❌ 没有成功导入任何数据，请检查 import-config.json 中的路径。');
         return;
@@ -1234,6 +1577,9 @@ function main() {
     if (importData.equipment) console.log('  装备: ' + importData.equipment.length + ' 件');
     if (importData.gems) console.log('  宝石: ' + importData.gems.length + ' 个');
     if (importData.skills) console.log('  技能库: ' + importData.skills.length + ' 个');
+    if (importData.occupations) console.log('  职业天赋: ' + importData.occupations.length + ' 个职业, ' + importData.occupations.reduce((s, o) => s + o.talentPoints.length, 0) + ' 个天赋点');
+    if (importData.videos) console.log('  视频库: ' + importData.videos.length + ' 个视频');
+    if (importData.pets) console.log('  魔宠表: ' + importData.pets.length + ' 个魔宠, ' + importData.pets.reduce((s, p) => s + p.stars.length, 0) + ' 条星级效果');
     console.log('');
 
     // 7. 同步图标资源 (已有资源自动跳过)

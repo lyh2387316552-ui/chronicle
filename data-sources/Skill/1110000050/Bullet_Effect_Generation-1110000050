@@ -29,5 +29,8 @@
   ],
   "ammoBatchInterval": [
     0
+  ],
+  "pluralHitTime": [
+    0
   ]
 }

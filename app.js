@@ -24,16 +24,42 @@ function navigateTo(pageName) {
     if (targetPage) targetPage.classList.add('active');
     if (targetLink) targetLink.classList.add('active');
 
-    // 装备/辅助宝石/技能库 使用纯黑底图（暂不设置背景图），其他页面保留背景图
-    document.body.classList.toggle('page-black', ['equipment', 'gems', 'custom-skills'].includes(pageName));
+    // 记录当前页面: 首页使用首页底图, 非首页使用通用底图
+    document.body.dataset.page = pageName;
 
     // 技能库页渲染标签筛选栏 (filterCustomSkills 内部会同步渲染)
     if (pageName === 'custom-skills') {
         filterCustomSkills();
     }
 
+    // 职业天赋页渲染
+    if (pageName === 'occupations') {
+        renderOccupations();
+    }
+
+    // 魔宠页渲染
+    if (pageName === 'pets') {
+        initPetPage();
+    }
+
+    // 其他页: 确保统计面板数据已渲染 (ID规则面板在 init 时已填充)
+    if (pageName === 'others') {
+        renderStats();
+    }
+
     // 滚动到顶部
     document.querySelector('.main-content').scrollTop = 0;
+}
+
+// ---- 其他页面内小导航切换 ----
+function switchOthersTab(name) {
+    document.querySelectorAll('.others-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.others-panel').forEach(p => p.classList.remove('active'));
+    const tab = document.getElementById('others-tab-' + name);
+    const panel = document.getElementById('others-panel-' + name);
+    if (tab) tab.classList.add('active');
+    if (panel) panel.classList.add('active');
+    if (name === 'stats') renderStats();
 }
 
 // ---- 战斗数据 Tab 切换 ----
@@ -1616,6 +1642,8 @@ function renderHome() {
     _set('heroEquipment', equipmentData.length);
     _set('heroGem', gemData.length);
     _set('heroCustomSkill', customSkillData.length);
+    _set('heroOccupation', occupationData.length);
+    _set('heroPet', petData.length);
 }
 
 // ---- 装备系统 ----
@@ -1892,6 +1920,8 @@ function updateNavCounts() {
     if (gemEl) gemEl.textContent = gemData.length;
     updateCustomSkillNavCount();
     updateBattleDataCount();
+    const occEl = document.getElementById('occupationCount');
+    if (occEl) occEl.textContent = occupationData.length;
 }
 
 
@@ -2285,6 +2315,18 @@ function renderCustomSkills(filteredData) {
         const cards = skills.map(s => {
             const effects = (s.effects || []).filter(e => e.refId);
             const effectCount = effects.length;
+            // 视频匹配: 按技能名称在 videoData 中查找对应视频
+            const video = videoData.find(v => v.name === s.name) || null;
+            const videoHtml = video
+                ? `
+                    <div class="skill-video-preview" onclick="event.stopPropagation();openSkillVideo('${encodeURIComponent(video.file)}','${(s.name || '').replace(/'/g, "\\'")}')">
+                        <video src="videos/${encodeURIComponent(video.file)}" preload="metadata" muted playsinline></video>
+                        <div class="skill-video-play-overlay"><span class="skill-video-play-icon">▶</span><span class="skill-video-play-text">点击播放</span></div>
+                    </div>
+                `
+                : `
+                    <div class="skill-video-empty">暂无视频</div>
+                `;
             const effectItems = effects.map(eff => {
                 const refData = findRefData(eff.refId);
                 const typeColor = refData ? (refData.type === 'active-skill' ? '#e74c3c' : refData.type === 'passive-skill' ? '#3498db' : refData.type === 'attribute' ? '#27ae60' : '#f39c12') : '#e74c3c';
@@ -2319,6 +2361,10 @@ function renderCustomSkills(filteredData) {
                         <div class="equipment-card-effect-list">
                             ${effectItems || '<p class="equipment-card-effect-empty">暂无关联效果</p>'}
                         </div>
+                    </div>
+                    <div class="skill-video-section">
+                        <div class="skill-video-title">🎬 技能演示</div>
+                        ${videoHtml}
                     </div>
                 </div>
             `;
@@ -2726,6 +2772,9 @@ function init() {
     console.log('=== 初始化开始 ===');
     console.log('  自动导入数据:', window.__AUTO_IMPORT_DATA__ ? '已加载' : '未加载');
 
+    // 初始页面为首页 (底图按首页逻辑展示)
+    document.body.dataset.page = 'home';
+
     // 数据清空重建：清除所有旧缓存
     // 重要：如果有自动导入数据，不清除 localStorage（IIFE 刚刚保存了导入数据）
     const CLEAR_VERSION = 'v5_autoimport';
@@ -2749,12 +2798,14 @@ function init() {
     loadCustomSkills();
     loadCustomAffixes();
 
-    console.log('  数据统计: 主动=' + activeSkills.length, '被动=' + passiveSkills.length, '词缀=' + affixes.length, '属性=' + attributes.length, '装备=' + equipmentData.length, '技能库=' + customSkillData.length, '宝石=' + gemData.length);
+    console.log('  数据统计: 主动=' + activeSkills.length, '被动=' + passiveSkills.length, '词缀=' + affixes.length, '属性=' + attributes.length, '装备=' + equipmentData.length, '技能库=' + customSkillData.length, '宝石=' + gemData.length, '职业=' + occupationData.length);
 
     const _aC = document.getElementById('affixCount'); if (_aC) _aC.textContent = affixes.length;
     const _eC = document.getElementById('equipmentCount'); if (_eC) _eC.textContent = equipmentData.length;
     const _atC = document.getElementById('attrCount'); if (_atC) _atC.textContent = attributes.length;
     const _gC = document.getElementById('gemCount'); if (_gC) _gC.textContent = gemData.length;
+    const _oC = document.getElementById('occupationCount'); if (_oC) _oC.textContent = occupationData.length;
+    const _pC = document.getElementById('petCount'); if (_pC) _pC.textContent = petData.length;
     updateCustomSkillNavCount();
     updateBattleDataCount();
 
@@ -3395,6 +3446,440 @@ function updateBattleDataCount() {
     if (el5) el5.textContent = attributes.length;
 }
 
+
+// ============================================================
+// 职业天赋系统
+// 每个职业一块 iPhoneX 尺寸白色画布，天赋点按 viewPos 坐标定位
+// ============================================================
+
+// iPhoneX 逻辑分辨率: 375 x 812 (pt)，实际画布按此比例缩放
+const IPHONE_X_W = 375;
+const IPHONE_X_H = 812;
+
+let currentOccupationIdx = 0;
+
+function renderOccupations() {
+    const tabsEl = document.getElementById('occupationTabs');
+    const canvasArea = document.getElementById('occupationCanvasArea');
+    const totalEl = document.getElementById('occupationTotalCount');
+    if (!tabsEl || !canvasArea) return;
+
+    if (occupationData.length === 0) {
+        tabsEl.innerHTML = '';
+        canvasArea.innerHTML = `
+            <div class="occupation-empty">
+                <p>暂无职业天赋数据</p>
+                <p class="occupation-empty-hint">职业天赋数据仅由一键导入提供，请先运行一键导入</p>
+            </div>
+        `;
+        if (totalEl) totalEl.textContent = '0';
+        return;
+    }
+
+    if (totalEl) totalEl.textContent = occupationData.length;
+
+    // 渲染职业 Tab 栏
+    tabsEl.innerHTML = occupationData.map((occ, idx) => {
+        const active = idx === currentOccupationIdx ? 'active' : '';
+        return `<button class="occupation-tab ${active}" onclick="switchOccupation(${idx})">${occ.name}</button>`;
+    }).join('');
+
+    renderOccupationCanvas(currentOccupationIdx);
+}
+
+function switchOccupation(idx) {
+    currentOccupationIdx = idx;
+    document.querySelectorAll('.occupation-tab').forEach((tab, i) => {
+        tab.classList.toggle('active', i === idx);
+    });
+    renderOccupationCanvas(idx);
+}
+
+function renderOccupationCanvas(idx) {
+    const canvasArea = document.getElementById('occupationCanvasArea');
+    if (!canvasArea || idx < 0 || idx >= occupationData.length) return;
+
+    const occ = occupationData[idx];
+    const allPoints = occ.talentPoints || [];
+    // 只显示 size >= 2 的节点，size=1 节点作为中间跳板跳过
+    const visiblePoints = allPoints.filter(p => p.size >= 2);
+    const nodeMap = {};
+    allPoints.forEach(p => { nodeMap[p.id] = p; });
+
+    // 坐标范围仅基于可见节点
+    let maxX = -Infinity, maxY = -Infinity, minX = Infinity, minY = Infinity;
+    visiblePoints.forEach(p => {
+        if (p.viewPos) {
+            maxX = Math.max(maxX, p.viewPos.x);
+            maxY = Math.max(maxY, p.viewPos.y);
+            minX = Math.min(minX, p.viewPos.x);
+            minY = Math.min(minY, p.viewPos.y);
+        }
+    });
+    // 安全边距: 顶部容纳节点半径(最大48px); 底部容纳节点半径+名称标签(~53px); 左右容纳节点半径
+    const padTop = 55;
+    const padBottom = 105;
+    const padSide = 55;
+    const rangeX = (maxX - minX) || 1;
+    const rangeY = (maxY - minY) || 1;
+    // 一屏模式: 以宽高中较小的缩放比为准，确保所有内容(含节点尺寸/名称标签)容纳在 375x812 内
+    const scaleW = (IPHONE_X_W - padSide * 2) / rangeX;
+    const scaleH = (IPHONE_X_H - padTop - padBottom) / rangeY;
+    const scale = Math.min(scaleW, scaleH);
+    const canvasW = IPHONE_X_W;
+    const canvasH = IPHONE_X_H;
+    // 居中: X 轴水平居中; Y 轴在上下安全边距之间居中
+    const offsetX = (canvasW - rangeX * scale) / 2;
+    const offsetY = padTop + (canvasH - padTop - padBottom - rangeY * scale) / 2;
+
+    // 计算每个天赋点的画布坐标 (包含所有节点，用于追踪 size=1 中间节点)
+    const posMap = {};
+    allPoints.forEach(p => {
+        posMap[p.id] = {
+            x: offsetX + (p.viewPos.x - minX) * scale,
+            y: offsetY + (maxY - p.viewPos.y) * scale
+        };
+    });
+
+    // 递归查找通过 size=1 节点连接到的所有可见节点
+    function findVisibleTargets(linkId, visited) {
+        if (visited.has(linkId)) return [];
+        visited.add(linkId);
+        const node = nodeMap[linkId];
+        if (!node) return [];
+        if (node.size >= 2) return [linkId];
+        // size=1 节点: 继续追踪其 linkPoint
+        const results = [];
+        (node.linkPoint || '').split('|').forEach(tid => {
+            const t = tid.trim();
+            if (t) results.push(...findVisibleTargets(t, visited));
+        });
+        return results;
+    }
+
+    // 生成连线 SVG (基于 linkPoint，跳过 size=1 中间节点，去重)
+    const drawn = new Set();
+    const lines = [];
+    visiblePoints.forEach(p => {
+        if (!p.linkPoint) return;
+        const src = posMap[p.id];
+        if (!src) return;
+        p.linkPoint.split('|').forEach(rawId => {
+            const tid = rawId.trim();
+            if (!tid) return;
+            // 如果目标节点可见，直接连线；否则通过 size=1 节点追踪到可见节点
+            let targets = [];
+            if (posMap[tid] && nodeMap[tid] && nodeMap[tid].size >= 2) {
+                targets = [tid];
+            } else {
+                targets = findVisibleTargets(tid, new Set([p.id]));
+            }
+            targets.forEach(targetId => {
+                if (targetId === p.id) return;
+                const key = [p.id, targetId].sort().join('\u2192');
+                if (drawn.has(key)) return;
+                drawn.add(key);
+                const tgt = posMap[targetId];
+                if (!tgt) return;
+                lines.push(`<line x1="${src.x.toFixed(1)}" y1="${src.y.toFixed(1)}" x2="${tgt.x.toFixed(1)}" y2="${tgt.y.toFixed(1)}" class="talent-link-line" />`);
+            });
+        });
+    });
+    const linksSvg = lines.length
+        ? `<svg class="talent-links-svg" width="${canvasW}" height="${canvasH}">${lines.join('')}</svg>`
+        : '';
+
+    // 生成天赋点元素 (仅 size >= 2)
+    const pointsHtml = visiblePoints.map(p => {
+        const pos = posMap[p.id];
+        const sizeClass = p.size === 2 ? 'talent-point-large' : (p.size === 3 ? 'talent-point-xlarge' : '');
+        const iconChar = p.icon || '⭐';
+        const iconHtml = p.iconSrc
+            ? `<img class="talent-point-img" src="icon/${p.iconSrc}.png" alt="${p.name}" onerror="this.style.display='none';this.nextSibling.style.display=''"><span class="talent-point-icon" style="display:none">${iconChar}</span>`
+            : `<span class="talent-point-icon">${iconChar}</span>`;
+        const shortDesc = p.name || '';
+        return `
+            <div class="talent-point ${sizeClass}" style="left:${pos.x}px;top:${pos.y}px"
+                 onclick="showTalentDetail('${p.id}', ${idx})"
+                 title="${p.name}">
+                ${iconHtml}
+            </div>
+            ${shortDesc ? `<div class="talent-point-label" style="left:${pos.x}px;top:${pos.y}px">${shortDesc}</div>` : ''}
+        `;
+    }).join('');
+
+    // 职业底图配置: 职业名 → 底图路径 (未配置的职业使用默认 talent-bg-character.png)
+    const occupationBgMap = {
+        '幻影魔典': 'assets/talent-bg-huanying.png',
+        '巫术魔典': 'assets/talent-bg-wushu.png',
+        '剑客1': 'assets/talent-bg-jianke.png'
+    };
+    const bgImage = occupationBgMap[occ.name];
+    const bgStyle = bgImage
+        ? `background-image:url('${bgImage}');background-size:cover;background-position:center center;background-repeat:no-repeat;`
+        : '';
+
+    canvasArea.innerHTML = `
+        <div class="occupation-canvas-wrapper">
+            <img class="talent-frame-top" src="assets/talent-frame-top.png" alt="">
+            <div class="occupation-canvas" style="width:${canvasW}px;height:${canvasH}px">
+                <div class="talent-canvas-bg" style="${bgStyle}"></div>
+                ${linksSvg}
+                ${pointsHtml}
+            </div>
+            <img class="talent-frame-bottom" src="assets/talent-frame-bottom.png" alt="">
+        </div>
+    `;
+}
+
+function showTalentDetail(pointId, occIdx) {
+    const occ = occupationData[occIdx];
+    if (!occ) return;
+    const point = (occ.talentPoints || []).find(p => p.id === pointId);
+    if (!point) return;
+
+    const modal = document.getElementById('skillModal');
+    const body = document.getElementById('modalBody');
+    if (!modal || !body) return;
+
+    body.innerHTML = `
+        <div class="talent-detail">
+            <h2 class="detail-name">${point.name}</h2>
+            <div class="talent-detail-meta">
+                <span class="type-badge">${occ.name}</span>
+                <span class="type-badge-sub">ID: ${point.id}</span>
+                <span class="type-badge-sub">坐标: ${point.viewPos.x}, ${point.viewPos.y}</span>
+                ${point.size && point.size > 1 ? `<span class="type-badge-sub">节点大小: ${point.size}</span>` : ''}
+            </div>
+            ${point.desc ? `<p class="detail-desc-text">${point.desc}</p>` : ''}
+            ${point.linkPoint ? `<div class="talent-detail-links"><span class="type-badge-sub">关联节点: ${point.linkPoint}</span></div>` : ''}
+        </div>
+    `;
+    modal.classList.add('active');
+}
+
+// ============================================================
+// 技能演示视频 (videos/ 文件夹: 以技能名称命名的视频文件)
+// 清单来源: 一键导入自动扫描 videos/ 生成 (auto-import-data.js videos 字段)
+// 无清单时使用 data.js 内置默认清单兜底
+// 技能卡片底部展示视频预览，点击后弹窗放大播放
+// ============================================================
+
+// 打开技能演示视频弹窗
+function openSkillVideo(file, name) {
+    const modal = document.getElementById('skillModal');
+    const body = document.getElementById('modalBody');
+    if (!modal || !body) return;
+    body.innerHTML = `
+        <div class="skill-video-modal">
+            <h2 class="detail-name">🎬 ${name}</h2>
+            <video src="videos/${file}" controls autoplay playsinline class="skill-video-modal-player"></video>
+        </div>
+    `;
+    modal.classList.add('active');
+}
+
+// ============================================================
+// 魔宠系统 (魔宠表 Pet / PetStar 子表)
+// 品质: 3-蓝, 4-紫, 6-橙, 8-红; 其余(如5)按金色展示
+// 星级效果: skillAffix→词缀库, stunt→被动技能, attr→属性库 (findRefData 匹配)
+// ============================================================
+
+// 品质映射表
+const petQualityMap = {
+    '3': { name: '蓝', color: '#3b82f6' },
+    '4': { name: '紫', color: '#a855f7' },
+    '5': { name: '金', color: '#d4a056' },
+    '6': { name: '橙', color: '#f97316' },
+    '8': { name: '红', color: '#ef4444' }
+};
+
+function getPetQuality(q) {
+    return petQualityMap[String(q)] || { name: '未知', color: '#95a5a6' };
+}
+
+// 数值格式化: 小数转百分比, 整数原样
+function fmtPetValue(v) {
+    if (v === null || v === undefined || v === '') return '';
+    const n = Number(v);
+    if (isNaN(n)) return String(v);
+    if (Number.isInteger(n) && n >= 1) return '+' + n;
+    const pct = (n * 100).toFixed(2).replace(/\.?0+$/, '');
+    return '+' + pct + '%';
+}
+
+// 按 ID 匹配战斗数据效果名称 (findRefData 跨 主动/被动/词缀/属性 查询)
+function petEffectName(id) {
+    const ref = findRefData(String(id));
+    if (!ref) return '';
+    return ref.name || ref.desc || '';
+}
+
+// 星级效果渲染: 返回效果标签 HTML
+function renderPetStarEffects(star) {
+    const parts = [];
+    (star.skillAffix || []).forEach(a => {
+        const name = petEffectName(a.id);
+        if (!name) return;
+        parts.push(`<span class="pet-effect pet-effect-affix" title="词缀ID: ${a.id}">${name} ${fmtPetValue(a.value)}</span>`);
+    });
+    (star.stunt || []).forEach(id => {
+        const name = petEffectName(id);
+        if (!name) return;
+        parts.push(`<span class="pet-effect pet-effect-stunt" title="被动ID: ${id}">${name}</span>`);
+    });
+    (star.attr || []).forEach(a => {
+        const name = petEffectName(a.id);
+        if (!name) return;
+        parts.push(`<span class="pet-effect pet-effect-attr" title="属性ID: ${a.id}">${name} ${fmtPetValue(a.value)}</span>`);
+    });
+    return parts.join('');
+}
+
+// 初始化魔宠页 (品质下拉 + 渲染)
+function initPetPage() {
+    const qFilter = document.getElementById('petQualityFilter');
+    if (qFilter) {
+        const qs = new Set(petData.map(p => String(p.quality)));
+        const opts = ['<option value="">全部品质</option>'];
+        [...qs].sort().forEach(q => {
+            const info = getPetQuality(q);
+            opts.push(`<option value="${q}">${info.name} (${q})</option>`);
+        });
+        qFilter.innerHTML = opts.join('');
+    }
+    filterPets();
+}
+
+// 筛选并渲染魔宠卡片
+function filterPets() {
+    const grid = document.getElementById('petGrid');
+    if (!grid) return;
+    const keyword = ((document.getElementById('petSearchInput') || {}).value || '').trim().toLowerCase();
+    const qFilter = ((document.getElementById('petQualityFilter') || {}).value || '').trim();
+
+    let list = petData;
+    if (keyword) {
+        list = list.filter(p => (p.name || '').toLowerCase().includes(keyword) || String(p.id).includes(keyword));
+    }
+    if (qFilter) {
+        list = list.filter(p => String(p.quality) === qFilter);
+    }
+    // 默认按品质排序: 品级数值越大越靠前 (红 > 橙 > 紫 > 蓝)
+    list = list.slice().sort((a, b) => (Number(b.quality) || 0) - (Number(a.quality) || 0));
+
+    const totalEl = document.getElementById('petTotalCount');
+    if (totalEl) totalEl.textContent = petData.length;
+
+    if (list.length === 0) {
+        grid.innerHTML = `
+            <div class="equipment-empty">
+                <div class="equipment-empty-icon">🐾</div>
+                <p>${petData.length === 0 ? '暂无魔宠数据' : '未找到匹配的魔宠'}</p>
+                <p class="equipment-empty-hint">${petData.length === 0 ? '请运行一键导入收录魔宠表数据' : '尝试其他搜索关键词'}</p>
+            </div>
+        `;
+        return;
+    }
+
+    grid.innerHTML = list.map(p => {
+        const q = getPetQuality(p.quality);
+        const hasPic = p.pic ? 'icon/' + p.pic + '.png' : '';
+        const hasBg = p.getBg ? 'icon/' + p.getBg + '.png' : '';
+        const hasGetPic = p.getPic ? 'icon/' + p.getPic + '.png' : '';
+        const starCount = (p.stars || []).length;
+        // 展示区: 仅当配置了立绘+背景时展示 (背景图铺底, 立绘图居中叠加在上, 点击查看原图)
+        let showcaseHtml = '';
+        if (hasBg || hasGetPic) {
+            const showcaseClick = `onclick="openPetShowcase('${hasGetPic}','${hasBg}','${(p.name || '').replace(/'/g, "\\'")}')"`;
+            showcaseHtml = `
+                <div class="pet-showcase" ${showcaseClick}>
+                    ${hasBg ? `<img class="pet-showcase-bg" src="${hasBg}" alt="" onerror="this.style.display='none'">` : ''}
+                    ${hasGetPic ? `<img class="pet-showcase-pic" src="${hasGetPic}" alt="${p.name}" onerror="this.style.display='none'">` : ''}
+                    <span class="pet-showcase-zoom">⛶</span>
+                </div>
+            `;
+        }
+        return `
+            <div class="pet-card" style="border-color:${q.color}66">
+                <div class="pet-card-top">
+                    <div class="pet-avatar${hasPic ? ' pet-avatar-clickable' : ''}" style="background:${q.color}18;border-color:${q.color}88" ${hasPic ? `onclick="openPetAvatar('${hasPic}','${(p.name || '').replace(/'/g, "\\'")}')" title="点击查看原图"` : ''}>
+                        ${hasPic ? `<img src="${hasPic}" alt="${p.name}" onerror="this.style.display='none'">` : '<span class="pet-avatar-fallback">🐾</span>'}
+                    </div>
+                    <div class="pet-info">
+                        <h4 class="pet-name">${p.name}</h4>
+                        <div class="pet-meta">
+                            <span class="pet-quality" style="background:${q.color};color:#fff">${q.name}</span>
+                            <span class="pet-id">ID: ${p.id}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="pet-stars">
+                    <div class="pet-star-left">
+                        ${starCount > 0 ? `
+                            <div class="pet-stars-title">⭐ 星级效果 (${starCount} 档)</div>
+                            <div class="pet-star-tabs">
+                                ${(p.stars || []).map((s, i) => `
+                                    <button class="pet-star-tab${i === 0 ? ' active' : ''}" onclick="switchPetStar(this, ${i})">${s.star === 0 ? '初始' : s.star + '星'}</button>
+                                `).join('')}
+                            </div>
+                            <div class="pet-star-panels">
+                                ${(p.stars || []).map((s, i) => {
+                                    const eff = renderPetStarEffects(s);
+                                    return `
+                                        <div class="pet-star-panel${i === 0 ? ' active' : ''}">
+                                            ${eff || '<span class="pet-star-empty">无效果</span>'}
+                                        </div>
+                                    `;
+                                }).join('')}
+                            </div>
+                        ` : '<div class="pet-stars-empty">暂无星级效果</div>'}
+                    </div>
+                    ${showcaseHtml}
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+// 切换魔宠星级效果 (点击星级标签时仅显示对应星级的效果)
+function switchPetStar(btn, idx) {
+    const card = btn.closest('.pet-card');
+    if (!card) return;
+    card.querySelectorAll('.pet-star-tab').forEach((t, i) => t.classList.toggle('active', i === idx));
+    card.querySelectorAll('.pet-star-panel').forEach((p, i) => p.classList.toggle('active', i === idx));
+}
+
+// 打开魔宠头像原图弹窗 (单图居中展示)
+function openPetAvatar(src, name) {
+    const modal = document.getElementById('skillModal');
+    const body = document.getElementById('modalBody');
+    if (!modal || !body) return;
+    body.innerHTML = `
+        <div class="pet-pic-modal">
+            <h2 class="detail-name">🐾 ${name}</h2>
+            <img class="pet-pic-single" src="${src}" alt="${name}" onerror="this.outerHTML='<p class=equipment-empty>图片加载失败</p>'">
+        </div>
+    `;
+    modal.classList.add('active');
+}
+
+// 打开魔宠展示区原图弹窗 (背景+立绘叠加展示, 背景在下立绘居中在上)
+function openPetShowcase(picSrc, bgSrc, name) {
+    const modal = document.getElementById('skillModal');
+    const body = document.getElementById('modalBody');
+    if (!modal || !body) return;
+    body.innerHTML = `
+        <div class="pet-pic-modal">
+            <h2 class="detail-name">🐾 ${name}</h2>
+            <div class="pet-showcase-modal">
+                ${bgSrc ? `<img class="pet-showcase-modal-bg" src="${bgSrc}" alt="" onerror="this.style.display='none'">` : ''}
+                ${picSrc ? `<img class="pet-showcase-modal-pic" src="${picSrc}" alt="${name}" onerror="this.outerHTML='<p class=equipment-empty>图片加载失败</p>'">` : ''}
+            </div>
+        </div>
+    `;
+    modal.classList.add('active');
+}
 
 // ============================================================
 // 三库（装备库/辅助技能宝石/技能库）数据仅由一键导入提供，只读展示。

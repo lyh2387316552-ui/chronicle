@@ -1,5 +1,5 @@
 {
-  "_说明": "数据源统一放在 data-sources 文件夹下，路径为相对路径（相对本项目目录）。将对应文件放入指定文件夹/文件名即可，无需修改本配置。iconPath 为图标资源源目录，导入时自动同步所需图标到项目 icon/ 文件夹。",
+  "_说明": "数据源统一放在 data-sources 文件夹下，路径为相对路径（相对本项目目录）。将对应文件放入指定文件夹/文件名即可，无需修改本配置。iconPath 为图标资源源目录，导入时自动同步所需图标到项目 icon/ 文件夹。videoPath 为技能视频源目录，导入时自动同步其中的视频到项目 videos/ 文件夹。",
   "skillFolder": "data-sources/Skill",
   "skillModuleFolder": "data-sources/SkillModule",
   "stuntFolder": "data-sources/Stunt",
@@ -10,5 +10,8 @@
   "attrPath": "data-sources/属性表",
   "skillExcelPath": "data-sources/技能表",
   "skillTagPath": "data-sources/技能标签",
-  "iconPath": "D:/NewProject/preview-templates/icon"
+  "occupationPath": "data-sources/技能表",
+  "iconPath": "D:/NewProject/preview-templates/icon",
+  "videoPath": "D:/Users/1250c/Desktop/技能视频",
+  "petPath": "E:/策划/1.表格目录/XLS表格/魔宠表"
 }
