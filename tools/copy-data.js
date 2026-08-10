@@ -12,7 +12,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const DATA_SOURCES_DIR = path.join(__dirname, 'data-sources');
+const DATA_SOURCES_DIR = path.join(__dirname, '..', 'data-sources');
 
 // 数据源映射: 本地绝对路径 → data-sources 目标文件夹
 const MAPPINGS = [

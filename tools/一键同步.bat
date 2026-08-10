@@ -1,7 +1,7 @@
 @echo off
 chcp 65001 >nul
 title Chronicle One-Click Sync
-cd /d "%~dp0"
+cd /d "%~dp0.."
 
 echo ==================================================
 echo    Chronicle Data Sync Tool
@@ -18,15 +18,15 @@ if %errorlevel% neq 0 (
     exit /b 1
 )
 
-if not exist "copy-data.js" (
-    echo [ERROR] copy-data.js not found!
+if not exist "tools\copy-data.js" (
+    echo [ERROR] tools\copy-data.js not found!
     echo.
     pause
     exit /b 1
 )
 
-if not exist "import.js" (
-    echo [ERROR] import.js not found!
+if not exist "tools\import.js" (
+    echo [ERROR] tools\import.js not found!
     echo.
     pause
     exit /b 1
@@ -34,7 +34,7 @@ if not exist "import.js" (
 
 echo [Step 1/2] Copying data sources...
 echo ------------------------------------------------
-node copy-data.js
+node tools\copy-data.js
 if %errorlevel% neq 0 (
     echo.
     echo [ERROR] Copy data failed!
@@ -46,7 +46,7 @@ echo.
 
 echo [Step 2/2] Importing data...
 echo ------------------------------------------------
-node import.js
+node tools\import.js
 if %errorlevel% neq 0 (
     echo.
     echo [ERROR] Import data failed!

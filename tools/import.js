@@ -27,18 +27,18 @@ const path = require('path');
 // ============================================================
 let XLSX;
 try {
-    XLSX = require('./xlsx.min.js');
+    XLSX = require('../js/xlsx.min.js');
 } catch (e) {
     try {
         XLSX = require('xlsx');
     } catch (e2) {
-        console.error('❌ 无法加载 XLSX 库，请确保 xlsx.min.js 在同一目录下');
+        console.error('❌ 无法加载 XLSX 库，请确保 js/xlsx.min.js 存在或已安装 xlsx 模块');
         process.exit(1);
     }
 }
 
 const CONFIG_FILE = path.join(__dirname, 'import-config.json');
-const OUTPUT_FILE = path.join(__dirname, 'auto-import-data.js');
+const OUTPUT_FILE = path.join(__dirname, '..', 'js', 'auto-import-data.js');
 
 // ============================================================
 // 默认配置 (数据源统一放在 data-sources 文件夹下，相对路径)
@@ -79,7 +79,7 @@ function findCol(headers, names) {
 function resolvePath(p) {
     if (!p) return null;
     if (path.isAbsolute(p)) return p;
-    return path.resolve(__dirname, p);
+    return path.resolve(__dirname, '..', p);
 }
 
 // 智能解析路径: 如果路径不存在，尝试添加常见扩展名
@@ -1275,7 +1275,7 @@ function syncIcons(importData, config) {
         console.log('  ⚠️ 未配置 iconPath，跳过图标资源同步');
         return;
     }
-    const destRoot = path.join(__dirname, 'icon');
+    const destRoot = path.join(__dirname, '..', 'icon');
 
     // 收集图标引用: {src: 源目录相对路径, dst: icon/ 下目标路径}
     // 装备/技能源路径与目标路径一致；宝石源为原始引用(如 skill/sect/101101)，目标为扁平路径(baoshi/101101)
@@ -1489,7 +1489,7 @@ function main() {
 
     // 8. 视频库 (从 videoPath 源目录同步视频到 videos/ 文件夹，视频文件名 = 技能名称，生成清单)
     {
-        const videoDir = path.join(__dirname, 'videos');
+        const videoDir = path.join(__dirname, '..', 'videos');
         // 8.1 源目录同步: 若配置了 videoPath，把其中的视频文件复制到 videos/ 文件夹
         if (config.videoPath && config.videoPath.trim()) {
             const srcDir = resolvePath(config.videoPath.trim());

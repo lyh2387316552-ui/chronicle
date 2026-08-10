@@ -9,16 +9,24 @@
 ## 项目结构
 
 ```
-chronicle/
+chronicle-main/
 ├── index.html              # 主页面入口（含所有页面结构）
-├── style.css               # 全局样式表（tlidb.com 风格，深色主题）
-├── app.js                  # 应用核心逻辑（UI 渲染、导航、交互）
-├── data.js                 # 内置数据库与数据管理（技能/词缀/属性/装备）
-├── import.js               # 数据导入脚本（Node.js，解析 Excel/CSV/JSON）
-├── import-config.json      # 导入配置文件（数据源路径）
-├── auto-import-data.js     # 自动生成的导入数据文件（import.js 产出）
-├── xlsx.min.js             # SheetJS 库（Excel/CSV 解析，第三方）
-├── 导入数据.bat             # Windows 一键导入批处理脚本
+├── css/
+│   └── style.css           # 全局样式表（tlidb.com 风格，深色主题）
+├── js/
+│   ├── app.js              # 应用核心逻辑（UI 渲染、导航、交互）
+│   ├── data.js             # 内置数据库与数据管理（技能/词缀/属性/装备）
+│   ├── auto-import-data.js # 自动生成的导入数据文件（import.js 产出）
+│   └── xlsx.min.js         # SheetJS 库（Excel/CSV 解析，第三方）
+├── tools/
+│   ├── import.js           # 数据导入脚本（Node.js，解析 Excel/CSV/JSON）
+│   ├── import-config.json  # 导入配置文件（数据源路径）
+│   ├── copy-data.js        # 数据源增量复制脚本（同步到 data-sources）
+│   └── 一键同步.bat        # Windows 一键同步批处理脚本
+├── assets/                 # 页面图片资源（logo、背景图等）
+├── icon/                   # 游戏图标资源（导入时自动同步）
+├── videos/                 # 技能演示视频（导入时自动同步）
+├── data-sources/           # 本地数据源文件夹（Skill/表格等）
 ├── .gitignore              # Git 忽略规则
 ├── README.md               # 项目说明（本文件）
 └── CHANGELOG.md            # 更新日志
@@ -29,13 +37,13 @@ chronicle/
 | 文件 | 职责 | 关键函数/特性 |
 |------|------|--------------|
 | `index.html` | 页面骨架，定义所有页面和导航结构 | 首页、战斗数据、装备、宝石、统计、ID规则 |
-| `style.css` | 视觉样式，参考 tlidb.com 深色设计 | 不对称圆角卡片、半透明背景、模糊毛玻璃 |
-| `app.js` | 应用交互逻辑，所有渲染与事件处理 | `init()`, `navigateTo()`, `filterSkills()`, `renderEquipment()` |
-| `data.js` | 数据层，内置默认数据 + 自动导入加载 | localStorage 垫片, `loadAutoImportData()` IIFE |
-| `import.js` | Node.js 脚本，解析本地文件生成数据 | 编码检测(UTF-8/GBK), 递归文件搜索, desc999 乱码回退 |
-| `import-config.json` | 配置各数据源的本地路径 | 技能/词缀/装备/属性/宝石路径 |
-| `auto-import-data.js` | import.js 生成的 JS 数据文件 | `window.__AUTO_IMPORT_DATA__` 全局变量 |
-| `xlsx.min.js` | SheetJS 库，提供 Excel/CSV 解析能力 | 第三方库，无需修改 |
+| `css/style.css` | 视觉样式，参考 tlidb.com 深色设计 | 不对称圆角卡片、半透明背景、模糊毛玻璃 |
+| `js/app.js` | 应用交互逻辑，所有渲染与事件处理 | `init()`, `navigateTo()`, `filterSkills()`, `renderEquipment()` |
+| `js/data.js` | 数据层，内置默认数据 + 自动导入加载 | localStorage 垫片, `loadAutoImportData()` IIFE |
+| `tools/import.js` | Node.js 脚本，解析本地文件生成数据 | 编码检测(UTF-8/GBK), 递归文件搜索, desc999 乱码回退 |
+| `tools/import-config.json` | 配置各数据源的本地路径 | 技能/词缀/装备/属性/宝石路径 |
+| `js/auto-import-data.js` | import.js 生成的 JS 数据文件 | `window.__AUTO_IMPORT_DATA__` 全局变量 |
+| `js/xlsx.min.js` | SheetJS 库，提供 Excel/CSV 解析能力 | 第三方库，无需修改 |
 
 ---
 
@@ -52,14 +60,14 @@ chronicle/
 2. **运行导入脚本**：
 
 ```bash
-node import.js
+node tools\import.js
 ```
 
-或 Windows 双击 `导入数据.bat`。
+或 Windows 双击 `tools\一键同步.bat`。
 
 3. **打开网页**：用浏览器打开 `index.html`，数据会自动加载。
 
-> 导入后生成 `auto-import-data.js`，页面加载时自动读取，无需手动操作。
+> 导入后生成 `js/auto-import-data.js`，页面加载时自动读取，无需手动操作。
 
 ---
 
