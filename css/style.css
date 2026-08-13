@@ -1928,7 +1928,7 @@ body {
     justify-content: center;
     overflow: hidden;
     flex-shrink: 0;
-    margin-top: -14px;
+    margin-top: 0;
 }
 
 .pet-avatar-clickable {
@@ -2743,6 +2743,28 @@ body {
     cursor: pointer;
     transition: all 0.15s ease;
     line-height: 1.6;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+}
+
+.tag-filter-count {
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1;
+    padding: 1px 5px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.25);
+    color: #fff;
+    margin-top: 1px;
+}
+
+.tag-filter-sep {
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 12px;
+    margin: 0 2px;
+    user-select: none;
 }
 
 .tag-filter-btn:hover {

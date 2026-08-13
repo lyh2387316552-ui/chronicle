@@ -1,5 +1,5 @@
 // 此文件由 import.js 自动生成，请勿手动编辑
-// 生成时间: 2026-08-10T11:26:22.554Z
+// 生成时间: 2026-08-12T08:32:10.533Z
 window.__AUTO_IMPORT_DATA__ = {
   "activeSkills": [
     {
@@ -521,7 +521,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "isNew": false,
       "description": "",
       "tags": {
-        "main": "1",
+        "main": "2",
         "normal": [
           "4",
           "7",
@@ -529,7 +529,7 @@ window.__AUTO_IMPORT_DATA__ = {
         ]
       },
       "tagsText": {
-        "main": "攻击",
+        "main": "法术",
         "normal": [
           "冰霜",
           "范围",
@@ -1147,7 +1147,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "isNew": false,
       "description": "激活时，造成暴击时会产生获取层数，满40层后会释放大地之怒，产生冰霜爆炸对范围内敌人造成伤害",
       "tags": {
-        "main": "1",
+        "main": "2",
         "normal": [
           "4",
           "7",
@@ -1155,7 +1155,7 @@ window.__AUTO_IMPORT_DATA__ = {
         ]
       },
       "tagsText": {
-        "main": "攻击",
+        "main": "法术",
         "normal": [
           "冰霜",
           "范围",
@@ -1225,10 +1225,13 @@ window.__AUTO_IMPORT_DATA__ = {
       "isNew": false,
       "description": "占位技能",
       "tags": {
-        "main": null,
+        "main": "2",
         "normal": []
       },
-      "tagsText": null,
+      "tagsText": {
+        "main": "法术",
+        "normal": []
+      },
       "icon": ""
     },
     {
@@ -2173,7 +2176,7 @@ window.__AUTO_IMPORT_DATA__ = {
     },
     {
       "id": "10033",
-      "name": "冻结效果额外提高",
+      "name": "冰冻效果额外提高",
       "description": "冻结效果额外提高{0}",
       "category": "通用",
       "subCategory": "通用",
@@ -2629,8 +2632,8 @@ window.__AUTO_IMPORT_DATA__ = {
     },
     {
       "id": "10090",
-      "name": "天赋-通用-雷神",
-      "description": "天赋-通用-雷神{0}",
+      "name": "闪电伤害有几率附带触电累积",
+      "description": "闪电伤害有{0}几率附带触电累积",
       "category": "天赋",
       "subCategory": "通用",
       "isNew": false
@@ -3196,41 +3199,9 @@ window.__AUTO_IMPORT_DATA__ = {
       "isNew": false
     },
     {
-      "id": "10163",
-      "name": "物理抗性穿透",
-      "description": "物理抗性穿透{0}",
-      "category": "通用",
-      "subCategory": "通用",
-      "isNew": false
-    },
-    {
-      "id": "10164",
-      "name": "火焰抗性穿透",
-      "description": "火焰抗性穿透{0}",
-      "category": "通用",
-      "subCategory": "通用",
-      "isNew": false
-    },
-    {
-      "id": "10165",
-      "name": "冰冷抗性穿透",
-      "description": "冰冷抗性穿透{0}",
-      "category": "通用",
-      "subCategory": "通用",
-      "isNew": false
-    },
-    {
-      "id": "10166",
-      "name": "闪电抗性穿透",
-      "description": "闪电抗性穿透{0}",
-      "category": "通用",
-      "subCategory": "通用",
-      "isNew": false
-    },
-    {
       "id": "10167",
-      "name": "混沌抗性穿透",
-      "description": "混沌抗性穿透{0}",
+      "name": "每3%投射物速度提供的1%投射物额外伤害，最多提供15%投射物额外伤害",
+      "description": "每3%投射物速度提供的1%投射物额外伤害，最多提供15%投射物额外伤害",
       "category": "通用",
       "subCategory": "通用",
       "isNew": false
@@ -3277,8 +3248,8 @@ window.__AUTO_IMPORT_DATA__ = {
     },
     {
       "id": "10173",
-      "name": "进展暴击率额外提高",
-      "description": "进展暴击率额外提高{0}",
+      "name": "近战暴击率额外提高",
+      "description": "近战暴击率额外提高{0}",
       "category": "通用",
       "subCategory": "通用",
       "isNew": false
@@ -5098,7 +5069,7 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "10038"
         },
         {
-          "refId": "10046"
+          "refId": "10146"
         }
       ],
       "rank": "1",
@@ -5118,7 +5089,7 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "10038"
         },
         {
-          "refId": "10046"
+          "refId": "10146"
         }
       ],
       "rank": "4",
@@ -5637,7 +5608,7 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "10131"
         },
         {
-          "refId": "10046"
+          "refId": "10146"
         }
       ],
       "rank": "2",
@@ -6274,7 +6245,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "desc": "",
       "sourceId": "2120000030",
       "tags": {
-        "main": "攻击",
+        "main": "法术",
         "normal": [
           "冰霜",
           "范围",
@@ -8263,12 +8234,60 @@ window.__AUTO_IMPORT_DATA__ = {
       "file": "专注斩.mp4"
     },
     {
+      "name": "冥地喷涌",
+      "file": "冥地喷涌.mp4"
+    },
+    {
+      "name": "冰霜新星",
+      "file": "冰霜新星.mp4"
+    },
+    {
+      "name": "回响",
+      "file": "回响.mp4"
+    },
+    {
+      "name": "回旋龙卷",
+      "file": "回旋龙卷.mp4"
+    },
+    {
+      "name": "拔刀斩",
+      "file": "拔刀斩.mp4"
+    },
+    {
       "name": "旋风斩",
       "file": "旋风斩.mp4"
     },
     {
+      "name": "月光斩",
+      "file": "月光斩.mp4"
+    },
+    {
+      "name": "月神赐福",
+      "file": "月神赐福.mp4"
+    },
+    {
+      "name": "极地战吼",
+      "file": "极地战吼.mp4"
+    },
+    {
+      "name": "气刃纵斩",
+      "file": "气刃纵斩.mp4"
+    },
+    {
+      "name": "法术旋龙",
+      "file": "法术旋龙.mp4"
+    },
+    {
       "name": "混沌刺击",
       "file": "混沌刺击.mp4"
+    },
+    {
+      "name": "混沌陨星",
+      "file": "混沌陨星.mp4"
+    },
+    {
+      "name": "火球术",
+      "file": "火球术.mp4"
     }
   ],
   "pets": [
@@ -8282,25 +8301,12 @@ window.__AUTO_IMPORT_DATA__ = {
       "stars": [
         {
           "star": 0,
-          "skillAffix": [
-            {
-              "id": "10031",
-              "value": 0.1
-            },
-            {
-              "id": "10050",
-              "value": 0.3
-            },
-            {
-              "id": "10127",
-              "value": 0.5
-            }
-          ],
+          "skillAffix": [],
           "stunt": [],
           "attr": [
             {
               "id": "10306",
-              "value": 0.05
+              "value": 0.1
             },
             {
               "id": "11010",
@@ -8310,27 +8316,12 @@ window.__AUTO_IMPORT_DATA__ = {
         },
         {
           "star": 1,
-          "skillAffix": [
-            {
-              "id": "10031",
-              "value": 0.1
-            },
-            {
-              "id": "10050",
-              "value": 0.3
-            },
-            {
-              "id": "10127",
-              "value": 0.5
-            }
-          ],
-          "stunt": [
-            "2110000010"
-          ],
+          "skillAffix": [],
+          "stunt": [],
           "attr": [
             {
               "id": "10306",
-              "value": 0.05
+              "value": 0.25
             },
             {
               "id": "11010",
@@ -8340,123 +8331,73 @@ window.__AUTO_IMPORT_DATA__ = {
         },
         {
           "star": 2,
-          "skillAffix": [
-            {
-              "id": "10031",
-              "value": 0.1
-            },
-            {
-              "id": "10050",
-              "value": 0.3
-            },
-            {
-              "id": "10127",
-              "value": 0.5
-            }
-          ],
-          "stunt": [
-            "2110000010"
-          ],
+          "skillAffix": [],
+          "stunt": [],
           "attr": [
             {
               "id": "10306",
-              "value": 0.05
+              "value": 0.25
             },
             {
               "id": "11010",
-              "value": 0.1
+              "value": 0.3
             }
           ]
         },
         {
           "star": 3,
-          "skillAffix": [
-            {
-              "id": "10031",
-              "value": 0.1
-            },
-            {
-              "id": "10050",
-              "value": 0.3
-            },
-            {
-              "id": "10127",
-              "value": 0.5
-            }
-          ],
-          "stunt": [
-            "2110000010"
-          ],
+          "skillAffix": [],
+          "stunt": [],
           "attr": [
             {
               "id": "10306",
-              "value": 0.05
+              "value": 0.25
             },
             {
               "id": "11010",
-              "value": 0.1
+              "value": 0.3
+            },
+            {
+              "id": "10300",
+              "value": 0.12
             }
           ]
         },
         {
           "star": 4,
-          "skillAffix": [
-            {
-              "id": "10031",
-              "value": 0.1
-            },
-            {
-              "id": "10050",
-              "value": 0.3
-            },
-            {
-              "id": "10127",
-              "value": 0.5
-            }
-          ],
-          "stunt": [
-            "2110000010",
-            "2110000020"
-          ],
+          "skillAffix": [],
+          "stunt": [],
           "attr": [
             {
               "id": "10306",
-              "value": 0.05
+              "value": 0.39
             },
             {
               "id": "11010",
-              "value": 0.1
+              "value": 0.3
+            },
+            {
+              "id": "10300",
+              "value": 0.12
             }
           ]
         },
         {
           "star": 5,
-          "skillAffix": [
-            {
-              "id": "10031",
-              "value": 0.1
-            },
-            {
-              "id": "10050",
-              "value": 0.3
-            },
-            {
-              "id": "10127",
-              "value": 0.5
-            }
-          ],
-          "stunt": [
-            "2110000010",
-            "2110000020"
-          ],
+          "skillAffix": [],
+          "stunt": [],
           "attr": [
             {
               "id": "10306",
-              "value": 0.05
+              "value": 0.39
             },
             {
               "id": "11010",
-              "value": 0.1
+              "value": 0.62
+            },
+            {
+              "id": "10300",
+              "value": 0.12
             }
           ]
         }
@@ -8472,39 +8413,127 @@ window.__AUTO_IMPORT_DATA__ = {
       "stars": [
         {
           "star": 0,
-          "skillAffix": [],
+          "skillAffix": [
+            {
+              "id": "10124",
+              "value": 0.1
+            }
+          ],
           "stunt": [],
-          "attr": []
+          "attr": [
+            {
+              "id": "10303",
+              "value": 0.05
+            }
+          ]
         },
         {
           "star": 1,
-          "skillAffix": [],
+          "skillAffix": [
+            {
+              "id": "10124",
+              "value": 0.15
+            }
+          ],
           "stunt": [],
-          "attr": []
+          "attr": [
+            {
+              "id": "10303",
+              "value": 0.05
+            },
+            {
+              "id": "11055",
+              "value": 0.1
+            }
+          ]
         },
         {
           "star": 2,
-          "skillAffix": [],
+          "skillAffix": [
+            {
+              "id": "10124",
+              "value": 0.2
+            }
+          ],
           "stunt": [],
-          "attr": []
+          "attr": [
+            {
+              "id": "10303",
+              "value": 0.1
+            },
+            {
+              "id": "11055",
+              "value": 0.1
+            }
+          ]
         },
         {
           "star": 3,
-          "skillAffix": [],
+          "skillAffix": [
+            {
+              "id": "10124",
+              "value": 0.2
+            },
+            {
+              "id": "10178",
+              "value": 0.07
+            }
+          ],
           "stunt": [],
-          "attr": []
+          "attr": [
+            {
+              "id": "10303",
+              "value": 0.1
+            },
+            {
+              "id": "11055",
+              "value": 0.2
+            }
+          ]
         },
         {
           "star": 4,
-          "skillAffix": [],
+          "skillAffix": [
+            {
+              "id": "10124",
+              "value": 0.28
+            }
+          ],
           "stunt": [],
-          "attr": []
+          "attr": [
+            {
+              "id": "10303",
+              "value": 0.15
+            },
+            {
+              "id": "11055",
+              "value": 0.2
+            }
+          ]
         },
         {
           "star": 5,
-          "skillAffix": [],
+          "skillAffix": [
+            {
+              "id": "10124",
+              "value": 0.28
+            },
+            {
+              "id": "10178",
+              "value": 0.2
+            }
+          ],
           "stunt": [],
-          "attr": []
+          "attr": [
+            {
+              "id": "10303",
+              "value": 0.15
+            },
+            {
+              "id": "11055",
+              "value": 0.3
+            }
+          ]
         }
       ]
     },
@@ -8518,103 +8547,181 @@ window.__AUTO_IMPORT_DATA__ = {
       "stars": [
         {
           "star": 0,
-          "skillAffix": [],
-          "stunt": [],
-          "attr": [
+          "skillAffix": [
             {
-              "id": "10304",
+              "id": "10031",
               "value": 0.1
             },
             {
-              "id": "11007",
+              "id": "10050",
+              "value": 0.3
+            },
+            {
+              "id": "10127",
+              "value": 0.5
+            }
+          ],
+          "stunt": [],
+          "attr": [
+            {
+              "id": "10306",
+              "value": 0.05
+            },
+            {
+              "id": "11010",
               "value": 0.1
             }
           ]
         },
         {
           "star": 1,
-          "skillAffix": [],
-          "stunt": [],
-          "attr": [
+          "skillAffix": [
             {
-              "id": "10304",
-              "value": 0.25
+              "id": "10031",
+              "value": 0.1
             },
             {
-              "id": "11007",
+              "id": "10050",
+              "value": 0.3
+            },
+            {
+              "id": "10127",
+              "value": 0.5
+            }
+          ],
+          "stunt": [
+            "2110000010"
+          ],
+          "attr": [
+            {
+              "id": "10306",
+              "value": 0.05
+            },
+            {
+              "id": "11010",
               "value": 0.1
             }
           ]
         },
         {
           "star": 2,
-          "skillAffix": [],
-          "stunt": [],
-          "attr": [
+          "skillAffix": [
             {
-              "id": "10304",
-              "value": 0.25
+              "id": "10031",
+              "value": 0.1
             },
             {
-              "id": "11007",
+              "id": "10050",
               "value": 0.3
+            },
+            {
+              "id": "10127",
+              "value": 0.5
+            }
+          ],
+          "stunt": [
+            "2110000010"
+          ],
+          "attr": [
+            {
+              "id": "10306",
+              "value": 0.05
+            },
+            {
+              "id": "11010",
+              "value": 0.1
             }
           ]
         },
         {
           "star": 3,
-          "skillAffix": [],
-          "stunt": [],
-          "attr": [
+          "skillAffix": [
             {
-              "id": "10304",
-              "value": 0.25
+              "id": "10031",
+              "value": 0.1
             },
             {
-              "id": "11007",
+              "id": "10050",
               "value": 0.3
             },
             {
-              "id": "10300",
-              "value": 0.12
+              "id": "10127",
+              "value": 0.5
+            }
+          ],
+          "stunt": [
+            "2110000010"
+          ],
+          "attr": [
+            {
+              "id": "10306",
+              "value": 0.05
+            },
+            {
+              "id": "11010",
+              "value": 0.1
             }
           ]
         },
         {
           "star": 4,
-          "skillAffix": [],
-          "stunt": [],
-          "attr": [
+          "skillAffix": [
             {
-              "id": "10304",
-              "value": 0.39
+              "id": "10031",
+              "value": 0.1
             },
             {
-              "id": "11007",
+              "id": "10050",
               "value": 0.3
             },
             {
-              "id": "10300",
-              "value": 0.12
+              "id": "10127",
+              "value": 0.5
+            }
+          ],
+          "stunt": [
+            "2110000010",
+            "2110000020"
+          ],
+          "attr": [
+            {
+              "id": "10306",
+              "value": 0.05
+            },
+            {
+              "id": "11010",
+              "value": 0.1
             }
           ]
         },
         {
           "star": 5,
-          "skillAffix": [],
-          "stunt": [],
+          "skillAffix": [
+            {
+              "id": "10031",
+              "value": 0.1
+            },
+            {
+              "id": "10050",
+              "value": 0.3
+            },
+            {
+              "id": "10127",
+              "value": 0.5
+            }
+          ],
+          "stunt": [
+            "2110000010",
+            "2110000020"
+          ],
           "attr": [
             {
-              "id": "10304",
-              "value": 0.39
+              "id": "10306",
+              "value": 0.05
             },
             {
-              "id": "11007",
-              "value": 0.62
-            },
-            {
-              "id": "10300",
-              "value": 0.12
+              "id": "11010",
+              "value": 0.1
             }
           ]
         }
@@ -8979,7 +9086,7 @@ window.__AUTO_IMPORT_DATA__ = {
             },
             {
               "id": "10049",
-              "value": 0.01
+              "value": 0.02
             }
           ],
           "stunt": [],
@@ -8994,7 +9101,7 @@ window.__AUTO_IMPORT_DATA__ = {
             },
             {
               "id": "10049",
-              "value": 0.01
+              "value": 0.02
             }
           ],
           "stunt": [],
@@ -9009,7 +9116,7 @@ window.__AUTO_IMPORT_DATA__ = {
             },
             {
               "id": "10049",
-              "value": 0.03
+              "value": 0.06
             }
           ],
           "stunt": [],
@@ -9024,7 +9131,7 @@ window.__AUTO_IMPORT_DATA__ = {
             },
             {
               "id": "10049",
-              "value": 0.03
+              "value": 0.06
             }
           ],
           "stunt": [],
@@ -9044,7 +9151,7 @@ window.__AUTO_IMPORT_DATA__ = {
             },
             {
               "id": "10049",
-              "value": 0.03
+              "value": 0.06
             }
           ],
           "stunt": [],
@@ -9064,7 +9171,7 @@ window.__AUTO_IMPORT_DATA__ = {
             },
             {
               "id": "10049",
-              "value": 0.06
+              "value": 0.12
             }
           ],
           "stunt": [],
@@ -9199,38 +9306,106 @@ window.__AUTO_IMPORT_DATA__ = {
       "stars": [
         {
           "star": 0,
-          "skillAffix": [],
+          "skillAffix": [
+            {
+              "id": "10067",
+              "value": 0.05
+            },
+            {
+              "id": "10135",
+              "value": 0.1
+            }
+          ],
           "stunt": [],
           "attr": []
         },
         {
           "star": 1,
-          "skillAffix": [],
+          "skillAffix": [
+            {
+              "id": "10067",
+              "value": 0.1
+            },
+            {
+              "id": "10135",
+              "value": 0.15
+            }
+          ],
           "stunt": [],
           "attr": []
         },
         {
           "star": 2,
-          "skillAffix": [],
+          "skillAffix": [
+            {
+              "id": "10067",
+              "value": 0.15
+            },
+            {
+              "id": "10135",
+              "value": 0.2
+            }
+          ],
           "stunt": [],
           "attr": []
         },
         {
           "star": 3,
-          "skillAffix": [],
+          "skillAffix": [
+            {
+              "id": "10067",
+              "value": 0.15
+            },
+            {
+              "id": "10050",
+              "value": 0.04
+            },
+            {
+              "id": "10135",
+              "value": 0.25
+            }
+          ],
           "stunt": [],
           "attr": []
         },
         {
           "star": 4,
-          "skillAffix": [],
+          "skillAffix": [
+            {
+              "id": "10067",
+              "value": 0.2
+            },
+            {
+              "id": "10050",
+              "value": 0.04
+            },
+            {
+              "id": "10135",
+              "value": 0.3
+            }
+          ],
           "stunt": [],
           "attr": []
         },
         {
           "star": 5,
-          "skillAffix": [],
-          "stunt": [],
+          "skillAffix": [
+            {
+              "id": "10067",
+              "value": 0.2
+            },
+            {
+              "id": "10050",
+              "value": 0.1
+            },
+            {
+              "id": "10135",
+              "value": 0.3
+            }
+          ],
+          "stunt": [
+            "2140000180"
+          ],
           "attr": []
         }
       ]
@@ -9479,7 +9654,7 @@ window.__AUTO_IMPORT_DATA__ = {
             },
             {
               "id": "10049",
-              "value": 0.02
+              "value": 0.04
             }
           ],
           "stunt": [],
@@ -9494,7 +9669,7 @@ window.__AUTO_IMPORT_DATA__ = {
             },
             {
               "id": "10049",
-              "value": 0.02
+              "value": 0.04
             }
           ],
           "stunt": [],
@@ -9509,7 +9684,7 @@ window.__AUTO_IMPORT_DATA__ = {
             },
             {
               "id": "10049",
-              "value": 0.06
+              "value": 0.12
             }
           ],
           "stunt": [],
@@ -9524,7 +9699,7 @@ window.__AUTO_IMPORT_DATA__ = {
             },
             {
               "id": "10049",
-              "value": 0.06
+              "value": 0.12
             }
           ],
           "stunt": [],
@@ -9544,7 +9719,7 @@ window.__AUTO_IMPORT_DATA__ = {
             },
             {
               "id": "10049",
-              "value": 0.06
+              "value": 0.12
             }
           ],
           "stunt": [],
@@ -9564,7 +9739,7 @@ window.__AUTO_IMPORT_DATA__ = {
             },
             {
               "id": "10049",
-              "value": 0.11
+              "value": 0.22
             }
           ],
           "stunt": [],
@@ -9701,37 +9876,103 @@ window.__AUTO_IMPORT_DATA__ = {
           "star": 0,
           "skillAffix": [],
           "stunt": [],
-          "attr": []
+          "attr": [
+            {
+              "id": "10304",
+              "value": 0.1
+            },
+            {
+              "id": "11007",
+              "value": 0.1
+            }
+          ]
         },
         {
           "star": 1,
           "skillAffix": [],
           "stunt": [],
-          "attr": []
+          "attr": [
+            {
+              "id": "10304",
+              "value": 0.25
+            },
+            {
+              "id": "11007",
+              "value": 0.1
+            }
+          ]
         },
         {
           "star": 2,
           "skillAffix": [],
           "stunt": [],
-          "attr": []
+          "attr": [
+            {
+              "id": "10304",
+              "value": 0.25
+            },
+            {
+              "id": "11007",
+              "value": 0.3
+            }
+          ]
         },
         {
           "star": 3,
           "skillAffix": [],
           "stunt": [],
-          "attr": []
+          "attr": [
+            {
+              "id": "10304",
+              "value": 0.25
+            },
+            {
+              "id": "11007",
+              "value": 0.3
+            },
+            {
+              "id": "10300",
+              "value": 0.12
+            }
+          ]
         },
         {
           "star": 4,
           "skillAffix": [],
           "stunt": [],
-          "attr": []
+          "attr": [
+            {
+              "id": "10304",
+              "value": 0.39
+            },
+            {
+              "id": "11007",
+              "value": 0.3
+            },
+            {
+              "id": "10300",
+              "value": 0.12
+            }
+          ]
         },
         {
           "star": 5,
           "skillAffix": [],
           "stunt": [],
-          "attr": []
+          "attr": [
+            {
+              "id": "10304",
+              "value": 0.39
+            },
+            {
+              "id": "11007",
+              "value": 0.62
+            },
+            {
+              "id": "10300",
+              "value": 0.12
+            }
+          ]
         }
       ]
     },
@@ -9752,7 +9993,7 @@ window.__AUTO_IMPORT_DATA__ = {
             },
             {
               "id": "10080",
-              "value": 0.03
+              "value": 0.04
             }
           ],
           "stunt": [],
@@ -9767,7 +10008,7 @@ window.__AUTO_IMPORT_DATA__ = {
             },
             {
               "id": "10080",
-              "value": 0.03
+              "value": 0.04
             }
           ],
           "stunt": [],
@@ -9782,7 +10023,7 @@ window.__AUTO_IMPORT_DATA__ = {
             },
             {
               "id": "10080",
-              "value": 0.09
+              "value": 0.12
             }
           ],
           "stunt": [],
@@ -9797,7 +10038,7 @@ window.__AUTO_IMPORT_DATA__ = {
             },
             {
               "id": "10080",
-              "value": 0.09
+              "value": 0.12
             }
           ],
           "stunt": [],
@@ -9817,7 +10058,7 @@ window.__AUTO_IMPORT_DATA__ = {
             },
             {
               "id": "10080",
-              "value": 0.09
+              "value": 0.12
             }
           ],
           "stunt": [],
@@ -9837,7 +10078,7 @@ window.__AUTO_IMPORT_DATA__ = {
             },
             {
               "id": "10080",
-              "value": 0.16
+              "value": 0.22
             }
           ],
           "stunt": [],
@@ -9975,39 +10216,133 @@ window.__AUTO_IMPORT_DATA__ = {
       "stars": [
         {
           "star": 0,
-          "skillAffix": [],
+          "skillAffix": [
+            {
+              "id": "10125",
+              "value": 0.1
+            }
+          ],
           "stunt": [],
-          "attr": []
+          "attr": [
+            {
+              "id": "10304",
+              "value": 0.05
+            }
+          ]
         },
         {
           "star": 1,
-          "skillAffix": [],
+          "skillAffix": [
+            {
+              "id": "10125",
+              "value": 0.15
+            }
+          ],
           "stunt": [],
-          "attr": []
+          "attr": [
+            {
+              "id": "10304",
+              "value": 0.05
+            },
+            {
+              "id": "11007",
+              "value": 0.1
+            }
+          ]
         },
         {
           "star": 2,
-          "skillAffix": [],
+          "skillAffix": [
+            {
+              "id": "10125",
+              "value": 0.2
+            }
+          ],
           "stunt": [],
-          "attr": []
+          "attr": [
+            {
+              "id": "10304",
+              "value": 0.1
+            },
+            {
+              "id": "11007",
+              "value": 0.1
+            }
+          ]
         },
         {
           "star": 3,
-          "skillAffix": [],
+          "skillAffix": [
+            {
+              "id": "10125",
+              "value": 0.2
+            }
+          ],
           "stunt": [],
-          "attr": []
+          "attr": [
+            {
+              "id": "10304",
+              "value": 0.1
+            },
+            {
+              "id": "11007",
+              "value": 0.2
+            },
+            {
+              "id": "11049",
+              "value": 0.07
+            }
+          ]
         },
         {
           "star": 4,
-          "skillAffix": [],
+          "skillAffix": [
+            {
+              "id": "10125",
+              "value": 0.29
+            }
+          ],
           "stunt": [],
-          "attr": []
+          "attr": [
+            {
+              "id": "10304",
+              "value": 0.15
+            },
+            {
+              "id": "11007",
+              "value": 0.2
+            },
+            {
+              "id": "11049",
+              "value": 0.07
+            }
+          ]
         },
         {
           "star": 5,
-          "skillAffix": [],
-          "stunt": [],
-          "attr": []
+          "skillAffix": [
+            {
+              "id": "10125",
+              "value": 0.29
+            }
+          ],
+          "stunt": [
+            "2140000100"
+          ],
+          "attr": [
+            {
+              "id": "10304",
+              "value": 0.15
+            },
+            {
+              "id": "11007",
+              "value": 0.3
+            },
+            {
+              "id": "11049",
+              "value": 0.07
+            }
+          ]
         }
       ]
     },
@@ -10021,39 +10356,135 @@ window.__AUTO_IMPORT_DATA__ = {
       "stars": [
         {
           "star": 0,
-          "skillAffix": [],
+          "skillAffix": [
+            {
+              "id": "10127",
+              "value": 0.1
+            }
+          ],
           "stunt": [],
-          "attr": []
+          "attr": [
+            {
+              "id": "10306",
+              "value": 0.05
+            }
+          ]
         },
         {
           "star": 1,
-          "skillAffix": [],
+          "skillAffix": [
+            {
+              "id": "10127",
+              "value": 0.15
+            }
+          ],
           "stunt": [],
-          "attr": []
+          "attr": [
+            {
+              "id": "10306",
+              "value": 0.05
+            },
+            {
+              "id": "11010",
+              "value": 0.1
+            }
+          ]
         },
         {
           "star": 2,
-          "skillAffix": [],
+          "skillAffix": [
+            {
+              "id": "10127",
+              "value": 0.2
+            }
+          ],
           "stunt": [],
-          "attr": []
+          "attr": [
+            {
+              "id": "10306",
+              "value": 0.1
+            },
+            {
+              "id": "11010",
+              "value": 0.1
+            }
+          ]
         },
         {
           "star": 3,
-          "skillAffix": [],
+          "skillAffix": [
+            {
+              "id": "10127",
+              "value": 0.2
+            }
+          ],
           "stunt": [],
-          "attr": []
+          "attr": [
+            {
+              "id": "10306",
+              "value": 0.1
+            },
+            {
+              "id": "11010",
+              "value": 0.2
+            },
+            {
+              "id": "11051",
+              "value": 0.07
+            }
+          ]
         },
         {
           "star": 4,
-          "skillAffix": [],
+          "skillAffix": [
+            {
+              "id": "10127",
+              "value": 0.3
+            }
+          ],
           "stunt": [],
-          "attr": []
+          "attr": [
+            {
+              "id": "10306",
+              "value": 0.15
+            },
+            {
+              "id": "11010",
+              "value": 0.2
+            },
+            {
+              "id": "11051",
+              "value": 0.07
+            }
+          ]
         },
         {
           "star": 5,
-          "skillAffix": [],
+          "skillAffix": [
+            {
+              "id": "10127",
+              "value": 0.3
+            },
+            {
+              "id": "10090",
+              "value": 0.3
+            }
+          ],
           "stunt": [],
-          "attr": []
+          "attr": [
+            {
+              "id": "10306",
+              "value": 0.15
+            },
+            {
+              "id": "11010",
+              "value": 0.3
+            },
+            {
+              "id": "11051",
+              "value": 0.07
+            }
+          ]
         }
       ]
     },
@@ -10518,39 +10949,135 @@ window.__AUTO_IMPORT_DATA__ = {
       "stars": [
         {
           "star": 0,
-          "skillAffix": [],
+          "skillAffix": [
+            {
+              "id": "10118",
+              "value": 0.1
+            }
+          ],
           "stunt": [],
-          "attr": []
+          "attr": [
+            {
+              "id": "10305",
+              "value": 0.05
+            }
+          ]
         },
         {
           "star": 1,
-          "skillAffix": [],
+          "skillAffix": [
+            {
+              "id": "10118",
+              "value": 0.15
+            }
+          ],
           "stunt": [],
-          "attr": []
+          "attr": [
+            {
+              "id": "10305",
+              "value": 0.05
+            },
+            {
+              "id": "11008",
+              "value": 0.1
+            }
+          ]
         },
         {
           "star": 2,
-          "skillAffix": [],
+          "skillAffix": [
+            {
+              "id": "10118",
+              "value": 0.2
+            }
+          ],
           "stunt": [],
-          "attr": []
+          "attr": [
+            {
+              "id": "10305",
+              "value": 0.1
+            },
+            {
+              "id": "11008",
+              "value": 0.1
+            }
+          ]
         },
         {
           "star": 3,
-          "skillAffix": [],
+          "skillAffix": [
+            {
+              "id": "10118",
+              "value": 0.2
+            }
+          ],
           "stunt": [],
-          "attr": []
+          "attr": [
+            {
+              "id": "10305",
+              "value": 0.1
+            },
+            {
+              "id": "11008",
+              "value": 0.2
+            },
+            {
+              "id": "11050",
+              "value": 0.07
+            }
+          ]
         },
         {
           "star": 4,
-          "skillAffix": [],
+          "skillAffix": [
+            {
+              "id": "10118",
+              "value": 0.3
+            }
+          ],
           "stunt": [],
-          "attr": []
+          "attr": [
+            {
+              "id": "10305",
+              "value": 0.15
+            },
+            {
+              "id": "11008",
+              "value": 0.2
+            },
+            {
+              "id": "11050",
+              "value": 0.07
+            }
+          ]
         },
         {
           "star": 5,
-          "skillAffix": [],
+          "skillAffix": [
+            {
+              "id": "10118",
+              "value": 0.3
+            },
+            {
+              "id": "10033",
+              "value": 0.25
+            }
+          ],
           "stunt": [],
-          "attr": []
+          "attr": [
+            {
+              "id": "10305",
+              "value": 0.15
+            },
+            {
+              "id": "11008",
+              "value": 0.3
+            },
+            {
+              "id": "11050",
+              "value": 0.07
+            }
+          ]
         }
       ]
     },
@@ -10564,39 +11091,119 @@ window.__AUTO_IMPORT_DATA__ = {
       "stars": [
         {
           "star": 0,
-          "skillAffix": [],
+          "skillAffix": [
+            {
+              "id": "10088",
+              "value": 0.1
+            }
+          ],
           "stunt": [],
-          "attr": []
+          "attr": [
+            {
+              "id": "10300",
+              "value": 0.04
+            }
+          ]
         },
         {
           "star": 1,
-          "skillAffix": [],
+          "skillAffix": [
+            {
+              "id": "10088",
+              "value": 0.15
+            },
+            {
+              "id": "10080",
+              "value": 0.04
+            }
+          ],
           "stunt": [],
-          "attr": []
+          "attr": [
+            {
+              "id": "10300",
+              "value": 0.04
+            }
+          ]
         },
         {
           "star": 2,
-          "skillAffix": [],
+          "skillAffix": [
+            {
+              "id": "10088",
+              "value": 0.2
+            },
+            {
+              "id": "10080",
+              "value": 0.04
+            }
+          ],
           "stunt": [],
-          "attr": []
+          "attr": [
+            {
+              "id": "10300",
+              "value": 0.08
+            }
+          ]
         },
         {
           "star": 3,
-          "skillAffix": [],
+          "skillAffix": [
+            {
+              "id": "10088",
+              "value": 0.27
+            },
+            {
+              "id": "10080",
+              "value": 0.08
+            }
+          ],
           "stunt": [],
-          "attr": []
+          "attr": [
+            {
+              "id": "10300",
+              "value": 0.08
+            }
+          ]
         },
         {
           "star": 4,
-          "skillAffix": [],
+          "skillAffix": [
+            {
+              "id": "10088",
+              "value": 0.36
+            },
+            {
+              "id": "10080",
+              "value": 0.08
+            }
+          ],
           "stunt": [],
-          "attr": []
+          "attr": [
+            {
+              "id": "10300",
+              "value": 0.12
+            }
+          ]
         },
         {
           "star": 5,
-          "skillAffix": [],
+          "skillAffix": [
+            {
+              "id": "10088",
+              "value": 0.36
+            },
+            {
+              "id": "10080",
+              "value": 0.12
+            }
+          ],
           "stunt": [],
-          "attr": []
+          "attr": [
+            {
+              "id": "10300",
+              "value": 0.12
+            }
+          ]
         }
       ]
     },
@@ -10610,39 +11217,113 @@ window.__AUTO_IMPORT_DATA__ = {
       "stars": [
         {
           "star": 0,
-          "skillAffix": [],
+          "skillAffix": [
+            {
+              "id": "10128",
+              "value": 0.1
+            }
+          ],
           "stunt": [],
-          "attr": []
+          "attr": [
+            {
+              "id": "10307",
+              "value": 0.05
+            }
+          ]
         },
         {
           "star": 1,
-          "skillAffix": [],
+          "skillAffix": [
+            {
+              "id": "10128",
+              "value": 0.15
+            }
+          ],
           "stunt": [],
-          "attr": []
+          "attr": [
+            {
+              "id": "10307",
+              "value": 0.1
+            }
+          ]
         },
         {
           "star": 2,
-          "skillAffix": [],
+          "skillAffix": [
+            {
+              "id": "10128",
+              "value": 0.2
+            }
+          ],
           "stunt": [],
-          "attr": []
+          "attr": [
+            {
+              "id": "10307",
+              "value": 0.15
+            }
+          ]
         },
         {
           "star": 3,
-          "skillAffix": [],
+          "skillAffix": [
+            {
+              "id": "10128",
+              "value": 0.2
+            }
+          ],
           "stunt": [],
-          "attr": []
+          "attr": [
+            {
+              "id": "10307",
+              "value": 0.2
+            },
+            {
+              "id": "11052",
+              "value": 0.07
+            }
+          ]
         },
         {
           "star": 4,
-          "skillAffix": [],
+          "skillAffix": [
+            {
+              "id": "10128",
+              "value": 0.25
+            }
+          ],
           "stunt": [],
-          "attr": []
+          "attr": [
+            {
+              "id": "10307",
+              "value": 0.25
+            },
+            {
+              "id": "11052",
+              "value": 0.07
+            }
+          ]
         },
         {
           "star": 5,
-          "skillAffix": [],
-          "stunt": [],
-          "attr": []
+          "skillAffix": [
+            {
+              "id": "10128",
+              "value": 0.25
+            }
+          ],
+          "stunt": [
+            "2140000170"
+          ],
+          "attr": [
+            {
+              "id": "10307",
+              "value": 0.3
+            },
+            {
+              "id": "11052",
+              "value": 0.07
+            }
+          ]
         }
       ]
     },
@@ -10656,37 +11337,111 @@ window.__AUTO_IMPORT_DATA__ = {
       "stars": [
         {
           "star": 0,
-          "skillAffix": [],
+          "skillAffix": [
+            {
+              "id": "10064",
+              "value": 0.05
+            },
+            {
+              "id": "10169",
+              "value": 0.1
+            }
+          ],
           "stunt": [],
           "attr": []
         },
         {
           "star": 1,
-          "skillAffix": [],
+          "skillAffix": [
+            {
+              "id": "10064",
+              "value": 0.05
+            },
+            {
+              "id": "10049",
+              "value": 0.04
+            },
+            {
+              "id": "10169",
+              "value": 0.15
+            }
+          ],
           "stunt": [],
           "attr": []
         },
         {
           "star": 2,
-          "skillAffix": [],
+          "skillAffix": [
+            {
+              "id": "10064",
+              "value": 0.1
+            },
+            {
+              "id": "10049",
+              "value": 0.04
+            },
+            {
+              "id": "10169",
+              "value": 0.2
+            }
+          ],
           "stunt": [],
           "attr": []
         },
         {
           "star": 3,
-          "skillAffix": [],
+          "skillAffix": [
+            {
+              "id": "10064",
+              "value": 0.1
+            },
+            {
+              "id": "10049",
+              "value": 0.08
+            },
+            {
+              "id": "10169",
+              "value": 0.27
+            }
+          ],
           "stunt": [],
           "attr": []
         },
         {
           "star": 4,
-          "skillAffix": [],
+          "skillAffix": [
+            {
+              "id": "10064",
+              "value": 0.15
+            },
+            {
+              "id": "10049",
+              "value": 0.08
+            },
+            {
+              "id": "10169",
+              "value": 0.36
+            }
+          ],
           "stunt": [],
           "attr": []
         },
         {
           "star": 5,
-          "skillAffix": [],
+          "skillAffix": [
+            {
+              "id": "10064",
+              "value": 0.15
+            },
+            {
+              "id": "10049",
+              "value": 0.12
+            },
+            {
+              "id": "10169",
+              "value": 0.36
+            }
+          ],
           "stunt": [],
           "attr": []
         }
@@ -10702,38 +11457,106 @@ window.__AUTO_IMPORT_DATA__ = {
       "stars": [
         {
           "star": 0,
-          "skillAffix": [],
+          "skillAffix": [
+            {
+              "id": "10066",
+              "value": 0.05
+            },
+            {
+              "id": "10136",
+              "value": 0.1
+            }
+          ],
           "stunt": [],
           "attr": []
         },
         {
           "star": 1,
-          "skillAffix": [],
+          "skillAffix": [
+            {
+              "id": "10066",
+              "value": 0.1
+            },
+            {
+              "id": "10136",
+              "value": 0.15
+            }
+          ],
           "stunt": [],
           "attr": []
         },
         {
           "star": 2,
-          "skillAffix": [],
+          "skillAffix": [
+            {
+              "id": "10066",
+              "value": 0.15
+            },
+            {
+              "id": "10136",
+              "value": 0.2
+            }
+          ],
           "stunt": [],
           "attr": []
         },
         {
           "star": 3,
-          "skillAffix": [],
+          "skillAffix": [
+            {
+              "id": "10066",
+              "value": 0.15
+            },
+            {
+              "id": "10031",
+              "value": 0.04
+            },
+            {
+              "id": "10136",
+              "value": 0.25
+            }
+          ],
           "stunt": [],
           "attr": []
         },
         {
           "star": 4,
-          "skillAffix": [],
+          "skillAffix": [
+            {
+              "id": "10066",
+              "value": 0.2
+            },
+            {
+              "id": "10031",
+              "value": 0.04
+            },
+            {
+              "id": "10136",
+              "value": 0.3
+            }
+          ],
           "stunt": [],
           "attr": []
         },
         {
           "star": 5,
-          "skillAffix": [],
-          "stunt": [],
+          "skillAffix": [
+            {
+              "id": "10066",
+              "value": 0.2
+            },
+            {
+              "id": "10031",
+              "value": 0.1
+            },
+            {
+              "id": "10136",
+              "value": 0.3
+            }
+          ],
+          "stunt": [
+            "2140000150"
+          ],
           "attr": []
         }
       ]
@@ -10851,5 +11674,5 @@ window.__AUTO_IMPORT_DATA__ = {
       ]
     }
   ],
-  "importTime": "2026-08-10T11:26:22.554Z"
+  "importTime": "2026-08-12T08:32:10.533Z"
 };

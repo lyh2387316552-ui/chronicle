@@ -5,5 +5,8 @@
   "name": "大地之怒驱散",
   "text": "占位技能",
   "skillIcon": "",
-  "bundlingStunts": []
+  "bundlingStunts": [],
+  "mainTag": 2,
+  "normalTag": [],
+  "skillLevelAdd": 0
 }

@@ -2,5 +2,6 @@
   "__active": true,
   "targetConditionType": 2,
   "steeringSarget": 0,
-  "noTargetNoRelease": 0
+  "noTargetNoRelease": 0,
+  "skillFreeTurn": 0
 }

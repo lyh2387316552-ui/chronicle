@@ -15,5 +15,10 @@
   ],
   "wearSkill": [],
   "spawnBullet": [],
-  "buffLayer": []
+  "buffLayer": [],
+  "skillCurrentCooldownChange": [],
+  "spreadAilment": [],
+  "spreadRadius": [],
+  "spreadTarget": 0,
+  "spreadEffect": []
 }

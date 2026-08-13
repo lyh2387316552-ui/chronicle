@@ -2,7 +2,7 @@
   "__active": true,
   "name": "大地之怒子弹",
   "priority": 1,
-  "mainTag": 1,
+  "mainTag": 2,
   "remarks": "",
   "skillTime": 0,
   "desc": "",
@@ -14,5 +14,6 @@
     9
   ],
   "attackSpeed": 0,
-  "moreDamage": []
+  "moreDamage": [],
+  "skillLevelAdd": 0
 }

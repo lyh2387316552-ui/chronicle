@@ -137,27 +137,64 @@ function renderCustomSkillTagFilterBar() {
     const bar = document.getElementById('customSkillTagFilters');
     if (!bar) return;
 
-    // 聚合所有 main + normal 标签 (去重，过滤未映射的数字标签)
-    const tagSet = new Set();
+    // 分别收集 mainTag 和 normalTag (去重，过滤未映射的数字标签)
+    const mainTagSet = new Set();
+    const normalTagSet = new Set();
     customSkillData.forEach(s => {
         if (!s.tags) return;
-        if (s.tags.main && s.tags.main !== '' && !isUnmappedTag(s.tags.main)) tagSet.add(s.tags.main);
-        (s.tags.normal || []).forEach(t => { if (t && t !== '' && t !== null && t !== undefined && !isUnmappedTag(t)) tagSet.add(t); });
+        if (s.tags.main && s.tags.main !== '' && !isUnmappedTag(s.tags.main)) mainTagSet.add(s.tags.main);
+        (s.tags.normal || []).forEach(t => { if (t && t !== '' && t !== null && t !== undefined && !isUnmappedTag(t)) normalTagSet.add(t); });
     });
-    const tags = [...tagSet].sort((a, b) => a.localeCompare(b, 'zh'));
+
+    // mainTag 排序在前，normalTag 排序在后 (normalTag 排除已在 mainTag 中的)
+    const mainTags = [...mainTagSet].sort((a, b) => a.localeCompare(b, 'zh'));
+    const normalTags = [...normalTagSet].filter(t => !mainTagSet.has(t)).sort((a, b) => a.localeCompare(b, 'zh'));
+    const tags = [...mainTags, ...normalTags];
 
     const current = tagFilterState.custom || [];
+
+    // 获取当前搜索/类型筛选条件 (计数时排除标签筛选本身)
+    const searchEl = document.getElementById('customSkillSearchInput');
+    const search = searchEl ? searchEl.value.toLowerCase() : '';
+    const typeFilter = document.getElementById('customSkillTypeFilter') ? document.getElementById('customSkillTypeFilter').value : '';
+
+    // 计算每个标签独立匹配的技能数量 (考虑搜索/类型筛选，不考虑标签筛选)
+    const tagCounts = {};
+    tags.forEach(tag => {
+        tagCounts[tag] = customSkillData.filter(s => {
+            if (!s.tags) return false;
+            const hasTag = s.tags.main === tag || (s.tags.normal || []).includes(tag);
+            if (!hasTag) return false;
+            if (typeFilter && (s.type || '未分类') !== typeFilter) return false;
+            if (search) {
+                const inName = s.name && s.name.toLowerCase().includes(search);
+                const inId = (s.id || '').toLowerCase().includes(search);
+                const inType = s.type && s.type.toLowerCase().includes(search);
+                const inDesc = s.desc && s.desc.toLowerCase().includes(search);
+                const inEffect = (s.effects || []).some(e => e.refId && e.refId.includes(search));
+                return inName || inId || inType || inDesc || inEffect;
+            }
+            return true;
+        }).length;
+    });
+
     const btn = (tag, label) => {
         const active = tag === '' ? current.length === 0 : current.includes(tag);
         const esc = String(tag).replace(/'/g, "\\'");
-        return `<button class="tag-filter-btn${active ? ' active' : ''}" style="${active ? 'background:#e67e22;border-color:#e67e22;color:#fff' : ''}" onclick="setCustomSkillTagFilter('${esc}')">${label}</button>`;
+        const countBadge = (active && tag !== '') ? `<span class="tag-filter-count">${tagCounts[tag] || 0}</span>` : '';
+        return `<button class="tag-filter-btn${active ? ' active' : ''}" style="${active ? 'background:#e67e22;border-color:#e67e22;color:#fff' : ''}" onclick="setCustomSkillTagFilter('${esc}')">${label}${countBadge}</button>`;
     };
+
+    // 分隔符 (mainTag 和 normalTag 之间)
+    const separator = mainTags.length > 0 && normalTags.length > 0 ? '<span class="tag-filter-sep">|</span>' : '';
 
     bar.innerHTML = `
         <div class="tag-filter-bar-inner">
             <span class="tag-filter-label">标签(可多选):</span>
             ${btn('', '全部')}
-            ${tags.map(t => btn(t, t)).join('')}
+            ${mainTags.map(t => btn(t, t)).join('')}
+            ${separator}
+            ${normalTags.map(t => btn(t, t)).join('')}
         </div>
     `;
 }
@@ -3612,7 +3649,10 @@ function renderOccupationCanvas(idx) {
     const occupationBgMap = {
         '幻影魔典': 'assets/talent-bg-huanying.png',
         '巫术魔典': 'assets/talent-bg-wushu.png',
-        '剑客1': 'assets/talent-bg-jianke.png'
+        '剑客1': 'assets/talent-bg-jianke.png',
+        '冰刀': 'assets/talent-bg-bingdao.png',
+        '元素法杖': 'assets/talent-bg-yuansu.png',
+        '塑能法杖': 'assets/talent-bg-suneng.png'
     };
     const bgImage = occupationBgMap[occ.name];
     const bgStyle = bgImage

@@ -1,3 +1,9 @@
 {
-  "__active": true
+  "__active": true,
+  "extraTpye": [],
+  "extraConsume": [],
+  "extraEffect": [],
+  "extraTime": [],
+  "extraConsumeBuff": [],
+  "extraGroupID": []
 }

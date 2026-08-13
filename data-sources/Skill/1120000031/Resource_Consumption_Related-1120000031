@@ -3,5 +3,6 @@
   "carryBuff": 0,
   "recourceType": [],
   "recourceConsume": [],
-  "recourceGet": []
+  "recourceGet": [],
+  "resourceConsumeMultiply": 0
 }
