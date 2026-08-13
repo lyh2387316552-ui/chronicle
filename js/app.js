@@ -14,6 +14,21 @@ navLinks.forEach(link => {
     });
 });
 
+// ---- 已渲染页面记录 (懒渲染: 首次进入才渲染内容，加速启动) ----
+const renderedPages = new Set();
+
+function ensurePageRendered(pageName) {
+    if (renderedPages.has(pageName)) return;
+    renderedPages.add(pageName);
+    if (pageName === 'battle-data') {
+        switchBattleTab('active');
+    } else if (pageName === 'equipment') {
+        renderEquipment();
+    } else if (pageName === 'gems') {
+        renderGems();
+    }
+}
+
 function navigateTo(pageName) {
     pages.forEach(p => p.classList.remove('active'));
     navLinks.forEach(l => l.classList.remove('active'));
@@ -27,23 +42,18 @@ function navigateTo(pageName) {
     // 记录当前页面: 首页使用首页底图, 非首页使用通用底图
     document.body.dataset.page = pageName;
 
-    // 技能库页渲染标签筛选栏 (filterCustomSkills 内部会同步渲染)
+    // 懒渲染: 首次进入才渲染页面内容
+    ensurePageRendered(pageName);
+
+    // 每次进入刷新数据 (编辑/导入后保持最新)
     if (pageName === 'custom-skills') {
         filterCustomSkills();
-    }
-
-    // 职业天赋页渲染
-    if (pageName === 'occupations') {
+    } else if (pageName === 'occupations') {
         renderOccupations();
-    }
-
-    // 魔宠页渲染
-    if (pageName === 'pets') {
+    } else if (pageName === 'pets') {
         initPetPage();
-    }
-
-    // 其他页: 确保统计面板数据已渲染 (ID规则面板在 init 时已填充)
-    if (pageName === 'others') {
+    } else if (pageName === 'others') {
+        renderCategoryTables();
         renderStats();
     }
 
@@ -78,6 +88,7 @@ function switchBattleTab(tab) {
         filterAttributes();
     } else if (tab === 'active' || tab === 'passive') {
         renderTagFilterBar(tab);
+        filterSkills(tab);
     }
 }
 
@@ -158,24 +169,18 @@ function renderCustomSkillTagFilterBar() {
     const search = searchEl ? searchEl.value.toLowerCase() : '';
     const typeFilter = document.getElementById('customSkillTypeFilter') ? document.getElementById('customSkillTypeFilter').value : '';
 
-    // 计算每个标签独立匹配的技能数量 (考虑搜索/类型筛选，不考虑标签筛选)
+    // 计算每个标签独立匹配的技能数量 (考虑搜索/类型筛选，不考虑标签筛选; 单遍统计)
     const tagCounts = {};
-    tags.forEach(tag => {
-        tagCounts[tag] = customSkillData.filter(s => {
-            if (!s.tags) return false;
-            const hasTag = s.tags.main === tag || (s.tags.normal || []).includes(tag);
-            if (!hasTag) return false;
-            if (typeFilter && (s.type || '未分类') !== typeFilter) return false;
-            if (search) {
-                const inName = s.name && s.name.toLowerCase().includes(search);
-                const inId = (s.id || '').toLowerCase().includes(search);
-                const inType = s.type && s.type.toLowerCase().includes(search);
-                const inDesc = s.desc && s.desc.toLowerCase().includes(search);
-                const inEffect = (s.effects || []).some(e => e.refId && e.refId.includes(search));
-                return inName || inId || inType || inDesc || inEffect;
-            }
-            return true;
-        }).length;
+    customSkillData.forEach(s => {
+        if (typeFilter && (s.type || '未分类') !== typeFilter) return;
+        if (!customSkillMatches(s, search)) return;
+        if (!s.tags) return;
+        if (s.tags.main && s.tags.main !== '' && !isUnmappedTag(s.tags.main)) {
+            tagCounts[s.tags.main] = (tagCounts[s.tags.main] || 0) + 1;
+        }
+        (s.tags.normal || []).forEach(t => {
+            if (t && t !== '' && !isUnmappedTag(t)) tagCounts[t] = (tagCounts[t] || 0) + 1;
+        });
     });
 
     const btn = (tag, label) => {
@@ -223,6 +228,19 @@ function renderSkillCard(skill, type) {
         ? `<span class="skill-icon" style="background:${color}20;color:${color}"><img class="card-icon" src="icon/${skill.icon}.png" alt="" onerror="this.style.display='none'">${icon}</span>`
         : `<span class="skill-icon" style="background:${color}20;color:${color}">${icon}</span>`;
 
+    // 非标准ID (如 5位的天赋特技 99998/99999) 不展示段位拆解
+    const segHtml = isStandardSkillId(skill.id)
+        ? `<div class="skill-card-id-segments">
+                <span class="id-seg seg-a">A=${parsed.A}</span>
+                <span class="id-seg">B=${parsed.B}</span>
+                <span class="id-seg">C=${parsed.C}</span>
+                <span class="id-seg">D=${parsed.D}</span>
+                <span class="id-seg">E=${parsed.E}</span>
+                <span class="id-seg">F=${parsed.seq}</span>
+                <span class="id-seg">G=${parsed.G}</span>
+            </div>`
+        : '';
+
     return `
         <div class="skill-card" data-skill-id="${skill.id}" onclick="openSkillDetail('${skill.id}', '${type}')" style="border-left-color: ${color}">
             <div class="skill-card-header">
@@ -238,39 +256,9 @@ function renderSkillCard(skill, type) {
                 <div class="item-stats-cell"><span class="item-stats-label">类型</span><span class="item-stats-value">${type === 'active' ? '主动技能' : '被动技能'}</span></div>
             </div>
             ${renderSkillTags(skill.tagsText)}
-            <div class="skill-card-id-segments">
-                <span class="id-seg seg-a">A=${parsed.A}</span>
-                <span class="id-seg">B=${parsed.B}</span>
-                <span class="id-seg">C=${parsed.C}</span>
-                <span class="id-seg">D=${parsed.D}</span>
-                <span class="id-seg">E=${parsed.E}</span>
-                <span class="id-seg">F=${parsed.seq}</span>
-                <span class="id-seg">G=${parsed.G}</span>
-            </div>
+            ${segHtml}
         </div>
     `;
-}
-
-// ---- 渲染主动技能列表 ----
-function renderActiveSkills(skills = activeSkills) {
-    const grid = document.getElementById('activeSkillGrid');
-    if (skills.length === 0) {
-        grid.innerHTML = '<div class="empty-state">未找到匹配的技能</div>';
-        return;
-    }
-    grid.innerHTML = skills.map(s => renderSkillCard(s, 'active')).join('');
-    document.getElementById('activeSkillCount').textContent = skills.length;
-}
-
-// ---- 渲染被动技能列表 ----
-function renderPassiveSkills(skills = passiveSkills) {
-    const grid = document.getElementById('passiveSkillGrid');
-    if (skills.length === 0) {
-        grid.innerHTML = '<div class="empty-state">未找到匹配的技能</div>';
-        return;
-    }
-    grid.innerHTML = skills.map(s => renderSkillCard(s, 'passive')).join('');
-    document.getElementById('passiveSkillCount').textContent = skills.length;
 }
 
 // ---- 筛选技能 ----
@@ -417,31 +405,72 @@ function toggleSubgroup(groupId) {
     }
 }
 
-// ---- 全局搜索 ----
-document.getElementById('globalSearch').addEventListener('input', (e) => {
-    const query = e.target.value.toLowerCase().trim();
-    if (!query) return;
+// ---- 通用防抖 ----
+function debounce(fn, ms) {
+    let timer = null;
+    return function (...args) {
+        clearTimeout(timer);
+        timer = setTimeout(() => fn.apply(this, args), ms);
+    };
+}
 
-    // 搜索主动和被动技能
-    const activeResults = activeSkills.filter(s =>
-        s.name.toLowerCase().includes(query) || s.id.includes(query)
-    );
-    const passiveResults = passiveSkills.filter(s =>
-        s.name.toLowerCase().includes(query) || s.id.includes(query)
-    );
+// 各页面搜索输入防抖包装 (index.html oninput 调用，150ms 内只触发一次)
+const debouncedFilters = {
+    active: debounce(() => filterSkills('active'), 150),
+    passive: debounce(() => filterSkills('passive'), 150),
+    affix: debounce(() => filterAffixes(), 150),
+    attr: debounce(() => filterAttributes(), 150),
+    equipment: debounce(() => filterEquipments(), 150),
+    gem: debounce(() => filterGems(), 150),
+    custom: debounce(() => filterCustomSkills(), 150),
+    pet: debounce(() => filterPets(), 150)
+};
 
-    if (activeResults.length > 0) {
-        navigateTo('battle-data');
-        switchBattleTab('active');
-        document.getElementById('activeSearchInput').value = e.target.value;
-        renderActiveSkills(activeResults);
-    } else if (passiveResults.length > 0) {
-        navigateTo('battle-data');
-        switchBattleTab('passive');
-        document.getElementById('passiveSearchInput').value = e.target.value;
-        renderPassiveSkills(passiveResults);
+function debouncedFilter(kind) {
+    if (debouncedFilters[kind]) debouncedFilters[kind]();
+}
+
+// ---- 全局搜索 (防抖 + 跨库检索: 技能/词缀/属性/装备/宝石/技能库/魔宠) ----
+function runGlobalSearch(e) {
+    const query = e.target.value.trim();
+    const hint = document.getElementById('globalSearchHint');
+    if (!query) {
+        if (hint) hint.style.display = 'none';
+        return;
     }
-});
+    const q = query.toLowerCase();
+    const matchSome = (arr, test) => arr.some(test);
+
+    const targets = [
+        { arr: activeSkills,    test: s => (s.name || '').toLowerCase().includes(q) || String(s.id).includes(q), page: 'battle-data', tab: 'active', inputId: 'activeSearchInput', apply: () => filterSkills('active') },
+        { arr: passiveSkills,   test: s => (s.name || '').toLowerCase().includes(q) || String(s.id).includes(q), page: 'battle-data', tab: 'passive', inputId: 'passiveSearchInput', apply: () => filterSkills('passive') },
+        { arr: affixes,         test: a => (a.name || '').toLowerCase().includes(q) || String(a.id).includes(q) || (a.subCategory || '').toLowerCase().includes(q), page: 'battle-data', tab: 'affix', inputId: 'affixSearchInput', apply: () => filterAffixes() },
+        { arr: attributes,      test: a => (a.name || '').toLowerCase().includes(q) || String(a.id).includes(q), page: 'battle-data', tab: 'attr', inputId: 'attrSearchInput', apply: () => filterAttributes() },
+        { arr: equipmentData,   test: eq => (eq.name || '').toLowerCase().includes(q) || String(eq.id).includes(q) || (eq.effects || []).some(e => e.refId && String(e.refId).includes(q)), page: 'equipment', inputId: 'equipmentSearchInput', apply: () => filterEquipments() },
+        { arr: gemData,         test: g => (g.name || '').toLowerCase().includes(q) || String(g.id).includes(q) || (g.desc || '').toLowerCase().includes(q), page: 'gems', inputId: 'gemSearchInput', apply: () => filterGems() },
+        { arr: customSkillData, test: s => (s.name || '').toLowerCase().includes(q) || String(s.id).includes(q) || (s.desc || '').toLowerCase().includes(q), page: 'custom-skills', inputId: 'customSkillSearchInput', apply: () => filterCustomSkills() },
+        { arr: petData,         test: p => (p.name || '').toLowerCase().includes(q) || String(p.id).includes(q), page: 'pets', inputId: 'petSearchInput', apply: () => filterPets() }
+    ];
+
+    const hit = targets.find(t => matchSome(t.arr, t.test));
+    if (!hit) {
+        if (hint) {
+            hint.textContent = '未找到匹配内容';
+            hint.style.display = 'block';
+        }
+        return;
+    }
+    if (hint) hint.style.display = 'none';
+
+    // 跳转到对应页面并填入搜索词 (注意: 先跳转再填值, 页面筛选会读取输入框)
+    navigateTo(hit.page);
+    if (hit.tab) switchBattleTab(hit.tab);
+    const input = document.getElementById(hit.inputId);
+    if (input) input.value = e.target.value;
+    hit.apply();
+}
+
+document.getElementById('globalSearch').addEventListener('input', debounce(runGlobalSearch, 150));
 
 // ---- 技能详情弹窗 ----
 function openSkillDetail(id, type) {
@@ -623,6 +652,10 @@ function applySkillIdChange(oldId, type) {
     skill.category = cat.category;
     skill.subCategory = cat.subCategory;
 
+    // ID变更后重建索引
+    rebuildRefIndex();
+    rebuildSkillAffixIdSet();
+
     // 同步更新装备库中的引用
     let equipmentChanged = false;
     equipmentData.forEach(eq => {
@@ -722,6 +755,10 @@ function applyAffixIdChange(oldId) {
     const cat = autoDetectAffixCategory(newId);
     affix.category = cat.category;
     affix.subCategory = cat.subCategory;
+
+    // ID变更后重建索引
+    rebuildRefIndex();
+    rebuildSkillAffixIdSet();
 
     // 同步更新装备库中的引用
     let equipmentChanged = false;
@@ -851,9 +888,16 @@ function onAffixEdit(id, field, value) {
     }
 }
 
+// 在主动/被动技能中查找技能 (不拼接数组)
+function findSkillById(id) {
+    let s = activeSkills.find(s => s.id === id);
+    if (s) return s;
+    return passiveSkills.find(s => s.id === id) || null;
+}
+
 function onSkillEdit(id, field, value) {
-    const allSkills = [...activeSkills, ...passiveSkills];
-    saveEdit(SKILL_EDIT_KEY, allSkills, id, field, value);
+    const arr = activeSkills.some(s => s.id === id) ? activeSkills : passiveSkills;
+    saveEdit(SKILL_EDIT_KEY, arr, id, field, value);
     updateSaveIndicator();
     syncSkillCard(id);
     // 如果有装备引用了该技能，刷新装备列表
@@ -913,7 +957,7 @@ function syncAffixCard(id) {
 }
 
 function syncSkillCard(id) {
-    const skill = [...activeSkills, ...passiveSkills].find(s => s.id === id);
+    const skill = findSkillById(id);
     if (!skill) return;
     const nameEl = document.querySelector(`[data-skill-id="${id}"] .skill-name`);
     if (nameEl) {
@@ -1162,6 +1206,10 @@ function submitAddSkill(type) {
         passiveSkills.push(newSkill);
     }
 
+    // 数据变更后重建索引
+    rebuildRefIndex();
+    rebuildSkillAffixIdSet();
+
     // 持久化到 localStorage
     try {
         const key = 'chronicle_custom_skills';
@@ -1289,6 +1337,10 @@ function submitAddAffix() {
 
     affixes.push(newAffix);
 
+    // 数据变更后重建索引
+    rebuildRefIndex();
+    rebuildSkillAffixIdSet();
+
     // 持久化到 localStorage
     try {
         const key = 'chronicle_custom_affixes';
@@ -1405,6 +1457,10 @@ function deleteSkill(id, type) {
     if (idx === -1) return;
     arr.splice(idx, 1);
 
+    // 数据变更后重建索引
+    rebuildRefIndex();
+    rebuildSkillAffixIdSet();
+
     // 清除编辑记录
     resetEditData(SKILL_EDIT_KEY, id);
     try {
@@ -1448,6 +1504,10 @@ function deleteAffix(id) {
     const idx = affixes.findIndex(a => a.id === id);
     if (idx === -1) return;
     affixes.splice(idx, 1);
+
+    // 数据变更后重建索引
+    rebuildRefIndex();
+    rebuildSkillAffixIdSet();
 
     // 清除编辑记录
     resetEditData(AFFIX_EDIT_KEY, id);
@@ -1805,7 +1865,13 @@ function filterEquipments() {
         if (eq.name.toLowerCase().includes(search)) return true;
         if (eq.id.toLowerCase().includes(search)) return true;
         if (eq.type && eq.type.toLowerCase().includes(search)) return true;
-        const hasEffect = (eq.effects || []).some(e => e.refId && e.refId.includes(search));
+        // 关联效果: 匹配效果ID或效果名称
+        const hasEffect = (eq.effects || []).some(e => {
+            if (!e.refId) return false;
+            if (e.refId.includes(search)) return true;
+            const ref = findRefData(e.refId);
+            return ref && ref.name && ref.name.toLowerCase().includes(search);
+        });
         if (hasEffect) return true;
         return false;
     });
@@ -1902,15 +1968,6 @@ function openEquipmentDetail(id) {
 
 
 
-function selectEditEffectItem(eqId, effectIdx, selectedId) {
-    const inputEl = document.querySelector('#effectItem-' + effectIdx + ' .equipment-effect-input');
-    const dropdownEl = document.getElementById('editDropdown-' + effectIdx);
-    if (inputEl) {
-        inputEl.value = selectedId;
-        updateEquipmentEffect(eqId, effectIdx, selectedId);
-    }
-    if (dropdownEl) dropdownEl.innerHTML = '';
-}
 
 
 
@@ -1920,46 +1977,7 @@ function selectEditEffectItem(eqId, effectIdx, selectedId) {
 
 
 
-function syncEquipmentCard(id) {
-    const eq = equipmentData.find(e => e.id === id);
-    if (!eq) return;
-    const card = document.querySelector(`[data-equipment-id="${id}"]`);
-    if (!card) return;
-    const effects = (eq.effects || []).filter(e => e.refId);
-    const countEl = card.querySelector('.equipment-effect-count');
-    if (countEl) countEl.textContent = '效果 (' + effects.length + ' 条)';
-    // 同步更新效果列表
-    const listEl = card.querySelector('.equipment-card-effect-list');
-    if (listEl) {
-        if (effects.length === 0) {
-            listEl.innerHTML = '<p class="equipment-card-effect-empty">暂无效果</p>';
-        } else {
-            listEl.innerHTML = effects.map(eff => {
-                const refData = findRefData(eff.refId);
-                const typeColor = refData ? (refData.type === 'active-skill' ? '#e74c3c' : refData.type === 'passive-skill' ? '#3498db' : refData.type === 'attribute' ? '#27ae60' : '#f39c12') : '#e74c3c';
-                const typeLabel = refData ? (refData.type === 'active-skill' ? '主动' : refData.type === 'passive-skill' ? '被动' : refData.type === 'attribute' ? '属性' : '词缀') : '未知';
-                return `
-                    <div class="equipment-card-effect" style="border-left-color:${typeColor}">
-                        <span class="equipment-card-effect-type" style="background:${typeColor}20;color:${typeColor}">${typeLabel}</span>
-                        <span class="equipment-card-effect-name">${refData ? refData.name : eff.refId}</span>
-                        <p class="equipment-card-effect-desc">${refData ? refData.desc : '⚠ 未找到ID: ' + eff.refId}</p>
-                    </div>
-                `;
-            }).join('');
-        }
-    }
-}
 
-function updateNavCounts() {
-    const eqEl = document.getElementById('equipmentCount');
-    if (eqEl) eqEl.textContent = equipmentData.length;
-    const gemEl = document.getElementById('gemCount');
-    if (gemEl) gemEl.textContent = gemData.length;
-    updateCustomSkillNavCount();
-    updateBattleDataCount();
-    const occEl = document.getElementById('occupationCount');
-    if (occEl) occEl.textContent = occupationData.length;
-}
 
 
 // ============================================================
@@ -2099,7 +2117,13 @@ function filterGems() {
         if (rank !== '0' && (rank + ' 阶').includes(search)) return true;
         if (gem.type && gem.type.toLowerCase().includes(search)) return true;
         if (gem.desc && gem.desc.toLowerCase().includes(search)) return true;
-        const hasEffect = (gem.effects || []).some(e => e.refId && e.refId.includes(search));
+        // 关联效果: 匹配效果ID或效果名称
+        const hasEffect = (gem.effects || []).some(e => {
+            if (!e.refId) return false;
+            if (e.refId.includes(search)) return true;
+            const ref = findRefData(e.refId);
+            return ref && ref.name && ref.name.toLowerCase().includes(search);
+        });
         if (hasEffect) return true;
         return false;
     });
@@ -2123,60 +2147,6 @@ function updateGemRankFilter() {
 
 
 
-function onGemEffectInput(inputEl, previewId, dropdownId) {
-    const val = inputEl.value.trim();
-    const dropdownEl = document.getElementById(dropdownId);
-
-    previewEffect(inputEl, previewId);
-
-    if (!val) {
-        if (dropdownEl) dropdownEl.innerHTML = '';
-        return;
-    }
-
-    const refData = findRefData(val);
-    if (refData && /^\d+$/.test(val)) {
-        if (dropdownEl) dropdownEl.innerHTML = '';
-        return;
-    }
-
-    // 搜索词缀、属性、被动技能
-    const search = val.toLowerCase();
-    let matches = [];
-
-    affixes.forEach(a => {
-        if (a.name.toLowerCase().includes(search) || a.id.includes(search) || a.description.toLowerCase().includes(search)) {
-            matches.push({ id: a.id, name: a.name, desc: a.description, typeLabel: '词缀', typeColor: '#f39c12' });
-        }
-    });
-    attributes.forEach(a => {
-        if (a.name.toLowerCase().includes(search) || a.id.includes(search) || a.description.toLowerCase().includes(search)) {
-            matches.push({ id: a.id, name: a.name, desc: a.description, typeLabel: '属性', typeColor: '#27ae60' });
-        }
-    });
-    passiveSkills.forEach(s => {
-        if (s.name.toLowerCase().includes(search) || s.id.includes(search) || s.description.toLowerCase().includes(search)) {
-            matches.push({ id: s.id, name: s.name, desc: s.description, typeLabel: '被动', typeColor: '#3498db' });
-        }
-    });
-
-    matches = matches.slice(0, 20);
-
-    if (matches.length === 0) {
-        if (dropdownEl) dropdownEl.innerHTML = '<div class="autocomplete-empty">无匹配结果</div>';
-        return;
-    }
-
-    if (!dropdownEl) return;
-    dropdownEl.innerHTML = '<div class="autocomplete-list">' + matches.map(m => `
-        <div class="autocomplete-item" onclick="selectEffectItem('${inputEl.id}', '${previewId}', '${dropdownId}', '${m.id}')">
-            <span class="autocomplete-item-type" style="background:${m.typeColor}20;color:${m.typeColor}">${m.typeLabel}</span>
-            <span class="autocomplete-item-id">${m.id}</span>
-            <span class="autocomplete-item-name">${m.name}</span>
-            <span class="autocomplete-item-desc">${m.desc.substring(0, 30)}</span>
-        </div>
-    `).join('') + '</div>';
-}
 
 
 
@@ -2242,15 +2212,6 @@ function openGemDetail(id) {
 
 
 
-function selectEditGemEffectItem(gemId, effectIdx, selectedId) {
-    const inputEl = document.querySelector('#gemEffectItem-' + effectIdx + ' .equipment-effect-input');
-    const dropdownEl = document.getElementById('editGemDropdown-' + effectIdx);
-    if (inputEl) {
-        inputEl.value = selectedId;
-        updateGemEffect(gemId, effectIdx, selectedId);
-    }
-    if (dropdownEl) dropdownEl.innerHTML = '';
-}
 
 
 
@@ -2260,34 +2221,6 @@ function selectEditGemEffectItem(gemId, effectIdx, selectedId) {
 
 
 
-function syncGemCard(id) {
-    const gem = gemData.find(g => g.id === id);
-    if (!gem) return;
-    const card = document.querySelector(`[data-gem-id="${id}"]`);
-    if (!card) return;
-    const effects = (gem.effects || []).filter(e => e.refId);
-    const countEl = card.querySelector('.equipment-effect-count');
-    if (countEl) countEl.textContent = '关联效果 (' + effects.length + ' 条)';
-    const listEl = card.querySelector('.equipment-card-effect-list');
-    if (listEl) {
-        if (effects.length === 0) {
-            listEl.innerHTML = '<p class="equipment-card-effect-empty">暂无关联效果</p>';
-        } else {
-            listEl.innerHTML = effects.map(eff => {
-                const refData = findRefData(eff.refId);
-                const typeColor = refData ? (refData.type === 'active-skill' ? '#e74c3c' : refData.type === 'passive-skill' ? '#3498db' : refData.type === 'attribute' ? '#27ae60' : '#f39c12') : '#e74c3c';
-                const typeLabel = refData ? (refData.type === 'active-skill' ? '主动' : refData.type === 'passive-skill' ? '被动' : refData.type === 'attribute' ? '属性' : '词缀') : '未知';
-                return `
-                    <div class="equipment-card-effect" style="border-left-color:${typeColor}">
-                        <span class="equipment-card-effect-type" style="background:${typeColor}20;color:${typeColor}">${typeLabel}</span>
-                        <span class="equipment-card-effect-name">${refData ? refData.name : eff.refId}</span>
-                        <p class="equipment-card-effect-desc">${refData ? refData.desc : '⚠ 未找到ID: ' + eff.refId}</p>
-                    </div>
-                `;
-            }).join('');
-        }
-    }
-}
 
 // ============================================================
 // 三库（装备库/辅助技能宝石/技能库）数据仅由一键导入提供，
@@ -2428,6 +2361,16 @@ function renderCustomSkills(filteredData) {
     updateCustomSkillTypeFilter();
 }
 
+// 技能库条目是否匹配搜索词 (名称/ID/类型/描述/关联效果ID)
+function customSkillMatches(s, search) {
+    if (!search) return true;
+    if (s.name && s.name.toLowerCase().includes(search)) return true;
+    if ((s.id || '').toLowerCase().includes(search)) return true;
+    if (s.type && s.type.toLowerCase().includes(search)) return true;
+    if (s.desc && s.desc.toLowerCase().includes(search)) return true;
+    return (s.effects || []).some(e => e.refId && e.refId.includes(search));
+}
+
 function filterCustomSkills() {
     renderCustomSkillTagFilterBar();
     const searchEl = document.getElementById('customSkillSearchInput');
@@ -2444,14 +2387,7 @@ function filterCustomSkills() {
             const matched = tagFilter.every(tag => t.main === tag || (t.normal || []).includes(tag));
             if (!matched) return false;
         }
-        if (!search) return true;
-        if (s.name.toLowerCase().includes(search)) return true;
-        if ((s.id || '').toLowerCase().includes(search)) return true;
-        if (s.type && s.type.toLowerCase().includes(search)) return true;
-        if (s.desc && s.desc.toLowerCase().includes(search)) return true;
-        const hasEffect = (s.effects || []).some(e => e.refId && e.refId.includes(search));
-        if (hasEffect) return true;
-        return false;
+        return customSkillMatches(s, search);
     });
     renderCustomSkills(filtered);
 }
@@ -2483,52 +2419,7 @@ function toggleCustomSkillTypeGroup(type) {
 // 新增技能弹窗 - 支持从战斗数据中选择
 
 
-function onBattleSkillImport(select) {
-    const opt = select.selectedOptions[0];
-    if (!opt || !opt.value) return;
-    document.getElementById('csName').value = opt.dataset.name || '';
-    document.getElementById('csDesc').value = opt.dataset.desc || '';
-    document.getElementById('csType').value = opt.dataset.type || '';
-    document.getElementById('csSourceId').value = opt.value || '';
-}
 
-function onCustomSkillEffectInput(inputEl, previewId, dropdownId) {
-    const val = inputEl.value.trim();
-    const dropdownEl = document.getElementById(dropdownId);
-    previewEffect(inputEl, previewId);
-    if (!val) { if (dropdownEl) dropdownEl.innerHTML = ''; return; }
-    const refData = findRefData(val);
-    if (refData && /^\d+$/.test(val)) { if (dropdownEl) dropdownEl.innerHTML = ''; return; }
-
-    const search = val.toLowerCase();
-    let matches = [];
-    affixes.forEach(a => {
-        if (a.name.toLowerCase().includes(search) || a.id.includes(search) || a.description.toLowerCase().includes(search)) {
-            matches.push({ id: a.id, name: a.name, desc: a.description, typeLabel: '词缀', typeColor: '#f39c12' });
-        }
-    });
-    attributes.forEach(a => {
-        if (a.name.toLowerCase().includes(search) || a.id.includes(search) || a.description.toLowerCase().includes(search)) {
-            matches.push({ id: a.id, name: a.name, desc: a.description, typeLabel: '属性', typeColor: '#27ae60' });
-        }
-    });
-    passiveSkills.forEach(s => {
-        if (s.name.toLowerCase().includes(search) || s.id.includes(search) || s.description.toLowerCase().includes(search)) {
-            matches.push({ id: s.id, name: s.name, desc: s.description, typeLabel: '被动', typeColor: '#3498db' });
-        }
-    });
-    matches = matches.slice(0, 20);
-    if (matches.length === 0) { if (dropdownEl) dropdownEl.innerHTML = '<div class="autocomplete-empty">无匹配结果</div>'; return; }
-    if (!dropdownEl) return;
-    dropdownEl.innerHTML = '<div class="autocomplete-list">' + matches.map(m => `
-        <div class="autocomplete-item" onclick="selectEffectItem('${inputEl.id}', '${previewId}', '${dropdownId}', '${m.id}')">
-            <span class="autocomplete-item-type" style="background:${m.typeColor}20;color:${m.typeColor}">${m.typeLabel}</span>
-            <span class="autocomplete-item-id">${m.id}</span>
-            <span class="autocomplete-item-name">${m.name}</span>
-            <span class="autocomplete-item-desc">${m.desc.substring(0, 30)}</span>
-        </div>
-    `).join('') + '</div>';
-}
 
 
 
@@ -2835,640 +2726,21 @@ function init() {
     loadCustomSkills();
     loadCustomAffixes();
 
+    // 自定义数据加载完成后重建索引 (技能/词缀/属性的查找与ID去重)
+    rebuildRefIndex();
+    rebuildSkillAffixIdSet();
+
     console.log('  数据统计: 主动=' + activeSkills.length, '被动=' + passiveSkills.length, '词缀=' + affixes.length, '属性=' + attributes.length, '装备=' + equipmentData.length, '技能库=' + customSkillData.length, '宝石=' + gemData.length, '职业=' + occupationData.length);
 
-    const _aC = document.getElementById('affixCount'); if (_aC) _aC.textContent = affixes.length;
-    const _eC = document.getElementById('equipmentCount'); if (_eC) _eC.textContent = equipmentData.length;
-    const _atC = document.getElementById('attrCount'); if (_atC) _atC.textContent = attributes.length;
-    const _gC = document.getElementById('gemCount'); if (_gC) _gC.textContent = gemData.length;
-    const _oC = document.getElementById('occupationCount'); if (_oC) _oC.textContent = occupationData.length;
-    const _pC = document.getElementById('petCount'); if (_pC) _pC.textContent = petData.length;
     updateCustomSkillNavCount();
     updateBattleDataCount();
 
+    // 仅渲染首页统计 (其余页面在首次进入时懒渲染, 见 ensurePageRendered)
     renderHome();
-    filterSkills('active');
-    filterSkills('passive');
-    renderTagFilterBar('active');
-    renderTagFilterBar('passive');
-    renderCustomSkillTagFilterBar();
-    renderAffixes();
-    renderAttributes();
-    renderEquipment();
-    renderGems();
-    renderCustomSkills();
-    renderCategoryTables();
-    renderStats();
 
     console.log('=== 初始化完成 ===');
 }
 
-// ============================================================
-// 同步战斗数据（从本地项目文件夹拉取）
-// ============================================================
-function showSyncBattleDataModal() {
-    // 读取上次保存的文件夹名
-    let lastFolders = {};
-    try {
-        ['skill', 'skillModule', 'stunt', 'stuntModule'].forEach(t => {
-            const v = localStorage.getItem('sync_folder_' + t);
-            if (v) lastFolders[t] = v;
-        });
-        ['affixExcel', 'attrCSV'].forEach(t => {
-            const v = localStorage.getItem('sync_file_' + t);
-            if (v) lastFolders[t] = v;
-        });
-    } catch(e) {}
-
-    const hintHTML = (type) => lastFolders[type] ? `<span style="color:#aaa;font-size:11px;margin-left:8px">上次: ${lastFolders[type]}</span>` : '';
-
-    // 检查是否有缓存的文件对象
-    const cachedCount = Object.values(syncFolders).filter(v => v && (Array.isArray(v) ? v.length > 0 : true)).length;
-    const hasCached = cachedCount > 0;
-
-    // 缓存状态文本
-    const statusHTML = (type) => {
-        const v = syncFolders[type];
-        if (v && (Array.isArray(v) ? v.length > 0 : true)) {
-            if (Array.isArray(v)) {
-                const folderName = v[0].webkitRelativePath ? v[0].webkitRelativePath.split('/')[0] : v[0].name;
-                return `<span class="sync-status sync-status-ok">✓ 已缓存（${folderName}）</span>`;
-            } else {
-                return `<span class="sync-status sync-status-ok">✓ 已缓存（${v.name}）</span>`;
-            }
-        }
-        return '<span class="sync-status">未选择</span>';
-    };
-
-    const modalBody = document.getElementById('modalBody');
-    modalBody.innerHTML = `
-        <div class="detail-header" style="border-bottom-color:#e74c3c">
-            <div class="detail-icon" style="background:#e74c3c20;color:#e74c3c;font-size:36px;width:64px;height:64px;display:flex;align-items:center;justify-content:center;border-radius:12px">🔄</div>
-            <div style="flex:1">
-                <h2 class="detail-name">同步战斗数据</h2>
-                <div class="detail-type">
-                    <span class="type-badge" style="background:#e74c3c20;color:#e74c3c">数据同步</span>
-                </div>
-            </div>
-        </div>
-
-        ${hasCached ? `
-        <div class="detail-section" style="background:#27ae6010;border:1px solid #27ae6030;border-radius:8px;padding:16px">
-            <p style="color:#27ae60;font-weight:600;font-size:14px;margin-bottom:8px">✓ 已缓存 ${cachedCount} 个数据源</p>
-            <p style="color:#666;font-size:12px;margin-bottom:12px">上次选择的文件仍在内存中，可直接同步无需重新选择</p>
-            <button class="equipment-btn equipment-btn-save" style="width:100%" onclick="quickSyncBattleData()">⚡ 直接同步（使用已缓存文件）</button>
-        </div>
-        <div style="border-top:1px solid #eee;margin:8px 0;padding-top:8px">
-            <p style="color:#999;font-size:12px">或重新选择数据源：</p>
-        </div>
-        ` : ''}
-
-        <div class="detail-section">
-            <p class="equipment-form-hint" style="margin-bottom:16px">
-                选择对应的文件夹或CSV文件，系统会自动解析数据。<br>
-                <strong>Skill</strong> / <strong>SkillModule</strong>：主动技能 JSON 文件夹<br>
-                <strong>Stunt</strong> / <strong>StuntModule</strong>：被动技能 JSON 文件夹<br>
-                <strong>词缀CSV</strong> / <strong>属性CSV</strong>：对应CSV文件
-            </p>
-        </div>
-
-        <div class="detail-section">
-            <h3 class="detail-section-title">主动技能数据源</h3>
-            <div class="sync-folder-group">
-                <label class="sync-folder-label">① Skill 文件夹 ${hintHTML('skill')}</label>
-                <div class="sync-folder-row">
-                    <input type="file" id="syncSkillFolder" webkitdirectory multiple style="display:none" onchange="onSyncFolderSelected('skill', this)">
-                    <button class="equipment-btn" onclick="document.getElementById('syncSkillFolder').click()">选择 Skill 文件夹</button>
-                    <span class="sync-status" id="syncSkillStatus">${statusHTML('skill')}</span>
-                </div>
-            </div>
-            <div class="sync-folder-group">
-                <label class="sync-folder-label">② SkillModule 文件夹 ${hintHTML('skillModule')}</label>
-                <div class="sync-folder-row">
-                    <input type="file" id="syncSkillModuleFolder" webkitdirectory multiple style="display:none" onchange="onSyncFolderSelected('skillModule', this)">
-                    <button class="equipment-btn" onclick="document.getElementById('syncSkillModuleFolder').click()">选择 SkillModule 文件夹</button>
-                    <span class="sync-status" id="syncSkillModuleStatus">${statusHTML('skillModule')}</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="detail-section">
-            <h3 class="detail-section-title">被动技能数据源</h3>
-            <div class="sync-folder-group">
-                <label class="sync-folder-label">③ Stunt 文件夹 ${hintHTML('stunt')}</label>
-                <div class="sync-folder-row">
-                    <input type="file" id="syncStuntFolder" webkitdirectory multiple style="display:none" onchange="onSyncFolderSelected('stunt', this)">
-                    <button class="equipment-btn" onclick="document.getElementById('syncStuntFolder').click()">选择 Stunt 文件夹</button>
-                    <span class="sync-status" id="syncStuntStatus">${statusHTML('stunt')}</span>
-                </div>
-            </div>
-            <div class="sync-folder-group">
-                <label class="sync-folder-label">④ StuntModule 文件夹 ${hintHTML('stuntModule')}</label>
-                <div class="sync-folder-row">
-                    <input type="file" id="syncStuntModuleFolder" webkitdirectory multiple style="display:none" onchange="onSyncFolderSelected('stuntModule', this)">
-                    <button class="equipment-btn" onclick="document.getElementById('syncStuntModuleFolder').click()">选择 StuntModule 文件夹</button>
-                    <span class="sync-status" id="syncStuntModuleStatus">${statusHTML('stuntModule')}</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="detail-section">
-            <h3 class="detail-section-title">词缀数据源（Excel文件）</h3>
-            <div class="sync-folder-group">
-                <label class="sync-folder-label">⑤ 词缀Excel文件 ${hintHTML('affixExcel')}</label>
-                <div class="sync-folder-row">
-                    <input type="file" id="syncAffixExcel" accept=".xlsx,.xls" style="display:none" onchange="onSyncFileSelected('affixExcel', this)">
-                    <button class="equipment-btn" onclick="document.getElementById('syncAffixExcel').click()">选择 词缀Excel</button>
-                    <span class="sync-status" id="syncAffixExcelStatus">${statusHTML('affixExcel')}</span>
-                </div>
-                <p style="font-size:11px;color:#aaa;margin-top:4px">系统会自动查找包含"词缀"的工作表</p>
-            </div>
-        </div>
-
-        <div class="detail-section">
-            <h3 class="detail-section-title">属性数据源（CSV文件）</h3>
-            <div class="sync-folder-group">
-                <label class="sync-folder-label">⑥ 属性CSV文件 ${hintHTML('attrCSV')}</label>
-                <div class="sync-folder-row">
-                    <input type="file" id="syncAttrCSV" accept=".csv" style="display:none" onchange="onSyncFileSelected('attrCSV', this)">
-                    <button class="equipment-btn" onclick="document.getElementById('syncAttrCSV').click()">选择 属性.csv</button>
-                    <span class="sync-status" id="syncAttrCSVStatus">${statusHTML('attrCSV')}</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="detail-section">
-            <div class="sync-result" id="syncResult"></div>
-            <button class="equipment-btn equipment-btn-save" style="width:100%;margin-top:12px" onclick="executeSyncBattleData()" id="syncExecBtn" ${hasCached ? '' : 'disabled'}>开始同步</button>
-        </div>
-
-        <div class="equipment-form-actions">
-            <button class="equipment-btn equipment-btn-cancel" onclick="closeModal()">关闭</button>
-        </div>
-    `;
-    document.getElementById('skillModal').classList.add('active');
-}
-
-const syncFolders = { skill: null, skillModule: null, stunt: null, stuntModule: null, affixExcel: null, attrCSV: null };
-
-function quickSyncBattleData() {
-    executeSyncBattleData();
-}
-
-function onSyncFolderSelected(type, input) {
-    const files = Array.from(input.files);
-    const statusEl = document.getElementById('sync' + type.charAt(0).toUpperCase() + type.slice(1) + 'Status');
-
-    if (files.length === 0) {
-        statusEl.textContent = '未选择';
-        statusEl.className = 'sync-status';
-        syncFolders[type] = null;
-    } else {
-        syncFolders[type] = files;
-        const folderName = files[0].webkitRelativePath ? files[0].webkitRelativePath.split('/')[0] : '未知文件夹';
-        statusEl.textContent = '已选择 ' + folderName + '（' + files.length + ' 个文件）';
-        statusEl.className = 'sync-status sync-status-ok';
-        // 保存文件夹名到 localStorage
-        try { localStorage.setItem('sync_folder_' + type, folderName); } catch(e) {}
-    }
-
-    const hasAny = Object.values(syncFolders).some(v => v && (Array.isArray(v) ? v.length > 0 : true));
-    document.getElementById('syncExecBtn').disabled = !hasAny;
-}
-
-function onSyncFileSelected(type, input) {
-    const file = input.files[0];
-    const statusEl = document.getElementById('sync' + type.charAt(0).toUpperCase() + type.slice(1) + 'Status');
-
-    if (!file) {
-        statusEl.textContent = '未选择';
-        statusEl.className = 'sync-status';
-        syncFolders[type] = null;
-    } else {
-        syncFolders[type] = file;
-        statusEl.textContent = '已选择 ' + file.name;
-        statusEl.className = 'sync-status sync-status-ok';
-        try { localStorage.setItem('sync_file_' + type, file.name); } catch(e) {}
-    }
-
-    const hasAny = Object.values(syncFolders).some(v => v && (Array.isArray(v) ? v.length > 0 : true));
-    document.getElementById('syncExecBtn').disabled = !hasAny;
-}
-
-function executeSyncBattleData() {
-    const resultEl = document.getElementById('syncResult');
-    resultEl.innerHTML = '<p style="color:#999">正在解析数据...</p>';
-
-    setTimeout(() => {
-        // 由于 FileReader 是异步的，使用 Promise 方式处理
-        const promises = [
-            parseSkillFiles(syncFolders.skill, 'skill'),
-            parseSkillFiles(syncFolders.skillModule, 'skillModule'),
-            parseSkillFiles(syncFolders.stunt, 'stunt'),
-            parseSkillFiles(syncFolders.stuntModule, 'stuntModule')
-        ];
-
-        if (syncFolders.affixExcel) {
-            promises.push(parseExcelForAffixes(syncFolders.affixExcel));
-        } else {
-            promises.push(Promise.resolve(null));
-        }
-
-        if (syncFolders.attrCSV) {
-            promises.push(parseCSVFile(syncFolders.attrCSV, 'attr'));
-        } else {
-            promises.push(Promise.resolve(null));
-        }
-
-        Promise.all(promises).then(results => {
-            const [skillMap, skillModuleMap, stuntMap, stuntModuleMap, affixExcelData, attrCSVData] = results;
-
-            // 合并主动技能
-            const mergedActive = {};
-            Object.assign(mergedActive, skillModuleMap);
-            for (const sid in skillMap) {
-                if (mergedActive[sid]) {
-                    if (skillMap[sid].name) mergedActive[sid].name = skillMap[sid].name;
-                    if (skillMap[sid].desc) mergedActive[sid].desc = skillMap[sid].desc;
-                } else {
-                    mergedActive[sid] = skillMap[sid];
-                }
-            }
-
-            // 合并被动技能
-            const mergedPassive = {};
-            Object.assign(mergedPassive, stuntModuleMap);
-            for (const sid in stuntMap) {
-                if (mergedPassive[sid]) {
-                    if (stuntMap[sid].name) mergedPassive[sid].name = stuntMap[sid].name;
-                    if (stuntMap[sid].desc) mergedPassive[sid].desc = stuntMap[sid].desc;
-                } else {
-                    mergedPassive[sid] = stuntMap[sid];
-                }
-            }
-
-            // 过滤主动技能：10位ID且首位为1
-            const newActiveSkills = [];
-            for (const sid in mergedActive) {
-                if (sid.length === 10 && sid[0] === '1') {
-                    const info = mergedActive[sid];
-                    newActiveSkills.push(buildSkillObject(sid, info.name, info.desc, 'active'));
-                }
-            }
-
-            // 过滤被动技能：10位ID且首位为2或3，以及特殊5位ID
-            const newPassiveSkills = [];
-            for (const sid in mergedPassive) {
-                if (sid.length === 10 && (sid[0] === '2' || sid[0] === '3')) {
-                    const info = mergedPassive[sid];
-                    newPassiveSkills.push(buildSkillObject(sid, info.name, info.desc, 'passive'));
-                } else if (sid === '99998' || sid === '99999') {
-                    const info = mergedPassive[sid];
-                    newPassiveSkills.push(buildSkillObject(sid, info.name, info.desc, 'passive'));
-                }
-            }
-
-            // 按ID排序
-            newActiveSkills.sort((a, b) => a.id.localeCompare(b.id));
-            newPassiveSkills.sort((a, b) => a.id.localeCompare(b.id));
-
-            // 替换数据
-            activeSkills.length = 0;
-            activeSkills.push(...newActiveSkills);
-            passiveSkills.length = 0;
-            passiveSkills.push(...newPassiveSkills);
-
-            // 词缀Excel
-            let affixCount = 0;
-            if (affixExcelData && affixExcelData.length > 0) {
-                affixes.length = 0;
-                affixes.push(...affixExcelData);
-                affixCount = affixExcelData.length;
-                try { localStorage.setItem('chronicle_synced_affixes', JSON.stringify(affixes)); } catch(e) {}
-            }
-
-            // 属性CSV
-            let attrCount = 0;
-            if (attrCSVData && attrCSVData.length > 0) {
-                attributes.length = 0;
-                attributes.push(...attrCSVData);
-                attrCount = attrCSVData.length;
-                try { localStorage.setItem('chronicle_synced_attrs', JSON.stringify(attributes)); } catch(e) {}
-            }
-
-            // 保存到 localStorage
-            try {
-                localStorage.setItem('chronicle_synced_active', JSON.stringify(activeSkills));
-                localStorage.setItem('chronicle_synced_passive', JSON.stringify(passiveSkills));
-            } catch (e) {}
-
-            // 刷新页面
-            filterSkills('active');
-            filterSkills('passive');
-            filterAffixes();
-            filterAttributes();
-            renderStats();
-            renderHome();
-            updateBattleDataCount();
-
-            const activeCount = newActiveSkills.length;
-            const passiveCount = newPassiveSkills.length;
-
-            resultEl.innerHTML = `
-                <div style="background:#27ae6010;border:1px solid #27ae6030;border-radius:8px;padding:16px">
-                    <p style="color:#27ae60;font-weight:600;font-size:15px;margin-bottom:8px">✓ 同步完成！</p>
-                    <p style="color:#666;font-size:13px">主动技能：${activeCount} 个</p>
-                    <p style="color:#666;font-size:13px">被动技能：${passiveCount} 个</p>
-                    ${affixCount > 0 ? '<p style="color:#666;font-size:13px">词缀：' + affixCount + ' 个</p>' : ''}
-                    ${attrCount > 0 ? '<p style="color:#666;font-size:13px">属性：' + attrCount + ' 个</p>' : ''}
-                    ${Object.keys(skillMap).length > 0 ? '<p style="color:#999;font-size:12px;margin-top:8px">Skill 文件夹：' + Object.keys(skillMap).length + ' 个文件</p>' : ''}
-                    ${Object.keys(skillModuleMap).length > 0 ? '<p style="color:#999;font-size:12px">SkillModule 文件夹：' + Object.keys(skillModuleMap).length + ' 个文件</p>' : ''}
-                    ${Object.keys(stuntMap).length > 0 ? '<p style="color:#999;font-size:12px">Stunt 文件夹：' + Object.keys(stuntMap).length + ' 个文件</p>' : ''}
-                    ${Object.keys(stuntModuleMap).length > 0 ? '<p style="color:#999;font-size:12px">StuntModule 文件夹：' + Object.keys(stuntModuleMap).length + ' 个文件</p>' : ''}
-                </div>
-            `;
-        }).catch(err => {
-            resultEl.innerHTML = '<div style="color:#e74c3c;padding:12px">✗ 同步失败：' + err.message + '</div>';
-        });
-    }, 100);
-}
-
-// 解析Excel文件中的词缀数据
-function parseExcelForAffixes(file) {
-    return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            try {
-                const data = new Uint8Array(e.target.result);
-                const wb = XLSX.read(data, { type: 'array' });
-
-                // 查找包含"词缀"的工作表
-                let targetSheet = null;
-                for (const name of wb.SheetNames) {
-                    if (name.includes('词缀')) {
-                        targetSheet = name;
-                        break;
-                    }
-                }
-                // 如果没找到包含"词缀"的表名，尝试用第一个表
-                if (!targetSheet) {
-                    targetSheet = wb.SheetNames[0];
-                }
-
-                const sheet = wb.Sheets[targetSheet];
-                // 转为JSON，header为列名自动推断
-                const rows = XLSX.utils.sheet_to_json(sheet, { header: 1, defval: '' });
-
-                if (rows.length === 0) {
-                    resolve([]);
-                    return;
-                }
-
-                // 第一行为表头
-                const headers = rows[0].map(h => String(h).trim());
-                const findCol = (names) => {
-                    for (const name of names) {
-                        const idx = headers.findIndex(h =>
-                            h === name || h.toLowerCase() === name.toLowerCase() ||
-                            h.includes(name) || name.includes(h)
-                        );
-                        if (idx >= 0) return idx;
-                    }
-                    return -1;
-                };
-
-                const idCol = findCol(['ID', 'id', 'Id', '编号', '词缀ID']);
-                const nameCol = findCol(['名称', '名字', 'Name', 'name', '词缀名称']);
-                const descCol = findCol(['描述', '说明', '效果', 'desc', 'Desc', 'description', 'Description', 'text', 'Text']);
-                const catCol = findCol(['分类', '类型', 'category', 'Category', 'type', 'Type']);
-                const subCol = findCol(['子分类', '子类型', 'subCategory', 'sub_category', '标签', '属性']);
-
-                const result = [];
-                for (let i = 1; i < rows.length; i++) {
-                    const row = rows[i];
-                    if (!row || row.length === 0) continue;
-
-                    const id = idCol >= 0 ? String(row[idCol]).trim() : String(row[0]).trim();
-                    const name = nameCol >= 0 ? String(row[nameCol]).trim() : String(row[1]).trim();
-                    const desc = descCol >= 0 ? String(row[descCol]).trim() : '';
-                    const category = catCol >= 0 ? String(row[catCol]).trim() : '';
-                    const subCategory = subCol >= 0 ? String(row[subCol]).trim() : '';
-
-                    if (!id || id === '0' || id === headers[0]) continue;
-
-                    // 按 ID 长度自动分类：5位=通用词缀，更长=特殊词缀
-                    let finalCategory = category;
-                    if (!finalCategory || (finalCategory !== '通用词缀' && finalCategory !== '特殊词缀')) {
-                        finalCategory = id.length <= 5 ? '通用词缀' : '特殊词缀';
-                    }
-
-                    result.push({
-                        id: id,
-                        name: name || '未命名词缀',
-                        category: finalCategory,
-                        subCategory: subCategory || '通用',
-                        isNew: false,
-                        description: desc || name || ''
-                    });
-                }
-
-                resolve(result);
-            } catch (err) {
-                reject(err);
-            }
-        };
-        reader.onerror = function() { reject(new Error('Excel文件读取失败')); };
-        reader.readAsArrayBuffer(file);
-    });
-}
-
-// 解析CSV文件
-function parseCSVFile(file, type) {
-    return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            try {
-                const text = e.target.result;
-                const lines = text.split(/\r?\n/).filter(l => l.trim());
-                if (lines.length === 0) {
-                    resolve([]);
-                    return;
-                }
-
-                // 检测分隔符
-                const firstLine = lines[0];
-                const sep = firstLine.includes('\t') ? '\t' : ',';
-
-                // 解析表头
-                const headers = firstLine.split(sep).map(h => h.trim().replace(/"/g, ''));
-
-                // 找到关键列的索引
-                const findCol = (names) => {
-                    for (const name of names) {
-                        const idx = headers.findIndex(h => h.toLowerCase() === name.toLowerCase() || h.toLowerCase().includes(name.toLowerCase()));
-                        if (idx >= 0) return idx;
-                    }
-                    return -1;
-                };
-
-                const idCol = findCol(['id', 'ID', 'Id']);
-                const nameCol = findCol(['name', 'Name', '名称', '名字']);
-                const descCol = findCol(['desc', 'Desc', 'description', 'Description', '描述', '说明', 'text', '效果']);
-                const catCol = findCol(['category', 'Category', '分类', '类型', 'type', 'Type']);
-
-                const result = [];
-                for (let i = 1; i < lines.length; i++) {
-                    const cols = lines[i].split(sep).map(c => c.trim().replace(/"/g, ''));
-                    if (cols.length < 2) continue;
-
-                    const id = idCol >= 0 ? cols[idCol] : cols[0];
-                    const name = nameCol >= 0 ? cols[nameCol] : cols[1];
-                    const desc = descCol >= 0 ? cols[descCol] : '';
-                    const category = catCol >= 0 ? cols[catCol] : (type === 'affix' ? '通用词缀' : '基础属性');
-
-                    if (!id || id === headers[0]) continue;
-
-                    if (type === 'affix') {
-                        let affixCat = category;
-                        if (!affixCat || (affixCat !== '通用词缀' && affixCat !== '特殊词缀')) {
-                            affixCat = id.length <= 5 ? '通用词缀' : '特殊词缀';
-                        }
-                        result.push({
-                            id: id,
-                            name: name || '未命名词缀',
-                            category: affixCat,
-                            subCategory: '通用',
-                            isNew: false,
-                            description: desc || ''
-                        });
-                    } else {
-                        let attrCat = category;
-                        if (!attrCat || (attrCat !== '基础属性' && attrCat !== '特殊属性')) {
-                            attrCat = '基础属性';
-                        }
-                        result.push({
-                            id: id,
-                            name: name || '未命名属性',
-                            category: attrCat,
-                            subCategory: '基础',
-                            isNew: false,
-                            description: desc || ''
-                        });
-                    }
-                }
-
-                resolve(result);
-            } catch (err) {
-                reject(err);
-            }
-        };
-        reader.onerror = function() { reject(new Error('文件读取失败')); };
-        reader.readAsText(file, 'utf-8');
-    });
-}
-
-function parseSkillFiles(files, type) {
-    return new Promise((resolve, reject) => {
-        const result = {};
-        if (!files || files.length === 0) {
-            resolve(result);
-            return;
-        }
-
-        let processed = 0;
-        let total = 0;
-
-        // 筛选目标文件
-        const targetFiles = files.filter(file => {
-            if (type === 'skill') {
-                return file.name.startsWith('Basic_Information-');
-            } else if (type === 'skillModule') {
-                return file.name.startsWith('module-');
-            } else if (type === 'stunt') {
-                return file.name.startsWith('baseStuntInfo-');
-            } else if (type === 'stuntModule') {
-                return file.name.startsWith('module-');
-            }
-            return false;
-        });
-
-        total = targetFiles.length;
-        if (total === 0) {
-            resolve(result);
-            return;
-        }
-
-        targetFiles.forEach(file => {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                try {
-                    const data = JSON.parse(e.target.result);
-                    let sid = '';
-                    let name = '';
-                    let desc = '';
-
-                    if (type === 'skill' || type === 'skillModule') {
-                        sid = type === 'skill' ? (file.name.match(/Basic_Information-(\d+)/) || [])[1] || '' : String(data.id || '').padStart(10, '0');
-                        name = data.name || '';
-                        desc = data.desc || data.detailedDesc || '';
-                    } else if (type === 'stunt' || type === 'stuntModule') {
-                        sid = type === 'stunt' ? (file.name.match(/baseStuntInfo-(\d+)/) || [])[1] || '' : String(data.group || '');
-                        name = data.name || '';
-                        desc = data.text || '';
-                    }
-
-                    if (sid && sid !== '0') {
-                        if (!result[sid]) {
-                            result[sid] = { name: '', desc: '' };
-                        }
-                        if (name) result[sid].name = name;
-                        if (desc) result[sid].desc = desc;
-                    }
-                } catch (err) {
-                    // 忽略解析错误的文件
-                }
-                processed++;
-                if (processed === total) {
-                    resolve(result);
-                }
-            };
-            reader.onerror = function() {
-                processed++;
-                if (processed === total) {
-                    resolve(result);
-                }
-            };
-            reader.readAsText(file, 'utf-8');
-        });
-    });
-}
-
-function buildSkillObject(sid, name, desc, type) {
-    if (type === 'active') {
-        const b = sid[1], c = sid[2];
-        const bc = b + c;
-        const catMap = { '11': '战斗技能', '12': '法术技能', '14': '增益技能' };
-        const category = catMap[bc] || '其他技能';
-        const subMap = { '1': '战斗攻击', '2': '法术释放', '4': '增益辅助' };
-        const subCategory = subMap[c] || '其他';
-        return { id: sid, name: name || '未命名技能', category, subCategory, isNew: false, description: desc || '' };
-    } else {
-        const a = sid[0], b = sid[1] || '';
-        let category = '其他特技';
-        if (sid === '99998' || sid === '99999') {
-            category = '天赋特技';
-        } else if (a === '3') {
-            category = '传奇特技';
-        } else {
-            const bcMap = { '1': '捷系列', '2': '战斗特技', '3': '传奇特技', '4': '增益特技', '5': '特殊增益' };
-            category = bcMap[b] || '其他特技';
-        }
-        const c = sid[2] || '';
-        const subMap = { '1': '攻击', '2': '法术', '4': '增益', '5': '特殊' };
-        const subCategory = (sid === '99998' || sid === '99999') ? '天赋' : (subMap[c] || '通用');
-        return { id: sid, name: name || '未命名特技', category, subCategory, isNew: false, description: desc || '' };
-    }
-}
 
 function updateBattleDataCount() {
     const el = document.getElementById('battleDataCount');

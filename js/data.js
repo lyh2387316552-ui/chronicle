@@ -409,7 +409,9 @@ let videoData = [];
 
 // 内置默认视频清单 (未运行一键导入时的兜底，与 videos/ 文件夹内容对应)
 const DEFAULT_VIDEO_FILES = [
-    '专注斩.mp4'
+    '专注斩.mp4', '冥地喷涌.mp4', '冰霜新星.mp4', '回响.mp4', '回旋龙卷.mp4',
+    '拔刀斩.mp4', '旋风斩.mp4', '月光斩.mp4', '月神赐福.mp4', '极地战吼.mp4',
+    '气刃纵斩.mp4', '法术旋龙.mp4', '混沌刺击.mp4', '混沌陨星.mp4', '火球术.mp4'
 ];
 
 // ============================================================
@@ -426,27 +428,51 @@ const legendModifierMap = {
     // 待填充：传奇装备词条映射表
 };
 
+// ============================================================
+// refIndex: refId → 引用条目 的索引 (替代多次线性查找)
+// 索引存的是对象引用, 名称/描述被编辑后自动生效;
+// 结构变化 (增删改 ID) 后调用 rebuildRefIndex() 重建
+// 注意: 声明必须位于 loadAutoImportData IIFE 之前 (IIFE 会立即重建)
+// ============================================================
+let refIndex = null;
+let skillAffixIdSet = null;
+
+function rebuildRefIndex() {
+    refIndex = new Map();
+    const add = (items, type) => {
+        items.forEach(item => {
+            if (item && item.id !== undefined && item.id !== null && item.id !== '') {
+                refIndex.set(String(item.id), { type: type, item: item });
+            }
+        });
+    };
+    add(activeSkills, 'active-skill');
+    add(passiveSkills, 'passive-skill');
+    add(affixes, 'affix');
+    add(attributes, 'attribute');
+}
+
 // 根据 refId 查找技能或词缀信息
 function findRefData(refId) {
-    if (!refId) return null;
-    // 先查主动技能
-    let skill = activeSkills.find(s => s.id === refId);
-    if (skill) return { type: 'active-skill', name: skill.name, desc: skill.description, category: skill.category, subCategory: skill.subCategory };
-    // 查被动技能
-    skill = passiveSkills.find(s => s.id === refId);
-    if (skill) return { type: 'passive-skill', name: skill.name, desc: skill.description, category: skill.category, subCategory: skill.subCategory };
-    // 查词缀
-    const affix = affixes.find(a => a.id === refId);
-    if (affix) return { type: 'affix', name: affix.name, desc: affix.description, category: affix.category, subCategory: affix.subCategory };
-    // 查属性
-    const attr = attributes.find(a => a.id === refId);
-    if (attr) return { type: 'attribute', name: attr.name, desc: attr.description, category: attr.category, subCategory: '属性' };
-    // 查传奇装备词条映射
-    const modInfo = legendModifierMap[refId];
-    if (modInfo) {
-        return { type: 'attribute', name: modInfo.desc, desc: modInfo.desc, category: '属性效果', subCategory: '无映射' };
+    if (refId === undefined || refId === null || refId === '') return null;
+    if (!refIndex) rebuildRefIndex();
+    const entry = refIndex.get(String(refId));
+    if (!entry) {
+        // 查传奇装备词条映射 (未收录进索引的独立映射表)
+        const modInfo = legendModifierMap[String(refId)];
+        if (modInfo) {
+            return { type: 'attribute', name: modInfo.desc, desc: modInfo.desc, category: '属性效果', subCategory: '无映射' };
+        }
+        return null;
     }
-    return null;
+    const item = entry.item;
+    return {
+        type: entry.type,
+        name: item.name,
+        desc: item.description,
+        category: item.category,
+        subCategory: item.subCategory || '属性'
+    };
 }
 
 // ============================================================
@@ -573,6 +599,10 @@ function findRefData(refId) {
         videoData = DEFAULT_VIDEO_FILES.map(f => ({ name: f.replace(/\.[^.]+$/, ''), file: f }));
     }
 
+    // 数据替换后重建索引
+    rebuildRefIndex();
+    rebuildSkillAffixIdSet();
+
     console.log('  自动导入完成');
 })();
 
@@ -648,20 +678,26 @@ const passiveCMap = {
 
 // ============================================================
 // 工具函数：解析技能ID
+// 标准ID为10位数字; 非标准ID(如 5位的 99998/99999)缺失段位返回空串
 // ============================================================
 function parseSkillId(id) {
     const idStr = String(id);
     return {
-        A: idStr[0],
-        B: idStr[1],
-        C: idStr[2],
-        D: idStr[3],
-        E: idStr[4],
+        A: idStr[0] || '',
+        B: idStr[1] || '',
+        C: idStr[2] || '',
+        D: idStr[3] || '',
+        E: idStr[4] || '',
         F: idStr.slice(5, 9),
         seq: idStr.slice(5, 9),
-        G: idStr[9],
+        G: idStr.length > 9 ? idStr[9] : '',
         full: idStr
     };
+}
+
+// 是否为10位标准技能ID
+function isStandardSkillId(id) {
+    return /^\d{10}$/.test(String(id));
 }
 
 // ============================================================
@@ -698,6 +734,7 @@ function parseAffixId(id) {
 
 // ============================================================
 // 根据技能ID自动确定分类 (基于B+C段位)
+// 分类取 B+C 组合映射名, 子分类取 C 段位映射名
 // ============================================================
 function autoDetectSkillCategory(id) {
     const parsed = parseSkillId(id);
@@ -706,14 +743,20 @@ function autoDetectSkillCategory(id) {
 
     if (a === '1') {
         // 主动技能
-        const map = activeCategoryMap[bc];
-        if (map) return { category: map.name, subCategory: map.desc };
-        return { category: '未知技能', subCategory: '未分类' };
+        const catMap = activeCategoryMap[bc];
+        const cMap = activeCMap[parsed.C];
+        return {
+            category: catMap ? catMap.name : '未知技能',
+            subCategory: cMap ? cMap.name : '未分类'
+        };
     } else if (a === '2') {
-        // 被动技能
-        const map = passiveCategoryMap[bc];
-        if (map) return { category: map.name, subCategory: map.desc };
-        return { category: '未知被动', subCategory: '未分类' };
+        // 被动技能: 分类与内置数据/页面筛选 (捷系列/战斗特技/传奇特技) 保持一致
+        const catMap = { '1': '捷系列', '2': '战斗特技', '3': '传奇特技' };
+        const subMap = { '1': '攻击', '2': '法术', '4': '增益', '5': '特殊' };
+        return {
+            category: catMap[parsed.B] || '其他特技',
+            subCategory: subMap[parsed.C] || '通用'
+        };
     }
     return { category: '未知', subCategory: '未分类' };
 }
@@ -731,11 +774,16 @@ function autoDetectAffixCategory(id) {
 // ============================================================
 // 检查ID是否已存在（技能+词缀）
 // ============================================================
+function rebuildSkillAffixIdSet() {
+    skillAffixIdSet = new Set();
+    [activeSkills, passiveSkills, affixes].forEach(arr => {
+        arr.forEach(item => { if (item && item.id !== undefined && item.id !== null) skillAffixIdSet.add(String(item.id)); });
+    });
+}
+
 function isIdExists(id) {
-    if (activeSkills.find(s => s.id === id)) return true;
-    if (passiveSkills.find(s => s.id === id)) return true;
-    if (affixes.find(a => a.id === id)) return true;
-    return false;
+    if (!skillAffixIdSet) rebuildSkillAffixIdSet();
+    return skillAffixIdSet.has(String(id));
 }
 
 // ============================================================

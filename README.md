@@ -43,7 +43,8 @@ chronicle-main/
 | `tools/import.js` | Node.js 脚本，解析本地文件生成数据 | 编码检测(UTF-8/GBK), 递归文件搜索, desc999 乱码回退 |
 | `tools/import-config.json` | 配置各数据源的本地路径 | 技能/词缀/装备/属性/宝石路径 |
 | `js/auto-import-data.js` | import.js 生成的 JS 数据文件 | `window.__AUTO_IMPORT_DATA__` 全局变量 |
-| `js/xlsx.min.js` | SheetJS 库，提供 Excel/CSV 解析能力 | 第三方库，无需修改 |
+| `js/xlsx.min.js` | SheetJS 库，提供 Excel/CSV 解析能力（仅 `tools/import.js` 使用，浏览器端不加载） | 第三方库，无需修改 |
+| `tools/dev-server.js` | 本地开发静态服务器（零依赖） | `node tools/dev-server.js` |
 
 ---
 
@@ -152,11 +153,11 @@ ID 格式：`A+B+C+D+E+000F+G`（10 位数字）
 如需通过 HTTP 访问（避免 file:// 协议限制）：
 
 ```bash
-# Python
-python3 -m http.server 8080
+# 项目内置零依赖服务器 (推荐)
+node tools/dev-server.js 8080
 
-# Node.js
-node server.js
+# 或 Python
+python3 -m http.server 8080
 
 # 然后访问
 # http://localhost:8080/index.html

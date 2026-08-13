@@ -4,6 +4,32 @@
 
 ---
 
+## [2.2.0] - 2026-08-13
+
+### 性能优化
+- **懒渲染**：启动时仅渲染首页统计，装备/宝石/战斗数据/其他等页面首次进入才渲染，明显加快打开速度
+- **移除浏览器端 xlsx.min.js 加载**（约 880KB）：该库仅 `tools/import.js`（Node 端）需要，文件保留不动
+- **findRefData 索引化**：refId 查找由多次线性扫描改为 Map 索引（`rebuildRefIndex()`），增删改 ID 后自动重建
+- **isIdExists 集合化**：ID 去重检查改用 Set，不再每次线性扫描
+- **搜索防抖**：全局搜索与各页面搜索输入 150ms 防抖，停止输入才触发渲染
+- **技能库标签计数单遍统计**：标签栏数量统计由「每标签一次全量过滤」改为单遍遍历
+- 编辑技能时不再每次按键拼接 `[...activeSkills, ...passiveSkills]` 数组
+
+### 功能增强
+- **全局搜索跨库检索**：可搜主动/被动技能、词缀、属性、装备、辅助宝石、技能库、魔宠，自动跳转对应页面并填入搜索词；无匹配时侧边栏提示「未找到匹配内容」
+- **装备/宝石搜索支持按关联效果名称匹配**（如搜「月光斩」可找到带该效果的装备）
+- 新增本地开发服务器 `tools/dev-server.js`（零依赖，`node tools/dev-server.js`）
+
+### 清理
+- 移除已废弃的浏览器内「同步战斗数据」功能及其余僵尸函数（`showSyncBattleDataModal`、`parseExcelForAffixes`、`parseCSVFile`、`parseSkillFiles`、`buildSkillObject`、`syncEquipmentCard`、`updateNavCounts`、`onGemEffectInput` 等），共约 790 行
+
+### 修复
+- 5 位 ID（如天赋特技 99998/99999）卡片段位拆解显示 `undefined` 的问题（非标准 ID 不再展示段位行）
+- `autoDetectSkillCategory` 子分类错误地返回分类描述（新建技能子分类现与内置数据约定一致，且与页面分类筛选对齐）
+- `DEFAULT_VIDEO_FILES` 兜底清单与 `videos/` 文件夹不同步（补全为 15 个视频）
+
+---
+
 ## [2.1.0] - 2026-08-07
 
 ### 新增

@@ -114,6 +114,7 @@ body {
     padding: 0;
     border-bottom: none;
     flex-shrink: 0;
+    position: relative;
 }
 
 .sidebar-search-input {
@@ -134,6 +135,22 @@ body {
 
 .sidebar-search-input::placeholder {
     color: var(--text-muted);
+}
+
+.global-search-hint {
+    position: absolute;
+    top: 100%;
+    left: 12px;
+    margin-top: 4px;
+    padding: 6px 10px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 0px 10px;
+    color: var(--text-warning, #e67e22);
+    font-size: 12px;
+    z-index: 100;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .nav-list {
