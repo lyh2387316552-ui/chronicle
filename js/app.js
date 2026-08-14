@@ -193,6 +193,9 @@ function renderCustomSkillTagFilterBar() {
     // 分隔符 (mainTag 和 normalTag 之间)
     const separator = mainTags.length > 0 && normalTags.length > 0 ? '<span class="tag-filter-sep">|</span>' : '';
 
+    // 多选激活时: 显示当前选中标签组合 (AND) 匹配的技能数量
+    const matchCount = current.length > 0 ? countCustomSkillTagMatch(current, search, typeFilter) : 0;
+
     bar.innerHTML = `
         <div class="tag-filter-bar-inner">
             <span class="tag-filter-label">标签(可多选):</span>
@@ -200,8 +203,21 @@ function renderCustomSkillTagFilterBar() {
             ${mainTags.map(t => btn(t, t)).join('')}
             ${separator}
             ${normalTags.map(t => btn(t, t)).join('')}
+            ${current.length > 0 ? `<span class="tag-filter-match">✓ 已选 ${current.length} 个标签 · 匹配 ${matchCount} 个技能</span>` : ''}
         </div>
     `;
+}
+
+// 计算指定标签组合 (AND 语义) 命中的技能数量 (考虑搜索/类型筛选)
+function countCustomSkillTagMatch(tags, search, typeFilter) {
+    if (!tags || tags.length === 0) return customSkillData.length;
+    return customSkillData.filter(s => {
+        if (typeFilter && (s.type || '未分类') !== typeFilter) return false;
+        if (!customSkillMatches(s, search)) return false;
+        const t = s.tags;
+        if (!t) return false;
+        return tags.every(tag => t.main === tag || (t.normal || []).includes(tag));
+    }).length;
 }
 
 // ---- 设置技能库标签筛选 (多选：点击切换选中/取消) ----
