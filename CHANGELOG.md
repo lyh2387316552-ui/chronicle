@@ -4,6 +4,19 @@
 
 ---
 
+## [2.4.0] - 2026-08-17
+
+### 变更
+- **数据与资源迁入独立仓库 [chronicle-data](https://github.com/lyh2387316552-ui/chronicle-data)**: 数据源表格 (data-sources)、游戏图标 (icon)、技能视频 (videos)、自定义数据表 (data/tables.json) 全部迁移
+- 网页图标/视频/数据表运行时直接从数据仓库 Pages 拉取 (`DATA_BASE` 常量)
+- 一键同步.bat 升级为全流程: 自动克隆/拉取数据仓库 → 复制本地表格 → 推送数据仓库 → 生成网页数据 → 推送网站仓库
+- copy-data.js 目标目录改为数据仓库; import.js 图标改为校验模式、视频直接扫描数据仓库目录
+- import-config.json 所有数据源路径指向数据仓库 (相对路径 `../chronicle-data/...`)
+- **移除网页「数据同步」功能** (编辑数据导出/导入), 数据统一由数据仓库管理
+- export-table.js 输出到数据仓库的 tables.json
+
+---
+
 ## [2.3.0] - 2026-08-17
 
 ### 新增

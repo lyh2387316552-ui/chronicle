@@ -1,7 +1,0 @@
-{
-  "__active": true,
-  "conditionBuff": "a.cooldownRecovery>=1.4?2342100030:0",
-  "conditionTime": 0,
-  "conditionObject": 0,
-  "buffAttribute": 0
-}

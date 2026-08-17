@@ -607,28 +607,23 @@ function findRefData(refId) {
 })();
 
 // ============================================================
-// 仓库同步数据 (data/*.json) - 在线模式 (http/https) 下加载
-// data/user-data.json: 编辑数据同步文件 (自建技能/词缀、名称/描述编辑记录)
-// data/tables.json:    自定义数据表 (如技能养成表), 上传即展示
-// file:// 协议下 fetch 受限, 自动跳过 (仅 localStorage 生效)
+// 数据与资源仓库 (chronicle-data) - 网页资源与数据表统一从这里拉取
+// 图标/视频/数据表: https://lyh2387316552-ui.github.io/chronicle-data/
+// file:// 协议下 fetch 受限, 自动跳过 (本地打开时资源从数据仓库公网拉取)
 // 加载完成后回调 window.onRepoDataLoaded (由 app.js 注册)
 // ============================================================
+const DATA_BASE = 'https://lyh2387316552-ui.github.io/chronicle-data/';
 let tablesData = {};
-let repoUserData = null;
 
 async function loadRepoData() {
     try {
         const ts = Date.now();
-        const [ud, tbl] = await Promise.all([
-            fetch('data/user-data.json?v=' + ts).then(r => r.ok ? r.json() : null).catch(() => null),
-            fetch('data/tables.json?v=' + ts).then(r => r.ok ? r.json() : null).catch(() => null)
-        ]);
-        repoUserData = ud;
+        const tbl = await fetch(DATA_BASE + 'data/tables.json?v=' + ts).then(r => r.ok ? r.json() : null).catch(() => null);
         if (tbl && typeof tbl === 'object') tablesData = tbl;
         const tableNames = Object.keys(tablesData).filter(k => Array.isArray(tablesData[k]) && tablesData[k].length > 0);
-        console.log('📂 仓库同步数据:', ud ? 'user-data 已加载' : 'user-data 未找到', '| 数据表:', tableNames.length ? tableNames.join('、') : '无');
+        console.log('📂 数据表:', tableNames.length ? tableNames.join('、') : '无');
     } catch (e) {
-        console.warn('仓库同步数据加载失败:', e);
+        console.warn('数据表加载失败:', e);
     }
     if (window.onRepoDataLoaded) window.onRepoDataLoaded();
 }

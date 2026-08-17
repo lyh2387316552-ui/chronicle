@@ -1,20 +1,22 @@
 #!/usr/bin/env node
 /**
  * 数据源复制脚本 (增量同步版)
- * 将本地绝对路径下的数据源文件/文件夹增量复制到 data-sources 中
+ * 将本地绝对路径下的数据源文件/文件夹增量复制到数据仓库 chronicle-data 的 data-sources 中
  * 已存在且未变化的文件自动跳过，仅复制新增/变更的文件
  *
  * 运行: node copy-data.js
- * 或双击: 一键同步.bat
+ * 或双击: 一键同步.bat (会先 git pull 数据仓库, 复制后自动 push)
  *
  * 复制后请运行 node import.js 同步数据到网页
  */
 const fs = require('fs');
 const path = require('path');
 
-const DATA_SOURCES_DIR = path.join(__dirname, '..', 'data-sources');
+// 数据仓库位于项目同级目录 ../chronicle-data
+const DATA_REPO_DIR = path.join(__dirname, '..', '..', 'chronicle-data');
+const DATA_SOURCES_DIR = path.join(DATA_REPO_DIR, 'data-sources');
 
-// 数据源映射: 本地绝对路径 → data-sources 目标文件夹
+// 数据源映射: 本地绝对路径(游戏引擎/策划导出) → 数据仓库 data-sources 目标文件夹
 const MAPPINGS = [
     { source: 'D:\\NewProject\\battleEdit\\Skill',         target: 'Skill' },
     { source: 'D:\\NewProject\\battleEdit\\SkillModule',   target: 'SkillModule' },
@@ -25,6 +27,7 @@ const MAPPINGS = [
     { source: 'E:\\策划\\1.表格目录\\XLS表格\\技能养成相关.xlsx', target: '宝石表' },
     { source: 'E:\\策划\\1.表格目录\\XLS表格\\技能养成相关.xlsx', target: '技能表' },
     { source: 'E:\\策划\\1.表格目录\\XLS表格\\战斗技能相关表.xlsx', target: '技能标签' },
+    { source: 'E:\\策划\\1.表格目录\\XLS表格\\魔宠表.xlsx', target: '魔宠表' },
 ];
 
 // 递归收集文件夹下的所有文件
@@ -113,6 +116,13 @@ function main() {
     console.log('╚══════════════════════════════════════╝');
     console.log('');
 
+    // 检查数据仓库是否存在
+    if (!fs.existsSync(DATA_REPO_DIR)) {
+        console.error('❌ 数据仓库目录不存在: ' + DATA_REPO_DIR);
+        console.error('   请先克隆: git clone https://github.com/lyh2387316552-ui/chronicle-data.git');
+        process.exit(1);
+    }
+
     const stats = { copied: 0, skipped: 0 };
 
     MAPPINGS.forEach(m => {
@@ -129,10 +139,10 @@ function main() {
         const stat = fs.statSync(src);
         if (stat.isDirectory()) {
             const r = syncDir(src, destDir, stats);
-            console.log(`  ✓ 已同步 → data-sources/${m.target}  (新增 ${r.copied}, 跳过 ${r.skipped} 个未变化文件)`);
+            console.log(`  ✓ 已同步 → chronicle-data/data-sources/${m.target}  (新增 ${r.copied}, 跳过 ${r.skipped} 个未变化文件)`);
         } else if (stat.isFile()) {
             const r = syncFile(src, destDir, stats);
-            console.log(`  ✓ 已同步 → data-sources/${m.target}/${path.basename(src)}  (新增 ${r.copied}, 跳过 ${r.skipped})`);
+            console.log(`  ✓ 已同步 → chronicle-data/data-sources/${m.target}/${path.basename(src)}  (新增 ${r.copied}, 跳过 ${r.skipped})`);
         }
         console.log('');
     });

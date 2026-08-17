@@ -1265,22 +1265,20 @@ function parsePets(inputPath) {
 // 主流程
 // ============================================================
 
-// 同步图标资源到项目 icon/ 目录 (幂等: 已存在且大小一致则跳过)
+// 校验图标资源是否齐全 (图标由数据仓库 chronicle-data 托管, 网页直接从其 Pages 拉取)
 // 图标引用来自导入数据: 装备 icon/spIcon、宝石 icon、技能 skillIcon
 function syncIcons(importData, config) {
     const iconRoot = config.iconPath && String(config.iconPath).trim()
         ? String(config.iconPath).trim().replace(/[\\/]+$/, '')
         : '';
     if (!iconRoot) {
-        console.log('  ⚠️ 未配置 iconPath，跳过图标资源同步');
+        console.log('  ⚠️ 未配置 iconPath，跳过图标资源校验');
         return;
     }
-    const destRoot = path.join(__dirname, '..', 'icon');
 
-    // 收集图标引用: {src: 源目录相对路径, dst: icon/ 下目标路径}
-    // 装备/技能源路径与目标路径一致；宝石源为原始引用(如 skill/sect/101101)，目标为扁平路径(baoshi/101101)
+    // 收集图标引用: 校验数据仓库 icon/ 下实际存放的路径 (dst, 宝石等已做扁平化映射)
     const refs = new Map();
-    const addRef = (src, dst) => { if (src && dst) refs.set(src + '|' + dst, { src, dst }); };
+    const addRef = (src, dst) => { const p = dst || src; if (p) refs.set(p, p); };
     (importData.equipment || []).forEach(e => { addRef(e.icon, e.icon); addRef(e.spIcon, e.spIcon); });
     (importData.gems || []).forEach(g => addRef(g.iconSrc || g.icon, g.icon));
     [...(importData.activeSkills || []), ...(importData.passiveSkills || []), ...(importData.skills || [])].forEach(s => addRef(s.icon, s.icon));
@@ -1294,21 +1292,17 @@ function syncIcons(importData, config) {
         return;
     }
 
-    let copied = 0, skipped = 0, missing = 0;
-    for (const { src, dst } of refs.values()) {
+    let exist = 0, missing = 0;
+    for (const src of refs.values()) {
         const srcPath = path.join(iconRoot, src.replace(/\//g, path.sep) + '.png');
-        const dstPath = path.join(destRoot, dst.replace(/\//g, path.sep) + '.png');
-        if (!fs.existsSync(srcPath)) { missing++; console.log('    ⚠️ 源图标缺失:', src); continue; }
-        if (fs.existsSync(dstPath)) {
-            try {
-                if (fs.statSync(dstPath).size === fs.statSync(srcPath).size) { skipped++; continue; }
-            } catch (e) {}
+        if (fs.existsSync(srcPath)) {
+            exist++;
+        } else {
+            missing++;
+            console.log('    ⚠️ 源图标缺失:', src);
         }
-        fs.mkdirSync(path.dirname(dstPath), { recursive: true });
-        fs.copyFileSync(srcPath, dstPath);
-        copied++;
     }
-    console.log(`  📦 图标资源同步: 新增 ${copied} 个, 已存在跳过 ${skipped} 个, 源缺失 ${missing} 个`);
+    console.log(`  📦 图标资源校验: 引用 ${refs.size} 个, 齐全 ${exist} 个, 缺失 ${missing} 个`);
 }
 
 function main() {
@@ -1487,53 +1481,28 @@ function main() {
         console.log('');
     }
 
-    // 8. 视频库 (从 videoPath 源目录同步视频到 videos/ 文件夹，视频文件名 = 技能名称，生成清单)
+    // 8. 视频库 (直接扫描数据仓库 videoPath 目录生成清单, 视频由 chronicle-data Pages 托管)
     {
-        const videoDir = path.join(__dirname, '..', 'videos');
-        // 8.1 源目录同步: 若配置了 videoPath，把其中的视频文件复制到 videos/ 文件夹
         if (config.videoPath && config.videoPath.trim()) {
-            const srcDir = resolvePath(config.videoPath.trim());
-            if (srcDir && fs.existsSync(srcDir)) {
+            const videoDir = resolvePath(config.videoPath.trim());
+            if (videoDir && fs.existsSync(videoDir)) {
                 try {
-                    if (!fs.existsSync(videoDir)) fs.mkdirSync(videoDir, { recursive: true });
-                    const srcFiles = fs.readdirSync(srcDir).filter(f => /\.(mp4|webm|ogg|mov|m4v)$/i.test(f));
-                    let synced = 0;
-                    for (const f of srcFiles) {
-                        const src = path.join(srcDir, f);
-                        const dst = path.join(videoDir, f);
-                        try {
-                            if (!fs.existsSync(dst) || fs.statSync(src).mtimeMs > fs.statSync(dst).mtimeMs) {
-                                fs.copyFileSync(src, dst);
-                                synced++;
-                            }
-                        } catch (e) {}
+                    const files = fs.readdirSync(videoDir)
+                        .filter(f => /\.(mp4|webm|ogg|mov|m4v)$/i.test(f))
+                        .sort();
+                    if (files.length > 0) {
+                        importData.videos = files.map(f => ({ name: f.replace(/\.[^.]+$/, ''), file: f }));
+                        hasAny = true;
+                        console.log('  ✓ 视频库: ' + files.length + ' 个视频');
+                    } else {
+                        console.log('  ⚠️ 视频目录为空或没有视频文件');
                     }
-                    if (srcFiles.length > 0) console.log('  ✓ 视频源同步: 源目录 ' + srcFiles.length + ' 个视频 (更新 ' + synced + ' 个)');
                 } catch (err) {
-                    console.log('  ❌ 视频源目录同步失败:', err.message);
+                    console.log('  ❌ 视频库扫描失败:', err.message);
                 }
             } else {
                 console.log('  ⚠️ 视频源目录不存在:', config.videoPath.trim());
             }
-        }
-        // 8.2 扫描 videos/ 文件夹生成清单
-        if (fs.existsSync(videoDir)) {
-            try {
-                const files = fs.readdirSync(videoDir)
-                    .filter(f => /\.(mp4|webm|ogg|mov|m4v)$/i.test(f))
-                    .sort();
-                if (files.length > 0) {
-                    importData.videos = files.map(f => ({ name: f.replace(/\.[^.]+$/, ''), file: f }));
-                    hasAny = true;
-                    console.log('  ✓ 视频库: ' + files.length + ' 个视频');
-                } else {
-                    console.log('  ⚠️ videos/ 文件夹为空或没有视频文件');
-                }
-            } catch (err) {
-                console.log('  ❌ 视频库扫描失败:', err.message);
-            }
-        } else {
-            console.log('  ⚠️ videos/ 文件夹不存在，跳过视频库扫描');
         }
         console.log('');
     }

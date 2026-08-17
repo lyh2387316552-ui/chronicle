@@ -1,7 +1,0 @@
-{
-  "__active": true,
-  "conditionBuff": "a.hp>=1000?2342100020:0",
-  "conditionTime": 0,
-  "conditionObject": 0,
-  "buffAttribute": 0
-}

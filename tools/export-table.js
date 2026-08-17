@@ -103,8 +103,13 @@ function main() {
         console.warn('     建议: 在 Excel 中整理为单行表头 (每列顶部一行列名) 后重新导出');
     }
 
-    // 追加到 data/tables.json (保留其他表)
-    const tablesPath = path.resolve(__dirname, '..', 'data', 'tables.json');
+    // 追加到数据仓库的 data/tables.json (保留其他表)
+    const tablesPath = path.resolve(__dirname, '..', '..', 'chronicle-data', 'data', 'tables.json');
+    if (!fs.existsSync(path.dirname(tablesPath))) {
+        console.error('❌ 数据仓库目录不存在: ' + path.dirname(tablesPath));
+        console.error('   请先克隆: git clone https://github.com/lyh2387316552-ui/chronicle-data.git (项目同级目录)');
+        process.exit(1);
+    }
     let tables = {};
     if (fs.existsSync(tablesPath)) {
         try { tables = JSON.parse(fs.readFileSync(tablesPath, 'utf-8')); } catch (e) { tables = {}; }
@@ -112,9 +117,9 @@ function main() {
     tables[tableName] = rows;
     fs.writeFileSync(tablesPath, JSON.stringify(tables, null, 2), 'utf-8');
 
-    console.log('✅ 已写入 data/tables.json: [' + tableName + '] ' + rows.length + ' 行');
+    console.log('✅ 已写入 chronicle-data/data/tables.json: [' + tableName + '] ' + rows.length + ' 行');
     console.log('   列: ' + Object.keys(rows[0]).join(', '));
-    console.log('   推送即可上线: git add data/tables.json && git commit -m "update ' + tableName + '" && git push');
+    console.log('   推送即可上线: git -C ../chronicle-data add data/tables.json && git -C ../chronicle-data commit -m "update ' + tableName + '" && git -C ../chronicle-data push');
 }
 
 main();

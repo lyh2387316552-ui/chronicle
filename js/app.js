@@ -71,7 +71,6 @@ function switchOthersTab(name) {
     if (panel) panel.classList.add('active');
     if (name === 'stats') renderStats();
     if (name === 'tables') renderTables();
-    if (name === 'sync') updateSyncPageStatus();
 }
 
 // ---- 战斗数据 Tab 切换 ----
@@ -243,7 +242,7 @@ function renderSkillCard(skill, type) {
     const icon = getCategoryIcon(skill.category);
     const parsed = parseSkillId(skill.id);
     const iconHtml = skill.icon
-        ? `<span class="skill-icon" style="background:${color}20;color:${color}"><img class="card-icon" src="icon/${skill.icon}.png" alt="" onerror="this.style.display='none'">${icon}</span>`
+        ? `<span class="skill-icon" style="background:${color}20;color:${color}"><img class="card-icon" src="${DATA_BASE}icon/${skill.icon}.png" alt="" onerror="this.style.display='none'">${icon}</span>`
         : `<span class="skill-icon" style="background:${color}20;color:${color}">${icon}</span>`;
 
     // 非标准ID (如 5位的天赋特技 99998/99999) 不展示段位拆解
@@ -506,7 +505,7 @@ function openSkillDetail(id, type) {
     const modalBody = document.getElementById('modalBody');
     modalBody.innerHTML = `
         <div class="detail-header" style="border-bottom-color:${color}">
-            <div class="detail-icon" style="background:${color}20;color:${color};font-size:36px;width:64px;height:64px;display:flex;align-items:center;justify-content:center;border-radius:12px;position:relative;overflow:hidden">${skill.icon ? `<img class="card-icon" src="icon/${skill.icon}.png" alt="" onerror="this.style.display='none'">` : ''}${icon}</div>
+            <div class="detail-icon" style="background:${color}20;color:${color};font-size:36px;width:64px;height:64px;display:flex;align-items:center;justify-content:center;border-radius:12px;position:relative;overflow:hidden">${skill.icon ? `<img class="card-icon" src="${DATA_BASE}icon/${skill.icon}.png" alt="" onerror="this.style.display='none'">` : ''}${icon}</div>
             <div style="flex:1">
                 <h2 class="detail-name">
                     <input type="text" class="affix-edit-input affix-edit-name" value="${skill.name.replace(/"/g, '&quot;')}" oninput="onSkillEdit('${skill.id}', 'name', this.value)" placeholder="技能名称">
@@ -1830,7 +1829,7 @@ function renderEquipment(filteredData) {
         return `
             <div class="equipment-card" data-equipment-id="${eq.id}" onclick="openEquipmentDetail('${eq.id}')">
                 <div class="equipment-card-header">
-                    <span class="equipment-card-icon" style="background:${style.color}18">${eq.icon ? `<img class="card-icon" src="icon/${eq.icon}.png" alt="" onerror="this.style.display='none'">` : ''}${style.icon}</span>
+                    <span class="equipment-card-icon" style="background:${style.color}18">${eq.icon ? `<img class="card-icon" src="${DATA_BASE}icon/${eq.icon}.png" alt="" onerror="this.style.display='none'">` : ''}${style.icon}</span>
                     <div>
                         <h4 class="equipment-card-name">${eq.name}</h4>
                         <span class="equipment-card-id">${eq.id}</span>
@@ -1941,7 +1940,7 @@ function openEquipmentDetail(id) {
     const modalBody = document.getElementById('modalBody');
     modalBody.innerHTML = `
         <div class="detail-header" style="border-bottom-color:#9b59b6">
-            <div class="detail-icon" style="background:#9b59b620;color:#9b59b6;font-size:36px;width:64px;height:64px;display:flex;align-items:center;justify-content:center;border-radius:12px;position:relative;overflow:hidden">${eq.icon ? `<img class="card-icon" src="icon/${eq.icon}.png" alt="" onerror="this.style.display='none'">` : ''}📦</div>
+            <div class="detail-icon" style="background:#9b59b620;color:#9b59b6;font-size:36px;width:64px;height:64px;display:flex;align-items:center;justify-content:center;border-radius:12px;position:relative;overflow:hidden">${eq.icon ? `<img class="card-icon" src="${DATA_BASE}icon/${eq.icon}.png" alt="" onerror="this.style.display='none'">` : ''}📦</div>
             <div style="flex:1">
                 <h2 class="detail-name">${eq.name}</h2>
                 <div class="detail-type">
@@ -2063,7 +2062,7 @@ function renderGems(filteredData) {
             return `
                 <div class="equipment-card" data-gem-id="${gem.id}" onclick="openGemDetail('${gem.id}')" style="border-left-color:${style.color}">
                     <div class="equipment-card-header">
-                        <span class="equipment-card-icon" style="background:${style.color}18">${gem.icon ? `<img class="card-icon" src="icon/${gem.icon}.png" alt="" onerror="this.style.display='none'">` : ''}${style.icon}</span>
+                        <span class="equipment-card-icon" style="background:${style.color}18">${gem.icon ? `<img class="card-icon" src="${DATA_BASE}icon/${gem.icon}.png" alt="" onerror="this.style.display='none'">` : ''}${style.icon}</span>
                         <div>
                             <h4 class="equipment-card-name">${gem.name}</h4>
                             <span class="equipment-card-id">${gem.id}</span>
@@ -2177,7 +2176,7 @@ function openGemDetail(id) {
     const modalBody = document.getElementById('modalBody');
     modalBody.innerHTML = `
         <div class="detail-header" style="border-bottom-color:#9b59b6">
-            <div class="detail-icon" style="background:#9b59b620;color:#9b59b6;font-size:36px;width:64px;height:64px;display:flex;align-items:center;justify-content:center;border-radius:12px;position:relative;overflow:hidden">${gem.icon ? `<img class="card-icon" src="icon/${gem.icon}.png" alt="" onerror="this.style.display='none'">` : ''}💎</div>
+            <div class="detail-icon" style="background:#9b59b620;color:#9b59b6;font-size:36px;width:64px;height:64px;display:flex;align-items:center;justify-content:center;border-radius:12px;position:relative;overflow:hidden">${gem.icon ? `<img class="card-icon" src="${DATA_BASE}icon/${gem.icon}.png" alt="" onerror="this.style.display='none'">` : ''}💎</div>
             <div style="flex:1">
                 <h2 class="detail-name">${gem.name}</h2>
                 <div class="detail-type">
@@ -2308,7 +2307,7 @@ function renderCustomSkills(filteredData) {
             const videoHtml = video
                 ? `
                     <div class="skill-video-preview" onclick="event.stopPropagation();openSkillVideo('${encodeURIComponent(video.file)}','${(s.name || '').replace(/'/g, "\\'")}')">
-                        <video src="videos/${encodeURIComponent(video.file)}" preload="metadata" muted playsinline></video>
+                        <video src="${DATA_BASE}videos/${encodeURIComponent(video.file)}" preload="metadata" muted playsinline></video>
                         <div class="skill-video-play-overlay"><span class="skill-video-play-icon">▶</span><span class="skill-video-play-text">点击播放</span></div>
                     </div>
                 `
@@ -2330,7 +2329,7 @@ function renderCustomSkills(filteredData) {
             return `
                 <div class="equipment-card" data-custom-skill-id="${s.id}" onclick="openCustomSkillDetail('${s.id}')" style="border-left-color:${style.color}">
                     <div class="equipment-card-header">
-                        <span class="equipment-card-icon" style="background:${style.color}18">${s.icon ? `<img class="card-icon" src="icon/${s.icon}.png" alt="" onerror="this.style.display='none'">` : ''}${style.icon}</span>
+                        <span class="equipment-card-icon" style="background:${style.color}18">${s.icon ? `<img class="card-icon" src="${DATA_BASE}icon/${s.icon}.png" alt="" onerror="this.style.display='none'">` : ''}${style.icon}</span>
                         <div>
                             <h4 class="equipment-card-name">${s.name}</h4>
                             <span class="equipment-card-id">${s.id}</span>
@@ -2450,7 +2449,7 @@ function openCustomSkillDetail(id) {
     const modalBody = document.getElementById('modalBody');
     modalBody.innerHTML = `
         <div class="detail-header" style="border-bottom-color:#e67e22">
-            <div class="detail-icon" style="background:#e67e2220;color:#e67e22;font-size:36px;width:64px;height:64px;display:flex;align-items:center;justify-content:center;border-radius:12px;position:relative;overflow:hidden">${skill.icon ? `<img class="card-icon" src="icon/${skill.icon}.png" alt="" onerror="this.style.display='none'">` : ''}🏹</div>
+            <div class="detail-icon" style="background:#e67e2220;color:#e67e22;font-size:36px;width:64px;height:64px;display:flex;align-items:center;justify-content:center;border-radius:12px;position:relative;overflow:hidden">${skill.icon ? `<img class="card-icon" src="${DATA_BASE}icon/${skill.icon}.png" alt="" onerror="this.style.display='none'">` : ''}🏹</div>
             <div style="flex:1">
                 <h2 class="detail-name">${skill.name}</h2>
                 <div class="detail-type">
@@ -2689,164 +2688,6 @@ function esc(v) {
 }
 
 // ============================================================
-// 编辑数据仓库同步 (data/user-data.json)
-// 合并规则: localStorage 为本机增量(优先), 仓库文件为共享基线(补齐缺失)
-// 合并结果写回 localStorage, 因此"导出"即为导出 localStorage 全量
-// ============================================================
-
-function lsGetJSON(key) {
-    try { return JSON.parse(localStorage.getItem(key) || 'null'); } catch (e) { return null; }
-}
-
-function lsSetJSON(key, val) {
-    try { localStorage.setItem(key, JSON.stringify(val)); } catch (e) {}
-}
-
-// 合并一份 user-data 对象 (结构: customSkills/customAffixes/skillEdits/affixEdits)
-function mergeUserData(data) {
-    if (!data || typeof data !== 'object') return;
-
-    // 1. 自建技能: 本机与内置数据中不存在的 → 加入 (type 缺失时按 ID 首位判断)
-    const localSkills = lsGetJSON('chronicle_custom_skills') || [];
-    const localSkillIds = new Set(localSkills.map(s => s.id));
-    const knownSkillIds = new Set([...activeSkills, ...passiveSkills].map(s => s.id));
-    (data.customSkills || []).forEach(item => {
-        if (!item || !item.id) return;
-        if (localSkillIds.has(item.id) || knownSkillIds.has(item.id)) return;
-        const type = item.type || (String(item.id)[0] === '1' ? 'active' : 'passive');
-        const skill = { ...item, type: type };
-        if (type === 'active') activeSkills.push(skill); else passiveSkills.push(skill);
-        localSkills.push(skill);
-        localSkillIds.add(item.id);
-    });
-    lsSetJSON('chronicle_custom_skills', localSkills);
-
-    // 2. 自建词缀
-    const localAffixes2 = lsGetJSON('chronicle_custom_affixes') || [];
-    const localAffixIds = new Set(localAffixes2.map(a => a.id));
-    const knownAffixIds = new Set(affixes.map(a => a.id));
-    (data.customAffixes || []).forEach(item => {
-        if (!item || !item.id) return;
-        if (localAffixIds.has(item.id) || knownAffixIds.has(item.id)) return;
-        affixes.push({ ...item });
-        localAffixes2.push({ ...item });
-        localAffixIds.add(item.id);
-    });
-    lsSetJSON('chronicle_custom_affixes', localAffixes2);
-
-    // 3. 技能编辑记录 (名称/描述): 本机无该 ID 记录时应用仓库记录
-    const localSkillEdits = lsGetJSON('chronicle_skill_edits') || {};
-    Object.entries(data.skillEdits || {}).forEach(([id, edit]) => {
-        if (!edit || localSkillEdits[id]) return;
-        const skill = findSkillById(id);
-        if (!skill) return;
-        if (edit.name !== undefined) skill.name = edit.name;
-        if (edit.description !== undefined) skill.description = edit.description;
-        localSkillEdits[id] = edit;
-    });
-    lsSetJSON('chronicle_skill_edits', localSkillEdits);
-
-    // 4. 词缀编辑记录
-    const localAffixEdits = lsGetJSON('chronicle_affix_edits') || {};
-    Object.entries(data.affixEdits || {}).forEach(([id, edit]) => {
-        if (!edit || localAffixEdits[id]) return;
-        const affix = affixes.find(a => a.id === id);
-        if (!affix) return;
-        if (edit.name !== undefined) affix.name = edit.name;
-        if (edit.description !== undefined) affix.description = edit.description;
-        localAffixEdits[id] = edit;
-    });
-    lsSetJSON('chronicle_affix_edits', localAffixEdits);
-}
-
-function applyRepoUserData() {
-    if (!repoUserData) return;
-    mergeUserData(repoUserData);
-    rebuildRefIndex();
-    rebuildSkillAffixIdSet();
-    refreshAllViews();
-}
-
-// 本机编辑数据统计
-function getEditStats() {
-    const s = lsGetJSON('chronicle_custom_skills') || [];
-    const a = lsGetJSON('chronicle_custom_affixes') || [];
-    const se = lsGetJSON('chronicle_skill_edits') || {};
-    const ae = lsGetJSON('chronicle_affix_edits') || {};
-    return {
-        customSkills: s.length,
-        customAffixes: a.length,
-        skillEdits: Object.keys(se).length,
-        affixEdits: Object.keys(ae).length,
-        repoLoaded: !!repoUserData,
-        repoName: repoUserData ? '已加载' : '未找到'
-    };
-}
-
-// 导出编辑数据 (localStorage 全量) 为 user-data.json 下载
-function exportUserData() {
-    const data = {
-        customSkills: lsGetJSON('chronicle_custom_skills') || [],
-        customAffixes: lsGetJSON('chronicle_custom_affixes') || [],
-        skillEdits: lsGetJSON('chronicle_skill_edits') || {},
-        affixEdits: lsGetJSON('chronicle_affix_edits') || {},
-        exportedAt: new Date().toISOString()
-    };
-    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'user-data.json';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    setTimeout(() => URL.revokeObjectURL(url), 1000);
-    const tip = document.getElementById('syncTip');
-    if (tip) tip.textContent = '✓ 已导出 user-data.json — 覆盖到项目 data/ 目录后 git push 即可全网同步';
-}
-
-// 导入 user-data.json 文件并合并到本机
-function importUserData(input) {
-    const file = input.files && input.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = function (e) {
-        try {
-            const data = JSON.parse(e.target.result);
-            mergeUserData(data);
-            rebuildRefIndex();
-            rebuildSkillAffixIdSet();
-            refreshAllViews();
-            const tip = document.getElementById('syncTip');
-            if (tip) tip.textContent = '✓ 导入成功, 本机编辑数据已合并';
-            updateSyncPageStatus();
-        } catch (err) {
-            const tip = document.getElementById('syncTip');
-            if (tip) { tip.textContent = '✗ 导入失败: 文件格式不正确'; tip.style.color = '#e74c3c'; }
-        }
-    };
-    reader.readAsText(file, 'utf-8');
-    input.value = '';
-}
-
-// 数据同步页状态展示
-function updateSyncPageStatus() {
-    const el = document.getElementById('syncStatus');
-    if (!el) return;
-    const s = getEditStats();
-    const total = s.customSkills + s.customAffixes + s.skillEdits + s.affixEdits;
-    el.innerHTML = `
-        <div class="sync-status-card">
-            <div class="sync-status-row"><span>仓库同步文件 (data/user-data.json)</span><span class="sync-status-badge ${s.repoLoaded ? 'ok' : 'warn'}">${s.repoName}</span></div>
-            <div class="sync-status-row"><span>自建技能</span><span>${s.customSkills} 个</span></div>
-            <div class="sync-status-row"><span>自建词缀</span><span>${s.customAffixes} 个</span></div>
-            <div class="sync-status-row"><span>技能编辑记录</span><span>${s.skillEdits} 条</span></div>
-            <div class="sync-status-row"><span>词缀编辑记录</span><span>${s.affixEdits} 条</span></div>
-            <div class="sync-status-total">本机编辑数据合计 <strong>${total}</strong> 项</div>
-        </div>
-    `;
-}
-
 // ---- 数据表渲染 (data/tables.json: { 表名: [行对象, ...] }) ----
 function renderTables() {
     const container = document.getElementById('tablesContent');
@@ -2901,14 +2742,12 @@ function refreshAllViews() {
     if (renderedPages.has('custom-skills')) filterCustomSkills();
     if (renderedPages.has('occupations')) renderOccupations();
     if (renderedPages.has('pets')) initPetPage();
-    if (renderedPages.has('others')) { renderCategoryTables(); renderStats(); renderTables(); updateSyncPageStatus(); }
+    if (renderedPages.has('others')) { renderCategoryTables(); renderStats(); renderTables(); }
 }
 
 // ---- 仓库同步数据加载完成回调 (data.js loadRepoData 完成后触发) ----
 window.onRepoDataLoaded = function () {
-    applyRepoUserData();
     renderTables();
-    updateSyncPageStatus();
 };
 
 // ---- 加载用户自定义技能 ----
@@ -3158,7 +2997,7 @@ function renderOccupationCanvas(idx) {
         const sizeClass = p.size === 2 ? 'talent-point-large' : (p.size === 3 ? 'talent-point-xlarge' : '');
         const iconChar = p.icon || '⭐';
         const iconHtml = p.iconSrc
-            ? `<img class="talent-point-img" src="icon/${p.iconSrc}.png" alt="${p.name}" onerror="this.style.display='none';this.nextSibling.style.display=''"><span class="talent-point-icon" style="display:none">${iconChar}</span>`
+            ? `<img class="talent-point-img" src="${DATA_BASE}icon/${p.iconSrc}.png" alt="${p.name}" onerror="this.style.display='none';this.nextSibling.style.display=''"><span class="talent-point-icon" style="display:none">${iconChar}</span>`
             : `<span class="talent-point-icon">${iconChar}</span>`;
         const shortDesc = p.name || '';
         return `
@@ -3239,7 +3078,7 @@ function openSkillVideo(file, name) {
     body.innerHTML = `
         <div class="skill-video-modal">
             <h2 class="detail-name">🎬 ${name}</h2>
-            <video src="videos/${file}" controls autoplay playsinline class="skill-video-modal-player"></video>
+            <video src="${DATA_BASE}videos/${file}" controls autoplay playsinline class="skill-video-modal-player"></video>
         </div>
     `;
     modal.classList.add('active');
@@ -3350,9 +3189,9 @@ function filterPets() {
 
     grid.innerHTML = list.map(p => {
         const q = getPetQuality(p.quality);
-        const hasPic = p.pic ? 'icon/' + p.pic + '.png' : '';
-        const hasBg = p.getBg ? 'icon/' + p.getBg + '.png' : '';
-        const hasGetPic = p.getPic ? 'icon/' + p.getPic + '.png' : '';
+        const hasPic = p.pic ? DATA_BASE + 'icon/' + p.pic + '.png' : '';
+        const hasBg = p.getBg ? DATA_BASE + 'icon/' + p.getBg + '.png' : '';
+        const hasGetPic = p.getPic ? DATA_BASE + 'icon/' + p.getPic + '.png' : '';
         const starCount = (p.stars || []).length;
         // 展示区: 仅当配置了立绘+背景时展示 (背景图铺底, 立绘图居中叠加在上, 点击查看原图)
         let showcaseHtml = '';
