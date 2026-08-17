@@ -4,16 +4,10 @@
 
 ---
 
-## [2.4.0] - 2026-08-17
+## [2.5.0] - 2026-08-17
 
-### 变更
-- **数据与资源迁入独立仓库 [chronicle-data](https://github.com/lyh2387316552-ui/chronicle-data)**: 数据源表格 (data-sources)、游戏图标 (icon)、技能视频 (videos)、自定义数据表 (data/tables.json) 全部迁移
-- 网页图标/视频/数据表运行时直接从数据仓库 Pages 拉取 (`DATA_BASE` 常量)
-- 一键同步.bat 升级为全流程: 自动克隆/拉取数据仓库 → 复制本地表格 → 推送数据仓库 → 生成网页数据 → 推送网站仓库
-- copy-data.js 目标目录改为数据仓库; import.js 图标改为校验模式、视频直接扫描数据仓库目录
-- import-config.json 所有数据源路径指向数据仓库 (相对路径 `../chronicle-data/...`)
-- **移除网页「数据同步」功能** (编辑数据导出/导入), 数据统一由数据仓库管理
-- export-table.js 输出到数据仓库的 tables.json
+### 移除
+- 自定义数据表功能：`data/tables.json`（数据仓库）、网页「数据表」页/标签、`tools/export-table.js` 转换脚本及相关样式，全部移除
 
 ---
 
@@ -25,6 +19,7 @@
 - `tools/export-table.js` 输出改为数据仓库 `chronicle-data/data/tables.json`
 
 ### 变更
+- **数据与资源迁入独立数据仓库 [chronicle-data](https://github.com/lyh2387316552-ui/chronicle-data)**：数据源表格、游戏图标、技能视频全部迁移，网页运行时从数据仓库 Pages 拉取；import-config 数据源路径指向数据仓库
 - 数据源表格**扁平化**：去掉分类文件夹，表格直接平铺在数据仓库 `data-sources/` 根目录（`属性表.xlsx`、`装备表.xlsx`、`技能养成相关.xlsx`、`战斗技能相关表.xlsx`、`魔宠表.xlsx`）
 - `一键同步.bat` 推送失败（无写权限）时降级为提示，不再卡死退出
 - 移除网页「数据同步」页/导出导入功能（数据由维护者通过 git 管理，普通访问者纯浏览，无同步 UI）

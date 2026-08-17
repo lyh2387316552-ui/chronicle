@@ -22,16 +22,16 @@ chronicle-main/
 │   ├── import.js           # 数据导入脚本（Node.js，解析 Excel/CSV/JSON）
 │   ├── import-config.json  # 导入配置文件（数据源路径，指向数据仓库）
 │   ├── copy-data.js        # 数据源增量复制脚本（本地导出 → 数据仓库）
-│   ├── export-table.js     # 自定义数据表导出脚本（Excel/CSV → tables.json）
 │   ├── dev-server.js       # 本地开发静态服务器（零依赖）
-│   └── 一键同步.bat        # Windows 一键同步批处理脚本
+│   ├── 一键同步.bat        # 一键同步（复制表格 → 推送数据仓库/网站）
+│   └── 更新数据.bat        # 只读模式：拉取最新数据生成本地网页（无权限团队用户）
 ├── assets/                 # 页面自有资源（logo、背景图等）
 ├── .gitignore              # Git 忽略规则
 ├── README.md               # 项目说明（本文件）
 └── CHANGELOG.md            # 更新日志
 ```
 
-> **数据与资源仓库**: 数据源表格、游戏图标、技能视频、自定义数据表均存放在独立的 [chronicle-data](https://github.com/lyh2387316552-ui/chronicle-data) 仓库中（网站同级目录 `../chronicle-data`），网页运行时直接从中拉取图标/视频/数据表。
+> **数据与资源仓库**: 数据源表格、游戏图标、技能视频均存放在独立的 [chronicle-data](https://github.com/lyh2387316552-ui/chronicle-data) 仓库中（网站同级目录 `../chronicle-data`），网页运行时直接从中拉取图标/视频。
 
 ### 文件职责详解
 
@@ -65,7 +65,7 @@ chronicle-main/
 4. 解析数据仓库中的表格，生成网页数据
 5. 推送网站仓库，GitHub Pages 1~2 分钟后自动更新
 
-> 生成 `js/auto-import-data.js`，页面加载时自动读取。网页中的图标/视频/自定义数据表运行时直接访问 [chronicle-data Pages](https://lyh2387316552-ui.github.io/chronicle-data/)。
+> 生成 `js/auto-import-data.js`，页面加载时自动读取。网页中的图标/视频运行时直接访问 [chronicle-data Pages](https://lyh2387316552-ui.github.io/chronicle-data/)。数据更新由 GitHub Actions 自动同步（每 10 分钟拉取数据仓库 → 生成 → 有变化才推送），维护者只需 push 数据仓库。
 
 ---
 
@@ -87,7 +87,6 @@ chronicle-main/
 | 魔宠表 | `data-sources/魔宠表.xlsx` | Excel |
 | 游戏图标 | `icon/` | 网页运行时直接引用 |
 | 技能视频 | `videos/` | 网页运行时直接引用 |
-| 自定义数据表 | `data/tables.json` | 网页「其他 → 数据表」页展示 |
 
 > 表格文件直接平铺在 `data-sources/` 根目录（不套文件夹）；`技能养成相关.xlsx` 同时供给辅助宝石和技能库两类数据。
 
@@ -100,22 +99,6 @@ chronicle-main/
 - 主动技能从 `data-sources/Skill/*.json` 的 `mainTag`/`normalTag` 提取数字标签，被动技能从 `data-sources/Stunt/*.json` 提取
 - 标签文本由 `技能标签` Excel 的 SkillMainTag / SkillNormalTag 子表映射（1=攻击、2=法术、3=召唤、4=光环；0=投射物、1=近战、2=物理…）
 - 技能库卡片与战斗数据的主动/被动技能卡片均显示标签；战斗数据页顶部提供标签筛选栏（参考 tlidb 形态），可点击 `mainTag`（主标签）与 `normalTag`（常规标签）筛选对应类型技能
-
-### 自定义数据表 (data/tables.json)
-
-任意数据表（如技能养成表）放入 **数据仓库** 的 `data/tables.json` 并推送，网页「其他 → 数据表」页自动以表格展示，无需改代码。格式：
-
-```json
-{
-  "表名": [ { "列A": "值", "列B": "值" }, ... ]
-}
-```
-
-从 Excel/CSV 一键转换（要求单行表头）：
-
-```bash
-node tools/export-table.js "E:\策划\技能养成.xlsx" "技能养成"
-```
 
 ### 团队协作（多人使用）
 

@@ -70,7 +70,6 @@ function switchOthersTab(name) {
     if (tab) tab.classList.add('active');
     if (panel) panel.classList.add('active');
     if (name === 'stats') renderStats();
-    if (name === 'tables') renderTables();
 }
 
 // ---- 战斗数据 Tab 切换 ----
@@ -2688,42 +2687,6 @@ function esc(v) {
 }
 
 // ============================================================
-// ---- 数据表渲染 (data/tables.json: { 表名: [行对象, ...] }) ----
-function renderTables() {
-    const container = document.getElementById('tablesContent');
-    if (!container) return;
-    const entries = Object.keys(tablesData)
-        .filter(n => Array.isArray(tablesData[n]))
-        .map(name => ({ name: name, rows: tablesData[name].filter(r => r && typeof r === 'object') }))
-        .filter(e => e.rows.length > 0);
-    if (entries.length === 0) {
-        container.innerHTML = `
-            <div class="equipment-empty">
-                <p>暂无数据表</p>
-                <p class="equipment-empty-hint">将 JSON 表数据放入 data/tables.json 并推送后自动显示 (需在线模式加载)</p>
-            </div>
-        `;
-        return;
-    }
-    container.innerHTML = entries.map(({ name, rows }) => {
-        const cols = [];
-        rows.forEach(r => Object.keys(r).forEach(k => { if (!cols.includes(k)) cols.push(k); }));
-        const head = '<tr>' + cols.map(c => `<th>${esc(c)}</th>`).join('') + '</tr>';
-        const body = rows.map(r => '<tr>' + cols.map(c => `<td>${esc(r[c] !== undefined && r[c] !== null ? r[c] : '')}</td>`).join('') + '</tr>').join('');
-        return `
-            <div class="table-section">
-                <h3 class="section-title">📋 ${esc(name)} <span class="tag-filter-count">${rows.length} 行</span></h3>
-                <div class="table-scroll">
-                    <table class="data-table">
-                        <thead>${head}</thead>
-                        <tbody>${body}</tbody>
-                    </table>
-                </div>
-            </div>
-        `;
-    }).join('');
-}
-
 // ---- 刷新所有已渲染页面 (数据合并/导入后调用) ----
 function refreshAllViews() {
     updateBattleDataCount();
@@ -2742,13 +2705,8 @@ function refreshAllViews() {
     if (renderedPages.has('custom-skills')) filterCustomSkills();
     if (renderedPages.has('occupations')) renderOccupations();
     if (renderedPages.has('pets')) initPetPage();
-    if (renderedPages.has('others')) { renderCategoryTables(); renderStats(); renderTables(); }
+    if (renderedPages.has('others')) { renderCategoryTables(); renderStats(); }
 }
-
-// ---- 仓库同步数据加载完成回调 (data.js loadRepoData 完成后触发) ----
-window.onRepoDataLoaded = function () {
-    renderTables();
-};
 
 // ---- 加载用户自定义技能 ----
 function loadCustomSkills() {
@@ -2827,9 +2785,6 @@ function init() {
 
     // 仅渲染首页统计 (其余页面在首次进入时懒渲染, 见 ensurePageRendered)
     renderHome();
-
-    // 异步加载仓库同步数据 (data/user-data.json + data/tables.json), 完成后自动合并刷新
-    loadRepoData();
 
     console.log('=== 初始化完成 ===');
 }
