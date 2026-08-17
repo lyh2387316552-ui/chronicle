@@ -70,6 +70,8 @@ function switchOthersTab(name) {
     if (tab) tab.classList.add('active');
     if (panel) panel.classList.add('active');
     if (name === 'stats') renderStats();
+    if (name === 'tables') renderTables();
+    if (name === 'sync') updateSyncPageStatus();
 }
 
 // ---- 战斗数据 Tab 切换 ----
@@ -2676,6 +2678,239 @@ function showAttrDetail(id) {
 }
 
 
+// ---- HTML 转义 (数据内容插入模板前使用) ----
+function esc(v) {
+    return String(v)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
+// ============================================================
+// 编辑数据仓库同步 (data/user-data.json)
+// 合并规则: localStorage 为本机增量(优先), 仓库文件为共享基线(补齐缺失)
+// 合并结果写回 localStorage, 因此"导出"即为导出 localStorage 全量
+// ============================================================
+
+function lsGetJSON(key) {
+    try { return JSON.parse(localStorage.getItem(key) || 'null'); } catch (e) { return null; }
+}
+
+function lsSetJSON(key, val) {
+    try { localStorage.setItem(key, JSON.stringify(val)); } catch (e) {}
+}
+
+// 合并一份 user-data 对象 (结构: customSkills/customAffixes/skillEdits/affixEdits)
+function mergeUserData(data) {
+    if (!data || typeof data !== 'object') return;
+
+    // 1. 自建技能: 本机与内置数据中不存在的 → 加入 (type 缺失时按 ID 首位判断)
+    const localSkills = lsGetJSON('chronicle_custom_skills') || [];
+    const localSkillIds = new Set(localSkills.map(s => s.id));
+    const knownSkillIds = new Set([...activeSkills, ...passiveSkills].map(s => s.id));
+    (data.customSkills || []).forEach(item => {
+        if (!item || !item.id) return;
+        if (localSkillIds.has(item.id) || knownSkillIds.has(item.id)) return;
+        const type = item.type || (String(item.id)[0] === '1' ? 'active' : 'passive');
+        const skill = { ...item, type: type };
+        if (type === 'active') activeSkills.push(skill); else passiveSkills.push(skill);
+        localSkills.push(skill);
+        localSkillIds.add(item.id);
+    });
+    lsSetJSON('chronicle_custom_skills', localSkills);
+
+    // 2. 自建词缀
+    const localAffixes2 = lsGetJSON('chronicle_custom_affixes') || [];
+    const localAffixIds = new Set(localAffixes2.map(a => a.id));
+    const knownAffixIds = new Set(affixes.map(a => a.id));
+    (data.customAffixes || []).forEach(item => {
+        if (!item || !item.id) return;
+        if (localAffixIds.has(item.id) || knownAffixIds.has(item.id)) return;
+        affixes.push({ ...item });
+        localAffixes2.push({ ...item });
+        localAffixIds.add(item.id);
+    });
+    lsSetJSON('chronicle_custom_affixes', localAffixes2);
+
+    // 3. 技能编辑记录 (名称/描述): 本机无该 ID 记录时应用仓库记录
+    const localSkillEdits = lsGetJSON('chronicle_skill_edits') || {};
+    Object.entries(data.skillEdits || {}).forEach(([id, edit]) => {
+        if (!edit || localSkillEdits[id]) return;
+        const skill = findSkillById(id);
+        if (!skill) return;
+        if (edit.name !== undefined) skill.name = edit.name;
+        if (edit.description !== undefined) skill.description = edit.description;
+        localSkillEdits[id] = edit;
+    });
+    lsSetJSON('chronicle_skill_edits', localSkillEdits);
+
+    // 4. 词缀编辑记录
+    const localAffixEdits = lsGetJSON('chronicle_affix_edits') || {};
+    Object.entries(data.affixEdits || {}).forEach(([id, edit]) => {
+        if (!edit || localAffixEdits[id]) return;
+        const affix = affixes.find(a => a.id === id);
+        if (!affix) return;
+        if (edit.name !== undefined) affix.name = edit.name;
+        if (edit.description !== undefined) affix.description = edit.description;
+        localAffixEdits[id] = edit;
+    });
+    lsSetJSON('chronicle_affix_edits', localAffixEdits);
+}
+
+function applyRepoUserData() {
+    if (!repoUserData) return;
+    mergeUserData(repoUserData);
+    rebuildRefIndex();
+    rebuildSkillAffixIdSet();
+    refreshAllViews();
+}
+
+// 本机编辑数据统计
+function getEditStats() {
+    const s = lsGetJSON('chronicle_custom_skills') || [];
+    const a = lsGetJSON('chronicle_custom_affixes') || [];
+    const se = lsGetJSON('chronicle_skill_edits') || {};
+    const ae = lsGetJSON('chronicle_affix_edits') || {};
+    return {
+        customSkills: s.length,
+        customAffixes: a.length,
+        skillEdits: Object.keys(se).length,
+        affixEdits: Object.keys(ae).length,
+        repoLoaded: !!repoUserData,
+        repoName: repoUserData ? '已加载' : '未找到'
+    };
+}
+
+// 导出编辑数据 (localStorage 全量) 为 user-data.json 下载
+function exportUserData() {
+    const data = {
+        customSkills: lsGetJSON('chronicle_custom_skills') || [],
+        customAffixes: lsGetJSON('chronicle_custom_affixes') || [],
+        skillEdits: lsGetJSON('chronicle_skill_edits') || {},
+        affixEdits: lsGetJSON('chronicle_affix_edits') || {},
+        exportedAt: new Date().toISOString()
+    };
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'user-data.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    const tip = document.getElementById('syncTip');
+    if (tip) tip.textContent = '✓ 已导出 user-data.json — 覆盖到项目 data/ 目录后 git push 即可全网同步';
+}
+
+// 导入 user-data.json 文件并合并到本机
+function importUserData(input) {
+    const file = input.files && input.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function (e) {
+        try {
+            const data = JSON.parse(e.target.result);
+            mergeUserData(data);
+            rebuildRefIndex();
+            rebuildSkillAffixIdSet();
+            refreshAllViews();
+            const tip = document.getElementById('syncTip');
+            if (tip) tip.textContent = '✓ 导入成功, 本机编辑数据已合并';
+            updateSyncPageStatus();
+        } catch (err) {
+            const tip = document.getElementById('syncTip');
+            if (tip) { tip.textContent = '✗ 导入失败: 文件格式不正确'; tip.style.color = '#e74c3c'; }
+        }
+    };
+    reader.readAsText(file, 'utf-8');
+    input.value = '';
+}
+
+// 数据同步页状态展示
+function updateSyncPageStatus() {
+    const el = document.getElementById('syncStatus');
+    if (!el) return;
+    const s = getEditStats();
+    const total = s.customSkills + s.customAffixes + s.skillEdits + s.affixEdits;
+    el.innerHTML = `
+        <div class="sync-status-card">
+            <div class="sync-status-row"><span>仓库同步文件 (data/user-data.json)</span><span class="sync-status-badge ${s.repoLoaded ? 'ok' : 'warn'}">${s.repoName}</span></div>
+            <div class="sync-status-row"><span>自建技能</span><span>${s.customSkills} 个</span></div>
+            <div class="sync-status-row"><span>自建词缀</span><span>${s.customAffixes} 个</span></div>
+            <div class="sync-status-row"><span>技能编辑记录</span><span>${s.skillEdits} 条</span></div>
+            <div class="sync-status-row"><span>词缀编辑记录</span><span>${s.affixEdits} 条</span></div>
+            <div class="sync-status-total">本机编辑数据合计 <strong>${total}</strong> 项</div>
+        </div>
+    `;
+}
+
+// ---- 数据表渲染 (data/tables.json: { 表名: [行对象, ...] }) ----
+function renderTables() {
+    const container = document.getElementById('tablesContent');
+    if (!container) return;
+    const entries = Object.keys(tablesData)
+        .filter(n => Array.isArray(tablesData[n]))
+        .map(name => ({ name: name, rows: tablesData[name].filter(r => r && typeof r === 'object') }))
+        .filter(e => e.rows.length > 0);
+    if (entries.length === 0) {
+        container.innerHTML = `
+            <div class="equipment-empty">
+                <p>暂无数据表</p>
+                <p class="equipment-empty-hint">将 JSON 表数据放入 data/tables.json 并推送后自动显示 (需在线模式加载)</p>
+            </div>
+        `;
+        return;
+    }
+    container.innerHTML = entries.map(({ name, rows }) => {
+        const cols = [];
+        rows.forEach(r => Object.keys(r).forEach(k => { if (!cols.includes(k)) cols.push(k); }));
+        const head = '<tr>' + cols.map(c => `<th>${esc(c)}</th>`).join('') + '</tr>';
+        const body = rows.map(r => '<tr>' + cols.map(c => `<td>${esc(r[c] !== undefined && r[c] !== null ? r[c] : '')}</td>`).join('') + '</tr>').join('');
+        return `
+            <div class="table-section">
+                <h3 class="section-title">📋 ${esc(name)} <span class="tag-filter-count">${rows.length} 行</span></h3>
+                <div class="table-scroll">
+                    <table class="data-table">
+                        <thead>${head}</thead>
+                        <tbody>${body}</tbody>
+                    </table>
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+// ---- 刷新所有已渲染页面 (数据合并/导入后调用) ----
+function refreshAllViews() {
+    updateBattleDataCount();
+    updateCustomSkillNavCount();
+    renderHome();
+    if (renderedPages.has('battle-data')) {
+        renderTagFilterBar('active');
+        renderTagFilterBar('passive');
+        filterSkills('active');
+        filterSkills('passive');
+        filterAffixes();
+        filterAttributes();
+    }
+    if (renderedPages.has('equipment')) filterEquipments();
+    if (renderedPages.has('gems')) filterGems();
+    if (renderedPages.has('custom-skills')) filterCustomSkills();
+    if (renderedPages.has('occupations')) renderOccupations();
+    if (renderedPages.has('pets')) initPetPage();
+    if (renderedPages.has('others')) { renderCategoryTables(); renderStats(); renderTables(); updateSyncPageStatus(); }
+}
+
+// ---- 仓库同步数据加载完成回调 (data.js loadRepoData 完成后触发) ----
+window.onRepoDataLoaded = function () {
+    applyRepoUserData();
+    renderTables();
+    updateSyncPageStatus();
+};
+
 // ---- 加载用户自定义技能 ----
 function loadCustomSkills() {
     try {
@@ -2753,6 +2988,9 @@ function init() {
 
     // 仅渲染首页统计 (其余页面在首次进入时懒渲染, 见 ensurePageRendered)
     renderHome();
+
+    // 异步加载仓库同步数据 (data/user-data.json + data/tables.json), 完成后自动合并刷新
+    loadRepoData();
 
     console.log('=== 初始化完成 ===');
 }

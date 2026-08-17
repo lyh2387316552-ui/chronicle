@@ -22,7 +22,11 @@ chronicle-main/
 │   ├── import.js           # 数据导入脚本（Node.js，解析 Excel/CSV/JSON）
 │   ├── import-config.json  # 导入配置文件（数据源路径）
 │   ├── copy-data.js        # 数据源增量复制脚本（同步到 data-sources）
+│   ├── export-table.js     # 自定义数据表导出脚本（Excel/CSV → data/tables.json）
 │   └── 一键同步.bat        # Windows 一键同步批处理脚本
+├── data/
+│   ├── user-data.json      # 编辑数据同步文件（自建技能/词缀、编辑记录）
+│   └── tables.json         # 自定义数据表（如技能养成表，上传即展示）
 ├── assets/                 # 页面图片资源（logo、背景图等）
 ├── icon/                   # 游戏图标资源（导入时自动同步）
 ├── videos/                 # 技能演示视频（导入时自动同步）
@@ -97,6 +101,32 @@ node tools\import.js
 - 主动技能从 `data-sources/Skill/*.json` 的 `mainTag`/`normalTag` 提取数字标签，被动技能从 `data-sources/Stunt/*.json` 提取
 - 标签文本由 `技能标签` Excel 的 SkillMainTag / SkillNormalTag 子表映射（1=攻击、2=法术、3=召唤、4=光环；0=投射物、1=近战、2=物理…）
 - 技能库卡片与战斗数据的主动/被动技能卡片均显示标签；战斗数据页顶部提供标签筛选栏（参考 tlidb 形态），可点击 `mainTag`（主标签）与 `normalTag`（常规标签）筛选对应类型技能
+
+### 编辑数据同步 (data/user-data.json)
+
+自建技能/词缀、修改过的名称/描述保存在浏览器 localStorage（本机即时生效）。要同步到所有设备：
+
+1. 网页「其他 → 数据同步」页点击 **导出编辑数据**，下载 `user-data.json`
+2. 用该文件覆盖项目根目录 `data/user-data.json`
+3. `git push` 后其他设备刷新页面自动加载
+
+页面加载时自动合并：**仓库文件为共享基线，localStorage 为本机增量（优先）**。
+
+### 自定义数据表 (data/tables.json)
+
+任意数据表（如技能养成表）放入 `data/tables.json` 并推送，网页「其他 → 数据表」页自动以表格展示，无需改代码。格式：
+
+```json
+{
+  "表名": [ { "列A": "值", "列B": "值" }, ... ]
+}
+```
+
+从 Excel/CSV 一键转换（要求单行表头）：
+
+```bash
+node tools/export-table.js "E:\策划\技能养成.xlsx" "技能养成"
+```
 
 ### 编码处理
 

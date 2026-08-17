@@ -8,7 +8,7 @@
     <meta http-equiv="Expires" content="0">
     <title>古荒大陆编年史</title>
     <link rel="icon" type="image/png" href="assets/logo.png">
-    <link rel="stylesheet" href="css/style.css?v=65">
+    <link rel="stylesheet" href="css/style.css?v=66">
 </head>
 <body>
     <div class="background-image"></div>
@@ -248,6 +248,8 @@
                 <div class="others-tabs">
                     <button class="others-tab active" id="others-tab-rules" onclick="switchOthersTab('rules')">📐 ID规则说明</button>
                     <button class="others-tab" id="others-tab-stats" onclick="switchOthersTab('stats')">📊 数据统计</button>
+                    <button class="others-tab" id="others-tab-tables" onclick="switchOthersTab('tables')">📋 数据表</button>
+                    <button class="others-tab" id="others-tab-sync" onclick="switchOthersTab('sync')">📤 数据同步</button>
                 </div>
 
                 <!-- ID规则说明面板 -->
@@ -531,6 +533,37 @@
                         <div class="chart-container" id="segmentChart"></div>
                     </div>
                 </div>
+
+                <!-- 数据表面板 (data/tables.json 自动渲染) -->
+                <div class="others-panel" id="others-panel-tables">
+                    <div class="stats-content">
+                        <div class="tables-header">
+                            <p class="rule-desc">自定义数据表来自仓库 <code>data/tables.json</code>。上传/修改该文件并推送后,刷新页面即可看到最新数据。</p>
+                        </div>
+                        <div id="tablesContent"></div>
+                    </div>
+                </div>
+
+                <!-- 数据同步面板 (编辑数据导出/导入) -->
+                <div class="others-panel" id="others-panel-sync">
+                    <div class="stats-content">
+                        <h3 class="section-title">📤 编辑数据同步</h3>
+                        <p class="rule-desc">自建技能/词缀、修改过的名称/描述保存在浏览器 localStorage(本机)。要把这些编辑同步到所有设备,按下面步骤操作:</p>
+                        <ol class="sync-steps">
+                            <li>点击下方按钮,导出 <code>user-data.json</code> 文件</li>
+                            <li>用该文件覆盖项目根目录 <code>data/user-data.json</code></li>
+                            <li>提交并推送: <code>git add -A && git commit -m "update user-data" && git push</code></li>
+                            <li>其他设备刷新页面,自动加载仓库中的编辑数据</li>
+                        </ol>
+                        <div id="syncStatus"></div>
+                        <div class="sync-actions">
+                            <button class="equipment-btn equipment-btn-save" onclick="exportUserData()">📤 导出编辑数据 (user-data.json)</button>
+                            <button class="equipment-btn" onclick="document.getElementById('importUserDataInput').click()">📥 导入 user-data.json</button>
+                            <input type="file" id="importUserDataInput" accept=".json,application/json" style="display:none" onchange="importUserData(this)">
+                        </div>
+                        <p class="sync-tip" id="syncTip">提示: 本机编辑即时生效; 导出文件后推送到仓库即可全网同步</p>
+                    </div>
+                </div>
             </div>
 
             <!-- Affixes Page -->
@@ -641,7 +674,7 @@
 
     <!-- 注: xlsx.min.js 仅 tools/import.js (Node 端) 需要, 浏览器端不再加载 (约 880KB) -->
     <script src="js/auto-import-data.js?v=15" onerror="console.error('⚠️ auto-import-data.js 加载失败！请先运行一键导入生成数据文件。')"></script>
-    <script src="js/data.js?v=14"></script>
-    <script src="js/app.js?v=47"></script>
+    <script src="js/data.js?v=15"></script>
+    <script src="js/app.js?v=48"></script>
 </body>
 </html>
