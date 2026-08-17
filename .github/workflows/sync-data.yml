@@ -1,0 +1,55 @@
+name: Sync data from chronicle-data
+
+# 数据自动同步: 拉取数据仓库最新表格 → 生成网页数据 → 有变化才提交推送
+# 维护者只需 push 数据仓库, 本 workflow 会自动把数据同步到网页 (1~10 分钟内)
+# 网页访问者无需任何操作, 打开网页即为最新数据
+on:
+  workflow_dispatch:            # 维护者可手动触发立即同步
+  schedule:
+    - cron: '2-59/10 * * * *'   # 每 10 分钟自动检查 (避开整点)
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-data
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout website repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Clone data repo
+        run: |
+          git clone --depth 1 https://github.com/lyh2387316552-ui/chronicle-data.git "$GITHUB_WORKSPACE/../chronicle-data"
+
+      - name: Generate web data from data repo
+        run: node tools/import.js
+
+      - name: Commit and push if data changed
+        run: |
+          git config user.name "chronicle-bot"
+          git config user.email "2387316552@users.noreply.github.com"
+          git add js/auto-import-data.js
+          if git diff --cached --quiet; then
+            echo "== 数据无变化, 跳过提交 =="
+          else
+            # 若仅生成时间戳变化则跳过 (避免无意义空提交)
+            CHANGED=$(git diff --cached -- js/auto-import-data.js | grep -v '^[+-]// 生成时间' | grep -c '^[+-]' || true)
+            if [ "$CHANGED" = "0" ]; then
+              git reset -q
+              echo "== 仅生成时间戳变化, 跳过提交 =="
+            else
+              git commit -m "sync: 数据仓库数据自动同步"
+              git push
+              echo "== 数据已同步并推送 =="
+            fi
+          fi
