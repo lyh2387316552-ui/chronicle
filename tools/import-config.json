@@ -1,17 +1,17 @@
 {
-  "_说明": "数据源统一来自数据仓库 chronicle-data (项目同级目录 ../chronicle-data, 运行 tools/一键同步.bat 会自动 clone/pull)。修改表格后 push 数据仓库, 再运行一键同步生成网页数据。",
+  "_说明": "数据源统一来自数据仓库 chronicle-data (项目同级目录 ../chronicle-data, 运行 tools/一键同步.bat 会自动 clone/pull)。表格文件直接平铺在 data-sources/ 根目录。修改表格后 push 数据仓库, 再运行一键同步生成网页数据。",
   "skillFolder": "../chronicle-data/data-sources/Skill",
   "skillModuleFolder": "../chronicle-data/data-sources/SkillModule",
   "stuntFolder": "../chronicle-data/data-sources/Stunt",
   "stuntModuleFolder": "../chronicle-data/data-sources/StuntModule",
-  "affixPath": "../chronicle-data/data-sources/属性表",
-  "equipPath": "../chronicle-data/data-sources/装备表",
-  "gemPath": "../chronicle-data/data-sources/宝石表",
-  "attrPath": "../chronicle-data/data-sources/属性表",
-  "skillExcelPath": "../chronicle-data/data-sources/技能表",
-  "skillTagPath": "../chronicle-data/data-sources/技能标签",
-  "occupationPath": "../chronicle-data/data-sources/技能表",
+  "affixPath": "../chronicle-data/data-sources/属性表.xlsx",
+  "equipPath": "../chronicle-data/data-sources/装备表.xlsx",
+  "gemPath": "../chronicle-data/data-sources/技能养成相关.xlsx",
+  "attrPath": "../chronicle-data/data-sources/属性表.xlsx",
+  "skillExcelPath": "../chronicle-data/data-sources/技能养成相关.xlsx",
+  "skillTagPath": "../chronicle-data/data-sources/战斗技能相关表.xlsx",
+  "occupationPath": "../chronicle-data/data-sources/技能养成相关.xlsx",
   "iconPath": "../chronicle-data/icon",
   "videoPath": "../chronicle-data/videos",
-  "petPath": "../chronicle-data/data-sources/魔宠表"
+  "petPath": "../chronicle-data/data-sources/魔宠表.xlsx"
 }

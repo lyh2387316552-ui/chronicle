@@ -16,18 +16,18 @@ const path = require('path');
 const DATA_REPO_DIR = path.join(__dirname, '..', '..', 'chronicle-data');
 const DATA_SOURCES_DIR = path.join(DATA_REPO_DIR, 'data-sources');
 
-// 数据源映射: 本地绝对路径(游戏引擎/策划导出) → 数据仓库 data-sources 目标文件夹
+// 数据源映射: 本地绝对路径(游戏引擎/策划导出) → 数据仓库 data-sources
+// 文件夹(target 为目录名)同步到 data-sources/xxx/; 表格文件(target 为文件名)直接平铺到 data-sources/
 const MAPPINGS = [
     { source: 'D:\\NewProject\\battleEdit\\Skill',         target: 'Skill' },
     { source: 'D:\\NewProject\\battleEdit\\SkillModule',   target: 'SkillModule' },
     { source: 'D:\\NewProject\\battleEdit\\Stunt',         target: 'Stunt' },
     { source: 'D:\\NewProject\\battleEdit\\StuntModule',   target: 'StuntModule' },
-    { source: 'E:\\策划\\1.表格目录\\XLS表格\\属性表.xlsx', target: '属性表' },
-    { source: 'E:\\策划\\1.表格目录\\XLS表格\\装备表.xlsx', target: '装备表' },
-    { source: 'E:\\策划\\1.表格目录\\XLS表格\\技能养成相关.xlsx', target: '宝石表' },
-    { source: 'E:\\策划\\1.表格目录\\XLS表格\\技能养成相关.xlsx', target: '技能表' },
-    { source: 'E:\\策划\\1.表格目录\\XLS表格\\战斗技能相关表.xlsx', target: '技能标签' },
-    { source: 'E:\\策划\\1.表格目录\\XLS表格\\魔宠表.xlsx', target: '魔宠表' },
+    { source: 'E:\\策划\\1.表格目录\\XLS表格\\属性表.xlsx', target: '属性表.xlsx' },
+    { source: 'E:\\策划\\1.表格目录\\XLS表格\\装备表.xlsx', target: '装备表.xlsx' },
+    { source: 'E:\\策划\\1.表格目录\\XLS表格\\技能养成相关.xlsx', target: '技能养成相关.xlsx' },
+    { source: 'E:\\策划\\1.表格目录\\XLS表格\\战斗技能相关表.xlsx', target: '战斗技能相关表.xlsx' },
+    { source: 'E:\\策划\\1.表格目录\\XLS表格\\魔宠表.xlsx', target: '魔宠表.xlsx' },
 ];
 
 // 递归收集文件夹下的所有文件
@@ -97,15 +97,14 @@ function syncDir(srcDir, destDir, stats) {
     return { copied, skipped };
 }
 
-// 增量同步单个文件
-function syncFile(src, destDir, stats) {
-    const dest = path.join(destDir, path.basename(src));
-    if (isUpToDate(src, dest)) {
+// 增量同步单个文件 (destFile 为完整目标路径)
+function syncFile(src, destFile, stats) {
+    if (isUpToDate(src, destFile)) {
         stats.skipped++;
         return { copied: 0, skipped: 1 };
     }
-    fs.mkdirSync(destDir, { recursive: true });
-    fs.copyFileSync(src, dest);
+    fs.mkdirSync(path.dirname(destFile), { recursive: true });
+    fs.copyFileSync(src, destFile);
     stats.copied++;
     return { copied: 1, skipped: 0 };
 }
@@ -127,7 +126,6 @@ function main() {
 
     MAPPINGS.forEach(m => {
         const src = m.source;
-        const destDir = path.join(DATA_SOURCES_DIR, m.target);
         console.log('📁 ' + path.basename(src));
 
         if (!fs.existsSync(src)) {
@@ -138,11 +136,13 @@ function main() {
 
         const stat = fs.statSync(src);
         if (stat.isDirectory()) {
+            const destDir = path.join(DATA_SOURCES_DIR, m.target);
             const r = syncDir(src, destDir, stats);
-            console.log(`  ✓ 已同步 → chronicle-data/data-sources/${m.target}  (新增 ${r.copied}, 跳过 ${r.skipped} 个未变化文件)`);
+            console.log(`  ✓ 已同步 → data-sources/${m.target}/  (新增 ${r.copied}, 跳过 ${r.skipped} 个未变化文件)`);
         } else if (stat.isFile()) {
-            const r = syncFile(src, destDir, stats);
-            console.log(`  ✓ 已同步 → chronicle-data/data-sources/${m.target}/${path.basename(src)}  (新增 ${r.copied}, 跳过 ${r.skipped})`);
+            const destFile = path.join(DATA_SOURCES_DIR, m.target);
+            const r = syncFile(src, destFile, stats);
+            console.log(`  ✓ 已同步 → data-sources/${m.target}  (新增 ${r.copied}, 跳过 ${r.skipped})`);
         }
         console.log('');
     });
