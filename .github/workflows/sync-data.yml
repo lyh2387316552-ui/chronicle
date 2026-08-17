@@ -43,7 +43,7 @@ jobs:
             echo "== 数据无变化, 跳过提交 =="
           else
             # 若仅生成时间戳变化则跳过 (避免无意义空提交)
-            CHANGED=$(git diff --cached -- js/auto-import-data.js | grep -v '^[+-]// 生成时间' | grep -c '^[+-]' || true)
+            CHANGED=$(git diff --cached -- js/auto-import-data.js | grep -v '^[+-]// 生成时间' | grep -v '^[+-]  "importTime"' | grep -c '^[+-]' || true)
             if [ "$CHANGED" = "0" ]; then
               git reset -q
               echo "== 仅生成时间戳变化, 跳过提交 =="
