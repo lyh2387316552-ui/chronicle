@@ -79,15 +79,17 @@ chronicle-main/
 | 主动技能模块 | `data-sources/SkillModule/` | `module-*.json` |
 | 被动技能 | `data-sources/Stunt/` | `baseStuntInfo-*.json` |
 | 被动技能模块 | `data-sources/StuntModule/` | `module-*.json` |
-| 词缀/属性 | `data-sources/属性表/` | Excel/CSV（含词缀/属性子表） |
-| 装备 | `data-sources/装备表/` | Excel（含 LegendEquip + Modifier 子表） |
-| 辅助宝石 | `data-sources/宝石表/` | Excel（含 SkillGem 子表） |
-| 技能库/职业天赋 | `data-sources/技能表/` | Excel |
-| 技能标签字典 | `data-sources/技能标签/` | Excel（含 SkillMainTag + SkillNormalTag 子表） |
-| 魔宠表 | `data-sources/魔宠表/` | Excel |
+| 词缀/属性 | `data-sources/属性表.xlsx` | Excel（含词缀/属性子表） |
+| 装备 | `data-sources/装备表.xlsx` | Excel（含 LegendEquip + Modifier 子表） |
+| 辅助宝石 | `data-sources/技能养成相关.xlsx` | Excel（含 SkillGem 子表） |
+| 技能库/职业天赋 | `data-sources/技能养成相关.xlsx` | Excel |
+| 技能标签字典 | `data-sources/战斗技能相关表.xlsx` | Excel（含 SkillMainTag + SkillNormalTag 子表） |
+| 魔宠表 | `data-sources/魔宠表.xlsx` | Excel |
 | 游戏图标 | `icon/` | 网页运行时直接引用 |
 | 技能视频 | `videos/` | 网页运行时直接引用 |
 | 自定义数据表 | `data/tables.json` | 网页「其他 → 数据表」页展示 |
+
+> 表格文件直接平铺在 `data-sources/` 根目录（不套文件夹）；`技能养成相关.xlsx` 同时供给辅助宝石和技能库两类数据。
 
 **说明**：
 - 词缀与属性共用 `属性表` 文件夹，系统自动查找含"词缀/Affix"关键字的工作表作为词缀数据，含 `attrID/name/desc` 列的作为属性数据
@@ -114,6 +116,13 @@ chronicle-main/
 ```bash
 node tools/export-table.js "E:\策划\技能养成.xlsx" "技能养成"
 ```
+
+### 团队协作（多人使用）
+
+- **任何人（只读）**：克隆网站仓库后，双击 `tools\更新数据.bat`（只读模式）即可拉取数据仓库最新数据并生成本地网页数据，不推送、不改远程
+- **数据维护者**：双击 `tools\一键同步.bat` 全流程（复制本地表格 → 推送数据仓库 → 生成网页数据 → 推送网站仓库）
+- **直接看最新数据**：无需任何操作，访问线上地址 `https://lyh2387316552-ui.github.io/chronicle/`
+- **推送权限**：要让队友也能发布更新，在 GitHub 仓库 Settings → Collaborators 中把他们添加为协作者
 
 ### 编码处理
 

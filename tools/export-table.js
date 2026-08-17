@@ -1,11 +1,11 @@
 // ============================================================
-// 导出本地 Excel/CSV 为 data/tables.json 中的数据表 (技能养成等)
+// 导出本地 Excel/CSV 为数据仓库 chronicle-data/data/tables.json 中的数据表 (技能养成等)
 // 用法: node tools/export-table.js <文件路径> <表名> [工作表名]
 //   文件:     .xlsx/.xls/.csv, 自动检测 UTF-8/GBK 编码
-//   表名:     data/tables.json 中的表名称 (页面"数据表"页展示)
+//   表名:     tables.json 中的表名称 (网页"数据表"页展示)
 //   工作表名: 可选, 默认使用第一个工作表
 // 示例: node tools/export-table.js "E:\策划\技能养成.xlsx" "技能养成"
-// 说明: 同名表会被覆盖, 其他表保留; 完成后 git push 即可上线
+// 说明: 同名表会被覆盖, 其他表保留; push 数据仓库后线上自动展示
 // ============================================================
 const fs = require('fs');
 const path = require('path');
