@@ -29,6 +29,9 @@ if not defined NODE_EXE (
 if not defined NODE_EXE (
     if exist "%ProgramFiles%\nodejs\node.exe" set "NODE_EXE=%ProgramFiles%\nodejs\node.exe"
 )
+if not defined NODE_EXE (
+    if exist "%USERPROFILE%\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe" set "NODE_EXE=%USERPROFILE%\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe"
+)
 
 if not defined NODE_EXE (
     echo [ERROR] Node.js not found!
@@ -54,10 +57,26 @@ if not exist "%DATA_REPO%\.git" (
     )
 )
 
+git -C "%DATA_REPO%" rev-parse --verify HEAD >nul 2>&1
+if errorlevel 1 (
+    echo [ERROR] 数据仓库没有可用的 Git 提交历史，请重新克隆 chronicle-data
+    echo [INFO] 当前目录: %DATA_REPO%
+    pause
+    exit /b 1
+)
+
+git -C "%DATA_REPO%" config user.name "chronicle-bot"
+git -C "%DATA_REPO%" config user.email "2387316552@users.noreply.github.com"
+
 echo [Step 1/5] Pulling data repo...
 echo ------------------------------------------------
 cd /d "%DATA_REPO%"
-git pull
+git pull --ff-only
+if errorlevel 1 (
+    echo [ERROR] 拉取数据仓库失败，已停止同步
+    pause
+    exit /b 1
+)
 echo.
 
 echo [Step 2/5] Copying data sources...
@@ -80,14 +99,18 @@ git add -A
 git diff --cached --quiet
 if errorlevel 1 (
     git commit -m "sync: 数据源更新" -q
+    if errorlevel 1 (
+        echo [ERROR] 数据仓库提交失败，已停止同步
+        pause
+        exit /b 1
+    )
     git push
     if errorlevel 1 (
-        echo.
-        echo [WARN] 数据仓库推送失败(可能无写权限), 已跳过, 后续流程继续
-        echo.
-    ) else (
-        echo "  ^^ 数据仓库已推送"
+        echo [ERROR] 数据仓库推送失败，已停止同步
+        pause
+        exit /b 1
     )
+    echo "  ^^ 数据仓库已推送"
 ) else (
     echo "  无变更，跳过推送"
 )
@@ -108,18 +131,24 @@ echo.
 
 echo [Step 5/5] Pushing website repo...
 echo ------------------------------------------------
+git config user.name "chronicle-bot"
+git config user.email "2387316552@users.noreply.github.com"
 git add -A
 git diff --cached --quiet
 if errorlevel 1 (
     git commit -m "sync: 网页数据更新" -q
+    if errorlevel 1 (
+        echo [ERROR] 网站仓库提交失败，已停止同步
+        pause
+        exit /b 1
+    )
     git push
     if errorlevel 1 (
-        echo.
-        echo [WARN] 网站仓库推送失败(可能无写权限), 已跳过
-        echo.
-    ) else (
-        echo "  ^^ 网站仓库已推送"
+        echo [ERROR] 网站仓库推送失败，已停止同步
+        pause
+        exit /b 1
     )
+    echo "  ^^ 网站仓库已推送"
 ) else (
     echo "  无变更，跳过推送"
 )
