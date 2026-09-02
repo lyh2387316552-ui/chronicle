@@ -209,6 +209,18 @@ set "GIT_RETRY=1"
 echo [INFO] 正在推送仓库（第 %GIT_RETRY%/%GIT_RETRY_MAX% 次）...
 git %GIT_HTTP_OPTS% push
 if not errorlevel 1 exit /b 0
+if %GIT_RETRY%==1 (
+    echo [INFO] 推送被远程新提交拒绝，正在获取远程并整理本地提交...
+    git %GIT_HTTP_OPTS% fetch origin main
+    if not errorlevel 1 (
+        git %GIT_HTTP_OPTS% rebase origin/main
+        if errorlevel 1 (
+            echo [ERROR] 本地提交与远程内容冲突，已停止并保留现场，请先处理冲突
+            git rebase --abort >nul 2>&1
+            exit /b 1
+        )
+    )
+)
 if %GIT_RETRY% GEQ %GIT_RETRY_MAX% exit /b 1
 set /a GIT_WAIT=GIT_RETRY*GIT_RETRY+2
 echo [WARN] 连接被中断，%GIT_WAIT% 秒后重试...
