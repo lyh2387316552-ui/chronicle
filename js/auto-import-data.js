@@ -1,5 +1,5 @@
 // 此文件由 import.js 自动生成，请勿手动编辑
-// 生成时间: 2026-09-02T01:31:45.087Z
+// 生成时间: 2026-09-02T01:56:25.222Z
 window.__AUTO_IMPORT_DATA__ = {
   "activeSkills": [
     {
@@ -13,6 +13,7 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "1",
         "normal": [
           "1",
+          "2",
           "4",
           "7",
           "10"
@@ -22,6 +23,7 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "攻击",
         "normal": [
           "近战",
+          "物理",
           "冰霜",
           "范围",
           "阴义"
@@ -39,6 +41,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "tags": {
         "main": "1",
         "normal": [
+          "2",
           "4",
           "7"
         ]
@@ -46,6 +49,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "tagsText": {
         "main": "攻击",
         "normal": [
+          "物理",
           "冰霜",
           "范围"
         ]
@@ -63,6 +67,7 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "1",
         "normal": [
           "1",
+          "2",
           "4",
           "7",
           "10"
@@ -72,6 +77,7 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "攻击",
         "normal": [
           "近战",
+          "物理",
           "冰霜",
           "范围",
           "阴义"
@@ -90,6 +96,7 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "1",
         "normal": [
           "1",
+          "2",
           "4",
           "7",
           "10"
@@ -99,6 +106,7 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "攻击",
         "normal": [
           "近战",
+          "物理",
           "冰霜",
           "范围",
           "阴义"
@@ -138,16 +146,16 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "1",
         "normal": [
           "0",
-          "1",
-          "6"
+          "6",
+          "15"
         ]
       },
       "tagsText": {
         "main": "攻击",
         "normal": [
           "投射物",
-          "近战",
-          "混沌"
+          "混沌",
+          "15"
         ]
       },
       "icon": "skill/linshi/1"
@@ -322,60 +330,6 @@ window.__AUTO_IMPORT_DATA__ = {
       "icon": ""
     },
     {
-      "id": "1110000070",
-      "name": "旋龙",
-      "category": "战斗技能",
-      "subCategory": "战斗攻击",
-      "isNew": false,
-      "description": "舞动战矛扇起一阵旋龙，旋龙会不规则移动，致盲并反复击中内部的敌人。",
-      "tags": {
-        "main": "1",
-        "normal": [
-          "0",
-          "2",
-          "7",
-          "8"
-        ]
-      },
-      "tagsText": {
-        "main": "攻击",
-        "normal": [
-          "投射物",
-          "物理",
-          "范围",
-          "持续"
-        ]
-      },
-      "icon": ""
-    },
-    {
-      "id": "1110000080",
-      "name": "回旋挥斩",
-      "category": "战斗技能",
-      "subCategory": "战斗攻击",
-      "isNew": false,
-      "description": "施展环形挥斩，在你周围踢起一阵的旋风，使效果范围内的敌人减速并致盲。",
-      "tags": {
-        "main": "1",
-        "normal": [
-          "1",
-          "2",
-          "7",
-          "8"
-        ]
-      },
-      "tagsText": {
-        "main": "攻击",
-        "normal": [
-          "近战",
-          "物理",
-          "范围",
-          "持续"
-        ]
-      },
-      "icon": ""
-    },
-    {
       "id": "1110000090",
       "name": "专注射击",
       "category": "战斗技能",
@@ -435,6 +389,23 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": [
           "投射物"
         ]
+      },
+      "icon": ""
+    },
+    {
+      "id": "1110000100",
+      "name": "太刀-混沌（cd）",
+      "category": "战斗技能",
+      "subCategory": "战斗攻击",
+      "isNew": false,
+      "description": "",
+      "tags": {
+        "main": "1",
+        "normal": []
+      },
+      "tagsText": {
+        "main": "攻击",
+        "normal": []
       },
       "icon": ""
     },
@@ -595,27 +566,6 @@ window.__AUTO_IMPORT_DATA__ = {
       "icon": "skill/linshi/14"
     },
     {
-      "id": "1120000051",
-      "name": "回旋龙卷子技能",
-      "category": "法术技能",
-      "subCategory": "法术释放",
-      "isNew": false,
-      "description": "",
-      "tags": {
-        "main": "2",
-        "normal": [
-          "10"
-        ]
-      },
-      "tagsText": {
-        "main": "法术",
-        "normal": [
-          "阴义"
-        ]
-      },
-      "icon": ""
-    },
-    {
       "id": "1120000080",
       "name": "火球术",
       "category": "法术技能",
@@ -645,81 +595,29 @@ window.__AUTO_IMPORT_DATA__ = {
       "icon": "skill/linshi/25"
     },
     {
-      "id": "1120000081",
-      "name": "火球术爆炸",
-      "category": "法术技能",
-      "subCategory": "法术释放",
-      "isNew": false,
-      "description": "",
-      "tags": {
-        "main": "2",
-        "normal": [
-          "0",
-          "3",
-          "7",
-          "11"
-        ]
-      },
-      "tagsText": {
-        "main": "法术",
-        "normal": [
-          "投射物",
-          "火焰",
-          "范围",
-          "可重复"
-        ]
-      },
-      "icon": ""
-    },
-    {
-      "id": "1120000082",
-      "name": "散射火球",
-      "category": "法术技能",
-      "subCategory": "法术释放",
-      "isNew": false,
-      "description": "扔出1枚火球，碰到敌人时产生爆炸。\n尽量消耗一层毁灭注能，产生更大的爆炸，在爆炸位置生成并在爆炸时产生8发小型火球",
-      "tags": {
-        "main": "2",
-        "normal": [
-          "3",
-          "7",
-          "11"
-        ]
-      },
-      "tagsText": {
-        "main": "法术",
-        "normal": [
-          "火焰",
-          "范围",
-          "可重复"
-        ]
-      },
-      "icon": ""
-    },
-    {
-      "id": "1120000083",
-      "name": "生成火焰地面",
-      "category": "法术技能",
-      "subCategory": "法术释放",
-      "isNew": false,
-      "description": "",
-      "tags": {
-        "main": "2",
-        "normal": []
-      },
-      "tagsText": {
-        "main": "法术",
-        "normal": []
-      },
-      "icon": ""
-    },
-    {
       "id": "1120000100",
       "name": "我即闪电",
       "category": "法术技能",
       "subCategory": "法术释放",
       "isNew": false,
       "description": "化身成为闪电，对碰撞到的敌人造成100%的闪电伤害。\n生成一片闪电场，吸收场内敌人的感电状态并触发一次200%的雷击，雷击不会造成感电状态",
+      "tags": {
+        "main": "2",
+        "normal": []
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": []
+      },
+      "icon": ""
+    },
+    {
+      "id": "1120000101",
+      "name": "闪电法球",
+      "category": "法术技能",
+      "subCategory": "法术释放",
+      "isNew": false,
+      "description": "",
       "tags": {
         "main": "2",
         "normal": []
@@ -783,6 +681,206 @@ window.__AUTO_IMPORT_DATA__ = {
         ]
       },
       "icon": "skill/fashu/hundunyunxing"
+    },
+    {
+      "id": "1120000150",
+      "name": "附身电球",
+      "category": "法术技能",
+      "subCategory": "法术释放",
+      "isNew": false,
+      "description": "召唤4个围绕自身盘旋的电球，电球在碰到敌人后会附着在敌人身上，每隔1.5秒对周围生成一次100%法术闪电伤害的电弧，每个电球可以生成3次电弧。。",
+      "tags": {
+        "main": "2",
+        "normal": [
+          "1",
+          "5",
+          "7",
+          "8",
+          "16"
+        ]
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": [
+          "近战",
+          "闪电",
+          "范围",
+          "持续",
+          "环绕"
+        ]
+      },
+      "icon": "skill/linshi/14"
+    },
+    {
+      "id": "1120000160",
+      "name": "天赋-偶尔漏电",
+      "category": "法术技能",
+      "subCategory": "法术释放",
+      "isNew": false,
+      "description": "击中时，20%几率触发电圈",
+      "tags": {
+        "main": "2",
+        "normal": []
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": []
+      },
+      "icon": ""
+    },
+    {
+      "id": "1120000170",
+      "name": "火焰龙卷",
+      "category": "法术技能",
+      "subCategory": "法术释放",
+      "isNew": false,
+      "description": "召唤一道可以跟随自身移动的火焰龙卷，对经过的敌人造成xx火焰伤害。\n火焰龙卷的数量无法被修改",
+      "tags": {
+        "main": "2",
+        "normal": [
+          "0",
+          "3",
+          "7",
+          "8",
+          "19"
+        ]
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": [
+          "投射物",
+          "火焰",
+          "范围",
+          "持续",
+          "旋风"
+        ]
+      },
+      "icon": "skill/linshi/26"
+    },
+    {
+      "id": "1120000180",
+      "name": "物理诅咒",
+      "category": "法术技能",
+      "subCategory": "法术释放",
+      "isNew": false,
+      "description": "",
+      "tags": {
+        "main": "2",
+        "normal": [
+          "2",
+          "7",
+          "21"
+        ]
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": [
+          "物理",
+          "范围",
+          "诅咒"
+        ]
+      },
+      "icon": ""
+    },
+    {
+      "id": "1120000190",
+      "name": "火焰诅咒",
+      "category": "法术技能",
+      "subCategory": "法术释放",
+      "isNew": false,
+      "description": "",
+      "tags": {
+        "main": "2",
+        "normal": [
+          "2",
+          "7",
+          "21"
+        ]
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": [
+          "物理",
+          "范围",
+          "诅咒"
+        ]
+      },
+      "icon": ""
+    },
+    {
+      "id": "1120000200",
+      "name": "寒冰诅咒",
+      "category": "法术技能",
+      "subCategory": "法术释放",
+      "isNew": false,
+      "description": "",
+      "tags": {
+        "main": "2",
+        "normal": [
+          "2",
+          "7",
+          "21"
+        ]
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": [
+          "物理",
+          "范围",
+          "诅咒"
+        ]
+      },
+      "icon": ""
+    },
+    {
+      "id": "1120000210",
+      "name": "闪电诅咒",
+      "category": "法术技能",
+      "subCategory": "法术释放",
+      "isNew": false,
+      "description": "",
+      "tags": {
+        "main": "2",
+        "normal": [
+          "2",
+          "7",
+          "21"
+        ]
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": [
+          "物理",
+          "范围",
+          "诅咒"
+        ]
+      },
+      "icon": ""
+    },
+    {
+      "id": "1120000220",
+      "name": "混沌诅咒",
+      "category": "法术技能",
+      "subCategory": "法术释放",
+      "isNew": false,
+      "description": "",
+      "tags": {
+        "main": "2",
+        "normal": [
+          "2",
+          "7",
+          "21"
+        ]
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": [
+          "物理",
+          "范围",
+          "诅咒"
+        ]
+      },
+      "icon": ""
     },
     {
       "id": "1140000010",
@@ -1190,6 +1288,23 @@ window.__AUTO_IMPORT_DATA__ = {
       "icon": "skill/linshi/17"
     },
     {
+      "id": "2120000050",
+      "name": "我即闪电",
+      "category": "捷系列",
+      "subCategory": "法术",
+      "isNew": false,
+      "description": "占位技能",
+      "tags": {
+        "main": "2",
+        "normal": []
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": []
+      },
+      "icon": ""
+    },
+    {
       "id": "2120000060",
       "name": "魔典-幻影耗蓝转伤",
       "category": "捷系列",
@@ -1205,16 +1320,36 @@ window.__AUTO_IMPORT_DATA__ = {
     },
     {
       "id": "2120000080",
-      "name": "中毒传染",
+      "name": "瘟疫之捷",
       "category": "捷系列",
       "subCategory": "法术",
       "isNew": false,
-      "description": "激活时，击败中毒的敌人会将其中毒效果扩散给周围的其他敌人，并有几率使他们缓速",
+      "description": "激活时，击败中毒的敌人会将其中毒效果扩散给周围的其他敌人",
       "tags": {
-        "main": null,
+        "main": "2",
         "normal": []
       },
-      "tagsText": null,
+      "tagsText": {
+        "main": "法术",
+        "normal": []
+      },
+      "icon": ""
+    },
+    {
+      "id": "2120000090",
+      "name": "鲜血之捷",
+      "category": "捷系列",
+      "subCategory": "法术",
+      "isNew": false,
+      "description": "激活时，击败流血的敌人会将其流血效果扩散给周围的其他敌人",
+      "tags": {
+        "main": "2",
+        "normal": []
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": []
+      },
       "icon": ""
     },
     {
@@ -1242,10 +1377,13 @@ window.__AUTO_IMPORT_DATA__ = {
       "isNew": false,
       "description": "占位技能",
       "tags": {
-        "main": null,
+        "main": "2",
         "normal": []
       },
-      "tagsText": null,
+      "tagsText": {
+        "main": "法术",
+        "normal": []
+      },
       "icon": ""
     },
     {
@@ -1690,6 +1828,537 @@ window.__AUTO_IMPORT_DATA__ = {
       "icon": ""
     },
     {
+      "id": "2150000140",
+      "name": "天赋-注能额外伤",
+      "category": "捷系列",
+      "subCategory": "特殊",
+      "isNew": false,
+      "description": "拥有注能时，伤害额外提高 X%",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
+    },
+    {
+      "id": "2150000150",
+      "name": "天赋-5捷额外伤-物理",
+      "category": "捷系列",
+      "subCategory": "特殊",
+      "isNew": false,
+      "description": "装备物理捷，获得额外物理伤害",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
+    },
+    {
+      "id": "2150000151",
+      "name": "天赋-5捷额外伤-火焰",
+      "category": "捷系列",
+      "subCategory": "特殊",
+      "isNew": false,
+      "description": "装备火焰捷，获得额外火焰伤害",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
+    },
+    {
+      "id": "2150000152",
+      "name": "天赋-5捷额外伤-冰冷",
+      "category": "捷系列",
+      "subCategory": "特殊",
+      "isNew": false,
+      "description": "装备冰冷捷，获得额外冰冷伤害",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
+    },
+    {
+      "id": "2150000153",
+      "name": "天赋-5捷额外伤-闪电",
+      "category": "捷系列",
+      "subCategory": "特殊",
+      "isNew": false,
+      "description": "装备闪电捷，获得额外闪电伤害",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
+    },
+    {
+      "id": "2150000154",
+      "name": "天赋-5捷额外伤-混沌",
+      "category": "捷系列",
+      "subCategory": "特殊",
+      "isNew": false,
+      "description": "装备混沌捷，获得额外混沌伤害",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
+    },
+    {
+      "id": "2150000160",
+      "name": "天赋-抗性区核心1",
+      "category": "捷系列",
+      "subCategory": "特殊",
+      "isNew": false,
+      "description": "造成一种元素伤害会使得，其他元素伤害获得15%额外伤害(加算），持续4秒",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
+    },
+    {
+      "id": "2150000161",
+      "name": "天赋-抗性区核心2",
+      "category": "捷系列",
+      "subCategory": "特殊",
+      "isNew": false,
+      "description": "造成一种元素伤害会使得，其他元素伤害获得15%额外伤害(加算），持续4秒",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
+    },
+    {
+      "id": "2150000162",
+      "name": "天赋-抗性区核心3",
+      "category": "捷系列",
+      "subCategory": "特殊",
+      "isNew": false,
+      "description": "造成一种元素伤害会使得，其他元素伤害获得15%额外伤害(加算），持续4秒",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
+    },
+    {
+      "id": "2150000170",
+      "name": "造成流血时获得毁灭注能",
+      "category": "捷系列",
+      "subCategory": "特殊",
+      "isNew": false,
+      "description": "造成流血时获得毁灭注能",
+      "tags": {
+        "main": "1",
+        "normal": []
+      },
+      "tagsText": {
+        "main": "攻击",
+        "normal": []
+      },
+      "icon": ""
+    },
+    {
+      "id": "2150000180",
+      "name": "造成冰冻时获得洞察注能",
+      "category": "捷系列",
+      "subCategory": "特殊",
+      "isNew": false,
+      "description": "造成冰冻效果时，有 20% 概率获得暴击注能",
+      "tags": {
+        "main": "1",
+        "normal": []
+      },
+      "tagsText": {
+        "main": "攻击",
+        "normal": []
+      },
+      "icon": ""
+    },
+    {
+      "id": "2150000190",
+      "name": "造成感电时获得迅捷注能",
+      "category": "捷系列",
+      "subCategory": "特殊",
+      "isNew": false,
+      "description": "造成感电效果时，有 20% 几率获得速度注能",
+      "tags": {
+        "main": "1",
+        "normal": []
+      },
+      "tagsText": {
+        "main": "攻击",
+        "normal": []
+      },
+      "icon": ""
+    },
+    {
+      "id": "2150000200",
+      "name": "攻击暴击时概率瘫痪",
+      "category": "捷系列",
+      "subCategory": "特殊",
+      "isNew": false,
+      "description": "攻击暴击时概率瘫痪",
+      "tags": {
+        "main": "1",
+        "normal": []
+      },
+      "tagsText": {
+        "main": "攻击",
+        "normal": []
+      },
+      "icon": ""
+    },
+    {
+      "id": "2150000210",
+      "name": "法术暴击时概率软弱",
+      "category": "捷系列",
+      "subCategory": "特殊",
+      "isNew": false,
+      "description": "法术暴击时概率软弱",
+      "tags": {
+        "main": "2",
+        "normal": []
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": []
+      },
+      "icon": ""
+    },
+    {
+      "id": "2150000220",
+      "name": "天赋-造成点燃时获得穿透注能",
+      "category": "捷系列",
+      "subCategory": "特殊",
+      "isNew": false,
+      "description": "造成点燃时获得穿透注能",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
+    },
+    {
+      "id": "2150000230",
+      "name": "天赋-造成中毒时获得混乱注能",
+      "category": "捷系列",
+      "subCategory": "特殊",
+      "isNew": false,
+      "description": "造成中毒时获得混乱注能",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
+    },
+    {
+      "id": "2150000240",
+      "name": "天赋大点-太刀",
+      "category": "捷系列",
+      "subCategory": "特殊",
+      "isNew": false,
+      "description": "使用太刀作为武器时，击败敌人获得随机 0.1 伤害倍率，上限 100 层，持续时间 5 秒",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
+    },
+    {
+      "id": "2150000250",
+      "name": "天赋大点-法杖",
+      "category": "捷系列",
+      "subCategory": "特殊",
+      "isNew": false,
+      "description": "使用法杖作为武器时，获得 30% 的额外元素伤害，只能造成元素伤害",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
+    },
+    {
+      "id": "2150000260",
+      "name": "天赋大点-魔典",
+      "category": "捷系列",
+      "subCategory": "特殊",
+      "isNew": false,
+      "description": "使用魔典时，核心技能等级 +5，魔力消耗增加 20%",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
+    },
+    {
+      "id": "2150000270",
+      "name": "天赋-周围敌人获得缓冲",
+      "category": "捷系列",
+      "subCategory": "特殊",
+      "isNew": false,
+      "description": "天赋-周围敌人获得缓冲",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
+    },
+    {
+      "id": "2150000280",
+      "name": "天赋-击中穿透注能",
+      "category": "捷系列",
+      "subCategory": "特殊",
+      "isNew": false,
+      "description": "天赋-击中穿透注能",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
+    },
+    {
+      "id": "2150000290",
+      "name": "天赋-元素抗性相等时额外减少伤害",
+      "category": "捷系列",
+      "subCategory": "特殊",
+      "isNew": false,
+      "description": "当有两两元素抗性相等时，获得额外受到伤害减少 10%（加算）",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
+    },
+    {
+      "id": "2150000300",
+      "name": "天赋-击中毁灭注能",
+      "category": "捷系列",
+      "subCategory": "特殊",
+      "isNew": false,
+      "description": "天赋-击中毁灭注能",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
+    },
+    {
+      "id": "2150000310",
+      "name": "天赋-击中洞察注能",
+      "category": "捷系列",
+      "subCategory": "特殊",
+      "isNew": false,
+      "description": "天赋-击中洞察注能",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
+    },
+    {
+      "id": "2150000320",
+      "name": "天赋-击中迅捷注能",
+      "category": "捷系列",
+      "subCategory": "特殊",
+      "isNew": false,
+      "description": "天赋-击中迅捷注能",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
+    },
+    {
+      "id": "2150000330",
+      "name": "天赋-移动获得增益",
+      "category": "捷系列",
+      "subCategory": "特殊",
+      "isNew": false,
+      "description": "移动20米近战伤害额外提高 50%",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
+    },
+    {
+      "id": "2150000340",
+      "name": "击败时移动速度提高",
+      "category": "捷系列",
+      "subCategory": "特殊",
+      "isNew": false,
+      "description": "击败时移动速度提高1%，最大上限20层",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
+    },
+    {
+      "id": "2150000350",
+      "name": "暴击时伤害额外提高，暴击率降低",
+      "category": "捷系列",
+      "subCategory": "特殊",
+      "isNew": false,
+      "description": "暴击时，获得增益，伤害额外提高 7%，但暴击率降低 25%，层数上限 5 层",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
+    },
+    {
+      "id": "2150000360",
+      "name": "周围有精英敌人时提升攻击速度",
+      "category": "捷系列",
+      "subCategory": "特殊",
+      "isNew": false,
+      "description": "周围有精英敌人时提升攻击速度",
+      "tags": {
+        "main": "2",
+        "normal": []
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": []
+      },
+      "icon": ""
+    },
+    {
+      "id": "2150000370",
+      "name": "周围有精英敌人时提升施法速度",
+      "category": "捷系列",
+      "subCategory": "特殊",
+      "isNew": false,
+      "description": "周围有精英敌人时提升施法速度",
+      "tags": {
+        "main": "2",
+        "normal": []
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": []
+      },
+      "icon": ""
+    },
+    {
+      "id": "2150000380",
+      "name": "天赋-击中混乱注能",
+      "category": "捷系列",
+      "subCategory": "特殊",
+      "isNew": false,
+      "description": "天赋-击中混乱注能",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
+    },
+    {
+      "id": "2150000400",
+      "name": "造成异常状态提高攻速",
+      "category": "捷系列",
+      "subCategory": "特殊",
+      "isNew": false,
+      "description": "天赋-你在近期每对一名敌人造成点燃、中毒、流血，就可以获得2%的攻击速度，最多40%",
+      "tags": {
+        "main": "1",
+        "normal": []
+      },
+      "tagsText": {
+        "main": "攻击",
+        "normal": []
+      },
+      "icon": ""
+    },
+    {
+      "id": "2150000410",
+      "name": "我麻了",
+      "category": "捷系列",
+      "subCategory": "特殊",
+      "isNew": false,
+      "description": "自身受到基础感电效果,攻击速度/施法速度提高50%",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
+    },
+    {
+      "id": "2150000420",
+      "name": "天赋-手套增加攻击力",
+      "category": "捷系列",
+      "subCategory": "特殊",
+      "isNew": false,
+      "description": "未装备手套时，可获得相当于当前防御力30%的攻击力",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
+    },
+    {
+      "id": "2150000430",
+      "name": "天赋-剑客-脚底抹油",
+      "category": "捷系列",
+      "subCategory": "特殊",
+      "isNew": false,
+      "description": "移动速度增加大于100%时,受到伤害额外减少5%",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
+    },
+    {
+      "id": "2150000440",
+      "name": "偶尔漏电",
+      "category": "捷系列",
+      "subCategory": "特殊",
+      "isNew": false,
+      "description": "攻击伤害击中时，有10%的几率触发10级[电圈]",
+      "tags": {
+        "main": "1",
+        "normal": []
+      },
+      "tagsText": {
+        "main": "攻击",
+        "normal": []
+      },
+      "icon": ""
+    },
+    {
       "id": "2150100060",
       "name": "注能循环-洞察",
       "category": "捷系列",
@@ -1769,6 +2438,20 @@ window.__AUTO_IMPORT_DATA__ = {
       "icon": ""
     },
     {
+      "id": "2150100240",
+      "name": "天赋-随机倍率表现",
+      "category": "捷系列",
+      "subCategory": "特殊",
+      "isNew": false,
+      "description": "",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
+    },
+    {
       "id": "2150200060",
       "name": "注能循环-坚韧",
       "category": "捷系列",
@@ -1821,7 +2504,7 @@ window.__AUTO_IMPORT_DATA__ = {
     },
     {
       "id": "2150200090",
-      "name": "深度聚集-坚韧",
+      "name": "深度聚集-穿透",
       "category": "捷系列",
       "subCategory": "特殊",
       "isNew": false,
@@ -1835,11 +2518,25 @@ window.__AUTO_IMPORT_DATA__ = {
     },
     {
       "id": "2150200091",
-      "name": "深度聚集-坚韧驱散",
+      "name": "深度聚集-穿透驱散",
       "category": "捷系列",
       "subCategory": "特殊",
       "isNew": false,
       "description": "每拥有一种不同种类的注能，法术伤害总增10%，魔力回复率提高20%。",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": ""
+    },
+    {
+      "id": "2150200240",
+      "name": "天赋-随机倍率驱散",
+      "category": "捷系列",
+      "subCategory": "特殊",
+      "isNew": false,
+      "description": "",
       "tags": {
         "main": null,
         "normal": []
@@ -1883,7 +2580,7 @@ window.__AUTO_IMPORT_DATA__ = {
     },
     {
       "id": "2150300090",
-      "name": "深度聚集-缓冲",
+      "name": "深度聚集-混乱",
       "category": "捷系列",
       "subCategory": "特殊",
       "isNew": false,
@@ -1897,7 +2594,7 @@ window.__AUTO_IMPORT_DATA__ = {
     },
     {
       "id": "2150300091",
-      "name": "深度聚集-缓冲驱散",
+      "name": "深度聚集-混乱驱散",
       "category": "捷系列",
       "subCategory": "特殊",
       "isNew": false,
@@ -1928,7 +2625,7 @@ window.__AUTO_IMPORT_DATA__ = {
     },
     {
       "id": "2150400090",
-      "name": "深度聚集-缓冲",
+      "name": "深度聚集-混乱",
       "category": "捷系列",
       "subCategory": "特殊",
       "isNew": false,
@@ -2176,7 +2873,7 @@ window.__AUTO_IMPORT_DATA__ = {
     },
     {
       "id": "10033",
-      "name": "冰冻效果额外提高",
+      "name": "冻结效果额外提高",
       "description": "冻结效果额外提高{0}",
       "category": "通用",
       "subCategory": "通用",
@@ -3343,7 +4040,7 @@ window.__AUTO_IMPORT_DATA__ = {
     {
       "id": "10004",
       "name": "生命恢复率",
-      "description": "生命恢复速度提高",
+      "description": "生命恢复率",
       "category": "2",
       "isNew": false
     },
@@ -3383,30 +4080,30 @@ window.__AUTO_IMPORT_DATA__ = {
       "isNew": false
     },
     {
-      "id": "10011",
-      "name": "格挡率",
-      "description": "格挡率",
+      "id": "10012",
+      "name": "格挡减伤率",
+      "description": "格挡比例",
       "category": "2",
       "isNew": false
     },
     {
-      "id": "10012",
-      "name": "格挡减伤率",
-      "description": "格挡减伤率",
+      "id": "10011",
+      "name": "法术格挡百分比概率",
+      "description": "法术格挡率",
       "category": "2",
       "isNew": false
     },
     {
       "id": "10013",
-      "name": "攻击冷却缩减",
-      "description": "攻击冷却缩减",
+      "name": "攻击格挡百分比概率",
+      "description": "攻击格挡率",
       "category": "2",
       "isNew": false
     },
     {
       "id": "10014",
-      "name": "法术冷却缩减",
-      "description": "法术冷却缩减",
+      "name": "防御力",
+      "description": "防御力",
       "category": "2",
       "isNew": false
     },
@@ -3546,14 +4243,14 @@ window.__AUTO_IMPORT_DATA__ = {
     {
       "id": "10301",
       "name": "攻击伤害提高",
-      "description": "废弃",
+      "description": "废弃1",
       "category": "2",
       "isNew": false
     },
     {
       "id": "10302",
       "name": "法术伤害提高",
-      "description": "废弃",
+      "description": "废弃2",
       "category": "2",
       "isNew": false
     },
@@ -3819,42 +4516,42 @@ window.__AUTO_IMPORT_DATA__ = {
     {
       "id": "10600",
       "name": "攻击百比",
-      "description": "攻击百比",
+      "description": "倍率百比",
       "category": "2",
       "isNew": false
     },
     {
       "id": "10601",
-      "name": "物理攻击百比",
-      "description": "物理攻击百比",
+      "name": "物理倍率百比",
+      "description": "物理倍率百比",
       "category": "2",
       "isNew": false
     },
     {
       "id": "10602",
-      "name": "火焰攻击百比",
-      "description": "火焰攻击百比",
+      "name": "火焰倍率百比",
+      "description": "火焰倍率百比",
       "category": "2",
       "isNew": false
     },
     {
       "id": "10603",
-      "name": "冰霜攻击百比",
-      "description": "冰冷攻击百比",
+      "name": "冰冷倍率百比",
+      "description": "冰冷倍率百比",
       "category": "2",
       "isNew": false
     },
     {
       "id": "10604",
-      "name": "闪电攻击百比",
-      "description": "闪电攻击百比",
+      "name": "闪电倍率百比",
+      "description": "闪电倍率百比",
       "category": "2",
       "isNew": false
     },
     {
       "id": "10605",
-      "name": "混沌攻击百比",
-      "description": "混沌攻击百比",
+      "name": "混沌倍率百比",
+      "description": "混沌倍率百比",
       "category": "2",
       "isNew": false
     },
@@ -4035,7 +4732,7 @@ window.__AUTO_IMPORT_DATA__ = {
     },
     {
       "id": "11006",
-      "name": "点燃概率提高",
+      "name": "点燃概率",
       "description": "点燃概率提高",
       "category": "2",
       "isNew": false
@@ -4375,6 +5072,111 @@ window.__AUTO_IMPORT_DATA__ = {
       "description": "造成双倍伤害几率",
       "category": "2",
       "isNew": false
+    },
+    {
+      "id": "11058",
+      "name": "物理抗性上限增加",
+      "description": "物理抗性上限增加",
+      "category": "2",
+      "isNew": false
+    },
+    {
+      "id": "11059",
+      "name": "火焰抗性上限增加",
+      "description": "火焰抗性上限增加",
+      "category": "2",
+      "isNew": false
+    },
+    {
+      "id": "11060",
+      "name": "冰冷抗性上限增加",
+      "description": "冰冷抗性上限增加",
+      "category": "2",
+      "isNew": false
+    },
+    {
+      "id": "11061",
+      "name": "闪电抗性上限增加",
+      "description": "闪电抗性上限增加",
+      "category": "2",
+      "isNew": false
+    },
+    {
+      "id": "11062",
+      "name": "混沌抗性上限增加",
+      "description": "混沌抗性上限增加",
+      "category": "2",
+      "isNew": false
+    },
+    {
+      "id": "11063",
+      "name": "流血效果结算速度",
+      "description": "流血效果结算速度",
+      "category": "2",
+      "isNew": false
+    },
+    {
+      "id": "11064",
+      "name": "中毒效果结算速度",
+      "description": "中毒效果结算速度",
+      "category": "2",
+      "isNew": false
+    },
+    {
+      "id": "11065",
+      "name": "点燃效果结算速度",
+      "description": "点燃效果结算速度",
+      "category": "2",
+      "isNew": false
+    },
+    {
+      "id": "11066",
+      "name": "药剂冷却回复效率",
+      "description": "药剂冷却回复效率",
+      "category": "2",
+      "isNew": false
+    },
+    {
+      "id": "11067",
+      "name": "是否暴击幸运",
+      "description": "是否暴击幸运",
+      "category": "2",
+      "isNew": false
+    },
+    {
+      "id": "11068",
+      "name": "受到的物理伤害",
+      "description": "受到的物理伤害",
+      "category": "2",
+      "isNew": false
+    },
+    {
+      "id": "11069",
+      "name": "受到的火焰伤害",
+      "description": "受到的火焰伤害",
+      "category": "2",
+      "isNew": false
+    },
+    {
+      "id": "11070",
+      "name": "受到的冰冷伤害",
+      "description": "受到的冰冷伤害",
+      "category": "2",
+      "isNew": false
+    },
+    {
+      "id": "11071",
+      "name": "受到的闪电伤害",
+      "description": "受到的闪电伤害",
+      "category": "2",
+      "isNew": false
+    },
+    {
+      "id": "11072",
+      "name": "受到的混沌伤害",
+      "description": "受到的混沌伤害",
+      "category": "2",
+      "isNew": false
     }
   ],
   "equipment": [
@@ -4429,7 +5231,7 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "10403"
         },
         {
-          "refId": "10102"
+          "refId": "10176"
         }
       ],
       "sourceId": "1100201",
@@ -4502,9 +5304,6 @@ window.__AUTO_IMPORT_DATA__ = {
       "effects": [
         {
           "refId": "10001"
-        },
-        {
-          "refId": "10011"
         },
         {
           "refId": "10070"
@@ -4658,9 +5457,6 @@ window.__AUTO_IMPORT_DATA__ = {
         },
         {
           "refId": "10304"
-        },
-        {
-          "refId": "2340000040"
         }
       ],
       "sourceId": "1500103",
@@ -4676,9 +5472,6 @@ window.__AUTO_IMPORT_DATA__ = {
       "effects": [
         {
           "refId": "10007"
-        },
-        {
-          "refId": "2340000050"
         }
       ],
       "sourceId": "1500103",
@@ -4750,7 +5543,7 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "10058"
         },
         {
-          "refId": "10102"
+          "refId": "10176"
         },
         {
           "refId": "10405"
@@ -4784,9 +5577,6 @@ window.__AUTO_IMPORT_DATA__ = {
         },
         {
           "refId": "10080"
-        },
-        {
-          "refId": "2140000090"
         }
       ],
       "sourceId": "1600101",
@@ -4963,7 +5753,7 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "10034"
         },
         {
-          "refId": "10102"
+          "refId": "10176"
         },
         {
           "refId": "10060"
@@ -5006,6 +5796,9 @@ window.__AUTO_IMPORT_DATA__ = {
       "effects": [
         {
           "refId": "10502"
+        },
+        {
+          "refId": "10305"
         },
         {
           "refId": "10070"
@@ -5831,6 +6624,7 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "攻击",
         "normal": [
           "近战",
+          "物理",
           "冰霜",
           "范围",
           "阴义"
@@ -6044,6 +6838,7 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "攻击",
         "normal": [
           "近战",
+          "物理",
           "冰霜",
           "范围",
           "阴义"
@@ -6425,6 +7220,159 @@ window.__AUTO_IMPORT_DATA__ = {
       ],
       "isNew": true,
       "source": "sync"
+    },
+    {
+      "id": "",
+      "name": "鲜血之捷",
+      "type": "被动技能",
+      "desc": "",
+      "sourceId": "2120000090",
+      "tags": {
+        "main": "法术",
+        "normal": []
+      },
+      "icon": "",
+      "effects": [
+        {
+          "refId": "2120000090"
+        }
+      ],
+      "isNew": true,
+      "source": "sync"
+    },
+    {
+      "id": "",
+      "name": "瘟疫之捷",
+      "type": "被动技能",
+      "desc": "",
+      "sourceId": "2120000080",
+      "tags": {
+        "main": "法术",
+        "normal": []
+      },
+      "icon": "",
+      "effects": [
+        {
+          "refId": "2120000080"
+        }
+      ],
+      "isNew": true,
+      "source": "sync"
+    },
+    {
+      "id": "",
+      "name": "物理诅咒",
+      "type": "主动技能",
+      "desc": "",
+      "sourceId": "1120000180",
+      "tags": {
+        "main": "法术",
+        "normal": [
+          "物理",
+          "范围",
+          "诅咒"
+        ]
+      },
+      "icon": "",
+      "effects": [
+        {
+          "refId": "1120000180"
+        }
+      ],
+      "isNew": true,
+      "source": "sync"
+    },
+    {
+      "id": "",
+      "name": "火焰诅咒",
+      "type": "主动技能",
+      "desc": "",
+      "sourceId": "1120000190",
+      "tags": {
+        "main": "法术",
+        "normal": [
+          "物理",
+          "范围",
+          "诅咒"
+        ]
+      },
+      "icon": "",
+      "effects": [
+        {
+          "refId": "1120000190"
+        }
+      ],
+      "isNew": true,
+      "source": "sync"
+    },
+    {
+      "id": "",
+      "name": "寒冰诅咒",
+      "type": "主动技能",
+      "desc": "",
+      "sourceId": "1120000200",
+      "tags": {
+        "main": "法术",
+        "normal": [
+          "物理",
+          "范围",
+          "诅咒"
+        ]
+      },
+      "icon": "",
+      "effects": [
+        {
+          "refId": "1120000200"
+        }
+      ],
+      "isNew": true,
+      "source": "sync"
+    },
+    {
+      "id": "",
+      "name": "闪电诅咒",
+      "type": "主动技能",
+      "desc": "",
+      "sourceId": "1120000210",
+      "tags": {
+        "main": "法术",
+        "normal": [
+          "物理",
+          "范围",
+          "诅咒"
+        ]
+      },
+      "icon": "",
+      "effects": [
+        {
+          "refId": "1120000210"
+        }
+      ],
+      "isNew": true,
+      "source": "sync"
+    },
+    {
+      "id": "",
+      "name": "混沌诅咒",
+      "type": "主动技能",
+      "desc": "",
+      "sourceId": "1120000220",
+      "tags": {
+        "main": "法术",
+        "normal": [
+          "物理",
+          "范围",
+          "诅咒"
+        ]
+      },
+      "icon": "",
+      "effects": [
+        {
+          "refId": "1120000220"
+        }
+      ],
+      "isNew": true,
+      "source": "sync"
     }
   ],
   "occupations": [
@@ -6435,12 +7383,12 @@ window.__AUTO_IMPORT_DATA__ = {
       "talentPoints": [
         {
           "id": "1003002",
-          "name": "快攻",
+          "name": "唯快不破",
           "desc": "第一个技能获得攻击速度额外提高20%",
           "occupation": 2,
           "viewPos": {
-            "x": 0,
-            "y": 640
+            "x": 240,
+            "y": -250
           },
           "size": 2,
           "icon": "✨",
@@ -6449,11 +7397,11 @@ window.__AUTO_IMPORT_DATA__ = {
         },
         {
           "id": "1003004",
-          "name": "看破",
-          "desc": "基础暴击率+8%",
+          "name": "我麻了",
+          "desc": "对自身造成感电效果，攻击速度/施法速度提高50%",
           "occupation": 2,
           "viewPos": {
-            "x": 300,
+            "x": 0,
             "y": 320
           },
           "size": 2,
@@ -6463,11 +7411,11 @@ window.__AUTO_IMPORT_DATA__ = {
         },
         {
           "id": "1003006",
-          "name": "流风增击",
+          "name": "速度与激情",
           "desc": "对于移动速度的增加或减少的20% 同时作用于额外攻击伤害，最多额外+30% 攻击伤害",
           "occupation": 2,
           "viewPos": {
-            "x": -300,
+            "x": -240,
             "y": 320
           },
           "size": 2,
@@ -6477,40 +7425,40 @@ window.__AUTO_IMPORT_DATA__ = {
         },
         {
           "id": "1003008",
-          "name": "暴血",
-          "desc": "每拥有1%的暴击率，就会增加2%的攻击伤害，最多增加200%的攻击伤害",
+          "name": "脚底抹油",
+          "desc": "移动速度增加大于100%时，受到伤害额外减少5%",
           "occupation": 2,
           "viewPos": {
-            "x": -300,
-            "y": 1280
-          },
-          "size": 2,
-          "icon": "✨",
-          "iconSrc": "talent/skill/baoxue",
-          "linkPoint": "1003006"
-        },
-        {
-          "id": "1003010",
-          "name": "极寒侵体",
-          "desc": "被冻结敌人的元素抗性会降低40%，持续6秒",
-          "occupation": 2,
-          "viewPos": {
-            "x": 300,
-            "y": 1280
+            "x": -240,
+            "y": 150
           },
           "size": 2,
           "icon": "✨",
           "iconSrc": "talent/skill/jihan",
+          "linkPoint": "1003006"
+        },
+        {
+          "id": "1003010",
+          "name": "偶尔漏电",
+          "desc": "攻击伤害击中时，有10%的几率触发10级[电圈]",
+          "occupation": 2,
+          "viewPos": {
+            "x": 0,
+            "y": 150
+          },
+          "size": 2,
+          "icon": "✨",
+          "iconSrc": "talent/skill/baoxue",
           "linkPoint": "1003004"
         },
         {
           "id": "1003012",
-          "name": "心眼",
+          "name": "上头",
           "desc": "10秒内连续释放4次攻击技能时获得[心眼]状态\\n[心眼]：攻击速度额外增加8%；技能范围额外增加8%，上限为3层，持续2秒",
           "occupation": 2,
           "viewPos": {
-            "x": 0,
-            "y": 1280
+            "x": 240,
+            "y": 150
           },
           "size": 2,
           "icon": "✨",
@@ -6519,12 +7467,12 @@ window.__AUTO_IMPORT_DATA__ = {
         },
         {
           "id": "1003014",
-          "name": "无心则利刃",
-          "desc": "心眼达到层数上限时，获得[巅峰]\\n[巅峰]:向前斩击造成1000%的攻击物理伤害，冷却时间5秒",
+          "name": "一刀999",
+          "desc": "心眼达到层数上限时，获得[巅峰]\\n[巅峰]:向前斩击造成999%的攻击物理伤害，冷却时间5秒",
           "occupation": 2,
           "viewPos": {
-            "x": 0,
-            "y": 1920
+            "x": 240,
+            "y": 450
           },
           "size": 2,
           "icon": "✨",
@@ -6555,7 +7503,7 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "id": "1008002",
           "name": "刺骨寒意",
-          "desc": "第一个技能的冻结积蓄值总增100%",
+          "desc": "第一个技能的冻结积蓄值总增100%，造成冻结的技能的冻结积蓄值同等作用于冻结时间",
           "occupation": 3,
           "viewPos": {
             "x": 0,
@@ -6611,7 +7559,7 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "id": "1008006",
           "name": "流风增击",
-          "desc": "对于移动速度的增加或减少的20% 同时作用于额外攻击伤害，最多额外+30% 攻击伤害",
+          "desc": "对满血敌人的暴击率提高100%，对低血敌人的暴击伤害提高100%，暴击可以终结",
           "occupation": 3,
           "viewPos": {
             "x": -300,
@@ -6667,7 +7615,7 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "id": "1008010",
           "name": "极寒侵体",
-          "desc": "被冻结敌人的元素抗性会降低40%，持续6秒",
+          "desc": "被冻结敌人的元素抗性会降低40%，持续6秒（周围敌人的冰冷抗性-20%，周围敌人减速20%）",
           "occupation": 3,
           "viewPos": {
             "x": 300,
@@ -6694,8 +7642,8 @@ window.__AUTO_IMPORT_DATA__ = {
         },
         {
           "id": "1008012",
-          "name": "心眼",
-          "desc": "10秒内连续释放4次攻击技能时获得[心眼]状态\\n[心眼]：攻击速度额外增加8%；技能范围额外增加8%，上限为3层，持续2秒",
+          "name": "在这停顿",
+          "desc": "每隔4秒有50%几率可以将附近未被敌人冻结0.6秒，冻结效果无视敌人的元素异常抵抗，冰冷伤害总增15%，无法被冰冻，无法被冰缓",
           "occupation": 3,
           "viewPos": {
             "x": 0,
@@ -6723,7 +7671,7 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "id": "1008014",
           "name": "无心则利刃",
-          "desc": "心眼达到层数上限时，获得[巅峰]\\n[巅峰]:向前斩击造成1000%的攻击物理伤害，冷却时间5秒",
+          "desc": "每拥有1层洞察注能，暴击率提高30%，伤害提高3%，洞察注能上限+1，",
           "occupation": 3,
           "viewPos": {
             "x": 0,
@@ -11057,10 +12005,6 @@ window.__AUTO_IMPORT_DATA__ = {
             {
               "id": "10118",
               "value": 0.3
-            },
-            {
-              "id": "10033",
-              "value": 0.25
             }
           ],
           "stunt": [],
@@ -11197,7 +12141,9 @@ window.__AUTO_IMPORT_DATA__ = {
               "value": 0.12
             }
           ],
-          "stunt": [],
+          "stunt": [
+            "2140000170"
+          ],
           "attr": [
             {
               "id": "10300",
@@ -11312,7 +12258,7 @@ window.__AUTO_IMPORT_DATA__ = {
             }
           ],
           "stunt": [
-            "2140000170"
+            "2140000160"
           ],
           "attr": [
             {
@@ -11674,5 +12620,5 @@ window.__AUTO_IMPORT_DATA__ = {
       ]
     }
   ],
-  "importTime": "2026-09-02T01:31:45.087Z"
+  "importTime": "2026-09-02T01:56:25.222Z"
 };
