@@ -6,10 +6,11 @@ cd /d "%~dp0.."
 echo ==================================================
 echo    Chronicle Data Sync Tool
 echo    Step 1: Pull data repo (chronicle-data)
-echo    Step 2: Copy local tables to data repo
+echo    Step 2: Copy local tables and convert data images
 echo    Step 3: Push data repo
-echo    Step 4: Parse data, sync icons, generate web data
-echo    Step 5: Push website repo
+echo    Step 4: Convert website images
+echo    Step 5: Parse data, sync icons, generate web data
+echo    Step 6: Push website repo
 echo ==================================================
 echo.
 
@@ -32,6 +33,10 @@ if not defined NODE_EXE (
 if not defined NODE_EXE (
     if exist "%USERPROFILE%\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe" set "NODE_EXE=%USERPROFILE%\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe"
 )
+
+rem 图片转换优先使用带 sharp 的工作区运行时
+set "IMAGE_NODE_EXE=%NODE_EXE%"
+if exist "%USERPROFILE%\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe" set "IMAGE_NODE_EXE=%USERPROFILE%\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe"
 
 if not defined NODE_EXE (
     echo [ERROR] Node.js not found!
@@ -81,7 +86,7 @@ if errorlevel 1 (
 git -C "%DATA_REPO%" config user.name "chronicle-bot"
 git -C "%DATA_REPO%" config user.email "2387316552@users.noreply.github.com"
 
-echo [Step 1/5] Pulling data repo...
+echo [Step 1/6] Pulling data repo...
 echo ------------------------------------------------
 cd /d "%DATA_REPO%"
 call :git_pull_retry
@@ -93,7 +98,7 @@ if errorlevel 1 (
 )
 echo.
 
-echo [Step 2/5] Copying data sources...
+echo [Step 2/6] Copying data sources and converting data images...
 echo ------------------------------------------------
 cd /d "%~dp0.."
 "%NODE_EXE%" tools\copy-data.js
@@ -104,9 +109,17 @@ if %errorlevel% neq 0 (
     pause
     exit /b 1
 )
+"%IMAGE_NODE_EXE%" tools\convert-images.js "%DATA_REPO%\icon"
+if %errorlevel% neq 0 (
+    echo.
+    echo [ERROR] Data image WebP conversion failed!
+    echo.
+    pause
+    exit /b 1
+)
 echo.
 
-echo [Step 3/5] Pushing data repo...
+echo [Step 3/6] Pushing data repo...
 echo ------------------------------------------------
 cd /d "%DATA_REPO%"
 git add -A
@@ -131,7 +144,20 @@ if errorlevel 1 (
 )
 echo.
 
-echo [Step 4/5] Importing data...
+echo [Step 4/6] Converting website images...
+echo ------------------------------------------------
+cd /d "%~dp0.."
+"%IMAGE_NODE_EXE%" tools\convert-images.js assets
+if %errorlevel% neq 0 (
+    echo.
+    echo [ERROR] Website image WebP conversion failed!
+    echo.
+    pause
+    exit /b 1
+)
+echo.
+
+echo [Step 5/6] Importing data...
 echo ------------------------------------------------
 cd /d "%~dp0.."
 "%NODE_EXE%" tools\import.js
@@ -144,7 +170,7 @@ if %errorlevel% neq 0 (
 )
 echo.
 
-echo [Step 5/5] Pushing website repo...
+echo [Step 6/6] Pushing website repo...
 echo ------------------------------------------------
 git config user.name "chronicle-bot"
 git config user.email "2387316552@users.noreply.github.com"

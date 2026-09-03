@@ -34,7 +34,7 @@
     right: 0;
     top: 0;
     bottom: 0;
-    background-image: url("../assets/town2.jpg");
+    background-image: url("../assets/town2.webp");
     background-size: contain;
     background-position: center 60px;
     background-repeat: no-repeat;
@@ -45,7 +45,7 @@
 
 /* 非首页: 通用底图 (透明度 30%, 其他逻辑与首页底图一致) */
 body:not([data-page="home"]) .background-image {
-    background-image: url("../assets/town-nonhome.png");
+    background-image: url("../assets/town-nonhome.webp");
     opacity: 0.3;
 }
 
@@ -3003,7 +3003,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url("../assets/talent-bg-character.png");
+    background-image: url("../assets/talent-bg-character.webp");
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;

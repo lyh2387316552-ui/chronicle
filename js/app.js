@@ -241,7 +241,7 @@ function renderSkillCard(skill, type) {
     const icon = getCategoryIcon(skill.category);
     const parsed = parseSkillId(skill.id);
     const iconHtml = skill.icon
-        ? `<span class="skill-icon" style="background:${color}20;color:${color}"><img class="card-icon" src="${DATA_BASE}icon/${skill.icon}.png" alt="" onerror="this.style.display='none'">${icon}</span>`
+        ? `<span class="skill-icon" style="background:${color}20;color:${color}"><img class="card-icon" src="${DATA_BASE}icon/${skill.icon}.webp" alt="" onerror="this.style.display='none'">${icon}</span>`
         : `<span class="skill-icon" style="background:${color}20;color:${color}">${icon}</span>`;
 
     // 非标准ID (如 5位的天赋特技 99998/99999) 不展示段位拆解
@@ -504,7 +504,7 @@ function openSkillDetail(id, type) {
     const modalBody = document.getElementById('modalBody');
     modalBody.innerHTML = `
         <div class="detail-header" style="border-bottom-color:${color}">
-            <div class="detail-icon" style="background:${color}20;color:${color};font-size:36px;width:64px;height:64px;display:flex;align-items:center;justify-content:center;border-radius:12px;position:relative;overflow:hidden">${skill.icon ? `<img class="card-icon" src="${DATA_BASE}icon/${skill.icon}.png" alt="" onerror="this.style.display='none'">` : ''}${icon}</div>
+            <div class="detail-icon" style="background:${color}20;color:${color};font-size:36px;width:64px;height:64px;display:flex;align-items:center;justify-content:center;border-radius:12px;position:relative;overflow:hidden">${skill.icon ? `<img class="card-icon" src="${DATA_BASE}icon/${skill.icon}.webp" alt="" onerror="this.style.display='none'">` : ''}${icon}</div>
             <div style="flex:1">
                 <h2 class="detail-name">
                     <input type="text" class="affix-edit-input affix-edit-name" value="${skill.name.replace(/"/g, '&quot;')}" oninput="onSkillEdit('${skill.id}', 'name', this.value)" placeholder="技能名称">
@@ -1828,7 +1828,7 @@ function renderEquipment(filteredData) {
         return `
             <div class="equipment-card" data-equipment-id="${eq.id}" onclick="openEquipmentDetail('${eq.id}')">
                 <div class="equipment-card-header">
-                    <span class="equipment-card-icon" style="background:${style.color}18">${eq.icon ? `<img class="card-icon" src="${DATA_BASE}icon/${eq.icon}.png" alt="" onerror="this.style.display='none'">` : ''}${style.icon}</span>
+                    <span class="equipment-card-icon" style="background:${style.color}18">${eq.icon ? `<img class="card-icon" src="${DATA_BASE}icon/${eq.icon}.webp" alt="" onerror="this.style.display='none'">` : ''}${style.icon}</span>
                     <div>
                         <h4 class="equipment-card-name">${eq.name}</h4>
                         <span class="equipment-card-id">${eq.id}</span>
@@ -1939,7 +1939,7 @@ function openEquipmentDetail(id) {
     const modalBody = document.getElementById('modalBody');
     modalBody.innerHTML = `
         <div class="detail-header" style="border-bottom-color:#9b59b6">
-            <div class="detail-icon" style="background:#9b59b620;color:#9b59b6;font-size:36px;width:64px;height:64px;display:flex;align-items:center;justify-content:center;border-radius:12px;position:relative;overflow:hidden">${eq.icon ? `<img class="card-icon" src="${DATA_BASE}icon/${eq.icon}.png" alt="" onerror="this.style.display='none'">` : ''}📦</div>
+            <div class="detail-icon" style="background:#9b59b620;color:#9b59b6;font-size:36px;width:64px;height:64px;display:flex;align-items:center;justify-content:center;border-radius:12px;position:relative;overflow:hidden">${eq.icon ? `<img class="card-icon" src="${DATA_BASE}icon/${eq.icon}.webp" alt="" onerror="this.style.display='none'">` : ''}📦</div>
             <div style="flex:1">
                 <h2 class="detail-name">${eq.name}</h2>
                 <div class="detail-type">
@@ -2061,7 +2061,7 @@ function renderGems(filteredData) {
             return `
                 <div class="equipment-card" data-gem-id="${gem.id}" onclick="openGemDetail('${gem.id}')" style="border-left-color:${style.color}">
                     <div class="equipment-card-header">
-                        <span class="equipment-card-icon" style="background:${style.color}18">${gem.icon ? `<img class="card-icon" src="${DATA_BASE}icon/${gem.icon}.png" alt="" onerror="this.style.display='none'">` : ''}${style.icon}</span>
+                        <span class="equipment-card-icon" style="background:${style.color}18">${gem.icon ? `<img class="card-icon" src="${DATA_BASE}icon/${gem.icon}.webp" alt="" onerror="this.style.display='none'">` : ''}${style.icon}</span>
                         <div>
                             <h4 class="equipment-card-name">${gem.name}</h4>
                             <span class="equipment-card-id">${gem.id}</span>
@@ -2175,7 +2175,7 @@ function openGemDetail(id) {
     const modalBody = document.getElementById('modalBody');
     modalBody.innerHTML = `
         <div class="detail-header" style="border-bottom-color:#9b59b6">
-            <div class="detail-icon" style="background:#9b59b620;color:#9b59b6;font-size:36px;width:64px;height:64px;display:flex;align-items:center;justify-content:center;border-radius:12px;position:relative;overflow:hidden">${gem.icon ? `<img class="card-icon" src="${DATA_BASE}icon/${gem.icon}.png" alt="" onerror="this.style.display='none'">` : ''}💎</div>
+            <div class="detail-icon" style="background:#9b59b620;color:#9b59b6;font-size:36px;width:64px;height:64px;display:flex;align-items:center;justify-content:center;border-radius:12px;position:relative;overflow:hidden">${gem.icon ? `<img class="card-icon" src="${DATA_BASE}icon/${gem.icon}.webp" alt="" onerror="this.style.display='none'">` : ''}💎</div>
             <div style="flex:1">
                 <h2 class="detail-name">${gem.name}</h2>
                 <div class="detail-type">
@@ -2328,7 +2328,7 @@ function renderCustomSkills(filteredData) {
             return `
                 <div class="equipment-card" data-custom-skill-id="${s.id}" onclick="openCustomSkillDetail('${s.id}')" style="border-left-color:${style.color}">
                     <div class="equipment-card-header">
-                        <span class="equipment-card-icon" style="background:${style.color}18">${s.icon ? `<img class="card-icon" src="${DATA_BASE}icon/${s.icon}.png" alt="" onerror="this.style.display='none'">` : ''}${style.icon}</span>
+                        <span class="equipment-card-icon" style="background:${style.color}18">${s.icon ? `<img class="card-icon" src="${DATA_BASE}icon/${s.icon}.webp" alt="" onerror="this.style.display='none'">` : ''}${style.icon}</span>
                         <div>
                             <h4 class="equipment-card-name">${s.name}</h4>
                             <span class="equipment-card-id">${s.id}</span>
@@ -2448,7 +2448,7 @@ function openCustomSkillDetail(id) {
     const modalBody = document.getElementById('modalBody');
     modalBody.innerHTML = `
         <div class="detail-header" style="border-bottom-color:#e67e22">
-            <div class="detail-icon" style="background:#e67e2220;color:#e67e22;font-size:36px;width:64px;height:64px;display:flex;align-items:center;justify-content:center;border-radius:12px;position:relative;overflow:hidden">${skill.icon ? `<img class="card-icon" src="${DATA_BASE}icon/${skill.icon}.png" alt="" onerror="this.style.display='none'">` : ''}🏹</div>
+            <div class="detail-icon" style="background:#e67e2220;color:#e67e22;font-size:36px;width:64px;height:64px;display:flex;align-items:center;justify-content:center;border-radius:12px;position:relative;overflow:hidden">${skill.icon ? `<img class="card-icon" src="${DATA_BASE}icon/${skill.icon}.webp" alt="" onerror="this.style.display='none'">` : ''}🏹</div>
             <div style="flex:1">
                 <h2 class="detail-name">${skill.name}</h2>
                 <div class="detail-type">
@@ -2952,7 +2952,7 @@ function renderOccupationCanvas(idx) {
         const sizeClass = p.size === 2 ? 'talent-point-large' : (p.size === 3 ? 'talent-point-xlarge' : '');
         const iconChar = p.icon || '⭐';
         const iconHtml = p.iconSrc
-            ? `<img class="talent-point-img" src="${DATA_BASE}icon/${p.iconSrc}.png" alt="${p.name}" onerror="this.style.display='none';this.nextSibling.style.display=''"><span class="talent-point-icon" style="display:none">${iconChar}</span>`
+            ? `<img class="talent-point-img" src="${DATA_BASE}icon/${p.iconSrc}.webp" alt="${p.name}" onerror="this.style.display='none';this.nextSibling.style.display=''"><span class="talent-point-icon" style="display:none">${iconChar}</span>`
             : `<span class="talent-point-icon">${iconChar}</span>`;
         const shortDesc = p.name || '';
         return `
@@ -2965,14 +2965,14 @@ function renderOccupationCanvas(idx) {
         `;
     }).join('');
 
-    // 职业底图配置: 职业名 → 底图路径 (未配置的职业使用默认 talent-bg-character.png)
+    // 职业底图配置: 职业名 → 底图路径 (未配置的职业使用默认 talent-bg-character.webp)
     const occupationBgMap = {
-        '幻影魔典': 'assets/talent-bg-huanying.png',
-        '巫术魔典': 'assets/talent-bg-wushu.png',
-        '剑客1': 'assets/talent-bg-jianke.png',
-        '冰刀': 'assets/talent-bg-bingdao.png',
-        '元素法杖': 'assets/talent-bg-yuansu.png',
-        '塑能法杖': 'assets/talent-bg-suneng.png'
+        '幻影魔典': 'assets/talent-bg-huanying.webp',
+        '巫术魔典': 'assets/talent-bg-wushu.webp',
+        '剑客1': 'assets/talent-bg-jianke.webp',
+        '冰刀': 'assets/talent-bg-bingdao.webp',
+        '元素法杖': 'assets/talent-bg-yuansu.webp',
+        '塑能法杖': 'assets/talent-bg-suneng.webp'
     };
     const bgImage = occupationBgMap[occ.name];
     const bgStyle = bgImage
@@ -2981,13 +2981,13 @@ function renderOccupationCanvas(idx) {
 
     canvasArea.innerHTML = `
         <div class="occupation-canvas-wrapper">
-            <img class="talent-frame-top" src="assets/talent-frame-top.png" alt="">
+            <img class="talent-frame-top" src="assets/talent-frame-top.webp" alt="">
             <div class="occupation-canvas" style="width:${canvasW}px;height:${canvasH}px">
                 <div class="talent-canvas-bg" style="${bgStyle}"></div>
                 ${linksSvg}
                 ${pointsHtml}
             </div>
-            <img class="talent-frame-bottom" src="assets/talent-frame-bottom.png" alt="">
+            <img class="talent-frame-bottom" src="assets/talent-frame-bottom.webp" alt="">
         </div>
     `;
 }
@@ -3144,9 +3144,9 @@ function filterPets() {
 
     grid.innerHTML = list.map(p => {
         const q = getPetQuality(p.quality);
-        const hasPic = p.pic ? DATA_BASE + 'icon/' + p.pic + '.png' : '';
-        const hasBg = p.getBg ? DATA_BASE + 'icon/' + p.getBg + '.png' : '';
-        const hasGetPic = p.getPic ? DATA_BASE + 'icon/' + p.getPic + '.png' : '';
+        const hasPic = p.pic ? DATA_BASE + 'icon/' + p.pic + '.webp' : '';
+        const hasBg = p.getBg ? DATA_BASE + 'icon/' + p.getBg + '.webp' : '';
+        const hasGetPic = p.getPic ? DATA_BASE + 'icon/' + p.getPic + '.webp' : '';
         const starCount = (p.stars || []).length;
         // 展示区: 仅当配置了立绘+背景时展示 (背景图铺底, 立绘图居中叠加在上, 点击查看原图)
         let showcaseHtml = '';

@@ -1294,7 +1294,7 @@ function syncIcons(importData, config) {
 
     let exist = 0, missing = 0;
     for (const src of refs.values()) {
-        const srcPath = path.join(iconRoot, src.replace(/\//g, path.sep) + '.png');
+        const srcPath = path.join(iconRoot, src.replace(/\//g, path.sep) + '.webp');
         if (fs.existsSync(srcPath)) {
             exist++;
         } else {

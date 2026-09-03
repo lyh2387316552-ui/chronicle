@@ -61,11 +61,14 @@ chronicle-main/
 
 1. 拉取数据仓库（不存在时自动克隆到项目同级 `../chronicle-data`）
 2. 将本地游戏引擎/策划导出的表格增量复制到数据仓库
-3. 推送数据仓库（图标/视频/表格更新）
-4. 解析数据仓库中的表格，生成网页数据
-5. 推送网站仓库，GitHub Pages 1~2 分钟后自动更新
+3. 将数据仓库中的 PNG/JPG 等图片自动转换为 WebP，并推送数据仓库（图标/视频/表格更新）
+4. 将网站本地素材转换为 WebP
+5. 解析数据仓库中的表格，生成网页数据
+6. 推送网站仓库，GitHub Pages 1~2 分钟后自动更新
 
 > 生成 `js/auto-import-data.js`，页面加载时自动读取。网页中的图标/视频运行时直接访问 [chronicle-data Pages](https://lyh2387316552-ui.github.io/chronicle-data/)。数据更新由 GitHub Actions 自动同步（每 10 分钟拉取数据仓库 → 生成 → 有变化才推送），维护者只需 push 数据仓库。
+
+> 图片资源统一使用 WebP。`tools/convert-images.js` 会在每次一键同步时增量转换新拉取的 PNG/JPG 等图片，只有 WebP 写入成功后才删除原文件。
 
 ---
 
