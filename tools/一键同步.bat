@@ -57,11 +57,9 @@ rem 固定 OpenSSL + HTTP/1.1，避免 Schannel/HTTP2 长连接被代理或线�
 set "GIT_HTTP_OPTS=-c http.sslBackend=openssl -c http.version=HTTP/1.1 -c http.maxRequests=1 -c http.lowSpeedLimit=0 -c http.lowSpeedTime=120"
 set "GIT_RETRY_MAX=5"
 
-rem === Git SSH 参数 ===
-rem 优先使用工作区中的 SSH 配置（443 + 系统代理）；不存在时使用用户默认 SSH 配置
-set "SSH_CONFIG=%~dp0..\..\work\chronicle-ssh-config"
-set "GIT_SSH_COMMAND=ssh"
-if exist "%SSH_CONFIG%" set GIT_SSH_COMMAND=ssh -F "%SSH_CONFIG%"
+rem === Git HTTPS 参数 ===
+rem 使用 HTTPS 协议，推送由 Trae 绑定 GitHub 自动处理凭据，无需额外配置
+set "GIT_SSH_COMMAND="
 
 rem Git 不会自动继承浏览器的 Windows 用户代理，运行时读取并复用它
 set "SYSTEM_PROXY_ENABLED="
@@ -213,7 +211,7 @@ exit /b 0
 set "GIT_RETRY=1"
 :git_clone_again
 echo [INFO] 正在克隆数据仓库（第 %GIT_RETRY%/%GIT_RETRY_MAX% 次）...
-git %GIT_HTTP_OPTS% clone git@github.com:lyh2387316552-ui/chronicle-data.git "%DATA_REPO%"
+git %GIT_HTTP_OPTS% clone https://github.com/lyh2387316552-ui/chronicle-data.git "%DATA_REPO%"
 if not errorlevel 1 exit /b 0
 if %GIT_RETRY% GEQ %GIT_RETRY_MAX% exit /b 1
 set /a GIT_WAIT=GIT_RETRY*GIT_RETRY+2
