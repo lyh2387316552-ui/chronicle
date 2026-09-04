@@ -2326,7 +2326,7 @@ function renderCustomSkills(filteredData) {
                         <div class="item-stats-cell"><span class="item-stats-label">技能ID</span><span class="item-stats-value">${s.id}</span></div>
                     </div>
                     ${renderSkillTags(s.tags)}
-                    ${s.desc ? `<p class="equipment-card-effect-desc" style="margin:4px 0;padding:4px 8px;background:#f8f8f8;border-radius:6px;font-size:12px;color:#666">${s.desc}</p>` : ''}
+                    ${s.desc ? `<p class="equipment-card-effect-desc" style="margin:4px 0;padding:4px 8px;background:#f8f8f8;border-radius:6px;font-size:12px;color:#666">${s.desc.replace(/</g, '&lt;').replace(/\n/g, '<br>')}</p>` : ''}
                     <div class="skill-video-section">
                         <div class="skill-video-title">🎬 技能演示</div>
                         ${videoHtml}

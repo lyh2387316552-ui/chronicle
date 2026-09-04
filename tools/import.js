@@ -963,6 +963,9 @@ function parseSkills(inputPath, skillMap, tagDict) {
     const skillCol = findCol(headers, ['skill', 'Skill', 'SKILL']);
     const stuntCol = findCol(headers, ['stunt', 'Stunt', 'STUNT']);
     const desc999Col = findCol(headers, ['desc999', 'Desc999', 'DESC999']);
+    const descCol = findCol(headers, ['desc', 'Desc', 'DESC']);
+    const buffDescCol = findCol(headers, ['buffDesc', 'BuffDesc', 'BUFFDESC']);
+    const descSpecialCol = findCol(headers, ['descSpecial', 'DescSpecial', 'DESCSPECIAL']);
 
     const skills = [];
     rows.forEach(row => {
@@ -973,13 +976,18 @@ function parseSkills(inputPath, skillMap, tagDict) {
 
         // 名称：优先取 desc999，否则从战斗数据映射中查找
         let name = desc999Col ? String(row[desc999Col] || '').trim() : '';
-        let desc = '';
+        // 技能描述：SkillActive 表 desc / buffDesc / descSpecial 三字段换行拼接
+        const descParts = [
+            descCol ? String(row[descCol] || '').trim() : '',
+            buffDescCol ? String(row[buffDescCol] || '').trim() : '',
+            descSpecialCol ? String(row[descSpecialCol] || '').trim() : ''
+        ].filter(v => v !== '');
+        let desc = descParts.join('\n');
         let type = '未分类';
 
         const refData = skillMap[refId];
         if (refData) {
             if (!name) name = refData.name || '';
-            desc = refData.desc || '';
             type = (refId[0] === '1') ? '主动技能' : '被动技能';
         }
         if (!name) name = '未命名技能_' + refId;
