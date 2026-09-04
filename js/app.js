@@ -2442,8 +2442,6 @@ function toggleCustomSkillTypeGroup(type) {
 function openCustomSkillDetail(id) {
     const skill = customSkillData.find(s => s.id === id);
     if (!skill) return;
-    if (!skill.effects) skill.effects = [];
-    const effects = skill.effects;
 
     const modalBody = document.getElementById('modalBody');
     modalBody.innerHTML = `
@@ -2466,33 +2464,6 @@ function openCustomSkillDetail(id) {
             <p class="detail-desc-text">${skill.desc.replace(/</g, '&lt;').replace(/\n/g, '<br>')}</p>
         </div>
         ` : ''}
-
-        <div class="detail-section">
-            <h3 class="detail-section-title">关联效果（${effects.filter(e => e.refId).length} 条）</h3>
-            <div id="csEffectList">
-            ${effects.length === 0 ? '<p class="empty-hint">暂无关联效果</p>' : ''}
-            ${effects.map((eff, idx) => {
-                const refData = eff.refId ? findRefData(eff.refId) : null;
-                const typeColor = refData ? (refData.type === 'active-skill' ? '#e74c3c' : refData.type === 'passive-skill' ? '#3498db' : refData.type === 'attribute' ? '#27ae60' : '#f39c12') : '#bbb';
-                const typeLabel = refData ? (refData.type === 'active-skill' ? '主动技能' : refData.type === 'passive-skill' ? '被动技能' : refData.type === 'attribute' ? '属性效果' : '词缀') : '待填写';
-                return `
-                    <div class="equipment-effect-item" style="border-left-color:${typeColor}">
-                        <div class="equipment-effect-header">
-                            <span class="effect-type-badge" style="background:${typeColor}20;color:${typeColor}">${typeLabel}</span>
-                            <span class="effect-ref-id">${eff.refId || '—'}</span>
-                        </div>
-                        ${refData ? `
-                            <div class="equipment-effect-info">
-                                <span class="equipment-effect-name">${refData.name}</span>
-                                <span class="equipment-effect-cat">${refData.category} · ${refData.subCategory}</span>
-                                <p class="equipment-effect-desc">${refData.desc}</p>
-                            </div>
-                        ` : (eff.refId ? '<div class="equipment-effect-error">⚠ 未找到ID: ' + eff.refId + '</div>' : '')}
-                    </div>
-                `;
-            }).join('')}
-            </div>
-        </div>
 
         <div class="equipment-form-actions">
             <button class="equipment-btn equipment-btn-cancel" onclick="closeModal()">关闭</button>
