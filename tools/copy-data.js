@@ -28,6 +28,7 @@ const MAPPINGS = [
     { source: 'E:\\策划\\1.表格目录\\XLS表格\\技能养成相关.xlsx', target: '技能养成相关.xlsx' },
     { source: 'E:\\策划\\1.表格目录\\XLS表格\\战斗技能相关表.xlsx', target: '战斗技能相关表.xlsx' },
     { source: 'E:\\策划\\1.表格目录\\XLS表格\\魔宠表.xlsx', target: '魔宠表.xlsx' },
+    { source: 'E:\\策划\\1.表格目录\\XLS表格\\战斗技能等级表.xlsx', target: '战斗技能等级表.xlsx' },
 ];
 
 // 递归收集文件夹下的所有文件
