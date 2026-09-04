@@ -34,22 +34,14 @@ jobs:
       - name: Generate web data from data repo
         run: node tools/import.js
 
-      - name: Commit and push if data changed
+      - name: 检查数据是否有待同步变化（云端已停用推送，由本地"一键同步.bat"负责上传）
         run: |
-          git config user.name "chronicle-bot"
-          git config user.email "2387316552@users.noreply.github.com"
           git add js/auto-import-data.js
           if git diff --cached --quiet; then
-            echo "== 数据无变化, 跳过提交 =="
+            echo "== 数据无变化 =="
           else
-            # 若仅生成时间戳变化则跳过 (避免无意义空提交)
-            CHANGED=$(git diff --cached -- js/auto-import-data.js | grep -v '^[+-]// 生成时间' | grep -v '^[+-]  "importTime"' | grep -c '^[+-]' || true)
-            if [ "$CHANGED" = "0" ]; then
-              git reset -q
-              echo "== 仅生成时间戳变化, 跳过提交 =="
-            else
-              git commit -m "sync: 数据仓库数据自动同步"
-              git push
-              echo "== 数据已同步并推送 =="
-            fi
+            echo "== 检测到数据变化（仅报告，不推送）=="
+            echo "   请运行本地 tools/一键同步.bat 完成上传"
+            git diff --cached --stat
+            git reset -q
           fi
