@@ -27,26 +27,26 @@
     box-sizing: border-box;
 }
 
-/* ==================== Background Image ==================== */
+/* ==================== 全局背景图 (仅非首页使用: 固定淡显) ==================== */
 .background-image {
     position: fixed;
     left: 0;
     right: 0;
     top: 0;
     bottom: 0;
-    background-image: url("../assets/town2.webp");
+    background-image: url("../assets/town-nonhome.webp");
     background-size: contain;
     background-position: center 60px;
     background-repeat: no-repeat;
     filter: brightness(0.85);
-    opacity: 0.7;
+    opacity: 0.3;
     z-index: -1;
+    display: none;
 }
 
-/* 非首页: 通用底图 (透明度 30%, 其他逻辑与首页底图一致) */
+/* 非首页: 显示淡显底图 */
 body:not([data-page="home"]) .background-image {
-    background-image: url("../assets/town-nonhome.webp");
-    opacity: 0.3;
+    display: block;
 }
 
 body {
@@ -232,6 +232,16 @@ body {
     padding: 24px 32px;
 }
 
+/* 首页: 去掉内边距让首屏背景图全出血, 向下区域为黑底 */
+body[data-page="home"] .main-content {
+    padding: 0;
+    background-color: #000;
+}
+
+body[data-page="home"] .home-modules {
+    padding: 0 32px 24px;
+}
+
 .page {
     display: none;
 }
@@ -271,34 +281,91 @@ body {
     color: #fff;
 }
 
-/* ==================== Hero Banner ==================== */
+/* ==================== Hero Banner (全屏首屏, 参考 Dota2 首页) ==================== */
 .hero-banner {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 40px 32px;
+    position: relative;
+    min-height: calc(100vh - var(--nav-height));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    margin-bottom: 32px;
-    backdrop-filter: blur(8px);
+    padding: 48px 32px 72px;
+    margin-bottom: 40px;
+    border: none;
+    border-radius: 0;
+    overflow: hidden;
+}
+
+/* 首屏背景图 (锁定首屏, 随滚动上移, 向下区域为黑底) */
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("../assets/town2.webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: brightness(0.92);
+    z-index: 0;
+    will-change: transform;
+    transform-origin: center center;
+    animation: heroKenBurns 26s ease-in-out infinite alternate;
+}
+
+@keyframes heroKenBurns {
+    from { transform: scale(1) translateY(0); }
+    to   { transform: scale(1.14) translateY(-12px); }
+}
+
+/* 边缘柔化: 顶部轻微压暗保证可读性, 底部渐隐融入黑底, 消除生硬边缘 */
+.hero-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    background: linear-gradient(to bottom,
+        rgba(0,0,0,0.32) 0%,
+        rgba(0,0,0,0.06) 28%,
+        rgba(0,0,0,0.06) 58%,
+        rgba(0,0,0,0.95) 100%);
+    pointer-events: none;
+}
+
+/* hero 内容浮于背景与渐变之上 */
+.hero-title,
+.hero-desc,
+.hero-stats {
+    position: relative;
+    z-index: 2;
 }
 
 .hero-title {
-    font-size: 32px;
-    font-weight: 700;
-    color: var(--accent);
-    margin-bottom: 8px;
+    font-size: clamp(36px, 6vw, 60px);
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: 3px;
+    margin-bottom: 16px;
+    text-shadow: 0 4px 30px rgba(0,0,0,0.85);
 }
 
 .hero-desc {
-    color: var(--text-secondary);
-    font-size: 15px;
-    margin-bottom: 32px;
+    color: #efe7d6;
+    font-size: clamp(15px, 2.2vw, 20px);
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+    text-shadow: 0 2px 16px rgba(0,0,0,0.85);
 }
 
 .hero-stats {
     display: flex;
     justify-content: center;
-    gap: 40px;
+    gap: 16px;
     flex-wrap: wrap;
 }
 
@@ -306,18 +373,54 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-width: 116px;
+    padding: 14px 20px;
+    background: rgba(0,0,0,0.35);
+    border: 1px solid var(--border);
+    border-radius: 0px 14px;
+    backdrop-filter: blur(6px);
 }
 
 .hero-stat-num {
-    font-size: 32px;
+    font-size: 30px;
     font-weight: 700;
     color: var(--accent-light);
+    text-shadow: 0 2px 10px rgba(0,0,0,0.7);
 }
 
 .hero-stat-label {
     font-size: 13px;
     color: var(--text-muted);
     margin-top: 4px;
+}
+
+/* 向下滚动提示 */
+.hero-scroll-hint {
+    position: absolute;
+    z-index: 2;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    color: rgba(255,255,255,0.85);
+    font-size: 12px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    animation: heroBounce 2.2s ease-in-out infinite;
+}
+
+.hero-scroll-hint .scroll-arrow {
+    font-size: 22px;
+    line-height: 1;
+}
+
+@keyframes heroBounce {
+    0%, 100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, 8px); }
 }
 
 /* ==================== Module Cards ==================== */

@@ -2044,42 +2044,18 @@ function renderGems(filteredData) {
         const style = rankStyles[rank] || rankStyles['0'];
         const gems = rankGroups[rank];
         const cards = gems.map(gem => {
-            const effects = (gem.effects || []).filter(e => e.refId);
-            const effectCount = effects.length;
-            const effectItems = effects.map(eff => {
-                const refData = findRefData(eff.refId);
-                const typeColor = refData ? (refData.type === 'active-skill' ? '#e74c3c' : refData.type === 'passive-skill' ? '#3498db' : refData.type === 'attribute' ? '#27ae60' : '#f39c12') : '#e74c3c';
-                const typeLabel = refData ? (refData.type === 'active-skill' ? '主动' : refData.type === 'passive-skill' ? '被动' : refData.type === 'attribute' ? '属性' : '词缀') : '未知';
-                return `
-                    <div class="equipment-card-effect" style="border-left-color:${typeColor}">
-                        <span class="equipment-card-effect-type" style="background:${typeColor}20;color:${typeColor}">${typeLabel}</span>
-                        <span class="equipment-card-effect-name">${refData ? refData.name : eff.refId}</span>
-                        <p class="equipment-card-effect-desc">${refData ? refData.desc : '⚠ 未找到ID: ' + eff.refId}</p>
-                    </div>
-                `;
-            }).join('');
             return `
                 <div class="equipment-card" data-gem-id="${gem.id}" onclick="openGemDetail('${gem.id}')" style="border-left-color:${style.color}">
                     <div class="equipment-card-header">
                         <span class="equipment-card-icon" style="background:${style.color}18">${gem.icon ? `<img class="card-icon" src="${DATA_BASE}icon/${gem.icon}.webp" alt="" onerror="this.style.display='none'">` : ''}${style.icon}</span>
                         <div>
                             <h4 class="equipment-card-name">${gem.name}</h4>
-                            <span class="equipment-card-id">${gem.id}</span>
                         </div>
                     </div>
-                    <span class="equipment-card-type" style="color:${style.color}">${gem.rank ? gem.rank + ' 阶' : '未分类'}</span>
                     <div class="item-stats">
                         <div class="item-stats-cell"><span class="item-stats-label">类型</span><span class="item-stats-value">${gem.type || '辅助宝石'}</span></div>
-                        <div class="item-stats-cell"><span class="item-stats-label">效果</span><span class="item-stats-value">${effectCount} 条</span></div>
-                        <div class="item-stats-cell"><span class="item-stats-label">宝石ID</span><span class="item-stats-value">${gem.id}</span></div>
                     </div>
                     ${gem.desc ? `<p class="equipment-card-effect-desc" style="margin:4px 0;padding:4px 8px;background:#f8f8f8;border-radius:6px;font-size:12px;color:#666">${gem.desc}</p>` : ''}
-                    <div class="equipment-card-effects">
-                        <span class="equipment-effect-count">关联效果 (${effectCount} 条)</span>
-                        <div class="equipment-card-effect-list">
-                            ${effectItems || '<p class="equipment-card-effect-empty">暂无关联效果</p>'}
-                        </div>
-                    </div>
                 </div>
             `;
         }).join('');
@@ -2169,8 +2145,6 @@ function updateGemRankFilter() {
 function openGemDetail(id) {
     const gem = gemData.find(g => g.id === id);
     if (!gem) return;
-    if (!gem.effects) gem.effects = [];
-    const effects = gem.effects;
 
     const modalBody = document.getElementById('modalBody');
     modalBody.innerHTML = `
@@ -2193,33 +2167,6 @@ function openGemDetail(id) {
             <p class="detail-desc-text">${gem.desc.replace(/</g, '&lt;').replace(/\n/g, '<br>')}</p>
         </div>
         ` : ''}
-
-        <div class="detail-section">
-            <h3 class="detail-section-title">关联效果（${effects.filter(e => e.refId).length} 条）</h3>
-            <div id="gemEffectList">
-            ${effects.length === 0 ? '<p class="empty-hint">暂无关联效果</p>' : ''}
-            ${effects.map((eff, idx) => {
-                const refData = eff.refId ? findRefData(eff.refId) : null;
-                const typeColor = refData ? (refData.type === 'active-skill' ? '#e74c3c' : refData.type === 'passive-skill' ? '#3498db' : refData.type === 'attribute' ? '#27ae60' : '#f39c12') : '#bbb';
-                const typeLabel = refData ? (refData.type === 'active-skill' ? '主动技能' : refData.type === 'passive-skill' ? '被动技能' : refData.type === 'attribute' ? '属性效果' : '词缀') : '待填写';
-                return `
-                    <div class="equipment-effect-item" style="border-left-color:${typeColor}">
-                        <div class="equipment-effect-header">
-                            <span class="effect-type-badge" style="background:${typeColor}20;color:${typeColor}">${typeLabel}</span>
-                            <span class="effect-ref-id">${eff.refId || '—'}</span>
-                        </div>
-                        ${refData ? `
-                            <div class="equipment-effect-info">
-                                <span class="equipment-effect-name">${refData.name}</span>
-                                <span class="equipment-effect-cat">${refData.category} · ${refData.subCategory}</span>
-                                <p class="equipment-effect-desc">${refData.desc}</p>
-                            </div>
-                        ` : (eff.refId ? '<div class="equipment-effect-error">⚠ 未找到ID: ' + eff.refId + '</div>' : '')}
-                    </div>
-                `;
-            }).join('')}
-            </div>
-        </div>
     `;
     document.getElementById('skillModal').classList.add('active');
 }
@@ -2317,13 +2264,10 @@ function renderCustomSkills(filteredData) {
                         <span class="equipment-card-icon" style="background:${style.color}18">${s.icon ? `<img class="card-icon" src="${DATA_BASE}icon/${s.icon}.webp" alt="" onerror="this.style.display='none'">` : ''}${style.icon}</span>
                         <div>
                             <h4 class="equipment-card-name">${s.name}</h4>
-                            <span class="equipment-card-id">${s.id}</span>
                         </div>
                     </div>
-                    <span class="equipment-card-type">${s.type || '未分类'}</span>
                     <div class="item-stats">
                         <div class="item-stats-cell"><span class="item-stats-label">类型</span><span class="item-stats-value">${s.type || '未分类'}</span></div>
-                        <div class="item-stats-cell"><span class="item-stats-label">技能ID</span><span class="item-stats-value">${s.id}</span></div>
                     </div>
                     ${renderSkillTags(s.tags)}
                     ${s.desc ? `<p class="equipment-card-effect-desc" style="margin:4px 0;padding:4px 8px;background:#f8f8f8;border-radius:6px;font-size:12px;color:#666">${s.desc.replace(/</g, '&lt;').replace(/\n/g, '<br>')}</p>` : ''}

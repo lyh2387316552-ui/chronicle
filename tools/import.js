@@ -949,6 +949,70 @@ function parseSkillTagDict(inputPath) {
     return dict;
 }
 
+// 伤害类型顺序 (对应 skillDmgBase 的 5 段: 物理|火焰|冰冷|闪电|混沌)
+const DMG_TYPE_NAMES = ['物理伤害', '火焰伤害', '冰冷伤害', '闪电伤害', '混沌伤害'];
+
+// 倍率 → 百分比字符串 (0.41 → "41", 0.288 → "28.8")
+function fmtPct(v) {
+    const pct = Math.round(v * 1000) / 10;
+    return String(pct);
+}
+
+// 用 shootAmmo 分组 + 子弹伤害映射 填充描述中的 {N} 占位符
+function fillShootPlaceholders(text, ammoGroups, ammoDmgMap) {
+    if (!text) return text;
+    return text.replace(/\{(\d+)\}/g, (m, idxStr) => {
+        const idx = parseInt(idxStr, 10);
+        const group = ammoGroups[idx];
+        if (!group || !Array.isArray(group) || group.length === 0) return m;
+        const sum = [0, 0, 0, 0, 0];
+        group.forEach(ammoId => {
+            const base = ammoDmgMap[String(ammoId)];
+            if (base && base.length === 5) base.forEach((v, i) => { sum[i] += v; });
+        });
+        const parts = [];
+        sum.forEach((v, i) => { if (v !== 0) parts.push(fmtPct(v) + '%' + DMG_TYPE_NAMES[i]); });
+        return parts.length ? parts.join('和') : m;
+    });
+}
+
+// 解析 shootAmmo 字段 ([[子弹,子弹],[子弹]] 的 JSON 数组结构) → 分组子弹ID数组
+function parseShootAmmo(raw) {
+    if (raw == null) return [];
+    const s = String(raw).trim();
+    if (!s) return [];
+    try {
+        const parsed = JSON.parse(s);
+        if (!Array.isArray(parsed)) return [];
+        return parsed.map(g => (Array.isArray(g) ? g : [g]).map(x => String(x).trim()).filter(Boolean));
+    } catch (e) {
+        return [];
+    }
+}
+
+// BuffLevel 值格式化: showType 1=整数, 2=百分比整数(0.1→10%), 3=百分比小数2位(0.1→10.00%)
+function fmtBuffValue(v, showType) {
+    const st = parseInt(showType, 10);
+    if (st === 2) return String(Math.round(v * 100)) + '%';
+    if (st === 3) return (v * 100).toFixed(2) + '%';
+    return String(Math.round(v)); // 1 或未知 → 整数
+}
+
+// 用 BuffLevel 的 showType + affixValue 填充 buff 描述中的 {N} 占位符
+function fillBuffPlaceholders(desc, showTypes, affixValues) {
+    if (!desc || !Array.isArray(affixValues)) return desc;
+    return desc.replace(/\{(\d+)\}/g, (m, idxStr) => {
+        const idx = parseInt(idxStr, 10);
+        const group = affixValues[idx];
+        if (!Array.isArray(group) || group.length === 0) return m;
+        const v = Number(group[0]);
+        if (isNaN(v)) return m;
+        const st = (Array.isArray(showTypes) && Array.isArray(showTypes[idx]) && showTypes[idx].length)
+            ? showTypes[idx][0] : 1;
+        return fmtBuffValue(v, st);
+    });
+}
+
 function parseSkills(inputPath, skillMap, tagDict) {
     console.log('  📖 解析技能库(SkillActive)...');
     let filePath = inputPath;
@@ -960,12 +1024,62 @@ function parseSkills(inputPath, skillMap, tagDict) {
     const { headers, rows, sheetName } = readSheetByName(filePath, ['SkillActive', '技能']);
     console.log('     子表:', sheetName, '  行数:', rows.length);
 
+    // 加载 BuffLevel 映射 (战斗技能等级表.xlsx): buffId → 描述 (buffDesc 字段存的是 buffId)
+    const buffDescMap = {};
+    const dataDir = path.dirname(filePath);
+    const buffFp = findDataFile(dataDir, ['.xlsx', '.xls', '.csv'], ['战斗技能等级表', '等级表']);
+    if (buffFp) {
+        const buffSheet = readSheetByName(buffFp, ['BuffLevel', 'buff']);
+        const buffIdCol = findCol(buffSheet.headers, ['buffId.p', 'buffId', 'BuffId']);
+        const buffLvCol = findCol(buffSheet.headers, ['level.p', 'level', 'Level']);
+        const buffDescTextCol = findCol(buffSheet.headers, ['desc', 'Desc', 'DESC']);
+        const buffShowTypeCol = findCol(buffSheet.headers, ['showType', 'ShowType', 'SHOWTYPE']);
+        const buffAffixCol = findCol(buffSheet.headers, ['affixValue', 'AffixValue', 'AFFIXVALUE']);
+        const BUFF_LEVEL = '20'; // 统一默认展示20级的数值
+        buffSheet.rows.forEach(r => {
+            const bid = buffIdCol ? String(r[buffIdCol] || '').trim() : '';
+            const blv = buffLvCol ? String(r[buffLvCol] || '').trim() : '';
+            if (blv !== BUFF_LEVEL) return;
+            const bdesc = buffDescTextCol ? String(r[buffDescTextCol] || '').trim() : '';
+            if (!bid || !bdesc || buffDescMap[bid]) return;
+            let showTypes = [], affixValues = [];
+            try { showTypes = JSON.parse(String(r[buffShowTypeCol] || '[]')); } catch (e) {}
+            try { affixValues = JSON.parse(String(r[buffAffixCol] || '[]')); } catch (e) {}
+            buffDescMap[bid] = { desc: bdesc, showTypes, affixValues };
+        });
+        console.log('     ✓ BuffLevel 映射:', Object.keys(buffDescMap).length, '条');
+    } else {
+        console.log('  ⚠️ 未找到战斗技能等级表，buffDesc 将跳过映射');
+    }
+
+    // 加载 ShootAmmoLevel 映射 (战斗技能等级表.xlsx): 子弹ID → 20级 skillDmgBase (物理|火焰|冰冷|闪电|混沌 5段伤害率)
+    const ammoDmgMap = {};
+    if (buffFp) {
+        const ammoSheet = readSheetByName(buffFp, ['ShootAmmoLevel', 'ShootAmmo']);
+        const ammoIdCol = findCol(ammoSheet.headers, ['shootAmmoId.p', 'shootAmmoId', 'ShootAmmoId']);
+        const ammoLvCol = findCol(ammoSheet.headers, ['level.p', 'level', 'Level']);
+        const ammoDmgCol = findCol(ammoSheet.headers, ['skillDmgBase', 'SkillDmgBase', 'SKILLDMGBASE']);
+        const SEEN_LEVEL = '20'; // 统一默认展示20级的数值
+        ammoSheet.rows.forEach(r => {
+            const aid = ammoIdCol ? String(r[ammoIdCol] || '').trim() : '';
+            const lv = ammoLvCol ? String(r[ammoLvCol] || '').trim() : '';
+            if (lv !== SEEN_LEVEL) return;
+            const raw = ammoDmgCol ? String(r[ammoDmgCol] || '').trim() : '';
+            if (!aid || !raw) return;
+            const arr = raw.split('|').map(v => parseFloat(v) || 0);
+            if (arr.length !== 5) return;
+            if (!ammoDmgMap[aid]) ammoDmgMap[aid] = arr;
+        });
+        console.log('     ✓ ShootAmmoLevel 20级 映射:', Object.keys(ammoDmgMap).length, '个子弹');
+    }
+
     const skillCol = findCol(headers, ['skill', 'Skill', 'SKILL']);
     const stuntCol = findCol(headers, ['stunt', 'Stunt', 'STUNT']);
     const desc999Col = findCol(headers, ['desc999', 'Desc999', 'DESC999']);
     const descCol = findCol(headers, ['desc', 'Desc', 'DESC']);
+    const shootAmmoCol = findCol(headers, ['shootAmmo', 'ShootAmmo', 'SHOOTAMMO']);
     const buffDescCol = findCol(headers, ['buffDesc', 'BuffDesc', 'BUFFDESC']);
-    const descSpecialCol = findCol(headers, ['descSpecial', 'DescSpecial', 'DESCSPECIAL']);
+    const occupationCol = findCol(headers, ['occupation', 'Occupation', 'OCCUPATION']);
 
     const skills = [];
     rows.forEach(row => {
@@ -974,14 +1088,40 @@ function parseSkills(inputPath, skillMap, tagDict) {
         const refId = cleanNum(skillId) || cleanNum(stuntId);
         if (!refId) return;
 
+        // occupation 为空的技能不在技能库展示
+        const occupation = occupationCol ? String(row[occupationCol] || '').trim() : '';
+        if (occupation === '') return;
+
         // 名称：优先取 desc999，否则从战斗数据映射中查找
         let name = desc999Col ? String(row[desc999Col] || '').trim() : '';
-        // 技能描述：SkillActive 表 desc / buffDesc / descSpecial 三字段换行拼接
+        // 技能描述：SkillActive 表 desc / buffDesc 两字段换行拼接
+        // buffDesc 存的是 buffId，映射到 BuffLevel 表的 desc
+        // 数据源单元格内的字面 \n 统一转为真实换行符
+        let buffDescText = '';
+        if (buffDescCol) {
+            const buffRaw = String(row[buffDescCol] || '').trim();
+            if (buffRaw) {
+                buffDescText = buffRaw.split(/[|,;，；\s]+/).filter(Boolean)
+                    .map(bid => {
+                        const b = buffDescMap[bid];
+                        if (!b || !b.desc) return '';
+                        return fillBuffPlaceholders(b.desc, b.showTypes, b.affixValues);
+                    })
+                    .filter(t => t !== '')
+                    .join('\n');
+            }
+        }
+        // desc 占位符: shootAmmo 分组 → 20级子弹伤害率求和填充 {0} {1} ...
+        let descText = descCol ? String(row[descCol] || '').trim() : '';
+        if (descText) {
+            const ammoGroups = parseShootAmmo(shootAmmoCol ? row[shootAmmoCol] : '');
+            descText = fillShootPlaceholders(descText, ammoGroups, ammoDmgMap);
+        }
         const descParts = [
-            descCol ? String(row[descCol] || '').trim() : '',
-            buffDescCol ? String(row[buffDescCol] || '').trim() : '',
-            descSpecialCol ? String(row[descSpecialCol] || '').trim() : ''
-        ].filter(v => v !== '');
+            descText,
+            buffDescText
+        ].map(v => v.replace(/\\n/g, '\n'))
+         .filter(v => v !== '');
         let desc = descParts.join('\n');
         let type = '未分类';
 

@@ -8,7 +8,7 @@
     <meta http-equiv="Expires" content="0">
     <title>古荒大陆编年史</title>
     <link rel="icon" type="image/webp" href="assets/logo.webp">
-    <link rel="stylesheet" href="css/style.css?v=67">
+    <link rel="stylesheet" href="css/style.css?v=70">
 </head>
 <body>
     <div class="background-image"></div>
@@ -61,6 +61,7 @@
             <!-- Home Page -->
             <div class="page active" id="page-home">
                 <div class="hero-banner">
+                    <div class="hero-bg"></div>
                     <h2 class="hero-title">欢迎来到古荒大陆</h2>
                     <p class="hero-desc">游戏数据百科全书 · 技能 · 词缀 · 装备</p>
                     <div class="hero-stats">
@@ -84,6 +85,10 @@
                             <span class="hero-stat-num" id="heroPet">0</span>
                             <span class="hero-stat-label">魔宠数量</span>
                         </div>
+                    </div>
+                    <div class="hero-scroll-hint" onclick="document.querySelector('.main-content').scrollTo({top:this.closest('.hero-banner').offsetHeight, behavior:'smooth'})">
+                        <span class="scroll-arrow">⌄</span>
+                        <span>向下探索</span>
                     </div>
                 </div>
 
