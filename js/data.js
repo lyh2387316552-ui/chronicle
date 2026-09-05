@@ -557,6 +557,9 @@ function findRefData(refId) {
                     tags: skill.tags || null,
                     icon: skill.icon || '',
                     effects: skill.effects || [],
+                    skillCd: skill.skillCd !== undefined && skill.skillCd !== null ? skill.skillCd : null,
+                    recourceType: skill.recourceType !== undefined && skill.recourceType !== null ? skill.recourceType : null,
+                    recourceConsume: skill.recourceConsume !== undefined && skill.recourceConsume !== null ? skill.recourceConsume : null,
                     isNew: true,
                     source: 'sync',
                     createdAt: new Date().toISOString()

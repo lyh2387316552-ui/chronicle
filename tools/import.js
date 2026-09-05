@@ -68,6 +68,26 @@ function cleanNum(v) {
     return String(v).replace(/\.0+$/, '').trim();
 }
 
+// 解析数值单元格 (支持 "[2]" 数组格式 / "1|2" 分隔格式 / 单个数值)
+function parseNumValue(v) {
+    if (v === undefined || v === null) return null;
+    const s = String(v).trim();
+    if (s === '') return null;
+    if (s.startsWith('[')) {
+        try {
+            const arr = JSON.parse(s);
+            if (Array.isArray(arr) && arr.length) {
+                const n = Number(arr[0]);
+                return isNaN(n) ? null : n;
+            }
+            return null;
+        } catch (e) { /* fallthrough */ }
+    }
+    const first = s.split(/[|,;，；\s]+/)[0];
+    const n = Number(first);
+    return isNaN(n) ? null : n;
+}
+
 function findCol(headers, names) {
     for (const n of names) {
         const idx = headers.findIndex(h => h === n || h.toLowerCase() === n.toLowerCase());
@@ -498,10 +518,33 @@ function parseSkillFolder(folderPath, type) {
         }
     });
 
+    // 读取技能冷却时间 (CD-<sid> 文件: skillCd1/skillCd2, 单位毫秒)
+    if (type === 'skill') {
+        const cdFiles = findFilesRecursive(folderPath, 'CD-');
+        cdFiles.forEach(filePath => {
+            try {
+                const fileName = path.basename(filePath);
+                const sid = (fileName.match(/CD-(\d+)/) || [])[1] || '';
+                if (!sid || sid === '0') return;
+                const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+                let skillCd = null;
+                if (data.skillCd1 !== undefined && data.skillCd1 !== null && data.skillCd1 !== '') skillCd = Number(data.skillCd1);
+                else if (data.skillCd2 !== undefined && data.skillCd2 !== null && data.skillCd2 !== '') skillCd = Number(data.skillCd2);
+                if (skillCd !== null && !isNaN(skillCd)) {
+                    if (!result[sid]) result[sid] = { name: '', desc: '' };
+                    result[sid].skillCd = skillCd;
+                }
+            } catch (err) {
+                // 忽略解析错误
+            }
+        });
+        console.log('     CD 冷却文件:', cdFiles.length, '个');
+    }
+
     return result;
 }
 
-function buildSkillObject(sid, name, desc, type, mainTag, normalTag, tagDict, icon) {
+function buildSkillObject(sid, name, desc, type, mainTag, normalTag, tagDict, icon, skillCd) {
     const tags = {
         main: mainTag !== undefined && mainTag !== null ? String(mainTag).trim() : null,
         normal: normalTag || []
@@ -521,7 +564,7 @@ function buildSkillObject(sid, name, desc, type, mainTag, normalTag, tagDict, ic
         const category = catMap[bc] || '其他技能';
         const subMap = { '1': '战斗攻击', '2': '法术释放', '4': '增益辅助' };
         const subCategory = subMap[c] || '其他';
-        return { id: sid, name: name || '未命名技能', category, subCategory, isNew: false, description: desc || '', tags: tags, tagsText: tagsText, icon: icon || '' };
+        return { id: sid, name: name || '未命名技能', category, subCategory, isNew: false, description: desc || '', tags: tags, tagsText: tagsText, icon: icon || '', skillCd: skillCd !== undefined && skillCd !== null ? skillCd : null };
     } else {
         const a = sid[0], b = sid[1] || '';
         let category = '其他特技';
@@ -536,7 +579,7 @@ function buildSkillObject(sid, name, desc, type, mainTag, normalTag, tagDict, ic
         const c = sid[2] || '';
         const subMap = { '1': '攻击', '2': '法术', '4': '增益', '5': '特殊' };
         const subCategory = (sid === '99998' || sid === '99999') ? '天赋' : (subMap[c] || '通用');
-        return { id: sid, name: name || '未命名特技', category, subCategory, isNew: false, description: desc || '', tags: tags, tagsText: tagsText, icon: icon || '' };
+        return { id: sid, name: name || '未命名特技', category, subCategory, isNew: false, description: desc || '', tags: tags, tagsText: tagsText, icon: icon || '', skillCd: skillCd !== undefined && skillCd !== null ? skillCd : null };
     }
 }
 
@@ -563,6 +606,7 @@ function parseBattleData(config) {
             if (skillMap[sid].icon) mergedActive[sid].icon = skillMap[sid].icon;
             if (skillMap[sid].mainTag !== undefined) mergedActive[sid].mainTag = skillMap[sid].mainTag;
             if (skillMap[sid].normalTag !== undefined) mergedActive[sid].normalTag = skillMap[sid].normalTag;
+            if (skillMap[sid].skillCd !== undefined) mergedActive[sid].skillCd = skillMap[sid].skillCd;
         } else {
             mergedActive[sid] = skillMap[sid];
         }
@@ -588,7 +632,7 @@ function parseBattleData(config) {
     const tagDict = config.tagDict || null;
     for (const sid in mergedActive) {
         if (sid.length === 10 && sid[0] === '1') {
-            newActiveSkills.push(buildSkillObject(sid, mergedActive[sid].name, mergedActive[sid].desc, 'active', mergedActive[sid].mainTag, mergedActive[sid].normalTag, tagDict, mergedActive[sid].icon));
+            newActiveSkills.push(buildSkillObject(sid, mergedActive[sid].name, mergedActive[sid].desc, 'active', mergedActive[sid].mainTag, mergedActive[sid].normalTag, tagDict, mergedActive[sid].icon, mergedActive[sid].skillCd));
         }
     }
 
@@ -1073,6 +1117,28 @@ function parseSkills(inputPath, skillMap, tagDict) {
         console.log('     ✓ ShootAmmoLevel 20级 映射:', Object.keys(ammoDmgMap).length, '个子弹');
     }
 
+    // 加载 SkillLevel 映射 (战斗技能等级表.xlsx): skillId → 20级 技能消耗 (recourceType: 1=生命,2=魔力; recourceConsume: 值)
+    const consumeMap = {};
+    if (buffFp) {
+        const skillLvSheet = readSheetByName(buffFp, ['SkillLevel', 'SkillLv']);
+        const lvSkillIdCol = findCol(skillLvSheet.headers, ['skillId.p', 'skillId', 'SkillId', 'id']);
+        const lvLevelCol = findCol(skillLvSheet.headers, ['level.p', 'level', 'Level']);
+        const lvRtCol = findCol(skillLvSheet.headers, ['recourceType', 'RecourceType', 'resourceType']);
+        const lvRcCol = findCol(skillLvSheet.headers, ['recourceConsume', 'RecourceConsume', 'resourceConsume']);
+        const SKILL_LEVEL = '20'; // 统一默认展示20级的数值
+        skillLvSheet.rows.forEach(r => {
+            const sid = lvSkillIdCol ? String(r[lvSkillIdCol] || '').trim() : '';
+            const lv = lvLevelCol ? String(r[lvLevelCol] || '').trim() : '';
+            if (lv !== SKILL_LEVEL || !sid) return;
+            const rt = lvRtCol ? parseNumValue(r[lvRtCol]) : null;
+            const rc = lvRcCol ? parseNumValue(r[lvRcCol]) : null;
+            if (!consumeMap[sid]) consumeMap[sid] = { recourceType: null, recourceConsume: null };
+            if (rt !== null) consumeMap[sid].recourceType = rt;
+            if (rc !== null) consumeMap[sid].recourceConsume = rc;
+        });
+        console.log('     ✓ SkillLevel 20级 消耗映射:', Object.keys(consumeMap).length, '个技能');
+    }
+
     const skillCol = findCol(headers, ['skill', 'Skill', 'SKILL']);
     const stuntCol = findCol(headers, ['stunt', 'Stunt', 'STUNT']);
     const desc999Col = findCol(headers, ['desc999', 'Desc999', 'DESC999']);
@@ -1080,6 +1146,7 @@ function parseSkills(inputPath, skillMap, tagDict) {
     const shootAmmoCol = findCol(headers, ['shootAmmo', 'ShootAmmo', 'SHOOTAMMO']);
     const buffDescCol = findCol(headers, ['buffDesc', 'BuffDesc', 'BUFFDESC']);
     const occupationCol = findCol(headers, ['occupation', 'Occupation', 'OCCUPATION']);
+    const iconCol = findCol(headers, ['icon', 'Icon', 'ICON', '图标']);
 
     const skills = [];
     rows.forEach(row => {
@@ -1147,13 +1214,25 @@ function parseSkills(inputPath, skillMap, tagDict) {
             }
         }
 
+        const consume = consumeMap[refId] || null;
+
+        // 技能图标: 从 SkillActive 的 icon 列直接读取 (相对路径, 如 linshi/8), 资源存放在 icon/skill/ 下
+        let icon = '';
+        if (iconCol) {
+            const iconVal = String(row[iconCol] || '').trim();
+            if (iconVal) icon = 'skill/' + iconVal;
+        }
+
         skills.push({
             id: '',
             name: name, type: type, desc: desc,
             sourceId: refId,
             tags: tags,
-            icon: refData && refData.icon ? refData.icon : '',
+            icon: icon,
             effects: [{ refId: refId }],
+            skillCd: refData && refData.skillCd !== undefined && refData.skillCd !== null ? refData.skillCd : null,
+            recourceType: consume ? consume.recourceType : null,
+            recourceConsume: consume ? consume.recourceConsume : null,
             isNew: true, source: 'sync'
         });
     });

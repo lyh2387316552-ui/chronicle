@@ -1,5 +1,5 @@
 // 此文件由 import.js 自动生成，请勿手动编辑
-// 生成时间: 2026-09-04T06:17:09.575Z
+// 生成时间: 2026-09-05T02:32:36.873Z
 window.__AUTO_IMPORT_DATA__ = {
   "activeSkills": [
     {
@@ -29,7 +29,8 @@ window.__AUTO_IMPORT_DATA__ = {
           "阴义"
         ]
       },
-      "icon": "skill/jianke/2"
+      "icon": "skill/jianke/2",
+      "skillCd": 600
     },
     {
       "id": "1110000011",
@@ -54,7 +55,8 @@ window.__AUTO_IMPORT_DATA__ = {
           "范围"
         ]
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": 500
     },
     {
       "id": "1110000012",
@@ -83,7 +85,8 @@ window.__AUTO_IMPORT_DATA__ = {
           "阴义"
         ]
       },
-      "icon": "skill/jianke/2"
+      "icon": "skill/jianke/2",
+      "skillCd": 0
     },
     {
       "id": "1110000020",
@@ -112,7 +115,8 @@ window.__AUTO_IMPORT_DATA__ = {
           "阴义"
         ]
       },
-      "icon": "skill/jianke/1"
+      "icon": "skill/jianke/1",
+      "skillCd": 3000
     },
     {
       "id": "1110000030",
@@ -133,7 +137,8 @@ window.__AUTO_IMPORT_DATA__ = {
           "近战"
         ]
       },
-      "icon": "skill/linshi/1"
+      "icon": "skill/linshi/1",
+      "skillCd": 0
     },
     {
       "id": "1110000031",
@@ -158,7 +163,8 @@ window.__AUTO_IMPORT_DATA__ = {
           "15"
         ]
       },
-      "icon": "skill/linshi/1"
+      "icon": "skill/linshi/1",
+      "skillCd": 0
     },
     {
       "id": "1110000040",
@@ -183,7 +189,8 @@ window.__AUTO_IMPORT_DATA__ = {
           "范围"
         ]
       },
-      "icon": "skill/linshi/9"
+      "icon": "skill/linshi/9",
+      "skillCd": 8000
     },
     {
       "id": "1110000050",
@@ -206,7 +213,8 @@ window.__AUTO_IMPORT_DATA__ = {
           "物理"
         ]
       },
-      "icon": "skill/linshi/8"
+      "icon": "skill/linshi/8",
+      "skillCd": 0
     },
     {
       "id": "1110000051",
@@ -229,7 +237,8 @@ window.__AUTO_IMPORT_DATA__ = {
           "物理"
         ]
       },
-      "icon": "skill/linshi/8"
+      "icon": "skill/linshi/8",
+      "skillCd": 0
     },
     {
       "id": "1110000052",
@@ -252,7 +261,8 @@ window.__AUTO_IMPORT_DATA__ = {
           "物理"
         ]
       },
-      "icon": "skill/linshi/8"
+      "icon": "skill/linshi/8",
+      "skillCd": 0
     },
     {
       "id": "1110000053",
@@ -275,7 +285,8 @@ window.__AUTO_IMPORT_DATA__ = {
           "物理"
         ]
       },
-      "icon": "skill/linshi/8"
+      "icon": "skill/linshi/8",
+      "skillCd": 0
     },
     {
       "id": "1110000060",
@@ -302,7 +313,8 @@ window.__AUTO_IMPORT_DATA__ = {
           "阴义"
         ]
       },
-      "icon": "skill/jianke/3"
+      "icon": "skill/jianke/3",
+      "skillCd": 8000
     },
     {
       "id": "1110000061",
@@ -327,7 +339,8 @@ window.__AUTO_IMPORT_DATA__ = {
           "持续"
         ]
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": 0
     },
     {
       "id": "1110000090",
@@ -348,7 +361,8 @@ window.__AUTO_IMPORT_DATA__ = {
           "投射物"
         ]
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": 0
     },
     {
       "id": "1110000091",
@@ -369,7 +383,8 @@ window.__AUTO_IMPORT_DATA__ = {
           "投射物"
         ]
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": 0
     },
     {
       "id": "1110000092",
@@ -390,7 +405,8 @@ window.__AUTO_IMPORT_DATA__ = {
           "投射物"
         ]
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": 0
     },
     {
       "id": "1110000100",
@@ -407,7 +423,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "攻击",
         "normal": []
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": 10000
     },
     {
       "id": "1120000010",
@@ -428,7 +445,8 @@ window.__AUTO_IMPORT_DATA__ = {
           "强化"
         ]
       },
-      "icon": "skill/linshi/27"
+      "icon": "skill/linshi/27",
+      "skillCd": 6000
     },
     {
       "id": "1120000020",
@@ -461,7 +479,8 @@ window.__AUTO_IMPORT_DATA__ = {
           "旋风"
         ]
       },
-      "icon": "skill/linshi/26"
+      "icon": "skill/linshi/26",
+      "skillCd": 1200
     },
     {
       "id": "1120000030",
@@ -482,7 +501,8 @@ window.__AUTO_IMPORT_DATA__ = {
           "位移"
         ]
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": 10000
     },
     {
       "id": "1120000031",
@@ -505,7 +525,8 @@ window.__AUTO_IMPORT_DATA__ = {
           "范围"
         ]
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": 6000
     },
     {
       "id": "1120000040",
@@ -532,7 +553,8 @@ window.__AUTO_IMPORT_DATA__ = {
           "回响"
         ]
       },
-      "icon": "skill/fashu/mindipenyong"
+      "icon": "skill/fashu/mindipenyong",
+      "skillCd": 5000
     },
     {
       "id": "1120000050",
@@ -561,7 +583,8 @@ window.__AUTO_IMPORT_DATA__ = {
           "旋风"
         ]
       },
-      "icon": "skill/linshi/14"
+      "icon": "skill/linshi/14",
+      "skillCd": 12000
     },
     {
       "id": "1120000080",
@@ -590,7 +613,36 @@ window.__AUTO_IMPORT_DATA__ = {
           "强化"
         ]
       },
-      "icon": "skill/linshi/25"
+      "icon": "skill/linshi/25",
+      "skillCd": 1200
+    },
+    {
+      "id": "1120000090",
+      "name": "烈焰爆发",
+      "category": "法术技能",
+      "subCategory": "法术释放",
+      "isNew": false,
+      "description": "释放该技能在自身一定范围内形成一圈冰环，造成法术冰冷伤害",
+      "tags": {
+        "main": "2",
+        "normal": [
+          "4",
+          "11",
+          "12",
+          "7"
+        ]
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": [
+          "冰霜",
+          "可重复",
+          "回响",
+          "范围"
+        ]
+      },
+      "icon": "skill/fashu/bingshuangxinxing",
+      "skillCd": 10000
     },
     {
       "id": "1120000100",
@@ -607,7 +659,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "法术",
         "normal": []
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": 20000
     },
     {
       "id": "1120000101",
@@ -624,7 +677,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "法术",
         "normal": []
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": 1200
     },
     {
       "id": "1120000130",
@@ -651,7 +705,8 @@ window.__AUTO_IMPORT_DATA__ = {
           "范围"
         ]
       },
-      "icon": "skill/fashu/bingshuangxinxing"
+      "icon": "skill/fashu/bingshuangxinxing",
+      "skillCd": 0
     },
     {
       "id": "1120000140",
@@ -678,7 +733,8 @@ window.__AUTO_IMPORT_DATA__ = {
           "回响"
         ]
       },
-      "icon": "skill/fashu/hundunyunxing"
+      "icon": "skill/fashu/hundunyunxing",
+      "skillCd": 0
     },
     {
       "id": "1120000150",
@@ -707,7 +763,8 @@ window.__AUTO_IMPORT_DATA__ = {
           "环绕"
         ]
       },
-      "icon": "skill/linshi/14"
+      "icon": "skill/linshi/14",
+      "skillCd": 5000
     },
     {
       "id": "1120000160",
@@ -724,7 +781,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "法术",
         "normal": []
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": 0
     },
     {
       "id": "1120000170",
@@ -753,7 +811,8 @@ window.__AUTO_IMPORT_DATA__ = {
           "旋风"
         ]
       },
-      "icon": "skill/linshi/26"
+      "icon": "skill/linshi/26",
+      "skillCd": 20000
     },
     {
       "id": "1120000180",
@@ -778,7 +837,8 @@ window.__AUTO_IMPORT_DATA__ = {
           "诅咒"
         ]
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": 10000
     },
     {
       "id": "1120000190",
@@ -803,7 +863,8 @@ window.__AUTO_IMPORT_DATA__ = {
           "诅咒"
         ]
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": 10000
     },
     {
       "id": "1120000200",
@@ -828,7 +889,8 @@ window.__AUTO_IMPORT_DATA__ = {
           "诅咒"
         ]
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": 10000
     },
     {
       "id": "1120000210",
@@ -853,7 +915,8 @@ window.__AUTO_IMPORT_DATA__ = {
           "诅咒"
         ]
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": 10000
     },
     {
       "id": "1120000220",
@@ -878,7 +941,8 @@ window.__AUTO_IMPORT_DATA__ = {
           "诅咒"
         ]
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": 10000
     },
     {
       "id": "1140000010",
@@ -903,7 +967,8 @@ window.__AUTO_IMPORT_DATA__ = {
           "持续"
         ]
       },
-      "icon": "skill/jianke/5"
+      "icon": "skill/jianke/5",
+      "skillCd": 20000
     },
     {
       "id": "1140000011",
@@ -928,7 +993,8 @@ window.__AUTO_IMPORT_DATA__ = {
           "范围"
         ]
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": 0
     },
     {
       "id": "1140000020",
@@ -951,7 +1017,8 @@ window.__AUTO_IMPORT_DATA__ = {
           "范围"
         ]
       },
-      "icon": "skill/zengyi/jidizhanhou"
+      "icon": "skill/zengyi/jidizhanhou",
+      "skillCd": 10000
     },
     {
       "id": "1140000030",
@@ -965,7 +1032,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "1210000030",
@@ -979,7 +1047,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "1210000031",
@@ -993,7 +1062,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     }
   ],
   "passiveSkills": [
@@ -1018,7 +1088,8 @@ window.__AUTO_IMPORT_DATA__ = {
           "触发"
         ]
       },
-      "icon": "skill/gongji/shandianzhijie"
+      "icon": "skill/gongji/shandianzhijie",
+      "skillCd": null
     },
     {
       "id": "2110000011",
@@ -1032,7 +1103,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": "skill/kuangzhan/6"
+      "icon": "skill/kuangzhan/6",
+      "skillCd": null
     },
     {
       "id": "2110000012",
@@ -1046,7 +1118,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": "skill/kuangzhan/6"
+      "icon": "skill/kuangzhan/6",
+      "skillCd": null
     },
     {
       "id": "2110000020",
@@ -1071,7 +1144,8 @@ window.__AUTO_IMPORT_DATA__ = {
           "触发"
         ]
       },
-      "icon": "skill/linshi/17"
+      "icon": "skill/linshi/17",
+      "skillCd": null
     },
     {
       "id": "2110000021",
@@ -1085,7 +1159,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": "skill/linshi/17"
+      "icon": "skill/linshi/17",
+      "skillCd": null
     },
     {
       "id": "2110000030",
@@ -1110,7 +1185,8 @@ window.__AUTO_IMPORT_DATA__ = {
           "触发"
         ]
       },
-      "icon": "skill/linshi/7"
+      "icon": "skill/linshi/7",
+      "skillCd": null
     },
     {
       "id": "2110000031",
@@ -1124,7 +1200,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": "skill/linshi/7"
+      "icon": "skill/linshi/7",
+      "skillCd": null
     },
     {
       "id": "2110000040",
@@ -1149,7 +1226,8 @@ window.__AUTO_IMPORT_DATA__ = {
           "范围"
         ]
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2114000020",
@@ -1166,7 +1244,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "光环",
         "normal": []
       },
-      "icon": "skill/gonghuizhan/1"
+      "icon": "skill/gonghuizhan/1",
+      "skillCd": null
     },
     {
       "id": "2120000010",
@@ -1189,7 +1268,8 @@ window.__AUTO_IMPORT_DATA__ = {
           "位移"
         ]
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2120000011",
@@ -1212,7 +1292,8 @@ window.__AUTO_IMPORT_DATA__ = {
           "位移"
         ]
       },
-      "icon": "skill/fashu/yixinghuanying"
+      "icon": "skill/fashu/yixinghuanying",
+      "skillCd": null
     },
     {
       "id": "2120000020",
@@ -1233,7 +1314,8 @@ window.__AUTO_IMPORT_DATA__ = {
           "幻影"
         ]
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2120000030",
@@ -1258,7 +1340,8 @@ window.__AUTO_IMPORT_DATA__ = {
           "触发"
         ]
       },
-      "icon": "skill/zengyi/dadizhinu"
+      "icon": "skill/zengyi/dadizhinu",
+      "skillCd": null
     },
     {
       "id": "2120000040",
@@ -1283,7 +1366,8 @@ window.__AUTO_IMPORT_DATA__ = {
           "触发"
         ]
       },
-      "icon": "skill/linshi/17"
+      "icon": "skill/linshi/17",
+      "skillCd": null
     },
     {
       "id": "2120000050",
@@ -1300,7 +1384,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "法术",
         "normal": []
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2120000060",
@@ -1314,7 +1399,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2120000080",
@@ -1331,7 +1417,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "法术",
         "normal": []
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2120000090",
@@ -1348,7 +1435,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "法术",
         "normal": []
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2120000100",
@@ -1362,7 +1450,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2120100030",
@@ -1379,7 +1468,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "法术",
         "normal": []
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2120200030",
@@ -1396,7 +1486,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "法术",
         "normal": []
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2140000010",
@@ -1417,7 +1508,8 @@ window.__AUTO_IMPORT_DATA__ = {
           "持续"
         ]
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2140000020",
@@ -1434,7 +1526,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "光环",
         "normal": []
       },
-      "icon": "skill/gonghuizhan/1"
+      "icon": "skill/gonghuizhan/1",
+      "skillCd": null
     },
     {
       "id": "2140000030",
@@ -1448,7 +1541,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": "skill/linshi/3"
+      "icon": "skill/linshi/3",
+      "skillCd": null
     },
     {
       "id": "2140000040",
@@ -1465,7 +1559,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "光环",
         "normal": []
       },
-      "icon": "skill/linshi/3"
+      "icon": "skill/linshi/3",
+      "skillCd": null
     },
     {
       "id": "2140000050",
@@ -1482,7 +1577,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "光环",
         "normal": []
       },
-      "icon": "skill/linshi/16"
+      "icon": "skill/linshi/16",
+      "skillCd": null
     },
     {
       "id": "2140000060",
@@ -1499,7 +1595,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "光环",
         "normal": []
       },
-      "icon": "skill/zengyi/kuangnu"
+      "icon": "skill/zengyi/kuangnu",
+      "skillCd": null
     },
     {
       "id": "2140000070",
@@ -1516,7 +1613,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "光环",
         "normal": []
       },
-      "icon": "skill/zengyi/huifu"
+      "icon": "skill/zengyi/huifu",
+      "skillCd": null
     },
     {
       "id": "2140000080",
@@ -1533,7 +1631,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "光环",
         "normal": []
       },
-      "icon": "skill/zengyi/yuansumaichong"
+      "icon": "skill/zengyi/yuansumaichong",
+      "skillCd": null
     },
     {
       "id": "2140000090",
@@ -1547,7 +1646,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2140000100",
@@ -1561,7 +1661,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2140000110",
@@ -1575,7 +1676,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": "skill/linshi/24"
+      "icon": "skill/linshi/24",
+      "skillCd": null
     },
     {
       "id": "2140000140",
@@ -1592,7 +1694,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "法术",
         "normal": []
       },
-      "icon": "skill/gonghuizhan/2"
+      "icon": "skill/gonghuizhan/2",
+      "skillCd": null
     },
     {
       "id": "2140000150",
@@ -1609,7 +1712,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "攻击",
         "normal": []
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2140000160",
@@ -1626,7 +1730,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "光环",
         "normal": []
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2140000170",
@@ -1640,7 +1745,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2140000180",
@@ -1657,7 +1763,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "法术",
         "normal": []
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150000010",
@@ -1671,7 +1778,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": "skill/linshi/4"
+      "icon": "skill/linshi/4",
+      "skillCd": null
     },
     {
       "id": "2150000020",
@@ -1685,7 +1793,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": "skill/linshi/4"
+      "icon": "skill/linshi/4",
+      "skillCd": null
     },
     {
       "id": "2150000030",
@@ -1699,7 +1808,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150000050",
@@ -1713,7 +1823,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150000060",
@@ -1730,7 +1841,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "光环",
         "normal": []
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150000070",
@@ -1747,7 +1859,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "法术",
         "normal": []
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150000080",
@@ -1764,7 +1877,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "光环",
         "normal": []
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150000090",
@@ -1778,7 +1892,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150000091",
@@ -1792,7 +1907,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150000100",
@@ -1806,7 +1922,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150000110",
@@ -1820,7 +1937,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150000130",
@@ -1837,7 +1955,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "法术",
         "normal": []
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150000140",
@@ -1851,7 +1970,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150000150",
@@ -1865,7 +1985,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150000151",
@@ -1879,7 +2000,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150000152",
@@ -1893,7 +2015,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150000153",
@@ -1907,7 +2030,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150000154",
@@ -1921,7 +2045,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150000160",
@@ -1935,7 +2060,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150000161",
@@ -1949,7 +2075,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150000162",
@@ -1963,7 +2090,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150000170",
@@ -1980,7 +2108,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "攻击",
         "normal": []
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150000180",
@@ -1997,7 +2126,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "攻击",
         "normal": []
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150000190",
@@ -2014,7 +2144,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "攻击",
         "normal": []
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150000200",
@@ -2031,7 +2162,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "攻击",
         "normal": []
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150000210",
@@ -2048,7 +2180,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "法术",
         "normal": []
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150000220",
@@ -2062,7 +2195,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150000230",
@@ -2076,7 +2210,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150000240",
@@ -2090,7 +2225,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150000250",
@@ -2104,7 +2240,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150000260",
@@ -2118,7 +2255,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150000270",
@@ -2132,7 +2270,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150000280",
@@ -2146,7 +2285,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150000290",
@@ -2160,7 +2300,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150000300",
@@ -2174,7 +2315,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150000310",
@@ -2188,7 +2330,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150000320",
@@ -2202,7 +2345,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150000330",
@@ -2216,7 +2360,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150000340",
@@ -2230,7 +2375,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150000350",
@@ -2244,7 +2390,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150000360",
@@ -2261,7 +2408,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "法术",
         "normal": []
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150000370",
@@ -2278,7 +2426,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "法术",
         "normal": []
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150000380",
@@ -2292,7 +2441,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150000400",
@@ -2309,7 +2459,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "攻击",
         "normal": []
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150000410",
@@ -2323,7 +2474,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150000420",
@@ -2337,7 +2489,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150000430",
@@ -2351,7 +2504,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150000440",
@@ -2368,7 +2522,23 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "攻击",
         "normal": []
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": null
+    },
+    {
+      "id": "2150000450",
+      "name": "天赋-在这停顿",
+      "category": "捷系列",
+      "subCategory": "特殊",
+      "isNew": false,
+      "description": "占位技能",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150100060",
@@ -2385,7 +2555,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "光环",
         "normal": []
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150100070",
@@ -2402,7 +2573,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "法术",
         "normal": []
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150100080",
@@ -2419,7 +2591,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "光环",
         "normal": []
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150100090",
@@ -2433,7 +2606,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150100091",
@@ -2447,7 +2621,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150100240",
@@ -2461,7 +2636,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150200060",
@@ -2478,7 +2654,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "光环",
         "normal": []
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150200070",
@@ -2495,7 +2672,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "法术",
         "normal": []
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150200080",
@@ -2512,7 +2690,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "光环",
         "normal": []
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150200090",
@@ -2526,7 +2705,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150200091",
@@ -2540,7 +2720,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150200240",
@@ -2554,7 +2735,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150300060",
@@ -2571,7 +2753,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "光环",
         "normal": []
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150300070",
@@ -2588,7 +2771,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "法术",
         "normal": []
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150300090",
@@ -2602,7 +2786,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150300091",
@@ -2616,7 +2801,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150400060",
@@ -2633,7 +2819,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "光环",
         "normal": []
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150400090",
@@ -2647,7 +2834,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2150400091",
@@ -2661,7 +2849,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2240000010",
@@ -2675,7 +2864,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2240100010",
@@ -2689,7 +2879,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2340000010",
@@ -2703,7 +2894,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2340000020",
@@ -2717,7 +2909,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2340000030",
@@ -2731,7 +2924,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2340000040",
@@ -2748,7 +2942,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "法术",
         "normal": []
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2340000050",
@@ -2762,7 +2957,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "2340000080",
@@ -2779,7 +2975,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "法术",
         "normal": []
       },
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "3140000020",
@@ -2793,7 +2990,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "3140000030",
@@ -2807,7 +3005,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "3140000040",
@@ -2821,7 +3020,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "3140000050",
@@ -2835,7 +3035,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": ""
+      "icon": "",
+      "skillCd": null
     },
     {
       "id": "99998",
@@ -2849,7 +3050,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": "skill/linshi/4"
+      "icon": "skill/linshi/4",
+      "skillCd": null
     },
     {
       "id": "99999",
@@ -2863,7 +3065,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": []
       },
       "tagsText": null,
-      "icon": "skill/linshi/4"
+      "icon": "skill/linshi/4",
+      "skillCd": null
     }
   ],
   "affixes": [
@@ -5658,6 +5861,20 @@ window.__AUTO_IMPORT_DATA__ = {
       "description": "强化技能冷却回复效率",
       "category": "2",
       "isNew": false
+    },
+    {
+      "id": "11077",
+      "name": "元素异常状态抵抗",
+      "description": "冻结异常状态抵抗",
+      "category": "2",
+      "isNew": false
+    },
+    {
+      "id": "11078",
+      "name": "元素异常状态抵抗",
+      "description": "触电异常状态抵抗",
+      "category": "2",
+      "isNew": false
     }
   ],
   "equipment": [
@@ -7105,6 +7322,9 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "1110000050"
         }
       ],
+      "skillCd": 0,
+      "recourceType": 2,
+      "recourceConsume": 20,
       "isNew": true,
       "source": "sync"
     },
@@ -7128,6 +7348,9 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "1110000040"
         }
       ],
+      "skillCd": 8000,
+      "recourceType": 2,
+      "recourceConsume": 20,
       "isNew": true,
       "source": "sync"
     },
@@ -7153,6 +7376,9 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "1110000010"
         }
       ],
+      "skillCd": 600,
+      "recourceType": 2,
+      "recourceConsume": 20,
       "isNew": true,
       "source": "sync"
     },
@@ -7174,6 +7400,9 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "1110000030"
         }
       ],
+      "skillCd": 0,
+      "recourceType": 2,
+      "recourceConsume": 20,
       "isNew": true,
       "source": "sync"
     },
@@ -7198,6 +7427,9 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "1120000040"
         }
       ],
+      "skillCd": 5000,
+      "recourceType": 2,
+      "recourceConsume": 20,
       "isNew": true,
       "source": "sync"
     },
@@ -7222,6 +7454,9 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "1120000130"
         }
       ],
+      "skillCd": 0,
+      "recourceType": 2,
+      "recourceConsume": 20,
       "isNew": true,
       "source": "sync"
     },
@@ -7244,6 +7479,9 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "2120000011"
         }
       ],
+      "skillCd": null,
+      "recourceType": 2,
+      "recourceConsume": 20,
       "isNew": true,
       "source": "sync"
     },
@@ -7271,6 +7509,9 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "1120000020"
         }
       ],
+      "skillCd": 1200,
+      "recourceType": 2,
+      "recourceConsume": 20,
       "isNew": true,
       "source": "sync"
     },
@@ -7278,7 +7519,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "火球术",
       "type": "主动技能",
-      "desc": "扔出一枚火球，碰到敌人时产生270%火焰伤害。\n火球的数量无法修改\n爆炸时尽量消耗一层毁灭注能，生成更加强大的爆炸，造成432%火焰伤害，在爆炸位置生成火焰地面，并在爆炸时产生8发小型火球，小型火球造成90%火焰伤害",
+      "desc": "扔出一枚火球，碰到敌人时产生270%火焰伤害。\n火球的数量无法修改\n爆炸时尽量消耗一层毁灭注能，生成更加强大的爆炸，造成432%火焰伤害，并且在爆炸位置生成火焰地面，并在爆炸时产生8发小型火球，小型火球造成90%火焰伤害\n爆炸每4秒只会被强化一次",
       "sourceId": "1120000080",
       "tags": {
         "main": "法术",
@@ -7296,6 +7537,9 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "1120000080"
         }
       ],
+      "skillCd": 1200,
+      "recourceType": 2,
+      "recourceConsume": 20,
       "isNew": true,
       "source": "sync"
     },
@@ -7320,6 +7564,9 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "1120000140"
         }
       ],
+      "skillCd": 0,
+      "recourceType": 2,
+      "recourceConsume": 20,
       "isNew": true,
       "source": "sync"
     },
@@ -7342,6 +7589,9 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "2110000010"
         }
       ],
+      "skillCd": null,
+      "recourceType": null,
+      "recourceConsume": null,
       "isNew": true,
       "source": "sync"
     },
@@ -7367,6 +7617,9 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "1110000020"
         }
       ],
+      "skillCd": 3000,
+      "recourceType": 2,
+      "recourceConsume": 20,
       "isNew": true,
       "source": "sync"
     },
@@ -7391,6 +7644,9 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "1110000060"
         }
       ],
+      "skillCd": 8000,
+      "recourceType": 2,
+      "recourceConsume": 20,
       "isNew": true,
       "source": "sync"
     },
@@ -7416,6 +7672,9 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "1120000050"
         }
       ],
+      "skillCd": 12000,
+      "recourceType": 2,
+      "recourceConsume": 20,
       "isNew": true,
       "source": "sync"
     },
@@ -7439,6 +7698,9 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "2110000020"
         }
       ],
+      "skillCd": null,
+      "recourceType": null,
+      "recourceConsume": null,
       "isNew": true,
       "source": "sync"
     },
@@ -7462,6 +7724,9 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "1140000010"
         }
       ],
+      "skillCd": 20000,
+      "recourceType": 2,
+      "recourceConsume": 20,
       "isNew": true,
       "source": "sync"
     },
@@ -7483,6 +7748,9 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "1120000010"
         }
       ],
+      "skillCd": 6000,
+      "recourceType": 2,
+      "recourceConsume": 20,
       "isNew": true,
       "source": "sync"
     },
@@ -7505,6 +7773,9 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "1140000020"
         }
       ],
+      "skillCd": 10000,
+      "recourceType": 2,
+      "recourceConsume": 20,
       "isNew": true,
       "source": "sync"
     },
@@ -7512,7 +7783,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "冰霜之捷",
       "type": "被动技能",
-      "desc": "激活，非捷技能击中一名冰冻敌人并击杀时会产生冰霜爆炸，对范围内敌方单位造成216%冰冷伤害\n附加冰冷伤害倍率1%",
+      "desc": "佩戴时，非捷技能击中一名冰冻敌人并击杀时会产生冰霜爆炸，对范围内敌方单位造成216%冰冷伤害\n附加冰冷伤害倍率1%",
       "sourceId": "2110000030",
       "tags": {
         "main": "攻击",
@@ -7528,6 +7799,9 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "2110000030"
         }
       ],
+      "skillCd": null,
+      "recourceType": null,
+      "recourceConsume": null,
       "isNew": true,
       "source": "sync"
     },
@@ -7544,12 +7818,15 @@ window.__AUTO_IMPORT_DATA__ = {
           "范围"
         ]
       },
-      "icon": "",
+      "icon": "skill/zengyi/dadizhinu",
       "effects": [
         {
           "refId": "1120000031"
         }
       ],
+      "skillCd": 6000,
+      "recourceType": 2,
+      "recourceConsume": 20,
       "isNew": true,
       "source": "sync"
     },
@@ -7569,6 +7846,9 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "2114000020"
         }
       ],
+      "skillCd": null,
+      "recourceType": null,
+      "recourceConsume": null,
       "isNew": true,
       "source": "sync"
     },
@@ -7588,6 +7868,9 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "2140000040"
         }
       ],
+      "skillCd": null,
+      "recourceType": null,
+      "recourceConsume": null,
       "isNew": true,
       "source": "sync"
     },
@@ -7595,7 +7878,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "领域扩张",
       "type": "被动技能",
-      "desc": "佩戴时，获得效果\n范围伤害额外提高25%，范围效果扩大{20}",
+      "desc": "佩戴时，获得效果\n范围伤害额外提高25%，范围效果扩大20%",
       "sourceId": "2140000050",
       "tags": {
         "main": "光环",
@@ -7607,6 +7890,9 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "2140000050"
         }
       ],
+      "skillCd": null,
+      "recourceType": null,
+      "recourceConsume": null,
       "isNew": true,
       "source": "sync"
     },
@@ -7626,6 +7912,9 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "2140000060"
         }
       ],
+      "skillCd": null,
+      "recourceType": null,
+      "recourceConsume": null,
       "isNew": true,
       "source": "sync"
     },
@@ -7645,6 +7934,9 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "2140000070"
         }
       ],
+      "skillCd": null,
+      "recourceType": null,
+      "recourceConsume": null,
       "isNew": true,
       "source": "sync"
     },
@@ -7652,18 +7944,21 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "鲜血之捷",
       "type": "被动技能",
-      "desc": "激活时，击败流血的敌人会将其流血效果扩散给周围的其他敌人\n附加物理伤害倍率1%",
+      "desc": "佩戴时，击败流血的敌人会将其流血效果扩散给周围的其他敌人\n附加物理伤害倍率1%",
       "sourceId": "2120000090",
       "tags": {
         "main": "法术",
         "normal": []
       },
-      "icon": "",
+      "icon": "skill/fashu/blood_splash",
       "effects": [
         {
           "refId": "2120000090"
         }
       ],
+      "skillCd": null,
+      "recourceType": null,
+      "recourceConsume": null,
       "isNew": true,
       "source": "sync"
     },
@@ -7671,18 +7966,21 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "瘟疫之捷",
       "type": "被动技能",
-      "desc": "激活时，击败中毒的敌人会将其中毒效果扩散给周围的其他敌人\n附加混沌伤害倍率1%",
+      "desc": "佩戴时，击败中毒的敌人会将其中毒效果扩散给周围的其他敌人\n附加混沌伤害倍率1%",
       "sourceId": "2120000080",
       "tags": {
         "main": "法术",
         "normal": []
       },
-      "icon": "",
+      "icon": "skill/fashu/poison_green",
       "effects": [
         {
           "refId": "2120000080"
         }
       ],
+      "skillCd": null,
+      "recourceType": null,
+      "recourceConsume": null,
       "isNew": true,
       "source": "sync"
     },
@@ -7700,12 +7998,15 @@ window.__AUTO_IMPORT_DATA__ = {
           "诅咒"
         ]
       },
-      "icon": "",
+      "icon": "skill/fashu/earth_swirl",
       "effects": [
         {
           "refId": "1120000180"
         }
       ],
+      "skillCd": 10000,
+      "recourceType": null,
+      "recourceConsume": null,
       "isNew": true,
       "source": "sync"
     },
@@ -7723,12 +8024,15 @@ window.__AUTO_IMPORT_DATA__ = {
           "诅咒"
         ]
       },
-      "icon": "",
+      "icon": "skill/fashu/fire",
       "effects": [
         {
           "refId": "1120000190"
         }
       ],
+      "skillCd": 10000,
+      "recourceType": null,
+      "recourceConsume": null,
       "isNew": true,
       "source": "sync"
     },
@@ -7746,12 +8050,15 @@ window.__AUTO_IMPORT_DATA__ = {
           "诅咒"
         ]
       },
-      "icon": "",
+      "icon": "skill/fashu/storm_ice",
       "effects": [
         {
           "refId": "1120000200"
         }
       ],
+      "skillCd": 10000,
+      "recourceType": null,
+      "recourceConsume": null,
       "isNew": true,
       "source": "sync"
     },
@@ -7769,12 +8076,15 @@ window.__AUTO_IMPORT_DATA__ = {
           "诅咒"
         ]
       },
-      "icon": "",
+      "icon": "skill/fashu/lightning",
       "effects": [
         {
           "refId": "1120000210"
         }
       ],
+      "skillCd": 10000,
+      "recourceType": null,
+      "recourceConsume": null,
       "isNew": true,
       "source": "sync"
     },
@@ -7792,12 +8102,15 @@ window.__AUTO_IMPORT_DATA__ = {
           "诅咒"
         ]
       },
-      "icon": "",
+      "icon": "skill/fashu/void_dark",
       "effects": [
         {
           "refId": "1120000220"
         }
       ],
+      "skillCd": 10000,
+      "recourceType": null,
+      "recourceConsume": null,
       "isNew": true,
       "source": "sync"
     },
@@ -7823,6 +8136,9 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "1120000150"
         }
       ],
+      "skillCd": 5000,
+      "recourceType": 2,
+      "recourceConsume": 20,
       "isNew": true,
       "source": "sync"
     },
@@ -7842,12 +8158,15 @@ window.__AUTO_IMPORT_DATA__ = {
           "旋风"
         ]
       },
-      "icon": "skill/linshi/26",
+      "icon": "skill/linshi/14",
       "effects": [
         {
           "refId": "1120000170"
         }
       ],
+      "skillCd": 20000,
+      "recourceType": 2,
+      "recourceConsume": 20,
       "isNew": true,
       "source": "sync"
     }
@@ -8370,46 +8689,18 @@ window.__AUTO_IMPORT_DATA__ = {
       "name": "幻影魔典",
       "talentPoints": [
         {
-          "id": "1004001",
-          "name": "冷却回复率",
-          "desc": "冷却回复率+3%",
-          "occupation": 5,
-          "viewPos": {
-            "x": 0,
-            "y": 320
-          },
-          "size": 1,
-          "icon": "✨",
-          "iconSrc": "talent/skill/huanying01",
-          "linkPoint": "1004002"
-        },
-        {
           "id": "1004002",
           "name": "幻影残响",
           "desc": "使用法术技能造成伤害后，在原地生成“幻影”，持续4秒，冷却10秒，幻影上限为1",
           "occupation": 5,
           "viewPos": {
             "x": 0,
-            "y": 640
+            "y": 450
           },
           "size": 2,
           "icon": "✨",
           "iconSrc": "talent/skill/huanying02",
-          "linkPoint": "1004001|1004003|1004011|1004013"
-        },
-        {
-          "id": "1004003",
-          "name": "冷却回复率",
-          "desc": "冷却回复率+3%",
-          "occupation": 5,
-          "viewPos": {
-            "x": 0,
-            "y": 960
-          },
-          "size": 1,
-          "icon": "✨",
-          "iconSrc": "talent/skill/huanying01",
-          "linkPoint": "1004002|1004004"
+          "linkPoint": "1004004|1004012|1004014"
         },
         {
           "id": "1004004",
@@ -8418,26 +8709,12 @@ window.__AUTO_IMPORT_DATA__ = {
           "occupation": 5,
           "viewPos": {
             "x": 0,
-            "y": 1280
+            "y": 230
           },
           "size": 2,
           "icon": "✨",
           "iconSrc": "talent/skill/huanying03",
-          "linkPoint": "1004003|1004005"
-        },
-        {
-          "id": "1004005",
-          "name": "冷却回复率",
-          "desc": "冷却回复率+3%",
-          "occupation": 5,
-          "viewPos": {
-            "x": 0,
-            "y": 1600
-          },
-          "size": 1,
-          "icon": "✨",
-          "iconSrc": "talent/skill/huanying01",
-          "linkPoint": "1004004|1004006|1004007|1004009"
+          "linkPoint": "1004002|1004006|1004008|1004010"
         },
         {
           "id": "1004006",
@@ -8445,27 +8722,13 @@ window.__AUTO_IMPORT_DATA__ = {
           "desc": "自身无法释放核心技能，[幻影残响]产生的幻影变更为常驻形态，且所有幻影跟随移动并释放核心技能1，幻影残响的幻影上限+1",
           "occupation": 5,
           "viewPos": {
-            "x": 0,
-            "y": 1920
+            "x": -160,
+            "y": -250
           },
           "size": 2,
           "icon": "✨",
           "iconSrc": "talent/skill/huanying04",
-          "linkPoint": "1004005"
-        },
-        {
-          "id": "1004007",
-          "name": "冷却回复率",
-          "desc": "冷却回复率+3%",
-          "occupation": 5,
-          "viewPos": {
-            "x": -200,
-            "y": 1600
-          },
-          "size": 1,
-          "icon": "✨",
-          "iconSrc": "talent/skill/huanying01",
-          "linkPoint": "1004005|1004008"
+          "linkPoint": "1004004"
         },
         {
           "id": "1004008",
@@ -8473,27 +8736,13 @@ window.__AUTO_IMPORT_DATA__ = {
           "desc": "对于施法速度加成的50%同样作用于幻影的额外伤害，上限 300%",
           "occupation": 5,
           "viewPos": {
-            "x": -300,
-            "y": 1344
+            "x": 160,
+            "y": -250
           },
           "size": 2,
           "icon": "✨",
           "iconSrc": "talent/skill/huanying05",
-          "linkPoint": "1004007"
-        },
-        {
-          "id": "1004009",
-          "name": "冷却回复率",
-          "desc": "冷却回复率+3%",
-          "occupation": 5,
-          "viewPos": {
-            "x": 200,
-            "y": 1600
-          },
-          "size": 1,
-          "icon": "✨",
-          "iconSrc": "talent/skill/huanying01",
-          "linkPoint": "1004005|1004010"
+          "linkPoint": "1004004"
         },
         {
           "id": "1004010",
@@ -8501,27 +8750,13 @@ window.__AUTO_IMPORT_DATA__ = {
           "desc": "幻影数量+1",
           "occupation": 5,
           "viewPos": {
-            "x": 300,
-            "y": 1344
+            "x": 0,
+            "y": 0
           },
           "size": 2,
           "icon": "✨",
           "iconSrc": "talent/skill/huanying06",
-          "linkPoint": "1004009"
-        },
-        {
-          "id": "1004011",
-          "name": "冷却回复率",
-          "desc": "冷却回复率+3%",
-          "occupation": 5,
-          "viewPos": {
-            "x": -120,
-            "y": 480
-          },
-          "size": 1,
-          "icon": "✨",
-          "iconSrc": "talent/skill/huanying01",
-          "linkPoint": "1004002|1004012"
+          "linkPoint": "1004004"
         },
         {
           "id": "1004012",
@@ -8529,27 +8764,13 @@ window.__AUTO_IMPORT_DATA__ = {
           "desc": "+40% “幻影”的施法速度",
           "occupation": 5,
           "viewPos": {
-            "x": -160,
-            "y": 160
+            "x": -240,
+            "y": 230
           },
           "size": 2,
           "icon": "✨",
           "iconSrc": "talent/skill/huanying07",
-          "linkPoint": "1004011"
-        },
-        {
-          "id": "1004013",
-          "name": "冷却回复率",
-          "desc": "冷却回复率+3%",
-          "occupation": 5,
-          "viewPos": {
-            "x": 120,
-            "y": 480
-          },
-          "size": 1,
-          "icon": "✨",
-          "iconSrc": "talent/skill/huanying01",
-          "linkPoint": "1004002|1004014"
+          "linkPoint": "1004002"
         },
         {
           "id": "1004014",
@@ -8557,13 +8778,13 @@ window.__AUTO_IMPORT_DATA__ = {
           "desc": "幻影释放技能时会消耗你的魔力，其数值释放技能的魔力消耗，每次消耗技能额外增加5%你和幻影造成的伤害，上限为10层",
           "occupation": 5,
           "viewPos": {
-            "x": 160,
-            "y": 160
+            "x": 240,
+            "y": 230
           },
           "size": 2,
           "icon": "✨",
           "iconSrc": "talent/skill/huanying08",
-          "linkPoint": "1004013"
+          "linkPoint": "1004002"
         }
       ]
     },
@@ -13097,5 +13318,5 @@ window.__AUTO_IMPORT_DATA__ = {
       ]
     }
   ],
-  "importTime": "2026-09-04T06:17:09.575Z"
+  "importTime": "2026-09-05T02:32:36.873Z"
 };

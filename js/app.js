@@ -2249,28 +2249,39 @@ function renderCustomSkills(filteredData) {
             // 视频匹配: 按技能名称在 videoData 中查找对应视频
             const video = videoData.find(v => v.name === s.name) || null;
             const videoHtml = video
-                ? `
-                    <div class="skill-video-preview" onclick="event.stopPropagation();openSkillVideo('${encodeURIComponent(video.file)}','${(s.name || '').replace(/'/g, "\\'")}')">
-                        <video src="${DATA_BASE}videos/${encodeURIComponent(video.file)}" preload="metadata" muted playsinline></video>
-                        <div class="skill-video-play-overlay"><span class="skill-video-play-icon">▶</span><span class="skill-video-play-text">点击播放</span></div>
-                    </div>
-                `
-                : `
-                    <div class="skill-video-empty">暂无视频</div>
-                `;
+                ? `<div class="skill-video-hint">▶ 点击查看技能演示</div>`
+                : `<div class="skill-video-empty">暂无视频</div>`;
+            // 技能消耗 (recourceType: 1=生命, 2=魔力; recourceConsume=值)
+            const consumeText = (() => {
+                const rc = s.recourceConsume;
+                if (rc === null || rc === undefined || rc === '') return '—';
+                const rt = s.recourceType;
+                const typeName = rt === 1 ? '生命' : (rt === 2 ? '魔力' : '');
+                return typeName ? `${rc} ${typeName}` : String(rc);
+            })();
+            // 技能冷却时间 (skillCd 毫秒 → 秒, 数值展示)
+            const cdText = (() => {
+                const cd = s.skillCd;
+                if (cd === null || cd === undefined || cd === '' || isNaN(Number(cd))) return '—';
+                const ms = Number(cd);
+                const sec = ms / 1000;
+                return `${parseFloat(sec.toFixed(1))}秒`;
+            })();
             return `
                 <div class="equipment-card" data-custom-skill-id="${s.id}" onclick="openCustomSkillDetail('${s.id}')" style="border-left-color:${style.color}">
                     <div class="equipment-card-header">
                         <span class="equipment-card-icon" style="background:${style.color}18">${s.icon ? `<img class="card-icon" src="${DATA_BASE}icon/${s.icon}.webp" alt="" onerror="this.style.display='none'">` : ''}${style.icon}</span>
                         <div>
-                            <h4 class="equipment-card-name">${s.name}</h4>
+                            <h4 class="equipment-card-name">${s.name} <span class="skill-lv-badge">Lv.20</span></h4>
                         </div>
                     </div>
                     <div class="item-stats">
                         <div class="item-stats-cell"><span class="item-stats-label">类型</span><span class="item-stats-value">${s.type || '未分类'}</span></div>
+                        <div class="item-stats-cell"><span class="item-stats-label">消耗</span><span class="item-stats-value">${consumeText}</span></div>
+                        <div class="item-stats-cell"><span class="item-stats-label">冷却</span><span class="item-stats-value">${cdText}</span></div>
                     </div>
                     ${renderSkillTags(s.tags)}
-                    ${s.desc ? `<p class="equipment-card-effect-desc" style="margin:4px 0;padding:4px 8px;background:#f8f8f8;border-radius:6px;font-size:12px;color:#666">${s.desc.replace(/</g, '&lt;').replace(/\n/g, '<br>')}</p>` : ''}
+                    <div class="skill-desc-box${s.desc ? '' : ' is-empty'}">${s.desc ? s.desc.replace(/</g, '&lt;').replace(/\n/g, '<br>') : '暂无描述'}</div>
                     <div class="skill-video-section">
                         <div class="skill-video-title">🎬 技能演示</div>
                         ${videoHtml}
@@ -2372,12 +2383,7 @@ function openCustomSkillDetail(id) {
             <div class="detail-icon" style="background:#e67e2220;color:#e67e22;font-size:36px;width:64px;height:64px;display:flex;align-items:center;justify-content:center;border-radius:12px;position:relative;overflow:hidden">${skill.icon ? `<img class="card-icon" src="${DATA_BASE}icon/${skill.icon}.webp" alt="" onerror="this.style.display='none'">` : ''}🏹</div>
             <div style="flex:1">
                 <h2 class="detail-name">${skill.name}</h2>
-                <div class="detail-type">
-                    <span class="type-badge" style="background:#e67e2220;color:#e67e22">技能系统</span>
-                    <span class="type-badge-sub">${skill.id}</span>
-                    ${skill.sourceId ? `<span class="type-badge-sub">来源: ${skill.sourceId}</span>` : ''}
-                    ${skill.type ? `<span class="type-badge-sub">${skill.type}</span>` : ''}
-                </div>
+                ${renderSkillTags(skill.tags)}
             </div>
         </div>
 
@@ -2387,6 +2393,19 @@ function openCustomSkillDetail(id) {
             <p class="detail-desc-text">${skill.desc.replace(/</g, '&lt;').replace(/\n/g, '<br>')}</p>
         </div>
         ` : ''}
+
+        ${(() => {
+            const v = videoData.find(v => v.name === skill.name) || null;
+            return v
+                ? `<div class="detail-section">
+                    <h3 class="detail-section-title">技能演示</h3>
+                    <video src="${DATA_BASE}videos/${encodeURIComponent(v.file)}" controls autoplay playsinline class="skill-video-modal-player"></video>
+                </div>`
+                : `<div class="detail-section">
+                    <h3 class="detail-section-title">技能演示</h3>
+                    <p class="detail-desc-text">暂无视频</p>
+                </div>`;
+        })()}
 
         <div class="equipment-form-actions">
             <button class="equipment-btn equipment-btn-cancel" onclick="closeModal()">关闭</button>
@@ -2851,8 +2870,7 @@ function renderOccupationCanvas(idx) {
         const shortDesc = p.name || '';
         return `
             <div class="talent-point ${sizeClass}" style="left:${pos.x}px;top:${pos.y}px"
-                 onclick="showTalentDetail('${p.id}', ${idx})"
-                 title="${p.name}">
+                 onclick="showTalentDetail('${p.id}', ${idx})">
                 ${iconHtml}
             </div>
             ${shortDesc ? `<div class="talent-point-label" style="left:${pos.x}px;top:${pos.y}px">${shortDesc}</div>` : ''}
@@ -2975,17 +2993,17 @@ function renderPetStarEffects(star) {
     (star.skillAffix || []).forEach(a => {
         const name = petEffectName(a.id);
         if (!name) return;
-        parts.push(`<span class="pet-effect pet-effect-affix" title="词缀ID: ${a.id}">${name} ${fmtPetValue(a.value)}</span>`);
+        parts.push(`<span class="pet-effect pet-effect-affix">${name} ${fmtPetValue(a.value)}</span>`);
     });
     (star.stunt || []).forEach(id => {
         const name = petEffectName(id);
         if (!name) return;
-        parts.push(`<span class="pet-effect pet-effect-stunt" title="被动ID: ${id}">${name}</span>`);
+        parts.push(`<span class="pet-effect pet-effect-stunt">${name}</span>`);
     });
     (star.attr || []).forEach(a => {
         const name = petEffectName(a.id);
         if (!name) return;
-        parts.push(`<span class="pet-effect pet-effect-attr" title="属性ID: ${a.id}">${name} ${fmtPetValue(a.value)}</span>`);
+        parts.push(`<span class="pet-effect pet-effect-attr">${name} ${fmtPetValue(a.value)}</span>`);
     });
     return parts.join('');
 }
@@ -3050,14 +3068,13 @@ function filterPets() {
                 <div class="pet-showcase" ${showcaseClick}>
                     ${hasBg ? `<img class="pet-showcase-bg" src="${hasBg}" alt="" onerror="this.style.display='none'">` : ''}
                     ${hasGetPic ? `<img class="pet-showcase-pic" src="${hasGetPic}" alt="${p.name}" onerror="this.style.display='none'">` : ''}
-                    <span class="pet-showcase-zoom">⛶</span>
                 </div>
             `;
         }
         return `
             <div class="pet-card" style="border-color:${q.color}66">
                 <div class="pet-card-top">
-                    <div class="pet-avatar${hasPic ? ' pet-avatar-clickable' : ''}" style="background:${q.color}18;border-color:${q.color}88" ${hasPic ? `onclick="openPetAvatar('${hasPic}','${(p.name || '').replace(/'/g, "\\'")}')" title="点击查看原图"` : ''}>
+                    <div class="pet-avatar${hasPic ? ' pet-avatar-clickable' : ''}" style="background:${q.color}18;border-color:${q.color}88" ${hasPic ? `onclick="openPetAvatar('${hasPic}','${(p.name || '').replace(/'/g, "\\'")}')"` : ''}>
                         ${hasPic ? `<img src="${hasPic}" alt="${p.name}" onerror="this.style.display='none'">` : '<span class="pet-avatar-fallback">🐾</span>'}
                     </div>
                     <div class="pet-info">

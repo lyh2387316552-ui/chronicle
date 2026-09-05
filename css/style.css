@@ -629,7 +629,7 @@ body[data-page="home"] .home-modules {
 /* ==================== Skill Grid ==================== */
 .skill-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 16px;
 }
 
@@ -1695,6 +1695,19 @@ body[data-page="home"] .home-modules {
     color: #1c1e21;
 }
 
+.skill-lv-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1;
+    padding: 3px 7px;
+    margin-left: 4px;
+    border-radius: 8px;
+    background: rgba(230, 126, 34, 0.14);
+    color: #e67e22;
+    vertical-align: middle;
+}
+
 .equipment-card-id {
     font-size: 11px;
     color: #5a6270;
@@ -1754,6 +1767,37 @@ body[data-page="home"] .home-modules {
     color: #5a6270;
     line-height: 1.4;
     margin: 4px 0 0 0;
+}
+
+/* ---- 技能库描述框 (固定高度, 超出滚动, 对齐卡片) ---- */
+.skill-desc-box {
+    font-size: 12px;
+    color: #5a6270;
+    line-height: 1.5;
+    margin: 4px 0 8px;
+    padding: 6px 10px;
+    background: #f8f8f8;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 6px;
+    height: 76px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    word-break: break-word;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.18) transparent;
+}
+.skill-desc-box.is-empty {
+    color: #9aa0a8;
+}
+.skill-desc-box::-webkit-scrollbar {
+    width: 6px;
+}
+.skill-desc-box::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.18);
+    border-radius: 3px;
+}
+.skill-desc-box::-webkit-scrollbar-track {
+    background: transparent;
 }
 
 .equipment-card-effect-empty {
@@ -1902,7 +1946,9 @@ body[data-page="home"] .home-modules {
 .skill-video-preview {
     position: relative;
     width: 100%;
-    aspect-ratio: 16 / 9;
+    max-width: 280px;
+    margin: 0 auto;
+    aspect-ratio: 9 / 19;
     background: #000;
     border-radius: 8px;
     overflow: hidden;
@@ -1912,7 +1958,7 @@ body[data-page="home"] .home-modules {
 .skill-video-preview video {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     display: block;
 }
 
@@ -1964,6 +2010,17 @@ body[data-page="home"] .home-modules {
     background: #f5f6f8;
     border: 1px dashed #d0d4da;
     border-radius: 8px;
+}
+
+.skill-video-hint {
+    padding: 10px 12px;
+    text-align: center;
+    font-size: 12px;
+    color: #d4a056;
+    background: #faf6ef;
+    border: 1px dashed #d4a056;
+    border-radius: 8px;
+    cursor: pointer;
 }
 
 /* 技能视频弹窗 (modal) */
@@ -2066,28 +2123,6 @@ body[data-page="home"] .home-modules {
     overflow: hidden;
     background: #f0f0f0;
     cursor: pointer;
-}
-
-.pet-showcase-zoom {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    width: 26px;
-    height: 26px;
-    border-radius: 8px;
-    background: rgba(0, 0, 0, 0.45);
-    color: #fff;
-    font-size: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    pointer-events: none;
-    opacity: 0.85;
-}
-
-.pet-showcase:hover .pet-showcase-zoom {
-    opacity: 1;
-    background: rgba(0, 0, 0, 0.65);
 }
 
 .pet-showcase-bg {
