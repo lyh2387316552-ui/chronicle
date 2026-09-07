@@ -8,7 +8,7 @@
     <meta http-equiv="Expires" content="0">
     <title>古荒大陆编年史</title>
     <link rel="icon" type="image/webp" href="assets/logo.webp">
-    <link rel="stylesheet" href="css/style.css?v=75">
+    <link rel="stylesheet" href="css/style.css?v=78">
 </head>
 <body>
     <div class="background-image"></div>
@@ -91,6 +91,36 @@
                         <span>向下探索</span>
                     </div>
                 </div>
+
+                <!-- 装备概述 -->
+                <section class="equipment-overview">
+                    <div class="overview-header">
+                        <h2 class="overview-title">
+                            <span class="overview-title-zh">你会装备什么？</span>
+                            <span class="overview-title-en">WHAT WILL YOU <em class="overview-title-accent">EQUIP</em>?</span>
+                        </h2>
+                        <p class="overview-desc">传奇装备带来机制改变。合理的装备搭配能让角色发挥最大潜力，从基础装备到终极神装，每件装备都承载着独特的词缀与战略价值。</p>
+                        <button class="overview-cta" onclick="navigateTo('equipment')">查看所有装备</button>
+                    </div>
+                    <div class="overview-grid" id="equipmentOverviewGrid"></div>
+                </section>
+
+                <!-- 职业天赋轮播 -->
+                <section class="occupation-overview">
+                    <div class="overview-header">
+                        <h2 class="overview-title">
+                            <span class="overview-title-zh">选择你的天命之道</span>
+                            <span class="overview-title-en">CHOOSE YOUR <em class="overview-title-accent">DESTINY</em></span>
+                        </h2>
+                        <p class="overview-desc">六大道途，各有天命——择你所爱，逐鹿荒墟。</p>
+                        <button class="overview-cta" onclick="navigateTo('occupations')">查看全部职业</button>
+                    </div>
+                    <div class="occupation-overview-carousel" onmouseenter="stopOccupationOverviewAutoScroll()" onmouseleave="startOccupationOverviewAutoScroll()">
+                        <button class="carousel-arrow carousel-arrow-left" onclick="scrollOccupationOverview(-1)" aria-label="上一个">‹</button>
+                        <div class="occupation-overview-track" id="occupationOverviewTrack"></div>
+                        <button class="carousel-arrow carousel-arrow-right" onclick="scrollOccupationOverview(1)" aria-label="下一个">›</button>
+                    </div>
+                </section>
 
                 <div class="home-modules">
                     <h3 class="section-title">核心模块</h3>
@@ -648,6 +678,6 @@
     <!-- 注: xlsx.min.js 仅 tools/import.js (Node 端) 需要, 浏览器端不再加载 (约 880KB) -->
     <script src="js/auto-import-data.js?v=16" onerror="console.error('⚠️ auto-import-data.js 加载失败！请先运行一键导入生成数据文件。')"></script>
     <script src="js/data.js?v=16"></script>
-    <script src="js/app.js?v=49"></script>
+    <script src="js/app.js?v=56"></script>
 </body>
 </html>

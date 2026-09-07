@@ -1316,7 +1316,10 @@ function parseOccupations(inputPath, skillMap) {
             name: entry.name || ('职业' + num),
             talentPoints: entry.points
         };
-    }).sort((a, b) => a.occupation - b.occupation);
+    })
+    // 删除"通用"职业页签: 通用职业为旧版占位数据, 不对外展示
+    .filter(occ => occ.name !== '通用')
+    .sort((a, b) => a.occupation - b.occupation);
 
     // 剑客/通用职业: 删除攻速节点，将相邻非攻速节点直连
     occupations.forEach(occ => {

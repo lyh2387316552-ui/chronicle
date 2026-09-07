@@ -573,7 +573,8 @@ function findRefData(refId) {
     try {
         if (data.occupations && data.occupations.length > 0) {
             occupationData.length = 0;
-            occupationData.push(...data.occupations);
+            // 过滤掉"通用"职业页签(旧版占位数据)
+            occupationData.push(...data.occupations.filter(o => o.name !== '通用'));
             const totalPoints = occupationData.reduce((s, o) => s + o.talentPoints.length, 0);
             console.log('  ✓ 职业天赋:', occupationData.length, '个职业,', totalPoints, '个天赋点');
         }

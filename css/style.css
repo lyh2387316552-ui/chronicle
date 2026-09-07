@@ -4,7 +4,7 @@
 
 :root {
     --bg-dark: #0a0a0a;
-    --bg-card: rgba(0, 0, 0, 0.267);
+    --bg-card: transparent;
     --bg-card-solid: rgba(0, 0, 0, 0.5);
     --bg-hover: rgba(255, 255, 255, 0.05);
     --bg-input: rgba(0, 0, 0, 0.4);
@@ -634,8 +634,8 @@ body[data-page="home"] .home-modules {
 }
 
 .skill-card {
-    background: #eef0f2;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: transparent;
+    border: 1px solid var(--border);
     border-left: 4px solid var(--accent);
     border-radius: var(--radius);
     padding: 16px 20px;
@@ -644,8 +644,8 @@ body[data-page="home"] .home-modules {
 }
 
 .skill-card:hover {
-    background: #f5f6f8;
-    border-color: rgba(0, 0, 0, 0.22);
+    background: var(--bg-hover);
+    border-color: var(--border-hover);
     transform: translateY(-2px);
 }
 
@@ -680,12 +680,12 @@ body[data-page="home"] .home-modules {
     display: flex;
     align-items: center;
     gap: 8px;
-    color: #1c1e21;
+    color: var(--text-primary);
 }
 
 .skill-id {
     font-size: 12px;
-    color: #5a6270;
+    color: var(--text-muted);
     font-family: "Courier New", monospace;
 }
 
@@ -706,8 +706,8 @@ body[data-page="home"] .home-modules {
     font-size: 11px;
     padding: 2px 8px;
     border-radius: 10px;
-    background: rgba(0, 0, 0, 0.08);
-    color: #4a5568;
+    background: var(--bg-hover);
+    color: var(--text-secondary);
 }
 
 .skill-card-id-segments {
@@ -719,11 +719,11 @@ body[data-page="home"] .home-modules {
 .id-seg {
     font-size: 10px;
     padding: 2px 6px;
-    background: rgba(0, 0, 0, 0.06);
+    background: var(--bg-hover);
     border-radius: 4px;
-    color: #5a6270;
+    color: var(--text-secondary);
     font-family: "Courier New", monospace;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border);
 }
 
 .id-seg.seg-a {
@@ -802,7 +802,7 @@ body[data-page="home"] .home-modules {
 
 /* ---- Affix Card ---- */
 .affix-card {
-    background: var(--bg-input);
+    background: transparent;
     border: 1px solid var(--border);
     border-left: 4px solid var(--accent);
     border-radius: var(--radius-sm);
@@ -812,6 +812,7 @@ body[data-page="home"] .home-modules {
 }
 
 .affix-card:hover {
+    background: var(--bg-hover);
     border-color: var(--border-hover);
     transform: translateY(-2px);
 }
@@ -1619,8 +1620,8 @@ body[data-page="home"] .home-modules {
 }
 
 .equipment-card {
-    background: #eef0f2;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: transparent;
+    border: 1px solid var(--border);
     border-left: 4px solid #9b59b6;
     border-radius: var(--radius);
     padding: 16px 20px;
@@ -1629,8 +1630,20 @@ body[data-page="home"] .home-modules {
 }
 
 .equipment-card:hover {
-    border-color: rgba(0, 0, 0, 0.22);
+    background: var(--bg-hover);
+    border-color: var(--border-hover);
     transform: translateY(-2px);
+}
+
+/* 装备 / 辅助宝石: 纯黑 30% 底 (技能库卡片保持透明) */
+.equipment-card[data-equipment-id],
+.equipment-card[data-gem-id] {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.equipment-card[data-equipment-id]:hover,
+.equipment-card[data-gem-id]:hover {
+    background: rgba(0, 0, 0, 0.5);
 }
 
 .equipment-card-header {
@@ -1669,8 +1682,9 @@ body[data-page="home"] .home-modules {
 .effect-ref-id {
     font-size: 13px;
     font-family: 'Consolas', 'Courier New', monospace;
-    color: #5a6270;
-    background: rgba(0, 0, 0, 0.04);
+    color: var(--text-secondary);
+    background: var(--bg-hover);
+    border: 1px solid var(--border);
     border-radius: 4px;
     padding: 2px 8px;
     margin-left: auto;
@@ -1679,9 +1693,10 @@ body[data-page="home"] .home-modules {
 .detail-desc-text {
     font-size: 14px;
     line-height: 1.7;
-    color: #1c1e21;
-    background: #f8f9fb;
-    border: 1px solid #e8eaef;
+    color: var(--text-secondary);
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-left: 3px solid #c8902f;
     border-radius: 8px;
     padding: 10px 14px;
     white-space: normal;
@@ -1692,7 +1707,7 @@ body[data-page="home"] .home-modules {
     font-size: 15px;
     font-weight: 600;
     line-height: 1.3;
-    color: #1c1e21;
+    color: var(--text-primary);
 }
 
 .skill-lv-badge {
@@ -1710,7 +1725,7 @@ body[data-page="home"] .home-modules {
 
 .equipment-card-id {
     font-size: 11px;
-    color: #5a6270;
+    color: var(--text-muted);
     font-family: "Courier New", monospace;
 }
 
@@ -1720,13 +1735,13 @@ body[data-page="home"] .home-modules {
     border-radius: 10px;
     display: inline-block;
     margin-bottom: 8px;
-    background: rgba(155, 89, 182, 0.12);
-    color: #7d3c98;
+    background: rgba(155, 89, 182, 0.22);
+    color: #c9a2e8;
 }
 
 .equipment-card-effects {
     font-size: 12px;
-    color: #4a5568;
+    color: var(--text-secondary);
 }
 
 .equipment-effect-count {
@@ -1741,8 +1756,8 @@ body[data-page="home"] .home-modules {
 }
 
 .equipment-card-effect {
-    background: rgba(0, 0, 0, 0.05);
-    border: 1px solid rgba(0, 0, 0, 0.12);
+    background: var(--bg-hover);
+    border: 1px solid var(--border);
     border-left: 3px solid;
     border-radius: 0px 8px;
     padding: 8px 12px;
@@ -1759,12 +1774,12 @@ body[data-page="home"] .home-modules {
 .equipment-card-effect-name {
     font-size: 12px;
     font-weight: 600;
-    color: #1c1e21;
+    color: var(--text-primary);
 }
 
 .equipment-card-effect-desc {
     font-size: 11px;
-    color: #5a6270;
+    color: var(--text-secondary);
     line-height: 1.4;
     margin: 4px 0 0 0;
 }
@@ -1772,19 +1787,19 @@ body[data-page="home"] .home-modules {
 /* ---- 技能库描述框 (固定高度, 超出滚动, 对齐卡片) ---- */
 .skill-desc-box {
     font-size: 12px;
-    color: #5a6270;
+    color: var(--text-secondary);
     line-height: 1.5;
     margin: 4px 0 8px;
     padding: 6px 10px;
-    background: #f8f8f8;
-    border: 1px solid rgba(0, 0, 0, 0.06);
+    background: var(--bg-hover);
+    border: 1px solid var(--border);
     border-radius: 6px;
     height: 76px;
     overflow-y: auto;
     overflow-x: hidden;
     word-break: break-word;
     scrollbar-width: thin;
-    scrollbar-color: rgba(0, 0, 0, 0.18) transparent;
+    scrollbar-color: rgba(255, 255, 255, 0.18) transparent;
 }
 .skill-desc-box.is-empty {
     color: #9aa0a8;
@@ -1802,7 +1817,7 @@ body[data-page="home"] .home-modules {
 
 .equipment-card-effect-empty {
     font-size: 12px;
-    color: #5a6270;
+    color: var(--text-secondary);
     margin: 4px 0;
 }
 
@@ -1813,8 +1828,8 @@ body[data-page="home"] .home-modules {
     gap: 6px;
     margin: 10px 0 8px;
     padding: 10px 12px;
-    background: rgba(0, 0, 0, 0.05);
-    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: var(--bg-hover);
+    border: 1px solid var(--border);
     border-radius: 0px 10px;
 }
 
@@ -1827,13 +1842,13 @@ body[data-page="home"] .home-modules {
 
 .item-stats-label {
     font-size: 11px;
-    color: #7a818c;
+    color: var(--text-muted);
 }
 
 .item-stats-value {
     font-size: 14px;
     font-weight: 600;
-    color: #1c1e21;
+    color: var(--text-primary);
     word-break: break-all;
 }
 
@@ -1848,22 +1863,22 @@ body[data-page="home"] .home-modules {
     gap: 10px;
     padding: 10px 16px;
     border-left: 4px solid;
-    background: #eef0f2;
+    background: transparent;
     margin-bottom: 12px;
     border-radius: var(--radius-sm);
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border);
     cursor: pointer;
     user-select: none;
     transition: background 0.2s ease;
 }
 
 .equipment-type-header:hover {
-    background: #f5f6f8;
+    background: var(--bg-hover);
 }
 
 .equipment-type-toggle-icon {
     font-size: 12px;
-    color: #5a6270;
+    color: var(--text-muted);
     flex-shrink: 0;
     width: 14px;
     text-align: center;
@@ -1891,14 +1906,14 @@ body[data-page="home"] .home-modules {
 .equipment-type-name {
     font-size: 16px;
     font-weight: 700;
-    color: #000000;
+    color: var(--text-primary);
     flex: 1;
 }
 
 .equipment-type-count {
     font-size: 13px;
-    color: #4a5568;
-    background: rgba(0, 0, 0, 0.06);
+    color: var(--text-secondary);
+    background: var(--bg-hover);
     padding: 2px 10px;
     border-radius: 10px;
 }
@@ -1930,13 +1945,13 @@ body[data-page="home"] .home-modules {
 .skill-video-section {
     margin-top: 12px;
     padding-top: 12px;
-    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    border-top: 1px solid var(--border);
 }
 
 .skill-video-title {
     font-size: 12px;
     font-weight: 600;
-    color: #5a6270;
+    color: var(--text-secondary);
     margin-bottom: 8px;
     display: flex;
     align-items: center;
@@ -2006,9 +2021,9 @@ body[data-page="home"] .home-modules {
     padding: 18px 12px;
     text-align: center;
     font-size: 12px;
-    color: #9aa0a8;
-    background: #f5f6f8;
-    border: 1px dashed #d0d4da;
+    color: var(--text-muted);
+    background: var(--bg-hover);
+    border: 1px dashed var(--border);
     border-radius: 8px;
 }
 
@@ -2017,7 +2032,7 @@ body[data-page="home"] .home-modules {
     text-align: center;
     font-size: 12px;
     color: #d4a056;
-    background: #faf6ef;
+    background: transparent;
     border: 1px dashed #d4a056;
     border-radius: 8px;
     cursor: pointer;
@@ -2040,7 +2055,7 @@ body[data-page="home"] .home-modules {
 }
 
 .pet-card {
-    background: #eef0f2;
+    background: rgba(0, 0, 0, 0.3);
     border: 2px solid;
     border-radius: var(--radius);
     padding: 16px 18px;
@@ -2050,6 +2065,7 @@ body[data-page="home"] .home-modules {
 }
 
 .pet-card:hover {
+    background: rgba(0, 0, 0, 0.5);
     transform: translateY(-2px);
     box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
 }
@@ -2100,7 +2116,7 @@ body[data-page="home"] .home-modules {
 .pet-stars {
     margin-top: 12px;
     padding-top: 12px;
-    border-top: 1px solid #e5e5e5;
+    border-top: 1px solid var(--border);
     display: flex;
     gap: 14px;
     align-items: stretch;
@@ -2121,7 +2137,7 @@ body[data-page="home"] .home-modules {
     flex-shrink: 0;
     border-radius: 12px;
     overflow: hidden;
-    background: #f0f0f0;
+    background: transparent;
     cursor: pointer;
 }
 
@@ -2156,7 +2172,7 @@ body[data-page="home"] .home-modules {
 .pet-name {
     font-size: 17px;
     font-weight: 700;
-    color: #111111;
+    color: var(--text-primary);
     margin-bottom: 6px;
 }
 
@@ -2176,14 +2192,14 @@ body[data-page="home"] .home-modules {
 
 .pet-id {
     font-size: 12px;
-    color: #666666;
+    color: var(--text-muted);
     font-family: "Courier New", monospace;
 }
 
 .pet-stars-title {
     font-size: 13px;
     font-weight: 600;
-    color: #111111;
+    color: var(--text-primary);
     margin-bottom: 8px;
 }
 
@@ -2197,17 +2213,17 @@ body[data-page="home"] .home-modules {
 .pet-star-tab {
     padding: 4px 12px;
     font-size: 12px;
-    background: #f5f5f5;
-    border: 1px solid #d0d0d0;
+    background: transparent;
+    border: 1px solid var(--border);
     border-radius: 0px 10px;
-    color: #333333;
+    color: var(--text-secondary);
     cursor: pointer;
     transition: all 0.2s;
 }
 
 .pet-star-tab:hover {
     border-color: var(--accent);
-    color: #8a5a00;
+    color: var(--accent-light);
 }
 
 .pet-star-tab.active {
@@ -2240,23 +2256,23 @@ body[data-page="home"] .home-modules {
 }
 
 .pet-effect-affix {
-    background: rgba(231, 76, 60, 0.12);
-    color: #c0392b;
+    background: rgba(231, 76, 60, 0.18);
+    color: #f1948a;
 }
 
 .pet-effect-stunt {
-    background: rgba(52, 152, 219, 0.12);
-    color: #2471a3;
+    background: rgba(52, 152, 219, 0.18);
+    color: #85c1e9;
 }
 
 .pet-effect-attr {
-    background: rgba(46, 204, 113, 0.12);
-    color: #1e8449;
+    background: rgba(46, 204, 113, 0.18);
+    color: #82e0aa;
 }
 
 .pet-star-empty {
     font-size: 12px;
-    color: #888888;
+    color: var(--text-muted);
 }
 
 .pet-stars-empty {
@@ -2264,8 +2280,8 @@ body[data-page="home"] .home-modules {
     padding: 12px;
     text-align: center;
     font-size: 12px;
-    color: #888888;
-    border: 1px dashed #cccccc;
+    color: var(--text-muted);
+    border: 1px dashed var(--border);
     border-radius: 8px;
 }
 
@@ -2283,7 +2299,7 @@ body[data-page="home"] .home-modules {
     width: 100%;
     height: 62vh;
     max-height: 62vh;
-    background: #eaeaea;
+    background: #14141c;
     border-radius: 10px;
     overflow: hidden;
 }
@@ -3051,10 +3067,10 @@ body[data-page="home"] .home-modules {
 
 .occupation-tab {
     padding: 8px 20px;
-    border: 1px solid #d0d5dd;
+    border: 1px solid var(--border);
     border-radius: 20px;
-    background: #eef0f2;
-    color: #1c1e21;
+    background: transparent;
+    color: var(--text-secondary);
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
@@ -3062,116 +3078,104 @@ body[data-page="home"] .home-modules {
 }
 
 .occupation-tab:hover {
-    background: #e0e3e8;
-    border-color: #b0b6c0;
+    background: var(--bg-hover);
+    border-color: var(--border-hover);
+    color: var(--accent-light);
 }
 
 .occupation-tab.active {
-    background: #1c1e21;
-    color: #ffffff;
-    border-color: #1c1e21;
+    background: var(--accent);
+    color: #111111;
+    border-color: var(--accent);
 }
 
 .occupation-canvas-area {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     padding: 20px 0;
 }
 
-.occupation-canvas-wrapper {
+.occupation-detail {
+    width: 100%;
+    max-width: 900px;
+}
+
+/* ---- 立绘区: 角色立绘 + 职业名 + 推荐武器 + 背景故事 ---- */
+.occupation-hero {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.talent-frame-top,
-.talent-frame-bottom {
-    width: 375px;
-    max-width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 16px 16px 0 0;
-}
-
-.talent-frame-bottom {
-    border-radius: 0 0 16px 16px;
-}
-
-.occupation-canvas-header {
-    margin-bottom: 12px;
-    text-align: center;
-}
-
-.occupation-name {
-    font-size: 18px;
-    font-weight: 600;
-    color: #ffffff;
-}
-
-.occupation-count {
-    font-size: 13px;
-    color: #5a6270;
-    font-weight: 400;
-    margin-left: 8px;
-}
-
-.occupation-canvas-scroll {
-    max-height: 85vh;
-    overflow-y: auto;
-    overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
-}
-
-.occupation-canvas {
-    position: relative;
-    background: #eef0f2;
-    border: 1px solid #e0e3e8;
+    gap: 24px;
+    align-items: flex-start;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border);
     border-radius: 16px;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    padding: 20px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+}
+
+.occupation-hero-img {
+    width: 220px;
+    height: 320px;
+    object-fit: cover;
+    object-position: center center;
+    border-radius: 12px;
+    flex-shrink: 0;
+    background: var(--bg-hover);
+}
+
+.occupation-hero-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.occupation-hero-name {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 12px;
+}
+
+.occupation-hero-weapon {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+}
+
+.occupation-desc-label {
+    color: #e6a762;
+}
+
+.occupation-hero-text {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--text-secondary);
+}
+
+/* ---- 天赋点结构图 ---- */
+.occupation-graph {
+    margin-top: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+}
+
+.occupation-graph-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 16px;
+    text-align: left;
+}
+
+.occupation-graph-canvas {
+    position: relative;
+    margin: 0;
+    background: transparent;
+    border: 1px dashed var(--border);
+    border-radius: 12px;
     overflow: hidden;
-    /* 缩放以适配容器宽度 */
-    max-width: 100%;
-    transform-origin: top center;
-}
-
-/* 底层: 角色立绘背景 — 以图片中心居中放大至边框 */
-.talent-canvas-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url("../assets/talent-bg-character.webp");
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    z-index: 0;
-    pointer-events: none;
-}
-
-/* 上层: 武器图 — 等比放大至扩展到屏幕上下 */
-.talent-canvas-weapon {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    height: 100%;
-    width: auto;
-    object-fit: contain;
-    z-index: 1;
-    pointer-events: none;
-    opacity: 0.85;
-}
-
-.occupation-canvas-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.35);
-    z-index: 0;
-    pointer-events: none;
 }
 
 .talent-links-svg {
@@ -3183,8 +3187,8 @@ body[data-page="home"] .home-modules {
 }
 
 .talent-link-line {
-    stroke: #ffffff;
-    stroke-width: 4;
+    stroke: rgba(255, 255, 255, 0.35);
+    stroke-width: 3;
     fill: none;
 }
 
@@ -3195,8 +3199,8 @@ body[data-page="home"] .home-modules {
     margin-left: -32px;
     margin-top: -32px;
     border-radius: 50%;
-    background: #f0f2f5;
-    border: 2px solid #c0c5cc;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.35);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -3207,8 +3211,8 @@ body[data-page="home"] .home-modules {
 
 .talent-point:hover {
     transform: scale(1.2);
-    border-color: #1c1e21;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+    border-color: var(--accent);
+    box-shadow: 0 2px 14px rgba(0, 0, 0, 0.45);
     z-index: 3;
 }
 
@@ -3218,7 +3222,7 @@ body[data-page="home"] .home-modules {
     margin-left: -40px;
     margin-top: -40px;
     border-width: 3px;
-    border-color: #8a91a0;
+    border-color: rgba(255, 255, 255, 0.45);
 }
 
 .talent-point-xlarge {
@@ -3227,8 +3231,8 @@ body[data-page="home"] .home-modules {
     margin-left: -48px;
     margin-top: -48px;
     border-width: 3px;
-    border-color: #5a6270;
-    background: #e8eaef;
+    border-color: rgba(255, 255, 255, 0.55);
+    background: transparent;
 }
 
 .talent-point-icon {
@@ -3248,12 +3252,13 @@ body[data-page="home"] .home-modules {
     transform: translate(-50%, 38px);
     font-size: 10px;
     line-height: 1.3;
-    color: #4a5568;
+    color: var(--text-secondary);
     text-align: center;
     white-space: normal;
     word-break: break-all;
     max-width: 72px;
-    background: rgba(255, 255, 255, 0.85);
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid var(--border);
     padding: 1px 4px;
     border-radius: 3px;
     pointer-events: none;
@@ -3268,15 +3273,85 @@ body[data-page="home"] .home-modules {
     font-size: 48px;
 }
 
+/* ---- 天赋点列表区 ---- */
+.occupation-passives {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.passive-node {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 16px;
+    cursor: pointer;
+    transition: box-shadow 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.passive-node:hover {
+    background: rgba(0, 0, 0, 0.5);
+    border-color: var(--border-hover);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.30);
+}
+
+.passive-node-icon {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--bg-hover);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.passive-node-icon-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+.passive-node-icon-emoji {
+    font-size: 24px;
+    line-height: 1;
+}
+
+.passive-node-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.passive-node-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.passive-node-desc {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    white-space: pre-wrap;
+}
+
 .occupation-empty {
     text-align: center;
     padding: 60px 20px;
-    color: #5a6270;
+    color: var(--text-muted);
 }
 
 .occupation-empty-hint {
     font-size: 13px;
-    color: #8a91a0;
+    color: var(--text-muted);
     margin-top: 8px;
 }
 
@@ -3287,7 +3362,7 @@ body[data-page="home"] .home-modules {
 
 .talent-detail-desc999 {
     font-size: 13px;
-    color: #5a6270;
+    color: var(--text-secondary);
     margin-bottom: 12px;
     font-family: "Courier New", monospace;
 }
@@ -3302,5 +3377,227 @@ body[data-page="home"] .home-modules {
 .talent-detail-links {
     margin-top: 10px;
     padding-top: 10px;
-    border-top: 1px solid #e8eaef;
+    border-top: 1px solid var(--border);
+}
+
+/* ============================================================
+   黑底 30% 卡片文字适配 (装备/辅助宝石/职业天赋/魔宠)
+   ============================================================ */
+.equipment-card[data-equipment-id] .equipment-card-name,
+.equipment-card[data-gem-id] .equipment-card-name,
+.occupation-hero-name,
+.occupation-graph-title,
+.passive-node-name,
+.pet-name {
+    color: #ffffff;
+}
+
+.equipment-card[data-equipment-id] .equipment-card-id,
+.equipment-card[data-gem-id] .equipment-card-id,
+.pet-id {
+    color: var(--text-secondary);
+}
+
+/* ============================================================
+   首页装备概述 (参考 Dota2 官方首页英雄介绍区块)
+   ============================================================ */
+.equipment-overview {
+    padding: 8px 32px;
+    margin-bottom: 48px;
+}
+
+.overview-header {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.overview-title {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 16px;
+}
+
+.overview-title-zh {
+    font-size: 30px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: 2px;
+}
+
+.overview-title-en {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+}
+
+.overview-title-en .overview-title-accent {
+    font-style: normal;
+    color: var(--accent-light);
+}
+
+.overview-desc {
+    max-width: 680px;
+    margin: 0 auto 22px;
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--text-secondary);
+}
+
+.overview-cta {
+    padding: 10px 30px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #000;
+    background: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: 0px 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.overview-cta:hover {
+    background: var(--accent-light);
+    border-color: var(--accent-light);
+    transform: translateY(-1px);
+}
+
+/* 装备 icon 密集网格: 两侧渐隐, 贴合背景 */
+.overview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+    gap: 8px;
+    max-width: 1080px;
+    margin: 0 auto;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+
+.overview-item {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.overview-item:hover {
+    transform: scale(1.12) translateY(-3px);
+    border-color: var(--glow, var(--accent));
+    box-shadow: 0 0 18px -2px var(--glow, var(--accent));
+    z-index: 5;
+}
+
+.overview-item-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.overview-item-emoji {
+    font-size: 34px;
+    line-height: 1;
+}
+
+/* ============================================================
+   首页职业天赋轮播 (立绘横向滑动)
+   ============================================================ */
+.occupation-overview {
+    padding: 8px 32px;
+    margin-bottom: 48px;
+}
+
+.occupation-overview-carousel {
+    position: relative;
+    max-width: 1080px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.occupation-overview-track {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    padding: 10px 4px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.occupation-overview-track::-webkit-scrollbar {
+    display: none;
+}
+
+.occupation-slide {
+    flex: 0 0 auto;
+    width: 220px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.occupation-slide:hover {
+    transform: translateY(-6px);
+    border-color: var(--accent);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5);
+}
+
+.occupation-slide-img {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    display: block;
+}
+
+.occupation-slide-name {
+    padding: 12px 14px 4px;
+    font-size: 17px;
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+}
+
+.occupation-slide-desc {
+    padding: 2px 14px 14px;
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+.carousel-arrow {
+    flex: 0 0 auto;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: rgba(0, 0, 0, 0.4);
+    color: var(--text-primary);
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.carousel-arrow:hover {
+    border-color: var(--accent);
+    color: var(--accent-light);
+    background: rgba(0, 0, 0, 0.6);
 }

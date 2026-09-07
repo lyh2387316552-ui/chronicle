@@ -1757,6 +1757,114 @@ function renderHome() {
     _set('heroCustomSkill', customSkillData.length);
     _set('heroOccupation', occupationData.length);
     _set('heroPet', petData.length);
+    renderEquipmentOverview();
+    renderOccupationOverview();
+}
+
+// ---- 首页装备概述 (参考 Dota2 官方首页英雄介绍区块: 密集图标网格 + CTA) ----
+function renderEquipmentOverview() {
+    const grid = document.getElementById('equipmentOverviewGrid');
+    if (!grid) return;
+
+    const typeStyles = {
+        '法杖': { icon: '🔮', color: '#9b59b6' },
+        '长剑': { icon: '⚔️', color: '#e74c3c' },
+        '头盔': { icon: '⛑️', color: '#3498db' },
+        '胸甲': { icon: '🛡️', color: '#27ae60' },
+        '鞋子': { icon: '👢', color: '#f39c12' },
+        '手套': { icon: '🧤', color: '#e67e22' },
+        '项链': { icon: '📿', color: '#1abc9c' },
+        '未分类': { icon: '📦', color: '#95a5a6' }
+    };
+
+    const list = equipmentData || [];
+    if (!list.length) { grid.innerHTML = ''; return; }
+
+    grid.innerHTML = list.map(eq => {
+        const style = typeStyles[eq.type] || typeStyles['未分类'];
+        const emoji = style.icon;
+        const color = style.color;
+        const iconHtml = eq.icon
+            ? `<img class="overview-item-img" src="${DATA_BASE}icon/${eq.icon}.webp" alt="${eq.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="overview-item-emoji" style="display:none;color:${color}">${emoji}</span>`
+            : `<span class="overview-item-emoji" style="display:flex;color:${color}">${emoji}</span>`;
+        return `
+            <div class="overview-item" style="--glow:${color}" onclick="navigateTo('equipment')" title="${eq.name}">
+                ${iconHtml}
+            </div>
+        `;
+    }).join('');
+}
+
+// ---- 首页职业天赋轮播 (参考 Dota2 官方首页介绍区块: 立绘横向滑动) ----
+function renderOccupationOverview() {
+    const track = document.getElementById('occupationOverviewTrack');
+    if (!track) return;
+    const list = occupationData || [];
+    if (!list.length) { track.innerHTML = ''; return; }
+
+    const itemsHtml = list.map((occ, idx) => {
+        const bgImage = occupationBgMap[occ.name] || 'assets/talent-bg-character.webp';
+        return `
+            <div class="occupation-slide" onclick="navigateToOccupation(${idx})" title="${occ.name}">
+                <img class="occupation-slide-img" src="${bgImage}" alt="${occ.name}" loading="lazy">
+                <div class="occupation-slide-name">${occ.name}</div>
+            </div>
+        `;
+    }).join('');
+
+    // 渲染两遍内容, 供 rAF 匀速无缝循环
+    track.innerHTML = itemsHtml + itemsHtml;
+    track.scrollLeft = 0;
+    startOccupationOverviewAutoScroll();
+}
+
+function navigateToOccupation(idx) {
+    currentOccupationIdx = idx;
+    navigateTo('occupations');
+}
+
+function scrollOccupationOverview(dir) {
+    const track = document.getElementById('occupationOverviewTrack');
+    if (!track) return;
+    const card = track.querySelector('.occupation-slide');
+    const step = card ? card.offsetWidth + 16 : 320;
+    track.scrollBy({ left: dir * step, behavior: 'smooth' });
+}
+
+// ---- 立绘自动匀速循环滚动 (从右向左, 鼠标悬停暂停) ----
+let occupationOverviewTimer = null;
+let occupationOverviewLastTs = null;
+const OCCUPATION_SCROLL_SPEED = 0.04; // px/ms ≈ 40px/s
+
+function startOccupationOverviewAutoScroll() {
+    stopOccupationOverviewAutoScroll();
+    const track = document.getElementById('occupationOverviewTrack');
+    if (!track) return;
+    occupationOverviewLastTs = null;
+
+    function step(ts) {
+        const trackEl = document.getElementById('occupationOverviewTrack');
+        if (!trackEl) return;
+        if (occupationOverviewLastTs == null) occupationOverviewLastTs = ts;
+        const dt = Math.min(ts - occupationOverviewLastTs, 64); // 切后台回来时限制跳变
+        occupationOverviewLastTs = ts;
+        if (trackEl.scrollWidth > trackEl.clientWidth) {
+            trackEl.scrollLeft += OCCUPATION_SCROLL_SPEED * dt;
+            const singleWidth = trackEl.scrollWidth / 2;
+            if (singleWidth > 0 && trackEl.scrollLeft >= singleWidth) {
+                trackEl.scrollLeft -= singleWidth; // 无缝回到第一组
+            }
+        }
+        occupationOverviewTimer = requestAnimationFrame(step);
+    }
+    occupationOverviewTimer = requestAnimationFrame(step);
+}
+
+function stopOccupationOverviewAutoScroll() {
+    if (occupationOverviewTimer != null) {
+        cancelAnimationFrame(occupationOverviewTimer);
+        occupationOverviewTimer = null;
+    }
 }
 
 // ---- 装备系统 ----
@@ -2719,14 +2827,30 @@ function updateBattleDataCount() {
 
 // ============================================================
 // 职业天赋系统
-// 每个职业一块 iPhoneX 尺寸白色画布，天赋点按 viewPos 坐标定位
+// 立绘与天赋点拆开展示: 立绘区在上, 天赋点列表在下
 // ============================================================
 
-// iPhoneX 逻辑分辨率: 375 x 812 (pt)，实际画布按此比例缩放
-const IPHONE_X_W = 375;
-const IPHONE_X_H = 812;
-
 let currentOccupationIdx = 0;
+
+// 职业立绘配置: 职业名 → 立绘路径 (未配置的职业使用默认 talent-bg-character.webp)
+const occupationBgMap = {
+    '幻影魔典': 'assets/talent-bg-huanying.webp',
+    '巫术魔典': 'assets/talent-bg-wushu.webp',
+    '剑客1': 'assets/talent-bg-jianke.webp',
+    '冰刀': 'assets/talent-bg-bingdao.webp',
+    '元素法杖': 'assets/talent-bg-yuansu.webp',
+    '塑能法杖': 'assets/talent-bg-suneng.webp'
+};
+
+// 职业描述配置: 职业名 → 推荐武器 + 背景故事文案
+const occupationDescMap = {
+    '剑客1': { weapon: '太刀', text: '刀光一闪，胜负已分。我不求蛮力，只求快——快到敌人来不及眨眼。当你看清我的刀时，刀已归鞘。' },
+    '冰刀': { weapon: '太刀', text: '极寒是我最忠实的伙伴。剑锋所过，霜雪蔓延，敌人尚未近身便已冻僵，而暴击，是寒冰送上的最后一击。' },
+    '元素法杖': { weapon: '法杖', text: '五色法球环绕周身，那是我掌控的纯粹力量。注能满溢之时，一击出手，足以撼动山河。' },
+    '幻影魔典': { weapon: '法杖', text: '你看到的，未必是真正的我。翻动之间，幻影四起，待你辨清真假，真正的杀机早已近在咫尺。' },
+    '巫术魔典': { weapon: '魔典', text: '我不求一击致命，只求毒入骨髓。坩埚沸腾，毒雾弥漫，与我为敌者，终将在不知不觉中走到生命的尽头。' },
+    '塑能法杖': { weapon: '法杖', text: '火球、旋风、飞弹，皆听我号令。无需近身，漫天弹幕之下，你甚至看不清我的身影，便已倒下。' }
+};
 
 function renderOccupations() {
     const tabsEl = document.getElementById('occupationTabs');
@@ -2773,10 +2897,27 @@ function renderOccupationCanvas(idx) {
     const allPoints = occ.talentPoints || [];
     // 只显示 size >= 2 的节点，size=1 节点作为中间跳板跳过
     const visiblePoints = allPoints.filter(p => p.size >= 2);
+
+    // 立绘区: 角色立绘 + 职业名 + 推荐武器 + 背景故事（与天赋点拆开展示）
+    const bgImage = occupationBgMap[occ.name] || 'assets/talent-bg-character.webp';
+    const occDesc = occupationDescMap[occ.name];
+    const heroHtml = `
+        <div class="occupation-hero">
+            <img class="occupation-hero-img" src="${bgImage}" alt="${occ.name}">
+            <div class="occupation-hero-info">
+                <h3 class="occupation-hero-name">${occ.name}</h3>
+                ${occDesc ? `
+                    <div class="occupation-hero-weapon"><span class="occupation-desc-label">推荐武器:</span> ${occDesc.weapon}</div>
+                    <div class="occupation-hero-text">${occDesc.text}</div>
+                ` : ''}
+            </div>
+        </div>
+    `;
+
+    // 天赋点结构图: 以 viewPos 定位节点, 以 linkPoint 建立连线
     const nodeMap = {};
     allPoints.forEach(p => { nodeMap[p.id] = p; });
 
-    // 坐标范围仅基于可见节点
     let maxX = -Infinity, maxY = -Infinity, minX = Infinity, minY = Infinity;
     visiblePoints.forEach(p => {
         if (p.viewPos) {
@@ -2786,23 +2927,20 @@ function renderOccupationCanvas(idx) {
             minY = Math.min(minY, p.viewPos.y);
         }
     });
-    // 安全边距: 顶部容纳节点半径(最大48px); 底部容纳节点半径+名称标签(~53px); 左右容纳节点半径
-    const padTop = 55;
-    const padBottom = 105;
-    const padSide = 55;
+
+    const graphW = 375;
+    const graphH = 812;
+    const gPadTop = 55;
+    const gPadBottom = 105;
+    const gPadSide = 55;
     const rangeX = (maxX - minX) || 1;
     const rangeY = (maxY - minY) || 1;
-    // 一屏模式: 以宽高中较小的缩放比为准，确保所有内容(含节点尺寸/名称标签)容纳在 375x812 内
-    const scaleW = (IPHONE_X_W - padSide * 2) / rangeX;
-    const scaleH = (IPHONE_X_H - padTop - padBottom) / rangeY;
+    const scaleW = (graphW - gPadSide * 2) / rangeX;
+    const scaleH = (graphH - gPadTop - gPadBottom) / rangeY;
     const scale = Math.min(scaleW, scaleH);
-    const canvasW = IPHONE_X_W;
-    const canvasH = IPHONE_X_H;
-    // 居中: X 轴水平居中; Y 轴在上下安全边距之间居中
-    const offsetX = (canvasW - rangeX * scale) / 2;
-    const offsetY = padTop + (canvasH - padTop - padBottom - rangeY * scale) / 2;
+    const offsetX = (graphW - rangeX * scale) / 2;
+    const offsetY = gPadTop + (graphH - gPadTop - gPadBottom - rangeY * scale) / 2;
 
-    // 计算每个天赋点的画布坐标 (包含所有节点，用于追踪 size=1 中间节点)
     const posMap = {};
     allPoints.forEach(p => {
         posMap[p.id] = {
@@ -2811,14 +2949,12 @@ function renderOccupationCanvas(idx) {
         };
     });
 
-    // 递归查找通过 size=1 节点连接到的所有可见节点
     function findVisibleTargets(linkId, visited) {
         if (visited.has(linkId)) return [];
         visited.add(linkId);
         const node = nodeMap[linkId];
         if (!node) return [];
         if (node.size >= 2) return [linkId];
-        // size=1 节点: 继续追踪其 linkPoint
         const results = [];
         (node.linkPoint || '').split('|').forEach(tid => {
             const t = tid.trim();
@@ -2827,7 +2963,6 @@ function renderOccupationCanvas(idx) {
         return results;
     }
 
-    // 生成连线 SVG (基于 linkPoint，跳过 size=1 中间节点，去重)
     const drawn = new Set();
     const lines = [];
     visiblePoints.forEach(p => {
@@ -2837,7 +2972,6 @@ function renderOccupationCanvas(idx) {
         p.linkPoint.split('|').forEach(rawId => {
             const tid = rawId.trim();
             if (!tid) return;
-            // 如果目标节点可见，直接连线；否则通过 size=1 节点追踪到可见节点
             let targets = [];
             if (posMap[tid] && nodeMap[tid] && nodeMap[tid].size >= 2) {
                 targets = [tid];
@@ -2856,11 +2990,10 @@ function renderOccupationCanvas(idx) {
         });
     });
     const linksSvg = lines.length
-        ? `<svg class="talent-links-svg" width="${canvasW}" height="${canvasH}">${lines.join('')}</svg>`
+        ? `<svg class="talent-links-svg" width="${graphW}" height="${graphH}">${lines.join('')}</svg>`
         : '';
 
-    // 生成天赋点元素 (仅 size >= 2)
-    const pointsHtml = visiblePoints.map(p => {
+    const graphPointsHtml = visiblePoints.map(p => {
         const pos = posMap[p.id];
         const sizeClass = p.size === 2 ? 'talent-point-large' : (p.size === 3 ? 'talent-point-xlarge' : '');
         const iconChar = p.icon || '⭐';
@@ -2870,36 +3003,45 @@ function renderOccupationCanvas(idx) {
         const shortDesc = p.name || '';
         return `
             <div class="talent-point ${sizeClass}" style="left:${pos.x}px;top:${pos.y}px"
-                 onclick="showTalentDetail('${p.id}', ${idx})">
-                ${iconHtml}
-            </div>
+                 onclick="showTalentDetail('${p.id}', ${idx})">${iconHtml}</div>
             ${shortDesc ? `<div class="talent-point-label" style="left:${pos.x}px;top:${pos.y}px">${shortDesc}</div>` : ''}
         `;
     }).join('');
 
-    // 职业底图配置: 职业名 → 底图路径 (未配置的职业使用默认 talent-bg-character.webp)
-    const occupationBgMap = {
-        '幻影魔典': 'assets/talent-bg-huanying.webp',
-        '巫术魔典': 'assets/talent-bg-wushu.webp',
-        '剑客1': 'assets/talent-bg-jianke.webp',
-        '冰刀': 'assets/talent-bg-bingdao.webp',
-        '元素法杖': 'assets/talent-bg-yuansu.webp',
-        '塑能法杖': 'assets/talent-bg-suneng.webp'
-    };
-    const bgImage = occupationBgMap[occ.name];
-    const bgStyle = bgImage
-        ? `background-image:url('${bgImage}');background-size:cover;background-position:center center;background-repeat:no-repeat;`
-        : '';
+    const graphHtml = `
+        <div class="occupation-graph">
+            <h4 class="occupation-graph-title">天赋结构图</h4>
+            <div class="occupation-graph-canvas" style="width:${graphW}px;height:${graphH}px">
+                ${linksSvg}
+                ${graphPointsHtml}
+            </div>
+        </div>
+    `;
+
+    // 天赋点列表区: 每个节点独立列出 (图标 + 名称 + 描述)
+    const nodesHtml = visiblePoints.map(p => {
+        const iconChar = p.icon || '⭐';
+        const iconHtml = p.iconSrc
+            ? `<img class="passive-node-icon-img" src="${DATA_BASE}icon/${p.iconSrc}.webp" alt="${p.name}" onerror="this.style.display='none';this.nextSibling.style.display=''"><span class="passive-node-icon-emoji" style="display:none">${iconChar}</span>`
+            : `<span class="passive-node-icon-emoji">${iconChar}</span>`;
+        return `
+            <div class="passive-node" onclick="showTalentDetail('${p.id}', ${idx})">
+                <div class="passive-node-icon">${iconHtml}</div>
+                <div class="passive-node-info">
+                    <div class="passive-node-name">${p.name}</div>
+                    ${p.desc ? `<div class="passive-node-desc">${p.desc}</div>` : ''}
+                </div>
+            </div>
+        `;
+    }).join('');
 
     canvasArea.innerHTML = `
-        <div class="occupation-canvas-wrapper">
-            <img class="talent-frame-top" src="assets/talent-frame-top.webp" alt="">
-            <div class="occupation-canvas" style="width:${canvasW}px;height:${canvasH}px">
-                <div class="talent-canvas-bg" style="${bgStyle}"></div>
-                ${linksSvg}
-                ${pointsHtml}
+        <div class="occupation-detail">
+            ${heroHtml}
+            ${graphHtml}
+            <div class="occupation-passives">
+                ${nodesHtml || '<div class="occupation-empty"><p>暂无天赋点</p></div>'}
             </div>
-            <img class="talent-frame-bottom" src="assets/talent-frame-bottom.webp" alt="">
         </div>
     `;
 }
