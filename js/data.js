@@ -612,10 +612,17 @@ function findRefData(refId) {
 
 // ============================================================
 // 数据与资源仓库 (chronicle-data) - 网页的图标/视频统一从这里拉取
-// 资源: https://lyh2387316552-ui.github.io/chronicle-data/
-// file:// 协议下同样从数据仓库公网拉取
+// 线上:  https://lyh2387316552-ui.github.io/chronicle-data/
+// 本地预览: tools/dev-server.js 会同时托管 chronicle-data,
+//          在 localhost / 127.0.0.1 下自动切到本地地址 (支持任意端口)
+// file:// 协议下仍从数据仓库公网拉取
 // ============================================================
-const DATA_BASE = 'https://lyh2387316552-ui.github.io/chronicle-data/';
+const IS_LOCAL_PREVIEW =
+    (location.protocol === 'http:' || location.protocol === 'https:') &&
+    (location.hostname === 'localhost' || location.hostname === '127.0.0.1');
+const DATA_BASE = IS_LOCAL_PREVIEW
+    ? location.origin + '/chronicle-data/'
+    : 'https://lyh2387316552-ui.github.io/chronicle-data/';
 
 // ============================================================
 // ID规则分类定义
