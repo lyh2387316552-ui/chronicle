@@ -1,5 +1,5 @@
 // 此文件由 import.js 自动生成，请勿手动编辑
-// 生成时间: 2026-09-05T02:32:36.873Z
+// 生成时间: 2026-09-08T11:01:19.988Z
 window.__AUTO_IMPORT_DATA__ = {
   "activeSkills": [
     {
@@ -5884,19 +5884,40 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "法杖",
       "effects": [
         {
-          "refId": "10059"
+          "refId": "90097",
+          "name": "闪电伤害倍率增加",
+          "desc": "闪电伤害倍率增加20.00%~40.00%",
+          "random": false
         },
         {
-          "refId": "10058"
+          "refId": "90098",
+          "name": "冰冷伤害倍率增加",
+          "desc": "冰冷伤害倍率增加50.00%~70.00%",
+          "random": false
         },
         {
-          "refId": "10002"
+          "refId": "90099",
+          "name": "基础魔力",
+          "desc": "基础魔力 50~100",
+          "random": false
         },
         {
-          "refId": "10049"
+          "refId": "90100",
+          "name": "投射物速度提高",
+          "desc": "投射物速度提高20.00%~50.00%",
+          "random": false
         },
         {
-          "refId": "10038"
+          "refId": "90101",
+          "name": "投射物数量增加",
+          "desc": "投射物数量增加100.00%~200.00%",
+          "random": false
+        },
+        {
+          "refId": "90102",
+          "name": "法术技能等级",
+          "desc": "法术技能等级 2~4",
+          "random": false
         }
       ],
       "sourceId": "1100103",
@@ -5911,19 +5932,40 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "长剑",
       "effects": [
         {
-          "refId": "10056"
+          "refId": "90001",
+          "name": "物理伤害倍率增加",
+          "desc": "物理伤害倍率增加40.00%~60.00%",
+          "random": false
         },
         {
-          "refId": "10304"
+          "refId": "90002",
+          "name": "火焰伤害提高",
+          "desc": "火焰伤害提高 40.00%~60.00%",
+          "random": false
         },
         {
-          "refId": "10300"
+          "refId": "90003",
+          "name": "全局伤害提高",
+          "desc": "全局伤害提高 20.00%~40.00%",
+          "random": false
         },
         {
-          "refId": "10031"
+          "refId": "90004",
+          "name": "攻击速度提高",
+          "desc": "攻击速度提高10.00%~20.00%",
+          "random": false
         },
         {
-          "refId": "10176"
+          "refId": "90005",
+          "name": "物理技能等级",
+          "desc": "物理技能等级 2~3",
+          "random": false
+        },
+        {
+          "refId": "90006",
+          "name": "攻击暴击率提高",
+          "desc": "攻击暴击率提高30.00%~50.00%",
+          "random": false
         }
       ],
       "sourceId": "1100201",
@@ -5938,19 +5980,40 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "长剑",
       "effects": [
         {
-          "refId": "10058"
+          "refId": "90055",
+          "name": "冰冷伤害倍率增加",
+          "desc": "冰冷伤害倍率增加50.00%~70.00%",
+          "random": false
         },
         {
-          "refId": "10305"
+          "refId": "90056",
+          "name": "冰冷伤害提高",
+          "desc": "冰冷伤害提高 75.00%~100.00%",
+          "random": false
         },
         {
-          "refId": "10056"
+          "refId": "90057",
+          "name": "物理伤害倍率增加",
+          "desc": "物理伤害倍率增加50.00%~70.00%",
+          "random": false
         },
         {
-          "refId": "10070"
+          "refId": "90058",
+          "name": "物理伤害转冰冷伤害增加",
+          "desc": "物理伤害转冰冷伤害增加75.00%~100.00%",
+          "random": false
         },
         {
-          "refId": "10502"
+          "refId": "90059",
+          "name": "冰冷技能等级",
+          "desc": "冰冷技能等级 4~6",
+          "random": false
+        },
+        {
+          "refId": "90060",
+          "name": "获得冰冷伤害",
+          "desc": "获得冰冷伤害 60.00%~80.00%",
+          "random": false
         }
       ],
       "sourceId": "1100202",
@@ -5965,19 +6028,34 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "头盔",
       "effects": [
         {
-          "refId": "10001"
+          "refId": "90145",
+          "name": "基础生命",
+          "desc": "基础生命 1500~2000",
+          "random": false
         },
         {
-          "refId": "10304"
+          "refId": "90146",
+          "name": "火焰伤害提高",
+          "desc": "火焰伤害提高 40.00%~60.00%",
+          "random": false
         },
         {
-          "refId": "10003"
+          "refId": "90147",
+          "name": "生命每秒恢复",
+          "desc": "生命每秒恢复 5~15",
+          "random": false
         },
         {
-          "refId": "2340000080"
+          "refId": "90148",
+          "name": "周围敌人受到生命值上限1%的点燃强度的点燃",
+          "desc": "周围敌人受到生命值上限1%的点燃强度的点燃 0",
+          "random": false
         },
         {
-          "refId": "10312"
+          "refId": "90149",
+          "name": "火焰抗性",
+          "desc": "火焰抗性 30.00%~50.00%",
+          "random": false
         }
       ],
       "sourceId": "1200101",
@@ -5992,13 +6070,34 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "头盔",
       "effects": [
         {
-          "refId": "10001"
+          "refId": "90037",
+          "name": "基础生命",
+          "desc": "基础生命 950~1050",
+          "random": false
         },
         {
-          "refId": "10070"
+          "refId": "90038",
+          "name": "格挡率",
+          "desc": "格挡率 0",
+          "random": false
         },
         {
-          "refId": "10313"
+          "refId": "90040",
+          "name": "冻结效果获得提高",
+          "desc": "冻结效果获得提高 1",
+          "random": false
+        },
+        {
+          "refId": "90041",
+          "name": "物理伤害转冰冷伤害增加",
+          "desc": "物理伤害转冰冷伤害增加70.00%~100.00%",
+          "random": false
+        },
+        {
+          "refId": "90042",
+          "name": "冰冷抗性",
+          "desc": "冰冷抗性 30.00%~40.00%",
+          "random": false
         }
       ],
       "sourceId": "1200102",
@@ -6013,19 +6112,34 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "头盔",
       "effects": [
         {
-          "refId": "10001"
+          "refId": "90061",
+          "name": "基础生命",
+          "desc": "基础生命 950~1050",
+          "random": false
         },
         {
-          "refId": "10002"
+          "refId": "90062",
+          "name": "基础魔力",
+          "desc": "基础魔力 71~80",
+          "random": false
         },
         {
-          "refId": "10079"
+          "refId": "90064",
+          "name": "绝对暴击",
+          "desc": "攻击一定会暴击，暴击伤害降低40.00%~60.00%",
+          "random": false
         },
         {
-          "refId": "10312"
+          "refId": "90065",
+          "name": "火焰抗性",
+          "desc": "火焰抗性 30.00%~40.00%",
+          "random": false
         },
         {
-          "refId": "10314"
+          "refId": "90066",
+          "name": "闪电抗性",
+          "desc": "闪电抗性 30.00%~40.00%",
+          "random": false
         }
       ],
       "sourceId": "1200103",
@@ -6040,19 +6154,34 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "胸甲",
       "effects": [
         {
-          "refId": "10001"
+          "refId": "90013",
+          "name": "基础生命",
+          "desc": "基础生命 60~100",
+          "random": false
         },
         {
-          "refId": "10316"
+          "refId": "90014",
+          "name": "元素抗性",
+          "desc": "元素抗性 5.00%~10.00%",
+          "random": false
         },
         {
-          "refId": "2110000010"
+          "refId": "90016",
+          "name": "闪电之捷",
+          "desc": "获得闪电之捷 0",
+          "random": false
         },
         {
-          "refId": "2110000020"
+          "refId": "90017",
+          "name": "灰烬之捷",
+          "desc": "获得灰烬之捷 0",
+          "random": false
         },
         {
-          "refId": "2110000030"
+          "refId": "90018",
+          "name": "冰霜之捷",
+          "desc": "获得冰霜之捷 0",
+          "random": false
         }
       ],
       "sourceId": "1300101",
@@ -6067,16 +6196,28 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "胸甲",
       "effects": [
         {
-          "refId": "2340000020"
+          "refId": "90073",
+          "name": "当生命大于X时，中毒伤害提高",
+          "desc": "当生命大于2000时，中毒伤害提高50.00%~100.00%%",
+          "random": false
         },
         {
-          "refId": "2340000030"
+          "refId": "90074",
+          "name": "当冷却回复效率高于X%时，中毒持续时间增加",
+          "desc": "当冷却回复效率高于40%时，中毒持续时间增加50.00%~100.00%%。",
+          "random": false
         },
         {
-          "refId": "10315"
+          "refId": "90076",
+          "name": "混沌抗性",
+          "desc": "混沌抗性 40.00%~50.00%",
+          "random": false
         },
         {
-          "refId": "10001"
+          "refId": "90077",
+          "name": "基础生命",
+          "desc": "基础生命 1000~1200",
+          "random": false
         }
       ],
       "sourceId": "1300102",
@@ -6091,19 +6232,34 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "胸甲",
       "effects": [
         {
-          "refId": "10002"
+          "refId": "90103",
+          "name": "基础魔力",
+          "desc": "基础魔力 100~200",
+          "random": false
         },
         {
-          "refId": "10067"
+          "refId": "90104",
+          "name": "法术伤害提高",
+          "desc": "法术伤害提高40.00%~50.00%",
+          "random": false
         },
         {
-          "refId": "10108"
+          "refId": "90106",
+          "name": "魔力回复率额外提高",
+          "desc": "魔力回复率额外提高50.00%~100.00%",
+          "random": false
         },
         {
-          "refId": "10117"
+          "refId": "90107",
+          "name": "魔力每秒恢复增加",
+          "desc": "魔力每秒恢复增加5~10",
+          "random": false
         },
         {
-          "refId": "10142"
+          "refId": "90108",
+          "name": "注能持续时间提高",
+          "desc": "注能持续时间提高50.00%~100.00%",
+          "random": false
         }
       ],
       "sourceId": "1300103",
@@ -6118,19 +6274,28 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "鞋子",
       "effects": [
         {
-          "refId": "10001"
+          "refId": "90019",
+          "name": "基础生命",
+          "desc": "基础生命 950~1050",
+          "random": false
         },
         {
-          "refId": "10002"
+          "refId": "90020",
+          "name": "基础魔力",
+          "desc": "基础魔力 70~100",
+          "random": false
         },
         {
-          "refId": "10231"
+          "refId": "90022",
+          "name": "移动速度增加",
+          "desc": "0 60.00%~100.00%",
+          "random": false
         },
         {
-          "refId": "10007"
-        },
-        {
-          "refId": "10312"
+          "refId": "90023",
+          "name": "火焰抗性",
+          "desc": "火焰抗性 30.00%~40.00%",
+          "random": false
         }
       ],
       "sourceId": "1500103",
@@ -6145,13 +6310,22 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "鞋子",
       "effects": [
         {
-          "refId": "10231"
+          "refId": "90109",
+          "name": "移动速度增加",
+          "desc": "0 10.00%~15.00%",
+          "random": false
         },
         {
-          "refId": "10007"
+          "refId": "90110",
+          "name": "火焰伤害提高",
+          "desc": "火焰伤害提高 15.00%~25.00%",
+          "random": false
         },
         {
-          "refId": "10304"
+          "refId": "90113",
+          "name": "每隔5秒在脚下生成一片火焰地面，造成相当于20%攻击力的点燃伤害",
+          "desc": "每隔5秒在脚下生成一片火焰地面，造成相当于20%攻击力的点燃伤害 0",
+          "random": false
         }
       ],
       "sourceId": "1500103",
@@ -6166,10 +6340,28 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "鞋子",
       "effects": [
         {
-          "refId": "10231"
+          "refId": "90115",
+          "name": "移动速度增加",
+          "desc": "0 15.00%~20.00%",
+          "random": false
         },
         {
-          "refId": "10007"
+          "refId": "90116",
+          "name": "全局伤害提高",
+          "desc": "全局伤害提高 0",
+          "random": false
+        },
+        {
+          "refId": "90118",
+          "name": "冰霜抗性",
+          "desc": "冰霜抗性 0",
+          "random": false
+        },
+        {
+          "refId": "90119",
+          "name": "每移动20米可以获得1层毁灭注能",
+          "desc": "每移动20米可以获得1层毁灭注能 1",
+          "random": false
         }
       ],
       "sourceId": "1500103",
@@ -6184,16 +6376,34 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "手套",
       "effects": [
         {
-          "refId": "10059"
+          "refId": "90025",
+          "name": "闪电伤害倍率增加",
+          "desc": "闪电伤害倍率增加25.00%~35.00%",
+          "random": false
         },
         {
-          "refId": "10031"
+          "refId": "90026",
+          "name": "攻击速度提高",
+          "desc": "攻击速度提高30.00%~40.00%",
+          "random": false
         },
         {
-          "refId": "11009"
+          "refId": "90028",
+          "name": "感电概率提高",
+          "desc": "感电概率提高 60.00%~100.00%",
+          "random": false
         },
         {
-          "refId": "11010"
+          "refId": "90029",
+          "name": "感电效果比例",
+          "desc": "感电效果比例 60.00%~100.00%",
+          "random": false
+        },
+        {
+          "refId": "90030",
+          "name": "闪电技能等级",
+          "desc": "闪电技能等级 2~3",
+          "random": false
         }
       ],
       "sourceId": "1600101",
@@ -6208,16 +6418,34 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "手套",
       "effects": [
         {
-          "refId": "10056"
+          "refId": "90031",
+          "name": "物理伤害倍率增加",
+          "desc": "物理伤害倍率增加25.00%~35.00%",
+          "random": false
         },
         {
-          "refId": "10070"
+          "refId": "90032",
+          "name": "物理技能等级",
+          "desc": "物理技能等级 1~2",
+          "random": false
         },
         {
-          "refId": "10069"
+          "refId": "90034",
+          "name": "物理伤害转冰冷伤害增加",
+          "desc": "物理伤害转冰冷伤害增加100.00%",
+          "random": false
         },
         {
-          "refId": "10071"
+          "refId": "90035",
+          "name": "物理伤害转火焰伤害增加",
+          "desc": "物理伤害转火焰伤害增加100.00%",
+          "random": false
+        },
+        {
+          "refId": "90036",
+          "name": "物理伤害转闪电伤害增加",
+          "desc": "物理伤害转闪电伤害增加100.00%",
+          "random": false
         }
       ],
       "sourceId": "1600101",
@@ -6232,13 +6460,34 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "手套",
       "effects": [
         {
-          "refId": "10058"
+          "refId": "90043",
+          "name": "冰冷伤害倍率增加",
+          "desc": "冰冷伤害倍率增加50.00%~70.00%",
+          "random": false
         },
         {
-          "refId": "10176"
+          "refId": "90044",
+          "name": "攻击暴击率提高",
+          "desc": "攻击暴击率提高60.00%~80.00%",
+          "random": false
         },
         {
-          "refId": "10060"
+          "refId": "90046",
+          "name": "冻结时间获得提高",
+          "desc": "冻结时间获得提高 0",
+          "random": false
+        },
+        {
+          "refId": "90047",
+          "name": "冰冷技能等级",
+          "desc": "冰冷技能等级 2~3",
+          "random": false
+        },
+        {
+          "refId": "90048",
+          "name": "攻击暴击伤害增加",
+          "desc": "攻击暴击伤害增加45.00%~60.00%",
+          "random": false
         }
       ],
       "sourceId": "1600101",
@@ -6253,19 +6502,34 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "手套",
       "effects": [
         {
-          "refId": "10056"
+          "refId": "90067",
+          "name": "物理伤害倍率增加",
+          "desc": "物理伤害倍率增加25.00%~35.00%",
+          "random": false
         },
         {
-          "refId": "10031"
+          "refId": "90068",
+          "name": "攻击速度提高",
+          "desc": "攻击速度提高-30.00%~-20.00%",
+          "random": false
         },
         {
-          "refId": "10120"
+          "refId": "90069",
+          "name": "元素伤害提高",
+          "desc": "元素伤害提高25.00%~35.00%",
+          "random": false
         },
         {
-          "refId": "10308"
+          "refId": "90070",
+          "name": "近战技能范围效果提高",
+          "desc": "近战技能范围效果提高60.00%~100.00%",
+          "random": false
         },
         {
-          "refId": "10080"
+          "refId": "90071",
+          "name": "攻击命中时有20%概率施加元素曝露，使元素抗性降低50%",
+          "desc": "攻击命中时有20%概率施加元素曝露，使元素抗性降低50% 0",
+          "random": false
         }
       ],
       "sourceId": "1600101",
@@ -6280,16 +6544,28 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "手套",
       "effects": [
         {
-          "refId": "2340000010"
+          "refId": "90079",
+          "name": "击败冰结的敌人，回复位移技能的15%当前冷却时间",
+          "desc": "击败冰结的敌人，回复位移技能的15%当前冷却时间 0",
+          "random": false
         },
         {
-          "refId": "10001"
+          "refId": "90080",
+          "name": "基础生命",
+          "desc": "基础生命 1000~1200",
+          "random": false
         },
         {
-          "refId": "10067"
+          "refId": "90082",
+          "name": "法术伤害提高",
+          "desc": "法术伤害提高40.00%~50.00%",
+          "random": false
         },
         {
-          "refId": "11008"
+          "refId": "90083",
+          "name": "冰冻效果比例",
+          "desc": "冰冻效果比例 30.00%~40.00%",
+          "random": false
         }
       ],
       "sourceId": "1600102",
@@ -6304,19 +6580,28 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "手套",
       "effects": [
         {
-          "refId": "10053"
+          "refId": "90085",
+          "name": "中毒层数上限增加",
+          "desc": "中毒层数上限增加1~3",
+          "random": false
         },
         {
-          "refId": "11046"
+          "refId": "90086",
+          "name": "基础生命",
+          "desc": "基础生命 1000~1200",
+          "random": false
         },
         {
-          "refId": "10001"
+          "refId": "90088",
+          "name": "法术伤害提高",
+          "desc": "法术伤害提高20.00%~30.00%",
+          "random": false
         },
         {
-          "refId": "10067"
-        },
-        {
-          "refId": "11040"
+          "refId": "90089",
+          "name": "造成中毒时间比例",
+          "desc": "造成中毒时间比例 20.00%~30.00%",
+          "random": false
         }
       ],
       "sourceId": "1600102",
@@ -6331,19 +6616,34 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "礼花",
       "effects": [
         {
-          "refId": "10031"
+          "refId": "90139",
+          "name": "速度提高",
+          "desc": "攻击速度提高20.00%~40.00% / 施法速度提高20.00%~40.00%（取随机一条）",
+          "random": true
         },
         {
-          "refId": "10056"
+          "refId": "90140",
+          "name": "伤害倍率增加",
+          "desc": "物理伤害倍率增加110.00%~210.00% / 火焰伤害倍率增加110.00%~210.00% / 冰冷伤害倍率增加110.00%~210.00% / 闪电伤害倍率增加110.00%~210.00% / 混沌伤害倍率增加110.00%~210.00%（取随机一条）",
+          "random": true
         },
         {
-          "refId": "10303"
+          "refId": "90141",
+          "name": "伤害提高",
+          "desc": "物理伤害提高 100.00%~150.00% / 火焰伤害提高 100.00%~150.00% / 冰冷伤害提高 100.00%~150.00% / 闪电伤害提高 100.00%~150.00% / 混沌伤害提高 100.00%~150.00%（取随机一条）",
+          "random": true
         },
         {
-          "refId": "10060"
+          "refId": "90142",
+          "name": "暴击伤害增加",
+          "desc": "攻击暴击伤害增加60.00%~120.00% / 法术暴击伤害增加60.00%~120.00%（取随机一条）",
+          "random": true
         },
         {
-          "refId": "10500"
+          "refId": "90143",
+          "name": "获得…伤害",
+          "desc": "获得物理伤害 40.00%~80.00% / 获得火焰伤害 40.00%~80.00% / 获得冰冷伤害 40.00%~80.00% / 获得闪电伤害 40.00%~80.00% / 获得混沌伤害 40.00%~80.00%（取随机一条）",
+          "random": true
         }
       ],
       "sourceId": "1700106",
@@ -6358,13 +6658,22 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "项链",
       "effects": [
         {
-          "refId": "10300"
+          "refId": "90007",
+          "name": "全局伤害提高",
+          "desc": "全局伤害提高 10.00%~30.00%",
+          "random": false
         },
         {
-          "refId": "10001"
+          "refId": "90008",
+          "name": "基础生命",
+          "desc": "基础生命 100~200",
+          "random": false
         },
         {
-          "refId": "10078"
+          "refId": "90010",
+          "name": "旋风斩无cd,伤害减少1.6倍率",
+          "desc": "旋风斩无cd,伤害减少0.00%倍率",
+          "random": false
         }
       ],
       "sourceId": "1900101",
@@ -6379,19 +6688,34 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "项链",
       "effects": [
         {
-          "refId": "10077"
+          "refId": "90091",
+          "name": "幻影数量增加",
+          "desc": "幻影数量增加0~2",
+          "random": false
         },
         {
-          "refId": "10123"
+          "refId": "90092",
+          "name": "幻影持续时间提高",
+          "desc": "幻影持续时间提高0.00%~100.00%",
+          "random": false
         },
         {
-          "refId": "10002"
+          "refId": "90093",
+          "name": "基础魔力",
+          "desc": "基础魔力 50~100",
+          "random": false
         },
         {
-          "refId": "10067"
+          "refId": "90094",
+          "name": "法术伤害提高",
+          "desc": "法术伤害提高20.00%~30.00%",
+          "random": false
         },
         {
-          "refId": "10122"
+          "refId": "90095",
+          "name": "幻影数量上限增加",
+          "desc": "幻影数量上限增加1",
+          "random": false
         }
       ],
       "sourceId": "1900101",
@@ -6406,19 +6730,34 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "项链",
       "effects": [
         {
-          "refId": "10503"
+          "refId": "90121",
+          "name": "获得闪电伤害",
+          "desc": "获得闪电伤害 30.00%~35.00%",
+          "random": false
         },
         {
-          "refId": "10306"
+          "refId": "90122",
+          "name": "闪电伤害提高",
+          "desc": "闪电伤害提高 40.00%~60.00%",
+          "random": false
         },
         {
-          "refId": "10314"
+          "refId": "90124",
+          "name": "闪电抗性",
+          "desc": "闪电抗性 30.00%~50.00%",
+          "random": false
         },
         {
-          "refId": "10148"
+          "refId": "90125",
+          "name": "闪电浸染",
+          "desc": "旋风技能视为被闪电浸染1",
+          "random": false
         },
         {
-          "refId": "10311"
+          "refId": "90126",
+          "name": "物理抗性",
+          "desc": "物理抗性 30.00%~50.00%",
+          "random": false
         }
       ],
       "sourceId": "1900101",
@@ -6433,19 +6772,34 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "项链",
       "effects": [
         {
-          "refId": "10056"
+          "refId": "90049",
+          "name": "物理伤害倍率增加",
+          "desc": "物理伤害倍率增加50.00%~70.00%",
+          "random": false
         },
         {
-          "refId": "11037"
+          "refId": "90050",
+          "name": "冷却回复效率",
+          "desc": "冷却回复效率 15.00%~25.00%",
+          "random": false
         },
         {
-          "refId": "10034"
+          "refId": "90052",
+          "name": "持续时间提高",
+          "desc": "持续时间提高25.00%~40.00%",
+          "random": false
         },
         {
-          "refId": "10176"
+          "refId": "90053",
+          "name": "攻击暴击率提高",
+          "desc": "攻击暴击率提高60.00%~80.00%",
+          "random": false
         },
         {
-          "refId": "10060"
+          "refId": "90054",
+          "name": "攻击暴击伤害增加",
+          "desc": "攻击暴击伤害增加50.00%~70.00%",
+          "random": false
         }
       ],
       "sourceId": "1900102",
@@ -6460,13 +6814,28 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "戒指",
       "effects": [
         {
-          "refId": "10050"
+          "refId": "90127",
+          "name": "施法速度提高",
+          "desc": "施法速度提高10.00%~15.00%",
+          "random": false
         },
         {
-          "refId": "10062"
+          "refId": "90128",
+          "name": "范围伤害提高",
+          "desc": "范围伤害提高30.00%~50.00%",
+          "random": false
         },
         {
-          "refId": "10149"
+          "refId": "90130",
+          "name": "毁灭注能层数增加",
+          "desc": "毁灭注能层数增加1",
+          "random": false
+        },
+        {
+          "refId": "90131",
+          "name": "法术技能等级",
+          "desc": "法术技能等级 1~2",
+          "random": false
         }
       ],
       "sourceId": "2000101",
@@ -6481,16 +6850,34 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "戒指",
       "effects": [
         {
-          "refId": "10502"
+          "refId": "90133",
+          "name": "获得冰冷伤害",
+          "desc": "获得冰冷伤害 20.00%~40.00%",
+          "random": false
         },
         {
-          "refId": "10305"
+          "refId": "90134",
+          "name": "冰冷伤害提高",
+          "desc": "冰冷伤害提高 30.00%~50.00%",
+          "random": false
         },
         {
-          "refId": "10070"
+          "refId": "90136",
+          "name": "物理伤害转冰冷伤害增加",
+          "desc": "物理伤害转冰冷伤害增加100.00%",
+          "random": false
         },
         {
-          "refId": "10033"
+          "refId": "90137",
+          "name": "冻结效果额外提高",
+          "desc": "冻结效果额外提高30.00%~50.00%",
+          "random": false
+        },
+        {
+          "refId": "90138",
+          "name": "冰冷技能等级",
+          "desc": "冰冷技能等级 1",
+          "random": false
         }
       ],
       "sourceId": "2000102",
@@ -9191,685 +9578,6 @@ window.__AUTO_IMPORT_DATA__ = {
           "icon": "🔶",
           "iconSrc": "talent/yuansu/yuansu07",
           "linkPoint": "1006013"
-        }
-      ]
-    },
-    {
-      "id": "OCC09",
-      "occupation": 9,
-      "name": "通用",
-      "talentPoints": [
-        {
-          "id": "1002001",
-          "name": "攻击伤害",
-          "desc": "攻击伤害+5%",
-          "occupation": 9,
-          "viewPos": {
-            "x": 0,
-            "y": 319.773
-          },
-          "size": 1,
-          "icon": "🔵",
-          "iconSrc": "talent/attribute/gongshang",
-          "linkPoint": "1002002"
-        },
-        {
-          "id": "1002002",
-          "name": "攻击伤害",
-          "desc": "攻击伤害+5%",
-          "occupation": 9,
-          "viewPos": {
-            "x": 0,
-            "y": 515.601
-          },
-          "size": 1,
-          "icon": "🔵",
-          "iconSrc": "talent/attribute/gongshang",
-          "linkPoint": "1002001|1002003"
-        },
-        {
-          "id": "1002003",
-          "name": "攻击伤害",
-          "desc": "攻击伤害+5%",
-          "occupation": 9,
-          "viewPos": {
-            "x": 0,
-            "y": 714.659
-          },
-          "size": 1,
-          "icon": "🔵",
-          "iconSrc": "talent/attribute/gongshang",
-          "linkPoint": "1002002|1002004|1002008|1002013|1002018|1002023"
-        },
-        {
-          "id": "1002004",
-          "name": "攻击伤害",
-          "desc": "攻击伤害+5%",
-          "occupation": 9,
-          "viewPos": {
-            "x": 0,
-            "y": 915.031
-          },
-          "size": 1,
-          "icon": "🔵",
-          "iconSrc": "talent/attribute/gongshang",
-          "linkPoint": "1002003|1002005"
-        },
-        {
-          "id": "1002005",
-          "name": "攻击伤害",
-          "desc": "攻击伤害+5%",
-          "occupation": 9,
-          "viewPos": {
-            "x": 0,
-            "y": 1115.499
-          },
-          "size": 1,
-          "icon": "🔵",
-          "iconSrc": "talent/attribute/gongshang",
-          "linkPoint": "1002004|1002006"
-        },
-        {
-          "id": "1002006",
-          "name": "攻击伤害",
-          "desc": "攻击伤害+5%",
-          "occupation": 9,
-          "viewPos": {
-            "x": 0,
-            "y": 1315.561
-          },
-          "size": 1,
-          "icon": "🔵",
-          "iconSrc": "talent/attribute/gongshang",
-          "linkPoint": "1002005|1002007"
-        },
-        {
-          "id": "1002007",
-          "name": "可选天赋",
-          "desc": "激活一个可选天赋",
-          "occupation": 9,
-          "viewPos": {
-            "x": 0,
-            "y": 1659.996
-          },
-          "size": 3,
-          "icon": "🔵",
-          "iconSrc": "talent/attribute/tianfu",
-          "linkPoint": "1002006|1002012|1002017|1002022|1002027|1002033|1002038|1002043|1002048|1002053"
-        },
-        {
-          "id": "1002008",
-          "name": "投射伤害",
-          "desc": "投射物伤害+10%",
-          "occupation": 9,
-          "viewPos": {
-            "x": 153.553,
-            "y": 654.916
-          },
-          "size": 1,
-          "icon": "🔵",
-          "iconSrc": "talent/attribute/tousheshanghai",
-          "linkPoint": "1002003|1002009"
-        },
-        {
-          "id": "1002009",
-          "name": "投射伤害",
-          "desc": "投射物伤害+15%",
-          "occupation": 9,
-          "viewPos": {
-            "x": 153.553,
-            "y": 861.848
-          },
-          "size": 1,
-          "icon": "🔵",
-          "iconSrc": "talent/attribute/tousheshanghai",
-          "linkPoint": "1002008|100201"
-        },
-        {
-          "id": "1002010",
-          "name": "投射伤害",
-          "desc": "投射物伤害+15%",
-          "occupation": 9,
-          "viewPos": {
-            "x": 153.553,
-            "y": 1064.205
-          },
-          "size": 2,
-          "icon": "🔵",
-          "iconSrc": "talent/attribute/tousheshanghai",
-          "linkPoint": "1002009|1002011"
-        },
-        {
-          "id": "1002011",
-          "name": "投射伤害",
-          "desc": "投射物伤害+15%",
-          "occupation": 9,
-          "viewPos": {
-            "x": 153.553,
-            "y": 1252.904
-          },
-          "size": 1,
-          "icon": "🔵",
-          "iconSrc": "talent/attribute/tousheshanghai",
-          "linkPoint": "100201|1002012"
-        },
-        {
-          "id": "1002012",
-          "name": "投射伤害",
-          "desc": "投射物伤害+10%",
-          "occupation": 9,
-          "viewPos": {
-            "x": 153.553,
-            "y": 1452.97
-          },
-          "size": 1,
-          "icon": "🔵",
-          "iconSrc": "talent/attribute/tousheshanghai",
-          "linkPoint": "1002007|1002011"
-        },
-        {
-          "id": "1002013",
-          "name": "近战伤害",
-          "desc": "近战伤害+10%",
-          "occupation": 9,
-          "viewPos": {
-            "x": 307.106,
-            "y": 654.916
-          },
-          "size": 1,
-          "icon": "🔵",
-          "iconSrc": "talent/attribute/jinzhanshanghai",
-          "linkPoint": "1002003|1002014"
-        },
-        {
-          "id": "1002014",
-          "name": "近战伤害",
-          "desc": "近战伤害+15%",
-          "occupation": 9,
-          "viewPos": {
-            "x": 307.106,
-            "y": 861.848
-          },
-          "size": 1,
-          "icon": "🔵",
-          "iconSrc": "talent/attribute/jinzhanshanghai",
-          "linkPoint": "1002013|1002015"
-        },
-        {
-          "id": "1002015",
-          "name": "近战伤害",
-          "desc": "近战伤害+15%",
-          "occupation": 9,
-          "viewPos": {
-            "x": 307.106,
-            "y": 1064.205
-          },
-          "size": 2,
-          "icon": "🔵",
-          "iconSrc": "talent/attribute/jinzhanshanghai",
-          "linkPoint": "1002014|1002016"
-        },
-        {
-          "id": "1002016",
-          "name": "近战伤害",
-          "desc": "近战伤害+15%",
-          "occupation": 9,
-          "viewPos": {
-            "x": 307.106,
-            "y": 1252.904
-          },
-          "size": 1,
-          "icon": "🔵",
-          "iconSrc": "talent/attribute/jinzhanshanghai",
-          "linkPoint": "1002015|1002017"
-        },
-        {
-          "id": "1002017",
-          "name": "近战伤害",
-          "desc": "近战伤害+10%",
-          "occupation": 9,
-          "viewPos": {
-            "x": 307.106,
-            "y": 1452.97
-          },
-          "size": 1,
-          "icon": "🔵",
-          "iconSrc": "talent/attribute/jinzhanshanghai",
-          "linkPoint": "1002007|1002016"
-        },
-        {
-          "id": "1002018",
-          "name": "元素伤害",
-          "desc": "元素伤害+7%",
-          "occupation": 9,
-          "viewPos": {
-            "x": -153.553,
-            "y": 654.916
-          },
-          "size": 1,
-          "icon": "🔵",
-          "iconSrc": "talent/attribute/yuansushanghai",
-          "linkPoint": "1002003|1002019"
-        },
-        {
-          "id": "1002019",
-          "name": "元素伤害",
-          "desc": "元素伤害+10%",
-          "occupation": 9,
-          "viewPos": {
-            "x": -153.553,
-            "y": 861.848
-          },
-          "size": 1,
-          "icon": "🔵",
-          "iconSrc": "talent/attribute/yuansushanghai",
-          "linkPoint": "1002018|1002020"
-        },
-        {
-          "id": "1002020",
-          "name": "元素伤害",
-          "desc": "元素伤害+15%",
-          "occupation": 9,
-          "viewPos": {
-            "x": -153.553,
-            "y": 1064.205
-          },
-          "size": 2,
-          "icon": "🔵",
-          "iconSrc": "talent/attribute/yuansushanghai",
-          "linkPoint": "1002019|1002021"
-        },
-        {
-          "id": "1002021",
-          "name": "元素伤害",
-          "desc": "元素伤害+10%",
-          "occupation": 9,
-          "viewPos": {
-            "x": -153.553,
-            "y": 1252.904
-          },
-          "size": 1,
-          "icon": "🔵",
-          "iconSrc": "talent/attribute/yuansushanghai",
-          "linkPoint": "1002020|1002022"
-        },
-        {
-          "id": "1002022",
-          "name": "元素伤害",
-          "desc": "元素伤害+7%",
-          "occupation": 9,
-          "viewPos": {
-            "x": -153.553,
-            "y": 1452.97
-          },
-          "size": 1,
-          "icon": "🔵",
-          "iconSrc": "talent/attribute/yuansushanghai",
-          "linkPoint": "1002007|1002021"
-        },
-        {
-          "id": "1002023",
-          "name": "范围伤害",
-          "desc": "范围伤害+10%",
-          "occupation": 9,
-          "viewPos": {
-            "x": -307.106,
-            "y": 654.916
-          },
-          "size": 1,
-          "icon": "🔵",
-          "iconSrc": "talent/attribute/fanweishanghai",
-          "linkPoint": "1002003|1002024"
-        },
-        {
-          "id": "1002024",
-          "name": "范围伤害",
-          "desc": "范围伤害+15%",
-          "occupation": 9,
-          "viewPos": {
-            "x": -307.106,
-            "y": 861.848
-          },
-          "size": 1,
-          "icon": "🔵",
-          "iconSrc": "talent/attribute/fanweishanghai",
-          "linkPoint": "1002023|1002025"
-        },
-        {
-          "id": "1002025",
-          "name": "范围伤害",
-          "desc": "范围伤害+15%",
-          "occupation": 9,
-          "viewPos": {
-            "x": -307.106,
-            "y": 1064.205
-          },
-          "size": 2,
-          "icon": "🔵",
-          "iconSrc": "talent/attribute/fanweishanghai",
-          "linkPoint": "1002024|1002026"
-        },
-        {
-          "id": "1002026",
-          "name": "范围伤害",
-          "desc": "范围伤害+15%",
-          "occupation": 9,
-          "viewPos": {
-            "x": -307.106,
-            "y": 1252.904
-          },
-          "size": 1,
-          "icon": "🔵",
-          "iconSrc": "talent/attribute/fanweishanghai",
-          "linkPoint": "1002025|1002027"
-        },
-        {
-          "id": "1002027",
-          "name": "范围伤害",
-          "desc": "范围伤害+10%",
-          "occupation": 9,
-          "viewPos": {
-            "x": -307.106,
-            "y": 1452.97
-          },
-          "size": 1,
-          "icon": "🔵",
-          "iconSrc": "talent/attribute/fanweishanghai",
-          "linkPoint": "1002007|1002026"
-        },
-        {
-          "id": "1002033",
-          "name": "移动速度",
-          "desc": "移动速度+3%",
-          "occupation": 9,
-          "viewPos": {
-            "x": 153.553,
-            "y": 1991.499
-          },
-          "size": 1,
-          "icon": "🔵",
-          "iconSrc": "talent/attribute/yisu",
-          "linkPoint": "1002034|1002007|1002038|1002043|1002048|1002053"
-        },
-        {
-          "id": "1002034",
-          "name": "移动速度",
-          "desc": "移动速度+5%",
-          "occupation": 9,
-          "viewPos": {
-            "x": 153.553,
-            "y": 2188.794
-          },
-          "size": 1,
-          "icon": "🔵",
-          "iconSrc": "talent/attribute/yisu",
-          "linkPoint": "1002033|1002035"
-        },
-        {
-          "id": "1002035",
-          "name": "移动速度",
-          "desc": "移动速度+10%",
-          "occupation": 9,
-          "viewPos": {
-            "x": 153.553,
-            "y": 2385.825
-          },
-          "size": 2,
-          "icon": "🔵",
-          "iconSrc": "talent/attribute/yisu",
-          "linkPoint": "1002034|1002036"
-        },
-        {
-          "id": "1002036",
-          "name": "移动速度",
-          "desc": "移动速度+5%",
-          "occupation": 9,
-          "viewPos": {
-            "x": 153.553,
-            "y": 2581.959
-          },
-          "size": 1,
-          "icon": "🔵",
-          "iconSrc": "talent/attribute/yisu",
-          "linkPoint": "1002035|1002037"
-        },
-        {
-          "id": "1002037",
-          "name": "移动速度",
-          "desc": "移动速度+3%",
-          "occupation": 9,
-          "viewPos": {
-            "x": 153.553,
-            "y": 2782.945
-          },
-          "size": 1,
-          "icon": "🔵",
-          "iconSrc": "talent/attribute/yisu",
-          "linkPoint": "1002036|1002053"
-        },
-        {
-          "id": "1002038",
-          "name": "冻结",
-          "desc": "冻结积蓄+10%",
-          "occupation": 9,
-          "viewPos": {
-            "x": 307.106,
-            "y": 1991.499
-          },
-          "size": 1,
-          "icon": "🔵",
-          "iconSrc": "talent/attribute/dongjie",
-          "linkPoint": "1002039|1002007|1002033|1002043|1002048|1002053"
-        },
-        {
-          "id": "1002039",
-          "name": "冻结",
-          "desc": "冻结积蓄+20%",
-          "occupation": 9,
-          "viewPos": {
-            "x": 307.106,
-            "y": 2188.794
-          },
-          "size": 1,
-          "icon": "🔵",
-          "iconSrc": "talent/attribute/dongjie",
-          "linkPoint": "1002038|1002040"
-        },
-        {
-          "id": "1002040",
-          "name": "获得冰冷伤害",
-          "desc": "获得相当于伤害5%的冰冷伤害",
-          "occupation": 9,
-          "viewPos": {
-            "x": 307.106,
-            "y": 2385.825
-          },
-          "size": 2,
-          "icon": "🔵",
-          "iconSrc": "talent/attribute/huodebingshang",
-          "linkPoint": "1002039|1002041"
-        },
-        {
-          "id": "1002041",
-          "name": "冻结",
-          "desc": "冻结积蓄+20%",
-          "occupation": 9,
-          "viewPos": {
-            "x": 307.106,
-            "y": 2581.959
-          },
-          "size": 1,
-          "icon": "🔵",
-          "iconSrc": "talent/attribute/dongjie",
-          "linkPoint": "1002040|1002042"
-        },
-        {
-          "id": "1002042",
-          "name": "冻结",
-          "desc": "冻结积蓄+10%",
-          "occupation": 9,
-          "viewPos": {
-            "x": 307.106,
-            "y": 2782.945
-          },
-          "size": 1,
-          "icon": "🔵",
-          "iconSrc": "talent/attribute/dongjie",
-          "linkPoint": "1002041|1002053"
-        },
-        {
-          "id": "1002043",
-          "name": "暴击增加",
-          "desc": "暴击率增加10%",
-          "occupation": 9,
-          "viewPos": {
-            "x": -153.553,
-            "y": 1991.499
-          },
-          "size": 1,
-          "icon": "🔵",
-          "iconSrc": "talent/attribute/baoji",
-          "linkPoint": "1002044|1002007|1002033|1002038|1002048|1002053"
-        },
-        {
-          "id": "1002044",
-          "name": "暴击增加",
-          "desc": "暴击率增加15%",
-          "occupation": 9,
-          "viewPos": {
-            "x": -153.553,
-            "y": 2188.794
-          },
-          "size": 1,
-          "icon": "🔵",
-          "iconSrc": "talent/attribute/baoji",
-          "linkPoint": "1002043|1002045"
-        },
-        {
-          "id": "1002045",
-          "name": "暴击率",
-          "desc": "暴击率+1%",
-          "occupation": 9,
-          "viewPos": {
-            "x": -153.553,
-            "y": 2385.825
-          },
-          "size": 2,
-          "icon": "🔵",
-          "iconSrc": "talent/attribute/baoji",
-          "linkPoint": "1002044|1002046"
-        },
-        {
-          "id": "1002046",
-          "name": "暴击增加",
-          "desc": "暴击率增加15%",
-          "occupation": 9,
-          "viewPos": {
-            "x": -153.553,
-            "y": 2581.959
-          },
-          "size": 1,
-          "icon": "🔵",
-          "iconSrc": "talent/attribute/baoji",
-          "linkPoint": "1002045|1002047"
-        },
-        {
-          "id": "1002047",
-          "name": "暴击增加",
-          "desc": "暴击率增加10%",
-          "occupation": 9,
-          "viewPos": {
-            "x": -153.553,
-            "y": 2782.945
-          },
-          "size": 1,
-          "icon": "🔵",
-          "iconSrc": "talent/attribute/baoji",
-          "linkPoint": "1002046|1002053"
-        },
-        {
-          "id": "1002048",
-          "name": "暴伤增加",
-          "desc": "暴击伤害增加10%",
-          "occupation": 9,
-          "viewPos": {
-            "x": -307.106,
-            "y": 1991.499
-          },
-          "size": 1,
-          "icon": "🔵",
-          "iconSrc": "talent/attribute/baojishanghai",
-          "linkPoint": "1002049|1002007|1002033|1002038|1002043|1002053"
-        },
-        {
-          "id": "1002049",
-          "name": "暴伤增加",
-          "desc": "暴击伤害增加15%",
-          "occupation": 9,
-          "viewPos": {
-            "x": -307.106,
-            "y": 2188.794
-          },
-          "size": 1,
-          "icon": "🔵",
-          "iconSrc": "talent/attribute/baojishanghai",
-          "linkPoint": "1002048|1002050"
-        },
-        {
-          "id": "1002050",
-          "name": "暴击伤害",
-          "desc": "暴击伤害+20%",
-          "occupation": 9,
-          "viewPos": {
-            "x": -307.106,
-            "y": 2385.825
-          },
-          "size": 2,
-          "icon": "🔵",
-          "iconSrc": "talent/attribute/baojishanghai",
-          "linkPoint": "1002049|1002051"
-        },
-        {
-          "id": "1002051",
-          "name": "暴伤增加",
-          "desc": "暴击伤害增加15%",
-          "occupation": 9,
-          "viewPos": {
-            "x": -307.106,
-            "y": 2581.959
-          },
-          "size": 1,
-          "icon": "🔵",
-          "iconSrc": "talent/attribute/baojishanghai",
-          "linkPoint": "1002050|1002052"
-        },
-        {
-          "id": "1002052",
-          "name": "暴伤增加",
-          "desc": "暴击伤害增加10%",
-          "occupation": 9,
-          "viewPos": {
-            "x": -307.106,
-            "y": 2782.945
-          },
-          "size": 1,
-          "icon": "🔵",
-          "iconSrc": "talent/attribute/baojishanghai",
-          "linkPoint": "1002051|1002053"
-        },
-        {
-          "id": "1002053",
-          "name": "可选天赋",
-          "desc": "激活一个可选天赋",
-          "occupation": 9,
-          "viewPos": {
-            "x": 0,
-            "y": 2945.874
-          },
-          "size": 3,
-          "icon": "🔵",
-          "iconSrc": "talent/attribute/tianfu",
-          "linkPoint": "1002037|1002042|1002047|1002052|1002007|1002033|1002038|1002043|1002048"
         }
       ]
     }
@@ -13318,5 +13026,5 @@ window.__AUTO_IMPORT_DATA__ = {
       ]
     }
   ],
-  "importTime": "2026-09-05T02:32:36.873Z"
+  "importTime": "2026-09-08T11:01:19.988Z"
 };

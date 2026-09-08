@@ -8,7 +8,7 @@
     <meta http-equiv="Expires" content="0">
     <title>古荒大陆编年史</title>
     <link rel="icon" type="image/webp" href="assets/logo.webp">
-    <link rel="stylesheet" href="css/style.css?v=78">
+    <link rel="stylesheet" href="css/style.css?v=92">
 </head>
 <body>
     <div class="background-image"></div>
@@ -120,6 +120,36 @@
                         <div class="occupation-overview-track" id="occupationOverviewTrack"></div>
                         <button class="carousel-arrow carousel-arrow-right" onclick="scrollOccupationOverview(1)" aria-label="下一个">›</button>
                     </div>
+                </section>
+
+                <!-- 技能组合 -->
+                <section class="skill-combo-overview">
+                    <div class="overview-header">
+                        <h2 class="overview-title">
+                            <span class="overview-title-zh">技能组合</span>
+                            <span class="overview-title-en">FORGE YOUR <em class="overview-title-accent">SKILL</em> COMBO</span>
+                        </h2>
+                        <p class="overview-desc">一枚主动技能宝石为核心，辅以最多五枚辅助宝石，编织你的专属战斗流派。</p>
+                        <button class="overview-cta" onclick="navigateTo('custom-skills')">探索技能组合</button>
+                    </div>
+                    <div class="skill-combo-layout">
+                        <div class="skill-combo-side" id="skillComboActiveList"></div>
+                        <div class="skill-combo-stage" id="skillComboStage"></div>
+                        <div class="skill-combo-side" id="skillComboGemList"></div>
+                    </div>
+                </section>
+
+                <!-- 魔宠系统 -->
+                <section class="pet-overview">
+                    <div class="overview-header">
+                        <h2 class="overview-title">
+                            <span class="overview-title-zh">选择你的魔宠</span>
+                            <span class="overview-title-en">CHOOSE YOUR <em class="overview-title-accent">MAGICAL PET</em></span>
+                        </h2>
+                        <p class="overview-desc">十方灵宠，各显神通。驯服满星之力，与你并肩征战古荒大陆。</p>
+                        <button class="overview-cta" onclick="navigateTo('pets')">查看所有魔宠</button>
+                    </div>
+                    <div class="pet-hero-stage" id="petHeroStage"></div>
                 </section>
 
                 <div class="home-modules">
@@ -676,8 +706,8 @@
     </div>
 
     <!-- 注: xlsx.min.js 仅 tools/import.js (Node 端) 需要, 浏览器端不再加载 (约 880KB) -->
-    <script src="js/auto-import-data.js?v=16" onerror="console.error('⚠️ auto-import-data.js 加载失败！请先运行一键导入生成数据文件。')"></script>
-    <script src="js/data.js?v=16"></script>
-    <script src="js/app.js?v=56"></script>
+    <script src="js/auto-import-data.js?v=17" onerror="console.error('⚠️ auto-import-data.js 加载失败！请先运行一键导入生成数据文件。')"></script>
+    <script src="js/data.js?v=17"></script>
+    <script src="js/app.js?v=76"></script>
 </body>
 </html>

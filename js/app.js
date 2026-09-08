@@ -1759,6 +1759,8 @@ function renderHome() {
     _set('heroPet', petData.length);
     renderEquipmentOverview();
     renderOccupationOverview();
+    renderSkillComboOverview();
+    renderPetOverview();
 }
 
 // ---- 首页装备概述 (参考 Dota2 官方首页英雄介绍区块: 密集图标网格 + CTA) ----
@@ -1867,6 +1869,165 @@ function stopOccupationOverviewAutoScroll() {
     }
 }
 
+// ---- 首页技能组合 (参考 POE 星型宝石连线: 1 主动技能 + 5 辅助宝石) ----
+function renderSkillComboOverview() {
+    const stage = document.getElementById('skillComboStage');
+    if (!stage) return;
+
+    const SIDE_COUNT = 6;
+
+    // 去重系列名, 取"不同名"的辅助宝石 (去掉 ·一/·二 等进阶后缀)
+    const seenSeries = new Set();
+    const distinctGems = [];
+    for (const g of (gemData || [])) {
+        const series = (g.name || '').replace(/·\s*[一二三四五六七八九十百]+$/, '');
+        const key = series || g.name;
+        if (!seenSeries.has(key)) {
+            seenSeries.add(key);
+            distinctGems.push(g);
+        }
+        if (distinctGems.length >= SIDE_COUNT) break;
+    }
+
+    // 主动技能按 icon 去重, 取 icon 互不相同的技能
+    const seenActiveIcon = new Set();
+    const distinctActive = [];
+    for (const s of (activeSkills || [])) {
+        if (!s.icon) continue;
+        if (!seenActiveIcon.has(s.icon)) {
+            seenActiveIcon.add(s.icon);
+            distinctActive.push(s);
+        }
+        if (distinctActive.length >= SIDE_COUNT) break;
+    }
+
+    const active = distinctActive[0] || (activeSkills || []).find(s => s.icon) || activeSkills[0];
+    const supports = distinctGems.slice(0, 5);
+
+    if (!active) { stage.innerHTML = ''; return; }
+
+    // 5 个辅助宝石位: 以中心 (50,50) 为圆心、半径 42 的正五边形顶点 (百分比坐标)
+    const positions = [
+        { x: 50, y: 8 },
+        { x: 90, y: 37 },
+        { x: 75, y: 84 },
+        { x: 25, y: 84 },
+        { x: 10, y: 37 }
+    ];
+
+    // 中心辐射线 + 正五边形外框
+    const radialLines = positions.map(p => `<line x1="50" y1="50" x2="${p.x}" y2="${p.y}" />`).join('');
+    const ringLines = positions.map((p, i) => {
+        const q = positions[(i + 1) % positions.length];
+        return `<line x1="${p.x}" y1="${p.y}" x2="${q.x}" y2="${q.y}" />`;
+    }).join('');
+
+    // 图标片段 (带 emoji 兜底)
+    const iconItem = (iconPath, alt, emoji) => iconPath
+        ? `<img src="${DATA_BASE}icon/${iconPath}.webp" alt="${alt}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="skill-combo-fallback" style="display:none">${emoji}</span>`
+        : `<span class="skill-combo-fallback" style="display:flex">${emoji}</span>`;
+
+    const activeIcon = iconItem(active.iconSrc || active.icon, active.name, '⚔️');
+
+    const nodes = positions.map((p, i) => {
+        const gem = supports[i];
+        if (!gem) return '';
+        return `
+            <div class="skill-combo-node" style="left:${p.x}%;top:${p.y}%" onclick="navigateTo('gems')" title="${gem.name}">
+                <div class="skill-combo-gem">${iconItem(gem.iconSrc || gem.icon, gem.name, '💎')}</div>
+                <span class="skill-combo-node-name">${gem.name}</span>
+            </div>
+        `;
+    }).join('');
+
+    stage.innerHTML = `
+        <svg class="skill-combo-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
+            ${radialLines}
+            ${ringLines}
+        </svg>
+        <div class="skill-combo-active" style="left:50%;top:50%" onclick="navigateTo('custom-skills')">
+            <div class="skill-combo-active-gem">${activeIcon}</div>
+            <span class="skill-combo-active-name">${active.name}</span>
+            <span class="skill-combo-active-lv">Lv.1</span>
+        </div>
+        ${nodes}
+    `;
+
+    // 左侧: 主动技能图标竖排
+    const activeListEl = document.getElementById('skillComboActiveList');
+    if (activeListEl) {
+        activeListEl.innerHTML = `<div class="skill-combo-side-title">主动技能</div>` + distinctActive.map(s =>
+            `<div class="skill-combo-side-item skill-combo-side-active" onclick="navigateTo('custom-skills')" title="${s.name}">${iconItem(s.iconSrc || s.icon, s.name, '⚔️')}</div>`
+        ).join('');
+    }
+
+    // 右侧: 辅助宝石图标竖排
+    const gemListEl = document.getElementById('skillComboGemList');
+    if (gemListEl) {
+        gemListEl.innerHTML = `<div class="skill-combo-side-title">辅助技能</div>` + distinctGems.slice(0, SIDE_COUNT).map(g =>
+            `<div class="skill-combo-side-item" onclick="navigateTo('gems')" title="${g.name}">${iconItem(g.iconSrc || g.icon, g.name, '💎')}</div>`
+        ).join('');
+    }
+}
+
+// ---- 首页魔宠系统 (严格按照完整效果图 1920x911 的立绘坐标拼接) ----
+// 各立绘在效果图中的精确位置(百分比, 基于 1920x911 背景图)
+// cx: 中心点横坐标%; bottom: 距底部%(=100-距顶部%); w: 宽度%; z: 前后层叠次序; flip: 是否水平镜像
+const PET_HERO_POS = {
+    '6022': { cx: 69.51, bottom: 16.79, w: 27.14, z: 7,  flip: false }, // 拳斗熊
+    '6082': { cx: 87.92, bottom: 43.58, w: 17.29, z: 5,  flip: false }, // 雷电法王
+    '7012': { cx: 25.96, bottom: 43.91, w: 26.82, z: 4,  flip: false }, // 珠泪使者
+    '7022': { cx: 12.71, bottom: 47.53, w: 21.46, z: 2,  flip: false }, // 蕾朵
+    '7032': { cx: 68.07, bottom: 50.60, w: 19.90, z: 1,  flip: false }, // 熔炉魔灵
+    '7042': { cx: 14.35, bottom: 14.05, w: 19.43, z: 8,  flip: false }, // 混沌魔猿
+    '7052': { cx: 33.05, bottom: 33.59, w: 19.01, z: 6,  flip: false }, // 雷暴元素
+    '7062': { cx: 77.79, bottom: 46.54, w: 27.03, z: 3,  flip: false }, // 破冰战甲
+    '7072': { cx: 28.15, bottom: 8.34,  w: 31.93, z: 9,  flip: false }, // 利爪冰狼
+    '7082': { cx: 59.71, bottom: 7.46,  w: 11.51, z: 10, flip: true  }  // 烈焰机甲
+};
+
+// 首页魔宠: 名称不再常驻界面, 改为悬停时在对应宠物身上滑入名称面板
+// 其余立绘压暗由 CSS `.pet-hero-layout:has(:hover)` 纯样式驱动
+function renderPetOverview() {
+    const stage = document.getElementById('petHeroStage');
+    if (!stage) return;
+
+    // 效果图中的 10 只立绘 id (固定顺序, 与切图一一对应)
+    const heroIds = ['6022', '6082', '7012', '7022', '7032', '7042', '7052', '7062', '7072', '7082'];
+    const list = heroIds
+        .map(id => (petData || []).find(p => String(p.id) === id))
+        .filter(Boolean);
+    if (!list.length) { stage.innerHTML = ''; return; }
+
+    // 首页完整效果图背景 + 英雄切图资源 (1920x911)
+    const bg = DATA_BASE + 'icon/pet/hero/bg.webp';
+
+    const itemHtml = (p) => {
+        const pos = PET_HERO_POS[String(p.id)] || { cx: 50, bottom: 5, w: 20, z: 5, flip: false };
+        const q = getPetQuality(p.quality);
+        const pic = DATA_BASE + 'icon/pet/hero/' + p.id + '.webp';
+        let fullStar = null;
+        if (p.stars && p.stars.length) {
+            fullStar = p.stars.reduce((m, s) => (s.star > m.star ? s : m), p.stars[0]);
+        }
+        const fullEff = fullStar ? renderPetStarEffects(fullStar) : '';
+        const flipCls = pos.flip ? ' pet-hero-flip' : '';
+        return `
+            <div class="pet-hero-item${flipCls}" data-pet="${p.id}" style="--cx:${pos.cx}%;--bottom:${pos.bottom}%;--w:${pos.w}%;--z:${pos.z};--pet-color:${q.color}" onclick="navigateTo('pets')" title="${p.name}">
+                <div class="pet-hero-avatar"><img src="${pic}" alt="${p.name}" onerror="this.style.display='none'"></div>
+                <div class="pet-hero-name-panel" style="--pet-color:${q.color}">${p.name}</div>
+                ${fullEff ? `<div class="pet-hero-effects"><div class="pet-hero-effects-title">⭐ 满星效果</div>${fullEff}</div>` : ''}
+            </div>
+        `;
+    };
+
+    stage.innerHTML = `
+        <div class="pet-hero-layout" style="background-image:url('${bg}')">
+            ${list.map(itemHtml).join('')}
+        </div>
+    `;
+}
+
 // ---- 装备系统 ----
 function renderEquipment(filteredData) {
     const grid = document.getElementById('equipmentGrid');
@@ -1911,14 +2072,20 @@ function renderEquipment(filteredData) {
         const effects = (eq.effects || []).filter(e => e.refId);
         const effectCount = effects.length;
         const effectItems = effects.map(eff => {
-            const refData = findRefData(eff.refId);
-            const typeColor = refData ? (refData.type === 'active-skill' ? '#e74c3c' : refData.type === 'passive-skill' ? '#3498db' : refData.type === 'attribute' ? '#27ae60' : '#f39c12') : '#e74c3c';
-            const typeLabel = refData ? (refData.type === 'active-skill' ? '主动' : refData.type === 'passive-skill' ? '被动' : refData.type === 'attribute' ? '属性' : '词缀') : '未知';
+            // 传奇装备效果在导入时已预解析 name/desc (refId 为 Modifier ID)
+            const preResolved = eff.name || eff.desc;
+            const refData = preResolved ? null : findRefData(eff.refId);
+            const typeColor = preResolved ? '#f39c12' : (refData ? (refData.type === 'active-skill' ? '#e74c3c' : refData.type === 'passive-skill' ? '#3498db' : refData.type === 'attribute' ? '#27ae60' : '#f39c12') : '#e74c3c');
+            const typeLabel = preResolved ? '词缀' : (refData ? (refData.type === 'active-skill' ? '主动' : refData.type === 'passive-skill' ? '被动' : refData.type === 'attribute' ? '属性' : '词缀') : '未知');
+            const name = preResolved ? eff.name : (refData ? refData.name : eff.refId);
+            const desc = preResolved ? eff.desc : (refData ? refData.desc : '⚠ 未找到ID: ' + eff.refId);
+            const randomTag = eff.random ? '<span class="equipment-card-effect-random">取随机一条</span>' : '';
             return `
                 <div class="equipment-card-effect" style="border-left-color:${typeColor}">
                     <span class="equipment-card-effect-type" style="background:${typeColor}20;color:${typeColor}">${typeLabel}</span>
-                    <span class="equipment-card-effect-name">${refData ? refData.name : eff.refId}</span>
-                    <p class="equipment-card-effect-desc">${refData ? refData.desc : '⚠ 未找到ID: ' + eff.refId}</p>
+                    <span class="equipment-card-effect-name">${name}</span>
+                    ${randomTag}
+                    <p class="equipment-card-effect-desc">${desc}</p>
                 </div>
             `;
         }).join('');
@@ -2063,22 +2230,23 @@ function openEquipmentDetail(id) {
             <div id="equipmentEffectList">
             ${effects.length === 0 ? '<p class="empty-hint">暂无效果</p>' : ''}
             ${effects.map((eff, idx) => {
-                const refData = eff.refId ? findRefData(eff.refId) : null;
-                const typeColor = refData ? (refData.type === 'active-skill' ? '#e74c3c' : refData.type === 'passive-skill' ? '#3498db' : refData.type === 'attribute' ? '#27ae60' : '#f39c12') : '#bbb';
-                const typeLabel = refData ? (refData.type === 'active-skill' ? '主动技能' : refData.type === 'passive-skill' ? '被动技能' : refData.type === 'attribute' ? '属性效果' : '词缀') : '待填写';
+                const preResolved = eff.name || eff.desc;
+                const refData = !preResolved && eff.refId ? findRefData(eff.refId) : null;
+                const typeColor = preResolved ? '#f39c12' : (refData ? (refData.type === 'active-skill' ? '#e74c3c' : refData.type === 'passive-skill' ? '#3498db' : refData.type === 'attribute' ? '#27ae60' : '#f39c12') : '#bbb');
+                const typeLabel = preResolved ? '词缀' : (refData ? (refData.type === 'active-skill' ? '主动技能' : refData.type === 'passive-skill' ? '被动技能' : refData.type === 'attribute' ? '属性效果' : '词缀') : '待填写');
+                const name = preResolved ? eff.name : (refData ? refData.name : eff.refId);
+                const desc = preResolved ? eff.desc : (refData ? refData.desc : '');
                 return `
                     <div class="equipment-effect-item" style="border-left-color:${typeColor}">
                         <div class="equipment-effect-header">
                             <span class="effect-type-badge" style="background:${typeColor}20;color:${typeColor}">${typeLabel}</span>
                             <span class="effect-ref-id">${eff.refId || '—'}</span>
                         </div>
-                        ${refData ? `
-                            <div class="equipment-effect-info">
-                                <span class="equipment-effect-name">${refData.name}</span>
-                                <span class="equipment-effect-cat">${refData.category} · ${refData.subCategory}</span>
-                                <p class="equipment-effect-desc">${refData.desc}</p>
-                            </div>
-                        ` : (eff.refId ? '<div class="equipment-effect-error">⚠ 未找到ID: ' + eff.refId + '</div>' : '')}
+                        <div class="equipment-effect-info">
+                            <span class="equipment-effect-name">${name}</span>
+                            ${eff.random ? '<span class="equipment-effect-random-tag">取随机一条</span>' : ''}
+                            <p class="equipment-effect-desc">${desc || (eff.refId ? '⚠ 未找到ID: ' + eff.refId : '')}</p>
+                        </div>
                     </div>
                 `;
             }).join('')}
@@ -2155,7 +2323,7 @@ function renderGems(filteredData) {
             return `
                 <div class="equipment-card" data-gem-id="${gem.id}" onclick="openGemDetail('${gem.id}')" style="border-left-color:${style.color}">
                     <div class="equipment-card-header">
-                        <span class="equipment-card-icon" style="background:${style.color}18">${gem.icon ? `<img class="card-icon" src="${DATA_BASE}icon/${gem.icon}.webp" alt="" onerror="this.style.display='none'">` : ''}${style.icon}</span>
+                        <span class="equipment-card-icon" style="background:${style.color}18">${gem.iconSrc || gem.icon ? `<img class="card-icon" src="${DATA_BASE}icon/${gem.iconSrc || gem.icon}.webp" alt="" onerror="this.style.display='none'">` : ''}${style.icon}</span>
                         <div>
                             <h4 class="equipment-card-name">${gem.name}</h4>
                         </div>
@@ -2257,7 +2425,7 @@ function openGemDetail(id) {
     const modalBody = document.getElementById('modalBody');
     modalBody.innerHTML = `
         <div class="detail-header" style="border-bottom-color:#9b59b6">
-            <div class="detail-icon" style="background:#9b59b620;color:#9b59b6;font-size:36px;width:64px;height:64px;display:flex;align-items:center;justify-content:center;border-radius:12px;position:relative;overflow:hidden">${gem.icon ? `<img class="card-icon" src="${DATA_BASE}icon/${gem.icon}.webp" alt="" onerror="this.style.display='none'">` : ''}💎</div>
+            <div class="detail-icon" style="background:#9b59b620;color:#9b59b6;font-size:36px;width:64px;height:64px;display:flex;align-items:center;justify-content:center;border-radius:12px;position:relative;overflow:hidden">${gem.iconSrc || gem.icon ? `<img class="card-icon" src="${DATA_BASE}icon/${gem.iconSrc || gem.icon}.webp" alt="" onerror="this.style.display='none'">` : ''}💎</div>
             <div style="flex:1">
                 <h2 class="detail-name">${gem.name}</h2>
                 <div class="detail-type">
@@ -2378,7 +2546,7 @@ function renderCustomSkills(filteredData) {
             return `
                 <div class="equipment-card" data-custom-skill-id="${s.id}" onclick="openCustomSkillDetail('${s.id}')" style="border-left-color:${style.color}">
                     <div class="equipment-card-header">
-                        <span class="equipment-card-icon" style="background:${style.color}18">${s.icon ? `<img class="card-icon" src="${DATA_BASE}icon/${s.icon}.webp" alt="" onerror="this.style.display='none'">` : ''}${style.icon}</span>
+                        <span class="equipment-card-icon" style="background:${style.color}18">${s.iconSrc || s.icon ? `<img class="card-icon" src="${DATA_BASE}icon/${s.iconSrc || s.icon}.webp" alt="" onerror="this.style.display='none'">` : ''}${style.icon}</span>
                         <div>
                             <h4 class="equipment-card-name">${s.name} <span class="skill-lv-badge">Lv.20</span></h4>
                         </div>

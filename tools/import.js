@@ -802,9 +802,43 @@ function parseAttributes(inputPath) {
     return attrs;
 }
 
-// 装备库
-function parseEquipment(inputPath) {
-    console.log('  📖 解析装备库...');
+// 传奇装备词条区间格式化: showType=2 → 百分比(×100, round位小数); 其他 → 绝对值(round位小数)
+function fmtLegendRange(min, max, showType, round) {
+    const st = parseInt(showType, 10) || 0;
+    const dec = parseInt(round, 10) || 0;
+    const fmtOne = (v) => {
+        const n = parseFloat(v);
+        if (isNaN(n)) return String(v || '').trim();
+        if (st === 2) return (n * 100).toFixed(dec) + '%';
+        if (dec > 0) return n.toFixed(dec);
+        return String(Math.round(n));
+    };
+    const a = fmtOne(min), b = fmtOne(max);
+    if (!a && !b) return '';
+    if (a === b) return a;
+    return a + '~' + b;
+}
+
+// 多条词条名的公共部分 (前缀/后缀拼接, 用于"取随机一条"的汇总名)
+function commonPartName(strings) {
+    const arr = strings.filter(s => s && s.trim());
+    if (arr.length === 0) return '';
+    if (arr.length === 1) return arr[0];
+    let prefix = arr[0];
+    for (let i = 1; i < arr.length; i++) {
+        while (!arr[i].startsWith(prefix) && prefix) prefix = prefix.slice(0, -1);
+    }
+    let suffix = arr[0];
+    for (let i = 1; i < arr.length; i++) {
+        while (!arr[i].endsWith(suffix) && suffix) suffix = suffix.slice(1);
+    }
+    if (prefix && suffix) return prefix + '…' + suffix;
+    return prefix || suffix || arr[0];
+}
+
+// 装备库 (LegendEquip: id.p/name/desc998/icon + modifier1/modifier2 → Modifier 词条解析)
+function parseEquipment(inputPath, battleData) {
+    console.log('  📖 解析传奇装备库(LegendEquip)...');
     let filePath = inputPath;
 
     if (isDirectory(inputPath)) {
@@ -816,7 +850,8 @@ function parseEquipment(inputPath) {
     }
 
     const legendData = readSheetByName(filePath, ['LegendEquip', '装备']);
-    const modData = readSheetByCols(filePath, ['stunt', 'affix', 'attr'], ['Modifier', '词条', 'modifier']);
+    // Modifier 子表需包含 desc/min/max/showType/stunt/affix/attr/randomValue 等字段
+    const modData = readSheetByCols(filePath, ['desc', 'min', 'max'], ['Modifier', '词条', 'modifier']);
 
     console.log('     LegendEquip子表:', legendData.sheetName, '  行数:', legendData.rows.length);
     console.log('     Modifier子表:', modData.sheetName, '  行数:', modData.rows.length);
@@ -824,31 +859,78 @@ function parseEquipment(inputPath) {
     const modHeaders = modData.headers;
     const modRows = modData.rows;
 
-    const modIdCol = findCol(modHeaders, ['id', 'ID', 'Id', 'id.p', 'modifierId']);
+    const modIdCol = findCol(modHeaders, ['id.p', 'id', 'ID', 'Id', 'modifierId']);
+    const modTierCol = findCol(modHeaders, ['tier.p', 'tier', 'Tier']);
+    const modDesc999Col = findCol(modHeaders, ['desc999', 'Desc999']);
+    const modDescCol = findCol(modHeaders, ['desc', 'Desc']);
+    const modMinCol = findCol(modHeaders, ['min', 'Min']);
+    const modMaxCol = findCol(modHeaders, ['max', 'Max']);
+    const modRoundCol = findCol(modHeaders, ['round', 'Round']);
+    const modShowTypeCol = findCol(modHeaders, ['showType', 'ShowType', 'SHOWTYPE']);
     const modStuntCol = findCol(modHeaders, ['stunt', 'Stunt', 'STUNT', '特技']);
     const modAffixCol = findCol(modHeaders, ['affix', 'Affix', 'AFFIX', 'skillAffix', '效果']);
     const modAttrCol = findCol(modHeaders, ['attr', 'Attr', 'ATTR', 'attribute', '提供属性']);
+    const modRandomCol = findCol(modHeaders, ['randomValue', 'RandomValue', 'random']);
 
+    // 战斗数据反查表 (desc为空时用 stunt/affix/attr/randomValue 匹配描述)
+    const attrNameMap = {}, affixNameMap = {}, skillNameMap = {};
+    if (battleData) {
+        (battleData.attributes || []).forEach(it => { if (it && it.id !== undefined && it.id !== null && it.id !== '') attrNameMap[String(it.id)] = it.name || it.description || ''; });
+        (battleData.affixes || []).forEach(it => { if (it && it.id !== undefined && it.id !== null && it.id !== '') affixNameMap[String(it.id)] = it.name || it.description || ''; });
+        [...(battleData.activeSkills || []), ...(battleData.passiveSkills || [])].forEach(it => { if (it && it.id !== undefined && it.id !== null && it.id !== '') skillNameMap[String(it.id)] = it.name || it.description || ''; });
+    }
+
+    // 构建 modifierMap: Modifier ID → rows 数组 (同一 ID 可能因 tier 分多行, 即"取随机一条")
     const modifierMap = {};
     modRows.forEach(row => {
         const modId = modIdCol ? cleanNum(row[modIdCol]) : '';
-        if (!modId || modifierMap[modId]) return;
-        const effects = [];
-        if (modStuntCol && row[modStuntCol] && cleanNum(row[modStuntCol])) {
-            cleanNum(row[modStuntCol]).split(/[;|]/).forEach(id => { const tid = cleanNum(id); if (tid) effects.push({ refId: tid }); });
-        }
-        if (modAffixCol && row[modAffixCol] && cleanNum(row[modAffixCol])) {
-            cleanNum(row[modAffixCol]).split(/[;|]/).forEach(id => { const tid = cleanNum(id); if (tid) effects.push({ refId: tid }); });
-        }
-        if (modAttrCol && row[modAttrCol] && cleanNum(row[modAttrCol])) {
-            const attrVal = cleanNum(row[modAttrCol]);
-            if (attrVal && attrVal !== '0' && attrVal !== '{}') {
-                attrVal.split(/[;|]/).forEach(id => { const tid = cleanNum(id); if (tid && tid !== '0') effects.push({ refId: tid }); });
-            }
-        }
-        modifierMap[modId] = { effects };
+        if (!modId) return;
+        if (!modifierMap[modId]) modifierMap[modId] = [];
+        const stuntId = modStuntCol ? cleanNum(row[modStuntCol]) : '';
+        const affixId = modAffixCol ? cleanNum(row[modAffixCol]) : '';
+        const attrId = modAttrCol ? cleanNum(row[modAttrCol]) : '';
+        const rvId = modRandomCol ? cleanNum(row[modRandomCol]) : '';
+        modifierMap[modId].push({
+            tier: modTierCol ? cleanNum(row[modTierCol]) : '',
+            name: modDesc999Col ? String(row[modDesc999Col] || '').trim() : '',
+            desc: modDescCol ? String(row[modDescCol] || '').trim() : '',
+            min: modMinCol ? String(row[modMinCol] || '').trim() : '',
+            max: modMaxCol ? String(row[modMaxCol] || '').trim() : '',
+            round: modRoundCol ? String(row[modRoundCol] || '').trim() : '',
+            showType: modShowTypeCol ? String(row[modShowTypeCol] || '').trim() : '',
+            stuntId: stuntId !== '0' ? stuntId : '',
+            affixId: affixId !== '0' ? affixId : '',
+            attrId: attrId !== '0' ? attrId : '',
+            rvId: rvId !== '0' ? rvId : ''
+        });
     });
-    console.log('     词条映射:', Object.keys(modifierMap).length, '条');
+
+    // 解析单条 Modifier 行为 { name, desc }
+    function resolveModifierRow(r) {
+        const range = fmtLegendRange(r.min, r.max, r.showType, r.round);
+        // 战斗数据反查名 (按 stunt→affix→attr→randomValue 优先级)
+        let battleName = '';
+        const stuntId = r.stuntId && skillNameMap[r.stuntId] ? skillNameMap[r.stuntId] : '';
+        const affixId = r.affixId && affixNameMap[r.affixId] ? affixNameMap[r.affixId] : '';
+        const attrId = r.attrId && attrNameMap[r.attrId] ? attrNameMap[r.attrId] : '';
+        const rvId = r.rvId && (attrNameMap[r.rvId] || affixNameMap[r.rvId]) ? (attrNameMap[r.rvId] || affixNameMap[r.rvId]) : '';
+        battleName = stuntId || affixId || attrId || rvId;
+
+        const name = (r.name || battleName || '').trim();
+        if (r.desc && r.desc.trim()) {
+            // desc 有值: 占位符 {N} → 区间
+            let desc = r.desc;
+            if (range && /\{\d+\}/.test(desc)) {
+                desc = desc.replace(/\{\d+\}/g, range);
+            } else if (range && !desc.includes(range)) {
+                desc = desc + ' ' + range;
+            }
+            return { name: name || desc, desc: desc };
+        }
+        // desc 为空: 战斗数据匹配描述 + 区间
+        const finalName = name || battleName || '';
+        return { name: finalName, desc: finalName + (range ? ' ' + range : '') };
+    }
 
     const legendHeaders = legendData.headers;
     const legendRows = legendData.rows;
@@ -864,28 +946,50 @@ function parseEquipment(inputPath) {
     const equips = [];
     let eqCounter = 0;
     legendRows.forEach(row => {
-        const name = nameCol ? (row[nameCol] || '').trim() : '';
+        const name = nameCol ? String(row[nameCol] || '').trim() : '';
         if (!name) return;
-        const desc999 = desc999Col ? (row[desc999Col] || '').trim() : '';
+        const desc999 = desc999Col ? String(row[desc999Col] || '').trim() : '';
         const equipName = name + (desc999 ? ' - ' + desc999 : '');
         const equipSourceId = idCol ? cleanNum(row[idCol]) : '';
 
         let equipType = '暗金装备';
-        if (desc998Col && row[desc998Col] && row[desc998Col].trim()) {
-            equipType = row[desc998Col].trim();
+        if (desc998Col && row[desc998Col] && String(row[desc998Col]).trim()) {
+            equipType = String(row[desc998Col]).trim();
         } else if (equipSourceId) {
             const prefix = equipSourceId.substring(0, 3);
             const idTypeMap = { '110': '武器', '120': '头盔', '130': '护甲', '140': '护盾', '150': '鞋子', '160': '手套', '190': '饰品' };
             if (idTypeMap[prefix]) equipType = idTypeMap[prefix];
         }
 
-        const mod1Ids = mod1Col ? String(row[mod1Col] || '').split('|').map(s => cleanNum(s)).filter(s => s) : [];
-        const mod2Ids = mod2Col ? String(row[mod2Col] || '').split('|').map(s => cleanNum(s)).filter(s => s) : [];
+        // 效果词缀: modifier1 + modifier2 中的 Modifier ID
+        const modIds = [];
+        [mod1Col, mod2Col].forEach(c => {
+            if (!c || !row[c]) return;
+            String(row[c]).split(/[;|]/).forEach(id => {
+                const tid = cleanNum(id);
+                if (tid && modIds.indexOf(tid) === -1) modIds.push(tid);
+            });
+        });
+
         const effects = [];
-        [...mod1Ids, ...mod2Ids].forEach(modId => {
-            const cleanModId = cleanNum(modId);
-            if (modifierMap[cleanModId]) {
-                modifierMap[cleanModId].effects.forEach(eff => effects.push({ refId: eff.refId }));
+        modIds.forEach(modId => {
+            const rows = modifierMap[modId];
+            if (!rows || rows.length === 0) return;
+            if (rows.length === 1) {
+                const r = resolveModifierRow(rows[0]);
+                effects.push({ refId: modId, name: r.name, desc: r.desc, random: false });
+            } else {
+                // 同一 Modifier ID 多行(多 tier) → "取随机一条" 组合展示
+                const parts = rows.map(resolveModifierRow);
+                const names = parts.map(p => p.name).filter(Boolean);
+                const common = commonPartName(names);
+                const descList = parts.map(p => p.desc).filter(Boolean);
+                effects.push({
+                    refId: modId,
+                    name: common || names[0],
+                    desc: descList.join(' / ') + '（取随机一条）',
+                    random: true
+                });
             }
         });
 
@@ -1645,7 +1749,12 @@ function main() {
         const fp = smartResolvePath(config.equipPath.trim());
         if (fp && fs.existsSync(fp)) {
             try {
-                importData.equipment = parseEquipment(fp);
+                importData.equipment = parseEquipment(fp, {
+                    attributes: importData.attributes,
+                    affixes: importData.affixes,
+                    activeSkills: importData.activeSkills,
+                    passiveSkills: importData.passiveSkills
+                });
                 if (importData.equipment) hasAny = true;
             } catch (err) {
                 console.log('  ❌ 装备库解析失败:', err.message);
