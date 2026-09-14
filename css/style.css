@@ -137,20 +137,107 @@ body {
     color: var(--text-muted);
 }
 
+/* 全站搜索候选面板 */
 .global-search-hint {
+    display: none;
     position: absolute;
-    top: 100%;
-    left: 12px;
-    margin-top: 4px;
-    padding: 6px 10px;
-    background: var(--bg-card);
+    top: calc(100% + 6px);
+    left: 0;
+    width: 360px;
+    max-height: 62vh;
+    overflow-y: auto;
+    padding: 6px;
+    background: rgba(16, 16, 24, 0.97);
     border: 1px solid var(--border);
-    border-radius: 0px 10px;
-    color: var(--text-warning, #e67e22);
+    border-radius: 0px 12px;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    z-index: 400;
+}
+
+.global-search-hint::-webkit-scrollbar {
+    width: 6px;
+}
+
+.global-search-hint::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.18);
+    border-radius: 3px;
+}
+
+.gs-head {
+    padding: 4px 8px 6px;
+    margin-bottom: 4px;
+    font-size: 11px;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border);
+}
+
+.gs-empty {
+    padding: 10px;
     font-size: 12px;
-    z-index: 100;
-    white-space: nowrap;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    color: var(--text-warning, #e67e22);
+    text-align: center;
+}
+
+.gs-row {
+    padding: 6px 8px;
+    border-radius: 0px 8px;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.gs-row + .gs-row {
+    margin-top: 2px;
+}
+
+.gs-row:hover {
+    background: var(--bg-hover);
+}
+
+.gs-row-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.gs-sys {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent-light);
+}
+
+.gs-count {
+    font-size: 11px;
+    color: var(--text-muted);
+    background: rgba(255, 255, 255, 0.06);
+    padding: 1px 6px;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.gs-samples {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px 10px;
+    margin-top: 3px;
+}
+
+.gs-sample {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.gs-sample em {
+    font-style: normal;
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-left: 4px;
+}
+
+.gs-more {
+    font-size: 12px;
+    color: var(--text-muted);
 }
 
 .nav-list {
@@ -565,9 +652,9 @@ body[data-page="home"] .home-modules {
 .filter-bar {
     display: flex;
     align-items: center;
-    gap: 24px;
+    gap: 16px 20px;
     margin-bottom: 24px;
-    padding: 16px 20px;
+    padding: 14px 20px;
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: var(--radius);
@@ -596,6 +683,7 @@ body[data-page="home"] .home-modules {
     font-size: 13px;
     outline: none;
     cursor: pointer;
+    min-width: 130px;
 }
 
 .filter-select:focus {
@@ -616,6 +704,7 @@ body[data-page="home"] .home-modules {
     font-size: 13px;
     outline: none;
     width: 240px;
+    max-width: 100%;
 }
 
 .filter-input:focus {
@@ -624,6 +713,45 @@ body[data-page="home"] .home-modules {
 
 .filter-input::placeholder {
     color: var(--text-muted);
+}
+
+/* 搜索框 + 清空按钮 (initFilterClearButtons 动态挂载) */
+.filter-search {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+.filter-search .filter-input {
+    padding-right: 28px;
+}
+
+.filter-clear {
+    position: absolute;
+    right: 6px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--text-secondary);
+    font-size: 10px;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+}
+
+.filter-clear.show {
+    display: inline-flex;
+}
+
+.filter-clear:hover {
+    background: rgba(255, 255, 255, 0.26);
+    color: var(--text-primary);
 }
 
 /* ==================== Skill Grid ==================== */
@@ -1678,6 +1806,32 @@ body[data-page="home"] .home-modules {
     z-index: 1;
 }
 
+/* 装备库卡片: 品质底层底色 (6橙 / 7粉 / 8红, 低饱和柔和配色) */
+.equipment-card[data-equipment-id] {
+    --qc: 150, 130, 175; /* 兜底: 低饱和紫灰 */
+    overflow: hidden;
+}
+.equipment-card[data-equipment-id][data-quality="6"] { --qc: 216, 164, 92; }  /* 橙 */
+.equipment-card[data-equipment-id][data-quality="7"] { --qc: 232, 120, 198; } /* 粉: 偏洋红, 明度高 */
+.equipment-card[data-equipment-id][data-quality="8"] { --qc: 208, 64, 64; }   /* 红: 正红, 明度低 */
+
+/* 卡片头部(图标 + 名称)整条铺满品质底色 */
+.equipment-card[data-equipment-id] .equipment-card-header {
+    background: linear-gradient(100deg, rgba(var(--qc), 0.22) 0%, rgba(var(--qc), 0.06) 100%);
+    border-bottom: 1px solid rgba(var(--qc), 0.18);
+    padding: 16px 20px 12px;
+    margin: -16px -20px 12px;
+}
+
+/* 图标底板: 品质底色加深, 与头部底色形成层次 */
+.equipment-card[data-equipment-id] .equipment-card-icon {
+    width: 64px;
+    height: 64px;
+    font-size: 30px;
+    background: linear-gradient(160deg, rgba(var(--qc), 0.32) 0%, rgba(var(--qc), 0.12) 100%);
+    box-shadow: inset 0 0 0 1px rgba(var(--qc), 0.42);
+}
+
 /* 只读展示: 效果 ID / 描述文本 */
 .effect-ref-id {
     font-size: 13px;
@@ -1744,23 +1898,22 @@ body[data-page="home"] .home-modules {
     color: var(--text-secondary);
 }
 
-.equipment-effect-count {
-    font-weight: 500;
-}
-
 .equipment-card-effect-list {
-    margin-top: 8px;
+    margin-top: 0;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 2px;
 }
 
+/* 效果词条: 无框体, 紧密排布; 只展示描述, 类型色由左侧标签承载 */
 .equipment-card-effect {
-    background: var(--bg-hover);
-    border: 1px solid var(--border);
-    border-left: 3px solid;
-    border-radius: 0px 8px;
-    padding: 8px 12px;
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    padding: 3px 0;
+    background: none;
+    border: none;
+    border-radius: 0;
 }
 
 .equipment-card-effect-type {
@@ -1768,20 +1921,19 @@ body[data-page="home"] .home-modules {
     padding: 1px 6px;
     border-radius: 4px;
     font-weight: 600;
-    margin-right: 6px;
-}
-
-.equipment-card-effect-name {
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--text-primary);
+    flex-shrink: 0;
 }
 
 .equipment-card-effect-desc {
     font-size: 11px;
     color: var(--text-secondary);
     line-height: 1.4;
-    margin: 4px 0 0 0;
+    margin: 0;
+    flex: 1;
+    min-width: 0;
+    word-break: break-word;
+    /* 多段描述按 / 与 \n 换行展示 */
+    white-space: pre-line;
 }
 
 .equipment-card-effect-random {
@@ -1792,7 +1944,8 @@ body[data-page="home"] .home-modules {
     font-weight: 600;
     background: #f39c1220;
     color: #f39c12;
-    margin-left: 6px;
+    margin-left: 0;
+    flex-shrink: 0;
 }
 
 .equipment-effect-random-tag {
@@ -2613,6 +2766,8 @@ body[data-page="home"] .home-modules {
     color: var(--text-secondary);
     line-height: 1.4;
     margin: 0;
+    /* 多段描述按 / 与 \n 换行展示 */
+    white-space: pre-line;
 }
 
 .equipment-effect-error {

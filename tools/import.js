@@ -942,6 +942,7 @@ function parseEquipment(inputPath, battleData) {
     const idCol = findCol(legendHeaders, ['id.p', 'id', 'ID']);
     const iconCol = findCol(legendHeaders, ['icon', 'Icon', 'ICON', '图标']);
     const spIconCol = findCol(legendHeaders, ['spIcon', 'SpIcon', 'SPICON', '特殊图标']);
+    const qualityCol = findCol(legendHeaders, ['quality', 'Quality', '品质']);
 
     const equips = [];
     let eqCounter = 0;
@@ -998,6 +999,7 @@ function parseEquipment(inputPath, battleData) {
             id: 'EQ' + String(eqCounter).padStart(4, '0'),
             name: equipName, type: equipType, effects: effects,
             sourceId: equipSourceId, isNew: true, source: 'sync',
+            quality: qualityCol ? cleanNum(row[qualityCol]) : '',
             icon: iconCol ? String(row[iconCol] || '').trim() : '',
             spIcon: spIconCol ? String(row[spIconCol] || '').trim() : ''
         });

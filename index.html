@@ -8,7 +8,7 @@
     <meta http-equiv="Expires" content="0">
     <title>古荒大陆编年史</title>
     <link rel="icon" type="image/webp" href="assets/logo.webp">
-    <link rel="stylesheet" href="css/style.css?v=92">
+    <link rel="stylesheet" href="css/style.css?v=100">
 </head>
 <body>
     <div class="background-image"></div>
@@ -19,7 +19,7 @@
                 <a href="#" class="logo" onclick="navigateTo('home');return false;"><img src="assets/logo.webp" alt="" class="logo-icon">古荒大陆</a>
             </div>
             <div class="sidebar-search">
-                <input type="text" id="globalSearch" placeholder="搜索..." class="sidebar-search-input">
+                <input type="text" id="globalSearch" placeholder="全站搜索：技能 / 词缀 / 装备..." class="sidebar-search-input" autocomplete="off">
                 <div id="globalSearchHint" class="global-search-hint" style="display:none"></div>
             </div>
             <ul class="nav-list">
@@ -214,6 +214,10 @@
                 <div class="battle-tab-content" id="battle-tab-active">
                     <div class="filter-bar">
                         <div class="filter-group">
+                            <label>搜索:</label>
+                            <input type="text" id="activeSearchInput" class="filter-input" placeholder="名称 / ID / 描述 / 标签..." autocomplete="off" oninput="debouncedFilter('active')">
+                        </div>
+                        <div class="filter-group">
                             <label>分类:</label>
                             <select id="activeCategoryFilter" class="filter-select" onchange="filterSkills('active')">
                                 <option value="">全部</option>
@@ -221,10 +225,6 @@
                                 <option value="法术技能">法术技能</option>
                                 <option value="增益技能">增益技能</option>
                             </select>
-                        </div>
-                        <div class="filter-group">
-                            <label>搜索:</label>
-                            <input type="text" id="activeSearchInput" class="filter-input" placeholder="技能名称或ID..." oninput="debouncedFilter('active')">
                         </div>
                         <div class="filter-group">
                             <button class="equipment-btn equipment-btn-add" onclick="showAddSkillForm('active')">+ 新增技能</button>
@@ -238,6 +238,10 @@
                 <div class="battle-tab-content" id="battle-tab-passive" style="display:none">
                     <div class="filter-bar">
                         <div class="filter-group">
+                            <label>搜索:</label>
+                            <input type="text" id="passiveSearchInput" class="filter-input" placeholder="名称 / ID / 描述 / 标签..." autocomplete="off" oninput="debouncedFilter('passive')">
+                        </div>
+                        <div class="filter-group">
                             <label>分类:</label>
                             <select id="passiveCategoryFilter" class="filter-select" onchange="filterSkills('passive')">
                                 <option value="">全部</option>
@@ -247,10 +251,6 @@
                                 <option value="天赋特技">天赋特技</option>
                                 <option value="其他特技">其他特技</option>
                             </select>
-                        </div>
-                        <div class="filter-group">
-                            <label>搜索:</label>
-                            <input type="text" id="passiveSearchInput" class="filter-input" placeholder="技能名称或ID..." oninput="debouncedFilter('passive')">
                         </div>
                         <div class="filter-group">
                             <button class="equipment-btn equipment-btn-add" onclick="showAddSkillForm('passive')">+ 新增技能</button>
@@ -264,16 +264,16 @@
                 <div class="battle-tab-content" id="battle-tab-affix" style="display:none">
                     <div class="filter-bar">
                         <div class="filter-group">
+                            <label>搜索:</label>
+                            <input type="text" id="affixSearchInput" class="filter-input" placeholder="名称 / ID / 子类别 / 描述..." autocomplete="off" oninput="debouncedFilter('affix')">
+                        </div>
+                        <div class="filter-group">
                             <label>分类:</label>
                             <select id="affixCategoryFilter" class="filter-select" onchange="filterAffixes()">
                                 <option value="">全部</option>
                                 <option value="通用词缀">通用词缀</option>
                                 <option value="特殊词缀">特殊词缀</option>
                             </select>
-                        </div>
-                        <div class="filter-group">
-                            <label>搜索:</label>
-                            <input type="text" id="affixSearchInput" class="filter-input" placeholder="词缀名称或ID..." oninput="debouncedFilter('affix')">
                         </div>
                         <div class="filter-group">
                             <button class="equipment-btn equipment-btn-add" onclick="showAddAffixForm()">+ 新增词缀</button>
@@ -286,16 +286,16 @@
                 <div class="battle-tab-content" id="battle-tab-attr" style="display:none">
                     <div class="filter-bar">
                         <div class="filter-group">
+                            <label>搜索:</label>
+                            <input type="text" id="attrSearchInput" class="filter-input" placeholder="名称 / ID / 描述..." autocomplete="off" oninput="debouncedFilter('attr')">
+                        </div>
+                        <div class="filter-group">
                             <label>分类:</label>
                             <select id="attrCategoryFilter" class="filter-select" onchange="filterAttributes()">
                                 <option value="">全部</option>
                                 <option value="基础属性">基础属性</option>
                                 <option value="特殊属性">特殊属性</option>
                             </select>
-                        </div>
-                        <div class="filter-group">
-                            <label>搜索:</label>
-                            <input type="text" id="attrSearchInput" class="filter-input" placeholder="属性名称或ID..." oninput="debouncedFilter('attr')">
                         </div>
                     </div>
                     <div class="affix-grid" id="attrGrid"></div>
@@ -609,11 +609,11 @@
                 <div class="filter-bar">
                     <div class="filter-group">
                         <label>搜索:</label>
-                        <input type="text" id="equipmentSearchInput" class="filter-input" placeholder="装备名称或ID..." oninput="debouncedFilter('equipment')">
+                        <input type="text" id="equipmentSearchInput" class="filter-input" placeholder="名称 / ID / 类型 / 效果..." autocomplete="off" oninput="debouncedFilter('equipment')">
                     </div>
                     <div class="filter-group">
                         <label>类型:</label>
-                        <select id="equipmentTypeFilter" class="filter-input" onchange="filterEquipments()">
+                        <select id="equipmentTypeFilter" class="filter-select" onchange="filterEquipments()">
                             <option value="">全部类型</option>
                         </select>
                     </div>
@@ -630,11 +630,11 @@
                 <div class="filter-bar">
                     <div class="filter-group">
                         <label>搜索:</label>
-                        <input type="text" id="gemSearchInput" class="filter-input" placeholder="宝石名称、ID或效果..." oninput="debouncedFilter('gem')">
+                        <input type="text" id="gemSearchInput" class="filter-input" placeholder="名称 / ID / 阶级 / 效果..." autocomplete="off" oninput="debouncedFilter('gem')">
                     </div>
                     <div class="filter-group">
                         <label>阶级:</label>
-                        <select id="gemRankFilter" class="filter-input" onchange="filterGems()">
+                        <select id="gemRankFilter" class="filter-select" onchange="filterGems()">
                             <option value="">全部阶级</option>
                         </select>
                     </div>
@@ -651,11 +651,11 @@
                 <div class="filter-bar">
                     <div class="filter-group">
                         <label>搜索:</label>
-                        <input type="text" id="customSkillSearchInput" class="filter-input" placeholder="技能名称或ID..." oninput="debouncedFilter('custom')">
+                        <input type="text" id="customSkillSearchInput" class="filter-input" placeholder="名称 / ID / 类型 / 描述..." autocomplete="off" oninput="debouncedFilter('custom')">
                     </div>
                     <div class="filter-group">
                         <label>类型:</label>
-                        <select id="customSkillTypeFilter" class="filter-input" onchange="filterCustomSkills()">
+                        <select id="customSkillTypeFilter" class="filter-select" onchange="filterCustomSkills()">
                             <option value="">全部类型</option>
                         </select>
                     </div>
@@ -682,14 +682,14 @@
                 </div>
                 <div class="filter-bar">
                     <div class="filter-group">
+                        <label>搜索:</label>
+                        <input type="text" id="petSearchInput" class="filter-input" placeholder="名称 / ID / 品质 / 星级效果..." autocomplete="off" oninput="debouncedFilter('pet')">
+                    </div>
+                    <div class="filter-group">
                         <label>品质:</label>
                         <select id="petQualityFilter" class="filter-select" onchange="filterPets()">
                             <option value="">全部品质</option>
                         </select>
-                    </div>
-                    <div class="filter-group">
-                        <label>搜索:</label>
-                        <input type="text" id="petSearchInput" class="filter-input" placeholder="魔宠名称或ID..." oninput="debouncedFilter('pet')">
                     </div>
                 </div>
                 <div class="pet-grid" id="petGrid"></div>
@@ -706,8 +706,8 @@
     </div>
 
     <!-- 注: xlsx.min.js 仅 tools/import.js (Node 端) 需要, 浏览器端不再加载 (约 880KB) -->
-    <script src="js/auto-import-data.js?v=17" onerror="console.error('⚠️ auto-import-data.js 加载失败！请先运行一键导入生成数据文件。')"></script>
-    <script src="js/data.js?v=17"></script>
-    <script src="js/app.js?v=76"></script>
+    <script src="js/auto-import-data.js?v=18" onerror="console.error('⚠️ auto-import-data.js 加载失败！请先运行一键导入生成数据文件。')"></script>
+    <script src="js/data.js?v=18"></script>
+    <script src="js/app.js?v=84"></script>
 </body>
 </html>

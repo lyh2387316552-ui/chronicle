@@ -1,5 +1,5 @@
 // 此文件由 import.js 自动生成，请勿手动编辑
-// 生成时间: 2026-09-08T11:01:19.988Z
+// 生成时间: 2026-09-10T09:18:59.906Z
 window.__AUTO_IMPORT_DATA__ = {
   "activeSkills": [
     {
@@ -5923,6 +5923,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "1100103",
       "isNew": true,
       "source": "sync",
+      "quality": "7",
       "icon": "zhuangbei/110/109",
       "spIcon": "zhuangbei/110/109_big"
     },
@@ -5971,6 +5972,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "1100201",
       "isNew": true,
       "source": "sync",
+      "quality": "6",
       "icon": "zhuangbei/104/106",
       "spIcon": "zhuangbei/104/106_big"
     },
@@ -6019,6 +6021,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "1100202",
       "isNew": true,
       "source": "sync",
+      "quality": "6",
       "icon": "zhuangbei/131/106",
       "spIcon": "zhuangbei/131/106_big"
     },
@@ -6061,6 +6064,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "1200101",
       "isNew": true,
       "source": "sync",
+      "quality": "7",
       "icon": "zhuangbei/118/202",
       "spIcon": ""
     },
@@ -6103,6 +6107,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "1200102",
       "isNew": true,
       "source": "sync",
+      "quality": "6",
       "icon": "zhuangbei/130/202",
       "spIcon": ""
     },
@@ -6145,6 +6150,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "1200103",
       "isNew": true,
       "source": "sync",
+      "quality": "6",
       "icon": "zhuangbei/118/202",
       "spIcon": ""
     },
@@ -6187,6 +6193,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "1300101",
       "isNew": true,
       "source": "sync",
+      "quality": "6",
       "icon": "zhuangbei/132/304",
       "spIcon": ""
     },
@@ -6223,6 +6230,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "1300102",
       "isNew": true,
       "source": "sync",
+      "quality": "7",
       "icon": "zhuangbei/117/302",
       "spIcon": ""
     },
@@ -6265,6 +6273,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "1300103",
       "isNew": true,
       "source": "sync",
+      "quality": "7",
       "icon": "zhuangbei/132/304",
       "spIcon": ""
     },
@@ -6301,6 +6310,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "1500103",
       "isNew": true,
       "source": "sync",
+      "quality": "6",
       "icon": "zhuangbei/120/401",
       "spIcon": ""
     },
@@ -6331,6 +6341,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "1500103",
       "isNew": true,
       "source": "sync",
+      "quality": "6",
       "icon": "zhuangbei/118/401",
       "spIcon": ""
     },
@@ -6367,6 +6378,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "1500103",
       "isNew": true,
       "source": "sync",
+      "quality": "6",
       "icon": "zhuangbei/133/403",
       "spIcon": ""
     },
@@ -6409,6 +6421,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "1600101",
       "isNew": true,
       "source": "sync",
+      "quality": "6",
       "icon": "zhuangbei/121/501",
       "spIcon": ""
     },
@@ -6451,6 +6464,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "1600101",
       "isNew": true,
       "source": "sync",
+      "quality": "6",
       "icon": "zhuangbei/133/504",
       "spIcon": ""
     },
@@ -6493,6 +6507,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "1600101",
       "isNew": true,
       "source": "sync",
+      "quality": "6",
       "icon": "zhuangbei/129/504",
       "spIcon": ""
     },
@@ -6535,6 +6550,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "1600101",
       "isNew": true,
       "source": "sync",
+      "quality": "6",
       "icon": "zhuangbei/125/501",
       "spIcon": ""
     },
@@ -6571,6 +6587,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "1600102",
       "isNew": true,
       "source": "sync",
+      "quality": "6",
       "icon": "zhuangbei/129/501",
       "spIcon": ""
     },
@@ -6607,6 +6624,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "1600102",
       "isNew": true,
       "source": "sync",
+      "quality": "7",
       "icon": "zhuangbei/125/502",
       "spIcon": ""
     },
@@ -6649,6 +6667,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "1700106",
       "isNew": true,
       "source": "sync",
+      "quality": "8",
       "icon": "zhuangbei/110/601",
       "spIcon": ""
     },
@@ -6679,6 +6698,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "1900101",
       "isNew": true,
       "source": "sync",
+      "quality": "6",
       "icon": "zhuangbei/121/801",
       "spIcon": ""
     },
@@ -6721,6 +6741,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "1900101",
       "isNew": true,
       "source": "sync",
+      "quality": "7",
       "icon": "zhuangbei/129/801",
       "spIcon": ""
     },
@@ -6763,6 +6784,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "1900101",
       "isNew": true,
       "source": "sync",
+      "quality": "7",
       "icon": "zhuangbei/124/801",
       "spIcon": ""
     },
@@ -6805,6 +6827,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "1900102",
       "isNew": true,
       "source": "sync",
+      "quality": "6",
       "icon": "zhuangbei/130/801",
       "spIcon": ""
     },
@@ -6841,6 +6864,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "2000101",
       "isNew": true,
       "source": "sync",
+      "quality": "6",
       "icon": "zhuangbei/121/901",
       "spIcon": ""
     },
@@ -6883,6 +6907,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "2000102",
       "isNew": true,
       "source": "sync",
+      "quality": "6",
       "icon": "zhuangbei/131/901",
       "spIcon": ""
     }
@@ -13026,5 +13051,5 @@ window.__AUTO_IMPORT_DATA__ = {
       ]
     }
   ],
-  "importTime": "2026-09-08T11:01:19.988Z"
+  "importTime": "2026-09-10T09:18:59.906Z"
 };

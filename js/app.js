@@ -277,6 +277,70 @@ function renderSkillCard(skill, type) {
     `;
 }
 
+// ============================================================
+// 统一搜索匹配引擎
+// 全站 8 个系统 (技能/词缀/属性/装备/宝石/技能库/魔宠) 共用同一套匹配规则:
+//   1. 统一归一化: 转字符串 + 小写 + 去首尾空白, 避免各系统写法不一
+//   2. 多关键词: 空格分隔, 全部命中才算匹配 (AND), 支持 "物理 伤害" 这类组合检索
+//   3. 字段自动展开: 标量 / 数组 / 嵌套对象 (tags、effects、stars) 一并纳入检索
+//   4. 关联效果: refId 自动解析为效果名称与描述, 支持按效果内容反查条目
+// ============================================================
+
+function normText(v) {
+    return (v === undefined || v === null) ? '' : String(v).toLowerCase();
+}
+
+// 把任意值展开成一维文本片段数组
+function collectText(val, out) {
+    out = out || [];
+    if (val === undefined || val === null) return out;
+    if (Array.isArray(val)) {
+        val.forEach(v => collectText(v, out));
+    } else if (typeof val === 'object') {
+        Object.keys(val).forEach(k => collectText(val[k], out));
+    } else {
+        out.push(String(val));
+    }
+    return out;
+}
+
+// 解析搜索词: 归一化 + 按空格拆分为关键词数组
+function parseKeywords(query) {
+    const s = normText(query).replace(/\s+/g, ' ').trim();
+    return s ? s.split(' ') : [];
+}
+
+// 核心匹配: 每个关键词都需在 fields 展开后的文本中出现
+function matchFields(keywords, fields) {
+    if (!keywords || keywords.length === 0) return true;
+    const hay = collectText(fields).join('|').toLowerCase();
+    return keywords.every(k => hay.includes(k));
+}
+
+// 关联效果文本: 把 refId、效果名称、效果描述并入可检索内容
+function effectText(effects) {
+    const out = [];
+    (effects || []).forEach(e => {
+        if (!e) return;
+        const refId = (typeof e === 'object') ? e.refId : e;
+        if (refId === undefined || refId === null || refId === '') return;
+        out.push(String(refId));
+        const ref = findRefData(refId);
+        if (ref) {
+            if (ref.name) out.push(ref.name);
+            if (ref.desc) out.push(ref.desc);
+        }
+    });
+    return out;
+}
+
+// 搜索命中高亮用的转义 (仅用于搜索面板文本输出)
+function escapeSearchHtml(s) {
+    return String(s === undefined || s === null ? '' : s)
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
 // ---- 筛选技能 ----
 function filterSkills(type) {
     const skills = type === 'active' ? activeSkills : passiveSkills;
@@ -285,7 +349,7 @@ function filterSkills(type) {
     if (!catEl || !searchEl) return;
 
     const categoryFilter = catEl.value;
-    const searchInput = searchEl.value.toLowerCase();
+    const keywords = parseKeywords(searchEl.value);
     const tagFilter = tagFilterState[type] || [];
 
     const filtered = skills.filter(s => {
@@ -297,13 +361,8 @@ function filterSkills(type) {
             const matched = tagFilter.every(tag => tt.main === tag || (tt.normal || []).includes(tag));
             if (!matched) return false;
         }
-        if (searchInput) {
-            const matchName = s.name.toLowerCase().includes(searchInput);
-            const matchId = s.id.includes(searchInput);
-            const matchCat = s.category.toLowerCase().includes(searchInput);
-            if (!matchName && !matchId && !matchCat) return false;
-        }
-        return true;
+        // 统一搜索: 名称 / ID / 分类 / 子类别 / 描述 / 标签
+        return matchFields(keywords, [s.name, s.id, s.category, s.subCategory, s.description, s.tagsText]);
     });
 
     if (type === 'active') {
@@ -446,47 +505,218 @@ function debouncedFilter(kind) {
     if (debouncedFilters[kind]) debouncedFilters[kind]();
 }
 
-// ---- 全局搜索 (防抖 + 跨库检索: 技能/词缀/属性/装备/宝石/技能库/魔宠) ----
-function runGlobalSearch(e) {
-    const query = e.target.value.trim();
-    const hint = document.getElementById('globalSearchHint');
-    if (!query) {
-        if (hint) hint.style.display = 'none';
-        return;
-    }
-    const q = query.toLowerCase();
-    const matchSome = (arr, test) => arr.some(test);
+// ============================================================
+// 全局搜索 (跨库候选面板)
+// 输入即实时统计 8 个系统的命中条数, 面板列出每个命中系统的前几条候选;
+// 点击候选行跳转到对应页面并自动应用该搜索词, Enter 直接打开首个结果。
+// 检索字段与各页面 filter 函数保持一致, 共用 matchFields 引擎。
+// ============================================================
 
-    const targets = [
-        { arr: activeSkills,    test: s => (s.name || '').toLowerCase().includes(q) || String(s.id).includes(q), page: 'battle-data', tab: 'active', inputId: 'activeSearchInput', apply: () => filterSkills('active') },
-        { arr: passiveSkills,   test: s => (s.name || '').toLowerCase().includes(q) || String(s.id).includes(q), page: 'battle-data', tab: 'passive', inputId: 'passiveSearchInput', apply: () => filterSkills('passive') },
-        { arr: affixes,         test: a => (a.name || '').toLowerCase().includes(q) || String(a.id).includes(q) || (a.subCategory || '').toLowerCase().includes(q), page: 'battle-data', tab: 'affix', inputId: 'affixSearchInput', apply: () => filterAffixes() },
-        { arr: attributes,      test: a => (a.name || '').toLowerCase().includes(q) || String(a.id).includes(q), page: 'battle-data', tab: 'attr', inputId: 'attrSearchInput', apply: () => filterAttributes() },
-        { arr: equipmentData,   test: eq => (eq.name || '').toLowerCase().includes(q) || String(eq.id).includes(q) || (eq.effects || []).some(e => e.refId && String(e.refId).includes(q)), page: 'equipment', inputId: 'equipmentSearchInput', apply: () => filterEquipments() },
-        { arr: gemData,         test: g => (g.name || '').toLowerCase().includes(q) || String(g.id).includes(q) || (g.desc || '').toLowerCase().includes(q), page: 'gems', inputId: 'gemSearchInput', apply: () => filterGems() },
-        { arr: customSkillData, test: s => (s.name || '').toLowerCase().includes(q) || String(s.id).includes(q) || (s.desc || '').toLowerCase().includes(q), page: 'custom-skills', inputId: 'customSkillSearchInput', apply: () => filterCustomSkills() },
-        { arr: petData,         test: p => (p.name || '').toLowerCase().includes(q) || String(p.id).includes(q), page: 'pets', inputId: 'petSearchInput', apply: () => filterPets() }
-    ];
-
-    const hit = targets.find(t => matchSome(t.arr, t.test));
-    if (!hit) {
-        if (hint) {
-            hint.textContent = '未找到匹配内容';
-            hint.style.display = 'block';
+// 8 个系统的检索目标
+function getGlobalSearchTargets() {
+    return [
+        {
+            label: '主动技能', page: 'battle-data', tab: 'active', inputId: 'activeSearchInput',
+            apply: () => filterSkills('active'),
+            arr: activeSkills, nameOf: s => s.name, subOf: s => s.category,
+            fields: s => [s.name, s.id, s.category, s.subCategory, s.description, s.tagsText]
+        },
+        {
+            label: '被动技能', page: 'battle-data', tab: 'passive', inputId: 'passiveSearchInput',
+            apply: () => filterSkills('passive'),
+            arr: passiveSkills, nameOf: s => s.name, subOf: s => s.category,
+            fields: s => [s.name, s.id, s.category, s.subCategory, s.description, s.tagsText]
+        },
+        {
+            label: '词缀库', page: 'battle-data', tab: 'affix', inputId: 'affixSearchInput',
+            apply: () => filterAffixes(),
+            arr: affixes, nameOf: a => a.name, subOf: a => a.subCategory,
+            fields: a => [a.name, a.id, a.category, a.subCategory, a.description, a.desc]
+        },
+        {
+            label: '属性库', page: 'battle-data', tab: 'attr', inputId: 'attrSearchInput',
+            apply: () => filterAttributes(),
+            arr: attributes, nameOf: a => a.name, subOf: a => a.category,
+            fields: a => [a.name, a.id, a.category, a.description, a.desc]
+        },
+        {
+            label: '装备', page: 'equipment', inputId: 'equipmentSearchInput',
+            apply: () => filterEquipments(),
+            arr: equipmentData, nameOf: e => e.name, subOf: e => e.type,
+            fields: e => [e.name, e.id, e.type, e.source, effectText(e.effects)]
+        },
+        {
+            label: '辅助宝石', page: 'gems', inputId: 'gemSearchInput',
+            apply: () => filterGems(),
+            arr: gemData, nameOf: g => g.name, subOf: g => g.type,
+            fields: g => [g.name, g.id, g.type, g.desc, g.source, effectText(g.effects)]
+        },
+        {
+            label: '技能库', page: 'custom-skills', inputId: 'customSkillSearchInput',
+            apply: () => filterCustomSkills(),
+            arr: customSkillData, nameOf: s => s.name, subOf: s => s.type,
+            fields: s => [s.name, s.id, s.type, s.desc, s.tags, s.sourceId, effectText(s.effects)]
+        },
+        {
+            label: '魔宠', page: 'pets', inputId: 'petSearchInput',
+            apply: () => filterPets(),
+            arr: petData, nameOf: p => p.name, subOf: p => getPetQuality(p.quality).name,
+            fields: p => [p.name, p.id, p.quality, getPetQuality(p.quality).name, petStarEffectText(p)]
         }
-        return;
-    }
-    if (hint) hint.style.display = 'none';
-
-    // 跳转到对应页面并填入搜索词 (注意: 先跳转再填值, 页面筛选会读取输入框)
-    navigateTo(hit.page);
-    if (hit.tab) switchBattleTab(hit.tab);
-    const input = document.getElementById(hit.inputId);
-    if (input) input.value = e.target.value;
-    hit.apply();
+    ];
 }
 
-document.getElementById('globalSearch').addEventListener('input', debounce(runGlobalSearch, 150));
+const GS_SAMPLES = 3;   // 每个系统最多展示的候选条数
+let _gsHits = [];       // 最近一次搜索结果 (供点击跳转使用)
+let _gsQuery = '';      // 最近一次搜索词
+
+// 渲染候选面板
+function renderGlobalSearchPanel(query) {
+    const panel = document.getElementById('globalSearchHint');
+    if (!panel) return;
+    _gsQuery = query || '';
+    const keywords = parseKeywords(_gsQuery);
+
+    if (keywords.length === 0) {
+        _gsHits = [];
+        panel.innerHTML = '';
+        panel.style.display = 'none';
+        return;
+    }
+
+    const hits = [];
+    getGlobalSearchTargets().forEach(t => {
+        try {
+            const arr = t.arr || [];
+            const matched = arr.filter(item => matchFields(keywords, t.fields(item)));
+            if (matched.length > 0) {
+                hits.push({ target: t, count: matched.length, samples: matched.slice(0, GS_SAMPLES) });
+            }
+        } catch (err) {
+            console.warn('全局搜索: ' + t.label + ' 检索失败', err);
+        }
+    });
+    _gsHits = hits;
+
+    if (hits.length === 0) {
+        panel.innerHTML = '<div class="gs-empty">未找到匹配内容</div>';
+        panel.style.display = 'block';
+        return;
+    }
+
+    const total = hits.reduce((n, h) => n + h.count, 0);
+    const rows = hits.map((h, i) => {
+        const samples = h.samples.map(item => {
+            const name = escapeSearchHtml(h.target.nameOf ? h.target.nameOf(item) : '');
+            const sub = h.target.subOf ? escapeSearchHtml(h.target.subOf(item) || '') : '';
+            return `<span class="gs-sample">${name}${sub ? `<em>${sub}</em>` : ''}</span>`;
+        }).join('');
+        const more = h.count > h.samples.length ? '<span class="gs-more">…</span>' : '';
+        return `
+            <div class="gs-row" onclick="globalSearchJump(${i})">
+                <div class="gs-row-top">
+                    <span class="gs-sys">${escapeSearchHtml(h.target.label)}</span>
+                    <span class="gs-count">${h.count} 条</span>
+                </div>
+                <div class="gs-samples">${samples}${more}</div>
+            </div>`;
+    }).join('');
+
+    panel.innerHTML = `<div class="gs-head">共 ${total} 条结果 · ${hits.length} 个系统</div>${rows}`;
+    panel.style.display = 'block';
+}
+
+// 点击候选: 跳转页面 -> 切 Tab -> 回填搜索词 -> 应用筛选
+function globalSearchJump(index) {
+    const hit = _gsHits[index];
+    if (!hit) return;
+    const t = hit.target;
+    hideGlobalSearchPanel();
+    navigateTo(t.page);
+    if (t.tab) switchBattleTab(t.tab);
+    const input = document.getElementById(t.inputId);
+    if (input) {
+        input.value = _gsQuery;
+        // 同步搜索框清空按钮的显隐
+        const btn = input.parentNode ? input.parentNode.querySelector('.filter-clear') : null;
+        if (btn) btn.classList.toggle('show', input.value.length > 0);
+    }
+    t.apply();
+}
+
+function hideGlobalSearchPanel() {
+    const panel = document.getElementById('globalSearchHint');
+    if (panel) panel.style.display = 'none';
+}
+
+// input 事件入口 (防抖 150ms)
+function runGlobalSearch(e) {
+    renderGlobalSearchPanel(((e.target && e.target.value) || '').trim());
+}
+
+(function bindGlobalSearch() {
+    const input = document.getElementById('globalSearch');
+    if (!input) return;
+    input.addEventListener('input', debounce(runGlobalSearch, 150));
+    input.addEventListener('keydown', ev => {
+        if (ev.key === 'Enter') {
+            ev.preventDefault();
+            if (_gsHits.length > 0) globalSearchJump(0);
+        } else if (ev.key === 'Escape') {
+            input.value = '';
+            hideGlobalSearchPanel();
+        }
+    });
+    // 点击面板以外的区域时收起
+    document.addEventListener('click', ev => {
+        if (ev.target === input) return;
+        const panel = document.getElementById('globalSearchHint');
+        if (panel && panel.contains(ev.target)) return;
+        hideGlobalSearchPanel();
+    });
+})();
+
+// ---- 筛选栏搜索框: 统一清空按钮 ----
+const FILTER_INPUT_KIND = {
+    activeSearchInput: 'active',
+    passiveSearchInput: 'passive',
+    affixSearchInput: 'affix',
+    attrSearchInput: 'attr',
+    equipmentSearchInput: 'equipment',
+    gemSearchInput: 'gem',
+    customSkillSearchInput: 'custom',
+    petSearchInput: 'pet'
+};
+
+function initFilterClearButtons() {
+    Object.keys(FILTER_INPUT_KIND).forEach(id => {
+        const input = document.getElementById(id);
+        if (!input || input.dataset.clearReady === '1') return;
+        input.dataset.clearReady = '1';
+
+        // 包一层容器以承载清空按钮
+        const wrap = document.createElement('span');
+        wrap.className = 'filter-search';
+        input.parentNode.insertBefore(wrap, input);
+        wrap.appendChild(input);
+
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'filter-clear';
+        btn.title = '清空搜索';
+        btn.textContent = '✕';
+        const sync = () => btn.classList.toggle('show', input.value.length > 0);
+        btn.addEventListener('click', () => {
+            input.value = '';
+            sync();
+            debouncedFilter(FILTER_INPUT_KIND[id]);
+            input.focus();
+        });
+        input.addEventListener('input', sync);
+        wrap.appendChild(btn);
+        sync();
+    });
+}
 
 // ---- 技能详情弹窗 ----
 function openSkillDetail(id, type) {
@@ -1568,17 +1798,12 @@ function filterAffixes() {
     const searchEl = document.getElementById('affixSearchInput');
     if (!catEl || !searchEl) return;
     const categoryFilter = catEl.value;
-    const searchInput = searchEl.value.toLowerCase();
+    const keywords = parseKeywords(searchEl.value);
 
     const filtered = affixes.filter(a => {
         if (categoryFilter && a.category !== categoryFilter) return false;
-        if (searchInput) {
-            const matchName = a.name.toLowerCase().includes(searchInput);
-            const matchId = a.id.includes(searchInput);
-            const matchSub = a.subCategory.toLowerCase().includes(searchInput);
-            if (!matchName && !matchId && !matchSub) return false;
-        }
-        return true;
+        // 统一搜索: 名称 / ID / 分类 / 子类别 / 描述
+        return matchFields(keywords, [a.name, a.id, a.category, a.subCategory, a.description, a.desc]);
     });
     renderAffixes(filtered);
 }
@@ -2070,20 +2295,18 @@ function renderEquipment(filteredData) {
         const equips = typeGroups[type];
         const cards = equips.map(eq => {
         const effects = (eq.effects || []).filter(e => e.refId);
-        const effectCount = effects.length;
         const effectItems = effects.map(eff => {
             // 传奇装备效果在导入时已预解析 name/desc (refId 为 Modifier ID)
             const preResolved = eff.name || eff.desc;
             const refData = preResolved ? null : findRefData(eff.refId);
             const typeColor = preResolved ? '#f39c12' : (refData ? (refData.type === 'active-skill' ? '#e74c3c' : refData.type === 'passive-skill' ? '#3498db' : refData.type === 'attribute' ? '#27ae60' : '#f39c12') : '#e74c3c');
             const typeLabel = preResolved ? '词缀' : (refData ? (refData.type === 'active-skill' ? '主动' : refData.type === 'passive-skill' ? '被动' : refData.type === 'attribute' ? '属性' : '词缀') : '未知');
-            const name = preResolved ? eff.name : (refData ? refData.name : eff.refId);
-            const desc = preResolved ? eff.desc : (refData ? refData.desc : '⚠ 未找到ID: ' + eff.refId);
+            // 只展示描述; 描述为空时退回名称, 避免词条行只剩标签
+            const desc = formatEffectDesc(preResolved ? (eff.desc || eff.name || '') : (refData ? (refData.desc || refData.name) : '⚠ 未找到ID: ' + eff.refId));
             const randomTag = eff.random ? '<span class="equipment-card-effect-random">取随机一条</span>' : '';
             return `
-                <div class="equipment-card-effect" style="border-left-color:${typeColor}">
+                <div class="equipment-card-effect">
                     <span class="equipment-card-effect-type" style="background:${typeColor}20;color:${typeColor}">${typeLabel}</span>
-                    <span class="equipment-card-effect-name">${name}</span>
                     ${randomTag}
                     <p class="equipment-card-effect-desc">${desc}</p>
                 </div>
@@ -2093,30 +2316,29 @@ function renderEquipment(filteredData) {
         const passiveItems = passives.map(eff => {
             const refData = findRefData(eff.refId);
             return `
-                <div class="equipment-card-effect" style="border-left-color:#3498db">
+                <div class="equipment-card-effect">
                     <span class="equipment-card-effect-type" style="background:#3498db20;color:#3498db">被动</span>
-                    <span class="equipment-card-effect-name">${refData ? refData.name : eff.refId}</span>
-                    <p class="equipment-card-effect-desc">${refData ? refData.desc : '⚠ 未找到ID: ' + eff.refId}</p>
+                    <p class="equipment-card-effect-desc">${formatEffectDesc(refData ? (refData.desc || refData.name) : '⚠ 未找到ID: ' + eff.refId)}</p>
                 </div>
             `;
         }).join('');
+        // 统计栏仅保留「被动」；无被动时不渲染该栏
+        const statsRow = passives.length > 0
+            ? `<div class="item-stats">
+                    <div class="item-stats-cell"><span class="item-stats-label">被动</span><span class="item-stats-value">${passives.length} 条</span></div>
+                </div>`
+            : '';
         return `
-            <div class="equipment-card" data-equipment-id="${eq.id}" onclick="openEquipmentDetail('${eq.id}')">
+            <div class="equipment-card" data-equipment-id="${eq.id}" data-quality="${eq.quality || ''}" onclick="openEquipmentDetail('${eq.id}')">
                 <div class="equipment-card-header">
-                    <span class="equipment-card-icon" style="background:${style.color}18">${eq.icon ? `<img class="card-icon" src="${DATA_BASE}icon/${eq.icon}.webp" alt="" onerror="this.style.display='none'">` : ''}${style.icon}</span>
+                    <span class="equipment-card-icon">${eq.icon ? `<img class="card-icon" src="${DATA_BASE}icon/${eq.icon}.webp" alt="" onerror="this.style.display='none'">` : ''}${style.icon}</span>
                     <div>
                         <h4 class="equipment-card-name">${eq.name}</h4>
-                        <span class="equipment-card-id">${eq.id}</span>
                     </div>
                 </div>
                 <span class="equipment-card-type">${eq.type || '未分类'}</span>
-                <div class="item-stats">
-                    <div class="item-stats-cell"><span class="item-stats-label">词缀数</span><span class="item-stats-value">${effectCount} 条</span></div>
-                    ${passives.length > 0 ? `<div class="item-stats-cell"><span class="item-stats-label">被动</span><span class="item-stats-value">${passives.length} 条</span></div>` : ''}
-                    <div class="item-stats-cell"><span class="item-stats-label">装备ID</span><span class="item-stats-value">${eq.id}</span></div>
-                </div>
+                ${statsRow}
                 <div class="equipment-card-effects">
-                    <span class="equipment-effect-count">效果 (${effectCount} 条)${passives.length > 0 ? ' · 被动 (' + passives.length + ' 条)' : ''}</span>
                     <div class="equipment-card-effect-list">
                         ${effectItems || '<p class="equipment-card-effect-empty">暂无效果</p>'}
                         ${passiveItems}
@@ -2148,23 +2370,12 @@ function renderEquipment(filteredData) {
 }
 
 function filterEquipments() {
-    const search = document.getElementById('equipmentSearchInput').value.toLowerCase();
+    const keywords = parseKeywords(document.getElementById('equipmentSearchInput').value);
     const typeFilter = document.getElementById('equipmentTypeFilter') ? document.getElementById('equipmentTypeFilter').value : '';
     const filtered = equipmentData.filter(eq => {
         if (typeFilter && (eq.type || '未分类') !== typeFilter) return false;
-        if (!search) return true;
-        if (eq.name.toLowerCase().includes(search)) return true;
-        if (eq.id.toLowerCase().includes(search)) return true;
-        if (eq.type && eq.type.toLowerCase().includes(search)) return true;
-        // 关联效果: 匹配效果ID或效果名称
-        const hasEffect = (eq.effects || []).some(e => {
-            if (!e.refId) return false;
-            if (e.refId.includes(search)) return true;
-            const ref = findRefData(e.refId);
-            return ref && ref.name && ref.name.toLowerCase().includes(search);
-        });
-        if (hasEffect) return true;
-        return false;
+        // 统一搜索: 名称 / ID / 类型 / 所属 / 关联效果 (ID + 效果名称 + 效果描述)
+        return matchFields(keywords, [eq.name, eq.id, eq.type, eq.source, eq.effects && eq.effects.map(e => e.refId), effectText(eq.effects)]);
     });
     renderEquipment(filtered);
 }
@@ -2205,6 +2416,17 @@ function toggleEquipTypeGroup(type) {
 
 
 
+// ---- 效果描述换行处理 ----
+// 数据中多段描述以 " / " 分隔, 且存在 \n 字面量; 统一转成真实换行, 由 CSS white-space: pre-line 呈现
+function formatEffectDesc(text) {
+    if (!text) return '';
+    return String(text)
+        .replace(/\\n/g, '\n')
+        .replace(/[ \t]+\/[ \t]+/g, '\n')
+        .replace(/\n{3,}/g, '\n\n')
+        .trim();
+}
+
 function openEquipmentDetail(id) {
     const eq = equipmentData.find(e => e.id === id);
     if (!eq) return;
@@ -2219,7 +2441,6 @@ function openEquipmentDetail(id) {
                 <h2 class="detail-name">${eq.name}</h2>
                 <div class="detail-type">
                     <span class="type-badge" style="background:#9b59b620;color:#9b59b6">装备系统</span>
-                    <span class="type-badge-sub">${eq.id}</span>
                     <span class="type-badge-sub">${eq.type || '未分类'}</span>
                 </div>
             </div>
@@ -2245,7 +2466,7 @@ function openEquipmentDetail(id) {
                         <div class="equipment-effect-info">
                             <span class="equipment-effect-name">${name}</span>
                             ${eff.random ? '<span class="equipment-effect-random-tag">取随机一条</span>' : ''}
-                            <p class="equipment-effect-desc">${desc || (eff.refId ? '⚠ 未找到ID: ' + eff.refId : '')}</p>
+                            <p class="equipment-effect-desc">${formatEffectDesc(desc || (eff.refId ? '⚠ 未找到ID: ' + eff.refId : ''))}</p>
                         </div>
                     </div>
                 `;
@@ -2374,26 +2595,17 @@ function toggleGemTypeGroup(type) {
 }
 
 function filterGems() {
-    const search = document.getElementById('gemSearchInput').value.toLowerCase();
+    const keywords = parseKeywords(document.getElementById('gemSearchInput').value);
     const rankFilter = document.getElementById('gemRankFilter') ? document.getElementById('gemRankFilter').value : '';
     const filtered = gemData.filter(gem => {
         const rank = (gem.rank || '').toString().trim() || '0';
         if (rankFilter && rank !== rankFilter) return false;
-        if (!search) return true;
-        if (gem.name.toLowerCase().includes(search)) return true;
-        if ((gem.id || '').toLowerCase().includes(search)) return true;
-        if (rank !== '0' && (rank + ' 阶').includes(search)) return true;
-        if (gem.type && gem.type.toLowerCase().includes(search)) return true;
-        if (gem.desc && gem.desc.toLowerCase().includes(search)) return true;
-        // 关联效果: 匹配效果ID或效果名称
-        const hasEffect = (gem.effects || []).some(e => {
-            if (!e.refId) return false;
-            if (e.refId.includes(search)) return true;
-            const ref = findRefData(e.refId);
-            return ref && ref.name && ref.name.toLowerCase().includes(search);
-        });
-        if (hasEffect) return true;
-        return false;
+        // 统一搜索: 名称 / ID / 阶级 / 类型 / 描述 / 关联效果
+        return matchFields(keywords, [
+            gem.name, gem.id, gem.type, gem.desc, gem.source,
+            rank !== '0' ? rank + ' 阶' : '',
+            effectText(gem.effects)
+        ]);
     });
     renderGems(filtered);
     updateGemRankFilter();
@@ -2587,21 +2799,18 @@ function renderCustomSkills(filteredData) {
     updateCustomSkillTypeFilter();
 }
 
-// 技能库条目是否匹配搜索词 (名称/ID/类型/描述/关联效果ID)
-function customSkillMatches(s, search) {
-    if (!search) return true;
-    if (s.name && s.name.toLowerCase().includes(search)) return true;
-    if ((s.id || '').toLowerCase().includes(search)) return true;
-    if (s.type && s.type.toLowerCase().includes(search)) return true;
-    if (s.desc && s.desc.toLowerCase().includes(search)) return true;
-    return (s.effects || []).some(e => e.refId && e.refId.includes(search));
+// 技能库条目是否匹配搜索词 (名称/ID/类型/描述/标签/关联效果ID与效果内容)
+function customSkillMatches(s, keywords) {
+    const kws = Array.isArray(keywords) ? keywords : parseKeywords(keywords);
+    if (kws.length === 0) return true;
+    return matchFields(kws, [s.name, s.id, s.type, s.desc, s.tags, s.sourceId, effectText(s.effects)]);
 }
 
 function filterCustomSkills() {
     renderCustomSkillTagFilterBar();
     const searchEl = document.getElementById('customSkillSearchInput');
     if (!searchEl) return;
-    const search = searchEl.value.toLowerCase();
+    const keywords = parseKeywords(searchEl.value);
     const typeFilter = document.getElementById('customSkillTypeFilter') ? document.getElementById('customSkillTypeFilter').value : '';
     const tagFilter = tagFilterState.custom || [];
     const filtered = customSkillData.filter(s => {
@@ -2613,7 +2822,7 @@ function filterCustomSkills() {
             const matched = tagFilter.every(tag => t.main === tag || (t.normal || []).includes(tag));
             if (!matched) return false;
         }
-        return customSkillMatches(s, search);
+        return customSkillMatches(s, keywords);
     });
     renderCustomSkills(filtered);
 }
@@ -2827,12 +3036,11 @@ function filterAttributes() {
     const searchEl = document.getElementById('attrSearchInput');
     if (!catEl || !searchEl) return;
     const cat = catEl.value;
-    const search = searchEl.value.toLowerCase().trim();
+    const keywords = parseKeywords(searchEl.value);
     let filtered = attributes;
     if (cat) filtered = filtered.filter(a => a.category === cat);
-    if (search) filtered = filtered.filter(a =>
-        a.name.toLowerCase().includes(search) || a.id.includes(search)
-    );
+    // 统一搜索: 名称 / ID / 分类 / 描述 (补齐描述字段)
+    filtered = filtered.filter(a => matchFields(keywords, [a.name, a.id, a.category, a.description, a.desc]));
     renderAttributes(filtered);
 }
 
@@ -2971,6 +3179,9 @@ function init() {
 
     updateCustomSkillNavCount();
     updateBattleDataCount();
+
+    // 筛选栏搜索框统一挂载清空按钮
+    initFilterClearButtons();
 
     // 仅渲染首页统计 (其余页面在首次进入时懒渲染, 见 ensurePageRendered)
     renderHome();
@@ -3297,6 +3508,17 @@ function petEffectName(id) {
     return ref.name || ref.desc || '';
 }
 
+// 星级全部效果的检索文本 (skillAffix/stunt/attr 的 ID + 对应效果名称)
+function petStarEffectText(pet) {
+    const out = [];
+    (pet.stars || []).forEach(st => {
+        (st.skillAffix || []).forEach(a => out.push(a.id, petEffectName(a.id)));
+        (st.stunt || []).forEach(id => out.push(id, petEffectName(id)));
+        (st.attr || []).forEach(a => out.push(a.id, petEffectName(a.id)));
+    });
+    return out;
+}
+
 // 星级效果渲染: 返回效果标签 HTML
 function renderPetStarEffects(star) {
     const parts = [];
@@ -3337,12 +3559,13 @@ function initPetPage() {
 function filterPets() {
     const grid = document.getElementById('petGrid');
     if (!grid) return;
-    const keyword = ((document.getElementById('petSearchInput') || {}).value || '').trim().toLowerCase();
+    const keywords = parseKeywords(((document.getElementById('petSearchInput') || {}).value || ''));
     const qFilter = ((document.getElementById('petQualityFilter') || {}).value || '').trim();
 
     let list = petData;
-    if (keyword) {
-        list = list.filter(p => (p.name || '').toLowerCase().includes(keyword) || String(p.id).includes(keyword));
+    if (keywords.length > 0) {
+        // 统一搜索: 名称 / ID / 品质 / 星级效果 (词缀、特技、属性的 ID 与效果名称)
+        list = list.filter(p => matchFields(keywords, [p.name, p.id, p.quality, getPetQuality(p.quality).name, petStarEffectText(p)]));
     }
     if (qFilter) {
         list = list.filter(p => String(p.quality) === qFilter);

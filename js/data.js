@@ -437,6 +437,15 @@ const legendModifierMap = {
 let refIndex = null;
 let skillAffixIdSet = null;
 
+// 属性分类归一化: 导入表里的 category 是 attrType 数值, 需映射为中文分类名
+// 1 → 特殊属性, 2 → 基础属性; 已是中文分类名的原样保留
+function normalizeAttrCategory(raw) {
+    const v = (raw === undefined || raw === null) ? '' : String(raw).trim();
+    if (v === '1') return '特殊属性';
+    if (v === '2') return '基础属性';
+    return v || '基础属性';
+}
+
 function rebuildRefIndex() {
     refIndex = new Map();
     const add = (items, type) => {
@@ -500,7 +509,14 @@ function findRefData(refId) {
     try {
         if (data.attributes && data.attributes.length > 0) {
             attributes.length = 0;
-            attributes.push(...data.attributes);
+            // 导入表里的 category 为 attrType 数值 (1=特殊属性, 2=基础属性),
+            // 这里统一归一化成中文分类名, 否则属性库的分类筛选/配色/图标全部失效
+            attributes.push(...data.attributes.map(a => ({
+                ...a,
+                // 保留原始数值类型供其它地方使用
+                attrType: a.attrType !== undefined && a.attrType !== null && a.attrType !== '' ? a.attrType : a.category,
+                category: normalizeAttrCategory(a.category)
+            })));
             try { localStorage.setItem('chronicle_synced_attrs', JSON.stringify(attributes)); } catch(e) {}
             console.log('  ✓ 属性:', attributes.length, '条');
         }
