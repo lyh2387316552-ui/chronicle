@@ -836,7 +836,7 @@ function commonPartName(strings) {
     return prefix || suffix || arr[0];
 }
 
-// 装备库 (LegendEquip: id.p/name/desc998/icon + modifier1/modifier2 → Modifier 词条解析)
+// 装备库 (LegendEquip: id.p/name/desc998/icon + modifierPool → ModifierPool → Modifier 词条解析)
 function parseEquipment(inputPath, battleData) {
     console.log('  📖 解析传奇装备库(LegendEquip)...');
     let filePath = inputPath;
@@ -905,8 +905,32 @@ function parseEquipment(inputPath, battleData) {
         });
     });
 
+    // 传奇词缀池表 (池 ID → 词条 ID 列表), 供 LegendEquip.modifierPool 填池 ID 时展开
+    const modifierPoolMap = {};
+    try {
+        const poolData = readSheetByCols(filePath, ['modifier', 'ifOrder'], ['ModifierPool']);
+        const pIdCol = findCol(poolData.headers, ['id.p', 'id', 'ID']);
+        const pModCol = findCol(poolData.headers, ['modifier', 'Modifier', '词条']);
+        if (pIdCol && pModCol) {
+            poolData.rows.forEach(r => {
+                const pid = cleanNum(r[pIdCol]);
+                if (!pid) return;
+                if (!modifierPoolMap[pid]) modifierPoolMap[pid] = [];
+                String(r[pModCol] || '').split(/[;|]/).forEach(m => {
+                    const mid = cleanNum(m);
+                    if (mid && modifierPoolMap[pid].indexOf(mid) === -1) modifierPoolMap[pid].push(mid);
+                });
+            });
+        }
+        console.log('     ModifierPool子表:', poolData.sheetName, '  池数:', Object.keys(modifierPoolMap).length);
+    } catch (e) {
+        console.log('     ⚠️ ModifierPool 表读取失败, 跳过池展开:', e.message);
+    }
+
     // 解析单条 Modifier 行为 { name, desc }
     function resolveModifierRow(r) {
+        // 数据源脏值: desc 列填了纯数字(如 "0")而非描述模板, 视为空以免渲染出 "0 10.00%~15.00%"
+        if (r.desc != null && /^-?\d+(\.\d+)?$/.test(String(r.desc).trim())) r.desc = '';
         const range = fmtLegendRange(r.min, r.max, r.showType, r.round);
         // 战斗数据反查名 (按 stunt→affix→attr→randomValue 优先级)
         let battleName = '';
@@ -937,14 +961,16 @@ function parseEquipment(inputPath, battleData) {
     const nameCol = findCol(legendHeaders, ['name', 'Name', '前称号']);
     const desc998Col = findCol(legendHeaders, ['desc998', 'Desc998']);
     const desc999Col = findCol(legendHeaders, ['desc999', 'Desc999']);
-    const mod1Col = findCol(legendHeaders, ['modifier1', 'Modifier1', '前缀词条']);
-    const mod2Col = findCol(legendHeaders, ['modifier2', 'Modifier2', '后缀词条']);
+    // 传奇词缀池: 装备词条的唯一来源 (modifier1/modifier2 已废弃, 不再读取)
+    const modPoolCol = findCol(legendHeaders, ['modifierPool', 'ModifierPool', '传奇词缀池']);
     const idCol = findCol(legendHeaders, ['id.p', 'id', 'ID']);
     const iconCol = findCol(legendHeaders, ['icon', 'Icon', 'ICON', '图标']);
     const spIconCol = findCol(legendHeaders, ['spIcon', 'SpIcon', 'SPICON', '特殊图标']);
     const qualityCol = findCol(legendHeaders, ['quality', 'Quality', '品质']);
 
     const equips = [];
+    const unresolvedMods = [];   // modifierPool 中无法匹配到 Modifier 的 ID(数据源疑似笔误)
+    const correctedMods = [];    // 经纠偏后才匹配上的 ID
     let eqCounter = 0;
     legendRows.forEach(row => {
         const name = nameCol ? String(row[nameCol] || '').trim() : '';
@@ -962,15 +988,41 @@ function parseEquipment(inputPath, battleData) {
             if (idTypeMap[prefix]) equipType = idTypeMap[prefix];
         }
 
-        // 效果词缀: modifier1 + modifier2 中的 Modifier ID
+        // 效果词缀: 仅读取"传奇词缀池 modifierPool"列
+        // 链路: LegendEquip.modifierPool(池 ID) → ModifierPool.modifier(词条 ID 列表) → Modifier
         const modIds = [];
-        [mod1Col, mod2Col].forEach(c => {
-            if (!c || !row[c]) return;
-            String(row[c]).split(/[;|]/).forEach(id => {
+        const seenRaw = [];   // 已处理过的池 ID(池展开会产出新 ID, 需与词条 ID 分开去重)
+        if (modPoolCol && String(row[modPoolCol] || '').trim()) {
+            String(row[modPoolCol]).split(/[;|]/).forEach(id => {
                 const tid = cleanNum(id);
-                if (tid && modIds.indexOf(tid) === -1) modIds.push(tid);
+                if (!tid || seenRaw.indexOf(tid) !== -1) return;
+                seenRaw.push(tid);
+                // 数据源纠偏: 形如 900112 的 6 位 ID 是多写了一位 0, 归一化后重试 (900112 → 90112)
+                const candidates = [tid];
+                if (/^900\d{3}$/.test(tid)) candidates.push(tid.slice(0, 2) + tid.slice(3));
+                let matched = false;
+                for (let ci = 0; ci < candidates.length && !matched; ci++) {
+                    const cid = candidates[ci];
+                    const before = modIds.length;
+                    // 1) 作为池 ID: 经词条池 ModifierPool.modifier 展开为词条 ID
+                    const expanded = modifierPoolMap[cid];
+                    if (expanded && expanded.length) {
+                        expanded.forEach(mid => {
+                            if (modifierMap[mid] && modIds.indexOf(mid) === -1) modIds.push(mid);
+                        });
+                    }
+                    // 2) 兜底: 池中缺失时, 直接作为词条 ID 匹配 Modifier
+                    if (modIds.length === before && modifierMap[cid] && modIds.indexOf(cid) === -1) modIds.push(cid);
+                    if (modIds.length > before) {
+                        matched = true;
+                        if (ci > 0) correctedMods.push(name + ':' + tid + '→' + cid);
+                    }
+                }
+                if (!matched) unresolvedMods.push(name + ':' + tid);
             });
-        });
+        } else {
+            unresolvedMods.push(name + ':(modifierPool 为空)');
+        }
 
         const effects = [];
         modIds.forEach(modId => {
@@ -1005,6 +1057,12 @@ function parseEquipment(inputPath, battleData) {
         });
     });
     console.log('     ✓ 解析装备:', equips.length, '件, 效果总数:', equips.reduce((s, e) => s + e.effects.length, 0));
+    if (unresolvedMods.length) {
+        console.log('     ⚠️ modifierPool 中未匹配到 Modifier 的 ID:', unresolvedMods.join(', '));
+    }
+    if (correctedMods.length) {
+        console.log('     ⚠️ 已自动纠偏的 modifierPool ID:', correctedMods.join(', '));
+    }
     return equips;
 }
 
