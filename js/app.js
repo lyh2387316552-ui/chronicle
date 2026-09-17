@@ -3216,7 +3216,7 @@ const occupationBgMap = {
     '幻影魔典': 'assets/talent-bg-huanying.webp',
     '巫术魔典': 'assets/talent-bg-wushu.webp',
     '剑客1': 'assets/talent-bg-jianke.webp',
-    '冰刀': 'assets/talent-bg-bingdao.webp',
+    '冰刃': 'assets/talent-bg-bingren.webp',
     '元素法杖': 'assets/talent-bg-yuansu.webp',
     '塑能法杖': 'assets/talent-bg-suneng.webp'
 };
@@ -3224,7 +3224,7 @@ const occupationBgMap = {
 // 职业描述配置: 职业名 → 推荐武器 + 背景故事文案
 const occupationDescMap = {
     '剑客1': { weapon: '太刀', text: '刀光一闪，胜负已分。我不求蛮力，只求快——快到敌人来不及眨眼。当你看清我的刀时，刀已归鞘。' },
-    '冰刀': { weapon: '太刀', text: '极寒是我最忠实的伙伴。剑锋所过，霜雪蔓延，敌人尚未近身便已冻僵，而暴击，是寒冰送上的最后一击。' },
+    '冰刃': { weapon: '太刀', text: '极寒是我最忠实的伙伴。剑锋所过，霜雪蔓延，敌人尚未近身便已冻僵，而暴击，是寒冰送上的最后一击。' },
     '元素法杖': { weapon: '法杖', text: '五色法球环绕周身，那是我掌控的纯粹力量。注能满溢之时，一击出手，足以撼动山河。' },
     '幻影魔典': { weapon: '法杖', text: '你看到的，未必是真正的我。翻动之间，幻影四起，待你辨清真假，真正的杀机早已近在咫尺。' },
     '巫术魔典': { weapon: '魔典', text: '我不求一击致命，只求毒入骨髓。坩埚沸腾，毒雾弥漫，与我为敌者，终将在不知不觉中走到生命的尽头。' },
