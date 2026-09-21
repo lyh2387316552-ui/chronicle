@@ -2677,6 +2677,53 @@ body[data-page="home"] .home-modules {
 }
 
 /* ---- Equipment Detail ---- */
+/* 同一「传奇词缀池」展开出的词条 → 分组框选 */
+.equipment-effect-group {
+    border: 1px solid var(--border);
+    border-left: 3px solid rgba(155, 89, 182, 0.55);
+    border-radius: 0px 12px;
+    padding: 10px 12px 2px;
+    margin-bottom: 12px;
+    background: rgba(155, 89, 182, 0.04);
+}
+
+.equipment-effect-group-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.equipment-effect-group-badge {
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-weight: 600;
+    background: rgba(155, 89, 182, 0.15);
+    color: #bb8fce;
+    flex-shrink: 0;
+}
+
+.equipment-effect-group-note {
+    font-size: 11px;
+    color: var(--text-muted);
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.equipment-effect-group-count {
+    margin-left: auto;
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.equipment-effect-group .equipment-effect-item {
+    margin-bottom: 8px;
+}
+
 .equipment-effect-item {
     background: var(--bg-input);
     border: 1px solid var(--border);

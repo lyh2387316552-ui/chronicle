@@ -991,6 +991,8 @@ function parseEquipment(inputPath, battleData) {
         // 效果词缀: 仅读取"传奇词缀池 modifierPool"列
         // 链路: LegendEquip.modifierPool(池 ID) → ModifierPool.modifier(词条 ID 列表) → Modifier
         const modIds = [];
+        // 归属分组: modifierPool 中每个池 ID 展开出的词条各自成组(供前端按池框选展示)
+        const poolGroups = [];   // [{ poolId, ids: [] }]
         const seenRaw = [];   // 已处理过的池 ID(池展开会产出新 ID, 需与词条 ID 分开去重)
         if (modPoolCol && String(row[modPoolCol] || '').trim()) {
             String(row[modPoolCol]).split(/[;|]/).forEach(id => {
@@ -1003,18 +1005,29 @@ function parseEquipment(inputPath, battleData) {
                 let matched = false;
                 for (let ci = 0; ci < candidates.length && !matched; ci++) {
                     const cid = candidates[ci];
-                    const before = modIds.length;
+                    const groupIds = [];      // 本池新纳入的词条(跨池重复的不再计入)
+                    let poolFound = false;    // 该 ID 确实是 ModifierPool 中的池
                     // 1) 作为池 ID: 经词条池 ModifierPool.modifier 展开为词条 ID
                     const expanded = modifierPoolMap[cid];
                     if (expanded && expanded.length) {
+                        poolFound = true;
                         expanded.forEach(mid => {
-                            if (modifierMap[mid] && modIds.indexOf(mid) === -1) modIds.push(mid);
+                            if (modifierMap[mid] && modIds.indexOf(mid) === -1) {
+                                modIds.push(mid);
+                                groupIds.push(mid);
+                            }
                         });
                     }
                     // 2) 兜底: 池中缺失时, 直接作为词条 ID 匹配 Modifier
-                    if (modIds.length === before && modifierMap[cid] && modIds.indexOf(cid) === -1) modIds.push(cid);
-                    if (modIds.length > before) {
+                    if (!poolFound && modifierMap[cid] && modIds.indexOf(cid) === -1) {
+                        modIds.push(cid);
+                        groupIds.push(cid);
+                    }
+                    if (poolFound || groupIds.length) {
                         matched = true;
+                        if (groupIds.length) {
+                            poolGroups.push({ poolId: cid, ids: groupIds, total: expanded ? expanded.length : groupIds.length });
+                        }
                         if (ci > 0) correctedMods.push(name + ':' + tid + '→' + cid);
                     }
                 }
@@ -1024,13 +1037,20 @@ function parseEquipment(inputPath, battleData) {
             unresolvedMods.push(name + ':(modifierPool 为空)');
         }
 
+        // 词条 ID → 所属池 ID (同一词条出现在多个池时取首个)
+        const modPoolOf = {};
+        poolGroups.forEach(g => g.ids.forEach(mid => {
+            if (!modPoolOf[mid]) modPoolOf[mid] = g.poolId;
+        }));
+
         const effects = [];
         modIds.forEach(modId => {
             const rows = modifierMap[modId];
             if (!rows || rows.length === 0) return;
+            const poolId = modPoolOf[modId] || '';
             if (rows.length === 1) {
                 const r = resolveModifierRow(rows[0]);
-                effects.push({ refId: modId, name: r.name, desc: r.desc, random: false });
+                effects.push({ refId: modId, name: r.name, desc: r.desc, random: false, poolId: poolId });
             } else {
                 // 同一 Modifier ID 多行(多 tier) → "取随机一条" 组合展示
                 const parts = rows.map(resolveModifierRow);
@@ -1041,7 +1061,8 @@ function parseEquipment(inputPath, battleData) {
                     refId: modId,
                     name: common || names[0],
                     desc: descList.join(' / ') + '（取随机一条）',
-                    random: true
+                    random: true,
+                    poolId: poolId
                 });
             }
         });
@@ -1049,7 +1070,7 @@ function parseEquipment(inputPath, battleData) {
         eqCounter++;
         equips.push({
             id: 'EQ' + String(eqCounter).padStart(4, '0'),
-            name: equipName, type: equipType, effects: effects,
+            name: equipName, type: equipType, effects: effects, poolGroups: poolGroups,
             sourceId: equipSourceId, isNew: true, source: 'sync',
             quality: qualityCol ? cleanNum(row[qualityCol]) : '',
             icon: iconCol ? String(row[iconCol] || '').trim() : '',

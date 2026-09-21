@@ -2427,11 +2427,92 @@ function formatEffectDesc(text) {
         .trim();
 }
 
+// 装备词条按「传奇词缀池」归组: 框选渲染与标题统计共用同一套分组规则
+// poolGroups: import 阶段记录的池清单 [{ poolId, ids, total }](total = 池内候选总数)
+function groupEquipmentEffects(effects, poolGroups) {
+    // 池内候选总数(来自 ModifierPool 池定义), 用于判定该池是否值得框选
+    const poolTotal = {};
+    (poolGroups || []).forEach(g => { if (g && g.poolId) poolTotal[String(g.poolId)] = g.total || (g.ids || []).length; });
+
+    // 按 poolId 归组(保持出现顺序), 无池信息的词条归入空组
+    const order = [];
+    const groupMap = {};
+    (effects || []).forEach(eff => {
+        const pid = eff.poolId ? String(eff.poolId) : '';
+        if (!groupMap[pid]) { groupMap[pid] = []; order.push(pid); }
+        groupMap[pid].push(eff);
+    });
+
+    // 池内仅 1 条候选时不构成"多条同池", 不画框, 避免单行空框
+    const needBox = pid => !!pid && (groupMap[pid].length >= 2 || (poolTotal[pid] || 0) >= 2);
+
+    return { order, groupMap, poolTotal, needBox };
+}
+
+// 需要框选的池数量(供详情页标题展示)
+function countEquipmentEffectPools(effects, poolGroups) {
+    const g = groupEquipmentEffects(effects, poolGroups);
+    return g.order.filter(g.needBox).length;
+}
+
+// 装备词条按「传奇词缀池」分组渲染: 同一池(ModifierPool)展开出的词条框在一起
+function renderEquipmentEffectsByPool(effects, poolGroups) {
+    const list = effects || [];
+    const buildItem = (eff) => {
+        const preResolved = eff.name || eff.desc;
+        const refData = !preResolved && eff.refId ? findRefData(eff.refId) : null;
+        const typeColor = preResolved ? '#f39c12' : (refData ? (refData.type === 'active-skill' ? '#e74c3c' : refData.type === 'passive-skill' ? '#3498db' : refData.type === 'attribute' ? '#27ae60' : '#f39c12') : '#bbb');
+        const typeLabel = preResolved ? '词缀' : (refData ? (refData.type === 'active-skill' ? '主动技能' : refData.type === 'passive-skill' ? '被动技能' : refData.type === 'attribute' ? '属性效果' : '词缀') : '待填写');
+        const name = preResolved ? eff.name : (refData ? refData.name : eff.refId);
+        const desc = preResolved ? eff.desc : (refData ? refData.desc : '');
+        return `
+            <div class="equipment-effect-item" style="border-left-color:${typeColor}">
+                <div class="equipment-effect-header">
+                    <span class="effect-type-badge" style="background:${typeColor}20;color:${typeColor}">${typeLabel}</span>
+                    <span class="effect-ref-id">${eff.refId || '—'}</span>
+                </div>
+                <div class="equipment-effect-info">
+                    <span class="equipment-effect-name">${name}</span>
+                    ${eff.random ? '<span class="equipment-effect-random-tag">取随机一条</span>' : ''}
+                    <p class="equipment-effect-desc">${formatEffectDesc(desc || (eff.refId ? '⚠ 未找到ID: ' + eff.refId : ''))}</p>
+                </div>
+            </div>
+        `;
+    };
+
+    // 池内候选总数(来自 ModifierPool 池定义), 用于判定该池是否值得框选
+    const { order, groupMap, poolTotal, needBox } = groupEquipmentEffects(effects, poolGroups);
+
+    // 无任何池信息(旧数据/手工新增) → 平铺, 不做分组框选
+    if (!order.some(pid => pid)) return list.map(buildItem).join('');
+
+    return order.map(pid => {
+        const items = groupMap[pid];
+        if (!pid || !needBox(pid)) return items.map(buildItem).join('');
+        const total = poolTotal[pid] || items.length;
+        const dupNote = total > items.length
+            ? `<span class="equipment-effect-group-note">池内共 ${total} 条（含跨池重复）</span>`
+            : '';
+        return `
+            <div class="equipment-effect-group">
+                <div class="equipment-effect-group-header">
+                    <span class="equipment-effect-group-badge">词条池 ${pid}</span>
+                    ${dupNote}
+                    <span class="equipment-effect-group-count">${items.length} 条</span>
+                </div>
+                ${items.map(buildItem).join('')}
+            </div>
+        `;
+    }).join('');
+}
+
 function openEquipmentDetail(id) {
     const eq = equipmentData.find(e => e.id === id);
     if (!eq) return;
     if (!eq.effects) eq.effects = [];
     const effects = eq.effects;
+    // 需要按池框选的组数(与渲染逻辑同源)
+    const boxedPoolCount = countEquipmentEffectPools(effects, eq.poolGroups);
 
     const modalBody = document.getElementById('modalBody');
     modalBody.innerHTML = `
@@ -2447,30 +2528,10 @@ function openEquipmentDetail(id) {
         </div>
 
         <div class="detail-section">
-            <h3 class="detail-section-title">装备效果（${effects.filter(e => e.refId).length} 条）</h3>
+            <h3 class="detail-section-title">装备效果（${effects.filter(e => e.refId).length} 条${boxedPoolCount ? ' · ' + boxedPoolCount + ' 组同池词条' : ''}）</h3>
             <div id="equipmentEffectList">
             ${effects.length === 0 ? '<p class="empty-hint">暂无效果</p>' : ''}
-            ${effects.map((eff, idx) => {
-                const preResolved = eff.name || eff.desc;
-                const refData = !preResolved && eff.refId ? findRefData(eff.refId) : null;
-                const typeColor = preResolved ? '#f39c12' : (refData ? (refData.type === 'active-skill' ? '#e74c3c' : refData.type === 'passive-skill' ? '#3498db' : refData.type === 'attribute' ? '#27ae60' : '#f39c12') : '#bbb');
-                const typeLabel = preResolved ? '词缀' : (refData ? (refData.type === 'active-skill' ? '主动技能' : refData.type === 'passive-skill' ? '被动技能' : refData.type === 'attribute' ? '属性效果' : '词缀') : '待填写');
-                const name = preResolved ? eff.name : (refData ? refData.name : eff.refId);
-                const desc = preResolved ? eff.desc : (refData ? refData.desc : '');
-                return `
-                    <div class="equipment-effect-item" style="border-left-color:${typeColor}">
-                        <div class="equipment-effect-header">
-                            <span class="effect-type-badge" style="background:${typeColor}20;color:${typeColor}">${typeLabel}</span>
-                            <span class="effect-ref-id">${eff.refId || '—'}</span>
-                        </div>
-                        <div class="equipment-effect-info">
-                            <span class="equipment-effect-name">${name}</span>
-                            ${eff.random ? '<span class="equipment-effect-random-tag">取随机一条</span>' : ''}
-                            <p class="equipment-effect-desc">${formatEffectDesc(desc || (eff.refId ? '⚠ 未找到ID: ' + eff.refId : ''))}</p>
-                        </div>
-                    </div>
-                `;
-            }).join('')}
+            ${renderEquipmentEffectsByPool(effects, eq.poolGroups)}
             </div>
         </div>
     `;
