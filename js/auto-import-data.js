@@ -1,5 +1,5 @@
 // 此文件由 import.js 自动生成，请勿手动编辑
-// 生成时间: 2026-09-21T08:35:44.692Z
+// 生成时间: 2026-09-21T11:18:51.805Z
 window.__AUTO_IMPORT_DATA__ = {
   "activeSkills": [
     {
@@ -9731,7 +9731,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "专注斩",
       "type": "主动技能",
-      "desc": "向前方目标连续造成3次共计123%物理伤害，随后再造成更高的237%物理伤害",
+      "desc": "向前方目标连续造成3次共计63%物理伤害，随后再造成更高的117%物理伤害",
       "sourceId": "1110000050",
       "tags": {
         "main": "攻击",
@@ -9748,7 +9748,7 @@ window.__AUTO_IMPORT_DATA__ = {
       ],
       "skillCd": 0,
       "recourceType": 2,
-      "recourceConsume": 20,
+      "recourceConsume": 1,
       "isNew": true,
       "source": "sync"
     },
@@ -9756,7 +9756,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "旋风斩",
       "type": "主动技能",
-      "desc": "对自身一定范围内的敌人造成一次416%物理伤害",
+      "desc": "对自身一定范围内的敌人造成一次288%物理伤害",
       "sourceId": "1110000040",
       "tags": {
         "main": "攻击",
@@ -9774,7 +9774,7 @@ window.__AUTO_IMPORT_DATA__ = {
       ],
       "skillCd": 8000,
       "recourceType": 2,
-      "recourceConsume": 20,
+      "recourceConsume": 1,
       "isNew": true,
       "source": "sync"
     },
@@ -9782,7 +9782,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "月光斩",
       "type": "主动技能",
-      "desc": "对前方小范围的敌人快速造成两次28.8%物理伤害和115.2%冰冷伤害。\n攻击冻结敌人时会出现月光残影，对范围内敌人造成43.6%物理伤害和174.4%冰冷伤害",
+      "desc": "对前方小范围的敌人快速造成两次12.4%物理伤害和49.6%冰冷伤害。\n攻击冻结敌人时会出现月光残影，对范围内敌人造成23.4%物理伤害和93.6%冰冷伤害",
       "sourceId": "1110000010",
       "tags": {
         "main": "攻击",
@@ -9802,7 +9802,7 @@ window.__AUTO_IMPORT_DATA__ = {
       ],
       "skillCd": 600,
       "recourceType": 2,
-      "recourceConsume": 20,
+      "recourceConsume": 1,
       "isNew": true,
       "source": "sync"
     },
@@ -9810,7 +9810,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "混沌刺击",
       "type": "主动技能",
-      "desc": "向前单个敌人刺击造成105%混沌伤害，命中敌人后会向前产生[混沌剑气]。\n[混沌剑气]具有穿透效果，造成85%混沌伤害，投射物数量增加会增加[混沌剑气]的数量，以0.2秒的固定间隔向前发射",
+      "desc": "向前单个敌人刺击造成60%混沌伤害，命中敌人后会向前产生[混沌剑气]。\n[混沌剑气]具有穿透效果，造成40%混沌伤害，投射物数量增加会增加[混沌剑气]的数量，以0.2秒的固定间隔向前发射",
       "sourceId": "1110000030",
       "tags": {
         "main": "攻击",
@@ -9826,7 +9826,7 @@ window.__AUTO_IMPORT_DATA__ = {
       ],
       "skillCd": 0,
       "recourceType": 2,
-      "recourceConsume": 20,
+      "recourceConsume": 1,
       "isNew": true,
       "source": "sync"
     },
@@ -9834,7 +9834,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "冥地喷涌",
       "type": "主动技能",
-      "desc": "在目标脚下生成混沌裂隙，短暂延迟后对范围内敌方单位造成两次455%混沌伤害",
+      "desc": "在目标脚下生成混沌裂隙，短暂延迟后对范围内敌方单位造成两次225%混沌伤害",
       "sourceId": "1120000040",
       "tags": {
         "main": "法术",
@@ -9853,7 +9853,7 @@ window.__AUTO_IMPORT_DATA__ = {
       ],
       "skillCd": 5000,
       "recourceType": 2,
-      "recourceConsume": 20,
+      "recourceConsume": 1,
       "isNew": true,
       "source": "sync"
     },
@@ -9861,7 +9861,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "冰霜新星",
       "type": "主动技能",
-      "desc": "自身一定范围内形成一圈冰刺，造成223%冰冷伤害，每3次释放，会造成一次更大范围的245.3%冰冷伤害",
+      "desc": "自身一定范围内形成一圈冰刺，造成112%冰冷伤害，每3次释放，会造成一次更大范围的123.2%冰冷伤害",
       "sourceId": "1120000132",
       "tags": {
         "main": "法术",
@@ -9888,7 +9888,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "移形换影",
       "type": "被动技能",
-      "desc": "向移动方向闪现，并在原地留下一个幻影幻影不可移动，不可攻击，持续4秒内持续释放技能1，幻影的上限为1",
+      "desc": "向移动方向闪现，并在原地留下一个幻影幻影不可移动，不可攻击，持续4秒内持续释放技能1，幻影的上限为1\n幻影造成原技能伤害的11%",
       "sourceId": "2120000011",
       "tags": {
         "main": "法术",
@@ -9905,7 +9905,7 @@ window.__AUTO_IMPORT_DATA__ = {
       ],
       "skillCd": null,
       "recourceType": 2,
-      "recourceConsume": 20,
+      "recourceConsume": 1,
       "isNew": true,
       "source": "sync"
     },
@@ -9913,7 +9913,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "法术旋龙",
       "type": "主动技能",
-      "desc": "释放一道旋龙，旋龙会不规则移动，穿透并对沿途的所有敌人造成180%物理伤害，持续3秒。\n当旋龙碰到其他技能产生的旋风时，可以吸收并生成一个新的旋龙，旋龙分裂后造成234%物理伤害\n旋龙只可以分裂一次。\n同时生成的旋龙对同一个目标每0.6秒只能造成一次伤害",
+      "desc": "释放一道旋龙，旋龙会不规则移动，穿透并对沿途的所有敌人造成100%物理伤害，持续3秒。\n当旋龙碰到其他技能产生的旋风时，可以吸收并生成一个新的旋龙，旋龙分裂后造成130%物理伤害\n旋龙只可以分裂一次。\n同时生成的旋龙对同一个目标每0.6秒只能造成一次伤害",
       "sourceId": "1120000020",
       "tags": {
         "main": "法术",
@@ -9935,7 +9935,7 @@ window.__AUTO_IMPORT_DATA__ = {
       ],
       "skillCd": 0,
       "recourceType": 2,
-      "recourceConsume": 20,
+      "recourceConsume": 1,
       "isNew": true,
       "source": "sync"
     },
@@ -9943,7 +9943,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "火球术",
       "type": "主动技能",
-      "desc": "扔出一枚火球，碰到敌人时产生270%火焰伤害。\n火球的数量无法修改\n爆炸时尽量消耗一层毁灭注能，生成更加强大的爆炸，造成432%火焰伤害，并且在爆炸位置生成火焰地面，并在爆炸时产生8发小型火球，小型火球造成90%火焰伤害\n爆炸每4秒只会被强化一次",
+      "desc": "扔出一枚火球，碰到敌人时产生135%火焰伤害。\n火球的数量无法修改\n爆炸时尽量消耗一层毁灭注能，生成更加强大的爆炸，造成216%火焰伤害，并且在爆炸位置生成火焰地面，并在爆炸时产生8发小型火球，小型火球造成45%火焰伤害\n爆炸每4秒只会被强化一次",
       "sourceId": "1120000080",
       "tags": {
         "main": "法术",
@@ -9964,7 +9964,7 @@ window.__AUTO_IMPORT_DATA__ = {
       ],
       "skillCd": 0,
       "recourceType": 2,
-      "recourceConsume": 20,
+      "recourceConsume": 1,
       "isNew": true,
       "source": "sync"
     },
@@ -9972,7 +9972,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "混沌陨星",
       "type": "主动技能",
-      "desc": "在目标位置产生陨石冲击，造成范围147%混沌伤害，并产生一片中毒云雾，中毒强度基础值为生命值上限的20%；混沌云雾碰撞到点燃单位或者火焰子弹时，会对敌人产生爆炸造成大量273%火焰伤害",
+      "desc": "在目标位置产生陨石冲击，造成范围73.5%混沌伤害，并产生一片中毒云雾，中毒强度基础值为生命值上限的20%；混沌云雾碰撞到点燃单位或者火焰子弹时，会对敌人产生爆炸造成大量136.5%火焰伤害",
       "sourceId": "1120000140",
       "tags": {
         "main": "法术",
@@ -9991,7 +9991,7 @@ window.__AUTO_IMPORT_DATA__ = {
       ],
       "skillCd": 0,
       "recourceType": 2,
-      "recourceConsume": 20,
+      "recourceConsume": 1,
       "isNew": true,
       "source": "sync"
     },
@@ -9999,7 +9999,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "闪电之捷",
       "type": "被动技能",
-      "desc": "佩戴时，非捷技能击中并击败感电敌人会使后续的击中释放出闪电，对范围内敌方单位造成204%闪电伤害",
+      "desc": "佩戴时，非捷技能击中并击败感电敌人会使后续的击中释放出闪电，对范围内敌方单位造成102%闪电伤害\n获得额外11%闪电伤害",
       "sourceId": "2110000010",
       "tags": {
         "main": "攻击",
@@ -10024,7 +10024,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "拔刀斩",
       "type": "主动技能",
-      "desc": "对前方大范围内的敌人造成伤害，造成65.8%物理伤害和263.2%冰冷伤害\n冻结积蓄额外增加160%",
+      "desc": "对前方大范围内的敌人造成伤害，造成33.8%物理伤害和135.2%冰冷伤害\n冻结积蓄额外增加160%",
       "sourceId": "1110000020",
       "tags": {
         "main": "攻击",
@@ -10044,7 +10044,7 @@ window.__AUTO_IMPORT_DATA__ = {
       ],
       "skillCd": 3000,
       "recourceType": 2,
-      "recourceConsume": 20,
+      "recourceConsume": 1,
       "isNew": true,
       "source": "sync"
     },
@@ -10052,7 +10052,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "气刃纵斩",
       "type": "主动技能",
-      "desc": "对前方发出一道巨大的剑波，造成288.2%物理伤害和586.8%冰冷伤害，攻击沿途的所有敌人\n在目标位置生成一片冰冷地面，每秒产生141.5%冰冷伤害，持续4秒",
+      "desc": "对前方发出一道巨大的剑波，造成144.2%物理伤害和295.8%冰冷伤害，攻击沿途的所有敌人\n在目标位置生成一片冰冷地面，每秒产生70.3%冰冷伤害，持续4秒",
       "sourceId": "1110000060",
       "tags": {
         "main": "攻击",
@@ -10071,7 +10071,7 @@ window.__AUTO_IMPORT_DATA__ = {
       ],
       "skillCd": 8000,
       "recourceType": 2,
-      "recourceConsume": 20,
+      "recourceConsume": 1,
       "isNew": true,
       "source": "sync"
     },
@@ -10079,7 +10079,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "回旋龙卷",
       "type": "主动技能",
-      "desc": "在身边召唤3个围绕自身盘旋的龙卷旋风，对碰到的敌人造成218%物理伤害。",
+      "desc": "在身边召唤3个围绕自身盘旋的龙卷旋风，对碰到的敌人造成108%物理伤害。",
       "sourceId": "1120000050",
       "tags": {
         "main": "法术",
@@ -10099,7 +10099,7 @@ window.__AUTO_IMPORT_DATA__ = {
       ],
       "skillCd": 12000,
       "recourceType": 2,
-      "recourceConsume": 20,
+      "recourceConsume": 1,
       "isNew": true,
       "source": "sync"
     },
@@ -10107,7 +10107,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "灰烬之捷",
       "type": "被动技能",
-      "desc": "佩戴时，非捷技能的火焰伤害敌人被击杀时有10%几率产生爆炸，并范围内敌方单位造成生命值上限240%火焰伤害",
+      "desc": "佩戴时，非捷技能的火焰伤害敌人被击杀时有10%几率产生爆炸，并范围内敌方单位造成生命值上限120%火焰伤害\n获得额外11%火焰伤害",
       "sourceId": "2110000020",
       "tags": {
         "main": "攻击",
@@ -10133,7 +10133,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "月神赐福",
       "type": "主动技能",
-      "desc": "获得相当于伤害10%的冰冷伤害。\n每次使用寒刃技能攻击敌人时会召唤4发剑影，击中敌人时产生造成366%冰冷伤害，持续8秒\n1发剑影最多攻击5名敌人",
+      "desc": "获得相当于伤害10%的冰冷伤害。\n每次使用寒刃技能攻击敌人时会召唤4发剑影，击中敌人时产生造成100%冰冷伤害，持续8秒\n1发剑影最多攻击5名敌人",
       "sourceId": "1140000010",
       "tags": {
         "main": "攻击",
@@ -10151,7 +10151,7 @@ window.__AUTO_IMPORT_DATA__ = {
       ],
       "skillCd": 20000,
       "recourceType": 2,
-      "recourceConsume": 20,
+      "recourceConsume": 1,
       "isNew": true,
       "source": "sync"
     },
@@ -10159,7 +10159,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "回响",
       "type": "主动技能",
-      "desc": "可以使下一个可重复技能额外释放1次",
+      "desc": "可以使下一个可重复技能额外释放1次\n伤害额外降低59%\n消耗当前拥有的所有毁灭注能，每消耗2层毁灭注能，回响的额外释放次数增加1次",
       "sourceId": "1120000010",
       "tags": {
         "main": "法术",
@@ -10175,7 +10175,7 @@ window.__AUTO_IMPORT_DATA__ = {
       ],
       "skillCd": 6000,
       "recourceType": 2,
-      "recourceConsume": 20,
+      "recourceConsume": 1,
       "isNew": true,
       "source": "sync"
     },
@@ -10183,7 +10183,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "极地战吼",
       "type": "主动技能",
-      "desc": "发出极地战吼，对周围5米范围内的敌人造成191%冰冷伤害，冰冻积蓄值额外增加80%",
+      "desc": "发出极地战吼，对周围5米范围内的敌人造成91%冰冷伤害，冰冻积蓄值额外增加80%\n每击中一名敌人使伤害额外提高1%%，最多累积6次，持续6秒",
       "sourceId": "1140000020",
       "tags": {
         "main": "法术",
@@ -10200,7 +10200,7 @@ window.__AUTO_IMPORT_DATA__ = {
       ],
       "skillCd": 10000,
       "recourceType": 2,
-      "recourceConsume": 20,
+      "recourceConsume": 1,
       "isNew": true,
       "source": "sync"
     },
@@ -10208,7 +10208,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "冰霜之捷",
       "type": "被动技能",
-      "desc": "佩戴时，非捷技能击中一名冰冻敌人并击杀时会产生冰霜爆炸，对范围内敌方单位造成216%冰冷伤害",
+      "desc": "佩戴时，非捷技能击中一名冰冻敌人并击杀时会产生冰霜爆炸，对范围内敌方单位造成108%冰冷伤害\n获得额外11%冰冷伤害",
       "sourceId": "2110000030",
       "tags": {
         "main": "攻击",
@@ -10234,7 +10234,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "大地之怒",
       "type": "主动技能",
-      "desc": "召唤一支冰冷之手，对范围内敌人造成599%冰冷伤害",
+      "desc": "召唤一支冰冷之手，对范围内敌人造成299%冰冷伤害",
       "sourceId": "1120000031",
       "tags": {
         "main": "法术",
@@ -10251,7 +10251,7 @@ window.__AUTO_IMPORT_DATA__ = {
       ],
       "skillCd": 0,
       "recourceType": 2,
-      "recourceConsume": 20,
+      "recourceConsume": 1,
       "isNew": true,
       "source": "sync"
     },
@@ -10259,7 +10259,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "迅捷",
       "type": "被动技能",
-      "desc": "佩戴时，获得效果",
+      "desc": "佩戴时，获得效果\n移动速度增加11%",
       "sourceId": "2114000020",
       "tags": {
         "main": "光环",
@@ -10281,7 +10281,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "精准投射",
       "type": "被动技能",
-      "desc": "佩戴时，获得效果",
+      "desc": "佩戴时，获得效果\n投射物数量增加1，投射物速度提高20%",
       "sourceId": "2140000040",
       "tags": {
         "main": "光环",
@@ -10303,7 +10303,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "领域扩张",
       "type": "被动技能",
-      "desc": "佩戴时，获得效果",
+      "desc": "佩戴时，获得效果\n范围伤害额外提高6%，范围效果扩大20%",
       "sourceId": "2140000050",
       "tags": {
         "main": "光环",
@@ -10325,7 +10325,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "狂怒",
       "type": "被动技能",
-      "desc": "佩戴时，获得效果",
+      "desc": "佩戴时，获得效果\n近战伤害额外提高11%，全域暴击率提高5%",
       "sourceId": "2140000060",
       "tags": {
         "main": "光环",
@@ -10347,7 +10347,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "生命再生",
       "type": "被动技能",
-      "desc": "佩戴时，获得效果",
+      "desc": "佩戴时，获得效果\n每秒生命值增加20",
       "sourceId": "2140000070",
       "tags": {
         "main": "光环",
@@ -10369,7 +10369,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "鲜血之捷",
       "type": "被动技能",
-      "desc": "佩戴时，击败流血的敌人会将其流血效果扩散给周围的其他敌人",
+      "desc": "佩戴时，击败流血的敌人会将其流血效果扩散给周围的其他敌人\n获得额外11%物理伤害",
       "sourceId": "2120000090",
       "tags": {
         "main": "法术",
@@ -10391,7 +10391,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "瘟疫之捷",
       "type": "被动技能",
-      "desc": "佩戴时，击败中毒的敌人会将其中毒效果扩散给周围的其他敌人",
+      "desc": "佩戴时，击败中毒的敌人会将其中毒效果扩散给周围的其他敌人\n获得额外11%混沌伤害",
       "sourceId": "2120000080",
       "tags": {
         "main": "法术",
@@ -10413,7 +10413,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "物理诅咒",
       "type": "主动技能",
-      "desc": "",
+      "desc": "持续5秒，范围内敌人受到的物理伤害额外提高12%",
       "sourceId": "1120000180",
       "tags": {
         "main": "法术",
@@ -10439,7 +10439,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "火焰诅咒",
       "type": "主动技能",
-      "desc": "",
+      "desc": "持续5秒，范围内敌人受到的火焰伤害额外提高12%",
       "sourceId": "1120000190",
       "tags": {
         "main": "法术",
@@ -10465,7 +10465,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "寒冰诅咒",
       "type": "主动技能",
-      "desc": "",
+      "desc": "持续5秒，范围内敌人受到的冰冷伤害额外提高12%",
       "sourceId": "1120000200",
       "tags": {
         "main": "法术",
@@ -10491,7 +10491,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "闪电诅咒",
       "type": "主动技能",
-      "desc": "",
+      "desc": "持续5秒，范围内敌人受到的闪电伤害额外提高12%",
       "sourceId": "1120000210",
       "tags": {
         "main": "法术",
@@ -10517,7 +10517,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "混沌诅咒",
       "type": "主动技能",
-      "desc": "",
+      "desc": "持续5秒，范围内敌人受到的混沌伤害额外提高12%",
       "sourceId": "1120000220",
       "tags": {
         "main": "法术",
@@ -10563,7 +10563,7 @@ window.__AUTO_IMPORT_DATA__ = {
       ],
       "skillCd": 5000,
       "recourceType": 2,
-      "recourceConsume": 20,
+      "recourceConsume": 1,
       "isNew": true,
       "source": "sync"
     },
@@ -10571,7 +10571,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "火焰龙卷",
       "type": "主动技能",
-      "desc": "召唤一道可以跟随自身移动的火焰龙卷，对经过的敌人造成307%火焰伤害。\n火焰龙卷的数量无法被修改",
+      "desc": "召唤一道可以跟随自身移动的火焰龙卷，对经过的敌人造成153%火焰伤害。\n火焰龙卷的数量无法被修改",
       "sourceId": "1120000170",
       "tags": {
         "main": "法术",
@@ -10591,7 +10591,7 @@ window.__AUTO_IMPORT_DATA__ = {
       ],
       "skillCd": 20000,
       "recourceType": 2,
-      "recourceConsume": 20,
+      "recourceConsume": 1,
       "isNew": true,
       "source": "sync"
     },
@@ -10599,7 +10599,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "混沌剑阵",
       "type": "主动技能",
-      "desc": "随后隐入剑影中，对周围的敌人进行连斩，造成六段69.3%混沌伤害",
+      "desc": "随后隐入剑影中，对周围的敌人进行连斩，造成六段48%混沌伤害",
       "sourceId": "1110000100",
       "tags": {
         "main": "攻击",
@@ -10613,7 +10613,7 @@ window.__AUTO_IMPORT_DATA__ = {
       ],
       "skillCd": 10000,
       "recourceType": 2,
-      "recourceConsume": 20,
+      "recourceConsume": 1,
       "isNew": true,
       "source": "sync"
     }
@@ -14183,5 +14183,5 @@ window.__AUTO_IMPORT_DATA__ = {
       ]
     }
   ],
-  "importTime": "2026-09-21T08:35:44.692Z"
+  "importTime": "2026-09-21T11:18:51.805Z"
 };

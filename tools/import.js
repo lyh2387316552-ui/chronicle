@@ -1264,7 +1264,7 @@ function parseSkills(inputPath, skillMap, tagDict) {
         const buffDescTextCol = findCol(buffSheet.headers, ['desc', 'Desc', 'DESC']);
         const buffShowTypeCol = findCol(buffSheet.headers, ['showType', 'ShowType', 'SHOWTYPE']);
         const buffAffixCol = findCol(buffSheet.headers, ['affixValue', 'AffixValue', 'AFFIXVALUE']);
-        const BUFF_LEVEL = '20'; // 统一默认展示20级的数值
+        const BUFF_LEVEL = '1'; // 读取1级需求数据数值
         buffSheet.rows.forEach(r => {
             const bid = buffIdCol ? String(r[buffIdCol] || '').trim() : '';
             const blv = buffLvCol ? String(r[buffLvCol] || '').trim() : '';
@@ -1281,14 +1281,14 @@ function parseSkills(inputPath, skillMap, tagDict) {
         console.log('  ⚠️ 未找到战斗技能等级表，buffDesc 将跳过映射');
     }
 
-    // 加载 ShootAmmoLevel 映射 (战斗技能等级表.xlsx): 子弹ID → 20级 skillDmgBase (物理|火焰|冰冷|闪电|混沌 5段伤害率)
+    // 加载 ShootAmmoLevel 映射 (战斗技能等级表.xlsx): 子弹ID → 1级 skillDmgBase (物理|火焰|冰冷|闪电|混沌 5段伤害率)
     const ammoDmgMap = {};
     if (buffFp) {
         const ammoSheet = readSheetByName(buffFp, ['ShootAmmoLevel', 'ShootAmmo']);
         const ammoIdCol = findCol(ammoSheet.headers, ['shootAmmoId.p', 'shootAmmoId', 'ShootAmmoId']);
         const ammoLvCol = findCol(ammoSheet.headers, ['level.p', 'level', 'Level']);
         const ammoDmgCol = findCol(ammoSheet.headers, ['skillDmgBase', 'SkillDmgBase', 'SKILLDMGBASE']);
-        const SEEN_LEVEL = '20'; // 统一默认展示20级的数值
+        const SEEN_LEVEL = '1'; // 读取1级需求数据数值
         ammoSheet.rows.forEach(r => {
             const aid = ammoIdCol ? String(r[ammoIdCol] || '').trim() : '';
             const lv = ammoLvCol ? String(r[ammoLvCol] || '').trim() : '';
@@ -1299,10 +1299,10 @@ function parseSkills(inputPath, skillMap, tagDict) {
             if (arr.length !== 5) return;
             if (!ammoDmgMap[aid]) ammoDmgMap[aid] = arr;
         });
-        console.log('     ✓ ShootAmmoLevel 20级 映射:', Object.keys(ammoDmgMap).length, '个子弹');
+        console.log('     ✓ ShootAmmoLevel 1级 映射:', Object.keys(ammoDmgMap).length, '个子弹');
     }
 
-    // 加载 SkillLevel 映射 (战斗技能等级表.xlsx): skillId → 20级 技能消耗 (recourceType: 1=生命,2=魔力; recourceConsume: 值)
+    // 加载 SkillLevel 映射 (战斗技能等级表.xlsx): skillId → 1级 技能消耗 (recourceType: 1=生命,2=魔力; recourceConsume: 值)
     const consumeMap = {};
     if (buffFp) {
         const skillLvSheet = readSheetByName(buffFp, ['SkillLevel', 'SkillLv']);
@@ -1310,7 +1310,7 @@ function parseSkills(inputPath, skillMap, tagDict) {
         const lvLevelCol = findCol(skillLvSheet.headers, ['level.p', 'level', 'Level']);
         const lvRtCol = findCol(skillLvSheet.headers, ['recourceType', 'RecourceType', 'resourceType']);
         const lvRcCol = findCol(skillLvSheet.headers, ['recourceConsume', 'RecourceConsume', 'resourceConsume']);
-        const SKILL_LEVEL = '20'; // 统一默认展示20级的数值
+        const SKILL_LEVEL = '1'; // 读取1级需求数据数值
         skillLvSheet.rows.forEach(r => {
             const sid = lvSkillIdCol ? String(r[lvSkillIdCol] || '').trim() : '';
             const lv = lvLevelCol ? String(r[lvLevelCol] || '').trim() : '';
@@ -1321,7 +1321,7 @@ function parseSkills(inputPath, skillMap, tagDict) {
             if (rt !== null) consumeMap[sid].recourceType = rt;
             if (rc !== null) consumeMap[sid].recourceConsume = rc;
         });
-        console.log('     ✓ SkillLevel 20级 消耗映射:', Object.keys(consumeMap).length, '个技能');
+        console.log('     ✓ SkillLevel 1级 消耗映射:', Object.keys(consumeMap).length, '个技能');
     }
 
     const skillCol = findCol(headers, ['skill', 'Skill', 'SKILL']);
@@ -1363,7 +1363,7 @@ function parseSkills(inputPath, skillMap, tagDict) {
                     .join('\n');
             }
         }
-        // desc 占位符: shootAmmo 分组 → 20级子弹伤害率求和填充 {0} {1} ...
+        // desc 占位符: shootAmmo 分组 → 1级子弹伤害率求和填充 {0} {1} ...
         let descText = descCol ? String(row[descCol] || '').trim() : '';
         if (descText) {
             const ammoGroups = parseShootAmmo(shootAmmoCol ? row[shootAmmoCol] : '');
