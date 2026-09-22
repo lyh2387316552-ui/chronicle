@@ -1,5 +1,5 @@
 // 此文件由 import.js 自动生成，请勿手动编辑
-// 生成时间: 2026-09-21T11:18:51.805Z
+// 生成时间: 2026-09-22T11:09:39.319Z
 window.__AUTO_IMPORT_DATA__ = {
   "activeSkills": [
     {
@@ -10625,116 +10625,627 @@ window.__AUTO_IMPORT_DATA__ = {
       "name": "剑客1",
       "talentPoints": [
         {
-          "id": "2002001",
-          "name": "刺骨寒意",
-          "desc": "第一个技能的冻结积蓄值总增100%",
+          "id": "1003002",
+          "name": "唯快不破",
+          "desc": "第一个技能获得攻击速度额外提高20%",
           "occupation": 2,
           "viewPos": {
-            "x": 0,
-            "y": 0
+            "x": 240,
+            "y": -250
           },
-          "size": 1,
-          "icon": "✨",
-          "iconSrc": "talent/skill/cigu",
-          "linkPoint": ""
-        },
-        {
-          "id": "2002002",
-          "name": "快攻",
-          "desc": "第一个技能获得10级攻速增加效果",
-          "occupation": 2,
-          "viewPos": {
-            "x": 0,
-            "y": 0
-          },
-          "size": 1,
+          "size": 2,
           "icon": "✨",
           "iconSrc": "talent/skill/kuaigong",
-          "linkPoint": ""
+          "linkPoint": "1003004|1003006|1003012"
         },
         {
-          "id": "2002003",
-          "name": "流风增击",
+          "id": "1003004",
+          "name": "我麻了",
+          "desc": "对自身造成感电效果，攻击速度/施法速度提高50%",
+          "occupation": 2,
+          "viewPos": {
+            "x": 0,
+            "y": 320
+          },
+          "size": 2,
+          "icon": "✨",
+          "iconSrc": "talent/skill/kanpo",
+          "linkPoint": "1003002|1003010"
+        },
+        {
+          "id": "1003006",
+          "name": "速度与激情",
           "desc": "对于移动速度的增加或减少的20% 同时作用于额外攻击伤害，最多额外+30% 攻击伤害",
           "occupation": 2,
           "viewPos": {
-            "x": 0,
-            "y": 0
+            "x": -240,
+            "y": 320
           },
-          "size": 1,
+          "size": 2,
           "icon": "✨",
           "iconSrc": "talent/skill/liufeng",
-          "linkPoint": ""
+          "linkPoint": "1003002|1003008"
         },
         {
-          "id": "2002004",
-          "name": "心眼",
+          "id": "1003008",
+          "name": "脚底抹油",
+          "desc": "移动速度增加大于100%时，受到伤害额外减少5%",
+          "occupation": 2,
+          "viewPos": {
+            "x": -240,
+            "y": 150
+          },
+          "size": 2,
+          "icon": "✨",
+          "iconSrc": "talent/skill/jihan",
+          "linkPoint": "1003006"
+        },
+        {
+          "id": "1003010",
+          "name": "偶尔漏电",
+          "desc": "攻击伤害击中时，有10%的几率触发10级[电圈]",
+          "occupation": 2,
+          "viewPos": {
+            "x": 0,
+            "y": 150
+          },
+          "size": 2,
+          "icon": "✨",
+          "iconSrc": "talent/skill/baoxue",
+          "linkPoint": "1003004"
+        },
+        {
+          "id": "1003012",
+          "name": "上头",
           "desc": "10秒内连续释放4次攻击技能时获得[心眼]状态\\n[心眼]：攻击速度额外增加8%；技能范围额外增加8%，上限为3层，持续2秒",
           "occupation": 2,
           "viewPos": {
-            "x": 0,
-            "y": 0
+            "x": 240,
+            "y": 150
           },
-          "size": 1,
+          "size": 2,
           "icon": "✨",
           "iconSrc": "talent/skill/xinyan",
-          "linkPoint": ""
+          "linkPoint": "1003002|1003014"
         },
         {
-          "id": "2002005",
-          "name": "暴血",
-          "desc": "每拥有1%的暴击率，就会增加2%的攻击伤害，最多增加200%的攻击伤害",
+          "id": "1003014",
+          "name": "一刀999",
+          "desc": "心眼达到层数上限时，获得[巅峰]\\n[巅峰]:向前斩击造成999%的攻击物理伤害，冷却时间5秒",
           "occupation": 2,
           "viewPos": {
-            "x": 0,
-            "y": 0
+            "x": 240,
+            "y": 450
           },
-          "size": 1,
-          "icon": "✨",
-          "iconSrc": "talent/skill/baoxue",
-          "linkPoint": ""
-        },
-        {
-          "id": "2002006",
-          "name": "无心则利刃",
-          "desc": "心眼达到层数上限时，获得[巅峰]\\n[巅峰]:向前斩击造成1000%的攻击物理伤害，冷却时间5秒",
-          "occupation": 2,
-          "viewPos": {
-            "x": 0,
-            "y": 0
-          },
-          "size": 1,
+          "size": 2,
           "icon": "✨",
           "iconSrc": "talent/skill/wuxin",
-          "linkPoint": ""
-        },
+          "linkPoint": "1003012"
+        }
+      ]
+    },
+    {
+      "id": "OCC03",
+      "occupation": 3,
+      "name": "冰刃",
+      "talentPoints": [
         {
-          "id": "2002007",
-          "name": "极寒侵体",
-          "desc": "被冻结敌人的元素抗性会降低40%，持续6秒",
-          "occupation": 2,
-          "viewPos": {
-            "x": 0,
-            "y": 0
-          },
-          "size": 1,
-          "icon": "✨",
-          "iconSrc": "talent/skill/jihan",
-          "linkPoint": ""
-        },
-        {
-          "id": "2002008",
+          "id": "1008002",
           "name": "看破",
-          "desc": "基础暴击率+8%",
-          "occupation": 2,
+          "desc": "基础暴击率+5%",
+          "occupation": 3,
           "viewPos": {
-            "x": 0,
-            "y": 0
+            "x": 100,
+            "y": 400
           },
-          "size": 1,
+          "size": 2,
           "icon": "✨",
           "iconSrc": "talent/skill/kanpo",
-          "linkPoint": ""
+          "linkPoint": "1008004|1008010"
+        },
+        {
+          "id": "1008004",
+          "name": "刺骨寒意",
+          "desc": "第一个技能的冻结积蓄值额外提高100%，冰冷伤害额外提高20%",
+          "occupation": 3,
+          "viewPos": {
+            "x": 100,
+            "y": -150
+          },
+          "size": 2,
+          "icon": "✨",
+          "iconSrc": "talent/skill/kuaigong",
+          "linkPoint": "1008002|1008006|1008008"
+        },
+        {
+          "id": "1008006",
+          "name": "冷场",
+          "desc": "你造成的冰缓强度提高50%，冻结的持续时间提高50%",
+          "occupation": 3,
+          "viewPos": {
+            "x": 300,
+            "y": -150
+          },
+          "size": 2,
+          "icon": "✨",
+          "iconSrc": "talent/skill/jihan",
+          "linkPoint": "1008004"
+        },
+        {
+          "id": "1008008",
+          "name": "在这停顿",
+          "desc": "所有伤害均可造成冻结累积，对冻结敌人的伤害额外提高30%",
+          "occupation": 3,
+          "viewPos": {
+            "x": -150,
+            "y": -100
+          },
+          "size": 2,
+          "icon": "✨",
+          "iconSrc": "talent/skill/xinyan",
+          "linkPoint": "1008004"
+        },
+        {
+          "id": "1008010",
+          "name": "暴血",
+          "desc": "每拥有1%的暴击率，就会增加1%的攻击伤害，最多增加100%的攻击伤害",
+          "occupation": 3,
+          "viewPos": {
+            "x": -300,
+            "y": 270
+          },
+          "size": 2,
+          "icon": "✨",
+          "iconSrc": "talent/skill/baoxue",
+          "linkPoint": "1008002|1008012|1008014"
+        },
+        {
+          "id": "1008012",
+          "name": "双重人格",
+          "desc": "对满血敌人的暴击率提高100%，对低血敌人的暴击伤害提高100%",
+          "occupation": 3,
+          "viewPos": {
+            "x": -170,
+            "y": 430
+          },
+          "size": 2,
+          "icon": "✨",
+          "iconSrc": "talent/skill/liufeng",
+          "linkPoint": "1008010"
+        },
+        {
+          "id": "1008014",
+          "name": "蓄力",
+          "desc": "暴击时忽略敌人的元素抗性",
+          "occupation": 3,
+          "viewPos": {
+            "x": -300,
+            "y": 70
+          },
+          "size": 2,
+          "icon": "✨",
+          "iconSrc": "talent/skill/wuxin",
+          "linkPoint": "1008010"
+        }
+      ]
+    },
+    {
+      "id": "OCC04",
+      "occupation": 4,
+      "name": "元素法杖",
+      "talentPoints": [
+        {
+          "id": "1007002",
+          "name": "注能轮转",
+          "desc": "每6秒获得一层随机注能，注能的持续时间额外提高30%",
+          "occupation": 4,
+          "viewPos": {
+            "x": 0,
+            "y": -250
+          },
+          "size": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/zhuneng/zhuneng01",
+          "linkPoint": "1007004|1007008|1007012"
+        },
+        {
+          "id": "1007004",
+          "name": "轮转一心",
+          "desc": "注能轮转的冷却时间变为3秒",
+          "occupation": 4,
+          "viewPos": {
+            "x": 0,
+            "y": 0
+          },
+          "size": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/zhuneng/zhuneng03",
+          "linkPoint": "1007002|1007006"
+        },
+        {
+          "id": "1007006",
+          "name": "注能亲和",
+          "desc": "所有注能的上限层数+1",
+          "occupation": 4,
+          "viewPos": {
+            "x": -42,
+            "y": 350
+          },
+          "size": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/zhuneng/zhuneng02",
+          "linkPoint": "1007004"
+        },
+        {
+          "id": "1007008",
+          "name": "强效施法",
+          "desc": "使用强化技能时，有50%的概率不消耗额外资源即可触发最低限度的强化效果",
+          "occupation": 4,
+          "viewPos": {
+            "x": -300,
+            "y": 0
+          },
+          "size": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/zhuneng/zhuneng04",
+          "linkPoint": "1007002|1007010"
+        },
+        {
+          "id": "1007010",
+          "name": "强化之力",
+          "desc": "每成功触发一次强化技能，可以获得一层强化之力，提高20%的伤害，最大可以获得5层，持续6秒",
+          "occupation": 4,
+          "viewPos": {
+            "x": -250,
+            "y": 250
+          },
+          "size": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/zhuneng/zhuneng05",
+          "linkPoint": "1007008"
+        },
+        {
+          "id": "1007012",
+          "name": "共鸣",
+          "desc": "技能所需的特定注能可以用其他类型的注能替代，只可以被一种注能替代",
+          "occupation": 4,
+          "viewPos": {
+            "x": 250,
+            "y": -150
+          },
+          "size": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/zhuneng/zhuneng06",
+          "linkPoint": "1007002|1007014"
+        },
+        {
+          "id": "1007014",
+          "name": "深度聚集",
+          "desc": "技能的强化效果的冷却时间额外降低50%",
+          "occupation": 4,
+          "viewPos": {
+            "x": 225,
+            "y": 225
+          },
+          "size": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/zhuneng/zhuneng07",
+          "linkPoint": "1007012"
+        }
+      ]
+    },
+    {
+      "id": "OCC05",
+      "occupation": 5,
+      "name": "幻影魔典",
+      "talentPoints": [
+        {
+          "id": "1004002",
+          "name": "幻影残响",
+          "desc": "使用法术技能造成伤害后，在原地生成“幻影”，持续4秒，冷却10秒，幻影上限为1\\n幻影造成原技能伤害的40%",
+          "occupation": 5,
+          "viewPos": {
+            "x": 0,
+            "y": 450
+          },
+          "size": 2,
+          "icon": "✨",
+          "iconSrc": "talent/skill/huanying02",
+          "linkPoint": "1004004|1004012|1004014"
+        },
+        {
+          "id": "1004004",
+          "name": "急速回流",
+          "desc": "每有 +5% 冷却回复速度，+8%施法速度，上限50%",
+          "occupation": 5,
+          "viewPos": {
+            "x": 0,
+            "y": 230
+          },
+          "size": 2,
+          "icon": "✨",
+          "iconSrc": "talent/skill/huanying03",
+          "linkPoint": "1004002|1004006|1004008|1004010"
+        },
+        {
+          "id": "1004006",
+          "name": "常驻分身",
+          "desc": "自身无法释放核心技能，[幻影残响]产生的幻影变更为常驻形态，且所有幻影跟随移动并释放核心技能1，幻影残响的幻影上限+1",
+          "occupation": 5,
+          "viewPos": {
+            "x": -160,
+            "y": -250
+          },
+          "size": 2,
+          "icon": "✨",
+          "iconSrc": "talent/skill/huanying04",
+          "linkPoint": "1004004"
+        },
+        {
+          "id": "1004008",
+          "name": "虚影增幅",
+          "desc": "对于施法速度加成的50%同样作用于幻影的额外伤害，上限 300%",
+          "occupation": 5,
+          "viewPos": {
+            "x": 160,
+            "y": -250
+          },
+          "size": 2,
+          "icon": "✨",
+          "iconSrc": "talent/skill/huanying05",
+          "linkPoint": "1004004"
+        },
+        {
+          "id": "1004010",
+          "name": "幻影重重",
+          "desc": "幻影数量+1",
+          "occupation": 5,
+          "viewPos": {
+            "x": 0,
+            "y": 0
+          },
+          "size": 2,
+          "icon": "✨",
+          "iconSrc": "talent/skill/huanying06",
+          "linkPoint": "1004004"
+        },
+        {
+          "id": "1004012",
+          "name": "幻影疾咏",
+          "desc": "+40% “幻影”的施法速度",
+          "occupation": 5,
+          "viewPos": {
+            "x": -240,
+            "y": 230
+          },
+          "size": 2,
+          "icon": "✨",
+          "iconSrc": "talent/skill/huanying07",
+          "linkPoint": "1004002"
+        },
+        {
+          "id": "1004014",
+          "name": "共鸣耗魔",
+          "desc": "幻影释放技能时会消耗你的魔力，其数值释放技能的魔力消耗，每次消耗技能额外增加5%你和幻影造成的伤害，上限为10层",
+          "occupation": 5,
+          "viewPos": {
+            "x": 240,
+            "y": 230
+          },
+          "size": 2,
+          "icon": "✨",
+          "iconSrc": "talent/skill/huanying08",
+          "linkPoint": "1004002"
+        }
+      ]
+    },
+    {
+      "id": "OCC06",
+      "occupation": 6,
+      "name": "巫术魔典",
+      "talentPoints": [
+        {
+          "id": "1005002",
+          "name": "毒爆蔓延",
+          "desc": "中毒目标被击败时10%几率爆炸，对半径3米内的敌人造成被击败的敌人最大生命 125% 的混沌伤害",
+          "occupation": 6,
+          "viewPos": {
+            "x": 0,
+            "y": 450
+          },
+          "size": 2,
+          "icon": "✨",
+          "iconSrc": "talent/skill/zhongdu07",
+          "linkPoint": "1005004|1005008|1005010"
+        },
+        {
+          "id": "1005004",
+          "name": "剧毒倍化",
+          "desc": "中毒层数上限翻倍，中毒持续时间总降 50%",
+          "occupation": 6,
+          "viewPos": {
+            "x": 0,
+            "y": 150
+          },
+          "size": 2,
+          "icon": "✨",
+          "iconSrc": "talent/skill/zhongdu03",
+          "linkPoint": "1005002|1005006|1005012|1005014"
+        },
+        {
+          "id": "1005006",
+          "name": "万伤成毒",
+          "desc": "所有伤害均造成中毒",
+          "occupation": 6,
+          "viewPos": {
+            "x": 0,
+            "y": -250
+          },
+          "size": 2,
+          "icon": "✨",
+          "iconSrc": "talent/skill/zhongdu08",
+          "linkPoint": "1005004"
+        },
+        {
+          "id": "1005008",
+          "name": "伤势缓冲",
+          "desc": "获得30%的受伤缓冲",
+          "occupation": 6,
+          "viewPos": {
+            "x": -180,
+            "y": 150
+          },
+          "size": 2,
+          "icon": "✨",
+          "iconSrc": "talent/skill/zhongdu05",
+          "linkPoint": "1005002"
+        },
+        {
+          "id": "1005010",
+          "name": "剧毒加深",
+          "desc": "中毒层数上限+1",
+          "occupation": 6,
+          "viewPos": {
+            "x": 180,
+            "y": 150
+          },
+          "size": 2,
+          "icon": "✨",
+          "iconSrc": "talent/skill/zhongdu06",
+          "linkPoint": "1005002"
+        },
+        {
+          "id": "1005012",
+          "name": "余响复诵",
+          "desc": "可“回响”的技能有20%产生回响",
+          "occupation": 6,
+          "viewPos": {
+            "x": -260,
+            "y": -250
+          },
+          "size": 2,
+          "icon": "✨",
+          "iconSrc": "talent/skill/zhongdu02",
+          "linkPoint": "1005004"
+        },
+        {
+          "id": "1005014",
+          "name": "毒咒侵蚀",
+          "desc": "法术击中时+25%中毒几率，中毒效果额外提高40%",
+          "occupation": 6,
+          "viewPos": {
+            "x": 260,
+            "y": -250
+          },
+          "size": 2,
+          "icon": "✨",
+          "iconSrc": "talent/skill/zhongdu04",
+          "linkPoint": "1005004"
+        }
+      ]
+    },
+    {
+      "id": "OCC07",
+      "occupation": 7,
+      "name": "塑能法杖",
+      "talentPoints": [
+        {
+          "id": "1006002",
+          "name": "升环法术",
+          "desc": "使用投射物技能时额外增加1个",
+          "occupation": 7,
+          "viewPos": {
+            "x": 195,
+            "y": -250
+          },
+          "size": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/yuansu/yuansu02",
+          "linkPoint": "1006004|1006008|1006012"
+        },
+        {
+          "id": "1006004",
+          "name": "原爆点",
+          "desc": "投射物飞行结束后会触发1次100%法术物理伤害的冲击波",
+          "occupation": 7,
+          "viewPos": {
+            "x": 200,
+            "y": 200
+          },
+          "size": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/yuansu/yuansu03",
+          "linkPoint": "1006002|1006006"
+        },
+        {
+          "id": "1006006",
+          "name": "狂风",
+          "desc": "移动速度加成同样作用于投射物速度加成，最多提高30%",
+          "occupation": 7,
+          "viewPos": {
+            "x": -250,
+            "y": 450
+          },
+          "size": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/yuansu/yuansu01",
+          "linkPoint": "1006004"
+        },
+        {
+          "id": "1006008",
+          "name": "法术迸发",
+          "desc": "基础暴击率+8%",
+          "occupation": 7,
+          "viewPos": {
+            "x": 60,
+            "y": 50
+          },
+          "size": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/yuansu/yuansu04",
+          "linkPoint": "1006002|1006010"
+        },
+        {
+          "id": "1006010",
+          "name": "元素之子",
+          "desc": "站在元素地面上时，可以获得对应元素50%的伤害",
+          "occupation": 7,
+          "viewPos": {
+            "x": -250,
+            "y": 200
+          },
+          "size": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/yuansu/yuansu05",
+          "linkPoint": "1006008"
+        },
+        {
+          "id": "1006012",
+          "name": "元素掌握",
+          "desc": "敌人处于元素异常状态时，可以使敌人对该类型元素的抗性降低40%",
+          "occupation": 7,
+          "viewPos": {
+            "x": -75,
+            "y": -80
+          },
+          "size": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/yuansu/yuansu06",
+          "linkPoint": "1006002|1006014"
+        },
+        {
+          "id": "1006014",
+          "name": "注能循环",
+          "desc": "获得注能时，额外获得一层注能",
+          "occupation": 7,
+          "viewPos": {
+            "x": -250,
+            "y": -20
+          },
+          "size": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/yuansu/yuansu07",
+          "linkPoint": "1006012"
         }
       ]
     }
@@ -14183,5 +14694,5 @@ window.__AUTO_IMPORT_DATA__ = {
       ]
     }
   ],
-  "importTime": "2026-09-21T11:18:51.805Z"
+  "importTime": "2026-09-22T11:09:39.319Z"
 };

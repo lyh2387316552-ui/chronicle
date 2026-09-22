@@ -335,13 +335,25 @@ function parseRows(rawRows, sheetName) {
 function readSheetByName(filePath, keywords) {
     const wb = readWorkbook(filePath);
     let targetSheet = null;
-    for (const name of wb.SheetNames) {
-        for (const kw of keywords) {
-            if (name.includes(kw) || name.toLowerCase().includes(kw.toLowerCase())) {
+    // 优先精确匹配 (避免 SkillPassive 误命中 SkillPassiveOptional 这类前缀相同的子表)
+    for (const kw of keywords) {
+        for (const name of wb.SheetNames) {
+            if (name === kw || name.toLowerCase() === kw.toLowerCase()) {
                 targetSheet = name; break;
             }
         }
         if (targetSheet) break;
+    }
+    // 回退到子串匹配
+    if (!targetSheet) {
+        for (const name of wb.SheetNames) {
+            for (const kw of keywords) {
+                if (name.includes(kw) || name.toLowerCase().includes(kw.toLowerCase())) {
+                    targetSheet = name; break;
+                }
+            }
+            if (targetSheet) break;
+        }
     }
     if (!targetSheet) targetSheet = wb.SheetNames[0];
     const sheet = wb.Sheets[targetSheet];
