@@ -2758,6 +2758,12 @@ function renderSkillTags(tags) {
     return `<div class="skill-tag-row">${mainHtml}${normalHtml}</div>`;
 }
 
+// 技能数值展示等级: 由 tools/import.js 的 SKILL_DATA_LEVEL 写入 (1 = 需求数据, 20 = 满级数值)
+function getSkillDisplayLevel() {
+    const lv = window.__AUTO_IMPORT_DATA__ ? window.__AUTO_IMPORT_DATA__.skillDisplayLevel : null;
+    return (lv === 0 || lv) ? lv : 1;
+}
+
 function renderCustomSkills(filteredData) {
     const grid = document.getElementById('customSkillGrid');
     if (!grid) return;
@@ -2821,7 +2827,7 @@ function renderCustomSkills(filteredData) {
                     <div class="equipment-card-header">
                         <span class="equipment-card-icon" style="background:${style.color}18">${s.iconSrc || s.icon ? `<img class="card-icon" src="${DATA_BASE}icon/${s.iconSrc || s.icon}.webp" alt="" onerror="this.style.display='none'">` : ''}${style.icon}</span>
                         <div>
-                            <h4 class="equipment-card-name">${s.name} <span class="skill-lv-badge">Lv.20</span></h4>
+                            <h4 class="equipment-card-name">${s.name} <span class="skill-lv-badge">Lv.${getSkillDisplayLevel()}</span></h4>
                         </div>
                     </div>
                     <div class="item-stats">

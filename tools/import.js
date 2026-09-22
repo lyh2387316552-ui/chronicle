@@ -41,6 +41,14 @@ const CONFIG_FILE = path.join(__dirname, 'import-config.json');
 const OUTPUT_FILE = path.join(__dirname, '..', 'js', 'auto-import-data.js');
 
 // ============================================================
+// 技能数值展示等级
+// 战斗技能等级表.xlsx 中 BuffLevel / ShootAmmoLevel / SkillLevel 三个子表
+// 均按此等级读取数值 (1 = 需求数据, 20 = 满级数值)
+// 网页端技能库卡片的等级角标也由该值驱动, 修改此处即可整体切换
+// ============================================================
+const SKILL_DATA_LEVEL = 1;
+
+// ============================================================
 // 默认配置 (数据源统一放在 data-sources 文件夹下，相对路径)
 // ============================================================
 const DEFAULT_CONFIG = {
@@ -1276,7 +1284,7 @@ function parseSkills(inputPath, skillMap, tagDict) {
         const buffDescTextCol = findCol(buffSheet.headers, ['desc', 'Desc', 'DESC']);
         const buffShowTypeCol = findCol(buffSheet.headers, ['showType', 'ShowType', 'SHOWTYPE']);
         const buffAffixCol = findCol(buffSheet.headers, ['affixValue', 'AffixValue', 'AFFIXVALUE']);
-        const BUFF_LEVEL = '1'; // 读取1级需求数据数值
+        const BUFF_LEVEL = String(SKILL_DATA_LEVEL); // 读取该等级需求数据数值
         buffSheet.rows.forEach(r => {
             const bid = buffIdCol ? String(r[buffIdCol] || '').trim() : '';
             const blv = buffLvCol ? String(r[buffLvCol] || '').trim() : '';
@@ -1300,7 +1308,7 @@ function parseSkills(inputPath, skillMap, tagDict) {
         const ammoIdCol = findCol(ammoSheet.headers, ['shootAmmoId.p', 'shootAmmoId', 'ShootAmmoId']);
         const ammoLvCol = findCol(ammoSheet.headers, ['level.p', 'level', 'Level']);
         const ammoDmgCol = findCol(ammoSheet.headers, ['skillDmgBase', 'SkillDmgBase', 'SKILLDMGBASE']);
-        const SEEN_LEVEL = '1'; // 读取1级需求数据数值
+        const SEEN_LEVEL = String(SKILL_DATA_LEVEL); // 读取该等级需求数据数值
         ammoSheet.rows.forEach(r => {
             const aid = ammoIdCol ? String(r[ammoIdCol] || '').trim() : '';
             const lv = ammoLvCol ? String(r[ammoLvCol] || '').trim() : '';
@@ -1322,7 +1330,7 @@ function parseSkills(inputPath, skillMap, tagDict) {
         const lvLevelCol = findCol(skillLvSheet.headers, ['level.p', 'level', 'Level']);
         const lvRtCol = findCol(skillLvSheet.headers, ['recourceType', 'RecourceType', 'resourceType']);
         const lvRcCol = findCol(skillLvSheet.headers, ['recourceConsume', 'RecourceConsume', 'resourceConsume']);
-        const SKILL_LEVEL = '1'; // 读取1级需求数据数值
+        const SKILL_LEVEL = String(SKILL_DATA_LEVEL); // 读取该等级需求数据数值
         skillLvSheet.rows.forEach(r => {
             const sid = lvSkillIdCol ? String(r[lvSkillIdCol] || '').trim() : '';
             const lv = lvLevelCol ? String(r[lvLevelCol] || '').trim() : '';
@@ -1772,6 +1780,7 @@ function main() {
         occupations: null,
         videos: null,
         pets: null,
+        skillDisplayLevel: SKILL_DATA_LEVEL,
         importTime: new Date().toISOString()
     };
 
