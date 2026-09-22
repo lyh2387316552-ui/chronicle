@@ -1,5 +1,5 @@
 // 此文件由 import.js 自动生成，请勿手动编辑
-// 生成时间: 2026-09-22T11:09:39.319Z
+// 生成时间: 2026-09-22T11:11:27.121Z
 window.__AUTO_IMPORT_DATA__ = {
   "activeSkills": [
     {
@@ -869,7 +869,7 @@ window.__AUTO_IMPORT_DATA__ = {
           "旋风"
         ]
       },
-      "icon": "skill/linshi/26",
+      "icon": "skill/linshi/28",
       "skillCd": 20000
     },
     {
@@ -2698,6 +2698,21 @@ window.__AUTO_IMPORT_DATA__ = {
       "subCategory": "特殊",
       "isNew": false,
       "description": "获得满层迅捷注能",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": "",
+      "skillCd": null
+    },
+    {
+      "id": "2150000520",
+      "name": "暴击补偿",
+      "category": "捷系列",
+      "subCategory": "特殊",
+      "isNew": false,
+      "description": "占位技能",
       "tags": {
         "main": null,
         "normal": []
@@ -7805,84 +7820,84 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "refId": "102401",
           "name": "攻击速度提高",
-          "desc": "攻击速度提高50.00%~80.00%",
+          "desc": "攻击速度提高40.00%~60.00%",
           "random": false,
           "poolId": "102401"
         },
         {
           "refId": "102402",
           "name": "施法速度提高",
-          "desc": "施法速度提高50.00%~80.00%",
+          "desc": "施法速度提高40.00%~60.00%",
           "random": false,
           "poolId": "102401"
         },
         {
           "refId": "102403",
           "name": "暴击率提高",
-          "desc": "暴击率提高320.00%~480.00%",
+          "desc": "暴击率提高240.00%~360.00%",
           "random": false,
           "poolId": "102401"
         },
         {
           "refId": "102404",
           "name": "暴击伤害",
-          "desc": "暴击伤害 160.00%~240.00%",
+          "desc": "暴击伤害 120.00%~180.00%",
           "random": false,
           "poolId": "102401"
         },
         {
           "refId": "102405",
           "name": "获得物理伤害",
-          "desc": "获得物理伤害 80.00%~120.00%",
+          "desc": "获得物理伤害 60.00%~90.00%",
           "random": false,
           "poolId": "102401"
         },
         {
           "refId": "102406",
           "name": "获得火焰伤害",
-          "desc": "获得火焰伤害 80.00%~120.00%",
+          "desc": "获得火焰伤害 60.00%~90.00%",
           "random": false,
           "poolId": "102401"
         },
         {
           "refId": "102407",
           "name": "获得冰冷伤害",
-          "desc": "获得冰冷伤害 80.00%~120.00%",
+          "desc": "获得冰冷伤害 60.00%~90.00%",
           "random": false,
           "poolId": "102401"
         },
         {
           "refId": "102408",
           "name": "获得闪电伤害",
-          "desc": "获得闪电伤害 80.00%~120.00%",
+          "desc": "获得闪电伤害 60.00%~90.00%",
           "random": false,
           "poolId": "102401"
         },
         {
           "refId": "102409",
           "name": "获得混沌伤害",
-          "desc": "获得混沌伤害 80.00%~120.00%",
+          "desc": "获得混沌伤害 60.00%~90.00%",
           "random": false,
           "poolId": "102401"
         },
         {
           "refId": "102410",
           "name": "范围伤害提高",
-          "desc": "范围伤害提高160.00%~240.00%",
+          "desc": "范围伤害提高100.00%~160.00%",
           "random": false,
           "poolId": "102402"
         },
         {
           "refId": "102411",
           "name": "近战伤害提高",
-          "desc": "近战伤害提高160.00%~240.00%",
+          "desc": "近战伤害提高100.00%~160.00%",
           "random": false,
           "poolId": "102402"
         },
         {
           "refId": "102412",
           "name": "投射物伤害提高",
-          "desc": "投射物伤害提高160.00%~240.00%",
+          "desc": "投射物伤害提高100.00%~160.00%",
           "random": false,
           "poolId": "102402"
         },
@@ -8705,7 +8720,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "GEM0007",
       "name": "快攻·二",
       "type": "辅助宝石",
-      "desc": "辅助有攻击标签的技能，攻击速度提高30%",
+      "desc": "辅助有攻击标签的技能，攻击速度提高25%",
       "effects": [
         {
           "refId": "10031"
@@ -9028,7 +9043,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "GEM0026",
       "name": "重击·一",
       "type": "辅助宝石",
-      "desc": "攻击速度降低10%，近战物理伤害额外提高15%",
+      "desc": "攻击速度降低10%，近战物理伤害额外提高25%",
       "effects": [
         {
           "refId": "10047"
@@ -9045,7 +9060,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "GEM0027",
       "name": "重击·二",
       "type": "辅助宝石",
-      "desc": "攻击速度降低10%，近战物理伤害额外提高30%",
+      "desc": "攻击速度降低10%，近战物理伤害额外提高40%",
       "effects": [
         {
           "refId": "10047"
@@ -9079,7 +9094,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "GEM0029",
       "name": "迎寒·二",
       "type": "辅助宝石",
-      "desc": "被辅助技能冻结敌人时，获得25%的额外冰冷伤害，持续6秒",
+      "desc": "被辅助技能冻结敌人时，获得30%的额外冰冷伤害，持续6秒",
       "effects": [
         {
           "refId": "10048"
@@ -9113,7 +9128,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "GEM0031",
       "name": "猛毒·二",
       "type": "辅助宝石",
-      "desc": "被辅助技能，击中中毒目标时，每层中毒效果伤害额外提高5%，上限5层",
+      "desc": "被辅助技能，击中中毒目标时，每层中毒效果伤害额外提高6%，上限5层",
       "effects": [
         {
           "refId": "3140000040"
@@ -9275,7 +9290,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "GEM0040",
       "name": "弹速·三",
       "type": "辅助宝石",
-      "desc": "辅助有投射物标签的技能，使其生成的投射物飞行速度额外加快40%。投射物伤害增加30%",
+      "desc": "辅助有投射物标签的技能，使其生成的投射物飞行速度额外加快40%。投射物伤害增加25%",
       "effects": [
         {
           "refId": "10147"
@@ -9329,7 +9344,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "GEM0043",
       "name": "快施·二",
       "type": "辅助宝石",
-      "desc": "辅助有法术标签的技能，法术施放速度提高30%",
+      "desc": "辅助有法术标签的技能，法术施放速度提高25%",
       "effects": [
         {
           "refId": "10050"
@@ -9601,7 +9616,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "GEM0059",
       "name": "精准",
       "type": "辅助宝石",
-      "desc": "被辅助的技能暴击率额外提高60%，暴击伤害额外降低30%",
+      "desc": "被辅助的技能暴击率额外提高80%，暴击伤害额外降低30%",
       "effects": [
         {
           "refId": "10074"
@@ -9621,7 +9636,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "GEM0060",
       "name": "绝杀",
       "type": "辅助宝石",
-      "desc": "被辅助的技能暴击伤害额外提高100%，暴击率额外降低20%",
+      "desc": "被辅助的技能暴击伤害额外提高60%，暴击率额外降低40%",
       "effects": [
         {
           "refId": "10074"
@@ -9641,7 +9656,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "GEM0061",
       "name": "暴击转化",
       "type": "辅助宝石",
-      "desc": "被辅助的技能无法再造成暴击，法术伤害额外提高40%",
+      "desc": "被辅助的技能无法再造成暴击，法术伤害额外提高100%",
       "effects": [
         {
           "refId": "10266"
@@ -9678,7 +9693,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "GEM0063",
       "name": "狩猎",
       "type": "辅助宝石",
-      "desc": "被辅助的技能对满血敌人的暴击率额外提高100%",
+      "desc": "被辅助的技能对满血敌人的暴击率额外提高80%",
       "effects": [
         {
           "refId": "10267"
@@ -9695,7 +9710,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "GEM0064",
       "name": "弱点观察",
       "type": "辅助宝石",
-      "desc": "被辅助的技能对冻结敌人的暴击率额外提高50%",
+      "desc": "被辅助的技能对冻结敌人的暴击率额外提高40%",
       "effects": [
         {
           "refId": "10268"
@@ -10555,7 +10570,7 @@ window.__AUTO_IMPORT_DATA__ = {
           "环绕"
         ]
       },
-      "icon": "skill/linshi/14",
+      "icon": "skill/linshi/28",
       "effects": [
         {
           "refId": "1120000150"
@@ -10583,7 +10598,7 @@ window.__AUTO_IMPORT_DATA__ = {
           "旋风"
         ]
       },
-      "icon": "skill/linshi/14",
+      "icon": "skill/linshi/6",
       "effects": [
         {
           "refId": "1120000170"
@@ -10920,7 +10935,7 @@ window.__AUTO_IMPORT_DATA__ = {
         },
         {
           "id": "1007014",
-          "name": "深度聚集",
+          "name": "掌握",
           "desc": "技能的强化效果的冷却时间额外降低50%",
           "occupation": 4,
           "viewPos": {
@@ -14694,5 +14709,5 @@ window.__AUTO_IMPORT_DATA__ = {
       ]
     }
   ],
-  "importTime": "2026-09-22T11:09:39.319Z"
+  "importTime": "2026-09-22T11:11:27.121Z"
 };
