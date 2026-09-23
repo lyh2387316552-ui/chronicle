@@ -1,5 +1,5 @@
 // 此文件由 import.js 自动生成，请勿手动编辑
-// 生成时间: 2026-09-22T11:29:35.872Z
+// 生成时间: 2026-09-22T11:43:07.019Z
 window.__AUTO_IMPORT_DATA__ = {
   "activeSkills": [
     {
@@ -11325,6 +11325,10 @@ window.__AUTO_IMPORT_DATA__ = {
     {
       "name": "火球术",
       "file": "火球术.mp4"
+    },
+    {
+      "name": "移形换影",
+      "file": "移形换影.mp4"
     }
   ],
   "pets": [
@@ -14710,5 +14714,5 @@ window.__AUTO_IMPORT_DATA__ = {
     }
   ],
   "skillDisplayLevel": 1,
-  "importTime": "2026-09-22T11:29:35.872Z"
+  "importTime": "2026-09-22T11:43:07.019Z"
 };
