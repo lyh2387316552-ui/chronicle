@@ -1,5 +1,5 @@
 // 此文件由 import.js 自动生成，请勿手动编辑
-// 生成时间: 2026-09-22T11:43:07.019Z
+// 生成时间: 2026-09-29T07:40:29.120Z
 window.__AUTO_IMPORT_DATA__ = {
   "activeSkills": [
     {
@@ -417,11 +417,17 @@ window.__AUTO_IMPORT_DATA__ = {
       "description": "",
       "tags": {
         "main": "1",
-        "normal": []
+        "normal": [
+          "1",
+          "6"
+        ]
       },
       "tagsText": {
         "main": "攻击",
-        "normal": []
+        "normal": [
+          "近战",
+          "混沌"
+        ]
       },
       "icon": "",
       "skillCd": 10000
@@ -1030,6 +1036,58 @@ window.__AUTO_IMPORT_DATA__ = {
     },
     {
       "id": "1140000011",
+      "name": "月神赐福剑影",
+      "category": "增益技能",
+      "subCategory": "增益辅助",
+      "isNew": false,
+      "description": "",
+      "tags": {
+        "main": "1",
+        "normal": [
+          "1",
+          "4",
+          "7"
+        ]
+      },
+      "tagsText": {
+        "main": "攻击",
+        "normal": [
+          "近战",
+          "冰霜",
+          "范围"
+        ]
+      },
+      "icon": "",
+      "skillCd": 0
+    },
+    {
+      "id": "1140000012",
+      "name": "月神赐福剑影",
+      "category": "增益技能",
+      "subCategory": "增益辅助",
+      "isNew": false,
+      "description": "",
+      "tags": {
+        "main": "1",
+        "normal": [
+          "1",
+          "4",
+          "7"
+        ]
+      },
+      "tagsText": {
+        "main": "攻击",
+        "normal": [
+          "近战",
+          "冰霜",
+          "范围"
+        ]
+      },
+      "icon": "",
+      "skillCd": 0
+    },
+    {
+      "id": "1140000013",
       "name": "月神赐福剑影",
       "category": "增益技能",
       "subCategory": "增益辅助",
@@ -2288,11 +2346,11 @@ window.__AUTO_IMPORT_DATA__ = {
     },
     {
       "id": "2150000240",
-      "name": "天赋大点-太刀",
+      "name": "天赋大点-随机伤害倍率",
       "category": "捷系列",
       "subCategory": "特殊",
       "isNew": false,
-      "description": "使用太刀作为武器时，击败敌人获得随机 0.1 伤害倍率，上限 100 层，持续时间 5 秒",
+      "description": "击败敌人获得随机 0.1 伤害倍率，上限 100 层，持续时间 5 秒",
       "tags": {
         "main": null,
         "normal": []
@@ -2303,11 +2361,11 @@ window.__AUTO_IMPORT_DATA__ = {
     },
     {
       "id": "2150000250",
-      "name": "天赋大点-法杖",
+      "name": "天赋大点-只能造成元素伤害",
       "category": "捷系列",
       "subCategory": "特殊",
       "isNew": false,
-      "description": "使用法杖作为武器时，获得 30% 的额外元素伤害，只能造成元素伤害",
+      "description": "获得 30% 的额外元素伤害，只能造成元素伤害",
       "tags": {
         "main": null,
         "normal": []
@@ -2318,11 +2376,11 @@ window.__AUTO_IMPORT_DATA__ = {
     },
     {
       "id": "2150000260",
-      "name": "天赋大点-魔典",
+      "name": "天赋大点-核心金额跟等级增加",
       "category": "捷系列",
       "subCategory": "特殊",
       "isNew": false,
-      "description": "使用魔典时，核心技能等级 +5，魔力消耗增加 20%",
+      "description": "核心技能等级 +4，魔力消耗增加 20%",
       "tags": {
         "main": null,
         "normal": []
@@ -2459,10 +2517,13 @@ window.__AUTO_IMPORT_DATA__ = {
       "isNew": false,
       "description": "暴击时，获得增益，伤害额外提高 7%，但暴击率降低 25%，层数上限 5 层",
       "tags": {
-        "main": null,
+        "main": "1",
         "normal": []
       },
-      "tagsText": null,
+      "tagsText": {
+        "main": "攻击",
+        "normal": []
+      },
       "icon": "",
       "skillCd": null
     },
@@ -5152,6 +5213,86 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "",
       "subCategory": "通用",
       "isNew": false
+    },
+    {
+      "id": "10271",
+      "name": "强化效果冷却缩减",
+      "description": "强化效果冷却缩减{0}",
+      "category": "",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10272",
+      "name": "天赋-明目",
+      "description": "天赋-明目",
+      "category": "",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10273",
+      "name": "天赋-冰寒之体",
+      "description": "天赋-冰寒之体",
+      "category": "",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10274",
+      "name": "魔力消耗增加",
+      "description": "魔力消耗增加{0}",
+      "category": "",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10275",
+      "name": "技能倍率额外提高（叠加）",
+      "description": "技能倍率额外提高{0}（叠加）",
+      "category": "",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10276",
+      "name": "暴击率额外提高（叠加）",
+      "description": "暴击率额外提高{0}（叠加）",
+      "category": "",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10277",
+      "name": "暴击伤害额外提高（叠加）",
+      "description": "暴击伤害额外提高{0}（叠加）",
+      "category": "",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10278",
+      "name": "所有异常状态效果额外提高（叠加）",
+      "description": "所有异常状态效果额外提高{0}（叠加）",
+      "category": "",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10279",
+      "name": "攻击速度额外提高（叠加）",
+      "description": "攻击速度额外提高{0}（叠加）",
+      "category": "",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10280",
+      "name": "施法速度额外提高（叠加）",
+      "description": "施法速度额外提高{0}（叠加）",
+      "category": "",
+      "subCategory": "通用",
+      "isNew": false
     }
   ],
   "attributes": [
@@ -5178,7 +5319,7 @@ window.__AUTO_IMPORT_DATA__ = {
     },
     {
       "id": "10003",
-      "name": "生命每秒恢复",
+      "name": "每秒生命恢复",
       "description": "生命每秒恢复",
       "category": "2",
       "isNew": false
@@ -5192,7 +5333,7 @@ window.__AUTO_IMPORT_DATA__ = {
     },
     {
       "id": "10005",
-      "name": "魔力每秒恢复",
+      "name": "每秒魔力恢复",
       "description": "魔力每秒恢复",
       "category": "2",
       "isNew": false
@@ -5206,7 +5347,7 @@ window.__AUTO_IMPORT_DATA__ = {
     },
     {
       "id": "10007",
-      "name": "移动速度增加",
+      "name": "移速提高",
       "description": "移动速度增加",
       "category": "2",
       "isNew": false
@@ -5234,14 +5375,14 @@ window.__AUTO_IMPORT_DATA__ = {
     },
     {
       "id": "10011",
-      "name": "法术格挡百分比概率",
+      "name": "法术格挡率",
       "description": "法术格挡率",
       "category": "2",
       "isNew": false
     },
     {
       "id": "10013",
-      "name": "攻击格挡百分比概率",
+      "name": "攻击格挡率",
       "description": "攻击格挡率",
       "category": "2",
       "isNew": false
@@ -5353,21 +5494,21 @@ window.__AUTO_IMPORT_DATA__ = {
     },
     {
       "id": "10101",
-      "name": "全局暴击增加率",
+      "name": "全局暴击提高",
       "description": "全局暴击值增加",
       "category": "2",
       "isNew": false
     },
     {
       "id": "10102",
-      "name": "攻击暴击增加率",
+      "name": "攻击暴击提高",
       "description": "攻击暴击值增加",
       "category": "2",
       "isNew": false
     },
     {
       "id": "10103",
-      "name": "法术暴击增加率",
+      "name": "法术暴击提高",
       "description": "法术暴击值增加",
       "category": "2",
       "isNew": false
@@ -5444,7 +5585,7 @@ window.__AUTO_IMPORT_DATA__ = {
     },
     {
       "id": "10309",
-      "name": "more伤",
+      "name": "更多伤害",
       "description": "more伤",
       "category": "2",
       "isNew": false
@@ -5598,49 +5739,49 @@ window.__AUTO_IMPORT_DATA__ = {
     },
     {
       "id": "10600",
-      "name": "攻击百比",
+      "name": "攻击百分比",
       "description": "倍率百比",
       "category": "2",
       "isNew": false
     },
     {
       "id": "10601",
-      "name": "物理倍率百比",
+      "name": "物理倍率",
       "description": "物理倍率百比",
       "category": "2",
       "isNew": false
     },
     {
       "id": "10602",
-      "name": "火焰倍率百比",
+      "name": "火焰倍率",
       "description": "火焰倍率百比",
       "category": "2",
       "isNew": false
     },
     {
       "id": "10603",
-      "name": "冰冷倍率百比",
+      "name": "冰冷倍率",
       "description": "冰冷倍率百比",
       "category": "2",
       "isNew": false
     },
     {
       "id": "10604",
-      "name": "闪电倍率百比",
+      "name": "闪电倍率",
       "description": "闪电倍率百比",
       "category": "2",
       "isNew": false
     },
     {
       "id": "10605",
-      "name": "混沌倍率百比",
+      "name": "混沌倍率",
       "description": "混沌倍率百比",
       "category": "2",
       "isNew": false
     },
     {
       "id": "10606",
-      "name": "元素攻击百比",
+      "name": "元素攻击比例",
       "description": "元素攻击百比",
       "category": "2",
       "isNew": false
@@ -5654,21 +5795,21 @@ window.__AUTO_IMPORT_DATA__ = {
     },
     {
       "id": "10704",
-      "name": "经验掉落数量增加",
+      "name": "经验掉落增加",
       "description": "经验掉落数量增加",
       "category": "2",
       "isNew": false
     },
     {
       "id": "10705",
-      "name": "重熔出现概率",
+      "name": "重熔概率",
       "description": "重熔出现概率",
       "category": "2",
       "isNew": false
     },
     {
       "id": "10706",
-      "name": "基础等级影响掉落",
+      "name": "等级影响掉落",
       "description": "基础等级影响掉落",
       "category": "2",
       "isNew": false
@@ -5773,7 +5914,7 @@ window.__AUTO_IMPORT_DATA__ = {
     },
     {
       "id": "10900",
-      "name": "降低装备穿戴等级",
+      "name": "穿戴等级降低",
       "description": "降低装备穿戴等级",
       "category": "1",
       "isNew": false
@@ -5850,182 +5991,182 @@ window.__AUTO_IMPORT_DATA__ = {
     },
     {
       "id": "11011",
-      "name": "触电几率提高",
+      "name": "触电概率提高",
       "description": "触电几率提高",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11012",
-      "name": "受到点燃时间降低",
+      "name": "点燃时长降低",
       "description": "受到点燃时间降低",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11013",
-      "name": "受到冰缓时间降低",
+      "name": "冰缓时长降低",
       "description": "受到冰缓时间降低",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11014",
-      "name": "受到冻结时间降低",
+      "name": "冻结时长降低",
       "description": "受到冻结时间降低",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11015",
-      "name": "受到感电时间降低",
+      "name": "感电时长降低",
       "description": "受到感电时间降低",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11016",
-      "name": "受到触电时间降低",
+      "name": "触电时长降低",
       "description": "受到触电时间降低",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11017",
-      "name": "元素异常状态抵抗",
+      "name": "元素异常抗性",
       "description": "元素异常状态抵抗",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11018",
-      "name": "元素异常状态阈值",
+      "name": "元素异常阈值",
       "description": "元素异常状态阈值",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11019",
-      "name": "点燃层数上限增加",
+      "name": "点燃上限增加",
       "description": "点燃层数上限增加",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11020",
-      "name": "物理伤害转化为闪电伤害",
+      "name": "物理转闪电",
       "description": "物理伤害转化为闪电伤害",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11021",
-      "name": "物理伤害转化为冰冷伤害",
+      "name": "物理转冰冷",
       "description": "物理伤害转化为冰冷伤害",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11022",
-      "name": "物理伤害转化为火焰伤害",
+      "name": "物理转火焰",
       "description": "物理伤害转化为火焰伤害",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11023",
-      "name": "闪电伤害转化为冰冷伤害",
+      "name": "闪电转冰冷",
       "description": "闪电伤害转化为冰冷伤害",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11024",
-      "name": "闪电伤害转化为火焰伤害",
+      "name": "闪电转火焰",
       "description": "闪电伤害转化为火焰伤害",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11025",
-      "name": "火焰伤害转化为冰冷伤害",
+      "name": "火焰转冰冷",
       "description": "火焰伤害转化为冰冷伤害",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11026",
-      "name": "火焰伤害转化为闪电伤害",
+      "name": "火焰转闪电",
       "description": "火焰伤害转化为闪电伤害",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11027",
-      "name": "冰冷伤害转换为闪电伤害",
+      "name": "冰冷转闪电",
       "description": "冰冷伤害转换为闪电伤害",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11028",
-      "name": "冰冷伤害转换为火焰伤害",
+      "name": "冰冷转火焰",
       "description": "冰冷伤害转换为火焰伤害",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11029",
-      "name": "冰冷伤害转换为混沌伤害",
+      "name": "冰冷转混沌",
       "description": "冰冷伤害转换为混沌伤害",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11030",
-      "name": "闪电伤害转换为混沌伤害",
+      "name": "闪电转混沌",
       "description": "闪电伤害转换为混沌伤害",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11031",
-      "name": "火焰伤害转换为混沌伤害",
+      "name": "火焰转混沌",
       "description": "火焰伤害转换为混沌伤害",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11032",
-      "name": "造成点燃时间比例",
+      "name": "点燃时长比例",
       "description": "造成点燃时间比例",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11033",
-      "name": "造成冰缓时间比例",
+      "name": "冰缓时长比例",
       "description": "造成冰缓时间比例",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11034",
-      "name": "造成冰冻时间比例",
+      "name": "冰冻时长比例",
       "description": "造成冻结时间比例",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11035",
-      "name": "造成感电时间比例",
+      "name": "感电时长比例",
       "description": "造成感电时间比例",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11036",
-      "name": "造成触电时间比例",
+      "name": "触电时长比例",
       "description": "造成触电时间比例",
       "category": "2",
       "isNew": false
@@ -6053,14 +6194,14 @@ window.__AUTO_IMPORT_DATA__ = {
     },
     {
       "id": "11040",
-      "name": "造成中毒时间比例",
+      "name": "中毒时长比例",
       "description": "造成中毒时间比例",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11041",
-      "name": "魔力消耗转生命消耗",
+      "name": "魔耗转生命",
       "description": "魔力消耗转生命消耗",
       "category": "2",
       "isNew": false
@@ -6074,7 +6215,7 @@ window.__AUTO_IMPORT_DATA__ = {
     },
     {
       "id": "11046",
-      "name": "中毒层数上限增加",
+      "name": "中毒上限增加",
       "description": "中毒层数上限增加",
       "category": "2",
       "isNew": false
@@ -6123,7 +6264,7 @@ window.__AUTO_IMPORT_DATA__ = {
     },
     {
       "id": "11053",
-      "name": "造成流血时间比例",
+      "name": "流血时长比例",
       "description": "流血时间比例",
       "category": "2",
       "isNew": false
@@ -6151,161 +6292,161 @@ window.__AUTO_IMPORT_DATA__ = {
     },
     {
       "id": "11057",
-      "name": "造成双倍伤害几率",
+      "name": "双倍伤害概率",
       "description": "造成双倍伤害几率",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11058",
-      "name": "物理抗性上限增加",
+      "name": "物抗上限增加",
       "description": "物理抗性上限增加",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11059",
-      "name": "火焰抗性上限增加",
+      "name": "火抗上限增加",
       "description": "火焰抗性上限增加",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11060",
-      "name": "冰冷抗性上限增加",
+      "name": "冰抗上限增加",
       "description": "冰冷抗性上限增加",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11061",
-      "name": "闪电抗性上限增加",
+      "name": "电抗上限增加",
       "description": "闪电抗性上限增加",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11062",
-      "name": "混沌抗性上限增加",
+      "name": "混抗上限增加",
       "description": "混沌抗性上限增加",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11063",
-      "name": "流血效果结算速度",
+      "name": "流血结算速度",
       "description": "流血效果结算速度",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11064",
-      "name": "中毒效果结算速度",
+      "name": "中毒结算速度",
       "description": "中毒效果结算速度",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11065",
-      "name": "点燃效果结算速度",
+      "name": "点燃结算速度",
       "description": "点燃效果结算速度",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11066",
-      "name": "药剂冷却回复效率",
+      "name": "药剂冷却效率",
       "description": "药剂冷却回复效率",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11067",
-      "name": "是否暴击幸运",
+      "name": "暴击是否幸运",
       "description": "是否暴击幸运",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11068",
-      "name": "受到的物理伤害",
+      "name": "所受物理伤害",
       "description": "受到的物理伤害",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11069",
-      "name": "受到的火焰伤害",
+      "name": "所受火焰伤害",
       "description": "受到的火焰伤害",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11070",
-      "name": "受到的冰冷伤害",
+      "name": "所受冰冷伤害",
       "description": "受到的冰冷伤害",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11071",
-      "name": "受到的闪电伤害",
+      "name": "所受闪电伤害",
       "description": "受到的闪电伤害",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11072",
-      "name": "受到的混沌伤害",
+      "name": "所受混沌伤害",
       "description": "受到的混沌伤害",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11073",
-      "name": "混沌伤害转化为闪电伤害",
+      "name": "混沌转闪电",
       "description": "混沌伤害转化为闪电伤害",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11074",
-      "name": "混沌伤害转化为冰冷伤害",
+      "name": "混沌转冰冷",
       "description": "混沌伤害转化为冰冷伤害",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11075",
-      "name": "混沌伤害转化为火焰伤害",
+      "name": "混沌转火焰",
       "description": "混沌伤害转化为火焰伤害",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11076",
-      "name": "强化技能冷却回复效率",
+      "name": "强化冷却效率",
       "description": "强化技能冷却回复效率",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11077",
-      "name": "元素异常状态抵抗",
+      "name": "元素异常抗性",
       "description": "冻结异常状态抵抗",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11078",
-      "name": "元素异常状态抵抗",
+      "name": "元素异常抗性",
       "description": "触电异常状态抵抗",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11079",
-      "name": "受到的暴击伤害",
+      "name": "所受暴击伤害",
       "description": "受到的暴击伤害",
       "category": "2",
       "isNew": false
@@ -6354,36 +6495,43 @@ window.__AUTO_IMPORT_DATA__ = {
     },
     {
       "id": "11086",
-      "name": "毁灭注能数量上限",
+      "name": "毁灭注能上限",
       "description": "毁灭注能数量上限",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11087",
-      "name": "洞察注能数量上限",
+      "name": "洞察注能上限",
       "description": "洞察注能数量上限",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11088",
-      "name": "穿透注能数量上限",
+      "name": "穿透注能上限",
       "description": "穿透注能数量上限",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11089",
-      "name": "混乱注能数量上限",
+      "name": "混乱注能上限",
       "description": "混乱注能数量上限",
       "category": "2",
       "isNew": false
     },
     {
       "id": "11090",
-      "name": "迅捷注能数量上限",
+      "name": "迅捷注能上限",
       "description": "迅捷注能数量上限",
+      "category": "2",
+      "isNew": false
+    },
+    {
+      "id": "11091",
+      "name": "生命魔力回复共用",
+      "description": "生命魔力回复共用",
       "category": "2",
       "isNew": false
     }
@@ -6397,7 +6545,7 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "refId": "101701",
           "name": "获得闪电伤害",
-          "desc": "获得闪电伤害 32.00%~48.00%",
+          "desc": "获得闪电伤害32.00%~48.00%",
           "random": false,
           "poolId": "101701"
         },
@@ -6482,7 +6630,7 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "refId": "100101",
           "name": "获得物理伤害",
-          "desc": "获得物理伤害 65.00%~85.00%",
+          "desc": "获得物理伤害65.00%~85.00%",
           "random": false,
           "poolId": "100101"
         },
@@ -6553,14 +6701,14 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "refId": "101001",
           "name": "获得冰冷伤害",
-          "desc": "获得冰冷伤害 65.00%~95.00%",
+          "desc": "获得冰冷伤害65.00%~95.00%",
           "random": false,
           "poolId": "101001"
         },
         {
           "refId": "101002",
           "name": "冰冷伤害提高",
-          "desc": "冰冷伤害提高 110.00%~150.00%",
+          "desc": "冰冷伤害提高110.00%~150.00%",
           "random": false,
           "poolId": "101002"
         },
@@ -6624,42 +6772,60 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "refId": "102501",
           "name": "火焰伤害提高",
-          "desc": "火焰伤害提高 105.00%~165.00%",
+          "desc": "火焰伤害提高105.00%~165.00%",
           "random": false,
           "poolId": "102501"
         },
         {
           "refId": "102502",
           "name": "生命恢复率",
-          "desc": "生命恢复率 1.00%~3.00%",
+          "desc": "生命恢复率增加1.000%~3.000%",
           "random": false,
-          "poolId": "102501"
+          "poolId": "102502"
         },
         {
           "refId": "102503",
           "name": "周围敌人受到生命值上限1%的点燃强度的点燃",
           "desc": "周围敌人受到生命值上限1%的点燃强度的点燃 0",
           "random": false,
-          "poolId": "102501"
+          "poolId": "102503"
         },
         {
           "refId": "102504",
           "name": "火焰抗性",
-          "desc": "火焰抗性 27.00%~40.00%",
+          "desc": "火焰抗性增加27.00%~40.00%",
           "random": false,
-          "poolId": "102501"
+          "poolId": "102504"
         }
       ],
       "poolGroups": [
         {
           "poolId": "102501",
           "ids": [
-            "102501",
-            "102502",
-            "102503",
+            "102501"
+          ],
+          "total": 1
+        },
+        {
+          "poolId": "102502",
+          "ids": [
+            "102502"
+          ],
+          "total": 1
+        },
+        {
+          "poolId": "102503",
+          "ids": [
+            "102503"
+          ],
+          "total": 1
+        },
+        {
+          "poolId": "102504",
+          "ids": [
             "102504"
           ],
-          "total": 5
+          "total": 1
         }
       ],
       "sourceId": "1200101",
@@ -6677,21 +6843,21 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "refId": "100701",
           "name": "法术格挡率",
-          "desc": "法术格挡率 25.00%~35.00%",
+          "desc": "法术格挡率增加25.00%~35.00%",
           "random": false,
           "poolId": "100701"
         },
         {
           "refId": "100702",
           "name": "冰冷伤害提高",
-          "desc": "冰冷伤害提高 60.00%~80.00%",
+          "desc": "冰冷伤害提高60.00%~80.00%",
           "random": false,
           "poolId": "100702"
         },
         {
           "refId": "100703",
           "name": "冻结效果比例",
-          "desc": "冻结效果比例 35.00%~65.00%",
+          "desc": "冻结效果比例增加35.00%~65.00%",
           "random": false,
           "poolId": "100703"
         },
@@ -6705,7 +6871,7 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "refId": "100705",
           "name": "冰冷抗性",
-          "desc": "冰冷抗性 20.00%~30.00%",
+          "desc": "冰冷抗性增加20.00%~30.00%",
           "random": false,
           "poolId": "100705"
         }
@@ -6762,7 +6928,7 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "refId": "101101",
           "name": "基础魔力",
-          "desc": "基础魔力 160~240",
+          "desc": "基础魔力增加160~240",
           "random": false,
           "poolId": "101101"
         },
@@ -6776,7 +6942,7 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "refId": "101103",
           "name": "火焰抗性",
-          "desc": "火焰抗性 19.00%~25.00%",
+          "desc": "火焰抗性增加19.00%~25.00%",
           "random": false,
           "poolId": "101103"
         }
@@ -6819,14 +6985,14 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "refId": "100301",
           "name": "基础生命",
-          "desc": "基础生命 500~700",
+          "desc": "基础生命增加500~700",
           "random": false,
           "poolId": "100301"
         },
         {
           "refId": "100302",
           "name": "元素抗性",
-          "desc": "元素抗性 12.00%~16.00%",
+          "desc": "元素抗性增加12.00%~16.00%",
           "random": false,
           "poolId": "100302"
         },
@@ -6918,14 +7084,14 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "refId": "101303",
           "name": "混沌抗性",
-          "desc": "混沌抗性 20.00%~30.00%",
+          "desc": "混沌抗性增加20.00%~30.00%",
           "random": false,
           "poolId": "101303"
         },
         {
           "refId": "101304",
           "name": "基础生命",
-          "desc": "基础生命 350~450",
+          "desc": "基础生命增加350~450",
           "random": false,
           "poolId": "101304"
         }
@@ -6975,7 +7141,7 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "refId": "101801",
           "name": "基础魔力",
-          "desc": "基础魔力 400~600",
+          "desc": "基础魔力增加400~600",
           "random": false,
           "poolId": "101801"
         },
@@ -7137,7 +7303,7 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "refId": "102612",
           "name": "基础生命",
-          "desc": "基础生命 600~1000",
+          "desc": "基础生命增加600~1000",
           "random": false,
           "poolId": "102604"
         }
@@ -7195,14 +7361,14 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "refId": "100401",
           "name": "基础生命",
-          "desc": "基础生命 400~600",
+          "desc": "基础生命增加400~600",
           "random": false,
           "poolId": "100401"
         },
         {
           "refId": "100403",
           "name": "移动速度增加",
-          "desc": "移动速度增加 45.00%~75.00%",
+          "desc": "移速提高增加45.00%~75.00%",
           "random": false,
           "poolId": "100403"
         }
@@ -7238,21 +7404,21 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "refId": "101901",
           "name": "移动速度增加",
-          "desc": "移动速度增加 12.00%~18.00%",
+          "desc": "移速提高增加12.00%~18.00%",
           "random": false,
           "poolId": "101901"
         },
         {
           "refId": "101902",
           "name": "火焰伤害提高",
-          "desc": "火焰伤害提高 45.00%~75.00%",
+          "desc": "火焰伤害提高45.00%~75.00%",
           "random": false,
           "poolId": "101902"
         },
         {
           "refId": "101903",
           "name": "火焰抗性",
-          "desc": "火焰抗性 10.00%~20.00%",
+          "desc": "火焰抗性增加10.00%~20.00%",
           "random": false,
           "poolId": "101903"
         },
@@ -7309,21 +7475,21 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "refId": "102001",
           "name": "移动速度增加",
-          "desc": "移动速度增加 12.00%~18.00%",
+          "desc": "移速提高增加12.00%~18.00%",
           "random": false,
           "poolId": "102001"
         },
         {
           "refId": "102002",
           "name": "全局伤害提高",
-          "desc": "全局伤害提高 30.00%~50.00%",
+          "desc": "全局伤害提高增加30.00%~50.00%",
           "random": false,
           "poolId": "102002"
         },
         {
           "refId": "102003",
           "name": "冰冷抗性",
-          "desc": "冰冷抗性 10.00%~20.00%",
+          "desc": "冰冷抗性增加10.00%~20.00%",
           "random": false,
           "poolId": "102003"
         },
@@ -7380,7 +7546,7 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "refId": "100501",
           "name": "获得闪电伤害",
-          "desc": "获得闪电伤害 15.00%~25.00%",
+          "desc": "获得闪电伤害15.00%~25.00%",
           "random": false,
           "poolId": "100501"
         },
@@ -7394,14 +7560,14 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "refId": "100503",
           "name": "感电概率提高",
-          "desc": "感电概率提高 20.00%~40.00%",
+          "desc": "感电概率提高增加20.00%~40.00%",
           "random": false,
           "poolId": "100503"
         },
         {
           "refId": "100504",
           "name": "感电效果比例",
-          "desc": "感电效果比例 35.00%~65.00%",
+          "desc": "感电效果比例增加35.00%~65.00%",
           "random": false,
           "poolId": "100504"
         }
@@ -7451,14 +7617,14 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "refId": "100601",
           "name": "获得物理伤害",
-          "desc": "获得物理伤害 25.00%~45.00%",
+          "desc": "获得物理伤害25.00%~45.00%",
           "random": false,
           "poolId": "100601"
         },
         {
           "refId": "100602",
           "name": "物理伤害提高",
-          "desc": "物理伤害提高 65.00%~105.00%",
+          "desc": "物理伤害提高65.00%~105.00%",
           "random": false,
           "poolId": "100602"
         },
@@ -7536,14 +7702,14 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "refId": "100801",
           "name": "防御力",
-          "desc": "防御力 160~240",
+          "desc": "防御力增加160~240",
           "random": false,
           "poolId": "100801"
         },
         {
           "refId": "100802",
           "name": "获得冰冷伤害",
-          "desc": "获得冰冷伤害 15.00%~25.00%",
+          "desc": "获得冰冷伤害15.00%~25.00%",
           "random": false,
           "poolId": "100802"
         },
@@ -7557,7 +7723,7 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "refId": "100804",
           "name": "造成冻结时间比例",
-          "desc": "造成冻结时间比例 8.00%~18.00%",
+          "desc": "冰冻时长比例增加8.00%~18.00%",
           "random": false,
           "poolId": "100804"
         }
@@ -7607,7 +7773,7 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "refId": "101201",
           "name": "防御力",
-          "desc": "防御力 160~240",
+          "desc": "防御力增加160~240",
           "random": false,
           "poolId": "101201"
         },
@@ -7685,7 +7851,7 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "refId": "101402",
           "name": "防御力",
-          "desc": "防御力 160~240",
+          "desc": "防御力增加160~240",
           "random": false,
           "poolId": "101402"
         },
@@ -7699,7 +7865,7 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "refId": "101404",
           "name": "冻结效果比例",
-          "desc": "冻结效果比例 40.00%~60.00%",
+          "desc": "冻结效果比例增加40.00%~60.00%",
           "random": false,
           "poolId": "101404"
         }
@@ -7756,7 +7922,7 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "refId": "101502",
           "name": "基础生命",
-          "desc": "基础生命 240~360",
+          "desc": "基础生命增加240~360",
           "random": false,
           "poolId": "101502"
         },
@@ -7770,7 +7936,7 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "refId": "101504",
           "name": "造成中毒时间比例",
-          "desc": "造成中毒时间比例 20.00%~30.00%",
+          "desc": "中毒时长比例增加20.00%~30.00%",
           "random": false,
           "poolId": "101504"
         }
@@ -7841,42 +8007,42 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "refId": "102404",
           "name": "暴击伤害",
-          "desc": "暴击伤害 120.00%~180.00%",
+          "desc": "暴击伤害增加120.00%~180.00%",
           "random": false,
           "poolId": "102401"
         },
         {
           "refId": "102405",
           "name": "获得物理伤害",
-          "desc": "获得物理伤害 60.00%~90.00%",
+          "desc": "获得物理伤害60.00%~90.00%",
           "random": false,
           "poolId": "102401"
         },
         {
           "refId": "102406",
           "name": "获得火焰伤害",
-          "desc": "获得火焰伤害 60.00%~90.00%",
+          "desc": "获得火焰伤害60.00%~90.00%",
           "random": false,
           "poolId": "102401"
         },
         {
           "refId": "102407",
           "name": "获得冰冷伤害",
-          "desc": "获得冰冷伤害 60.00%~90.00%",
+          "desc": "获得冰冷伤害60.00%~90.00%",
           "random": false,
           "poolId": "102401"
         },
         {
           "refId": "102408",
           "name": "获得闪电伤害",
-          "desc": "获得闪电伤害 60.00%~90.00%",
+          "desc": "获得闪电伤害60.00%~90.00%",
           "random": false,
           "poolId": "102401"
         },
         {
           "refId": "102409",
           "name": "获得混沌伤害",
-          "desc": "获得混沌伤害 60.00%~90.00%",
+          "desc": "获得混沌伤害60.00%~90.00%",
           "random": false,
           "poolId": "102401"
         },
@@ -7904,84 +8070,84 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "refId": "102413",
           "name": "移动速度增加",
-          "desc": "移动速度增加 25.00%~35.00%",
+          "desc": "移速提高增加25.00%~35.00%",
           "random": false,
           "poolId": "102402"
         },
         {
           "refId": "102414",
           "name": "物理抗性",
-          "desc": "物理抗性 50.00%~75.00%",
+          "desc": "物理抗性增加50.00%~75.00%",
           "random": false,
           "poolId": "102402"
         },
         {
           "refId": "102415",
           "name": "火焰抗性",
-          "desc": "火焰抗性 50.00%~75.00%",
+          "desc": "火焰抗性增加50.00%~75.00%",
           "random": false,
           "poolId": "102402"
         },
         {
           "refId": "102416",
           "name": "冰冷抗性",
-          "desc": "冰冷抗性 50.00%~75.00%",
+          "desc": "冰冷抗性增加50.00%~75.00%",
           "random": false,
           "poolId": "102402"
         },
         {
           "refId": "102417",
           "name": "闪电抗性",
-          "desc": "闪电抗性 50.00%~75.00%",
+          "desc": "闪电抗性增加50.00%~75.00%",
           "random": false,
           "poolId": "102402"
         },
         {
           "refId": "102418",
           "name": "混沌抗性",
-          "desc": "混沌抗性 30.00%~45.00%",
+          "desc": "混沌抗性增加30.00%~45.00%",
           "random": false,
           "poolId": "102402"
         },
         {
           "refId": "102419",
           "name": "元素抗性",
-          "desc": "元素抗性 20.00%~30.00%",
+          "desc": "元素抗性增加20.00%~30.00%",
           "random": false,
           "poolId": "102402"
         },
         {
           "refId": "102420",
           "name": "基础生命",
-          "desc": "基础生命 2700~4000",
+          "desc": "基础生命增加2700~4000",
           "random": false,
           "poolId": "102402"
         },
         {
           "refId": "102421",
           "name": "防御力",
-          "desc": "防御力 1300~2000",
+          "desc": "防御力增加1300~2000",
           "random": false,
           "poolId": "102402"
         },
         {
           "refId": "102422",
           "name": "攻击格挡率",
-          "desc": "攻击格挡率 100.00%",
+          "desc": "攻击格挡率增加100.00%",
           "random": false,
           "poolId": "102402"
         },
         {
           "refId": "102423",
           "name": "法术格挡率",
-          "desc": "法术格挡率 100.00%",
+          "desc": "法术格挡率增加100.00%",
           "random": false,
           "poolId": "102402"
         },
         {
           "refId": "102424",
           "name": "格挡比例",
-          "desc": "格挡比例 15.00%~25.00%",
+          "desc": "格挡减伤率增加15.00%~25.00%",
           "random": false,
           "poolId": "102402"
         }
@@ -8109,14 +8275,14 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "refId": "102711",
           "name": "移动速度增加",
-          "desc": "移动速度增加 6.00%~10.00%",
+          "desc": "移速提高增加6.00%~10.00%",
           "random": false,
           "poolId": "102703"
         },
         {
           "refId": "102712",
           "name": "元素抗性",
-          "desc": "元素抗性 9.00%~15.00%",
+          "desc": "元素抗性增加9.00%~15.00%",
           "random": false,
           "poolId": "102704"
         }
@@ -8174,7 +8340,7 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "refId": "100201",
           "name": "全局伤害提高",
-          "desc": "全局伤害提高 100.00%~150.00%",
+          "desc": "全局伤害提高增加100.00%~150.00%",
           "random": false,
           "poolId": "100201"
         },
@@ -8188,7 +8354,7 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "refId": "100203",
           "name": "元素抗性",
-          "desc": "元素抗性 10.00%~14.00%",
+          "desc": "元素抗性增加10.00%~14.00%",
           "random": false,
           "poolId": "100203"
         },
@@ -8273,7 +8439,7 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "refId": "101603",
           "name": "法术格挡率",
-          "desc": "法术格挡率 12.00%~18.00%",
+          "desc": "法术格挡率增加12.00%~18.00%",
           "random": false,
           "poolId": "101603"
         },
@@ -8330,7 +8496,7 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "refId": "102101",
           "name": "获得闪电伤害",
-          "desc": "获得闪电伤害 35.00%~65.00%",
+          "desc": "获得闪电伤害35.00%~65.00%",
           "random": false,
           "poolId": "102101"
         },
@@ -8344,7 +8510,7 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "refId": "102103",
           "name": "闪电抗性",
-          "desc": "闪电抗性 10.00%~20.00%",
+          "desc": "闪电抗性增加10.00%~20.00%",
           "random": false,
           "poolId": "102103"
         },
@@ -8401,14 +8567,14 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "refId": "100901",
           "name": "基础生命",
-          "desc": "基础生命 400~600",
+          "desc": "基础生命增加400~600",
           "random": false,
           "poolId": "100901"
         },
         {
           "refId": "100902",
           "name": "冷却回复效率",
-          "desc": "冷却回复效率 15.00%~25.00%",
+          "desc": "冷却回复效率增加15.00%~25.00%",
           "random": false,
           "poolId": "100902"
         },
@@ -8422,7 +8588,7 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "refId": "100904",
           "name": "冰冷伤害提高",
-          "desc": "冰冷伤害提高 30.00%~50.00%",
+          "desc": "冰冷伤害提高30.00%~50.00%",
           "random": false,
           "poolId": "100904"
         }
@@ -8472,7 +8638,7 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "refId": "102201",
           "name": "基础生命",
-          "desc": "基础生命 240~360",
+          "desc": "基础生命增加240~360",
           "random": false,
           "poolId": "102201"
         },
@@ -8543,14 +8709,14 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "refId": "102301",
           "name": "获得冰冷伤害",
-          "desc": "获得冰冷伤害 25.00%~35.00%",
+          "desc": "获得冰冷伤害25.00%~35.00%",
           "random": false,
           "poolId": "102301"
         },
         {
           "refId": "102302",
           "name": "冰冷伤害提高",
-          "desc": "冰冷伤害提高 30.00%~50.00%",
+          "desc": "冰冷伤害提高30.00%~50.00%",
           "random": false,
           "poolId": "102302"
         },
@@ -8627,23 +8793,176 @@ window.__AUTO_IMPORT_DATA__ = {
     },
     {
       "id": "GEM0002",
-      "name": "大范围·二",
+      "name": "快攻·一",
       "type": "辅助宝石",
-      "desc": "辅助有范围标签的技能，范围效果扩大50%",
+      "desc": "辅助有攻击标签的技能，攻击速度提高15%",
       "effects": [
         {
-          "refId": "10032"
+          "refId": "10031"
         }
       ],
-      "rank": "4",
-      "sourceId": "100102",
+      "rank": "1",
+      "sourceId": "100301",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/101102",
-      "iconSrc": "skill/sect/101102"
+      "icon": "baoshi/101301",
+      "iconSrc": "skill/sect/101301"
     },
     {
       "id": "GEM0003",
+      "name": "集中·一",
+      "type": "辅助宝石",
+      "desc": "辅助有范围标签的技能，使其范围总降50%，伤害额外提高15%",
+      "effects": [
+        {
+          "refId": "10037"
+        }
+      ],
+      "rank": "1",
+      "sourceId": "100401",
+      "isNew": true,
+      "source": "sync",
+      "icon": "baoshi/102101",
+      "iconSrc": "skill/sect/102101"
+    },
+    {
+      "id": "GEM0004",
+      "name": "无限·一",
+      "type": "辅助宝石",
+      "desc": "使获得的能量提高25%",
+      "effects": [
+        {
+          "refId": "10040"
+        }
+      ],
+      "rank": "1",
+      "sourceId": "100901",
+      "isNew": true,
+      "source": "sync",
+      "icon": "baoshi/102204",
+      "iconSrc": "skill/sect/102204"
+    },
+    {
+      "id": "GEM0005",
+      "name": "无限·二",
+      "type": "辅助宝石",
+      "desc": "使获得的能量提高50%",
+      "effects": [
+        {
+          "refId": "10040"
+        }
+      ],
+      "rank": "1",
+      "sourceId": "100902",
+      "isNew": true,
+      "source": "sync",
+      "icon": "baoshi/102204",
+      "iconSrc": "skill/sect/102204"
+    },
+    {
+      "id": "GEM0006",
+      "name": "冻久·一",
+      "type": "辅助宝石",
+      "desc": "被冰冻敌人的冻结时间额外提高25%",
+      "effects": [
+        {
+          "refId": "10041"
+        }
+      ],
+      "rank": "1",
+      "sourceId": "101001",
+      "isNew": true,
+      "source": "sync",
+      "icon": "baoshi/102204",
+      "iconSrc": "skill/sect/102204"
+    },
+    {
+      "id": "GEM0007",
+      "name": "元素·一",
+      "type": "辅助宝石",
+      "desc": "元素伤害额外提高15%",
+      "effects": [
+        {
+          "refId": "10042"
+        }
+      ],
+      "rank": "1",
+      "sourceId": "101101",
+      "isNew": true,
+      "source": "sync",
+      "icon": "baoshi/102204",
+      "iconSrc": "skill/sect/102204"
+    },
+    {
+      "id": "GEM0008",
+      "name": "弹速·一",
+      "type": "辅助宝石",
+      "desc": "辅助有投射物标签的技能，使其生成的投射物飞行速度额外加快20%",
+      "effects": [
+        {
+          "refId": "10147"
+        }
+      ],
+      "rank": "1",
+      "sourceId": "102101",
+      "isNew": true,
+      "source": "sync",
+      "icon": "baoshi/102101",
+      "iconSrc": "skill/sect/102101"
+    },
+    {
+      "id": "GEM0009",
+      "name": "快施·一",
+      "type": "辅助宝石",
+      "desc": "辅助有法术标签的技能，法术释放速度提高15%",
+      "effects": [
+        {
+          "refId": "10050"
+        }
+      ],
+      "rank": "1",
+      "sourceId": "102301",
+      "isNew": true,
+      "source": "sync",
+      "icon": "baoshi/101301",
+      "iconSrc": "skill/sect/101301"
+    },
+    {
+      "id": "GEM0010",
+      "name": "元素脉冲",
+      "type": "辅助宝石",
+      "desc": "被辅助的攻击技能，在攻击命中后，随机造成50%元素伤害倍率的附加伤害",
+      "effects": [
+        {
+          "refId": "2140000190"
+        }
+      ],
+      "rank": "1",
+      "sourceId": "102801",
+      "isNew": true,
+      "source": "sync",
+      "icon": "baoshi/102204",
+      "iconSrc": "skill/sect/102204"
+    },
+    {
+      "id": "GEM0011",
+      "name": "冰冷冲击",
+      "type": "辅助宝石",
+      "desc": "被辅助的攻击技能，在造成冻结时有20%概率产生一次100%冰冷伤害倍率的冲击波，冲击波无法造成冻结",
+      "effects": [
+        {
+          "refId": "3140000070"
+        }
+      ],
+      "rank": "1",
+      "sourceId": "104001",
+      "isNew": true,
+      "source": "sync",
+      "icon": "baoshi/102102",
+      "iconSrc": "skill/sect/102102"
+    },
+    {
+      "id": "GEM0012",
       "name": "加弹·一",
       "type": "辅助宝石",
       "desc": "辅助有投射物标签的技能，使其生成的投射物数量+1，造成的伤害额外降低30%",
@@ -8663,112 +8982,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "iconSrc": "skill/sect/101201"
     },
     {
-      "id": "GEM0004",
-      "name": "加弹·二",
-      "type": "辅助宝石",
-      "desc": "辅助有投射物标签的技能，使其生成的投射物数量+2，造成的伤害额外降低30%",
-      "effects": [
-        {
-          "refId": "10038"
-        },
-        {
-          "refId": "10146"
-        }
-      ],
-      "rank": "4",
-      "sourceId": "100202",
-      "isNew": true,
-      "source": "sync",
-      "icon": "baoshi/101201",
-      "iconSrc": "skill/sect/101201"
-    },
-    {
-      "id": "GEM0005",
-      "name": "新星",
-      "type": "辅助宝石",
-      "desc": "投射物数量+5，投射物变更为环形发射，投射物伤害总降50%",
-      "effects": [
-        {
-          "refId": "10043"
-        }
-      ],
-      "rank": "5",
-      "sourceId": "100204",
-      "isNew": true,
-      "source": "sync",
-      "icon": "baoshi/101201",
-      "iconSrc": "skill/sect/101201"
-    },
-    {
-      "id": "GEM0006",
-      "name": "快攻·一",
-      "type": "辅助宝石",
-      "desc": "辅助有攻击标签的技能，攻击速度提高15%",
-      "effects": [
-        {
-          "refId": "10031"
-        }
-      ],
-      "rank": "1",
-      "sourceId": "100301",
-      "isNew": true,
-      "source": "sync",
-      "icon": "baoshi/101301",
-      "iconSrc": "skill/sect/101301"
-    },
-    {
-      "id": "GEM0007",
-      "name": "快攻·二",
-      "type": "辅助宝石",
-      "desc": "辅助有攻击标签的技能，攻击速度提高25%",
-      "effects": [
-        {
-          "refId": "10031"
-        }
-      ],
-      "rank": "3",
-      "sourceId": "100302",
-      "isNew": true,
-      "source": "sync",
-      "icon": "baoshi/101302",
-      "iconSrc": "skill/sect/101302"
-    },
-    {
-      "id": "GEM0008",
-      "name": "集中·一",
-      "type": "辅助宝石",
-      "desc": "辅助有范围标签的技能，使其范围总降50%，伤害额外提高15%",
-      "effects": [
-        {
-          "refId": "10037"
-        }
-      ],
-      "rank": "1",
-      "sourceId": "100401",
-      "isNew": true,
-      "source": "sync",
-      "icon": "baoshi/102101",
-      "iconSrc": "skill/sect/102101"
-    },
-    {
-      "id": "GEM0009",
-      "name": "集中·二",
-      "type": "辅助宝石",
-      "desc": "辅助有范围标签的技能，使其范围总降50%，伤害额外提高30%",
-      "effects": [
-        {
-          "refId": "10037"
-        }
-      ],
-      "rank": "4",
-      "sourceId": "100402",
-      "isNew": true,
-      "source": "sync",
-      "icon": "baoshi/102102",
-      "iconSrc": "skill/sect/102102"
-    },
-    {
-      "id": "GEM0010",
+      "id": "GEM0013",
       "name": "冰冻·一",
       "type": "辅助宝石",
       "desc": "辅助有冰霜标签的技能，使其冻结的积蓄值额外提高25%",
@@ -8785,24 +8999,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "iconSrc": "skill/sect/102103"
     },
     {
-      "id": "GEM0011",
-      "name": "冰冻·二",
-      "type": "辅助宝石",
-      "desc": "辅助有冰霜标签的技能，使其冻结的积蓄值额外提高50%",
-      "effects": [
-        {
-          "refId": "10033"
-        }
-      ],
-      "rank": "5",
-      "sourceId": "100502",
-      "isNew": true,
-      "source": "sync",
-      "icon": "baoshi/102104",
-      "iconSrc": "skill/sect/102104"
-    },
-    {
-      "id": "GEM0012",
+      "id": "GEM0014",
       "name": "加时·一",
       "type": "辅助宝石",
       "desc": "辅助有持续性技能标签的技能，使其持续时间提高20%",
@@ -8819,24 +9016,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "iconSrc": "skill/sect/102104"
     },
     {
-      "id": "GEM0013",
-      "name": "加时·二",
-      "type": "辅助宝石",
-      "desc": "辅助有持续性技能标签的技能，使其持续时间提高30%",
-      "effects": [
-        {
-          "refId": "10034"
-        }
-      ],
-      "rank": "4",
-      "sourceId": "100602",
-      "isNew": true,
-      "source": "sync",
-      "icon": "baoshi/102201",
-      "iconSrc": "skill/sect/102201"
-    },
-    {
-      "id": "GEM0014",
+      "id": "GEM0015",
       "name": "减冷·一",
       "type": "辅助宝石",
       "desc": "辅助技能，使其冷却回复率增加15%",
@@ -8853,143 +9033,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "iconSrc": "skill/sect/102202"
     },
     {
-      "id": "GEM0015",
-      "name": "减冷·二",
-      "type": "辅助宝石",
-      "desc": "辅助技能，使其冷却回复率增加25%",
-      "effects": [
-        {
-          "refId": "10106"
-        }
-      ],
-      "rank": "5",
-      "sourceId": "100702",
-      "isNew": true,
-      "source": "sync",
-      "icon": "baoshi/102203",
-      "iconSrc": "skill/sect/102203"
-    },
-    {
       "id": "GEM0016",
-      "name": "多重",
-      "type": "辅助宝石",
-      "desc": "辅助有触发标签的技能，使其伤害总降20%，重复使用技能3次，不能对同一目标使用",
-      "effects": [
-        {
-          "refId": "10036"
-        }
-      ],
-      "rank": "3",
-      "sourceId": "100801",
-      "isNew": true,
-      "source": "sync",
-      "icon": "baoshi/102204",
-      "iconSrc": "skill/sect/102204"
-    },
-    {
-      "id": "GEM0017",
-      "name": "无限·一",
-      "type": "辅助宝石",
-      "desc": "使获得的能量提高25%",
-      "effects": [
-        {
-          "refId": "10040"
-        }
-      ],
-      "rank": "1",
-      "sourceId": "100901",
-      "isNew": true,
-      "source": "sync",
-      "icon": "baoshi/102204",
-      "iconSrc": "skill/sect/102204"
-    },
-    {
-      "id": "GEM0018",
-      "name": "无限·二",
-      "type": "辅助宝石",
-      "desc": "使获得的能量提高50%",
-      "effects": [
-        {
-          "refId": "10040"
-        }
-      ],
-      "rank": "1",
-      "sourceId": "100902",
-      "isNew": true,
-      "source": "sync",
-      "icon": "baoshi/102204",
-      "iconSrc": "skill/sect/102204"
-    },
-    {
-      "id": "GEM0019",
-      "name": "冻久·一",
-      "type": "辅助宝石",
-      "desc": "被冰冻敌人的冻结时间额外提高25%",
-      "effects": [
-        {
-          "refId": "10041"
-        }
-      ],
-      "rank": "1",
-      "sourceId": "101001",
-      "isNew": true,
-      "source": "sync",
-      "icon": "baoshi/102204",
-      "iconSrc": "skill/sect/102204"
-    },
-    {
-      "id": "GEM0020",
-      "name": "冻久·二",
-      "type": "辅助宝石",
-      "desc": "被冰冻敌人的冻结时间额外提高50%",
-      "effects": [
-        {
-          "refId": "10041"
-        }
-      ],
-      "rank": "3",
-      "sourceId": "101002",
-      "isNew": true,
-      "source": "sync",
-      "icon": "baoshi/102204",
-      "iconSrc": "skill/sect/102204"
-    },
-    {
-      "id": "GEM0021",
-      "name": "元素·一",
-      "type": "辅助宝石",
-      "desc": "元素伤害额外提高15%",
-      "effects": [
-        {
-          "refId": "10042"
-        }
-      ],
-      "rank": "1",
-      "sourceId": "101101",
-      "isNew": true,
-      "source": "sync",
-      "icon": "baoshi/102204",
-      "iconSrc": "skill/sect/102204"
-    },
-    {
-      "id": "GEM0022",
-      "name": "元素·二",
-      "type": "辅助宝石",
-      "desc": "元素伤害额外提高25%",
-      "effects": [
-        {
-          "refId": "10042"
-        }
-      ],
-      "rank": "4",
-      "sourceId": "101102",
-      "isNew": true,
-      "source": "sync",
-      "icon": "baoshi/102204",
-      "iconSrc": "skill/sect/102204"
-    },
-    {
-      "id": "GEM0023",
       "name": "闪偏",
       "type": "辅助宝石",
       "desc": "闪电倍率提高25%，火焰倍率和冰冷倍率下降25%",
@@ -9006,7 +9050,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "iconSrc": "skill/sect/102204"
     },
     {
-      "id": "GEM0024",
+      "id": "GEM0017",
       "name": "冰偏",
       "type": "辅助宝石",
       "desc": "冰冷倍率提高25%，火焰倍率和闪电倍率下降25%",
@@ -9023,7 +9067,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "iconSrc": "skill/sect/102204"
     },
     {
-      "id": "GEM0025",
+      "id": "GEM0018",
       "name": "火偏",
       "type": "辅助宝石",
       "desc": "火焰倍率提高25%，闪电倍率和冰冷倍率下降25%",
@@ -9040,7 +9084,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "iconSrc": "skill/sect/102204"
     },
     {
-      "id": "GEM0026",
+      "id": "GEM0019",
       "name": "重击·一",
       "type": "辅助宝石",
       "desc": "攻击速度降低10%，近战物理伤害额外提高25%",
@@ -9057,24 +9101,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "iconSrc": "skill/sect/102101"
     },
     {
-      "id": "GEM0027",
-      "name": "重击·二",
-      "type": "辅助宝石",
-      "desc": "攻击速度降低10%，近战物理伤害额外提高40%",
-      "effects": [
-        {
-          "refId": "10047"
-        }
-      ],
-      "rank": "4",
-      "sourceId": "101502",
-      "isNew": true,
-      "source": "sync",
-      "icon": "baoshi/102102",
-      "iconSrc": "skill/sect/102102"
-    },
-    {
-      "id": "GEM0028",
+      "id": "GEM0020",
       "name": "迎寒·一",
       "type": "辅助宝石",
       "desc": "被辅助技能冻结敌人时，获得15%的额外冰冷伤害，持续6秒",
@@ -9091,24 +9118,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "iconSrc": "skill/sect/102101"
     },
     {
-      "id": "GEM0029",
-      "name": "迎寒·二",
-      "type": "辅助宝石",
-      "desc": "被辅助技能冻结敌人时，获得30%的额外冰冷伤害，持续6秒",
-      "effects": [
-        {
-          "refId": "10048"
-        }
-      ],
-      "rank": "5",
-      "sourceId": "101602",
-      "isNew": true,
-      "source": "sync",
-      "icon": "baoshi/102102",
-      "iconSrc": "skill/sect/102102"
-    },
-    {
-      "id": "GEM0030",
+      "id": "GEM0021",
       "name": "猛毒·一",
       "type": "辅助宝石",
       "desc": "被辅助技能，击中中毒目标时，每层中毒效果伤害额外提高3%，上限5层",
@@ -9125,24 +9135,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "iconSrc": "skill/sect/102101"
     },
     {
-      "id": "GEM0031",
-      "name": "猛毒·二",
-      "type": "辅助宝石",
-      "desc": "被辅助技能，击中中毒目标时，每层中毒效果伤害额外提高6%，上限5层",
-      "effects": [
-        {
-          "refId": "3140000040"
-        }
-      ],
-      "rank": "5",
-      "sourceId": "101702",
-      "isNew": true,
-      "source": "sync",
-      "icon": "baoshi/102102",
-      "iconSrc": "skill/sect/102102"
-    },
-    {
-      "id": "GEM0032",
+      "id": "GEM0022",
       "name": "毒化·一",
       "type": "辅助宝石",
       "desc": "被辅助技能，混沌伤害额外提高10% ，中毒几率增加20%",
@@ -9162,152 +9155,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "iconSrc": "skill/sect/102101"
     },
     {
-      "id": "GEM0033",
-      "name": "毒化·二",
-      "type": "辅助宝石",
-      "desc": "被辅助技能，混沌伤害额外提高20% ，中毒几率增加40%",
-      "effects": [
-        {
-          "refId": "10128"
-        },
-        {
-          "refId": "10051"
-        }
-      ],
-      "rank": "4",
-      "sourceId": "101802",
-      "isNew": true,
-      "source": "sync",
-      "icon": "baoshi/102102",
-      "iconSrc": "skill/sect/102102"
-    },
-    {
-      "id": "GEM0034",
-      "name": "包围·一",
-      "type": "辅助宝石",
-      "desc": "辅助有环绕标签的技能，环绕子弹数量+1，造成的伤害额外降低30%",
-      "effects": [
-        {
-          "refId": "10131"
-        },
-        {
-          "refId": "10146"
-        }
-      ],
-      "rank": "3",
-      "sourceId": "101901",
-      "isNew": true,
-      "source": "sync",
-      "icon": "baoshi/102101",
-      "iconSrc": "skill/sect/102101"
-    },
-    {
-      "id": "GEM0035",
-      "name": "包围·二",
-      "type": "辅助宝石",
-      "desc": "辅助有环绕标签的技能，环绕子弹数量+1",
-      "effects": [
-        {
-          "refId": "10131"
-        }
-      ],
-      "rank": "5",
-      "sourceId": "101902",
-      "isNew": true,
-      "source": "sync",
-      "icon": "baoshi/102102",
-      "iconSrc": "skill/sect/102102"
-    },
-    {
-      "id": "GEM0036",
-      "name": "盘旋·一",
-      "type": "辅助宝石",
-      "desc": "辅助有环绕标签的技能，被辅助技能的环绕子弹速度提高30%",
-      "effects": [
-        {
-          "refId": "10132"
-        }
-      ],
-      "rank": "3",
-      "sourceId": "102001",
-      "isNew": true,
-      "source": "sync",
-      "icon": "baoshi/102101",
-      "iconSrc": "skill/sect/102101"
-    },
-    {
-      "id": "GEM0037",
-      "name": "盘旋·二",
-      "type": "辅助宝石",
-      "desc": "辅助有环绕标签的技能，被辅助技能的环绕子弹速度提高50%",
-      "effects": [
-        {
-          "refId": "10132"
-        }
-      ],
-      "rank": "5",
-      "sourceId": "102002",
-      "isNew": true,
-      "source": "sync",
-      "icon": "baoshi/102102",
-      "iconSrc": "skill/sect/102102"
-    },
-    {
-      "id": "GEM0038",
-      "name": "弹速·一",
-      "type": "辅助宝石",
-      "desc": "辅助有投射物标签的技能，使其生成的投射物飞行速度额外加快20%",
-      "effects": [
-        {
-          "refId": "10147"
-        }
-      ],
-      "rank": "1",
-      "sourceId": "102101",
-      "isNew": true,
-      "source": "sync",
-      "icon": "baoshi/102101",
-      "iconSrc": "skill/sect/102101"
-    },
-    {
-      "id": "GEM0039",
-      "name": "弹速·二",
-      "type": "辅助宝石",
-      "desc": "辅助有投射物标签的技能，使其生成的投射物飞行速度额外加快40%",
-      "effects": [
-        {
-          "refId": "10147"
-        }
-      ],
-      "rank": "3",
-      "sourceId": "102102",
-      "isNew": true,
-      "source": "sync",
-      "icon": "baoshi/102102",
-      "iconSrc": "skill/sect/102102"
-    },
-    {
-      "id": "GEM0040",
-      "name": "弹速·三",
-      "type": "辅助宝石",
-      "desc": "辅助有投射物标签的技能，使其生成的投射物飞行速度额外加快40%。投射物伤害增加25%",
-      "effects": [
-        {
-          "refId": "10147"
-        },
-        {
-          "refId": "10064"
-        }
-      ],
-      "rank": "5",
-      "sourceId": "102103",
-      "isNew": true,
-      "source": "sync",
-      "icon": "baoshi/102103",
-      "iconSrc": "skill/sect/102103"
-    },
-    {
-      "id": "GEM0041",
+      "id": "GEM0023",
       "name": "冻核",
       "type": "辅助宝石",
       "desc": "被辅助技能冻结敌人时，在被冻结者脚底生成一片冰冷地面",
@@ -9324,92 +9172,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "iconSrc": "skill/sect/102101"
     },
     {
-      "id": "GEM0042",
-      "name": "快施·一",
-      "type": "辅助宝石",
-      "desc": "辅助有法术标签的技能，法术释放速度提高15%",
-      "effects": [
-        {
-          "refId": "10050"
-        }
-      ],
-      "rank": "1",
-      "sourceId": "102301",
-      "isNew": true,
-      "source": "sync",
-      "icon": "baoshi/101301",
-      "iconSrc": "skill/sect/101301"
-    },
-    {
-      "id": "GEM0043",
-      "name": "快施·二",
-      "type": "辅助宝石",
-      "desc": "辅助有法术标签的技能，法术施放速度提高25%",
-      "effects": [
-        {
-          "refId": "10050"
-        }
-      ],
-      "rank": "4",
-      "sourceId": "102302",
-      "isNew": true,
-      "source": "sync",
-      "icon": "baoshi/101302",
-      "iconSrc": "skill/sect/101302"
-    },
-    {
-      "id": "GEM0044",
-      "name": "暴击",
-      "type": "辅助宝石",
-      "desc": "辅助法术技能，技能携带该辅助宝石时，当你对敌人造成暴击时会获得20点能量，达到100点能量后触发镶嵌的法术；被辅助的技能无法主动释放",
-      "effects": [
-        {
-          "refId": "10244"
-        }
-      ],
-      "rank": "999",
-      "sourceId": "102401",
-      "isNew": true,
-      "source": "sync",
-      "icon": "baoshi/102101",
-      "iconSrc": "skill/sect/102101"
-    },
-    {
-      "id": "GEM0045",
-      "name": "移动",
-      "type": "辅助宝石",
-      "desc": "辅助法术技能，技能携带该辅助宝石时，当你移动一定距离后会获得20点能量，达到100点能量后触发镶嵌的法术；被辅助的技能无法主动释放",
-      "effects": [
-        {
-          "refId": "10245"
-        }
-      ],
-      "rank": "999",
-      "sourceId": "102402",
-      "isNew": true,
-      "source": "sync",
-      "icon": "baoshi/102102",
-      "iconSrc": "skill/sect/102102"
-    },
-    {
-      "id": "GEM0046",
-      "name": "格挡",
-      "type": "辅助宝石",
-      "desc": "辅助法术技能，技能携带该辅助宝石时，当你格挡时会获得20点能量，达到100点能量后触发镶嵌的法术；被辅助的技能无法主动释放",
-      "effects": [
-        {
-          "refId": "10246"
-        }
-      ],
-      "rank": "999",
-      "sourceId": "102403",
-      "isNew": true,
-      "source": "sync",
-      "icon": "baoshi/102103",
-      "iconSrc": "skill/sect/102103"
-    },
-    {
-      "id": "GEM0047",
+      "id": "GEM0024",
       "name": "流血·一",
       "type": "辅助宝石",
       "desc": "被辅助的技能，流血几率增加20%",
@@ -9426,24 +9189,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "iconSrc": "skill/sect/102101"
     },
     {
-      "id": "GEM0048",
-      "name": "流血·二",
-      "type": "辅助宝石",
-      "desc": "被辅助的技能，流血几率增加35%",
-      "effects": [
-        {
-          "refId": "[[11054,0.35]]"
-        }
-      ],
-      "rank": "5",
-      "sourceId": "102502",
-      "isNew": true,
-      "source": "sync",
-      "icon": "baoshi/102102",
-      "iconSrc": "skill/sect/102102"
-    },
-    {
-      "id": "GEM0049",
+      "id": "GEM0025",
       "name": "点燃·一",
       "type": "辅助宝石",
       "desc": "被辅助的技能，点燃几率增加20%",
@@ -9460,24 +9206,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "iconSrc": "skill/sect/102101"
     },
     {
-      "id": "GEM0050",
-      "name": "点燃·二",
-      "type": "辅助宝石",
-      "desc": "被辅助的技能，点燃几率增加35%",
-      "effects": [
-        {
-          "refId": "[[11006,0.35]]"
-        }
-      ],
-      "rank": "5",
-      "sourceId": "102602",
-      "isNew": true,
-      "source": "sync",
-      "icon": "baoshi/102102",
-      "iconSrc": "skill/sect/102102"
-    },
-    {
-      "id": "GEM0051",
+      "id": "GEM0026",
       "name": "感电·一",
       "type": "辅助宝石",
       "desc": "被辅助的技能，感电几率增加20%",
@@ -9494,41 +9223,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "iconSrc": "skill/sect/102101"
     },
     {
-      "id": "GEM0052",
-      "name": "感电·二",
-      "type": "辅助宝石",
-      "desc": "被辅助的技能，感电几率增加35%",
-      "effects": [
-        {
-          "refId": "[[11009,0.35]]"
-        }
-      ],
-      "rank": "5",
-      "sourceId": "102702",
-      "isNew": true,
-      "source": "sync",
-      "icon": "baoshi/102102",
-      "iconSrc": "skill/sect/102102"
-    },
-    {
-      "id": "GEM0053",
-      "name": "元素脉冲",
-      "type": "辅助宝石",
-      "desc": "被辅助的攻击技能，在攻击命中后，随机造成50%元素伤害倍率的附加伤害",
-      "effects": [
-        {
-          "refId": "2140000190"
-        }
-      ],
-      "rank": "1",
-      "sourceId": "102801",
-      "isNew": true,
-      "source": "sync",
-      "icon": "baoshi/102204",
-      "iconSrc": "skill/sect/102204"
-    },
-    {
-      "id": "GEM0054",
+      "id": "GEM0027",
       "name": "物理穿透",
       "type": "辅助宝石",
       "desc": "被辅助的技能物理穿透提高25%",
@@ -9545,7 +9240,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "iconSrc": "skill/sect/102102"
     },
     {
-      "id": "GEM0055",
+      "id": "GEM0028",
       "name": "火焰穿透",
       "type": "辅助宝石",
       "desc": "被辅助的技能火焰穿透提高25%",
@@ -9562,7 +9257,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "iconSrc": "skill/sect/102102"
     },
     {
-      "id": "GEM0056",
+      "id": "GEM0029",
       "name": "冰冷穿透",
       "type": "辅助宝石",
       "desc": "被辅助的技能冰冷穿透提高25%",
@@ -9579,7 +9274,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "iconSrc": "skill/sect/102102"
     },
     {
-      "id": "GEM0057",
+      "id": "GEM0030",
       "name": "闪电穿透",
       "type": "辅助宝石",
       "desc": "被辅助的技能闪电穿透提高25%",
@@ -9596,7 +9291,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "iconSrc": "skill/sect/102102"
     },
     {
-      "id": "GEM0058",
+      "id": "GEM0031",
       "name": "混沌穿透",
       "type": "辅助宝石",
       "desc": "被辅助的技能混沌穿透提高25%",
@@ -9613,7 +9308,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "iconSrc": "skill/sect/102102"
     },
     {
-      "id": "GEM0059",
+      "id": "GEM0032",
       "name": "精准",
       "type": "辅助宝石",
       "desc": "被辅助的技能暴击率额外提高80%，暴击伤害额外降低30%",
@@ -9633,7 +9328,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "iconSrc": "skill/sect/102102"
     },
     {
-      "id": "GEM0060",
+      "id": "GEM0033",
       "name": "绝杀",
       "type": "辅助宝石",
       "desc": "被辅助的技能暴击伤害额外提高60%，暴击率额外降低40%",
@@ -9653,44 +9348,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "iconSrc": "skill/sect/102102"
     },
     {
-      "id": "GEM0061",
-      "name": "暴击转化",
-      "type": "辅助宝石",
-      "desc": "被辅助的技能无法再造成暴击，法术伤害额外提高100%",
-      "effects": [
-        {
-          "refId": "10266"
-        },
-        {
-          "refId": "10135"
-        }
-      ],
-      "rank": "3",
-      "sourceId": "103601",
-      "isNew": true,
-      "source": "sync",
-      "icon": "baoshi/102102",
-      "iconSrc": "skill/sect/102102"
-    },
-    {
-      "id": "GEM0062",
-      "name": "炽烈",
-      "type": "辅助宝石",
-      "desc": "被辅助的技能造成暴击时，获得15%的额外火焰伤害，持续6秒",
-      "effects": [
-        {
-          "refId": "10269"
-        }
-      ],
-      "rank": "4",
-      "sourceId": "103701",
-      "isNew": true,
-      "source": "sync",
-      "icon": "baoshi/102102",
-      "iconSrc": "skill/sect/102102"
-    },
-    {
-      "id": "GEM0063",
+      "id": "GEM0034",
       "name": "狩猎",
       "type": "辅助宝石",
       "desc": "被辅助的技能对满血敌人的暴击率额外提高80%",
@@ -9707,7 +9365,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "iconSrc": "skill/sect/102102"
     },
     {
-      "id": "GEM0064",
+      "id": "GEM0035",
       "name": "弱点观察",
       "type": "辅助宝石",
       "desc": "被辅助的技能对冻结敌人的暴击率额外提高40%",
@@ -9724,21 +9382,529 @@ window.__AUTO_IMPORT_DATA__ = {
       "iconSrc": "skill/sect/102102"
     },
     {
-      "id": "GEM0065",
-      "name": "冰冷冲击",
+      "id": "GEM0036",
+      "name": "快攻·二",
       "type": "辅助宝石",
-      "desc": "被辅助的攻击技能，在造成冻结时有20%概率产生一次100%冰冷伤害倍率的冲击波，冲击波无法造成冻结",
+      "desc": "辅助有攻击标签的技能，攻击速度提高25%",
       "effects": [
         {
-          "refId": "3140000070"
+          "refId": "10031"
         }
       ],
-      "rank": "1",
-      "sourceId": "104001",
+      "rank": "3",
+      "sourceId": "100302",
+      "isNew": true,
+      "source": "sync",
+      "icon": "baoshi/101302",
+      "iconSrc": "skill/sect/101302"
+    },
+    {
+      "id": "GEM0037",
+      "name": "多重",
+      "type": "辅助宝石",
+      "desc": "辅助有触发标签的技能，使其伤害总降20%，重复使用技能3次，不能对同一目标使用",
+      "effects": [
+        {
+          "refId": "10036"
+        }
+      ],
+      "rank": "3",
+      "sourceId": "100801",
+      "isNew": true,
+      "source": "sync",
+      "icon": "baoshi/102204",
+      "iconSrc": "skill/sect/102204"
+    },
+    {
+      "id": "GEM0038",
+      "name": "冻久·二",
+      "type": "辅助宝石",
+      "desc": "被冰冻敌人的冻结时间额外提高50%",
+      "effects": [
+        {
+          "refId": "10041"
+        }
+      ],
+      "rank": "3",
+      "sourceId": "101002",
+      "isNew": true,
+      "source": "sync",
+      "icon": "baoshi/102204",
+      "iconSrc": "skill/sect/102204"
+    },
+    {
+      "id": "GEM0039",
+      "name": "包围·一",
+      "type": "辅助宝石",
+      "desc": "辅助有环绕标签的技能，环绕子弹数量+1，造成的伤害额外降低30%",
+      "effects": [
+        {
+          "refId": "10131"
+        },
+        {
+          "refId": "10146"
+        }
+      ],
+      "rank": "3",
+      "sourceId": "101901",
+      "isNew": true,
+      "source": "sync",
+      "icon": "baoshi/102101",
+      "iconSrc": "skill/sect/102101"
+    },
+    {
+      "id": "GEM0040",
+      "name": "盘旋·一",
+      "type": "辅助宝石",
+      "desc": "辅助有环绕标签的技能，被辅助技能的环绕子弹速度提高30%",
+      "effects": [
+        {
+          "refId": "10132"
+        }
+      ],
+      "rank": "3",
+      "sourceId": "102001",
+      "isNew": true,
+      "source": "sync",
+      "icon": "baoshi/102101",
+      "iconSrc": "skill/sect/102101"
+    },
+    {
+      "id": "GEM0041",
+      "name": "弹速·二",
+      "type": "辅助宝石",
+      "desc": "辅助有投射物标签的技能，使其生成的投射物飞行速度额外加快40%",
+      "effects": [
+        {
+          "refId": "10147"
+        }
+      ],
+      "rank": "3",
+      "sourceId": "102102",
       "isNew": true,
       "source": "sync",
       "icon": "baoshi/102102",
       "iconSrc": "skill/sect/102102"
+    },
+    {
+      "id": "GEM0042",
+      "name": "暴击转化",
+      "type": "辅助宝石",
+      "desc": "被辅助的技能无法再造成暴击，法术伤害额外提高60%",
+      "effects": [
+        {
+          "refId": "10266"
+        },
+        {
+          "refId": "10135"
+        }
+      ],
+      "rank": "3",
+      "sourceId": "103601",
+      "isNew": true,
+      "source": "sync",
+      "icon": "baoshi/102102",
+      "iconSrc": "skill/sect/102102"
+    },
+    {
+      "id": "GEM0043",
+      "name": "大范围·二",
+      "type": "辅助宝石",
+      "desc": "辅助有范围标签的技能，范围效果扩大50%",
+      "effects": [
+        {
+          "refId": "10032"
+        }
+      ],
+      "rank": "4",
+      "sourceId": "100102",
+      "isNew": true,
+      "source": "sync",
+      "icon": "baoshi/101102",
+      "iconSrc": "skill/sect/101102"
+    },
+    {
+      "id": "GEM0044",
+      "name": "加弹·二",
+      "type": "辅助宝石",
+      "desc": "辅助有投射物标签的技能，使其生成的投射物数量+2，造成的伤害额外降低30%",
+      "effects": [
+        {
+          "refId": "10038"
+        },
+        {
+          "refId": "10146"
+        }
+      ],
+      "rank": "4",
+      "sourceId": "100202",
+      "isNew": true,
+      "source": "sync",
+      "icon": "baoshi/101201",
+      "iconSrc": "skill/sect/101201"
+    },
+    {
+      "id": "GEM0045",
+      "name": "集中·二",
+      "type": "辅助宝石",
+      "desc": "辅助有范围标签的技能，使其范围总降50%，伤害额外提高30%",
+      "effects": [
+        {
+          "refId": "10037"
+        }
+      ],
+      "rank": "4",
+      "sourceId": "100402",
+      "isNew": true,
+      "source": "sync",
+      "icon": "baoshi/102102",
+      "iconSrc": "skill/sect/102102"
+    },
+    {
+      "id": "GEM0046",
+      "name": "加时·二",
+      "type": "辅助宝石",
+      "desc": "辅助有持续性技能标签的技能，使其持续时间提高30%",
+      "effects": [
+        {
+          "refId": "10034"
+        }
+      ],
+      "rank": "4",
+      "sourceId": "100602",
+      "isNew": true,
+      "source": "sync",
+      "icon": "baoshi/102201",
+      "iconSrc": "skill/sect/102201"
+    },
+    {
+      "id": "GEM0047",
+      "name": "元素·二",
+      "type": "辅助宝石",
+      "desc": "元素伤害额外提高25%",
+      "effects": [
+        {
+          "refId": "10042"
+        }
+      ],
+      "rank": "4",
+      "sourceId": "101102",
+      "isNew": true,
+      "source": "sync",
+      "icon": "baoshi/102204",
+      "iconSrc": "skill/sect/102204"
+    },
+    {
+      "id": "GEM0048",
+      "name": "重击·二",
+      "type": "辅助宝石",
+      "desc": "攻击速度降低10%，近战物理伤害额外提高40%",
+      "effects": [
+        {
+          "refId": "10047"
+        }
+      ],
+      "rank": "4",
+      "sourceId": "101502",
+      "isNew": true,
+      "source": "sync",
+      "icon": "baoshi/102102",
+      "iconSrc": "skill/sect/102102"
+    },
+    {
+      "id": "GEM0049",
+      "name": "毒化·二",
+      "type": "辅助宝石",
+      "desc": "被辅助技能，混沌伤害额外提高20% ，中毒几率增加40%",
+      "effects": [
+        {
+          "refId": "10128"
+        },
+        {
+          "refId": "10051"
+        }
+      ],
+      "rank": "4",
+      "sourceId": "101802",
+      "isNew": true,
+      "source": "sync",
+      "icon": "baoshi/102102",
+      "iconSrc": "skill/sect/102102"
+    },
+    {
+      "id": "GEM0050",
+      "name": "快施·二",
+      "type": "辅助宝石",
+      "desc": "辅助有法术标签的技能，法术施放速度提高25%",
+      "effects": [
+        {
+          "refId": "10050"
+        }
+      ],
+      "rank": "4",
+      "sourceId": "102302",
+      "isNew": true,
+      "source": "sync",
+      "icon": "baoshi/101302",
+      "iconSrc": "skill/sect/101302"
+    },
+    {
+      "id": "GEM0051",
+      "name": "炽烈",
+      "type": "辅助宝石",
+      "desc": "被辅助的技能造成暴击时，获得15%的额外火焰伤害，持续6秒",
+      "effects": [
+        {
+          "refId": "10269"
+        }
+      ],
+      "rank": "4",
+      "sourceId": "103701",
+      "isNew": true,
+      "source": "sync",
+      "icon": "baoshi/102102",
+      "iconSrc": "skill/sect/102102"
+    },
+    {
+      "id": "GEM0052",
+      "name": "新星",
+      "type": "辅助宝石",
+      "desc": "投射物数量+5，投射物变更为环形发射，投射物伤害总降50%",
+      "effects": [
+        {
+          "refId": "10043"
+        }
+      ],
+      "rank": "5",
+      "sourceId": "100204",
+      "isNew": true,
+      "source": "sync",
+      "icon": "baoshi/101201",
+      "iconSrc": "skill/sect/101201"
+    },
+    {
+      "id": "GEM0053",
+      "name": "冰冻·二",
+      "type": "辅助宝石",
+      "desc": "辅助有冰霜标签的技能，使其冻结的积蓄值额外提高50%",
+      "effects": [
+        {
+          "refId": "10033"
+        }
+      ],
+      "rank": "5",
+      "sourceId": "100502",
+      "isNew": true,
+      "source": "sync",
+      "icon": "baoshi/102104",
+      "iconSrc": "skill/sect/102104"
+    },
+    {
+      "id": "GEM0054",
+      "name": "减冷·二",
+      "type": "辅助宝石",
+      "desc": "辅助技能，使其冷却回复率增加25%",
+      "effects": [
+        {
+          "refId": "10106"
+        }
+      ],
+      "rank": "5",
+      "sourceId": "100702",
+      "isNew": true,
+      "source": "sync",
+      "icon": "baoshi/102203",
+      "iconSrc": "skill/sect/102203"
+    },
+    {
+      "id": "GEM0055",
+      "name": "迎寒·二",
+      "type": "辅助宝石",
+      "desc": "被辅助技能冻结敌人时，获得30%的额外冰冷伤害，持续6秒",
+      "effects": [
+        {
+          "refId": "10048"
+        }
+      ],
+      "rank": "5",
+      "sourceId": "101602",
+      "isNew": true,
+      "source": "sync",
+      "icon": "baoshi/102102",
+      "iconSrc": "skill/sect/102102"
+    },
+    {
+      "id": "GEM0056",
+      "name": "猛毒·二",
+      "type": "辅助宝石",
+      "desc": "被辅助技能，击中中毒目标时，每层中毒效果伤害额外提高6%，上限5层",
+      "effects": [
+        {
+          "refId": "3140000040"
+        }
+      ],
+      "rank": "5",
+      "sourceId": "101702",
+      "isNew": true,
+      "source": "sync",
+      "icon": "baoshi/102102",
+      "iconSrc": "skill/sect/102102"
+    },
+    {
+      "id": "GEM0057",
+      "name": "包围·二",
+      "type": "辅助宝石",
+      "desc": "辅助有环绕标签的技能，环绕子弹数量+1",
+      "effects": [
+        {
+          "refId": "10131"
+        }
+      ],
+      "rank": "5",
+      "sourceId": "101902",
+      "isNew": true,
+      "source": "sync",
+      "icon": "baoshi/102102",
+      "iconSrc": "skill/sect/102102"
+    },
+    {
+      "id": "GEM0058",
+      "name": "盘旋·二",
+      "type": "辅助宝石",
+      "desc": "辅助有环绕标签的技能，被辅助技能的环绕子弹速度提高50%",
+      "effects": [
+        {
+          "refId": "10132"
+        }
+      ],
+      "rank": "5",
+      "sourceId": "102002",
+      "isNew": true,
+      "source": "sync",
+      "icon": "baoshi/102102",
+      "iconSrc": "skill/sect/102102"
+    },
+    {
+      "id": "GEM0059",
+      "name": "弹速·三",
+      "type": "辅助宝石",
+      "desc": "辅助有投射物标签的技能，使其生成的投射物飞行速度额外加快40%。投射物伤害增加25%",
+      "effects": [
+        {
+          "refId": "10147"
+        },
+        {
+          "refId": "10064"
+        }
+      ],
+      "rank": "5",
+      "sourceId": "102103",
+      "isNew": true,
+      "source": "sync",
+      "icon": "baoshi/102103",
+      "iconSrc": "skill/sect/102103"
+    },
+    {
+      "id": "GEM0060",
+      "name": "流血·二",
+      "type": "辅助宝石",
+      "desc": "被辅助的技能，流血几率增加35%",
+      "effects": [
+        {
+          "refId": "[[11054,0.35]]"
+        }
+      ],
+      "rank": "5",
+      "sourceId": "102502",
+      "isNew": true,
+      "source": "sync",
+      "icon": "baoshi/102102",
+      "iconSrc": "skill/sect/102102"
+    },
+    {
+      "id": "GEM0061",
+      "name": "点燃·二",
+      "type": "辅助宝石",
+      "desc": "被辅助的技能，点燃几率增加35%",
+      "effects": [
+        {
+          "refId": "[[11006,0.35]]"
+        }
+      ],
+      "rank": "5",
+      "sourceId": "102602",
+      "isNew": true,
+      "source": "sync",
+      "icon": "baoshi/102102",
+      "iconSrc": "skill/sect/102102"
+    },
+    {
+      "id": "GEM0062",
+      "name": "感电·二",
+      "type": "辅助宝石",
+      "desc": "被辅助的技能，感电几率增加35%",
+      "effects": [
+        {
+          "refId": "[[11009,0.35]]"
+        }
+      ],
+      "rank": "5",
+      "sourceId": "102702",
+      "isNew": true,
+      "source": "sync",
+      "icon": "baoshi/102102",
+      "iconSrc": "skill/sect/102102"
+    },
+    {
+      "id": "GEM0063",
+      "name": "暴击",
+      "type": "辅助宝石",
+      "desc": "辅助法术技能，技能携带该辅助宝石时，当你对敌人造成暴击时会获得20点能量，达到100点能量后触发镶嵌的法术；被辅助的技能无法主动释放",
+      "effects": [
+        {
+          "refId": "10244"
+        }
+      ],
+      "rank": "999",
+      "sourceId": "102401",
+      "isNew": true,
+      "source": "sync",
+      "icon": "baoshi/102101",
+      "iconSrc": "skill/sect/102101"
+    },
+    {
+      "id": "GEM0064",
+      "name": "移动",
+      "type": "辅助宝石",
+      "desc": "辅助法术技能，技能携带该辅助宝石时，当你移动一定距离后会获得20点能量，达到100点能量后触发镶嵌的法术；被辅助的技能无法主动释放",
+      "effects": [
+        {
+          "refId": "10245"
+        }
+      ],
+      "rank": "999",
+      "sourceId": "102402",
+      "isNew": true,
+      "source": "sync",
+      "icon": "baoshi/102102",
+      "iconSrc": "skill/sect/102102"
+    },
+    {
+      "id": "GEM0065",
+      "name": "格挡",
+      "type": "辅助宝石",
+      "desc": "辅助法术技能，技能携带该辅助宝石时，当你格挡时会获得20点能量，达到100点能量后触发镶嵌的法术；被辅助的技能无法主动释放",
+      "effects": [
+        {
+          "refId": "10246"
+        }
+      ],
+      "rank": "999",
+      "sourceId": "102403",
+      "isNew": true,
+      "source": "sync",
+      "icon": "baoshi/102103",
+      "iconSrc": "skill/sect/102103"
     }
   ],
   "skills": [
@@ -9958,7 +10124,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "火球术",
       "type": "主动技能",
-      "desc": "扔出一枚火球，碰到敌人时产生135%火焰伤害。\n火球的数量无法修改\n爆炸时尽量消耗一层毁灭注能，生成更加强大的爆炸，造成216%火焰伤害，并且在爆炸位置生成火焰地面，并在爆炸时产生8发小型火球，小型火球造成45%火焰伤害\n爆炸每4秒只会被强化一次",
+      "desc": "扔出一枚火球，碰到敌人时产生135%火焰伤害。\n火球的数量上限为3\n爆炸时尽量消耗一层毁灭注能，生成更加强大的爆炸，造成216%火焰伤害，并且在爆炸位置生成火焰地面，并在爆炸时产生8发小型火球，小型火球造成45%火焰伤害\n散射火球术的数量无法被修改\n爆炸每4秒只会被强化一次",
       "sourceId": "1120000080",
       "tags": {
         "main": "法术",
@@ -10039,7 +10205,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "拔刀斩",
       "type": "主动技能",
-      "desc": "对前方大范围内的敌人造成伤害，造成33.8%物理伤害和135.2%冰冷伤害\n冻结积蓄额外增加160%",
+      "desc": "对前方大范围内的敌人造成伤害，造成33.8%物理伤害和135.2%冰冷伤害\n冻结效果提高100%",
       "sourceId": "1110000020",
       "tags": {
         "main": "攻击",
@@ -10094,7 +10260,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "回旋龙卷",
       "type": "主动技能",
-      "desc": "在身边召唤3个围绕自身盘旋的龙卷旋风，对碰到的敌人造成108%物理伤害。",
+      "desc": "在身边召唤3个围绕自身盘旋的龙卷旋风，对碰撞到的敌人造成108%物理伤害。",
       "sourceId": "1120000050",
       "tags": {
         "main": "法术",
@@ -10148,7 +10314,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "月神赐福",
       "type": "主动技能",
-      "desc": "获得相当于伤害10%的冰冷伤害。\n每次使用寒刃技能攻击敌人时会召唤4发剑影，击中敌人时产生造成100%冰冷伤害，持续8秒\n1发剑影最多攻击5名敌人",
+      "desc": "进入月神赐福状态，使用冰冷近战技能击中敌人时会对目标敌人召唤1发剑影，造成67.5%冰冷伤害，月神赐福状态持续8秒\n1发剑影最多攻击5名敌人\n对冻结敌人伤害额外提高100%",
       "sourceId": "1140000010",
       "tags": {
         "main": "攻击",
@@ -10165,8 +10331,8 @@ window.__AUTO_IMPORT_DATA__ = {
         }
       ],
       "skillCd": 20000,
-      "recourceType": 2,
-      "recourceConsume": 1,
+      "recourceType": null,
+      "recourceConsume": null,
       "isNew": true,
       "source": "sync"
     },
@@ -10198,7 +10364,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "极地战吼",
       "type": "主动技能",
-      "desc": "发出极地战吼，对周围5米范围内的敌人造成91%冰冷伤害，冰冻积蓄值额外增加80%\n每击中一名敌人使伤害额外提高1%%，最多累积6次，持续6秒",
+      "desc": "发出极地战吼，对周围5米范围内的敌人造成91%冰冷伤害，冰冻效果额外提高80%\n每击中一名敌人使伤害额外提高1%%，最多累积6次，持续6秒",
       "sourceId": "1140000020",
       "tags": {
         "main": "法术",
@@ -10614,11 +10780,14 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "混沌剑阵",
       "type": "主动技能",
-      "desc": "随后隐入剑影中，对周围的敌人进行连斩，造成六段48%混沌伤害",
+      "desc": "随后隐入剑影中，对周围的敌人进行连斩，造成六段48%混沌伤害，混沌剑气的每次击中减少当前冷却的10%",
       "sourceId": "1110000100",
       "tags": {
         "main": "攻击",
-        "normal": []
+        "normal": [
+          "近战",
+          "混沌"
+        ]
       },
       "icon": "skill/gongji/hundunjianzhen",
       "effects": [
@@ -10761,7 +10930,7 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "id": "1008004",
           "name": "刺骨寒意",
-          "desc": "第一个技能的冻结积蓄值额外提高100%，冰冷伤害额外提高20%",
+          "desc": "第一个技能的冻结积蓄值额外提高40%，冰冷伤害额外提高20%",
           "occupation": 3,
           "viewPos": {
             "x": 100,
@@ -10774,8 +10943,8 @@ window.__AUTO_IMPORT_DATA__ = {
         },
         {
           "id": "1008006",
-          "name": "冷场",
-          "desc": "你造成的冰缓强度提高50%，冻结的持续时间提高50%",
+          "name": "冰寒之体",
+          "desc": "你的冰冷抗性基础值等同于当前闪电抗性和火焰抗性中最低的那一项(抗性基础值为-25%)",
           "occupation": 3,
           "viewPos": {
             "x": 300,
@@ -10816,7 +10985,7 @@ window.__AUTO_IMPORT_DATA__ = {
         },
         {
           "id": "1008012",
-          "name": "双重人格",
+          "name": "战术",
           "desc": "对满血敌人的暴击率提高100%，对低血敌人的暴击伤害提高100%",
           "occupation": 3,
           "viewPos": {
@@ -10830,8 +10999,8 @@ window.__AUTO_IMPORT_DATA__ = {
         },
         {
           "id": "1008014",
-          "name": "蓄力",
-          "desc": "暴击时忽略敌人的元素抗性",
+          "name": "明目",
+          "desc": "每层洞察注能可以使效果范围提高8%，攻击伤害额外提高6%，洞察注能层数上限+1",
           "occupation": 3,
           "viewPos": {
             "x": -300,
@@ -10893,8 +11062,8 @@ window.__AUTO_IMPORT_DATA__ = {
         },
         {
           "id": "1007008",
-          "name": "强效施法",
-          "desc": "使用强化技能时，有50%的概率不消耗额外资源即可触发最低限度的强化效果",
+          "name": "术法掌握",
+          "desc": "技能的强化效果的冷却时间额外降低50%",
           "occupation": 4,
           "viewPos": {
             "x": -300,
@@ -10935,8 +11104,8 @@ window.__AUTO_IMPORT_DATA__ = {
         },
         {
           "id": "1007014",
-          "name": "掌握",
-          "desc": "技能的强化效果的冷却时间额外降低50%",
+          "name": "深度聚集",
+          "desc": "每拥有一种不同种类的注能，法术伤害额外提高10%，魔力回复率提高20%",
           "occupation": 4,
           "viewPos": {
             "x": 225,
@@ -11132,7 +11301,7 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "id": "1005012",
           "name": "余响复诵",
-          "desc": "可“回响”的技能有20%产生回响",
+          "desc": "对中毒目标获得额外12%的元素伤害",
           "occupation": 6,
           "viewPos": {
             "x": -260,
@@ -11327,8 +11496,8 @@ window.__AUTO_IMPORT_DATA__ = {
       "file": "火球术.mp4"
     },
     {
-      "name": "移形换影",
-      "file": "移形换影.mp4"
+      "name": "移形换影mp4",
+      "file": "移形换影mp4.mp4"
     }
   ],
   "pets": [
@@ -14714,5 +14883,5 @@ window.__AUTO_IMPORT_DATA__ = {
     }
   ],
   "skillDisplayLevel": 1,
-  "importTime": "2026-09-22T11:43:07.019Z"
+  "importTime": "2026-09-29T07:40:29.120Z"
 };
