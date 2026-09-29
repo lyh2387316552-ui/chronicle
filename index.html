@@ -8,7 +8,7 @@
     <meta http-equiv="Expires" content="0">
     <title>古荒大陆编年史</title>
     <link rel="icon" type="image/webp" href="assets/logo.webp">
-    <link rel="stylesheet" href="css/style.css?v=101">
+    <link rel="stylesheet" href="css/style.css?v=102">
 </head>
 <body>
     <div class="background-image"></div>
@@ -668,10 +668,24 @@
             <div class="page" id="page-occupations">
                 <div class="page-header">
                     <h2 class="page-title">⚜️ 职业天赋</h2>
-                    <p class="page-desc">职业专精天赋树 · 共 <span id="occupationTotalCount">0</span> 个职业</p>
+                    <p class="page-desc">通用天赋六大天赋盘 · 职业专精天赋 · 共 <span id="occupationTotalCount">0</span> 个职业</p>
                 </div>
-                <div class="occupation-tabs" id="occupationTabs"></div>
-                <div class="occupation-canvas-area" id="occupationCanvasArea"></div>
+
+                <!-- 通用天赋: 六大天赋盘 (TalentGrid 子表) -->
+                <div class="talent-grid-section" id="talentGridSection">
+                    <div class="talent-section-head">
+                        <h3 class="talent-section-title">通用天赋 · 六大天赋盘</h3>
+                        <p class="talent-section-sub">每个盘内含 基础天赋 / 进阶天赋 / 核心天赋 三档，共 <span id="talentGridPointCount">0</span> 个天赋节点</p>
+                    </div>
+                    <div class="talent-grid-tabs" id="talentGridTabs"></div>
+                    <div class="talent-grid-area" id="talentGridArea"></div>
+                </div>
+
+                <div class="occupation-section">
+                    <h3 class="talent-section-title">职业专精天赋</h3>
+                    <div class="occupation-tabs" id="occupationTabs"></div>
+                    <div class="occupation-canvas-area" id="occupationCanvasArea"></div>
+                </div>
             </div>
 
             <!-- Pets Page -->
@@ -706,8 +720,8 @@
     </div>
 
     <!-- 注: xlsx.min.js 仅 tools/import.js (Node 端) 需要, 浏览器端不再加载 (约 880KB) -->
-    <script src="js/auto-import-data.js?v=26" onerror="console.error('⚠️ auto-import-data.js 加载失败！请先运行一键导入生成数据文件。')"></script>
-    <script src="js/data.js?v=18"></script>
-    <script src="js/app.js?v=88"></script>
+    <script src="js/auto-import-data.js?v=27" onerror="console.error('⚠️ auto-import-data.js 加载失败！请先运行一键导入生成数据文件。')"></script>
+    <script src="js/data.js?v=19"></script>
+    <script src="js/app.js?v=89"></script>
 </body>
 </html>

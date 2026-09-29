@@ -400,6 +400,15 @@ let customSkillData = [];
 let occupationData = [];
 
 // ============================================================
+// 通用天赋盘数据 (SkillPassive 子表 + TalentGrid 子表) - 仅由一键导入填充
+// 结构: [{ id, gridId, name, desc, icon, iconSrc, advanceRequireBasePoint,
+//          coreRequireAdvancePoint, coreTalentLimit, total, baseCount, advanceCount, coreCount,
+//          points: [{ id, name, desc, size, tier, tierIndex, icon, iconSrc, maxLv, attr, affix, stunt }] }]
+// 六个盘, 盘内按 size 分档: 1 基础天赋 / 2 进阶天赋 / 3 核心天赋
+// ============================================================
+let talentGridData = [];
+
+// ============================================================
 // 视频库数据 - 视频资源清单
 // 结构: [{ name, file }]  name=技能名称(去除扩展名), file=视频文件名
 // 来源优先级: 一键导入生成的 auto-import-data.js (videos 字段) > 内置默认清单
@@ -595,6 +604,16 @@ function findRefData(refId) {
             console.log('  ✓ 职业天赋:', occupationData.length, '个职业,', totalPoints, '个天赋点');
         }
     } catch(e) { console.error('  ❌ 职业天赋加载失败:', e); }
+
+    // 通用天赋盘 (talentGrids 字段: import.js 解析 TalentGrid 子表 + occupation=0 的天赋点生成)
+    try {
+        if (data.talentGrids && data.talentGrids.length > 0) {
+            talentGridData.length = 0;
+            talentGridData.push(...data.talentGrids);
+            const totalPoints = talentGridData.reduce((s, g) => s + (g.points || []).length, 0);
+            console.log('  ✓ 通用天赋:', talentGridData.length, '个天赋盘,', totalPoints, '个天赋节点');
+        }
+    } catch(e) { console.error('  ❌ 通用天赋加载失败:', e); }
 
     // 视频库 (videos 字段: import.js 扫描 videos/ 文件夹生成)
     try {

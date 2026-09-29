@@ -3298,7 +3298,192 @@ const occupationDescMap = {
     '塑能法杖': { weapon: '法杖', text: '火球、旋风、飞弹，皆听我号令。无需近身，漫天弹幕之下，你甚至看不清我的身影，便已倒下。' }
 };
 
+// ============================================================
+// 通用天赋系统 (TalentGrid 子表: 六个天赋盘)
+// 盘内按 size 分三档: 1 基础天赋 / 2 进阶天赋 / 3 核心天赋
+// ============================================================
+
+let currentTalentGridIdx = 0;
+
+// 三档分级样式: size → 名称 + 样式类
+const talentTierStyle = {
+    1: { name: '基础天赋', cls: 'tier-base' },
+    2: { name: '进阶天赋', cls: 'tier-advance' },
+    3: { name: '核心天赋', cls: 'tier-core' }
+};
+
+// 数值格式化: 整数不带符号, 小数按百分比显示
+function fmtTalentValue(v) {
+    if (v === null || v === undefined || v === '') return '';
+    const n = Number(v);
+    if (isNaN(n)) return String(v);
+    if (Number.isInteger(n) && Math.abs(n) >= 1) return String(n);
+    const pct = (n * 100).toFixed(2).replace(/\.?0+$/, '');
+    return pct + '%';
+}
+
+// 属性/词缀/被动 ID → 效果文本 (findRefData 跨库查询名称)
+function talentRefName(id) {
+    const ref = findRefData(String(id));
+    return ref ? (ref.name || ref.desc || '') : '';
+}
+
+function talentEffectLines(p) {
+    const out = [];
+    (p.attr || []).forEach(a => {
+        const nm = talentRefName(a.id);
+        const val = fmtTalentValue(a.value);
+        out.push((nm || ('属性 ' + a.id)) + (val ? ' ' + val : ''));
+    });
+    (p.affix || []).forEach(a => {
+        const nm = talentRefName(a.id);
+        const val = fmtTalentValue(a.value);
+        out.push((nm || ('词缀 ' + a.id)) + (val ? ' ' + val : ''));
+    });
+    (p.stunt || []).forEach(id => {
+        out.push(talentRefName(id) || ('被动 ' + id));
+    });
+    return out;
+}
+
+// 通用天赋盘入口: 渲染盘 Tab + 当前盘内容
+function renderTalentGrids() {
+    const section = document.getElementById('talentGridSection');
+    const tabsEl = document.getElementById('talentGridTabs');
+    const areaEl = document.getElementById('talentGridArea');
+    const countEl = document.getElementById('talentGridPointCount');
+    if (!section || !tabsEl || !areaEl) return;
+
+    if (!talentGridData || talentGridData.length === 0) {
+        section.style.display = 'none';
+        tabsEl.innerHTML = '';
+        areaEl.innerHTML = '';
+        return;
+    }
+    section.style.display = '';
+
+    if (currentTalentGridIdx < 0 || currentTalentGridIdx >= talentGridData.length) currentTalentGridIdx = 0;
+    if (countEl) countEl.textContent = talentGridData.reduce((s, g) => s + (g.points || []).length, 0);
+
+    tabsEl.innerHTML = talentGridData.map((g, idx) => {
+        const active = idx === currentTalentGridIdx ? 'active' : '';
+        const icon = g.iconSrc
+            ? `<img class="talent-grid-tab-icon" src="${DATA_BASE}icon/${g.iconSrc}.webp" alt="${g.name}" onerror="this.style.display='none'">`
+            : `<span class="talent-grid-tab-emoji">${g.icon || '🔶'}</span>`;
+        return `<button class="talent-grid-tab ${active}" onclick="switchTalentGrid(${idx})">${icon}<span class="talent-grid-tab-name">${g.name}</span></button>`;
+    }).join('');
+
+    renderTalentGridCanvas(currentTalentGridIdx);
+}
+
+function switchTalentGrid(idx) {
+    currentTalentGridIdx = idx;
+    document.querySelectorAll('.talent-grid-tab').forEach((t, i) => t.classList.toggle('active', i === idx));
+    renderTalentGridCanvas(idx);
+}
+
+// 渲染单个天赋盘: 盘信息 + 三档节点卡片
+function renderTalentGridCanvas(idx) {
+    const areaEl = document.getElementById('talentGridArea');
+    if (!areaEl) return;
+    const grid = talentGridData[idx];
+    if (!grid) { areaEl.innerHTML = ''; return; }
+
+    const headIcon = grid.iconSrc
+        ? `<img class="talent-grid-hero-icon" src="${DATA_BASE}icon/${grid.iconSrc}.webp" alt="${grid.name}" onerror="this.style.display='none'">`
+        : `<span class="talent-grid-hero-emoji">${grid.icon || '🔶'}</span>`;
+
+    // 盘内按 size 分三档渲染
+    const tierHtml = [1, 2, 3].map(tier => {
+        const pts = (grid.points || []).filter(p => p.tierIndex === tier);
+        if (pts.length === 0) return '';
+        const style = talentTierStyle[tier];
+        const cards = pts.map(p => {
+            const iconChar = p.icon || '⭐';
+            const iconHtml = p.iconSrc
+                ? `<img class="talent-card-icon-img" src="${DATA_BASE}icon/${p.iconSrc}.webp" alt="${p.name}" onerror="this.style.display='none';this.nextSibling.style.display=''"><span class="talent-card-icon-emoji" style="display:none">${iconChar}</span>`
+                : `<span class="talent-card-icon-emoji">${iconChar}</span>`;
+            const effects = talentEffectLines(p).map(t => `<span class="talent-card-effect">${t}</span>`).join('');
+            return `
+                <div class="talent-card ${style.cls}" onclick="showTalentGridDetail(${idx}, '${p.id}')">
+                    <div class="talent-card-icon">${iconHtml}</div>
+                    <div class="talent-card-body">
+                        <div class="talent-card-head">
+                            <span class="talent-card-name">${p.name}</span>
+                            ${p.maxLv ? `<span class="talent-card-lv">上限 ${p.maxLv} 级</span>` : ''}
+                        </div>
+                        ${p.desc ? `<div class="talent-card-desc">${p.desc}</div>` : ''}
+                        ${effects ? `<div class="talent-card-effects">${effects}</div>` : ''}
+                    </div>
+                </div>
+            `;
+        }).join('');
+        return `
+            <div class="talent-tier-block ${style.cls}">
+                <div class="talent-tier-head">
+                    <span class="talent-tier-badge">${style.name}</span>
+                    <span class="talent-tier-count">${pts.length} 个节点</span>
+                </div>
+                <div class="talent-tier-grid">${cards}</div>
+            </div>
+        `;
+    }).join('');
+
+    areaEl.innerHTML = `
+        <div class="talent-grid-detail">
+            <div class="talent-grid-hero">
+                <div class="talent-grid-hero-icon-wrap">${headIcon}</div>
+                <div class="talent-grid-hero-info">
+                    <h4 class="talent-grid-hero-name">${grid.name}</h4>
+                    ${grid.desc ? `<p class="talent-grid-hero-desc">${grid.desc}</p>` : ''}
+                    <div class="talent-grid-hero-rule">
+                        基础天赋累计 <b>${grid.advanceRequireBasePoint}</b> 点解锁进阶天赋 ·
+                        进阶累计 <b>${grid.coreRequireAdvancePoint}</b> 点解锁核心天赋 ·
+                        核心天赋上限 <b>${grid.coreTalentLimit}</b> 点
+                    </div>
+                    <div class="talent-grid-hero-stats">
+                        <span class="talent-stat tier-base">基础 ${grid.baseCount}</span>
+                        <span class="talent-stat tier-advance">进阶 ${grid.advanceCount}</span>
+                        <span class="talent-stat tier-core">核心 ${grid.coreCount}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="talent-tiers">${tierHtml || '<div class="occupation-empty"><p>暂无天赋节点</p></div>'}</div>
+        </div>
+    `;
+}
+
+// 通用天赋节点详情弹窗
+function showTalentGridDetail(gridIdx, pointId) {
+    const grid = talentGridData[gridIdx];
+    if (!grid) return;
+    const point = (grid.points || []).find(p => p.id === pointId);
+    if (!point) return;
+
+    const modal = document.getElementById('skillModal');
+    const body = document.getElementById('modalBody');
+    if (!modal || !body) return;
+
+    const effects = talentEffectLines(point);
+    body.innerHTML = `
+        <div class="talent-detail">
+            <h2 class="detail-name">${point.name}</h2>
+            <div class="talent-detail-meta">
+                <span class="type-badge">${grid.name}</span>
+                ${point.tier ? `<span class="type-badge-sub">${point.tier}</span>` : ''}
+                <span class="type-badge-sub">ID: ${point.id}</span>
+                ${point.maxLv ? `<span class="type-badge-sub">等级上限: ${point.maxLv}</span>` : ''}
+            </div>
+            ${point.desc ? `<p class="detail-desc-text">${point.desc}</p>` : ''}
+            ${effects.length ? `<div class="talent-detail-links">${effects.map(t => `<span class="talent-card-effect">${t}</span>`).join('')}</div>` : ''}
+        </div>
+    `;
+    modal.classList.add('active');
+}
+
 function renderOccupations() {
+    renderTalentGrids();
+
     const tabsEl = document.getElementById('occupationTabs');
     const canvasArea = document.getElementById('occupationCanvasArea');
     const totalEl = document.getElementById('occupationTotalCount');

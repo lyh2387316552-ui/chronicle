@@ -370,6 +370,17 @@ function readSheetByName(filePath, keywords) {
     return parseRows(rawRows, targetSheet);
 }
 
+// 按精确表名读取工作表 (不做回退, 用于可选子表)
+function readSheetExact(filePath, name) {
+    const wb = readWorkbook(filePath);
+    const hit = wb.SheetNames.find(n => n === name || n.toLowerCase() === String(name).toLowerCase());
+    if (!hit) return null;
+    const sheet = wb.Sheets[hit];
+    const rawRows = XLSX.utils.sheet_to_json(sheet, { header: 1, defval: '', raw: true });
+    if (rawRows.length === 0) return { headers: [], rows: [], sheetName: hit };
+    return parseRows(rawRows, hit);
+}
+
 // 按列内容读取工作表
 function readSheetByCols(filePath, requiredCols, keywords) {
     const wb = readWorkbook(filePath);
@@ -1446,9 +1457,41 @@ function parseSkills(inputPath, skillMap, tagDict) {
 }
 
 // ============================================================
-// 职业天赋系统 (SkillPassive 子表)
+// 职业天赋系统 (SkillPassive 子表 + TalentGrid 子表)
 // occupation >= 1 的行按职业分组，desc999 即为职业名
+// occupation = 0 且带 talentGrid 的行 = 通用天赋, 按 TalentGrid 子表的六个盘分组
+//   盘内按 size 分级: 1 基础天赋 / 2 进阶天赋 / 3 核心天赋
 // ============================================================
+
+// 天赋节点大小 → 分级名称 (通用天赋盘内的三档)
+const TALENT_SIZE_NAMES = { 1: '基础天赋', 2: '进阶天赋', 3: '核心天赋' };
+
+// 解析 attr "[[id,value],...]" → [{id, value}]
+function toAttrPairs(raw) {
+    try {
+        const arr = typeof raw === 'string' ? JSON.parse(raw || '[]') : raw;
+        if (!Array.isArray(arr)) return [];
+        return arr.map(pair => Array.isArray(pair) && pair.length >= 1 && pair[0] !== '' && pair[0] !== null && pair[0] !== undefined
+            ? { id: cleanNum(pair[0]), value: pair.length > 1 ? pair[1] : null }
+            : null).filter(Boolean);
+    } catch (e) { return []; }
+}
+
+// 解析 skillAffix "a|b|c" 与 affixValue "[[v1],[v2]]" → [{id, value}]
+function toAffixPairs(affixRaw, valueRaw) {
+    const ids = String(affixRaw || '').split('|').map(s => s.trim()).filter(Boolean);
+    let values = [];
+    try {
+        const v = typeof valueRaw === 'string' ? JSON.parse(valueRaw || '[]') : valueRaw;
+        if (Array.isArray(v)) values = v.map(sub => Array.isArray(sub) && sub.length ? sub[0] : sub);
+    } catch (e) {}
+    return ids.map((id, i) => ({ id: cleanNum(id), value: i < values.length ? values[i] : null }));
+}
+
+// 解析 stunt "a|b" → [ids]
+function toIdList(raw) {
+    return String(raw || '').split('|').map(s => s.trim()).filter(Boolean).map(cleanNum);
+}
 
 function parseOccupations(inputPath, skillMap) {
     console.log('  📖 解析职业天赋系统(SkillPassive)...');
@@ -1470,16 +1513,66 @@ function parseOccupations(inputPath, skillMap) {
     const descCol     = findCol(headers, ['desc', 'Desc', '描述']);
     const sizeCol     = findCol(headers, ['size', 'Size', '节点大小']);
     const linkCol     = findCol(headers, ['linkPoint', 'LinkPoint', '关联的节点id']);
+    const gridCol     = findCol(headers, ['talentGrid', 'TalentGrid', '归属天赋盘']);
+    const maxLvCol    = findCol(headers, ['maxLv', 'MaxLv', '等级上限']);
+    const affixCol    = findCol(headers, ['skillAffix', 'SkillAffix', '词缀id']);
+    const affixValCol = findCol(headers, ['affixValue', 'AffixValue', '词缀值']);
+    const stuntCol    = findCol(headers, ['stunt', 'Stunt', '被动表id']);
+    const attrCol     = findCol(headers, ['attr', 'Attr', '提供属性']);
 
-    const occMap = {};
+    // 图标路径 → emoji 兜底 (无图标时展示)
+    const iconEmoji = (iconRaw) => {
+        if (iconRaw.includes('attribute')) return '🔵';
+        if (iconRaw.includes('attack') || iconRaw.includes('atk')) return '⚔️';
+        if (iconRaw.includes('defense') || iconRaw.includes('def')) return '🛡️';
+        if (iconRaw.includes('skill')) return '✨';
+        if (iconRaw.includes('talent')) return '🔶';
+        return '⭐';
+    };
+
+    const occMap = {};          // 职业天赋 (occupation >= 1)
+    const gridPointMap = {};    // 通用天赋 (occupation = 0 且归属天赋盘) → gridId → [point]
 
     rows.forEach(row => {
         const occNum = parseInt(occCol ? String(row[occCol] || '').trim() : '');
-        if (isNaN(occNum) || occNum < 1) return;
+        const gridId = gridCol ? cleanNum(row[gridCol]) : '';
+        // 通用天赋: occupation = 0 且带了归属天赋盘
+        const isCommon = occNum === 0 && !!gridId;
+
+        if (!isCommon) {
+            // 旧版通用树 (occupation = 0 但无天赋盘) 与非法行一律跳过
+            if (isNaN(occNum) || occNum < 1) return;
+        }
 
         const id = idCol ? cleanNum(row[idCol]) : '';
         if (!id) return;
 
+        const iconRaw = iconCol ? String(row[iconCol] || '').trim() : '';
+        const name = (nameCol ? String(row[nameCol] || '').trim() : '') || ('天赋' + id);
+        const desc = descCol ? String(row[descCol] || '').trim() : '';
+        const size = parseInt(sizeCol ? cleanNum(row[sizeCol]) : '1') || 1;
+
+        // ── 通用天赋节点: 归入所属天赋盘, 按 size 分档 ──
+        if (isCommon) {
+            if (!gridPointMap[gridId]) gridPointMap[gridId] = [];
+            gridPointMap[gridId].push({
+                id: id,
+                name: name,
+                desc: desc,
+                size: size,
+                tier: TALENT_SIZE_NAMES[size] || ('等级' + size),
+                tierIndex: size,
+                icon: iconEmoji(iconRaw),
+                iconSrc: iconRaw,
+                maxLv: maxLvCol ? (parseInt(cleanNum(row[maxLvCol])) || 1) : 1,
+                attr: toAttrPairs(row[attrCol]),
+                affix: toAffixPairs(row[affixCol], row[affixValCol]),
+                stunt: toIdList(row[stuntCol])
+            });
+            return;
+        }
+
+        // ── 职业天赋节点 (occupation >= 1): 沿用坐标 + 连线结构 ──
         const desc999 = desc999Col ? String(row[desc999Col] || '').trim() : '';
 
         let posX = 0, posY = 0;
@@ -1489,24 +1582,16 @@ function parseOccupations(inputPath, skillMap) {
             if (parts.length >= 2) { posX = parseFloat(parts[0]) || 0; posY = parseFloat(parts[1]) || 0; }
         }
 
-        const iconRaw = iconCol ? String(row[iconCol] || '').trim() : '';
-        let emoji = '⭐';
-        if (iconRaw.includes('attribute')) emoji = '🔵';
-        else if (iconRaw.includes('attack') || iconRaw.includes('atk')) emoji = '⚔️';
-        else if (iconRaw.includes('defense') || iconRaw.includes('def')) emoji = '🛡️';
-        else if (iconRaw.includes('skill')) emoji = '✨';
-        else if (iconRaw.includes('talent')) emoji = '🔶';
-
         if (!occMap[occNum]) occMap[occNum] = { name: '', points: [] };
         if (!occMap[occNum].name && desc999) occMap[occNum].name = desc999.includes('旧版') ? '通用' : desc999.split('-')[0].trim();
         occMap[occNum].points.push({
             id: id,
-            name: (nameCol ? String(row[nameCol] || '').trim() : '') || ('天赋' + id),
-            desc: descCol ? String(row[descCol] || '').trim() : '',
+            name: name,
+            desc: desc,
             occupation: occNum,
             viewPos: { x: posX, y: posY },
-            size: parseInt(sizeCol ? cleanNum(row[sizeCol]) : '1') || 1,
-            icon: emoji,
+            size: size,
+            icon: iconEmoji(iconRaw),
             iconSrc: iconRaw,
             linkPoint: linkCol ? String(row[linkCol] || '').trim() : ''
         });
@@ -1584,11 +1669,56 @@ function parseOccupations(inputPath, skillMap) {
         });
     }
 
+    // 通用天赋盘 (TalentGrid 子表): 六个盘, 盘内按 size 分 基础/进阶/核心 三档
+    let talentGrids = [];
+    const gridSheet = readSheetExact(filePath, 'TalentGrid');
+    if (gridSheet && gridSheet.rows.length) {
+        const gIdCol    = findCol(gridSheet.headers, ['id.p', 'id', 'ID', 'Id']);
+        const gNameCol  = findCol(gridSheet.headers, ['name', 'Name', '天赋盘名称']);
+        const gIconCol  = findCol(gridSheet.headers, ['icon', 'Icon', '天赋盘icon']);
+        const gDescCol  = findCol(gridSheet.headers, ['desc', 'Desc', '天赋盘描述']);
+        const gAdvCol   = findCol(gridSheet.headers, ['advanceRequireBasePoint', '进阶天赋获取所需基础天赋加点数量']);
+        const gCoreCol  = findCol(gridSheet.headers, ['coreRequireAdvancePoint', '核心天赋获取所需进阶天赋加点数量']);
+        const gLimitCol = findCol(gridSheet.headers, ['coreTalentLimit', '核心天赋可点数量上限']);
+
+        talentGrids = gridSheet.rows.map(row => {
+            const gid = gIdCol ? cleanNum(row[gIdCol]) : '';
+            if (!gid) return null;
+            const points = (gridPointMap[gid] || [])
+                .sort((a, b) => (a.tierIndex - b.tierIndex) || (parseInt(a.id, 10) - parseInt(b.id, 10)));
+            const iconRaw = gIconCol ? String(row[gIconCol] || '').trim() : '';
+            return {
+                id: 'GRID' + gid,
+                gridId: gid,
+                name: gNameCol ? String(row[gNameCol] || '').trim() : ('天赋盘' + gid),
+                desc: gDescCol ? String(row[gDescCol] || '').trim() : '',
+                icon: '🔶',
+                iconSrc: iconRaw,
+                advanceRequireBasePoint: gAdvCol ? (parseInt(cleanNum(row[gAdvCol]), 10) || 0) : 0,
+                coreRequireAdvancePoint: gCoreCol ? (parseInt(cleanNum(row[gCoreCol]), 10) || 0) : 0,
+                coreTalentLimit: gLimitCol ? (parseInt(cleanNum(row[gLimitCol]), 10) || 0) : 0,
+                total: points.length,
+                baseCount: points.filter(p => p.tierIndex === 1).length,
+                advanceCount: points.filter(p => p.tierIndex === 2).length,
+                coreCount: points.filter(p => p.tierIndex === 3).length,
+                points: points
+            };
+        }).filter(Boolean);
+        console.log('     ✓ 解析通用天赋盘:', talentGrids.length, '个, 节点',
+            talentGrids.reduce((s, g) => s + g.total, 0), '个');
+        talentGrids.forEach(g => {
+            console.log('       ' + g.name + '(grid=' + g.gridId + '): ' + g.total +
+                ' 个节点 [基础 ' + g.baseCount + ' / 进阶 ' + g.advanceCount + ' / 核心 ' + g.coreCount + ']');
+        });
+    } else {
+        console.log('     ⚠️ 未找到 TalentGrid 子表, 通用天赋盘为空');
+    }
+
     console.log('     ✓ 解析职业:', occupations.length, '个');
     occupations.forEach(occ => {
         console.log('       ' + occ.name + '(occupation=' + occ.occupation + '): ' + occ.talentPoints.length + ' 个天赋点');
     });
-    return occupations;
+    return { occupations, talentGrids };
 }
 
 // ============================================================
@@ -1719,6 +1849,11 @@ function syncIcons(importData, config) {
     [...(importData.activeSkills || []), ...(importData.passiveSkills || []), ...(importData.skills || [])].forEach(s => addRef(s.icon, s.icon));
     // 职业天赋点图标
     (importData.occupations || []).forEach(o => (o.talentPoints || []).forEach(p => addRef(p.iconSrc, p.iconSrc)));
+    // 通用天赋盘图标 + 盘内节点图标
+    (importData.talentGrids || []).forEach(g => {
+        addRef(g.iconSrc, g.iconSrc);
+        (g.points || []).forEach(p => addRef(p.iconSrc, p.iconSrc));
+    });
     // 魔宠图标: 头像 pic / 获得背景 getBg / 获得立绘 getPic
     (importData.pets || []).forEach(p => { addRef(p.pic, p.pic); addRef(p.getBg, p.getBg); addRef(p.getPic, p.getPic); });
 
@@ -1778,6 +1913,7 @@ function main() {
         gems: null,
         skills: null,
         occupations: null,
+        talentGrids: null,
         videos: null,
         pets: null,
         skillDisplayLevel: SKILL_DATA_LEVEL,
@@ -1911,8 +2047,12 @@ function main() {
             try {
                 const skillMap = {};
                 [...(importData.activeSkills || []), ...(importData.passiveSkills || [])].forEach(s => { if (s.id) skillMap[s.id] = s; });
-                importData.occupations = parseOccupations(fp, skillMap);
-                if (importData.occupations) hasAny = true;
+                const parsedOcc = parseOccupations(fp, skillMap);
+                if (parsedOcc) {
+                    importData.occupations = parsedOcc.occupations;
+                    importData.talentGrids = parsedOcc.talentGrids;
+                    hasAny = true;
+                }
             } catch (err) {
                 console.log('  ❌ 职业天赋系统解析失败:', err.message);
             }
@@ -1988,6 +2128,7 @@ function main() {
     if (importData.gems) console.log('  宝石: ' + importData.gems.length + ' 个');
     if (importData.skills) console.log('  技能库: ' + importData.skills.length + ' 个');
     if (importData.occupations) console.log('  职业天赋: ' + importData.occupations.length + ' 个职业, ' + importData.occupations.reduce((s, o) => s + o.talentPoints.length, 0) + ' 个天赋点');
+    if (importData.talentGrids) console.log('  通用天赋: ' + importData.talentGrids.length + ' 个天赋盘, ' + importData.talentGrids.reduce((s, g) => s + g.total, 0) + ' 个天赋节点');
     if (importData.videos) console.log('  视频库: ' + importData.videos.length + ' 个视频');
     if (importData.pets) console.log('  魔宠表: ' + importData.pets.length + ' 个魔宠, ' + importData.pets.reduce((s, p) => s + p.stars.length, 0) + ' 条星级效果');
     console.log('');

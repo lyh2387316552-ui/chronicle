@@ -1,5 +1,5 @@
 // 此文件由 import.js 自动生成，请勿手动编辑
-// 生成时间: 2026-09-29T07:40:29.120Z
+// 生成时间: 2026-09-29T07:53:51.441Z
 window.__AUTO_IMPORT_DATA__ = {
   "activeSkills": [
     {
@@ -11434,6 +11434,2515 @@ window.__AUTO_IMPORT_DATA__ = {
       ]
     }
   ],
+  "talentGrids": [
+    {
+      "id": "GRID1001",
+      "gridId": "1001",
+      "name": "奠基之石",
+      "desc": "影响伤害的基础数值，包括武器附加的点伤、不同伤害类型之间的转换，以及部分武器流派的核心加成。",
+      "icon": "🔶",
+      "iconSrc": "talent/common_0/1",
+      "advanceRequireBasePoint": 9,
+      "coreRequireAdvancePoint": 3,
+      "coreTalentLimit": 1,
+      "total": 24,
+      "baseCount": 12,
+      "advanceCount": 7,
+      "coreCount": 5,
+      "points": [
+        {
+          "id": "1001101",
+          "name": "基础天赋",
+          "desc": "将20%的物理伤害转化为火焰伤害",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/huoyanshanghai",
+          "maxLv": 5,
+          "attr": [
+            {
+              "id": "11022",
+              "value": 0.2
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1001102",
+          "name": "基础天赋",
+          "desc": "将20%的物理伤害转化为冰冷伤害",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/binglengshanghai",
+          "maxLv": 5,
+          "attr": [
+            {
+              "id": "11021",
+              "value": 0.2
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1001103",
+          "name": "基础天赋",
+          "desc": "将20%的物理伤害转化为闪电伤害",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/shandianshanghai",
+          "maxLv": 5,
+          "attr": [
+            {
+              "id": "11020",
+              "value": 0.2
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1001104",
+          "name": "基础天赋",
+          "desc": "获得额外4%物理伤害",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/wulishanghai",
+          "maxLv": 7,
+          "attr": [
+            {
+              "id": "10500",
+              "value": 0.04
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1001105",
+          "name": "基础天赋",
+          "desc": "获得额外4%火焰伤害",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/huoyanshanghai",
+          "maxLv": 7,
+          "attr": [
+            {
+              "id": "10501",
+              "value": 0.04
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1001106",
+          "name": "基础天赋",
+          "desc": "获得额外4%冰冷伤害",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/binglengshanghai",
+          "maxLv": 7,
+          "attr": [
+            {
+              "id": "10502",
+              "value": 0.04
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1001107",
+          "name": "基础天赋",
+          "desc": "获得额外4%闪电伤害",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/shandianshanghai",
+          "maxLv": 7,
+          "attr": [
+            {
+              "id": "10503",
+              "value": 0.04
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1001108",
+          "name": "基础天赋",
+          "desc": "获得额外4%混沌伤害",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/hundunshanghai",
+          "maxLv": 7,
+          "attr": [
+            {
+              "id": "10504",
+              "value": 0.04
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1001109",
+          "name": "基础天赋",
+          "desc": "毁灭注能持续时间提高9%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/chixushijian",
+          "maxLv": 7,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10188",
+              "value": 0.09
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1001110",
+          "name": "基础天赋",
+          "desc": "获得相当于最大生命0.5%的攻击力",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/gongjili",
+          "maxLv": 7,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10186",
+              "value": 0.005
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1001111",
+          "name": "基础天赋",
+          "desc": "获得相当于最大魔力0.5%的攻击力",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/gongjili",
+          "maxLv": 7,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10187",
+              "value": 0.005
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1001112",
+          "name": "基础天赋",
+          "desc": "减少5点魔力消耗",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/gongjili",
+          "maxLv": 3,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10274",
+              "value": -5
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1001201",
+          "name": "进阶天赋",
+          "desc": "物理技能等级+1",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/jinengdengji",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10156",
+              "value": 1
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1001202",
+          "name": "进阶天赋",
+          "desc": "火焰技能等级+1",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/jinengdengji",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10157",
+              "value": 1
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1001203",
+          "name": "进阶天赋",
+          "desc": "冰冷技能等级+1",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/jinengdengji",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10158",
+              "value": 1
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1001204",
+          "name": "进阶天赋",
+          "desc": "闪电技能等级+1",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/jinengdengji",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10159",
+              "value": 1
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1001205",
+          "name": "进阶天赋",
+          "desc": "混沌技能等级+1",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/jinengdengji",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10160",
+              "value": 1
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1001206",
+          "name": "进阶天赋",
+          "desc": "毁灭注能层数上限+1",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/wusenengliangqiu",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10149",
+              "value": 1
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1001207",
+          "name": "进阶天赋",
+          "desc": "造成流血时，有20%几率获得毁灭注能",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/wusenengliangqiu",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [],
+          "stunt": [
+            "2150000170"
+          ]
+        },
+        {
+          "id": "1001301",
+          "name": "狂怒",
+          "desc": "击败敌人获得1%的随机额外伤害，上限100层，持续时间5秒",
+          "size": 3,
+          "tier": "核心天赋",
+          "tierIndex": 3,
+          "icon": "🔶",
+          "iconSrc": "talent/common_3/kuangnu",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [],
+          "stunt": [
+            "2150000240",
+            "2150100240",
+            "2150200240"
+          ]
+        },
+        {
+          "id": "1001302",
+          "name": "元素专精",
+          "desc": "元素伤害额外提高35%，只能造成元素伤害",
+          "size": 3,
+          "tier": "核心天赋",
+          "tierIndex": 3,
+          "icon": "🔶",
+          "iconSrc": "talent/common_3/yuansu_jingtong",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [],
+          "stunt": [
+            "2150000250"
+          ]
+        },
+        {
+          "id": "1001303",
+          "name": "通识",
+          "desc": "核心技能等级+4，魔力消耗增加30%",
+          "size": 3,
+          "tier": "核心天赋",
+          "tierIndex": 3,
+          "icon": "🔶",
+          "iconSrc": "talent/common_3/modian_jingtong",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [],
+          "stunt": [
+            "2150000260"
+          ]
+        },
+        {
+          "id": "1001304",
+          "name": "紧握",
+          "desc": "未装备手套时，可获得相当于当前防御力15%的攻击力",
+          "size": 3,
+          "tier": "核心天赋",
+          "tierIndex": 3,
+          "icon": "🔶",
+          "iconSrc": "talent/common_3/jinwo",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [],
+          "stunt": [
+            "2150000420"
+          ]
+        },
+        {
+          "id": "1001305",
+          "name": "毁灭之力",
+          "desc": "击中时，获得毁灭注能，毁灭注能层数上限+1",
+          "size": 3,
+          "tier": "核心天赋",
+          "tierIndex": 3,
+          "icon": "🔶",
+          "iconSrc": "talent/common_3/huimie_zhili",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10149",
+              "value": 1
+            }
+          ],
+          "stunt": [
+            "2150000300"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GRID1002",
+      "gridId": "1002",
+      "name": "致命之眼",
+      "desc": "影响暴击相关的所有属性，包括暴击率、暴击伤害，以及暴击时触发的特殊效果。",
+      "icon": "🔶",
+      "iconSrc": "talent/common_0/2",
+      "advanceRequireBasePoint": 9,
+      "coreRequireAdvancePoint": 3,
+      "coreTalentLimit": 1,
+      "total": 22,
+      "baseCount": 12,
+      "advanceCount": 6,
+      "coreCount": 4,
+      "points": [
+        {
+          "id": "1002101",
+          "name": "基础天赋",
+          "desc": "暴击伤害增加8%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/baojishanghai",
+          "maxLv": 7,
+          "attr": [
+            {
+              "id": "10200",
+              "value": 0.08
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1002102",
+          "name": "基础天赋",
+          "desc": "暴击率提高15%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/baojilv",
+          "maxLv": 7,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10039",
+              "value": 0.15
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1002103",
+          "name": "基础天赋",
+          "desc": "法术暴击率提高18%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/baojilv",
+          "maxLv": 7,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10170",
+              "value": 0.18
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1002104",
+          "name": "基础天赋",
+          "desc": "攻击暴击率提高18%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/baojilv",
+          "maxLv": 7,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10176",
+              "value": 0.18
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1002105",
+          "name": "基础天赋",
+          "desc": "法术暴击伤害提高9%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/baojishanghai",
+          "maxLv": 7,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10083",
+              "value": 0.09
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1002106",
+          "name": "基础天赋",
+          "desc": "攻击暴击伤害提高9%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/baojishanghai",
+          "maxLv": 7,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10082",
+              "value": 0.09
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1002107",
+          "name": "基础天赋",
+          "desc": "暴击造成的非伤害性异常状态效果提升6%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/fumianxiaoguotisheng",
+          "maxLv": 7,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10204",
+              "value": 0.06
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1002108",
+          "name": "基础天赋",
+          "desc": "受到的暴击伤害降低1.5%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/baoshangjianmian",
+          "maxLv": 7,
+          "attr": [
+            {
+              "id": "11079",
+              "value": 0.015
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1002109",
+          "name": "基础天赋",
+          "desc": "洞察注能持续时间增加9%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/chixushijian",
+          "maxLv": 7,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10189",
+              "value": 0.09
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1002110",
+          "name": "基础天赋",
+          "desc": "投射物暴击率对10M外的敌人提高24%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/baojilv",
+          "maxLv": 7,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10227",
+              "value": 0.24
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1002111",
+          "name": "基础天赋",
+          "desc": "如果你近期没有造成暴击，则暴击率提高36%（近期为4秒）",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/baojilv",
+          "maxLv": 7,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10039",
+              "value": 0.36
+            }
+          ],
+          "stunt": [
+            "2150000520"
+          ]
+        },
+        {
+          "id": "1002112",
+          "name": "基础天赋",
+          "desc": "对异常状态敌人时，暴击率提高18%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/baojilv",
+          "maxLv": 7,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10196",
+              "value": 0.18
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1002201",
+          "name": "进阶天赋",
+          "desc": "洞察注能上限+1",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/wusenengliangqiu",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10150",
+              "value": 1
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1002202",
+          "name": "进阶天赋",
+          "desc": "对满血敌人的暴击伤害提高20%",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/baojishanghai",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10194",
+              "value": 0.2
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1002203",
+          "name": "进阶天赋",
+          "desc": "造成冰冻效果时，有20%概率获得洞察注能",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/binglengnengliangqiu",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [],
+          "stunt": [
+            "2150000180"
+          ]
+        },
+        {
+          "id": "1002204",
+          "name": "进阶天赋",
+          "desc": "暴击伤害对精英敌人提高10%",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/baojishanghai",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10195",
+              "value": 0.1
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1002205",
+          "name": "进阶天赋",
+          "desc": "攻击打出暴击时，有5%几率施加瘫痪",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/fumianxiaoguotisheng",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [],
+          "stunt": [
+            "2150000200"
+          ]
+        },
+        {
+          "id": "1002206",
+          "name": "进阶天赋",
+          "desc": "法术打出暴击时，有5%几率施加软弱",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/fumianxiaoguotisheng",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [],
+          "stunt": [
+            "2150000210"
+          ]
+        },
+        {
+          "id": "1002301",
+          "name": "稳定攻势",
+          "desc": "暴击伤害无增伤，但伤害额外提高60%",
+          "size": 3,
+          "tier": "核心天赋",
+          "tierIndex": 3,
+          "icon": "🔶",
+          "iconSrc": "talent/common_3/wending_gongshi",
+          "maxLv": 1,
+          "attr": [
+            {
+              "id": "10200",
+              "value": -10
+            }
+          ],
+          "affix": [
+            {
+              "id": "10146",
+              "value": 0.6
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1002302",
+          "name": "洞察之力",
+          "desc": "击中时，获得洞察注能，洞察注能上限+1",
+          "size": 3,
+          "tier": "核心天赋",
+          "tierIndex": 3,
+          "icon": "🔶",
+          "iconSrc": "talent/common_3/dongcha_zhili",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10150",
+              "value": 1
+            }
+          ],
+          "stunt": [
+            "2150000310"
+          ]
+        },
+        {
+          "id": "1002303",
+          "name": "失序猛攻",
+          "desc": "暴击时，获得增益，伤害额外提高9%，但暴击率额外降低4%，层数上限5层，持续时间3秒",
+          "size": 3,
+          "tier": "核心天赋",
+          "tierIndex": 3,
+          "icon": "🔶",
+          "iconSrc": "talent/common_3/shixu_menggong",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [],
+          "stunt": [
+            "2150000350"
+          ]
+        },
+        {
+          "id": "1002304",
+          "name": "暴击幸运",
+          "desc": "暴击幸运（一次伤害的暴击判定进行两次，两次取有利结果）",
+          "size": 3,
+          "tier": "核心天赋",
+          "tierIndex": 3,
+          "icon": "🔶",
+          "iconSrc": "talent/common_3/baoji_xingyun",
+          "maxLv": 1,
+          "attr": [
+            {
+              "id": "11067",
+              "value": 1
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        }
+      ]
+    },
+    {
+      "id": "GRID1003",
+      "gridId": "1003",
+      "name": "疾风之径",
+      "desc": "影响所有与“速度”相关的能力，包括攻击速度、施法速度、移动速度，以及冷却缩减和持续伤害的结算频率。",
+      "icon": "🔶",
+      "iconSrc": "talent/common_0/3",
+      "advanceRequireBasePoint": 9,
+      "coreRequireAdvancePoint": 3,
+      "coreTalentLimit": 1,
+      "total": 23,
+      "baseCount": 14,
+      "advanceCount": 5,
+      "coreCount": 4,
+      "points": [
+        {
+          "id": "1003101",
+          "name": "基础天赋",
+          "desc": "攻击速度提高3%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/gongjisudu",
+          "maxLv": 7,
+          "attr": [
+            {
+              "id": "10034",
+              "value": 0.03
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1003102",
+          "name": "基础天赋",
+          "desc": "施法速度提高3%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/gongjisudu",
+          "maxLv": 7,
+          "attr": [
+            {
+              "id": "10035",
+              "value": 0.03
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1003103",
+          "name": "基础天赋",
+          "desc": "移动速度提高2%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/yidongsudu",
+          "maxLv": 7,
+          "attr": [
+            {
+              "id": "10007",
+              "value": 0.02
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1003104",
+          "name": "基础天赋",
+          "desc": "投射物速度提高6%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/zidanfeixingsudu",
+          "maxLv": 7,
+          "attr": [
+            {
+              "id": "10033",
+              "value": 0.06
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1003105",
+          "name": "基础天赋",
+          "desc": "生命恢复速度增加0.2%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/zhiliaosudu",
+          "maxLv": 7,
+          "attr": [
+            {
+              "id": "10004",
+              "value": 0.002
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1003106",
+          "name": "基础天赋",
+          "desc": "魔力恢复速度增加0.2%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/zhiliaosudu",
+          "maxLv": 7,
+          "attr": [
+            {
+              "id": "10006",
+              "value": 0.002
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1003107",
+          "name": "基础天赋",
+          "desc": "点燃伤害结算速度提高3%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/huoyanshanghai",
+          "maxLv": 7,
+          "attr": [
+            {
+              "id": "11065",
+              "value": 0.03
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1003108",
+          "name": "基础天赋",
+          "desc": "流血伤害结算速度提高3%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/chixushanghai",
+          "maxLv": 7,
+          "attr": [
+            {
+              "id": "11063",
+              "value": 0.03
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1003109",
+          "name": "基础天赋",
+          "desc": "中毒伤害结算速度提高3%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/hundunshanghai",
+          "maxLv": 7,
+          "attr": [
+            {
+              "id": "11064",
+              "value": 0.03
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1003110",
+          "name": "基础天赋",
+          "desc": "冷却回复效率提高3%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/chixushijian",
+          "maxLv": 7,
+          "attr": [
+            {
+              "id": "11037",
+              "value": 0.03
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1003111",
+          "name": "基础天赋",
+          "desc": "速度注能持续时间提高3%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/chixushijian",
+          "maxLv": 7,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10192",
+              "value": 0.03
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1003112",
+          "name": "基础天赋",
+          "desc": "环绕速度提高9%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/gongjisudu",
+          "maxLv": 7,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10132",
+              "value": 0.09
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1003113",
+          "name": "基础天赋",
+          "desc": "药剂充能速度提高9%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/zhiliaosudu",
+          "maxLv": 7,
+          "attr": [
+            {
+              "id": "11066",
+              "value": 0.09
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1003114",
+          "name": "基础天赋",
+          "desc": "强化效果冷却回复效率提高9%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/chixushijian",
+          "maxLv": 7,
+          "attr": [
+            {
+              "id": "11076",
+              "value": 0.09
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1003201",
+          "name": "进阶天赋",
+          "desc": "速度注能上限+1",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/wusenengliangqiu",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10153",
+              "value": 1
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1003202",
+          "name": "进阶天赋",
+          "desc": "造成感电效果时，有20%几率获得速度注能",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/shandiannengliangqiu",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [],
+          "stunt": [
+            "2150000190"
+          ]
+        },
+        {
+          "id": "1003203",
+          "name": "进阶天赋",
+          "desc": "击败时，移动速度增加1%，层数上限20层，持续4秒",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/yidongsudu",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [],
+          "stunt": [
+            "2150000340"
+          ]
+        },
+        {
+          "id": "1003204",
+          "name": "进阶天赋",
+          "desc": "周围有精英敌人时，攻击速度提高20%",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/gongjisudu",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [],
+          "stunt": [
+            "2150000360"
+          ]
+        },
+        {
+          "id": "1003205",
+          "name": "进阶天赋",
+          "desc": "周围有精英敌人时，施法速度提高20%",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/gongjisudu",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [],
+          "stunt": [
+            "2150000370"
+          ]
+        },
+        {
+          "id": "1003301",
+          "name": "迅捷之力",
+          "desc": "击中时，获得速度注能，速度注能上限+1",
+          "size": 3,
+          "tier": "核心天赋",
+          "tierIndex": 3,
+          "icon": "🔶",
+          "iconSrc": "talent/common_3/xunjie_zhili",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10153",
+              "value": 1
+            }
+          ],
+          "stunt": [
+            "2150000320"
+          ]
+        },
+        {
+          "id": "1003302",
+          "name": "热身",
+          "desc": "移动距离大于20M时，近战伤害额外提高30%，持续5秒",
+          "size": 3,
+          "tier": "核心天赋",
+          "tierIndex": 3,
+          "icon": "🔶",
+          "iconSrc": "talent/common_3/reshen",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [],
+          "stunt": [
+            "2150000330"
+          ]
+        },
+        {
+          "id": "1003303",
+          "name": "魔血",
+          "desc": "生命恢复速度同样作用于魔力回复，魔力回复速度也同样作用于生命回复",
+          "size": 3,
+          "tier": "核心天赋",
+          "tierIndex": 3,
+          "icon": "🔶",
+          "iconSrc": "talent/common_3/moxue",
+          "maxLv": 1,
+          "attr": [
+            {
+              "id": "11091",
+              "value": 1
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1003304",
+          "name": "苦难行者",
+          "desc": "你在近期每对一名敌人造成点燃、中毒、流血，攻击速度和施法速度额外提高4%，最多40%",
+          "size": 3,
+          "tier": "核心天赋",
+          "tierIndex": 3,
+          "icon": "🔶",
+          "iconSrc": "talent/common_3/kunan_xingzhe",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [],
+          "stunt": [
+            "2150000400"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GRID1004",
+      "gridId": "1004",
+      "name": "焚炉之核",
+      "desc": "提供各类伤害加成，包括对特定技能类型或特定元素伤害的提升，也包含元素之间的联动增益。",
+      "icon": "🔶",
+      "iconSrc": "talent/common_0/4",
+      "advanceRequireBasePoint": 9,
+      "coreRequireAdvancePoint": 3,
+      "coreTalentLimit": 1,
+      "total": 19,
+      "baseCount": 12,
+      "advanceCount": 3,
+      "coreCount": 4,
+      "points": [
+        {
+          "id": "1004101",
+          "name": "基础天赋",
+          "desc": "攻击伤害提高9%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/gongjili",
+          "maxLv": 7,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10066",
+              "value": 0.09
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1004102",
+          "name": "基础天赋",
+          "desc": "法术伤害提高9%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/yuansushanghai",
+          "maxLv": 7,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10067",
+              "value": 0.09
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1004103",
+          "name": "基础天赋",
+          "desc": "物理伤害提高9%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/wulishanghai",
+          "maxLv": 7,
+          "attr": [
+            {
+              "id": "10303",
+              "value": 0.09
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1004104",
+          "name": "基础天赋",
+          "desc": "火焰伤害提高9%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/huoyanshanghai",
+          "maxLv": 7,
+          "attr": [
+            {
+              "id": "10304",
+              "value": 0.09
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1004105",
+          "name": "基础天赋",
+          "desc": "冰冷伤害提高9%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/binglengshanghai",
+          "maxLv": 7,
+          "attr": [
+            {
+              "id": "10305",
+              "value": 0.09
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1004106",
+          "name": "基础天赋",
+          "desc": "闪电伤害提高9%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/shandianshanghai",
+          "maxLv": 7,
+          "attr": [
+            {
+              "id": "10306",
+              "value": 0.09
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1004107",
+          "name": "基础天赋",
+          "desc": "混沌伤害提高9%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/hundunshanghai",
+          "maxLv": 7,
+          "attr": [
+            {
+              "id": "10307",
+              "value": 0.09
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1004108",
+          "name": "基础天赋",
+          "desc": "近战伤害提高9%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/gongjili",
+          "maxLv": 7,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10063",
+              "value": 0.09
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1004109",
+          "name": "基础天赋",
+          "desc": "投射物伤害提高9%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/gongjili",
+          "maxLv": 7,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10064",
+              "value": 0.09
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1004110",
+          "name": "基础天赋",
+          "desc": "范围伤害提高5%，且范围效果扩大5%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/shanghaifanwei",
+          "maxLv": 7,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10032",
+              "value": 0.05
+            },
+            {
+              "id": "10062",
+              "value": 0.05
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1004111",
+          "name": "基础天赋",
+          "desc": "持续伤害提高9%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/chixushanghai",
+          "maxLv": 7,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10193",
+              "value": 0.09
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1004112",
+          "name": "基础天赋",
+          "desc": "强化伤害提高9%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/gongjili",
+          "maxLv": 7,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10194",
+              "value": 0.09
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1004201",
+          "name": "进阶天赋",
+          "desc": "拥有注能时，伤害额外提高10%",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/wusenengliangqiu",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [],
+          "stunt": [
+            "2150000140"
+          ]
+        },
+        {
+          "id": "1004202",
+          "name": "进阶天赋",
+          "desc": "释放诅咒技能后，伤害额外提高10%",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/fumianxiaoguotisheng",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1004203",
+          "name": "进阶天赋",
+          "desc": "携带光环技能后，伤害额外提高10%",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/yuansushanghai",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1004301",
+          "name": "五捷共鸣",
+          "desc": "装备「物理之捷」时，物理伤害额外提高 20%；装备「灰烬之捷」时，火焰伤害额外提高 20%；装备「寒冰之捷」时，冰冷伤害额外提高 20%；装备「闪电之捷」时，闪电伤害额外提高 20%；装备「混沌之捷」时，混沌伤害额外提高 20%",
+          "size": 3,
+          "tier": "核心天赋",
+          "tierIndex": 3,
+          "icon": "🔶",
+          "iconSrc": "talent/common_3/wujie_gongming",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [],
+          "stunt": [
+            "2150000150"
+          ]
+        },
+        {
+          "id": "1004302",
+          "name": "元素嬗变",
+          "desc": "造成一种元素伤害会使得，其他元素伤害获得15%额外伤害(加算），持续4秒",
+          "size": 3,
+          "tier": "核心天赋",
+          "tierIndex": 3,
+          "icon": "🔶",
+          "iconSrc": "talent/common_3/yuansu_shanbian",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [],
+          "stunt": [
+            "2150000160"
+          ]
+        },
+        {
+          "id": "1004303",
+          "name": "蚀界之力",
+          "desc": "混沌伤害额外增加 35%，元素抗性减少 15%",
+          "size": 3,
+          "tier": "核心天赋",
+          "tierIndex": 3,
+          "icon": "🔶",
+          "iconSrc": "talent/common_3/shijie_zhili",
+          "maxLv": 1,
+          "attr": [
+            {
+              "id": "10312",
+              "value": -0.15
+            },
+            {
+              "id": "10313",
+              "value": -0.15
+            },
+            {
+              "id": "10314",
+              "value": -0.15
+            }
+          ],
+          "affix": [
+            {
+              "id": "10128",
+              "value": 0.35
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1004304",
+          "name": "钝锋重势",
+          "desc": "物理伤害额外提高 40%，周围敌人获得 10% 的受伤缓冲",
+          "size": 3,
+          "tier": "核心天赋",
+          "tierIndex": 3,
+          "icon": "🔶",
+          "iconSrc": "talent/common_3/dunfeng_zhongshi",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10124",
+              "value": 0.4
+            }
+          ],
+          "stunt": [
+            "2150000270"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GRID1005",
+      "gridId": "1005",
+      "name": "坚毅之壁",
+      "desc": "影响对元素伤害和物理伤害的防御能力，包括抗性数值、抗性穿透，以及突破抗性上限带来的额外收益。",
+      "icon": "🔶",
+      "iconSrc": "talent/common_0/5",
+      "advanceRequireBasePoint": 9,
+      "coreRequireAdvancePoint": 3,
+      "coreTalentLimit": 1,
+      "total": 22,
+      "baseCount": 11,
+      "advanceCount": 7,
+      "coreCount": 4,
+      "points": [
+        {
+          "id": "1005101",
+          "name": "基础天赋",
+          "desc": "物理抗性增加5%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/wulishanghaikangxing",
+          "maxLv": 7,
+          "attr": [
+            {
+              "id": "10311",
+              "value": 0.05
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1005102",
+          "name": "基础天赋",
+          "desc": "火焰抗性增加5%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/huoyanshanghaikangxing",
+          "maxLv": 7,
+          "attr": [
+            {
+              "id": "10315",
+              "value": 0.05
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1005103",
+          "name": "基础天赋",
+          "desc": "冰冷抗性增加5%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/binglengshanghaikangxing",
+          "maxLv": 7,
+          "attr": [
+            {
+              "id": "10313",
+              "value": 0.05
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1005104",
+          "name": "基础天赋",
+          "desc": "闪电抗性增加5%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/shandianshanghaikangxing",
+          "maxLv": 7,
+          "attr": [
+            {
+              "id": "10314",
+              "value": 0.05
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1005105",
+          "name": "基础天赋",
+          "desc": "混沌抗性增加5%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/hundunshanghaikangxing",
+          "maxLv": 7,
+          "attr": [
+            {
+              "id": "10315",
+              "value": 0.05
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1005106",
+          "name": "基础天赋",
+          "desc": "物理抗性穿透增加1%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/wulishanghaichuantou",
+          "maxLv": 7,
+          "attr": [
+            {
+              "id": "11048",
+              "value": 0.01
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1005107",
+          "name": "基础天赋",
+          "desc": "火焰抗性穿透增加1%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/huoyanshanghaichuantou",
+          "maxLv": 7,
+          "attr": [
+            {
+              "id": "11049",
+              "value": 0.01
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1005108",
+          "name": "基础天赋",
+          "desc": "冰冷抗性穿透增加1%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/binglengshanghaichuantou",
+          "maxLv": 7,
+          "attr": [
+            {
+              "id": "11050",
+              "value": 0.01
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1005109",
+          "name": "基础天赋",
+          "desc": "闪电抗性穿透增加1%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/shandianshanghaichuantou",
+          "maxLv": 7,
+          "attr": [
+            {
+              "id": "11051",
+              "value": 0.01
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1005110",
+          "name": "基础天赋",
+          "desc": "混沌抗性穿透增加1%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/hundunshanghaichuantou",
+          "maxLv": 7,
+          "attr": [
+            {
+              "id": "11052",
+              "value": 0.01
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1005111",
+          "name": "基础天赋",
+          "desc": "抗性注能持续时间提高{0}",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/chixushijian",
+          "maxLv": 7,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10190",
+              "value": 0.3
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1005201",
+          "name": "进阶天赋",
+          "desc": "造成点燃时，有 20% 概率获得抗性注能",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/huoyannengliangqiu",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [],
+          "stunt": [
+            "2150000220"
+          ]
+        },
+        {
+          "id": "1005202",
+          "name": "进阶天赋",
+          "desc": "穿透注能上限+1",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/shanghaichuantou",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10151",
+              "value": 1
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1005203",
+          "name": "进阶天赋",
+          "desc": "物理抗性上限增加3%",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/wulishanghaikangxing",
+          "maxLv": 1,
+          "attr": [
+            {
+              "id": "11058",
+              "value": 0.03
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1005204",
+          "name": "进阶天赋",
+          "desc": "火焰抗性上限增加3%",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/huoyanshanghaikangxing",
+          "maxLv": 1,
+          "attr": [
+            {
+              "id": "11059",
+              "value": 0.03
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1005205",
+          "name": "进阶天赋",
+          "desc": "冰冷抗性上限增加3%",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/binglengshanghaikangxing",
+          "maxLv": 1,
+          "attr": [
+            {
+              "id": "11060",
+              "value": 0.03
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1005206",
+          "name": "进阶天赋",
+          "desc": "闪电抗性上限增加3%",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/shandianshanghaikangxing",
+          "maxLv": 1,
+          "attr": [
+            {
+              "id": "11061",
+              "value": 0.03
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1005207",
+          "name": "进阶天赋",
+          "desc": "混沌抗性上限增加3%",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/hundunshanghaikangxing",
+          "maxLv": 1,
+          "attr": [
+            {
+              "id": "11062",
+              "value": 0.03
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1005301",
+          "name": "混沌定性",
+          "desc": "每有 1% 混沌抗性，+1% 元素异常状态抵抗",
+          "size": 3,
+          "tier": "核心天赋",
+          "tierIndex": 3,
+          "icon": "🔶",
+          "iconSrc": "talent/common_3/hundun_dingxing",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10094",
+              "value": null
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1005302",
+          "name": "炎息再生",
+          "desc": "每有 1% 火焰抗性总值，+2 每秒生命回复",
+          "size": 3,
+          "tier": "核心天赋",
+          "tierIndex": 3,
+          "icon": "🔶",
+          "iconSrc": "talent/common_3/yanxi_zaisheng",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10207",
+              "value": null
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1005303",
+          "name": "元素均衡",
+          "desc": "当有元素抗性相等时，获得额外受到伤害减少5%(累乘)",
+          "size": 3,
+          "tier": "核心天赋",
+          "tierIndex": 3,
+          "icon": "🔶",
+          "iconSrc": "talent/common_3/yuansu_junheng",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [],
+          "stunt": [
+            "2150000290"
+          ]
+        },
+        {
+          "id": "1005304",
+          "name": "破界蓄势",
+          "desc": "击中时，获得穿透注能，抗性注能上限 +1",
+          "size": 3,
+          "tier": "核心天赋",
+          "tierIndex": 3,
+          "icon": "🔶",
+          "iconSrc": "talent/common_3/pojie_xushi",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10151",
+              "value": 1
+            }
+          ],
+          "stunt": [
+            "2150000280"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GRID1006",
+      "gridId": "1006",
+      "name": "凋零之触",
+      "desc": "影响异常状态和诅咒的施加与效果，让敌人因中毒、点燃、冰冻、感电等状态而承受更多伤害。",
+      "icon": "🔶",
+      "iconSrc": "talent/common_0/6",
+      "advanceRequireBasePoint": 9,
+      "coreRequireAdvancePoint": 3,
+      "coreTalentLimit": 1,
+      "total": 18,
+      "baseCount": 10,
+      "advanceCount": 6,
+      "coreCount": 2,
+      "points": [
+        {
+          "id": "1006101",
+          "name": "基础天赋",
+          "desc": "点燃几率增加10%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/huoyanshanghai",
+          "maxLv": 7,
+          "attr": [
+            {
+              "id": "11006",
+              "value": 0.1
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1006102",
+          "name": "基础天赋",
+          "desc": "感电几率提高20%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/shandianshanghai",
+          "maxLv": 7,
+          "attr": [
+            {
+              "id": "11009",
+              "value": 0.2
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1006103",
+          "name": "基础天赋",
+          "desc": "流血几率增加10%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/chixushanghai",
+          "maxLv": 7,
+          "attr": [
+            {
+              "id": "11054",
+              "value": 0.1
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1006104",
+          "name": "基础天赋",
+          "desc": "中毒几率增加10%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/hundunshanghai",
+          "maxLv": 7,
+          "attr": [
+            {
+              "id": "11038",
+              "value": 0.1
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1006105",
+          "name": "基础天赋",
+          "desc": "感电效果比例提高13%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/fumianxiaoguotisheng",
+          "maxLv": 7,
+          "attr": [
+            {
+              "id": "11010",
+              "value": 0.13
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1006106",
+          "name": "基础天赋",
+          "desc": "冰冻效果比例提高13%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/fumianxiaoguotisheng",
+          "maxLv": 7,
+          "attr": [
+            {
+              "id": "11008",
+              "value": 0.13
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1006107",
+          "name": "基础天赋",
+          "desc": "点燃效果比例提高20%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/fumianxiaoguotisheng",
+          "maxLv": 7,
+          "attr": [
+            {
+              "id": "11007",
+              "value": 0.2
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1006108",
+          "name": "基础天赋",
+          "desc": "中毒效果比例提高20%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/fumianxiaoguotisheng",
+          "maxLv": 7,
+          "attr": [
+            {
+              "id": "11039",
+              "value": 0.2
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1006109",
+          "name": "基础天赋",
+          "desc": "流血效果比例提高20%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/fumianxiaoguotisheng",
+          "maxLv": 7,
+          "attr": [
+            {
+              "id": "11055",
+              "value": 0.2
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1006110",
+          "name": "基础天赋",
+          "desc": "混乱注能持续时间提高30%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/chixushijian",
+          "maxLv": 7,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10191",
+              "value": 0.3
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1006201",
+          "name": "进阶天赋",
+          "desc": "造成中毒时，有 20% 几率获得混乱注能",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/hundunnengliangqiu",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [],
+          "stunt": [
+            "2150000230"
+          ]
+        },
+        {
+          "id": "1006202",
+          "name": "进阶天赋",
+          "desc": "混乱注能上限 +1",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/hundunnengliangqiu",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10152",
+              "value": 1
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1006203",
+          "name": "进阶天赋",
+          "desc": "每拥有 +2% 点燃、流血、中毒几率，分别 +1% 火焰伤害、流血伤害、中毒伤害",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/fumianxiaoguotisheng",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10222",
+              "value": null
+            },
+            {
+              "id": "10223",
+              "value": null
+            },
+            {
+              "id": "10224",
+              "value": null
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1006204",
+          "name": "进阶天赋",
+          "desc": "瘫痪效果提高60%",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/fumianxiaoguotisheng",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10225",
+              "value": null
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1006205",
+          "name": "进阶天赋",
+          "desc": "软弱效果提高60%",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/fumianxiaoguotisheng",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10226",
+              "value": 0.6
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1006206",
+          "name": "进阶天赋",
+          "desc": "诅咒效果提高60%",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/fumianxiaoguotisheng",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10236",
+              "value": 0.6
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1006301",
+          "name": "叠咒之言",
+          "desc": "你可以额外施加一个诅咒",
+          "size": 3,
+          "tier": "核心天赋",
+          "tierIndex": 3,
+          "icon": "🔶",
+          "iconSrc": "talent/common_3/diezhou_zhiyan",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10237",
+              "value": 0.6
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1006302",
+          "name": "乱咒灌注",
+          "desc": "击中时，获得混乱注能，混乱注能上限 +1",
+          "size": 3,
+          "tier": "核心天赋",
+          "tierIndex": 3,
+          "icon": "🔶",
+          "iconSrc": "talent/common_3/luanzhou_guanzhu",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10152",
+              "value": 1
+            }
+          ],
+          "stunt": [
+            "2150000380"
+          ]
+        }
+      ]
+    }
+  ],
   "videos": [
     {
       "name": "专注斩",
@@ -14883,5 +17392,5 @@ window.__AUTO_IMPORT_DATA__ = {
     }
   ],
   "skillDisplayLevel": 1,
-  "importTime": "2026-09-29T07:40:29.120Z"
+  "importTime": "2026-09-29T07:53:51.441Z"
 };

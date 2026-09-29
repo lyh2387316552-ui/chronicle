@@ -3605,6 +3605,352 @@ body[data-page="home"] .home-modules {
 }
 
 /* ============================================================
+   通用天赋: 六大天赋盘 (TalentGrid 子表)
+   盘内三档: 1 基础天赋 / 2 进阶天赋 / 3 核心天赋
+   分档色: 基础=蓝 / 进阶=紫 / 核心=金
+   ============================================================ */
+
+/* ---- 三档主题色变量 ---- */
+.talent-tier-block.tier-base,
+.talent-card.tier-base,
+.talent-stat.tier-base {
+    --tier-color: #6ea8fe;
+    --tier-glow: rgba(110, 168, 254, 0.35);
+    --tier-bg: rgba(110, 168, 254, 0.10);
+}
+
+.talent-tier-block.tier-advance,
+.talent-card.tier-advance,
+.talent-stat.tier-advance {
+    --tier-color: #b48cf2;
+    --tier-glow: rgba(180, 140, 242, 0.35);
+    --tier-bg: rgba(180, 140, 242, 0.10);
+}
+
+.talent-tier-block.tier-core,
+.talent-card.tier-core,
+.talent-stat.tier-core {
+    --tier-color: var(--accent);
+    --tier-glow: rgba(212, 160, 86, 0.40);
+    --tier-bg: rgba(212, 160, 86, 0.12);
+}
+
+/* ---- 区块外壳 ---- */
+.talent-grid-section {
+    margin-bottom: 40px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+}
+
+.occupation-section {
+    padding-top: 4px;
+}
+
+.talent-section-head {
+    margin-bottom: 18px;
+}
+
+.talent-section-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 6px;
+    letter-spacing: 0.5px;
+}
+
+.talent-section-sub {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.talent-section-sub span {
+    color: var(--accent-light);
+    font-weight: 600;
+}
+
+/* ---- 天赋盘 Tab ---- */
+.talent-grid-tabs {
+    display: flex;
+    gap: 10px;
+    padding: 4px 0 18px;
+    flex-wrap: wrap;
+}
+
+.talent-grid-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 18px 7px 12px;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    background: transparent;
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.talent-grid-tab:hover {
+    background: var(--bg-hover);
+    border-color: var(--border-hover);
+    color: var(--accent-light);
+}
+
+.talent-grid-tab.active {
+    background: var(--accent);
+    color: #111111;
+    border-color: var(--accent);
+}
+
+.talent-grid-tab-icon {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.talent-grid-tab-emoji {
+    font-size: 16px;
+    line-height: 1;
+}
+
+.talent-grid-tab-name {
+    white-space: nowrap;
+}
+
+/* ---- 盘内容区 ---- */
+.talent-grid-area {
+    margin-top: 4px;
+}
+
+.talent-grid-detail {
+    width: 100%;
+}
+
+/* ---- 盘信息卡 (立绘区风格) ---- */
+.talent-grid-hero {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+}
+
+.talent-grid-hero-icon-wrap {
+    width: 88px;
+    height: 88px;
+    flex-shrink: 0;
+    border-radius: 16px;
+    background: var(--bg-hover);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.talent-grid-hero-icon {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.talent-grid-hero-emoji {
+    font-size: 40px;
+    line-height: 1;
+}
+
+.talent-grid-hero-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.talent-grid-hero-name {
+    font-size: 22px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 8px;
+}
+
+.talent-grid-hero-desc {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin: 0 0 10px;
+    white-space: pre-wrap;
+}
+
+.talent-grid-hero-rule {
+    font-size: 13px;
+    line-height: 1.9;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+}
+
+.talent-grid-hero-rule b {
+    color: var(--accent-light);
+    font-weight: 600;
+}
+
+.talent-grid-hero-stats {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.talent-stat {
+    padding: 3px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--tier-color, var(--text-secondary));
+    background: var(--tier-bg, var(--bg-hover));
+    border: 1px solid var(--tier-color, var(--border));
+}
+
+/* ---- 三档分组 ---- */
+.talent-tiers {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    margin-top: 22px;
+}
+
+.talent-tier-block {
+    border-left: 3px solid var(--tier-color, var(--border));
+    padding-left: 16px;
+}
+
+.talent-tier-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.talent-tier-badge {
+    padding: 4px 14px;
+    border-radius: 0px 12px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #111111;
+    background: var(--tier-color, var(--accent));
+}
+
+.talent-tier-count {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.talent-tier-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 12px;
+}
+
+/* ---- 天赋节点卡片 ---- */
+.talent-card {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 16px;
+    cursor: pointer;
+    transition: box-shadow 0.2s, border-color 0.2s, background 0.2s, transform 0.2s;
+}
+
+.talent-card:hover {
+    background: rgba(0, 0, 0, 0.5);
+    border-color: var(--tier-color, var(--border-hover));
+    box-shadow: 0 4px 16px var(--tier-glow, rgba(0, 0, 0, 0.30));
+    transform: translateY(-2px);
+}
+
+.talent-card-icon {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--tier-bg, var(--bg-hover));
+    border: 1px solid var(--tier-color, var(--border));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.talent-card-icon-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+.talent-card-icon-emoji {
+    font-size: 24px;
+    line-height: 1;
+}
+
+.talent-card-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.talent-card-head {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 4px;
+}
+
+.talent-card-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.talent-card-lv {
+    font-size: 11px;
+    color: var(--tier-color, var(--text-muted));
+    flex-shrink: 0;
+}
+
+.talent-card-desc {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    white-space: pre-wrap;
+}
+
+.talent-card-effects {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.talent-card-effect {
+    display: inline-block;
+    padding: 2px 9px;
+    border-radius: 0px 8px;
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--accent-light);
+    background: rgba(212, 160, 86, 0.10);
+    border: 1px solid rgba(212, 160, 86, 0.28);
+}
+
+/* ============================================================
    黑底 30% 卡片文字适配 (装备/辅助宝石/职业天赋/魔宠)
    ============================================================ */
 .equipment-card[data-equipment-id] .equipment-card-name,

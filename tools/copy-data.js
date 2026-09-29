@@ -34,6 +34,7 @@ const MAPPINGS = [
     { source: 'E:\\策划\\1.表格目录\\XLS表格\\魔宠表.xlsx', target: '魔宠表.xlsx' },
     { source: 'E:\\策划\\1.表格目录\\XLS表格\\战斗技能等级表.xlsx', target: '战斗技能等级表.xlsx' },
     { source: 'D:\\NewProject\\preview-templates\\icon\\skill', target: 'skill', type: 'icon' },
+    { source: 'D:\\NewProject\\preview-templates\\icon\\talent', target: 'talent', type: 'icon' },
     { source: 'D:\\Users\\1250c\\Desktop\\技能视频', target: '', type: 'video' },
 ];
 
