@@ -3637,37 +3637,7 @@ body[data-page="home"] .home-modules {
 
 /* ---- 区块外壳 ---- */
 .talent-grid-section {
-    margin-bottom: 40px;
-    padding-bottom: 32px;
-    border-bottom: 1px solid var(--border);
-}
-
-.occupation-section {
-    padding-top: 4px;
-}
-
-.talent-section-head {
-    margin-bottom: 18px;
-}
-
-.talent-section-title {
-    font-size: 18px;
-    font-weight: 700;
-    color: #ffffff;
-    margin: 0 0 6px;
-    letter-spacing: 0.5px;
-}
-
-.talent-section-sub {
-    font-size: 13px;
-    line-height: 1.7;
-    color: var(--text-secondary);
-    margin: 0;
-}
-
-.talent-section-sub span {
-    color: var(--accent-light);
-    font-weight: 600;
+    padding-bottom: 24px;
 }
 
 /* ---- 天赋盘 Tab ---- */

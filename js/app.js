@@ -26,6 +26,8 @@ function ensurePageRendered(pageName) {
         renderEquipment();
     } else if (pageName === 'gems') {
         renderGems();
+    } else if (pageName === 'talent-grids') {
+        renderTalentGrids();
     }
 }
 
@@ -48,6 +50,8 @@ function navigateTo(pageName) {
     // 每次进入刷新数据 (编辑/导入后保持最新)
     if (pageName === 'custom-skills') {
         filterCustomSkills();
+    } else if (pageName === 'talent-grids') {
+        renderTalentGrids();
     } else if (pageName === 'occupations') {
         renderOccupations();
     } else if (pageName === 'pets') {
@@ -1980,6 +1984,7 @@ function renderHome() {
     _set('heroEquipment', equipmentData.length);
     _set('heroGem', gemData.length);
     _set('heroCustomSkill', customSkillData.length);
+    _set('heroTalentGrid', talentGridData.length);
     _set('heroOccupation', occupationData.length);
     _set('heroPet', petData.length);
     renderEquipmentOverview();
@@ -3168,6 +3173,7 @@ function refreshAllViews() {
     if (renderedPages.has('gems')) filterGems();
     if (renderedPages.has('custom-skills')) filterCustomSkills();
     if (renderedPages.has('occupations')) renderOccupations();
+    if (renderedPages.has('talent-grids')) renderTalentGrids();
     if (renderedPages.has('pets')) initPetPage();
     if (renderedPages.has('others')) { renderCategoryTables(); renderStats(); }
 }
@@ -3482,8 +3488,6 @@ function showTalentGridDetail(gridIdx, pointId) {
 }
 
 function renderOccupations() {
-    renderTalentGrids();
-
     const tabsEl = document.getElementById('occupationTabs');
     const canvasArea = document.getElementById('occupationCanvasArea');
     const totalEl = document.getElementById('occupationTotalCount');
