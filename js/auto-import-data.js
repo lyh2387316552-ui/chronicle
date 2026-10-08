@@ -1,5 +1,5 @@
 // 此文件由 import.js 自动生成，请勿手动编辑
-// 生成时间: 2026-10-08T02:49:37.086Z
+// 生成时间: 2026-10-08T09:30:16.137Z
 window.__AUTO_IMPORT_DATA__ = {
   "activeSkills": [
     {
@@ -366,6 +366,32 @@ window.__AUTO_IMPORT_DATA__ = {
         ]
       },
       "icon": "skill/linshi/9",
+      "skillCd": 0
+    },
+    {
+      "id": "1110000080",
+      "name": "太刀-刀刃之舞",
+      "category": "战斗技能",
+      "subCategory": "战斗攻击",
+      "isNew": false,
+      "description": "",
+      "tags": {
+        "main": "1",
+        "normal": [
+          "0",
+          "2",
+          "15"
+        ]
+      },
+      "tagsText": {
+        "main": "攻击",
+        "normal": [
+          "投射物",
+          "物理",
+          "15"
+        ]
+      },
+      "icon": "",
       "skillCd": 0
     },
     {
@@ -14101,6 +14127,10 @@ window.__AUTO_IMPORT_DATA__ = {
       "file": "回旋龙卷.mp4"
     },
     {
+      "name": "寒冰之捷",
+      "file": "寒冰之捷.mp4"
+    },
+    {
       "name": "寒冰诅咒",
       "file": "寒冰诅咒.mp4"
     },
@@ -14153,12 +14183,20 @@ window.__AUTO_IMPORT_DATA__ = {
       "file": "火球术.mp4"
     },
     {
+      "name": "灰烬之捷",
+      "file": "灰烬之捷.mp4"
+    },
+    {
       "name": "物理诅咒",
       "file": "物理诅咒.mp4"
     },
     {
-      "name": "移形换影mp4",
-      "file": "移形换影mp4.mp4"
+      "name": "移形换影",
+      "file": "移形换影.mp4"
+    },
+    {
+      "name": "闪电之捷",
+      "file": "闪电之捷.mp4"
     },
     {
       "name": "闪电诅咒",
@@ -17548,5 +17586,5 @@ window.__AUTO_IMPORT_DATA__ = {
     }
   ],
   "skillDisplayLevel": 1,
-  "importTime": "2026-10-08T02:49:37.086Z"
+  "importTime": "2026-10-08T09:30:16.137Z"
 };
