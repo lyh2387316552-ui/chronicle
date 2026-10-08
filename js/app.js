@@ -162,8 +162,20 @@ function renderCustomSkillTagFilterBar() {
     });
 
     // mainTag 排序在前，normalTag 排序在后 (normalTag 排除已在 mainTag 中的)
+    // 普通标签中: 伤害类型标签 (物理/火焰/冰霜/闪电/混沌) 置顶并按此顺序排列
+    const NORMAL_TAG_PRIORITY = ['物理', '火焰', '冰霜', '闪电', '混沌'];
+    const priorityIndex = (t) => {
+        const i = NORMAL_TAG_PRIORITY.indexOf(t);
+        return i < 0 ? Number.MAX_SAFE_INTEGER : i;
+    };
     const mainTags = [...mainTagSet].sort((a, b) => a.localeCompare(b, 'zh'));
-    const normalTags = [...normalTagSet].filter(t => !mainTagSet.has(t)).sort((a, b) => a.localeCompare(b, 'zh'));
+    const normalTags = [...normalTagSet]
+        .filter(t => !mainTagSet.has(t))
+        .sort((a, b) => {
+            const pa = priorityIndex(a), pb = priorityIndex(b);
+            if (pa !== pb) return pa - pb;
+            return a.localeCompare(b, 'zh');
+        });
     const tags = [...mainTags, ...normalTags];
 
     const current = tagFilterState.custom || [];

@@ -1,5 +1,5 @@
 // 此文件由 import.js 自动生成，请勿手动编辑
-// 生成时间: 2026-10-08T09:30:16.137Z
+// 生成时间: 2026-10-08T11:59:52.829Z
 window.__AUTO_IMPORT_DATA__ = {
   "activeSkills": [
     {
@@ -14115,6 +14115,10 @@ window.__AUTO_IMPORT_DATA__ = {
       "file": "冥地喷涌.mp4"
     },
     {
+      "name": "冰霜之捷",
+      "file": "冰霜之捷.mp4"
+    },
+    {
       "name": "冰霜新星",
       "file": "冰霜新星.mp4"
     },
@@ -14125,10 +14129,6 @@ window.__AUTO_IMPORT_DATA__ = {
     {
       "name": "回旋龙卷",
       "file": "回旋龙卷.mp4"
-    },
-    {
-      "name": "寒冰之捷",
-      "file": "寒冰之捷.mp4"
     },
     {
       "name": "寒冰诅咒",
@@ -14165,6 +14165,10 @@ window.__AUTO_IMPORT_DATA__ = {
     {
       "name": "混沌刺击",
       "file": "混沌刺击.mp4"
+    },
+    {
+      "name": "混沌剑阵",
+      "file": "混沌剑阵.mp4"
     },
     {
       "name": "混沌诅咒",
@@ -17586,5 +17590,5 @@ window.__AUTO_IMPORT_DATA__ = {
     }
   ],
   "skillDisplayLevel": 1,
-  "importTime": "2026-10-08T09:30:16.137Z"
+  "importTime": "2026-10-08T11:59:52.829Z"
 };
