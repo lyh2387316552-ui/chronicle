@@ -1,5 +1,5 @@
 // 此文件由 import.js 自动生成，请勿手动编辑
-// 生成时间: 2026-09-29T07:53:51.441Z
+// 生成时间: 2026-10-08T02:49:37.086Z
 window.__AUTO_IMPORT_DATA__ = {
   "activeSkills": [
     {
@@ -343,6 +343,32 @@ window.__AUTO_IMPORT_DATA__ = {
       "skillCd": 0
     },
     {
+      "id": "1110000070",
+      "name": "裂石崩坠",
+      "category": "战斗技能",
+      "subCategory": "战斗攻击",
+      "isNew": false,
+      "description": "",
+      "tags": {
+        "main": "1",
+        "normal": [
+          "0",
+          "2",
+          "7"
+        ]
+      },
+      "tagsText": {
+        "main": "攻击",
+        "normal": [
+          "投射物",
+          "物理",
+          "范围"
+        ]
+      },
+      "icon": "skill/linshi/9",
+      "skillCd": 0
+    },
+    {
       "id": "1110000090",
       "name": "专注射击",
       "category": "战斗技能",
@@ -512,7 +538,7 @@ window.__AUTO_IMPORT_DATA__ = {
     },
     {
       "id": "1120000031",
-      "name": "大地之怒",
+      "name": "冰晶术",
       "category": "法术技能",
       "subCategory": "法术释放",
       "isNew": false,
@@ -661,14 +687,24 @@ window.__AUTO_IMPORT_DATA__ = {
       "description": "化身成为闪电，对碰撞到的敌人造成100%的闪电伤害。\n生成一片闪电场，吸收场内敌人的感电状态并触发一次200%的雷击，雷击不会造成感电状态",
       "tags": {
         "main": "2",
-        "normal": []
+        "normal": [
+          "5",
+          "7",
+          "8",
+          "17"
+        ]
       },
       "tagsText": {
         "main": "法术",
-        "normal": []
+        "normal": [
+          "闪电",
+          "范围",
+          "持续",
+          "强化"
+        ]
       },
       "icon": "",
-      "skillCd": 20000
+      "skillCd": 15000
     },
     {
       "id": "1120000101",
@@ -687,6 +723,36 @@ window.__AUTO_IMPORT_DATA__ = {
       },
       "icon": "",
       "skillCd": 1200
+    },
+    {
+      "id": "1120000120",
+      "name": "鬼影横行",
+      "category": "法术技能",
+      "subCategory": "法术释放",
+      "isNew": false,
+      "description": "持续生成多个鬼骷髅追踪敌人，在接触敌人时产生爆炸",
+      "tags": {
+        "main": "2",
+        "normal": [
+          "1",
+          "5",
+          "7",
+          "8",
+          "16"
+        ]
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": [
+          "近战",
+          "闪电",
+          "范围",
+          "持续",
+          "环绕"
+        ]
+      },
+      "icon": "skill/linshi/14",
+      "skillCd": 8000
     },
     {
       "id": "1120000130",
@@ -1494,11 +1560,17 @@ window.__AUTO_IMPORT_DATA__ = {
       "description": "占位技能",
       "tags": {
         "main": "2",
-        "normal": []
+        "normal": [
+          "5",
+          "17"
+        ]
       },
       "tagsText": {
         "main": "法术",
-        "normal": []
+        "normal": [
+          "闪电",
+          "强化"
+        ]
       },
       "icon": "",
       "skillCd": null
@@ -3222,11 +3294,11 @@ window.__AUTO_IMPORT_DATA__ = {
     },
     {
       "id": "3140000020",
-      "name": "辅助技能-击中时回蓝",
+      "name": "辅助技能-击败时回蓝",
       "category": "传奇特技",
       "subCategory": "增益",
       "isNew": false,
-      "description": "击中时,回复2点魔力",
+      "description": "击中时,回复2%",
       "tags": {
         "main": null,
         "normal": []
@@ -3237,11 +3309,11 @@ window.__AUTO_IMPORT_DATA__ = {
     },
     {
       "id": "3140000030",
-      "name": "辅助技能-击中时回血",
+      "name": "辅助技能-击败时回血",
       "category": "传奇特技",
       "subCategory": "增益",
       "isNew": false,
-      "description": "击中时,回复5点生命",
+      "description": "击败时,回复2%生命",
       "tags": {
         "main": null,
         "normal": []
@@ -6566,7 +6638,7 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "refId": "101704",
           "name": "投射物数量增加",
-          "desc": "投射物数量增加100.00%~300.00%",
+          "desc": "投射物数量增加1~3",
           "random": false,
           "poolId": "101704"
         },
@@ -7366,9 +7438,16 @@ window.__AUTO_IMPORT_DATA__ = {
           "poolId": "100401"
         },
         {
-          "refId": "100403",
+          "refId": "100402",
           "name": "移动速度增加",
           "desc": "移速提高增加45.00%~75.00%",
+          "random": false,
+          "poolId": "100402"
+        },
+        {
+          "refId": "100403",
+          "name": "混沌抗性",
+          "desc": "混沌抗性增加50.00%~15.00%",
           "random": false,
           "poolId": "100403"
         }
@@ -7378,6 +7457,13 @@ window.__AUTO_IMPORT_DATA__ = {
           "poolId": "100401",
           "ids": [
             "100401"
+          ],
+          "total": 1
+        },
+        {
+          "poolId": "100402",
+          "ids": [
+            "100402"
           ],
           "total": 1
         },
@@ -8931,7 +9017,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "GEM0010",
       "name": "元素脉冲",
       "type": "辅助宝石",
-      "desc": "被辅助的攻击技能，在攻击命中后，随机造成50%元素伤害倍率的附加伤害",
+      "desc": "被辅助的技能，在命中后，随机造成50%元素伤害倍率的附加伤害",
       "effects": [
         {
           "refId": "2140000190"
@@ -8974,7 +9060,7 @@ window.__AUTO_IMPORT_DATA__ = {
           "refId": "10146"
         }
       ],
-      "rank": "2",
+      "rank": "1",
       "sourceId": "100201",
       "isNew": true,
       "source": "sync",
@@ -10060,8 +10146,8 @@ window.__AUTO_IMPORT_DATA__ = {
         }
       ],
       "skillCd": 0,
-      "recourceType": null,
-      "recourceConsume": null,
+      "recourceType": 2,
+      "recourceConsume": 1,
       "isNew": true,
       "source": "sync"
     },
@@ -10413,9 +10499,9 @@ window.__AUTO_IMPORT_DATA__ = {
     },
     {
       "id": "",
-      "name": "大地之怒",
+      "name": "冰晶术",
       "type": "主动技能",
-      "desc": "召唤一支冰冷之手，对范围内敌人造成299%冰冷伤害",
+      "desc": "召唤一枚巨大冰晶，对范围内敌人造成299%冰冷伤害",
       "sourceId": "1120000031",
       "tags": {
         "main": "法术",
@@ -10796,6 +10882,33 @@ window.__AUTO_IMPORT_DATA__ = {
         }
       ],
       "skillCd": 10000,
+      "recourceType": 2,
+      "recourceConsume": 1,
+      "isNew": true,
+      "source": "sync"
+    },
+    {
+      "id": "",
+      "name": "我即闪电",
+      "type": "主动技能",
+      "desc": "变身成为一个电球，碰撞敌人时造成102%闪电伤害，消耗闪电场中敌人的感电状态，产生一次闪电对敌人造成102%闪电伤害\n消耗当前拥有的所有迅捷注能，每消耗2层迅捷注能，电球的持续时间增加2秒",
+      "sourceId": "1120000100",
+      "tags": {
+        "main": "法术",
+        "normal": [
+          "闪电",
+          "范围",
+          "持续",
+          "强化"
+        ]
+      },
+      "icon": "skill/linshi/29",
+      "effects": [
+        {
+          "refId": "1120000100"
+        }
+      ],
+      "skillCd": 15000,
       "recourceType": 2,
       "recourceConsume": 1,
       "isNew": true,
@@ -11439,15 +11552,15 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "GRID1001",
       "gridId": "1001",
       "name": "奠基之石",
-      "desc": "影响伤害的基础数值，包括武器附加的点伤、不同伤害类型之间的转换，以及部分武器流派的核心加成。",
+      "desc": "影响伤害的基础数值，包括武器附加的点伤、不同伤害类型之间的转换，魔力消耗，以及部分武器流派的核心加成。",
       "icon": "🔶",
       "iconSrc": "talent/common_0/1",
       "advanceRequireBasePoint": 9,
       "coreRequireAdvancePoint": 3,
       "coreTalentLimit": 1,
-      "total": 24,
+      "total": 25,
       "baseCount": 12,
-      "advanceCount": 7,
+      "advanceCount": 8,
       "coreCount": 5,
       "points": [
         {
@@ -11807,6 +11920,25 @@ window.__AUTO_IMPORT_DATA__ = {
           "stunt": [
             "2150000170"
           ]
+        },
+        {
+          "id": "1001208",
+          "name": "进阶天赋",
+          "desc": "减少15点魔力消耗",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/binglengnengliangqiu",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10274",
+              "value": -15
+            }
+          ],
+          "stunt": []
         },
         {
           "id": "1001301",
@@ -13033,7 +13165,7 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "id": "1004202",
           "name": "进阶天赋",
-          "desc": "释放诅咒技能后，伤害额外提高10%",
+          "desc": "击败敌人时，回复2%魔力值",
           "size": 2,
           "tier": "进阶天赋",
           "tierIndex": 2,
@@ -13042,12 +13174,14 @@ window.__AUTO_IMPORT_DATA__ = {
           "maxLv": 1,
           "attr": [],
           "affix": [],
-          "stunt": []
+          "stunt": [
+            "3140000020"
+          ]
         },
         {
           "id": "1004203",
           "name": "进阶天赋",
-          "desc": "携带光环技能后，伤害额外提高10%",
+          "desc": "击败敌人时，回复2%生命值",
           "size": 2,
           "tier": "进阶天赋",
           "tierIndex": 2,
@@ -13056,7 +13190,9 @@ window.__AUTO_IMPORT_DATA__ = {
           "maxLv": 1,
           "attr": [],
           "affix": [],
-          "stunt": []
+          "stunt": [
+            "3140000030"
+          ]
         },
         {
           "id": "1004301",
@@ -13965,6 +14101,10 @@ window.__AUTO_IMPORT_DATA__ = {
       "file": "回旋龙卷.mp4"
     },
     {
+      "name": "寒冰诅咒",
+      "file": "寒冰诅咒.mp4"
+    },
+    {
       "name": "拔刀斩",
       "file": "拔刀斩.mp4"
     },
@@ -13997,16 +14137,32 @@ window.__AUTO_IMPORT_DATA__ = {
       "file": "混沌刺击.mp4"
     },
     {
+      "name": "混沌诅咒",
+      "file": "混沌诅咒.mp4"
+    },
+    {
       "name": "混沌陨星",
       "file": "混沌陨星.mp4"
+    },
+    {
+      "name": "火焰诅咒",
+      "file": "火焰诅咒.mp4"
     },
     {
       "name": "火球术",
       "file": "火球术.mp4"
     },
     {
+      "name": "物理诅咒",
+      "file": "物理诅咒.mp4"
+    },
+    {
       "name": "移形换影mp4",
       "file": "移形换影mp4.mp4"
+    },
+    {
+      "name": "闪电诅咒",
+      "file": "闪电诅咒.mp4"
     }
   ],
   "pets": [
@@ -17392,5 +17548,5 @@ window.__AUTO_IMPORT_DATA__ = {
     }
   ],
   "skillDisplayLevel": 1,
-  "importTime": "2026-09-29T07:53:51.441Z"
+  "importTime": "2026-10-08T02:49:37.086Z"
 };
