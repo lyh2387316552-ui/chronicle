@@ -2115,7 +2115,29 @@ function main() {
         '// 生成时间: ' + importData.importTime + '\n' +
         'window.__AUTO_IMPORT_DATA__ = ' + JSON.stringify(importData, null, 2) + ';\n';
 
+    // 数据内容对比 (忽略生成时间戳, 仅在真实数据变化时提升缓存版本号)
+    let dataChanged = true;
+    try {
+        if (fs.existsSync(OUTPUT_FILE)) {
+            const oldRaw = fs.readFileSync(OUTPUT_FILE, 'utf-8');
+            const m = oldRaw.match(/=\s*(\{[\s\S]*\})\s*;\s*$/);
+            if (m) {
+                const stripTime = (obj) => { const c = Object.assign({}, obj); delete c.importTime; return JSON.stringify(c); };
+                dataChanged = stripTime(JSON.parse(m[1])) !== stripTime(importData);
+            }
+        }
+    } catch (e) { dataChanged = true; }
+
     fs.writeFileSync(OUTPUT_FILE, jsContent, 'utf-8');
+
+    // 数据真实变化时, 同步提升 index.html 中 auto-import-data.js 的缓存版本号,
+    // 否则浏览器会因 max-age 缓存命中旧脚本, 导致「数据已更新但网页没变」
+    if (dataChanged) {
+        bumpCacheVersion();
+    } else {
+        console.log('  ℹ️ 数据无变化, 保持 index.html 缓存版本号不变');
+    }
+
     console.log('');
     console.log('✓ 导入完成！数据已写入: auto-import-data.js');
     console.log('');
@@ -2138,6 +2160,27 @@ function main() {
 
     console.log('');
     console.log('现在可以打开 index.html 查看数据。');
+}
+
+// 提升 index.html 中 auto-import-data.js 的 ?v= 缓存版本号
+function bumpCacheVersion() {
+    try {
+        const htmlPath = path.join(__dirname, '..', 'index.html');
+        if (!fs.existsSync(htmlPath)) return;
+        let html = fs.readFileSync(htmlPath, 'utf-8');
+        const re = /(js\/auto-import-data\.js\?v=)(\d+)/;
+        const m = html.match(re);
+        if (!m) {
+            console.log('  ⚠️ index.html 未找到 auto-import-data.js?v= 标记, 跳过版本号提升');
+            return;
+        }
+        const next = parseInt(m[2], 10) + 1;
+        html = html.replace(re, m[1] + next);
+        fs.writeFileSync(htmlPath, html, 'utf-8');
+        console.log('  🔁 已提升缓存版本号: auto-import-data.js?v=' + m[2] + ' → v=' + next);
+    } catch (e) {
+        console.log('  ⚠️ 提升缓存版本号失败: ' + e.message);
+    }
 }
 
 main();
