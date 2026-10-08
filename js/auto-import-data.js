@@ -1,5 +1,5 @@
 // 此文件由 import.js 自动生成，请勿手动编辑
-// 生成时间: 2026-10-08T11:59:52.829Z
+// 生成时间: 2026-10-08T12:18:52.383Z
 window.__AUTO_IMPORT_DATA__ = {
   "activeSkills": [
     {
@@ -10959,7 +10959,7 @@ window.__AUTO_IMPORT_DATA__ = {
           "size": 2,
           "icon": "✨",
           "iconSrc": "talent/skill/kuaigong",
-          "linkPoint": "1003004|1003006|1003012"
+          "linkPoint": "1003010|1003006|1003012"
         },
         {
           "id": "1003004",
@@ -10973,7 +10973,7 @@ window.__AUTO_IMPORT_DATA__ = {
           "size": 2,
           "icon": "✨",
           "iconSrc": "talent/skill/kanpo",
-          "linkPoint": "1003002|1003010"
+          "linkPoint": "1003010"
         },
         {
           "id": "1003006",
@@ -11015,7 +11015,7 @@ window.__AUTO_IMPORT_DATA__ = {
           "size": 2,
           "icon": "✨",
           "iconSrc": "talent/skill/baoxue",
-          "linkPoint": "1003004"
+          "linkPoint": "1003002|1003004"
         },
         {
           "id": "1003012",
@@ -17590,5 +17590,5 @@ window.__AUTO_IMPORT_DATA__ = {
     }
   ],
   "skillDisplayLevel": 1,
-  "importTime": "2026-10-08T11:59:52.829Z"
+  "importTime": "2026-10-08T12:18:52.383Z"
 };
