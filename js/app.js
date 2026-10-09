@@ -3302,7 +3302,7 @@ const occupationBgMap = {
     '巫术魔典': 'assets/talent-bg-wushu.webp',
     '剑客1': 'assets/talent-bg-jianke.webp',
     '冰刃': 'assets/talent-bg-bingren.webp',
-    '元素法杖': 'assets/talent-bg-yuansu.webp',
+    '元素法杖': 'assets/talent-bg-yuansu.webp?v=2',
     '塑能法杖': 'assets/talent-bg-suneng.webp'
 };
 

@@ -1,5 +1,5 @@
 // 此文件由 import.js 自动生成，请勿手动编辑
-// 生成时间: 2026-10-09T06:29:15.608Z
+// 生成时间: 2026-10-09T06:40:06.279Z
 window.__AUTO_IMPORT_DATA__ = {
   "activeSkills": [
     {
@@ -14200,6 +14200,10 @@ window.__AUTO_IMPORT_DATA__ = {
       "file": "火焰诅咒.mp4"
     },
     {
+      "name": "火焰龙卷",
+      "file": "火焰龙卷.mp4"
+    },
+    {
       "name": "火球术",
       "file": "火球术.mp4"
     },
@@ -17611,5 +17615,5 @@ window.__AUTO_IMPORT_DATA__ = {
     }
   ],
   "skillDisplayLevel": 1,
-  "importTime": "2026-10-09T06:29:15.608Z"
+  "importTime": "2026-10-09T06:40:06.279Z"
 };
