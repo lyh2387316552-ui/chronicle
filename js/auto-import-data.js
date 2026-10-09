@@ -1,5 +1,5 @@
 // 此文件由 import.js 自动生成，请勿手动编辑
-// 生成时间: 2026-10-08T12:18:52.383Z
+// 生成时间: 2026-10-09T06:29:15.608Z
 window.__AUTO_IMPORT_DATA__ = {
   "activeSkills": [
     {
@@ -203,14 +203,16 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "1",
         "normal": [
           "1",
-          "2"
+          "2",
+          "7"
         ]
       },
       "tagsText": {
         "main": "攻击",
         "normal": [
           "近战",
-          "物理"
+          "物理",
+          "范围"
         ]
       },
       "icon": "skill/linshi/8",
@@ -227,14 +229,16 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "1",
         "normal": [
           "1",
-          "2"
+          "2",
+          "7"
         ]
       },
       "tagsText": {
         "main": "攻击",
         "normal": [
           "近战",
-          "物理"
+          "物理",
+          "范围"
         ]
       },
       "icon": "skill/linshi/8",
@@ -251,14 +255,16 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "1",
         "normal": [
           "1",
-          "2"
+          "2",
+          "7"
         ]
       },
       "tagsText": {
         "main": "攻击",
         "normal": [
           "近战",
-          "物理"
+          "物理",
+          "范围"
         ]
       },
       "icon": "skill/linshi/8",
@@ -275,14 +281,16 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "1",
         "normal": [
           "1",
-          "2"
+          "2",
+          "7"
         ]
       },
       "tagsText": {
         "main": "攻击",
         "normal": [
           "近战",
-          "物理"
+          "物理",
+          "范围"
         ]
       },
       "icon": "skill/linshi/8",
@@ -10030,7 +10038,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "攻击",
         "normal": [
           "近战",
-          "物理"
+          "物理",
+          "范围"
         ]
       },
       "icon": "skill/linshi/8",
@@ -10959,7 +10968,7 @@ window.__AUTO_IMPORT_DATA__ = {
           "size": 2,
           "icon": "✨",
           "iconSrc": "talent/skill/kuaigong",
-          "linkPoint": "1003010|1003006|1003012"
+          "linkPoint": "1003008|1003010|1003012"
         },
         {
           "id": "1003004",
@@ -10987,7 +10996,7 @@ window.__AUTO_IMPORT_DATA__ = {
           "size": 2,
           "icon": "✨",
           "iconSrc": "talent/skill/liufeng",
-          "linkPoint": "1003002|1003008"
+          "linkPoint": "1003008"
         },
         {
           "id": "1003008",
@@ -11001,7 +11010,7 @@ window.__AUTO_IMPORT_DATA__ = {
           "size": 2,
           "icon": "✨",
           "iconSrc": "talent/skill/jihan",
-          "linkPoint": "1003006"
+          "linkPoint": "1003006|1003002"
         },
         {
           "id": "1003010",
@@ -14115,6 +14124,10 @@ window.__AUTO_IMPORT_DATA__ = {
       "file": "冥地喷涌.mp4"
     },
     {
+      "name": "冰晶术",
+      "file": "冰晶术.mp4"
+    },
+    {
       "name": "冰霜之捷",
       "file": "冰霜之捷.mp4"
     },
@@ -14133,6 +14146,10 @@ window.__AUTO_IMPORT_DATA__ = {
     {
       "name": "寒冰诅咒",
       "file": "寒冰诅咒.mp4"
+    },
+    {
+      "name": "我即闪电",
+      "file": "我即闪电.mp4"
     },
     {
       "name": "拔刀斩",
@@ -14205,6 +14222,10 @@ window.__AUTO_IMPORT_DATA__ = {
     {
       "name": "闪电诅咒",
       "file": "闪电诅咒.mp4"
+    },
+    {
+      "name": "附身电球",
+      "file": "附身电球.mp4"
     }
   ],
   "pets": [
@@ -17590,5 +17611,5 @@ window.__AUTO_IMPORT_DATA__ = {
     }
   ],
   "skillDisplayLevel": 1,
-  "importTime": "2026-10-08T12:18:52.383Z"
+  "importTime": "2026-10-09T06:29:15.608Z"
 };
