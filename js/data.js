@@ -431,6 +431,14 @@ const DEFAULT_VIDEO_FILES = [
 let petData = [];
 
 // ============================================================
+// 道具数据 - 由一键导入 (auto-import-data.js items 字段) 填充
+// 来源: 道具表.xlsx → Item 子表 (过滤 uesless=1)
+// 结构: [{ id, name, desc, icon, quality(1白..8红), itemType(1/2/3普通道具类型) }]
+// icon 形如 item/caizuan, 网页引用 icon/item/caizuan.webp
+// ============================================================
+let itemData = [];
+
+// ============================================================
 // 传奇装备词条映射表 (Modifier ID → 描述+效果ID)
 // ============================================================
 const legendModifierMap = {
@@ -632,6 +640,15 @@ function findRefData(refId) {
             console.log('  ✓ 魔宠表:', petData.length, '个魔宠');
         }
     } catch(e) { console.error('  ❌ 魔宠表加载失败:', e); }
+
+    // 道具表 (items 字段: import.js 解析道具表.xlsx Item 子表生成, 已过滤 uesless=1)
+    try {
+        if (data.items && data.items.length > 0) {
+            itemData.length = 0;
+            itemData.push(...data.items);
+            console.log('  ✓ 道具表:', itemData.length, '个道具');
+        }
+    } catch(e) { console.error('  ❌ 道具表加载失败:', e); }
 
     // 无导入视频清单时使用内置默认清单 (与 videos/ 文件夹兜底对应)
     if (videoData.length === 0) {

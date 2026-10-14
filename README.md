@@ -88,6 +88,7 @@ chronicle-main/
 | 技能库/职业天赋 | `data-sources/技能养成相关.xlsx` | Excel |
 | 技能标签字典 | `data-sources/战斗技能相关表.xlsx` | Excel（含 SkillMainTag + SkillNormalTag 子表） |
 | 魔宠表 | `data-sources/魔宠表.xlsx` | Excel |
+| 道具表 | `data-sources/道具表.xlsx` | Excel（Item 子表） |
 | 游戏图标 | `icon/` | 网页运行时直接引用 |
 | 技能视频 | `videos/` | 网页运行时直接引用 |
 
@@ -102,6 +103,24 @@ chronicle-main/
 - 主动技能从 `data-sources/Skill/*.json` 的 `mainTag`/`normalTag` 提取数字标签，被动技能从 `data-sources/Stunt/*.json` 提取
 - 标签文本由 `技能标签` Excel 的 SkillMainTag / SkillNormalTag 子表映射（1=攻击、2=法术、3=召唤、4=光环；0=投射物、1=近战、2=物理…）
 - 技能库卡片与战斗数据的主动/被动技能卡片均显示标签；战斗数据页顶部提供标签筛选栏（参考 tlidb 形态），可点击 `mainTag`（主标签）与 `normalTag`（常规标签）筛选对应类型技能
+
+### 道具表字段用法
+
+数据源 `data-sources/道具表.xlsx` 的 **Item 子表**，`import.js` 的 `parseItems()` 解析后写入 `auto-import-data.js` 的 `items` 字段，前端「道具图鉴」页读取 `itemData` 渲染。
+
+| 字段 | 用途 | 取值说明 |
+|------|------|---------|
+| `uesless` | **过滤开关** | 填 `1` 的道具不予展示（视为废弃/无用道具）；为空或其他值的道具正常导出 |
+| `itemName` | 道具名 | 显示为卡片标题，参与全局搜索 |
+| `desc` | 道具描述 | 显示为卡片说明文字，参与全局搜索 |
+| `quality` | 品质 | `1`白 / `2`绿 / `3`蓝 / `4`紫 / `5`黄 / `6`橙 / `7`粉 / `8`红；决定卡片边色与品质标签配色（不作为展示过滤条件） |
+| `icon` | 图标路径 | 形如 `item/caizuan`（可带 `[]` 包裹或用 `|,/` 多值，取第一个）；对应工程目录 `D:\NewProject\preview-templates\icon` 下的图片 |
+| `itemType` | **道具类型 / 过滤开关** | `1`/`2`/`3` 统一展示为「普通道具类型」；**编年史仅展示 `itemType` 为 `1`/`2`/`3` 的道具，其余类型过滤不导出** |
+
+- **图标管线**：`copy-data.js` 将 `D:\NewProject\preview-templates\icon\item` 中**被引用到的图标**复制到数据仓库 `icon/item/`（未被引用的不导出并清理）→ `convert-images.js` 转为同名 `.webp`（删除源图）→ 网页从 chronicle-data Pages 以 `icon/<icon路径>.webp` 引用（如 `item/caizuan` → `icon/item/caizuan.webp`）
+- **过滤规则（导出时即裁剪）**：`copy-data.js` 导出 `data-sources/道具表.xlsx` 时即剔除 `uesless = 1` 的道具，且仅保留类型 `itemType` 为 `1`/`2`/`3` 的物品行；数据仓库中的道具表与 `icon/item/` 均为裁剪后的结果，`import.js` 读取时无需再次过滤
+- **排序规则**：默认按品质降序（红 > 粉 > 橙 …），同品质按 `id` 升序
+- **筛选/搜索**：支持按名称/ID/描述/类型关键字搜索，及品质、类型下拉筛选
 
 ### 团队协作（多人使用）
 
@@ -144,6 +163,7 @@ ID 格式：`A+B+C+D+E+000F+G`（10 位数字）
 | 战斗数据 | 主动技能 / 被动技能 / 词缀库 / 属性库（Tab 切换） |
 | 暗金装备 | 装备列表与详情（效果词条、词缀映射） |
 | 辅助宝石 | 宝石效果展示 |
+| 道具图鉴 | 道具列表（图标、品质、类型）与筛选、图标原图查看 |
 | 技能库 | 自定义技能管理 |
 | 统计 | 数据分布统计与可视化 |
 | ID规则 | 技能 ID 编码体系说明 |

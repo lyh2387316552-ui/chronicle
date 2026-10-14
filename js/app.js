@@ -28,6 +28,8 @@ function ensurePageRendered(pageName) {
         renderGems();
     } else if (pageName === 'talent-grids') {
         renderTalentGrids();
+    } else if (pageName === 'items') {
+        initItemPage();
     }
 }
 
@@ -56,6 +58,8 @@ function navigateTo(pageName) {
         renderOccupations();
     } else if (pageName === 'pets') {
         initPetPage();
+    } else if (pageName === 'items') {
+        initItemPage();
     } else if (pageName === 'others') {
         renderCategoryTables();
         renderStats();
@@ -514,7 +518,8 @@ const debouncedFilters = {
     equipment: debounce(() => filterEquipments(), 150),
     gem: debounce(() => filterGems(), 150),
     custom: debounce(() => filterCustomSkills(), 150),
-    pet: debounce(() => filterPets(), 150)
+    pet: debounce(() => filterPets(), 150),
+    item: debounce(() => filterItems(), 150)
 };
 
 function debouncedFilter(kind) {
@@ -523,12 +528,12 @@ function debouncedFilter(kind) {
 
 // ============================================================
 // 全局搜索 (跨库候选面板)
-// 输入即实时统计 8 个系统的命中条数, 面板列出每个命中系统的前几条候选;
+// 输入即实时统计 9 个系统的命中条数, 面板列出每个命中系统的前几条候选;
 // 点击候选行跳转到对应页面并自动应用该搜索词, Enter 直接打开首个结果。
 // 检索字段与各页面 filter 函数保持一致, 共用 matchFields 引擎。
 // ============================================================
 
-// 8 个系统的检索目标
+// 9 个系统的检索目标
 function getGlobalSearchTargets() {
     return [
         {
@@ -578,6 +583,12 @@ function getGlobalSearchTargets() {
             apply: () => filterPets(),
             arr: petData, nameOf: p => p.name, subOf: p => getPetQuality(p.quality).name,
             fields: p => [p.name, p.id, p.quality, getPetQuality(p.quality).name, petStarEffectText(p)]
+        },
+        {
+            label: '道具', page: 'items', inputId: 'itemSearchInput',
+            apply: () => filterItems(),
+            arr: itemData, nameOf: it => it.name, subOf: it => getItemQuality(it.quality).name,
+            fields: it => [it.name, it.id, it.desc, it.quality, getItemQuality(it.quality).name, getItemTypeName(it.itemType)]
         }
     ];
 }
@@ -1999,6 +2010,7 @@ function renderHome() {
     _set('heroTalentGrid', talentGridData.length);
     _set('heroOccupation', occupationData.length);
     _set('heroPet', petData.length);
+    _set('heroItem', itemData.length);
     renderEquipmentOverview();
     renderOccupationOverview();
     renderSkillComboOverview();
@@ -3957,5 +3969,135 @@ function openPetShowcase(picSrc, bgSrc, name) {
 // 三库（装备库/辅助技能宝石/技能库）数据仅由一键导入提供，只读展示。
 // 首页新增功能产生的数据请存放于独立 localStorage key，勿与导入数据冲突。
 // ============================================================
+
+// ============================================================
+// 道具系统 (道具表 Item 子表, 已过滤 uesless=1)
+// 品质: 1白 / 2绿 / 3蓝 / 4紫 / 5黄 / 6橙 / 7粉 / 8红
+// itemType: 1/2/3 均展示为「普通道具类型」
+// 图标: icon 形如 item/caizuan → 网页引用 icon/item/caizuan.webp
+// ============================================================
+
+// 品质映射表 (编号 → 名称 + 配色)
+const itemQualityMap = {
+    '1': { name: '白', color: '#e5e7eb' },
+    '2': { name: '绿', color: '#22c55e' },
+    '3': { name: '蓝', color: '#3b82f6' },
+    '4': { name: '紫', color: '#a855f7' },
+    '5': { name: '黄', color: '#eab308' },
+    '6': { name: '橙', color: '#f97316' },
+    '7': { name: '粉', color: '#ec4899' },
+    '8': { name: '红', color: '#ef4444' }
+};
+
+function getItemQuality(q) {
+    return itemQualityMap[String(q)] || { name: '未知', color: '#95a5a6' };
+}
+
+// 道具类型映射: 1/2/3 → 普通道具类型
+function getItemTypeName(t) {
+    const v = String(t === undefined || t === null ? '' : t).trim();
+    if (v === '1' || v === '2' || v === '3') return '普通道具类型';
+    return v ? '类型' + v : '未分类';
+}
+
+// 初始化道具页 (下拉选项 + 渲染)
+function initItemPage() {
+    const qFilter = document.getElementById('itemQualityFilter');
+    if (qFilter) {
+        const qs = new Set(itemData.map(it => String(it.quality)));
+        const opts = ['<option value="">全部品质</option>'];
+        [...qs].filter(q => q !== '').sort((a, b) => Number(a) - Number(b)).forEach(q => {
+            const info = getItemQuality(q);
+            opts.push(`<option value="${q}">${info.name} (${q})</option>`);
+        });
+        qFilter.innerHTML = opts.join('');
+    }
+    const tFilter = document.getElementById('itemTypeFilter');
+    if (tFilter) {
+        const ts = new Set(itemData.map(it => getItemTypeName(it.itemType)));
+        const opts = ['<option value="">全部类型</option>'];
+        [...ts].filter(t => t && t !== '未分类').sort((a, b) => a.localeCompare(b, 'zh')).forEach(t => {
+            opts.push(`<option value="${t}">${t}</option>`);
+        });
+        tFilter.innerHTML = opts.join('');
+    }
+    filterItems();
+}
+
+// 筛选并渲染道具卡片
+function filterItems() {
+    const grid = document.getElementById('itemGrid');
+    if (!grid) return;
+    const keywords = parseKeywords(((document.getElementById('itemSearchInput') || {}).value || ''));
+    const qFilter = ((document.getElementById('itemQualityFilter') || {}).value || '').trim();
+    const tFilter = ((document.getElementById('itemTypeFilter') || {}).value || '').trim();
+
+    let list = itemData;
+    if (keywords.length > 0) {
+        list = list.filter(it => matchFields(keywords, [it.name, it.id, it.desc, it.quality, getItemQuality(it.quality).name, getItemTypeName(it.itemType)]));
+    }
+    if (qFilter) {
+        list = list.filter(it => String(it.quality) === qFilter);
+    }
+    if (tFilter) {
+        list = list.filter(it => getItemTypeName(it.itemType) === tFilter);
+    }
+    // 默认按品质降序 (红 > 粉 > 橙 ...), 同品质按 ID 升序
+    list = list.slice().sort((a, b) => {
+        const dq = (Number(b.quality) || 0) - (Number(a.quality) || 0);
+        if (dq !== 0) return dq;
+        return (Number(a.id) || 0) - (Number(b.id) || 0);
+    });
+
+    const totalEl = document.getElementById('itemTotalCount');
+    if (totalEl) totalEl.textContent = itemData.length;
+
+    if (list.length === 0) {
+        grid.innerHTML = `
+            <div class="equipment-empty">
+                <div class="equipment-empty-icon">🎒</div>
+                <p>${itemData.length === 0 ? '暂无道具数据' : '未找到匹配的道具'}</p>
+                <p class="equipment-empty-hint">${itemData.length === 0 ? '请运行一键导入收录道具表数据' : '尝试其他搜索关键词'}</p>
+            </div>
+        `;
+        return;
+    }
+
+    grid.innerHTML = list.map(it => {
+        const q = getItemQuality(it.quality);
+        const hasIcon = it.icon ? DATA_BASE + 'icon/' + it.icon + '.webp' : '';
+        const click = hasIcon ? `onclick="openItemIcon('${hasIcon}','${(it.name || '').replace(/'/g, "\\'")}')"` : '';
+        return `
+            <div class="item-card" style="border-color:${q.color}66">
+                <div class="item-icon${hasIcon ? ' item-icon-clickable' : ''}" style="background:${q.color}18;border-color:${q.color}88" ${click}>
+                    ${hasIcon ? `<img src="${hasIcon}" alt="${it.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="item-icon-fallback" style="display:none">🎒</span>` : '<span class="item-icon-fallback">🎒</span>'}
+                </div>
+                <div class="item-info">
+                    <h4 class="item-name">${it.name || '未命名道具'}</h4>
+                    <div class="item-meta">
+                        <span class="item-quality" style="background:${q.color};color:${q.name === '白' ? '#1a1a1a' : '#fff'}">${q.name}</span>
+                        <span class="item-type">${getItemTypeName(it.itemType)}</span>
+                        <span class="item-id">ID: ${it.id}</span>
+                    </div>
+                    ${it.desc ? `<p class="item-desc">${it.desc}</p>` : ''}
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+// 打开道具图标原图弹窗
+function openItemIcon(src, name) {
+    const modal = document.getElementById('skillModal');
+    const body = document.getElementById('modalBody');
+    if (!modal || !body) return;
+    body.innerHTML = `
+        <div class="pet-pic-modal">
+            <h2 class="detail-name">🎒 ${name}</h2>
+            <img class="pet-pic-single" src="${src}" alt="${name}" onerror="this.outerHTML='<p class=equipment-empty>图片加载失败</p>'">
+        </div>
+    `;
+    modal.classList.add('active');
+}
 
 document.addEventListener('DOMContentLoaded', init);

@@ -13,5 +13,6 @@
   "occupationPath": "../chronicle-data/data-sources/技能养成相关.xlsx",
   "iconPath": "../chronicle-data/icon",
   "videoPath": "../chronicle-data/videos",
-  "petPath": "../chronicle-data/data-sources/魔宠表.xlsx"
+  "petPath": "../chronicle-data/data-sources/魔宠表.xlsx",
+  "itemPath": "../chronicle-data/data-sources/道具表.xlsx"
 }

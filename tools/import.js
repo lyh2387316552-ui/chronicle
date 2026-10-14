@@ -66,7 +66,8 @@ const DEFAULT_CONFIG = {
     "occupationPath":  "data-sources/技能表",
     "iconPath":        "D:/NewProject/preview-templates/icon",
     "videoPath":       "D:/Users/1250c/Desktop/技能视频",
-    "petPath":         "E:/策划/1.表格目录/XLS表格/魔宠表"
+    "petPath":         "E:/策划/1.表格目录/XLS表格/魔宠表",
+    "itemPath":        "E:/策划/1.表格目录/XLS表格/道具表"
 };
 
 // ============================================================
@@ -1827,6 +1828,84 @@ function parsePets(inputPath) {
 }
 
 // ============================================================
+// 解析道具表 (道具表.xlsx → Item 子表)
+// 字段用法 (与策划表 Item 子表英文字段键一致):
+//   uesless  非可用道具标记: 值为 1 的道具不予展示, 仅导出该字段为 0(或空) 的道具
+//   itemName 道具名称
+//   desc     道具说明 (道具描述)
+//   icon     icon 路径 (stringArr, 形如 item/caizuan); 图标源位于
+//            D:\NewProject\preview-templates\icon, 由 copy-data.js 同步到数据仓库
+//            chronicle-data/icon/item/, 经 convert-images.js 转 webp 后供网页引用
+//   quality  品质: 1白 / 2绿 / 3蓝 / 4紫 / 5黄 / 6橙 / 7粉 / 8红
+//   itemType 道具类型: 1/2/3 展示为「普通道具类型」
+// ============================================================
+function parseItems(inputPath) {
+    console.log('  📖 解析道具表...');
+    let filePath = inputPath;
+
+    if (isDirectory(inputPath)) {
+        filePath = findDataFile(inputPath, ['.xlsx', '.xls', '.csv'], ['道具', 'item']);
+        if (!filePath) {
+            console.log('  ⚠️ 文件夹中未找到道具表:', inputPath);
+            return null;
+        }
+    } else if (!fs.existsSync(filePath)) {
+        // 尝试补全扩展名 (.xlsx/.xls/.csv)
+        const exts = ['.xlsx', '.xls', '.csv'];
+        for (const ext of exts) {
+            if (fs.existsSync(filePath + ext)) { filePath = filePath + ext; break; }
+        }
+        if (!fs.existsSync(filePath)) {
+            console.log('  ⚠️ 道具表不存在:', inputPath);
+            return null;
+        }
+    }
+    console.log('     文件:', filePath);
+
+    const itemData = readSheetByName(filePath, ['Item']);
+    console.log('     Item子表:', itemData.sheetName, '  行数:', itemData.rows.length);
+
+    const idCol = findCol(itemData.headers, ['id.p', 'id', 'ID', 'Id', '道具id']);
+    const uselessCol = findCol(itemData.headers, ['uesless', '无用道具', '非可用道具']);
+    const nameCol = findCol(itemData.headers, ['itemName', '道具名称', '名称']);
+    const iconCol = findCol(itemData.headers, ['icon', '图标']);
+    const descCol = findCol(itemData.headers, ['desc', '道具说明', '道具描述']);
+    const typeCol = findCol(itemData.headers, ['itemType', '物品类型', '道具类型']);
+    const qualityCol = findCol(itemData.headers, ['quality', '品质']);
+
+    // 解析 icon (stringArr): 支持 "item/caizuan" / ["item/caizuan"] / "a|b" 取首个非空值
+    const parseIcon = (raw) => {
+        let s = String(raw || '').trim();
+        if (!s) return '';
+        s = s.replace(/^\[|\]$/g, '').replace(/["']/g, '');
+        const first = s.split(/[|,;，；\s]+/).map(x => x.trim()).filter(Boolean)[0];
+        return first || '';
+    };
+
+    const items = [];
+    itemData.rows.forEach(row => {
+        const id = idCol ? cleanNum(row[idCol]) : '';
+        if (!id) return;
+        // uesless 为 1 的道具不予展示; 空值视为 0 (展示)
+        const useless = uselessCol ? String(row[uselessCol] || '').trim() : '';
+        if (useless === '1' || useless === '1.0') return;
+        // 类型限制: 编年史仅展示 itemType 为 1/2/3 的普通道具
+        const itemType = typeCol ? cleanNum(row[typeCol]) : '';
+        if (itemType !== '1' && itemType !== '2' && itemType !== '3') return;
+        items.push({
+            id: id,
+            name: nameCol ? (row[nameCol] || '').trim() : '',
+            desc: descCol ? (row[descCol] || '').trim() : '',
+            icon: iconCol ? parseIcon(row[iconCol]) : '',
+            quality: qualityCol ? cleanNum(row[qualityCol]) : '',
+            itemType: itemType
+        });
+    });
+    console.log('     ✓ 解析道具:', items.length, '个 (已过滤 uesless=1, 仅保留 itemType 1/2/3)');
+    return items;
+}
+
+// ============================================================
 // 主流程
 // ============================================================
 
@@ -1856,6 +1935,8 @@ function syncIcons(importData, config) {
     });
     // 魔宠图标: 头像 pic / 获得背景 getBg / 获得立绘 getPic
     (importData.pets || []).forEach(p => { addRef(p.pic, p.pic); addRef(p.getBg, p.getBg); addRef(p.getPic, p.getPic); });
+    // 道具图标: icon 路径 (形如 item/caizuan, 落盘为 icon/item/caizuan.webp)
+    (importData.items || []).forEach(it => addRef(it.icon, it.icon));
 
     if (refs.size === 0) {
         console.log('  📦 图标资源: 无图标引用');
@@ -1896,7 +1977,7 @@ function main() {
     const config = { ...DEFAULT_CONFIG, ...JSON.parse(fs.readFileSync(CONFIG_FILE, 'utf-8')) };
 
     // 规范化数据源路径：相对路径(如 data-sources/Skill)解析到本项目目录，绝对路径保持不变
-    const pathKeys = ['skillFolder', 'skillModuleFolder', 'stuntFolder', 'stuntModuleFolder', 'affixPath', 'equipPath', 'gemPath', 'attrPath', 'skillExcelPath', 'skillTagPath', 'occupationPath', 'iconPath', 'videoPath', 'petPath'];
+    const pathKeys = ['skillFolder', 'skillModuleFolder', 'stuntFolder', 'stuntModuleFolder', 'affixPath', 'equipPath', 'gemPath', 'attrPath', 'skillExcelPath', 'skillTagPath', 'occupationPath', 'iconPath', 'videoPath', 'petPath', 'itemPath'];
     pathKeys.forEach(k => {
         if (config[k] && String(config[k]).trim()) {
             config[k] = resolvePath(String(config[k]).trim());
@@ -1916,6 +1997,7 @@ function main() {
         talentGrids: null,
         videos: null,
         pets: null,
+        items: null,
         skillDisplayLevel: SKILL_DATA_LEVEL,
         importTime: new Date().toISOString()
     };
@@ -2104,6 +2186,22 @@ function main() {
         console.log('');
     }
 
+    // 10. 道具表 (Item 子表: 过滤 uesless=1)
+    if (config.itemPath && config.itemPath.trim()) {
+        const fp = smartResolvePath(config.itemPath.trim());
+        if (fp && fs.existsSync(fp)) {
+            try {
+                importData.items = parseItems(fp);
+                if (importData.items) hasAny = true;
+            } catch (err) {
+                console.log('  ❌ 道具表解析失败:', err.message);
+            }
+        } else {
+            console.log('  ⚠️ 道具表路径不存在:', config.itemPath.trim());
+        }
+        console.log('');
+    }
+
     if (!hasAny) {
         console.log('❌ 没有成功导入任何数据，请检查 import-config.json 中的路径。');
         return;
@@ -2153,6 +2251,7 @@ function main() {
     if (importData.talentGrids) console.log('  通用天赋: ' + importData.talentGrids.length + ' 个天赋盘, ' + importData.talentGrids.reduce((s, g) => s + g.total, 0) + ' 个天赋节点');
     if (importData.videos) console.log('  视频库: ' + importData.videos.length + ' 个视频');
     if (importData.pets) console.log('  魔宠表: ' + importData.pets.length + ' 个魔宠, ' + importData.pets.reduce((s, p) => s + p.stars.length, 0) + ' 条星级效果');
+    if (importData.items) console.log('  道具表: ' + importData.items.length + ' 个道具 (已过滤 uesless=1)');
     console.log('');
 
     // 7. 同步图标资源 (已有资源自动跳过)

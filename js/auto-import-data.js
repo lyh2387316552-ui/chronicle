@@ -1,5 +1,5 @@
 // 此文件由 import.js 自动生成，请勿手动编辑
-// 生成时间: 2026-10-09T06:40:06.279Z
+// 生成时间: 2026-10-14T08:54:40.725Z
 window.__AUTO_IMPORT_DATA__ = {
   "activeSkills": [
     {
@@ -26,7 +26,7 @@ window.__AUTO_IMPORT_DATA__ = {
           "物理",
           "冰霜",
           "范围",
-          "寒刃"
+          "10"
         ]
       },
       "icon": "skill/jianke/2",
@@ -82,7 +82,7 @@ window.__AUTO_IMPORT_DATA__ = {
           "物理",
           "冰霜",
           "范围",
-          "寒刃"
+          "10"
         ]
       },
       "icon": "skill/jianke/2",
@@ -112,7 +112,7 @@ window.__AUTO_IMPORT_DATA__ = {
           "物理",
           "冰霜",
           "范围",
-          "寒刃"
+          "10"
         ]
       },
       "icon": "skill/jianke/1",
@@ -178,7 +178,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": [
           "1",
           "2",
-          "7"
+          "7",
+          "19"
         ]
       },
       "tagsText": {
@@ -186,7 +187,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": [
           "近战",
           "物理",
-          "范围"
+          "范围",
+          "旋风"
         ]
       },
       "icon": "skill/linshi/9",
@@ -318,7 +320,7 @@ window.__AUTO_IMPORT_DATA__ = {
           "近战",
           "冰霜",
           "范围",
-          "寒刃"
+          "10"
         ]
       },
       "icon": "skill/jianke/3",
@@ -606,8 +608,7 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": [
           "6",
           "7",
-          "11",
-          "12"
+          "11"
         ]
       },
       "tagsText": {
@@ -615,8 +616,7 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": [
           "混沌",
           "范围",
-          "可重复",
-          "回响"
+          "可重复"
         ]
       },
       "icon": "skill/fashu/mindipenyong",
@@ -2482,7 +2482,7 @@ window.__AUTO_IMPORT_DATA__ = {
     },
     {
       "id": "2150000260",
-      "name": "天赋大点-核心金额跟等级增加",
+      "name": "天赋大点-核心技能等级增加",
       "category": "捷系列",
       "subCategory": "特殊",
       "isNew": false,
@@ -3323,6 +3323,51 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "法术",
         "normal": []
       },
+      "icon": "",
+      "skillCd": null
+    },
+    {
+      "id": "2340000090",
+      "name": "装备-炼金术士的护腿",
+      "category": "传奇特技",
+      "subCategory": "增益",
+      "isNew": false,
+      "description": "占位技能",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": "",
+      "skillCd": null
+    },
+    {
+      "id": "2340000100",
+      "name": "装备-凛冬寒风",
+      "category": "传奇特技",
+      "subCategory": "增益",
+      "isNew": false,
+      "description": "占位技能",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": "",
+      "skillCd": null
+    },
+    {
+      "id": "2340000110",
+      "name": "装备-洁净化身",
+      "category": "传奇特技",
+      "subCategory": "增益",
+      "isNew": false,
+      "description": "占位技能",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
       "icon": "",
       "skillCd": null
     },
@@ -6531,7 +6576,7 @@ window.__AUTO_IMPORT_DATA__ = {
     },
     {
       "id": "11076",
-      "name": "强化冷却效率",
+      "name": "强化技能冷却回复效率",
       "description": "强化技能冷却回复效率",
       "category": "2",
       "isNew": false
@@ -6638,6 +6683,20 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "11091",
       "name": "生命魔力回复共用",
       "description": "生命魔力回复共用",
+      "category": "2",
+      "isNew": false
+    },
+    {
+      "id": "11092",
+      "name": "药剂回复生命效果",
+      "description": "药剂回复生命效果",
+      "category": "2",
+      "isNew": false
+    },
+    {
+      "id": "11093",
+      "name": "药剂回复魔力效果",
+      "description": "药剂回复魔力效果",
       "category": "2",
       "isNew": false
     }
@@ -7481,7 +7540,7 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "refId": "100403",
           "name": "混沌抗性",
-          "desc": "混沌抗性增加50.00%~15.00%",
+          "desc": "混沌抗性增加5.00%~15.00%",
           "random": false,
           "poolId": "100403"
         }
@@ -10058,14 +10117,15 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "旋风斩",
       "type": "主动技能",
-      "desc": "对自身一定范围内的敌人造成一次288%物理伤害",
+      "desc": "对自身一定范围内的敌人造成一次288%物理伤害\n当该技能100%物理伤害转火焰伤害时，还会释放火焰旋龙\n当该技能100%物理伤害转闪电伤害时，还会释放闪电旋龙\n当该技能100%物理伤害转冰冷伤害时，还会释放冰冷旋龙",
       "sourceId": "1110000040",
       "tags": {
         "main": "攻击",
         "normal": [
           "近战",
           "物理",
-          "范围"
+          "范围",
+          "旋风"
         ]
       },
       "icon": "skill/linshi/9",
@@ -10093,7 +10153,7 @@ window.__AUTO_IMPORT_DATA__ = {
           "物理",
           "冰霜",
           "范围",
-          "寒刃"
+          "10"
         ]
       },
       "icon": "skill/jianke/2",
@@ -10143,8 +10203,7 @@ window.__AUTO_IMPORT_DATA__ = {
         "normal": [
           "混沌",
           "范围",
-          "可重复",
-          "回响"
+          "可重复"
         ]
       },
       "icon": "skill/fashu/mindipenyong",
@@ -10335,7 +10394,7 @@ window.__AUTO_IMPORT_DATA__ = {
           "物理",
           "冰霜",
           "范围",
-          "寒刃"
+          "10"
         ]
       },
       "icon": "skill/jianke/1",
@@ -10362,7 +10421,7 @@ window.__AUTO_IMPORT_DATA__ = {
           "近战",
           "冰霜",
           "范围",
-          "寒刃"
+          "10"
         ]
       },
       "icon": "skill/jianke/3",
@@ -10958,8 +11017,8 @@ window.__AUTO_IMPORT_DATA__ = {
       "talentPoints": [
         {
           "id": "1003002",
-          "name": "唯快不破",
-          "desc": "第一个技能获得攻击速度额外提高20%",
+          "name": "偶尔漏电",
+          "desc": "攻击伤害击中时，有10%的几率触发10级[电圈]",
           "occupation": 2,
           "viewPos": {
             "x": 240,
@@ -10967,7 +11026,7 @@ window.__AUTO_IMPORT_DATA__ = {
           },
           "size": 2,
           "icon": "✨",
-          "iconSrc": "talent/skill/kuaigong",
+          "iconSrc": "talent/skill/baoxue",
           "linkPoint": "1003008|1003010|1003012"
         },
         {
@@ -11014,8 +11073,8 @@ window.__AUTO_IMPORT_DATA__ = {
         },
         {
           "id": "1003010",
-          "name": "偶尔漏电",
-          "desc": "攻击伤害击中时，有10%的几率触发10级[电圈]",
+          "name": "唯快不破",
+          "desc": "第一个技能获得攻击速度额外提高20%",
           "occupation": 2,
           "viewPos": {
             "x": 0,
@@ -11023,7 +11082,7 @@ window.__AUTO_IMPORT_DATA__ = {
           },
           "size": 2,
           "icon": "✨",
-          "iconSrc": "talent/skill/baoxue",
+          "iconSrc": "talent/skill/kuaigong",
           "linkPoint": "1003002|1003004"
         },
         {
@@ -12590,7 +12649,7 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "id": "1003105",
           "name": "基础天赋",
-          "desc": "生命恢复速度增加0.2%",
+          "desc": "生命恢复率增加0.2%",
           "size": 1,
           "tier": "基础天赋",
           "tierIndex": 1,
@@ -12609,7 +12668,7 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "id": "1003106",
           "name": "基础天赋",
-          "desc": "魔力恢复速度增加0.2%",
+          "desc": "魔力恢复率增加0.2%",
           "size": 1,
           "tier": "基础天赋",
           "tierIndex": 1,
@@ -13175,7 +13234,7 @@ window.__AUTO_IMPORT_DATA__ = {
           "attr": [],
           "affix": [
             {
-              "id": "10194",
+              "id": "10140",
               "value": 0.09
             }
           ],
@@ -13524,7 +13583,7 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "id": "1005111",
           "name": "基础天赋",
-          "desc": "抗性注能持续时间提高{0}",
+          "desc": "抗性注能持续时间提高1%",
           "size": 1,
           "tier": "基础天赋",
           "tierIndex": 1,
@@ -14028,7 +14087,7 @@ window.__AUTO_IMPORT_DATA__ = {
           "affix": [
             {
               "id": "10225",
-              "value": null
+              "value": 0.6
             }
           ],
           "stunt": []
@@ -14065,7 +14124,7 @@ window.__AUTO_IMPORT_DATA__ = {
           "attr": [],
           "affix": [
             {
-              "id": "10236",
+              "id": "10237",
               "value": 0.6
             }
           ],
@@ -14084,8 +14143,8 @@ window.__AUTO_IMPORT_DATA__ = {
           "attr": [],
           "affix": [
             {
-              "id": "10237",
-              "value": 0.6
+              "id": "10238",
+              "value": null
             }
           ],
           "stunt": []
@@ -17614,6 +17673,1280 @@ window.__AUTO_IMPORT_DATA__ = {
       ]
     }
   ],
+  "items": [
+    {
+      "id": "100",
+      "name": "彩钻",
+      "desc": "源自远古魔法帝国，凝结纯粹奥术能量的钻石，是游戏内最珍贵的货币。用于购买商城内道具，可跨赛季传承。",
+      "icon": "item/caizuan",
+      "quality": "8",
+      "itemType": "1"
+    },
+    {
+      "id": "101",
+      "name": "碎钻",
+      "desc": "用于抽取宠物。",
+      "icon": "item/suizuan",
+      "quality": "7",
+      "itemType": "1"
+    },
+    {
+      "id": "102",
+      "name": "古遗石",
+      "desc": "收集高阶魔物的执念与魔力凝结而成。因其稀有且魔力强大，成为冒险者间交易装备的高阶凭证。可跨赛季传承。",
+      "icon": "item/guyishi",
+      "quality": "6",
+      "itemType": "1"
+    },
+    {
+      "id": "103",
+      "name": "魂火",
+      "desc": "击败魔物后逸散的灵魂残渣。无色无形，只有附在专用容器上才能显现微光。是装备锻造、道具合成等日常消耗的必需品，也是通货行交易货币。赛季末，魔魂会回归大地。",
+      "icon": "item/hunhuo",
+      "quality": "5",
+      "itemType": "1"
+    },
+    {
+      "id": "104",
+      "name": "粉尘",
+      "desc": "道具分解后获得的粉末。",
+      "icon": "item/xilianshisuipian",
+      "quality": "1",
+      "itemType": "1"
+    },
+    {
+      "id": "111",
+      "name": "宠物抽卡券",
+      "desc": "凝练星光锻造的星型徽记，拥有接引生灵的力量。可消耗此道具进行福利宠物、常驻宠物招募。",
+      "icon": "item/chongwuchou",
+      "quality": "5",
+      "itemType": "1"
+    },
+    {
+      "id": "112",
+      "name": "记忆精华",
+      "desc": "史诗宠物满星转换，用于宠物商店购买。",
+      "icon": "item/jiyijinghua",
+      "quality": "4",
+      "itemType": "1"
+    },
+    {
+      "id": "113",
+      "name": "记忆结晶",
+      "desc": "神话、稀有宠物满星转换，用于宠物商店购买。",
+      "icon": "item/jiyijiejing",
+      "quality": "5",
+      "itemType": "1"
+    },
+    {
+      "id": "121",
+      "name": "经验",
+      "desc": "用于人物升级。",
+      "icon": "item/jingyan",
+      "quality": "5",
+      "itemType": "1"
+    },
+    {
+      "id": "148",
+      "name": "天赋点",
+      "desc": "用于天赋加点，通过角色升级获取。",
+      "icon": "item/tianfudian",
+      "quality": "1",
+      "itemType": "1"
+    },
+    {
+      "id": "169",
+      "name": "改名卡",
+      "desc": "用于修改玩家昵称。",
+      "icon": "item/gaimingka",
+      "quality": "3",
+      "itemType": "1"
+    },
+    {
+      "id": "190",
+      "name": "专属天赋点",
+      "desc": "用于激活角色专属天赋。",
+      "icon": "item/zhuanjingtianfu",
+      "quality": "5",
+      "itemType": "1"
+    },
+    {
+      "id": "1001",
+      "name": "1级技能书",
+      "desc": "用于自选等级1的技能书",
+      "icon": "item/jinengshu1",
+      "quality": "1",
+      "itemType": "3"
+    },
+    {
+      "id": "1002",
+      "name": "2级技能书",
+      "desc": "用于自选等级2的技能书",
+      "icon": "item/jinengshu2",
+      "quality": "1",
+      "itemType": "3"
+    },
+    {
+      "id": "1003",
+      "name": "3级技能书",
+      "desc": "用于自选等级3的技能书",
+      "icon": "item/jinengshu3",
+      "quality": "2",
+      "itemType": "3"
+    },
+    {
+      "id": "1004",
+      "name": "4级技能书",
+      "desc": "用于自选等级4的技能书",
+      "icon": "item/jinengshu4",
+      "quality": "2",
+      "itemType": "3"
+    },
+    {
+      "id": "1005",
+      "name": "5级技能书",
+      "desc": "用于自选等级5的技能书",
+      "icon": "item/jinengshu5",
+      "quality": "3",
+      "itemType": "3"
+    },
+    {
+      "id": "1006",
+      "name": "6级技能书",
+      "desc": "用于自选等级6的技能书",
+      "icon": "item/jinengshu6",
+      "quality": "3",
+      "itemType": "3"
+    },
+    {
+      "id": "1007",
+      "name": "7级技能书",
+      "desc": "用于自选等级7的技能书",
+      "icon": "item/jinengshu7",
+      "quality": "4",
+      "itemType": "3"
+    },
+    {
+      "id": "1008",
+      "name": "8级技能书",
+      "desc": "用于自选等级8的技能书",
+      "icon": "item/jinengshu8",
+      "quality": "4",
+      "itemType": "3"
+    },
+    {
+      "id": "1009",
+      "name": "9级技能书",
+      "desc": "用于自选等级9的技能书",
+      "icon": "item/jinengshu9",
+      "quality": "4",
+      "itemType": "3"
+    },
+    {
+      "id": "1010",
+      "name": "10级技能书",
+      "desc": "用于自选等级10的技能书",
+      "icon": "item/jinengshu10",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "1011",
+      "name": "11级技能书",
+      "desc": "用于自选等级11的技能书",
+      "icon": "item/jinengshu11",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "1012",
+      "name": "12级技能书",
+      "desc": "用于自选等级12的技能书",
+      "icon": "item/jinengshu12",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "1013",
+      "name": "13级技能书",
+      "desc": "用于自选等级13的技能书",
+      "icon": "item/jinengshu13",
+      "quality": "6",
+      "itemType": "3"
+    },
+    {
+      "id": "1014",
+      "name": "14级技能书",
+      "desc": "用于自选等级14的技能书",
+      "icon": "item/jinengshu14",
+      "quality": "6",
+      "itemType": "3"
+    },
+    {
+      "id": "1015",
+      "name": "15级技能书",
+      "desc": "用于自选等级15的技能书",
+      "icon": "item/jinengshu15",
+      "quality": "6",
+      "itemType": "3"
+    },
+    {
+      "id": "1016",
+      "name": "16级技能书",
+      "desc": "用于自选等级16的技能书",
+      "icon": "item/jinengshu16",
+      "quality": "6",
+      "itemType": "3"
+    },
+    {
+      "id": "1101",
+      "name": "1阶辅助宝石",
+      "desc": "用于自选一阶的辅助宝石",
+      "icon": "item/fuzhushi1",
+      "quality": "1",
+      "itemType": "3"
+    },
+    {
+      "id": "1102",
+      "name": "2阶辅助宝石",
+      "desc": "用于自选二阶及以下的辅助宝石",
+      "icon": "item/fuzhushi2",
+      "quality": "2",
+      "itemType": "3"
+    },
+    {
+      "id": "1103",
+      "name": "3阶辅助宝石",
+      "desc": "用于自选三阶及以下的辅助宝石",
+      "icon": "item/fuzhushi3",
+      "quality": "3",
+      "itemType": "3"
+    },
+    {
+      "id": "1104",
+      "name": "4阶辅助宝石",
+      "desc": "用于自选四阶及以下的辅助宝石",
+      "icon": "item/fuzhushi4",
+      "quality": "4",
+      "itemType": "3"
+    },
+    {
+      "id": "1105",
+      "name": "5阶辅助宝石",
+      "desc": "用于自选五阶及以下的辅助宝石",
+      "icon": "item/fuzhushi5",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "1300",
+      "name": "解封石碎片",
+      "desc": "30个可合成1个解封石",
+      "icon": "item/jiefengshi",
+      "quality": "5",
+      "itemType": "2"
+    },
+    {
+      "id": "1301",
+      "name": "消磨石",
+      "desc": "随机移除物品上的一条词缀",
+      "icon": "item/xiaomoshi",
+      "quality": "5",
+      "itemType": "2"
+    },
+    {
+      "id": "1302",
+      "name": "魔方石",
+      "desc": "对所有词缀数值进行1次随机",
+      "icon": "item/mofangshi",
+      "quality": "7",
+      "itemType": "2"
+    },
+    {
+      "id": "1303",
+      "name": "低语石",
+      "desc": "腐化一件物品",
+      "icon": "item/diyushi",
+      "quality": "6",
+      "itemType": "2"
+    },
+    {
+      "id": "1304",
+      "name": "解封石",
+      "desc": "给物品增加一条词缀",
+      "icon": "item/jiefengshi",
+      "quality": "5",
+      "itemType": "2"
+    },
+    {
+      "id": "1401",
+      "name": "左旋指针",
+      "desc": "下次进行解封或剥离将只会对前缀进行操作",
+      "icon": "item/zuoxuanzhizhen",
+      "quality": "5",
+      "itemType": "2"
+    },
+    {
+      "id": "1402",
+      "name": "右旋指针",
+      "desc": "下次进行解封或剥离将只会对后缀进行操作",
+      "icon": "item/youxuanzhizhen",
+      "quality": "5",
+      "itemType": "2"
+    },
+    {
+      "id": "1403",
+      "name": "预左完美装备赐福",
+      "desc": "37级以上装备可用，解封如果新增的是前缀，该词缀必定为T1-T4词缀，如果前缀已满则不可使用",
+      "icon": "item/yuzuo",
+      "quality": "7",
+      "itemType": "2"
+    },
+    {
+      "id": "1404",
+      "name": "预右完美装备赐福",
+      "desc": "37级以上装备可用，解封如果新增的是后缀，该词缀必定为T1-T4词缀，如果后缀已满则不可使用",
+      "icon": "item/yuyou",
+      "quality": "7",
+      "itemType": "2"
+    },
+    {
+      "id": "1405",
+      "name": "低阶消磨指针",
+      "desc": "你的下一个剥离石会移除最低T级的词缀",
+      "icon": "item/dijiexiaomo",
+      "quality": "7",
+      "itemType": "2"
+    },
+    {
+      "id": "1501",
+      "name": "异界挑战之钥",
+      "desc": "击败异界关卡头目时掉落。",
+      "icon": "item/lanyaoshi",
+      "quality": "5",
+      "itemType": "2"
+    },
+    {
+      "id": "1502",
+      "name": "祭坛挑战之钥",
+      "desc": "击败祭坛事件怪物时概率掉落。",
+      "icon": "item/ziyaoshi",
+      "quality": "5",
+      "itemType": "2"
+    },
+    {
+      "id": "1503",
+      "name": "幻象挑战之钥",
+      "desc": "击败幻象事件怪物时概率掉落。",
+      "icon": "item/chengyaoshi",
+      "quality": "5",
+      "itemType": "2"
+    },
+    {
+      "id": "1504",
+      "name": "虚空挑战之钥",
+      "desc": "击败虚空事件怪物时概率掉落。",
+      "icon": "item/hongyaoshi",
+      "quality": "5",
+      "itemType": "2"
+    },
+    {
+      "id": "2009",
+      "name": "魂钢残片",
+      "desc": "分解装备获得的破碎魂钢边角料，内部仍流动着微弱的灵质光纹。用于装备商店购买消耗。",
+      "icon": "item/mingwensuipian",
+      "quality": "3",
+      "itemType": "3"
+    },
+    {
+      "id": "10001",
+      "name": "风险契约3",
+      "desc": "进入世界3的门票",
+      "icon": "item/shenmiqiyue",
+      "quality": "1",
+      "itemType": "2"
+    },
+    {
+      "id": "10002",
+      "name": "风险契约4",
+      "desc": "进入世界4的门票",
+      "icon": "item/shenmiqiyue",
+      "quality": "1",
+      "itemType": "2"
+    },
+    {
+      "id": "10003",
+      "name": "风险契约5",
+      "desc": "进入世界5的门票",
+      "icon": "item/shenmiqiyue",
+      "quality": "2",
+      "itemType": "2"
+    },
+    {
+      "id": "10004",
+      "name": "风险契约6",
+      "desc": "进入世界6的门票",
+      "icon": "item/shenmiqiyue2",
+      "quality": "2",
+      "itemType": "2"
+    },
+    {
+      "id": "10005",
+      "name": "风险契约7",
+      "desc": "进入世界7的门票",
+      "icon": "item/shenmiqiyue2",
+      "quality": "3",
+      "itemType": "2"
+    },
+    {
+      "id": "10006",
+      "name": "风险契约8",
+      "desc": "进入世界8的门票",
+      "icon": "item/shenmiqiyue3",
+      "quality": "4",
+      "itemType": "2"
+    },
+    {
+      "id": "10007",
+      "name": "风险契约9",
+      "desc": "进入世界9的门票",
+      "icon": "item/shenmiqiyue3",
+      "quality": "5",
+      "itemType": "2"
+    },
+    {
+      "id": "10008",
+      "name": "风险契约10",
+      "desc": "进入世界10的门票",
+      "icon": "item/shenmiqiyue4",
+      "quality": "6",
+      "itemType": "2"
+    },
+    {
+      "id": "10011",
+      "name": "掉落罗盘1",
+      "desc": "放入异界关卡的罗盘插槽，增加异界关卡的奖励，开启后消耗",
+      "icon": "item/jingyanyaoshui1",
+      "quality": "2",
+      "itemType": "2"
+    },
+    {
+      "id": "10012",
+      "name": "掉落罗盘2",
+      "desc": "放入异界关卡的罗盘插槽，增加异界关卡的奖励，开启后消耗",
+      "icon": "item/jingyanyaoshui2",
+      "quality": "4",
+      "itemType": "2"
+    },
+    {
+      "id": "10013",
+      "name": "掉落罗盘3",
+      "desc": "放入异界关卡的罗盘插槽，增加异界关卡的奖励，开启后消耗",
+      "icon": "item/jingyanyaoshui3",
+      "quality": "6",
+      "itemType": "2"
+    },
+    {
+      "id": "10014",
+      "name": "士兵罗盘1",
+      "desc": "放入异界关卡的罗盘插槽，增加异界关卡的奖励，开启后消耗",
+      "icon": "item/point",
+      "quality": "2",
+      "itemType": "2"
+    },
+    {
+      "id": "10015",
+      "name": "士兵罗盘2",
+      "desc": "放入异界关卡的罗盘插槽，增加异界关卡的奖励，开启后消耗",
+      "icon": "item/point",
+      "quality": "4",
+      "itemType": "2"
+    },
+    {
+      "id": "10016",
+      "name": "士兵罗盘3",
+      "desc": "放入异界关卡的罗盘插槽，增加异界关卡的奖励，开启后消耗",
+      "icon": "item/point",
+      "quality": "6",
+      "itemType": "2"
+    },
+    {
+      "id": "10017",
+      "name": "小队罗盘1",
+      "desc": "放入异界关卡的罗盘插槽，增加异界关卡的奖励，开启后消耗",
+      "icon": "item/point",
+      "quality": "2",
+      "itemType": "2"
+    },
+    {
+      "id": "10018",
+      "name": "小队罗盘2",
+      "desc": "放入异界关卡的罗盘插槽，增加异界关卡的奖励，开启后消耗",
+      "icon": "item/point",
+      "quality": "4",
+      "itemType": "2"
+    },
+    {
+      "id": "10019",
+      "name": "小队罗盘3",
+      "desc": "放入异界关卡的罗盘插槽，增加异界关卡的奖励，开启后消耗",
+      "icon": "item/point",
+      "quality": "6",
+      "itemType": "2"
+    },
+    {
+      "id": "10020",
+      "name": "精英罗盘1",
+      "desc": "放入异界关卡的罗盘插槽，增加异界关卡的奖励，开启后消耗",
+      "icon": "item/point",
+      "quality": "2",
+      "itemType": "2"
+    },
+    {
+      "id": "10021",
+      "name": "精英罗盘2",
+      "desc": "放入异界关卡的罗盘插槽，增加异界关卡的奖励，开启后消耗",
+      "icon": "item/point",
+      "quality": "4",
+      "itemType": "2"
+    },
+    {
+      "id": "10022",
+      "name": "精英罗盘3",
+      "desc": "放入异界关卡的罗盘插槽，增加异界关卡的奖励，开启后消耗",
+      "icon": "item/point",
+      "quality": "6",
+      "itemType": "2"
+    },
+    {
+      "id": "10023",
+      "name": "装备罗盘1",
+      "desc": "放入异界关卡的罗盘插槽，增加异界关卡的奖励，开启后消耗",
+      "icon": "item/point",
+      "quality": "2",
+      "itemType": "2"
+    },
+    {
+      "id": "10024",
+      "name": "装备罗盘2",
+      "desc": "放入异界关卡的罗盘插槽，增加异界关卡的奖励，开启后消耗",
+      "icon": "item/point",
+      "quality": "4",
+      "itemType": "2"
+    },
+    {
+      "id": "10025",
+      "name": "装备罗盘3",
+      "desc": "放入异界关卡的罗盘插槽，增加异界关卡的奖励，开启后消耗",
+      "icon": "item/point",
+      "quality": "6",
+      "itemType": "2"
+    },
+    {
+      "id": "10026",
+      "name": "门票罗盘1",
+      "desc": "放入异界关卡的罗盘插槽，增加异界关卡的奖励，开启后消耗",
+      "icon": "item/point",
+      "quality": "2",
+      "itemType": "2"
+    },
+    {
+      "id": "10027",
+      "name": "门票罗盘2",
+      "desc": "放入异界关卡的罗盘插槽，增加异界关卡的奖励，开启后消耗",
+      "icon": "item/point",
+      "quality": "4",
+      "itemType": "2"
+    },
+    {
+      "id": "10028",
+      "name": "门票罗盘3",
+      "desc": "放入异界关卡的罗盘插槽，增加异界关卡的奖励，开启后消耗",
+      "icon": "item/point",
+      "quality": "6",
+      "itemType": "2"
+    },
+    {
+      "id": "10029",
+      "name": "引路罗盘1",
+      "desc": "放入异界关卡的罗盘插槽，增加异界关卡的奖励，开启后消耗",
+      "icon": "item/point",
+      "quality": "2",
+      "itemType": "2"
+    },
+    {
+      "id": "10030",
+      "name": "引路罗盘2",
+      "desc": "放入异界关卡的罗盘插槽，增加异界关卡的奖励，开启后消耗",
+      "icon": "item/point",
+      "quality": "4",
+      "itemType": "2"
+    },
+    {
+      "id": "10031",
+      "name": "引路罗盘3",
+      "desc": "放入异界关卡的罗盘插槽，增加异界关卡的奖励，开启后消耗",
+      "icon": "item/point",
+      "quality": "6",
+      "itemType": "2"
+    },
+    {
+      "id": "10032",
+      "name": "保险箱罗盘1",
+      "desc": "放入异界关卡的罗盘插槽，增加异界关卡的奖励，开启后消耗",
+      "icon": "item/point",
+      "quality": "2",
+      "itemType": "2"
+    },
+    {
+      "id": "10033",
+      "name": "盗贼罗盘1",
+      "desc": "放入异界关卡的罗盘插槽，增加异界关卡的奖励，开启后消耗",
+      "icon": "item/point",
+      "quality": "2",
+      "itemType": "2"
+    },
+    {
+      "id": "10101",
+      "name": "祭坛罗盘1",
+      "desc": "放入异界关卡的罗盘插槽，增加异界关卡的奖励，开启后消耗",
+      "icon": "item/point",
+      "quality": "2",
+      "itemType": "2"
+    },
+    {
+      "id": "10102",
+      "name": "祭坛罗盘2",
+      "desc": "放入异界关卡的罗盘插槽，增加异界关卡的奖励，开启后消耗",
+      "icon": "item/point",
+      "quality": "4",
+      "itemType": "2"
+    },
+    {
+      "id": "10103",
+      "name": "祭坛罗盘3",
+      "desc": "放入异界关卡的罗盘插槽，增加异界关卡的奖励，开启后消耗",
+      "icon": "item/point",
+      "quality": "6",
+      "itemType": "2"
+    },
+    {
+      "id": "10104",
+      "name": "祭坛罗盘4",
+      "desc": "放入异界关卡的罗盘插槽，增加异界关卡的奖励，开启后消耗",
+      "icon": "item/point",
+      "quality": "6",
+      "itemType": "2"
+    },
+    {
+      "id": "10105",
+      "name": "祭坛罗盘5",
+      "desc": "放入异界关卡的罗盘插槽，增加异界关卡的奖励，开启后消耗",
+      "icon": "item/point",
+      "quality": "6",
+      "itemType": "2"
+    },
+    {
+      "id": "10111",
+      "name": "幻象罗盘1",
+      "desc": "放入异界关卡的罗盘插槽，增加异界关卡的奖励，开启后消耗",
+      "icon": "item/point",
+      "quality": "2",
+      "itemType": "2"
+    },
+    {
+      "id": "10112",
+      "name": "幻象罗盘2",
+      "desc": "放入异界关卡的罗盘插槽，增加异界关卡的奖励，开启后消耗",
+      "icon": "item/point",
+      "quality": "4",
+      "itemType": "2"
+    },
+    {
+      "id": "10113",
+      "name": "幻象罗盘3",
+      "desc": "放入异界关卡的罗盘插槽，增加异界关卡的奖励，开启后消耗",
+      "icon": "item/point",
+      "quality": "6",
+      "itemType": "2"
+    },
+    {
+      "id": "10114",
+      "name": "幻象罗盘4",
+      "desc": "放入异界关卡的罗盘插槽，增加异界关卡的奖励，开启后消耗",
+      "icon": "item/point",
+      "quality": "6",
+      "itemType": "2"
+    },
+    {
+      "id": "10115",
+      "name": "幻象罗盘5",
+      "desc": "放入异界关卡的罗盘插槽，增加异界关卡的奖励，开启后消耗",
+      "icon": "item/point",
+      "quality": "6",
+      "itemType": "2"
+    },
+    {
+      "id": "10121",
+      "name": "虚空罗盘1",
+      "desc": "放入异界关卡的罗盘插槽，增加异界关卡的奖励，开启后消耗",
+      "icon": "item/point",
+      "quality": "2",
+      "itemType": "2"
+    },
+    {
+      "id": "10122",
+      "name": "虚空罗盘2",
+      "desc": "放入异界关卡的罗盘插槽，增加异界关卡的奖励，开启后消耗",
+      "icon": "item/point",
+      "quality": "4",
+      "itemType": "2"
+    },
+    {
+      "id": "10123",
+      "name": "虚空罗盘3",
+      "desc": "放入异界关卡的罗盘插槽，增加异界关卡的奖励，开启后消耗",
+      "icon": "item/point",
+      "quality": "6",
+      "itemType": "2"
+    },
+    {
+      "id": "10124",
+      "name": "虚空罗盘4",
+      "desc": "放入异界关卡的罗盘插槽，增加异界关卡的奖励，开启后消耗",
+      "icon": "item/point",
+      "quality": "6",
+      "itemType": "2"
+    },
+    {
+      "id": "10125",
+      "name": "虚空罗盘5",
+      "desc": "放入异界关卡的罗盘插槽，增加异界关卡的奖励，开启后消耗",
+      "icon": "item/point",
+      "quality": "6",
+      "itemType": "2"
+    },
+    {
+      "id": "100101",
+      "name": "大范围·一",
+      "desc": "辅助有范围标签的技能，范围效果扩大25%",
+      "icon": "baoshi/fanweikuoda1",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "100102",
+      "name": "大范围·二",
+      "desc": "辅助有范围标签的技能，范围效果扩大50%",
+      "icon": "baoshi/fanweikuoda2",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "100201",
+      "name": "加弹·一",
+      "desc": "辅助有投射物标签的技能，使其生成的投射物数量+1，造成的伤害额外降低30%",
+      "icon": "baoshi/toushewuzengjia1",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "100202",
+      "name": "加弹·二",
+      "desc": "辅助有投射物标签的技能，使其生成的投射物数量+2，造成的伤害额外降低30%",
+      "icon": "baoshi/toushewuzengjia2",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "100204",
+      "name": "新星",
+      "desc": "投射物数量+5，投射物变更为环形发射，投射物伤害总降50%",
+      "icon": "baoshi/xinxingtoushe",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "100301",
+      "name": "快攻·一",
+      "desc": "辅助有攻击标签的技能，攻击速度提高15%",
+      "icon": "baoshi/kuaisugongji1",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "100302",
+      "name": "快攻·二",
+      "desc": "辅助有攻击标签的技能，攻击速度提高25%",
+      "icon": "baoshi/kuaisugongji2",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "100401",
+      "name": "集中·一",
+      "desc": "辅助有范围标签的技能，使其范围总降50%，伤害额外提高15%",
+      "icon": "baoshi/fanweijizhong1",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "100402",
+      "name": "集中·二",
+      "desc": "辅助有范围标签的技能，使其范围总降50%，伤害额外提高30%",
+      "icon": "baoshi/fanweijizhong2",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "100501",
+      "name": "冰冻·一",
+      "desc": "辅助有冰霜标签的技能，使其冻结的积蓄值额外提高25%",
+      "icon": "baoshi/dongjie1",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "100502",
+      "name": "冰冻·二",
+      "desc": "辅助有冰霜标签的技能，使其冻结的积蓄值额外提高50%",
+      "icon": "baoshi/dongjie2",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "100601",
+      "name": "加时·一",
+      "desc": "辅助有持续性技能标签的技能，使其持续时间提高20%",
+      "icon": "baoshi/chixuyanchang1",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "100602",
+      "name": "加时·二",
+      "desc": "辅助有持续性技能标签的技能，使其持续时间提高30%",
+      "icon": "baoshi/chixuyanchang2",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "100701",
+      "name": "减冷·一",
+      "desc": "辅助技能，使其冷却回复率增加15%",
+      "icon": "baoshi/lengquehuifu1",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "100702",
+      "name": "减冷·二",
+      "desc": "辅助技能，使其冷却回复率增加25%",
+      "icon": "baoshi/lengquehuifu2",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "100801",
+      "name": "多重",
+      "desc": "辅助有触发标签的技能，使其伤害总降20%，重复使用技能3次，不能对同一目标使用",
+      "icon": "baoshi/duochongfanwei",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "100901",
+      "name": "无限·一",
+      "desc": "使获得的能量提高25%",
+      "icon": "baoshi/wubiannengliang1",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "100902",
+      "name": "无限·二",
+      "desc": "使获得的能量提高50%",
+      "icon": "baoshi/wubiannengliang2",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "101001",
+      "name": "冻久·一",
+      "desc": "被冰冻敌人的冻结时间额外提高25%",
+      "icon": "baoshi/dongjieyanchang1",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "101002",
+      "name": "冻久·二",
+      "desc": "被冰冻敌人的冻结时间额外提高50%",
+      "icon": "baoshi/dongjieyanchang2",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "101101",
+      "name": "元素·一",
+      "desc": "元素伤害额外提高15%",
+      "icon": "baoshi/yuansujunxie1",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "101102",
+      "name": "元素·二",
+      "desc": "元素伤害额外提高25%",
+      "icon": "baoshi/yuansujunxie2",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "101201",
+      "name": "闪偏",
+      "desc": "闪电倍率提高25%，火焰倍率和冰冷倍率下降25%",
+      "icon": "baoshi/shandianpianzhuan",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "101301",
+      "name": "冰偏",
+      "desc": "冰冷倍率提高25%，火焰倍率和闪电倍率下降25%",
+      "icon": "baoshi/binglengpianzhuan",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "101401",
+      "name": "火偏",
+      "desc": "火焰倍率提高25%，闪电倍率和冰冷倍率下降25%",
+      "icon": "baoshi/huoyanpianzhuan",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "101501",
+      "name": "重击·一",
+      "desc": "攻击速度降低10%，近战物理伤害额外提高25%",
+      "icon": "baoshi/chenzhonghuiwu1",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "101502",
+      "name": "重击·二",
+      "desc": "攻击速度降低10%，近战物理伤害额外提高40%",
+      "icon": "baoshi/chenzhonghuiwu2",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "101601",
+      "name": "迎寒·一",
+      "desc": "被辅助技能冻结敌人时，获得15%的额外冰冷伤害，持续6秒",
+      "icon": "baoshi/yinghanershang1",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "101602",
+      "name": "迎寒·二",
+      "desc": "被辅助技能冻结敌人时，获得30%的额外冰冷伤害，持续6秒",
+      "icon": "baoshi/yinghanershang2",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "101701",
+      "name": "猛毒·一",
+      "desc": "被辅助技能，击中中毒目标时，每层中毒效果伤害额外提高3%，上限5层",
+      "icon": "baoshi/mengdu1",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "101702",
+      "name": "猛毒·二",
+      "desc": "被辅助技能，击中中毒目标时，每层中毒效果伤害额外提高6%，上限5层",
+      "icon": "baoshi/mengdu2",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "101801",
+      "name": "毒化·一",
+      "desc": "被辅助技能，混沌伤害额外提高10% ，中毒几率增加20%",
+      "icon": "baoshi/duhua1",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "101802",
+      "name": "毒化·二",
+      "desc": "被辅助技能，混沌伤害额外提高20% ，中毒几率增加40%",
+      "icon": "baoshi/duhua2",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "101901",
+      "name": "包围·一",
+      "desc": "辅助有环绕标签的技能，环绕子弹数量+1，造成的伤害额外降低30%",
+      "icon": "baoshi/baowei1",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "101902",
+      "name": "包围·二",
+      "desc": "辅助有环绕标签的技能，环绕子弹数量+1",
+      "icon": "baoshi/baowei2",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "102001",
+      "name": "盘旋·一",
+      "desc": "辅助有环绕标签的技能，被辅助技能的环绕子弹速度提高30%",
+      "icon": "baoshi/panxuan1",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "102002",
+      "name": "盘旋·二",
+      "desc": "辅助有环绕标签的技能，被辅助技能的环绕子弹速度提高50%",
+      "icon": "baoshi/panxuan2",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "102101",
+      "name": "弹速·一",
+      "desc": "辅助有投射物标签的技能，使其生成的投射物飞行速度额外加快20%",
+      "icon": "baoshi/toushewujiasu1",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "102102",
+      "name": "弹速·二",
+      "desc": "辅助有投射物标签的技能，使其生成的投射物飞行速度额外加快40%",
+      "icon": "baoshi/toushewujiasu2",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "102103",
+      "name": "弹速·三",
+      "desc": "辅助有投射物标签的技能，使其生成的投射物飞行速度额外加快40%。投射物伤害增加25%",
+      "icon": "baoshi/toushewujiasu3",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "102201",
+      "name": "冻核",
+      "desc": "被辅助技能冻结敌人时，在被冻结者脚底生成一片冰冷地面",
+      "icon": "baoshi/fengdongshuniu",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "102301",
+      "name": "快施·一",
+      "desc": "辅助有法术标签的技能，法术释放速度提高15%",
+      "icon": "baoshi/kuaisushifa1",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "102302",
+      "name": "快施·二",
+      "desc": "辅助有法术标签的技能，法术施放速度提高25%",
+      "icon": "baoshi/kuaisushifa2",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "102401",
+      "name": "暴击时释放",
+      "desc": "辅助法术技能，技能携带该辅助宝石时，当你对敌人造成暴击时会获得20点能量，达到100点能量后触发镶嵌的法术；被辅助的技能无法主动释放",
+      "icon": "baoshi/duochongfanwei",
+      "quality": "7",
+      "itemType": "3"
+    },
+    {
+      "id": "102402",
+      "name": "移动时释放",
+      "desc": "辅助法术技能，技能携带该辅助宝石时，当你移动一定距离后会获得20点能量，达到100点能量后触发镶嵌的法术；被辅助的技能无法主动释放",
+      "icon": "baoshi/binglengpianzhuan",
+      "quality": "7",
+      "itemType": "3"
+    },
+    {
+      "id": "102403",
+      "name": "格挡时释放",
+      "desc": "辅助法术技能，技能携带该辅助宝石时，当你格挡时会获得20点能量，达到100点能量后触发镶嵌的法术；被辅助的技能无法主动释放",
+      "icon": "baoshi/xinxingtoushe",
+      "quality": "7",
+      "itemType": "3"
+    },
+    {
+      "id": "102501",
+      "name": "流血·一",
+      "desc": "被辅助的技能，流血几率增加20%",
+      "icon": "baoshi/chenzhonghuiwu1",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "102502",
+      "name": "流血·二",
+      "desc": "被辅助的技能，流血几率增加35%",
+      "icon": "baoshi/chenzhonghuiwu2",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "102601",
+      "name": "点燃·一",
+      "desc": "被辅助的技能，点燃几率增加20%",
+      "icon": "baoshi/huoyanpianzhuan",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "102602",
+      "name": "点燃·二",
+      "desc": "被辅助的技能，点燃几率增加35%",
+      "icon": "baoshi/huoyanpianzhuan",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "102701",
+      "name": "感电·一",
+      "desc": "被辅助的技能，感电几率增加20%",
+      "icon": "baoshi/wubiannengliang1",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "102702",
+      "name": "感电·二",
+      "desc": "被辅助的技能，感电几率增加35%",
+      "icon": "baoshi/wubiannengliang2",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "102801",
+      "name": "元素脉冲",
+      "desc": "被辅助的技能，在命中后，随机造成50%元素伤害倍率的附加伤害",
+      "icon": "baoshi/panxuan",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "102901",
+      "name": "物理穿透",
+      "desc": "被辅助的技能物理穿透提高25%",
+      "icon": "baoshi/baowei",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "103001",
+      "name": "火焰穿透",
+      "desc": "被辅助的技能火焰穿透提高25%",
+      "icon": "baoshi/chenzhonghuiwu",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "103101",
+      "name": "冰冷穿透",
+      "desc": "被辅助的技能冰冷穿透提高25%",
+      "icon": "baoshi/yinghanershang1",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "103201",
+      "name": "闪电穿透",
+      "desc": "被辅助的技能闪电穿透提高25%",
+      "icon": "baoshi/wubiannengliang",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "103301",
+      "name": "混沌穿透",
+      "desc": "被辅助的技能混沌穿透提高25%",
+      "icon": "baoshi/mengdu",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "103401",
+      "name": "精准",
+      "desc": "被辅助的技能暴击率额外提高80%，暴击伤害额外降低30%",
+      "icon": "baoshi/fanweijizhong",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "103501",
+      "name": "绝杀",
+      "desc": "被辅助的技能暴击伤害额外提高60%，暴击率额外降低40%",
+      "icon": "baoshi/duhua",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "103601",
+      "name": "暴击转化",
+      "desc": "被辅助的技能无法再造成暴击，法术伤害额外提高60%",
+      "icon": "baoshi/yuansujunxie",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "103701",
+      "name": "炽烈",
+      "desc": "被辅助的技能造成暴击时，获得15%的额外火焰伤害，持续6秒",
+      "icon": "baoshi/huoyanpianzhuan",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "103801",
+      "name": "狩猎",
+      "desc": "被辅助的技能对满血敌人的暴击率额外提高80%",
+      "icon": "baoshi/fanweikuoda",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "103901",
+      "name": "弱点观察",
+      "desc": "被辅助的技能对冻结敌人的暴击率额外提高40%",
+      "icon": "baoshi/duochongfanwei",
+      "quality": "5",
+      "itemType": "3"
+    },
+    {
+      "id": "104001",
+      "name": "冰冷冲击",
+      "desc": "被辅助的攻击技能，在造成冻结时有20%概率产生一次100%冰冷伤害倍率的冲击波，冲击波无法造成冻结",
+      "icon": "baoshi/dongjie",
+      "quality": "5",
+      "itemType": "3"
+    }
+  ],
   "skillDisplayLevel": 1,
-  "importTime": "2026-10-09T06:40:06.279Z"
+  "importTime": "2026-10-14T08:54:40.725Z"
 };
