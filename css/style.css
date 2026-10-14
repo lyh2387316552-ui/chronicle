@@ -2288,12 +2288,66 @@ body[data-page="home"] .home-modules {
 }
 
 /* ==================== Item System (道具图鉴) ==================== */
+/* 外层容器: 全部类型时按类型分块, 每组标题可折叠 */
+.item-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.item-group-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    margin-bottom: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+}
+
+.item-group-header:hover {
+    background: rgba(255, 255, 255, 0.09);
+}
+
+.item-group-arrow {
+    font-size: 12px;
+    color: var(--text-secondary);
+    width: 12px;
+}
+
+.item-group-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.item-group-count {
+    font-size: 12px;
+    color: var(--text-secondary);
+    background: rgba(255, 255, 255, 0.08);
+    padding: 1px 8px;
+    border-radius: 10px;
+}
+
+.item-group.collapsed .item-grid {
+    display: none;
+}
+
+.item-group.collapsed .item-group-header {
+    margin-bottom: 0;
+}
+
 .item-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 16px;
 }
 
+/* 卡片固定尺寸, 保证所有道具卡片外观一致 (描述超出两行省略) */
 .item-card {
     background: rgba(0, 0, 0, 0.3);
     border: 2px solid;
@@ -2302,6 +2356,9 @@ body[data-page="home"] .home-modules {
     display: flex;
     gap: 14px;
     align-items: flex-start;
+    height: 132px;
+    box-sizing: border-box;
+    overflow: hidden;
     transition: all 0.2s;
 }
 
@@ -2350,6 +2407,8 @@ body[data-page="home"] .home-modules {
 .item-info {
     flex: 1;
     min-width: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 .item-name {
@@ -2357,6 +2416,9 @@ body[data-page="home"] .home-modules {
     font-weight: 700;
     color: var(--text-primary);
     margin-bottom: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .item-meta {
@@ -2394,6 +2456,11 @@ body[data-page="home"] .home-modules {
     line-height: 1.6;
     margin: 0;
     word-break: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 /* 星级效果区: 左侧效果 + 右侧展示区 (展示区对齐星级标签行) */

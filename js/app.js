@@ -3973,7 +3973,7 @@ function openPetShowcase(picSrc, bgSrc, name) {
 // ============================================================
 // 道具系统 (道具表 Item 子表, 已过滤 uesless=1)
 // 品质: 1白 / 2绿 / 3蓝 / 4紫 / 5黄 / 6橙 / 7粉 / 8红
-// itemType: 1/2/3 均展示为「普通道具类型」
+// itemType: 1 货币、积分类 / 2 材料 / 3 技能书
 // 图标: icon 形如 item/caizuan → 网页引用 icon/item/caizuan.webp
 // ============================================================
 
@@ -3993,10 +3993,19 @@ function getItemQuality(q) {
     return itemQualityMap[String(q)] || { name: '未知', color: '#95a5a6' };
 }
 
-// 道具类型映射: 1/2/3 → 普通道具类型
+// 类型分组折叠状态 (仅"全部类型"视图使用)
+const itemGroupCollapsed = {};
+
+// 道具类型映射: 1/2/3 → 货币积分类 / 材料 / 技能书
+const itemTypeMap = {
+    '1': '货币、积分类',
+    '2': '材料',
+    '3': '技能书'
+};
+
 function getItemTypeName(t) {
     const v = String(t === undefined || t === null ? '' : t).trim();
-    if (v === '1' || v === '2' || v === '3') return '普通道具类型';
+    if (itemTypeMap[v]) return itemTypeMap[v];
     return v ? '类型' + v : '未分类';
 }
 
@@ -4014,10 +4023,12 @@ function initItemPage() {
     }
     const tFilter = document.getElementById('itemTypeFilter');
     if (tFilter) {
-        const ts = new Set(itemData.map(it => getItemTypeName(it.itemType)));
+        // 按类型编号 1/2/3 (货币积分类 / 材料 / 技能书) 顺序展示
+        const ts = new Set(itemData.map(it => String(it.itemType)));
         const opts = ['<option value="">全部类型</option>'];
-        [...ts].filter(t => t && t !== '未分类').sort((a, b) => a.localeCompare(b, 'zh')).forEach(t => {
-            opts.push(`<option value="${t}">${t}</option>`);
+        [...ts].filter(t => t && t !== 'undefined').sort((a, b) => (Number(a) || 99) - (Number(b) || 99)).forEach(t => {
+            const name = getItemTypeName(t);
+            opts.push(`<option value="${name}">${name}</option>`);
         });
         tFilter.innerHTML = opts.join('');
     }
@@ -4034,7 +4045,7 @@ function filterItems() {
 
     let list = itemData;
     if (keywords.length > 0) {
-        list = list.filter(it => matchFields(keywords, [it.name, it.id, it.desc, it.quality, getItemQuality(it.quality).name, getItemTypeName(it.itemType)]));
+        list = list.filter(it => matchFields(keywords, [it.name, it.desc, it.quality, getItemQuality(it.quality).name, getItemTypeName(it.itemType)]));
     }
     if (qFilter) {
         list = list.filter(it => String(it.quality) === qFilter);
@@ -4042,12 +4053,8 @@ function filterItems() {
     if (tFilter) {
         list = list.filter(it => getItemTypeName(it.itemType) === tFilter);
     }
-    // 默认按品质降序 (红 > 粉 > 橙 ...), 同品质按 ID 升序
-    list = list.slice().sort((a, b) => {
-        const dq = (Number(b.quality) || 0) - (Number(a.quality) || 0);
-        if (dq !== 0) return dq;
-        return (Number(a.id) || 0) - (Number(b.id) || 0);
-    });
+    // 按道具 ID 升序排序 (同一类型内 ID 由小到大)
+    list = list.slice().sort((a, b) => (Number(a.id) || 0) - (Number(b.id) || 0));
 
     const totalEl = document.getElementById('itemTotalCount');
     if (totalEl) totalEl.textContent = itemData.length;
@@ -4063,7 +4070,7 @@ function filterItems() {
         return;
     }
 
-    grid.innerHTML = list.map(it => {
+    const renderCard = it => {
         const q = getItemQuality(it.quality);
         const hasIcon = it.icon ? DATA_BASE + 'icon/' + it.icon + '.webp' : '';
         const click = hasIcon ? `onclick="openItemIcon('${hasIcon}','${(it.name || '').replace(/'/g, "\\'")}')"` : '';
@@ -4073,17 +4080,56 @@ function filterItems() {
                     ${hasIcon ? `<img src="${hasIcon}" alt="${it.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="item-icon-fallback" style="display:none">🎒</span>` : '<span class="item-icon-fallback">🎒</span>'}
                 </div>
                 <div class="item-info">
-                    <h4 class="item-name">${it.name || '未命名道具'}</h4>
+                    <h4 class="item-name" title="${(it.name || '').replace(/"/g, '&quot;')}">${it.name || '未命名道具'}</h4>
                     <div class="item-meta">
                         <span class="item-quality" style="background:${q.color};color:${q.name === '白' ? '#1a1a1a' : '#fff'}">${q.name}</span>
                         <span class="item-type">${getItemTypeName(it.itemType)}</span>
-                        <span class="item-id">ID: ${it.id}</span>
                     </div>
                     ${it.desc ? `<p class="item-desc">${it.desc}</p>` : ''}
                 </div>
             </div>
         `;
+    };
+
+    if (tFilter) {
+        // 指定类型: 直接平铺
+        grid.innerHTML = `<div class="item-grid">${list.map(renderCard).join('')}</div>`;
+        return;
+    }
+
+    // 全部类型: 按类型分组, 每组标题可折叠
+    const groups = new Map();
+    list.forEach(it => {
+        const key = String(it.itemType);
+        if (!groups.has(key)) groups.set(key, []);
+        groups.get(key).push(it);
+    });
+    const keys = [...groups.keys()].sort((a, b) => (Number(a) || 99) - (Number(b) || 99));
+    grid.innerHTML = keys.map(k => {
+        const collapsed = itemGroupCollapsed[k] ? ' collapsed' : '';
+        const arrow = itemGroupCollapsed[k] ? '▸' : '▾';
+        return `
+            <div class="item-group${collapsed}" data-type="${k}">
+                <div class="item-group-header" onclick="toggleItemGroup(this)">
+                    <span class="item-group-arrow">${arrow}</span>
+                    <span class="item-group-title">${getItemTypeName(k)}</span>
+                    <span class="item-group-count">${groups.get(k).length}</span>
+                </div>
+                <div class="item-grid">${groups.get(k).map(renderCard).join('')}</div>
+            </div>
+        `;
     }).join('');
+}
+
+// 折叠/展开某个类型分组
+function toggleItemGroup(headerEl) {
+    const group = headerEl && headerEl.closest ? headerEl.closest('.item-group') : null;
+    if (!group) return;
+    const key = group.getAttribute('data-type') || '';
+    const collapsed = group.classList.toggle('collapsed');
+    itemGroupCollapsed[key] = collapsed;
+    const arrow = headerEl.querySelector('.item-group-arrow');
+    if (arrow) arrow.textContent = collapsed ? '▸' : '▾';
 }
 
 // 打开道具图标原图弹窗

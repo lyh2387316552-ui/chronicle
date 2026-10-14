@@ -8,7 +8,7 @@
     <meta http-equiv="Expires" content="0">
     <title>古荒大陆编年史</title>
     <link rel="icon" type="image/webp" href="assets/logo.webp">
-    <link rel="stylesheet" href="css/style.css?v=106">
+    <link rel="stylesheet" href="css/style.css?v=107">
 </head>
 <body>
     <div class="background-image"></div>
@@ -747,7 +747,7 @@
                 <div class="filter-bar">
                     <div class="filter-group">
                         <label>搜索:</label>
-                        <input type="text" id="itemSearchInput" class="filter-input" placeholder="名称 / ID / 描述 / 类型..." autocomplete="off" oninput="debouncedFilter('item')">
+                        <input type="text" id="itemSearchInput" class="filter-input" placeholder="名称 / 描述 / 类型..." autocomplete="off" oninput="debouncedFilter('item')">
                     </div>
                     <div class="filter-group">
                         <label>品质:</label>
@@ -762,7 +762,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="item-grid" id="itemGrid"></div>
+                <div class="item-groups" id="itemGrid"></div>
             </div>
         </main>
     </div>
@@ -778,6 +778,6 @@
     <!-- 注: xlsx.min.js 仅 tools/import.js (Node 端) 需要, 浏览器端不再加载 (约 880KB) -->
     <script src="js/auto-import-data.js?v=37" onerror="console.error('⚠️ auto-import-data.js 加载失败！请先运行一键导入生成数据文件。')"></script>
     <script src="js/data.js?v=20"></script>
-    <script src="js/app.js?v=93"></script>
+    <script src="js/app.js?v=96"></script>
 </body>
 </html>
