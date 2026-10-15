@@ -851,6 +851,17 @@ function fmtLegendRange(min, max, showType, round) {
     return a + '~' + b;
 }
 
+// desc 中已含该数值时不再追加区间, 避免出现 "攻击伤害提高20% 20.00%" 这类重复数值展示
+function descHasRangeValue(desc, range) {
+    if (!desc || !range) return false;
+    if (desc.indexOf(range) !== -1) return true;
+    const rangeVals = (String(range).match(/\d+(?:\.\d+)?/g) || []).map(Number);
+    if (!rangeVals.length) return false;
+    const descVals = (String(desc).match(/\d+(?:\.\d+)?/g) || []).map(Number);
+    if (!descVals.length) return false;
+    return rangeVals.every(v => descVals.some(d => d === v));
+}
+
 // 多条词条名的公共部分 (前缀/后缀拼接, 用于"取随机一条"的汇总名)
 function commonPartName(strings) {
     const arr = strings.filter(s => s && s.trim());
@@ -978,7 +989,7 @@ function parseEquipment(inputPath, battleData) {
             let desc = r.desc;
             if (range && /\{\d+\}/.test(desc)) {
                 desc = desc.replace(/\{\d+\}/g, range);
-            } else if (range && !desc.includes(range)) {
+            } else if (range && !descHasRangeValue(desc, range)) {
                 desc = desc + ' ' + range;
             }
             return { name: name || desc, desc: desc };
@@ -1170,7 +1181,7 @@ function parseNormalEquipment(equipPath, itemPath) {
         );
         if (desc) {
             if (range && /\{\d+\}/.test(desc)) desc = desc.replace(/\{\d+\}/g, range);
-            else if (range && !desc.includes(range)) desc = desc + ' ' + range;
+            else if (range && !descHasRangeValue(desc, range)) desc = desc + ' ' + range;
         } else if (modNameCol) {
             const nm = String(row[modNameCol] || '').trim();
             desc = nm + (range ? ' ' + range : '');
