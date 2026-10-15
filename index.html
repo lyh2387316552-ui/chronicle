@@ -8,7 +8,7 @@
     <meta http-equiv="Expires" content="0">
     <title>古荒大陆编年史</title>
     <link rel="icon" type="image/webp" href="assets/logo.webp">
-    <link rel="stylesheet" href="css/style.css?v=108">
+    <link rel="stylesheet" href="css/style.css?v=110">
 </head>
 <body>
     <div class="background-image"></div>
@@ -28,30 +28,32 @@
                         首页
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link" data-page="equipment">
-                        装备
+                <li class="nav-item nav-dropdown">
+                    <a href="#" class="nav-link nav-dropdown-toggle" onclick="navigateTo('equipment');return false;">
+                        装备 <span class="nav-caret">▾</span>
                     </a>
+                    <div class="nav-dropdown-menu">
+                        <a href="#" class="nav-dropdown-item" data-page="equipment">传奇装备</a>
+                        <a href="#" class="nav-dropdown-item" data-page="normal-equipment">普通装备</a>
+                    </div>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link" data-page="gems">
-                        辅助宝石
+                <li class="nav-item nav-dropdown">
+                    <a href="#" class="nav-link nav-dropdown-toggle" onclick="navigateTo('custom-skills');return false;">
+                        技能 <span class="nav-caret">▾</span>
                     </a>
+                    <div class="nav-dropdown-menu">
+                        <a href="#" class="nav-dropdown-item" data-page="custom-skills">技能</a>
+                        <a href="#" class="nav-dropdown-item" data-page="gems">辅助宝石</a>
+                    </div>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link" data-page="custom-skills">
-                        技能库
+                <li class="nav-item nav-dropdown">
+                    <a href="#" class="nav-link nav-dropdown-toggle" onclick="navigateTo('talent-grids');return false;">
+                        天赋 <span class="nav-caret">▾</span>
                     </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link" data-page="talent-grids">
-                        通用天赋
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link" data-page="occupations">
-                        职业天赋
-                    </a>
+                    <div class="nav-dropdown-menu">
+                        <a href="#" class="nav-dropdown-item" data-page="talent-grids">通用天赋</a>
+                        <a href="#" class="nav-dropdown-item" data-page="occupations">职业天赋</a>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link" data-page="pets">
@@ -631,8 +633,8 @@
             <!-- Equipment Page -->
             <div class="page" id="page-equipment">
                 <div class="page-header">
-                    <h2 class="page-title">📦 装备</h2>
-                    <p class="page-desc">共 <span id="equipmentTotalCount">0</span> 件装备</p>
+                    <h2 class="page-title">📦 传奇装备</h2>
+                    <p class="page-desc">共 <span id="equipmentTotalCount">0</span> 件传奇装备</p>
                 </div>
                 <div class="filter-bar">
                     <div class="filter-group">
@@ -647,6 +649,27 @@
                     </div>
                 </div>
                 <div class="equipment-grid" id="equipmentGrid"></div>
+            </div>
+
+            <!-- Normal Equipment Page (普通装备) -->
+            <div class="page" id="page-normal-equipment">
+                <div class="page-header">
+                    <h2 class="page-title">📦 普通装备</h2>
+                    <p class="page-desc">共 <span id="normalEquipmentTotalCount">0</span> 件普通装备</p>
+                </div>
+                <div class="filter-bar">
+                    <div class="filter-group">
+                        <label>搜索:</label>
+                        <input type="text" id="normalEquipmentSearchInput" class="filter-input" placeholder="名称 / ID / 类型 / 效果..." autocomplete="off">
+                    </div>
+                    <div class="filter-group">
+                        <label>类型:</label>
+                        <select id="normalEquipmentTypeFilter" class="filter-select">
+                            <option value="">全部类型</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="equipment-grid" id="normalEquipmentGrid"></div>
             </div>
 
             <!-- Gems Page -->
@@ -776,8 +799,8 @@
     </div>
 
     <!-- 注: xlsx.min.js 仅 tools/import.js (Node 端) 需要, 浏览器端不再加载 (约 880KB) -->
-    <script src="js/auto-import-data.js?v=37" onerror="console.error('⚠️ auto-import-data.js 加载失败！请先运行一键导入生成数据文件。')"></script>
+    <script src="js/auto-import-data.js?v=38" onerror="console.error('⚠️ auto-import-data.js 加载失败！请先运行一键导入生成数据文件。')"></script>
     <script src="js/data.js?v=20"></script>
-    <script src="js/app.js?v=97"></script>
+    <script src="js/app.js?v=99"></script>
 </body>
 </html>

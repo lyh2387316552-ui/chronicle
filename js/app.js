@@ -3,7 +3,7 @@
 // ============================================================
 
 // ---- 导航 ----
-const navLinks = document.querySelectorAll('.nav-link');
+const navLinks = document.querySelectorAll('.nav-link[data-page], .nav-dropdown-item');
 const pages = document.querySelectorAll('.page');
 
 navLinks.forEach(link => {
@@ -13,6 +13,25 @@ navLinks.forEach(link => {
         navigateTo(pageName);
     });
 });
+
+// ---- 顶部导航高度自适应 ----
+// 窄屏下导航项允许换行, 导航实际高度会随行数变化; 实时写入 --nav-height,
+// 供首屏高度(.hero-banner)与搜索候选面板定位复用, 保证二者始终与导航对齐
+function syncNavHeight() {
+    const sidebar = document.querySelector('.sidebar');
+    if (!sidebar) return;
+    const root = document.documentElement;
+    if (window.matchMedia('(max-width: 860px)').matches) {
+        root.style.setProperty('--nav-height', sidebar.offsetHeight + 'px');
+    } else {
+        root.style.removeProperty('--nav-height');
+    }
+}
+
+syncNavHeight();
+window.addEventListener('resize', syncNavHeight);
+window.addEventListener('orientationchange', syncNavHeight);
+window.addEventListener('load', syncNavHeight);
 
 // ---- 已渲染页面记录 (懒渲染: 首次进入才渲染内容，加速启动) ----
 const renderedPages = new Set();
@@ -24,6 +43,8 @@ function ensurePageRendered(pageName) {
         switchBattleTab('active');
     } else if (pageName === 'equipment') {
         renderEquipment();
+    } else if (pageName === 'normal-equipment') {
+        initNormalEquipmentPage();
     } else if (pageName === 'gems') {
         renderGems();
     } else if (pageName === 'talent-grids') {
@@ -35,13 +56,19 @@ function ensurePageRendered(pageName) {
 
 function navigateTo(pageName) {
     pages.forEach(p => p.classList.remove('active'));
-    navLinks.forEach(l => l.classList.remove('active'));
+    document.querySelectorAll('.nav-link, .nav-dropdown-item').forEach(l => l.classList.remove('active'));
+    document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('active'));
 
     const targetPage = document.getElementById(`page-${pageName}`);
-    const targetLink = document.querySelector(`[data-page="${pageName}"]`);
+    const targetLink = document.querySelector(`.nav-link[data-page="${pageName}"], .nav-dropdown-item[data-page="${pageName}"]`);
 
     if (targetPage) targetPage.classList.add('active');
-    if (targetLink) targetLink.classList.add('active');
+    if (targetLink) {
+        targetLink.classList.add('active');
+        // 子项激活时, 高亮所属下拉父级
+        const dropdown = targetLink.closest('.nav-dropdown');
+        if (dropdown) dropdown.classList.add('active');
+    }
 
     // 记录当前页面: 首页使用首页底图, 非首页使用通用底图
     document.body.dataset.page = pageName;
@@ -50,7 +77,9 @@ function navigateTo(pageName) {
     ensurePageRendered(pageName);
 
     // 每次进入刷新数据 (编辑/导入后保持最新)
-    if (pageName === 'custom-skills') {
+    if (pageName === 'normal-equipment') {
+        initNormalEquipmentPage();
+    } else if (pageName === 'custom-skills') {
         filterCustomSkills();
     } else if (pageName === 'talent-grids') {
         renderTalentGrids();
@@ -2396,6 +2425,21 @@ function renderEquipment(filteredData) {
     }).join('');
     document.getElementById('equipmentTotalCount').textContent = equipmentData.length;
     updateEquipmentTypeFilter();
+}
+
+// ---- 普通装备页 (占位: 数据后续接入) ----
+function initNormalEquipmentPage() {
+    const grid = document.getElementById('normalEquipmentGrid');
+    if (!grid) return;
+    grid.innerHTML = `
+        <div class="equipment-empty">
+            <div class="equipment-empty-icon">📦</div>
+            <p>暂无普通装备数据</p>
+            <p class="equipment-empty-hint">普通装备内容正在整理中，敬请期待</p>
+        </div>
+    `;
+    const countEl = document.getElementById('normalEquipmentTotalCount');
+    if (countEl) countEl.textContent = '0';
 }
 
 function filterEquipments() {

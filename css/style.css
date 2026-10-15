@@ -248,7 +248,7 @@ body {
     flex-direction: row;
     align-items: center;
     gap: 4px;
-    overflow-x: auto;
+    overflow: visible;
 }
 
 .nav-section {
@@ -297,6 +297,69 @@ body {
     border-bottom-color: var(--accent);
     border-radius: 0;
 }
+
+/* ---- 导航下拉菜单 (装备: 传奇装备 / 普通装备) ---- */
+.nav-dropdown {
+    position: relative;
+}
+
+.nav-caret {
+    display: inline-block;
+    font-size: 10px;
+    margin-left: 2px;
+    transition: transform 0.2s;
+}
+
+.nav-dropdown:hover .nav-caret {
+    transform: rotate(180deg);
+}
+
+.nav-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 4px;
+    min-width: 130px;
+    padding: 6px;
+    background: #1a1a1a;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    display: none;
+    flex-direction: column;
+    gap: 2px;
+    z-index: 1000;
+}
+
+.nav-dropdown:hover .nav-dropdown-menu {
+    display: flex;
+}
+
+.nav-dropdown-item {
+    padding: 8px 14px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    border-radius: 6px;
+    white-space: nowrap;
+    transition: all 0.2s;
+}
+
+.nav-dropdown-item:hover {
+    background: var(--bg-hover);
+    color: var(--accent-light);
+}
+
+.nav-dropdown-item.active {
+    color: var(--accent);
+    background: rgba(212, 160, 86, 0.12);
+}
+
+.nav-dropdown.active > .nav-dropdown-toggle {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+}
+
 
 .sidebar-footer {
     padding: 0;
@@ -4685,7 +4748,7 @@ body[data-page="home"] .home-modules {
 
 /* ---- 手机 / 竖屏平板 ---- */
 @media (max-width: 860px) {
-    /* 两行导航的实际高度, 供首屏高度与搜索面板定位复用 */
+    /* 两行导航的实际高度, 供首屏高度与搜索面板定位复用 (JS 会按实际换行结果实时校正) */
     :root {
         --nav-height: 96px;
     }
@@ -4739,10 +4802,10 @@ body[data-page="home"] .home-modules {
         font-size: 16px;
     }
 
-    /* 搜索候选面板: 脱离搜索框宽度, 铺满屏幕宽度并贴在两行导航之下 */
+    /* 搜索候选面板: 脱离搜索框宽度, 铺满屏幕宽度并贴在实际导航高度之下 */
     .global-search-hint {
         position: fixed;
-        top: calc(96px + 4px);
+        top: calc(var(--nav-height) + 4px);
         left: 12px;
         right: 12px;
         width: auto;
@@ -4750,27 +4813,31 @@ body[data-page="home"] .home-modules {
         z-index: 500;
     }
 
-    /* 导航项独占一行, 内容超出时可左右拖动 */
+    /* 导航项独占一行: 一行放不下时自动换行, 所有项完整可见, 不做横向滚动 */
     .nav-list {
         flex: 1 1 100%;
+        flex-wrap: wrap;
         gap: 2px;
         padding: 0 0 4px;
-        overflow-x: auto;
-        overflow-y: hidden;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        -webkit-mask-image: linear-gradient(to right, transparent 0, #000 8px, #000 calc(100% - 16px), transparent 100%);
-        mask-image: linear-gradient(to right, transparent 0, #000 8px, #000 calc(100% - 16px), transparent 100%);
+        overflow: visible;
     }
 
-    .nav-list::-webkit-scrollbar {
-        display: none;
+    /* 统一各项高度: 由链接自身内边距 + 固定行高决定 */
+    .nav-item {
+        display: flex;
+    }
+
+    /* 下拉箭头不参与行高计算, 否则"装备"项会比其它项高 2px */
+    .nav-caret {
+        line-height: 1;
+        vertical-align: middle;
     }
 
     .nav-link {
         display: block;
         padding: 8px 12px;
         font-size: 14px;
+        line-height: 20px;
     }
 
     /* ============ 主内容区 ============ */
