@@ -379,6 +379,14 @@ const originalPassiveSkills = passiveSkills.map(s => ({ ...s }));
 let equipmentData = [];
 
 // ============================================================
+// 普通装备数据 - 仅由一键导入 (auto-import-data.js normalEquipment 字段) 填充
+// 来源: 装备表.xlsx → Equip 子表 (baseModifier → Modifier.desc 专属词条描述)
+// 结构: { id, name(装备名), type(装备类型), modifierId, modifierDesc, icon }
+// icon 形如 item/xxx, 网页引用 icon/item/xxx.webp (与道具表同规则)
+// ============================================================
+let normalEquipmentData = [];
+
+// ============================================================
 // 辅助技能宝石数据 - 仅由一键导入 (auto-import-data.js) 填充
 // 只读展示，页面内不可新增/修改/删除
 // 首页新增功能产生的数据请存放于独立 localStorage key，勿与导入数据冲突
@@ -547,6 +555,15 @@ function findRefData(refId) {
             console.log('  ✓ 装备:', equipmentData.length, '件');
         }
     } catch(e) { console.error('  ❌ 装备加载失败:', e); }
+
+    // 普通装备 (normalEquipment 字段: import.js 解析装备表 Equip 子表生成)
+    try {
+        if (data.normalEquipment && data.normalEquipment.length > 0) {
+            normalEquipmentData.length = 0;
+            normalEquipmentData.push(...data.normalEquipment);
+            console.log('  ✓ 普通装备:', normalEquipmentData.length, '件');
+        }
+    } catch(e) { console.error('  ❌ 普通装备加载失败:', e); }
 
     // 主动技能 (导入数据替换内置数据，用于 findRefData 查找)
     try {

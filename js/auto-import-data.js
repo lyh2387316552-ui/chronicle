@@ -1,5 +1,5 @@
 // 此文件由 import.js 自动生成，请勿手动编辑
-// 生成时间: 2026-10-15T05:40:35.026Z
+// 生成时间: 2026-10-15T06:14:46.238Z
 window.__AUTO_IMPORT_DATA__ = {
   "activeSkills": [
     {
@@ -18428,5 +18428,417 @@ window.__AUTO_IMPORT_DATA__ = {
     }
   ],
   "skillDisplayLevel": 1,
-  "importTime": "2026-10-15T05:40:35.026Z"
+  "importTime": "2026-10-15T06:14:46.238Z",
+  "normalEquipment": [
+    {
+      "id": "1100101",
+      "name": "物理法杖",
+      "type": "法杖",
+      "modifierId": "1100101",
+      "modifierDesc": "获得物理伤害15% 15.00%",
+      "icon": "zhuangbei/101/109",
+      "isNew": true,
+      "source": "sync"
+    },
+    {
+      "id": "1100102",
+      "name": "火焰法杖",
+      "type": "法杖",
+      "modifierId": "1100102",
+      "modifierDesc": "获得火焰伤害15% 15.00%",
+      "icon": "zhuangbei/108/109",
+      "isNew": true,
+      "source": "sync"
+    },
+    {
+      "id": "1100103",
+      "name": "冰霜法杖",
+      "type": "法杖",
+      "modifierId": "1100103",
+      "modifierDesc": "获得冰冷伤害15% 15.00%",
+      "icon": "zhuangbei/106/109",
+      "isNew": true,
+      "source": "sync"
+    },
+    {
+      "id": "1100104",
+      "name": "闪电法杖",
+      "type": "法杖",
+      "modifierId": "1100104",
+      "modifierDesc": "获得闪电伤害15% 15.00%",
+      "icon": "zhuangbei/105/109",
+      "isNew": true,
+      "source": "sync"
+    },
+    {
+      "id": "1100105",
+      "name": "混沌法杖",
+      "type": "法杖",
+      "modifierId": "1100105",
+      "modifierDesc": "获得混沌伤害15% 15.00%",
+      "icon": "zhuangbei/107/109",
+      "isNew": true,
+      "source": "sync"
+    },
+    {
+      "id": "1100201",
+      "name": "物理长剑",
+      "type": "长剑",
+      "modifierId": "1100201",
+      "modifierDesc": "获得物理伤害15% 15.00%",
+      "icon": "zhuangbei/103/106",
+      "isNew": true,
+      "source": "sync"
+    },
+    {
+      "id": "1100202",
+      "name": "火焰长剑",
+      "type": "长剑",
+      "modifierId": "1100202",
+      "modifierDesc": "获得火焰伤害15% 15.00%",
+      "icon": "zhuangbei/108/106",
+      "isNew": true,
+      "source": "sync"
+    },
+    {
+      "id": "1100203",
+      "name": "冰霜长剑",
+      "type": "长剑",
+      "modifierId": "1100203",
+      "modifierDesc": "获得冰冷伤害15% 15.00%",
+      "icon": "zhuangbei/106/106",
+      "isNew": true,
+      "source": "sync"
+    },
+    {
+      "id": "1100204",
+      "name": "闪电长剑",
+      "type": "长剑",
+      "modifierId": "1100204",
+      "modifierDesc": "获得闪电伤害15% 15.00%",
+      "icon": "zhuangbei/105/106",
+      "isNew": true,
+      "source": "sync"
+    },
+    {
+      "id": "1100205",
+      "name": "混沌长剑",
+      "type": "长剑",
+      "modifierId": "1100205",
+      "modifierDesc": "获得混沌伤害15% 15.00%",
+      "icon": "zhuangbei/107/106",
+      "isNew": true,
+      "source": "sync"
+    },
+    {
+      "id": "1100301",
+      "name": "物理魔典",
+      "type": "魔典",
+      "modifierId": "1100301",
+      "modifierDesc": "获得物理伤害15% 15.00%",
+      "icon": "zhuangbei/101/112",
+      "isNew": true,
+      "source": "sync"
+    },
+    {
+      "id": "1100302",
+      "name": "火焰魔典",
+      "type": "魔典",
+      "modifierId": "1100302",
+      "modifierDesc": "获得火焰伤害15% 15.00%",
+      "icon": "zhuangbei/108/112",
+      "isNew": true,
+      "source": "sync"
+    },
+    {
+      "id": "1100303",
+      "name": "冰霜魔典",
+      "type": "魔典",
+      "modifierId": "1100303",
+      "modifierDesc": "获得冰冷伤害15% 15.00%",
+      "icon": "zhuangbei/106/112",
+      "isNew": true,
+      "source": "sync"
+    },
+    {
+      "id": "1100304",
+      "name": "闪电魔典",
+      "type": "魔典",
+      "modifierId": "1100304",
+      "modifierDesc": "获得闪电伤害15% 15.00%",
+      "icon": "zhuangbei/110/112",
+      "isNew": true,
+      "source": "sync"
+    },
+    {
+      "id": "1100305",
+      "name": "混沌魔典",
+      "type": "魔典",
+      "modifierId": "1100305",
+      "modifierDesc": "获得混沌伤害15% 15.00%",
+      "icon": "zhuangbei/107/112",
+      "isNew": true,
+      "source": "sync"
+    },
+    {
+      "id": "1200101",
+      "name": "铸铁头盔",
+      "type": "头盔",
+      "modifierId": "1200101",
+      "modifierDesc": "攻击格挡率增加15% 15.00%",
+      "icon": "zhuangbei/101/201",
+      "isNew": true,
+      "source": "sync"
+    },
+    {
+      "id": "1200102",
+      "name": "银制头盔",
+      "type": "头盔",
+      "modifierId": "1200102",
+      "modifierDesc": "法术格挡率增加15% 15.00%",
+      "icon": "zhuangbei/101/201",
+      "isNew": true,
+      "source": "sync"
+    },
+    {
+      "id": "1300101",
+      "name": "铸铁胸甲",
+      "type": "胸甲",
+      "modifierId": "1300101",
+      "modifierDesc": "火焰抗性增加20% 20.00%",
+      "icon": "zhuangbei/101/301",
+      "isNew": true,
+      "source": "sync"
+    },
+    {
+      "id": "1300102",
+      "name": "皮制胸甲",
+      "type": "胸甲",
+      "modifierId": "1300102",
+      "modifierDesc": "冰冷抗性增加20% 20.00%",
+      "icon": "zhuangbei/101/301",
+      "isNew": true,
+      "source": "sync"
+    },
+    {
+      "id": "1300103",
+      "name": "铁锁胸甲",
+      "type": "胸甲",
+      "modifierId": "1300103",
+      "modifierDesc": "闪电抗性增加20% 20.00%",
+      "icon": "zhuangbei/101/301",
+      "isNew": true,
+      "source": "sync"
+    },
+    {
+      "id": "1400101",
+      "name": "铸铁腿甲",
+      "type": "裤子",
+      "modifierId": "1400101",
+      "modifierDesc": "物理抗性增加20% 20.00%",
+      "icon": "zhuangbei/101/1201",
+      "isNew": true,
+      "source": "sync"
+    },
+    {
+      "id": "1400102",
+      "name": "钢制腿甲",
+      "type": "裤子",
+      "modifierId": "1400102",
+      "modifierDesc": "混沌抗性增加10% 10.00%",
+      "icon": "zhuangbei/101/1201",
+      "isNew": true,
+      "source": "sync"
+    },
+    {
+      "id": "1500101",
+      "name": "铸铁靴",
+      "type": "鞋子",
+      "modifierId": "1500101",
+      "modifierDesc": "防御力增加100",
+      "icon": "zhuangbei/101/401",
+      "isNew": true,
+      "source": "sync"
+    },
+    {
+      "id": "1500102",
+      "name": "鞣制靴",
+      "type": "鞋子",
+      "modifierId": "1500102",
+      "modifierDesc": "基础魔力增加50",
+      "icon": "zhuangbei/101/401",
+      "isNew": true,
+      "source": "sync"
+    },
+    {
+      "id": "1500103",
+      "name": "符文靴",
+      "type": "鞋子",
+      "modifierId": "1500103",
+      "modifierDesc": "装备稀有度增加15% 15.00%",
+      "icon": "zhuangbei/101/401",
+      "isNew": true,
+      "source": "sync"
+    },
+    {
+      "id": "1600101",
+      "name": "铸铁护手",
+      "type": "手套",
+      "modifierId": "1600101",
+      "modifierDesc": "攻击速度提高10% 10.00%",
+      "icon": "zhuangbei/101/501",
+      "isNew": true,
+      "source": "sync"
+    },
+    {
+      "id": "1600102",
+      "name": "皮制护手",
+      "type": "手套",
+      "modifierId": "1600102",
+      "modifierDesc": "施法速度提高10% 10.00%",
+      "icon": "zhuangbei/101/502",
+      "isNew": true,
+      "source": "sync"
+    },
+    {
+      "id": "1600103",
+      "name": "轻质护手",
+      "type": "手套",
+      "modifierId": "1600103",
+      "modifierDesc": "冷却回复效率10% 10.00%",
+      "icon": "zhuangbei/101/503",
+      "isNew": true,
+      "source": "sync"
+    },
+    {
+      "id": "1700101",
+      "name": "精铁礼花",
+      "type": "礼花",
+      "modifierId": "1700101",
+      "modifierDesc": "物理伤害提高20% 20.00%",
+      "icon": "zhuangbei/101/601",
+      "isNew": true,
+      "source": "sync"
+    },
+    {
+      "id": "1700102",
+      "name": "宝石礼花",
+      "type": "礼花",
+      "modifierId": "1700102",
+      "modifierDesc": "元素伤害提高15% 15.00%",
+      "icon": "zhuangbei/103/601",
+      "isNew": true,
+      "source": "sync"
+    },
+    {
+      "id": "1700103",
+      "name": "鹅绒礼花",
+      "type": "礼花",
+      "modifierId": "1700103",
+      "modifierDesc": "混沌伤害提高20% 20.00%",
+      "icon": "zhuangbei/103/601",
+      "isNew": true,
+      "source": "sync"
+    },
+    {
+      "id": "1700104",
+      "name": "华丽礼花",
+      "type": "礼花",
+      "modifierId": "1700104",
+      "modifierDesc": "全局伤害提高12% 12.00%",
+      "icon": "zhuangbei/103/601",
+      "isNew": true,
+      "source": "sync"
+    },
+    {
+      "id": "1800101",
+      "name": "精铁耳环",
+      "type": "耳环",
+      "modifierId": "1800101",
+      "modifierDesc": "攻击暴击率提高20% 20.00%",
+      "icon": "zhuangbei/101/701",
+      "isNew": true,
+      "source": "sync"
+    },
+    {
+      "id": "1800102",
+      "name": "宝石耳环",
+      "type": "耳环",
+      "modifierId": "1800102",
+      "modifierDesc": "法术暴击率提高20% 20.00%",
+      "icon": "zhuangbei/103/701",
+      "isNew": true,
+      "source": "sync"
+    },
+    {
+      "id": "1800103",
+      "name": "珠光耳环",
+      "type": "耳环",
+      "modifierId": "1800103",
+      "modifierDesc": "暴击伤害增加10% 10.00%",
+      "icon": "zhuangbei/103/701",
+      "isNew": true,
+      "source": "sync"
+    },
+    {
+      "id": "1900101",
+      "name": "精铁项链",
+      "type": "项链",
+      "modifierId": "1900101",
+      "modifierDesc": "范围伤害提高20% 20.00%",
+      "icon": "zhuangbei/101/801",
+      "isNew": true,
+      "source": "sync"
+    },
+    {
+      "id": "1900102",
+      "name": "宝石项链",
+      "type": "项链",
+      "modifierId": "1900102",
+      "modifierDesc": "近战伤害提高20% 20.00%",
+      "icon": "zhuangbei/103/801",
+      "isNew": true,
+      "source": "sync"
+    },
+    {
+      "id": "1900103",
+      "name": "翡翠项链",
+      "type": "项链",
+      "modifierId": "1900103",
+      "modifierDesc": "投射物伤害提高20% 20.00%",
+      "icon": "zhuangbei/103/801",
+      "isNew": true,
+      "source": "sync"
+    },
+    {
+      "id": "2000101",
+      "name": "精铁戒指",
+      "type": "戒指",
+      "modifierId": "2000101",
+      "modifierDesc": "攻击伤害提高20% 20.00%",
+      "icon": "zhuangbei/101/901",
+      "isNew": true,
+      "source": "sync"
+    },
+    {
+      "id": "2000102",
+      "name": "护法戒指",
+      "type": "戒指",
+      "modifierId": "2000102",
+      "modifierDesc": "法术伤害提高20% 20.00%",
+      "icon": "zhuangbei/101/901",
+      "isNew": true,
+      "source": "sync"
+    },
+    {
+      "id": "2000103",
+      "name": "翡翠戒指",
+      "type": "戒指",
+      "modifierId": "2000103",
+      "modifierDesc": "召唤物伤害提高20%",
+      "icon": "zhuangbei/101/901",
+      "isNew": true,
+      "source": "sync"
+    }
+  ]
 };

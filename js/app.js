@@ -545,6 +545,7 @@ const debouncedFilters = {
     affix: debounce(() => filterAffixes(), 150),
     attr: debounce(() => filterAttributes(), 150),
     equipment: debounce(() => filterEquipments(), 150),
+    normalEquip: debounce(() => filterNormalEquipments(), 150),
     gem: debounce(() => filterGems(), 150),
     custom: debounce(() => filterCustomSkills(), 150),
     pet: debounce(() => filterPets(), 150),
@@ -2427,19 +2428,113 @@ function renderEquipment(filteredData) {
     updateEquipmentTypeFilter();
 }
 
-// ---- 普通装备页 (占位: 数据后续接入) ----
+// ---- 普通装备页 ----
+// 数据: normalEquipmentData = { id, name(装备名), type(装备类型), modifierId, modifierDesc(专属词条描述), icon }
+// 展示: 按装备类型分组, 卡片呈现「名称 | 图片 | 类型 | 专属词条描述」
+const normalEquipGroupCollapsed = {};
+
 function initNormalEquipmentPage() {
+    renderNormalEquipments();
+}
+
+function filterNormalEquipments() {
+    renderNormalEquipments();
+}
+
+function renderNormalEquipments() {
     const grid = document.getElementById('normalEquipmentGrid');
     if (!grid) return;
-    grid.innerHTML = `
-        <div class="equipment-empty">
-            <div class="equipment-empty-icon">📦</div>
-            <p>暂无普通装备数据</p>
-            <p class="equipment-empty-hint">普通装备内容正在整理中，敬请期待</p>
-        </div>
-    `;
-    const countEl = document.getElementById('normalEquipmentTotalCount');
-    if (countEl) countEl.textContent = '0';
+
+    const keywords = parseKeywords(((document.getElementById('normalEquipmentSearchInput') || {}).value || ''));
+    const sel = document.getElementById('normalEquipmentTypeFilter');
+    const tFilter = ((sel || {}).value || '').trim();
+
+    // 刷新类型下拉选项 (保留当前选择)
+    if (sel) {
+        const types = [...new Set(normalEquipmentData.map(e => e.type || '未分类'))].sort();
+        sel.innerHTML = '<option value="">全部类型</option>' + types.map(t => `<option value="${t}">${t}</option>`).join('');
+        if (types.includes(tFilter)) sel.value = tFilter;
+    }
+
+    let list = normalEquipmentData;
+    if (keywords.length > 0) {
+        list = list.filter(e => matchFields(keywords, [e.name, e.id, e.type, e.modifierId, e.modifierDesc]));
+    }
+    if (tFilter) list = list.filter(e => (e.type || '未分类') === tFilter);
+    // 按装备 ID 升序 (同类型内 ID 由小到大)
+    list = list.slice().sort((a, b) => (Number(a.id) || 0) - (Number(b.id) || 0));
+
+    const totalEl = document.getElementById('normalEquipmentTotalCount');
+    if (totalEl) totalEl.textContent = normalEquipmentData.length;
+
+    if (list.length === 0) {
+        grid.innerHTML = `
+            <div class="equipment-empty">
+                <div class="equipment-empty-icon">📦</div>
+                <p>${normalEquipmentData.length === 0 ? '暂无普通装备数据' : '未找到匹配的普通装备'}</p>
+                <p class="equipment-empty-hint">${normalEquipmentData.length === 0 ? '普通装备数据由一键导入提供，请先运行一键导入' : '尝试其他搜索关键词'}</p>
+            </div>
+        `;
+        return;
+    }
+
+    const renderCard = eq => {
+        const hasIcon = eq.icon ? DATA_BASE + 'icon/' + eq.icon + '.webp' : '';
+        const click = hasIcon ? `onclick="openItemIcon('${hasIcon}','${(eq.name || '').replace(/'/g, "\\'")}')"` : '';
+        return `
+            <div class="item-card" style="border-color:rgba(255,255,255,0.15)">
+                <div class="item-icon${hasIcon ? ' item-icon-clickable' : ''}" style="background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.2)" ${click}>
+                    ${hasIcon ? `<img src="${hasIcon}" alt="${eq.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="item-icon-fallback" style="display:none">📦</span>` : '<span class="item-icon-fallback">📦</span>'}
+                </div>
+                <div class="item-info">
+                    <h4 class="item-name" title="${(eq.name || '').replace(/"/g, '&quot;')}">${eq.name || '未命名装备'}</h4>
+                    <div class="item-meta">
+                        <span class="item-type">${eq.type || '未分类'}</span>
+                    </div>
+                    ${eq.modifierDesc ? `<p class="item-desc">${eq.modifierDesc}</p>` : ''}
+                </div>
+            </div>
+        `;
+    };
+
+    if (tFilter) {
+        // 指定类型: 直接平铺
+        grid.innerHTML = `<div class="item-grid">${list.map(renderCard).join('')}</div>`;
+        return;
+    }
+
+    // 全部类型: 按装备类型分组, 每组标题可折叠
+    const groups = new Map();
+    list.forEach(eq => {
+        const key = eq.type || '未分类';
+        if (!groups.has(key)) groups.set(key, []);
+        groups.get(key).push(eq);
+    });
+    grid.innerHTML = [...groups.keys()].sort().map(k => {
+        const collapsed = normalEquipGroupCollapsed[k] ? ' collapsed' : '';
+        const arrow = normalEquipGroupCollapsed[k] ? '▸' : '▾';
+        return `
+            <div class="item-group${collapsed}" data-type="${k}">
+                <div class="item-group-header" onclick="toggleNormalEquipGroup(this)">
+                    <span class="item-group-arrow">${arrow}</span>
+                    <span class="item-group-title">${k}</span>
+                    <span class="item-group-count">${groups.get(k).length}</span>
+                </div>
+                <div class="item-grid">${groups.get(k).map(renderCard).join('')}</div>
+            </div>
+        `;
+    }).join('');
+}
+
+// 折叠/展开某个装备类型分组
+function toggleNormalEquipGroup(headerEl) {
+    const group = headerEl && headerEl.closest ? headerEl.closest('.item-group') : null;
+    if (!group) return;
+    const key = group.getAttribute('data-type') || '';
+    const collapsed = group.classList.toggle('collapsed');
+    normalEquipGroupCollapsed[key] = collapsed;
+    const arrow = headerEl.querySelector('.item-group-arrow');
+    if (arrow) arrow.textContent = collapsed ? '▸' : '▾';
 }
 
 function filterEquipments() {

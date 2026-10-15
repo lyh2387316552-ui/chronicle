@@ -1119,6 +1119,119 @@ function parseEquipment(inputPath, battleData) {
     return equips;
 }
 
+// ============================================================
+// 普通装备库 (装备表 Equip 子表)
+// 字段用法 (与策划表 Equip 子表英文字段键一致):
+//   id.p         装备 ID
+//   desc999      (nouse)装备名 → 装备名称
+//   desc998      (nouse)装备type → 装备类型 (法杖/长剑/头盔...)
+//   baseModifier 装备专属词条 ID → Modifier 子表同名 ID 行的 desc (词条描述)
+// icon 来源: 道具表 Item 子表的 icon 列, 取 id.p === Equip.id.p 的那一行;
+//            路径规则与道具表一致, 形如 item/xxx → 网页引用 icon/item/xxx.webp
+// ============================================================
+function parseNormalEquipment(equipPath, itemPath) {
+    console.log('  📖 解析普通装备库(Equip)...');
+    let filePath = equipPath;
+    if (isDirectory(equipPath)) {
+        filePath = findDataFile(equipPath, ['.xlsx', '.xls', '.csv'], ['equip', '装备', 'legend']);
+        if (!filePath) { console.log('  ⚠️ 文件夹中未找到 Excel/CSV 文件:', equipPath); return null; }
+    }
+
+    const equipData = readSheetByCols(filePath, ['desc999', 'desc998', 'baseModifier'], ['Equip']);
+    const modData = readSheetByCols(filePath, ['desc', 'min', 'max'], ['Modifier', '词条', 'modifier']);
+    console.log('     Equip子表:', equipData.sheetName, '  行数:', equipData.rows.length);
+    console.log('     Modifier子表:', modData.sheetName, '  行数:', modData.rows.length);
+
+    const eqHeaders = equipData.headers;
+    const eqIdCol = findCol(eqHeaders, ['id.p', 'id', 'ID']);
+    const eqNameCol = findCol(eqHeaders, ['desc999', '装备名']);
+    const eqTypeCol = findCol(eqHeaders, ['desc998', '装备type']);
+    const eqModCol = findCol(eqHeaders, ['baseModifier', '专属词条']);
+
+    // Modifier: id → 描述 (占位符 {N} 与 min/max 区间处理与传奇装备一致)
+    const modHeaders = modData.headers;
+    const modIdCol = findCol(modHeaders, ['id.p', 'id', 'ID']);
+    const modDescCol = findCol(modHeaders, ['desc', 'Desc']);
+    const modNameCol = findCol(modHeaders, ['desc999', 'Desc999']);
+    const modMinCol = findCol(modHeaders, ['min', 'Min']);
+    const modMaxCol = findCol(modHeaders, ['max', 'Max']);
+    const modRoundCol = findCol(modHeaders, ['round', 'Round']);
+    const modShowTypeCol = findCol(modHeaders, ['showType', 'ShowType']);
+
+    const modDescMap = {};   // id → [desc, ...] (同 ID 多 tier 时保留全部)
+    modData.rows.forEach(row => {
+        const mid = modIdCol ? cleanNum(row[modIdCol]) : '';
+        if (!mid) return;
+        let desc = modDescCol ? String(row[modDescCol] || '').trim() : '';
+        if (desc && /^-?\d+(\.\d+)?$/.test(desc)) desc = '';   // 脏值: desc 列填了纯数字
+        const range = fmtLegendRange(
+            modMinCol ? row[modMinCol] : '', modMaxCol ? row[modMaxCol] : '',
+            modShowTypeCol ? row[modShowTypeCol] : '', modRoundCol ? row[modRoundCol] : ''
+        );
+        if (desc) {
+            if (range && /\{\d+\}/.test(desc)) desc = desc.replace(/\{\d+\}/g, range);
+            else if (range && !desc.includes(range)) desc = desc + ' ' + range;
+        } else if (modNameCol) {
+            const nm = String(row[modNameCol] || '').trim();
+            desc = nm + (range ? ' ' + range : '');
+        }
+        if (!modDescMap[mid]) modDescMap[mid] = [];
+        if (desc && modDescMap[mid].indexOf(desc) === -1) modDescMap[mid].push(desc);
+    });
+
+    // 装备图标索引: 道具表 Item.id.p → icon (路径规则与道具表一致)
+    const iconMap = {};
+    if (itemPath) {
+        let ip = itemPath;
+        if (isDirectory(ip)) ip = findDataFile(ip, ['.xlsx', '.xls', '.csv'], ['道具', 'item']);
+        if (ip && fs.existsSync(ip)) {
+            try {
+                const itemData = readSheetByName(ip, ['Item']);
+                const iIdCol = findCol(itemData.headers, ['id.p', 'id', 'ID']);
+                const iIconCol = findCol(itemData.headers, ['icon', '图标']);
+                if (iIdCol && iIconCol) {
+                    const parseIcon = (raw) => {
+                        let s = String(raw || '').trim();
+                        if (!s) return '';
+                        s = s.replace(/^\[|\]$/g, '').replace(/["']/g, '');
+                        return s.split(/[|,;，；\s]+/).map(x => x.trim()).filter(Boolean)[0] || '';
+                    };
+                    itemData.rows.forEach(r => {
+                        const iid = cleanNum(r[iIdCol]);
+                        if (iid && iconMap[iid] === undefined) iconMap[iid] = parseIcon(r[iIconCol]);
+                    });
+                }
+                console.log('     Item图标索引:', Object.keys(iconMap).length, '条');
+            } catch (e) {
+                console.log('     ⚠️ 道具表读取失败, 普通装备图标将缺失:', e.message);
+            }
+        }
+    }
+
+    const equips = [];
+    let iconHit = 0;
+    equipData.rows.forEach(row => {
+        const id = eqIdCol ? cleanNum(row[eqIdCol]) : '';
+        if (!id) return;
+        const modId = eqModCol ? cleanNum(row[eqModCol]) : '';
+        const descList = modId && modDescMap[modId] ? modDescMap[modId] : [];
+        const icon = iconMap[id] || '';
+        if (icon) iconHit++;
+        equips.push({
+            id: id,
+            name: eqNameCol ? String(row[eqNameCol] || '').trim() : '',
+            type: eqTypeCol ? String(row[eqTypeCol] || '').trim() : '',
+            modifierId: modId,
+            modifierDesc: descList.join(' / '),
+            icon: icon,
+            isNew: true, source: 'sync'
+        });
+    });
+    console.log('     ✓ 解析普通装备:', equips.length, '件, 专属词条命中',
+        equips.filter(e => e.modifierDesc).length, ', 图标命中', iconHit);
+    return equips;
+}
+
 // 辅助技能宝石库
 function parseGems(inputPath) {
     console.log('  📖 解析辅助技能宝石库...');
@@ -1937,6 +2050,8 @@ function syncIcons(importData, config) {
     (importData.pets || []).forEach(p => { addRef(p.pic, p.pic); addRef(p.getBg, p.getBg); addRef(p.getPic, p.getPic); });
     // 道具图标: icon 路径 (形如 item/caizuan, 落盘为 icon/item/caizuan.webp)
     (importData.items || []).forEach(it => addRef(it.icon, it.icon));
+    // 普通装备图标: 与道具表同规则 (形如 item/xxx, 落盘为 icon/item/xxx.webp)
+    (importData.normalEquipment || []).forEach(e => addRef(e.icon, e.icon));
 
     if (refs.size === 0) {
         console.log('  📦 图标资源: 无图标引用');
@@ -2081,6 +2196,21 @@ function main() {
             }
         } else {
             console.log('  ⚠️ 装备库路径不存在:', config.equipPath.trim());
+        }
+        console.log('');
+    }
+
+    // 4b. 普通装备 (装备表 Equip 子表, icon 关联道具表 Item)
+    if (config.equipPath && config.equipPath.trim()) {
+        const fp = smartResolvePath(config.equipPath.trim());
+        if (fp && fs.existsSync(fp)) {
+            try {
+                const itemFp = config.itemPath && config.itemPath.trim() ? smartResolvePath(config.itemPath.trim()) : '';
+                importData.normalEquipment = parseNormalEquipment(fp, itemFp);
+                if (importData.normalEquipment) hasAny = true;
+            } catch (err) {
+                console.log('  ❌ 普通装备解析失败:', err.message);
+            }
         }
         console.log('');
     }
@@ -2245,6 +2375,7 @@ function main() {
     if (importData.affixes) console.log('  词缀: ' + importData.affixes.length + ' 条');
     if (importData.attributes) console.log('  属性: ' + importData.attributes.length + ' 条');
     if (importData.equipment) console.log('  装备: ' + importData.equipment.length + ' 件');
+    if (importData.normalEquipment) console.log('  普通装备: ' + importData.normalEquipment.length + ' 件');
     if (importData.gems) console.log('  宝石: ' + importData.gems.length + ' 个');
     if (importData.skills) console.log('  技能库: ' + importData.skills.length + ' 个');
     if (importData.occupations) console.log('  职业天赋: ' + importData.occupations.length + ' 个职业, ' + importData.occupations.reduce((s, o) => s + o.talentPoints.length, 0) + ' 个天赋点');
