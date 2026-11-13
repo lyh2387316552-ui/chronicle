@@ -1243,8 +1243,8 @@ function parseNormalEquipment(equipPath, itemPath) {
     return equips;
 }
 
-// 辅助技能宝石库
-function parseGems(inputPath) {
+// 辅助技能宝石库 (图标按宝石 ID 从道具表 Item.icon 映射)
+function parseGems(inputPath, itemPath) {
     console.log('  📖 解析辅助技能宝石库...');
     let filePath = inputPath;
     if (isDirectory(inputPath)) {
@@ -1264,8 +1264,40 @@ function parseGems(inputPath) {
     const rankCol = findCol(headers, ['rank', 'Rank', 'stageLevel', '所属阶级', '阶级', '品阶', '稀有度']);
     const iconCol = findCol(headers, ['icon', 'Icon', 'ICON', '图标']);
 
+    // 宝石图标索引: 道具表 Item.id.p → icon (宝石 ID 即道具表 ID, 形如 baoshi/fanweikuoda1)
+    const iconMap = {};
+    if (itemPath) {
+        let ip = itemPath;
+        if (isDirectory(ip)) ip = findDataFile(ip, ['.xlsx', '.xls', '.csv'], ['道具', 'item']);
+        if (ip && fs.existsSync(ip)) {
+            try {
+                const itemData = readSheetByName(ip, ['Item']);
+                const iIdCol = findCol(itemData.headers, ['id.p', 'id', 'ID']);
+                const iIconCol = findCol(itemData.headers, ['icon', '图标']);
+                if (iIdCol && iIconCol) {
+                    const parseIcon = (raw) => {
+                        let s = String(raw || '').trim();
+                        if (!s) return '';
+                        s = s.replace(/^\[|\]$/g, '').replace(/["']/g, '');
+                        return s.split(/[|,;，；\s]+/).map(x => x.trim()).filter(Boolean)[0] || '';
+                    };
+                    itemData.rows.forEach(r => {
+                        const iid = cleanNum(r[iIdCol]);
+                        if (iid && iconMap[iid] === undefined) iconMap[iid] = parseIcon(r[iIconCol]);
+                    });
+                }
+                console.log('     道具表图标索引:', Object.keys(iconMap).length, '条');
+            } catch (e) {
+                console.log('     ⚠️ 道具表读取失败, 宝石图标将缺失:', e.message);
+            }
+        } else {
+            console.log('     ⚠️ 未找到道具表, 宝石图标将缺失:', itemPath);
+        }
+    }
+
     const gems = [];
     let gemCounter = 0;
+    let iconHit = 0;
     rows.forEach(row => {
         const name = nameCol ? (row[nameCol] || '').trim() : '';
         // 过滤空行与元数据行(如 stageLevel/string 类型说明行)
@@ -1286,18 +1318,21 @@ function parseGems(inputPath) {
             }
         }
         gemCounter++;
-        const gemIconRaw = iconCol ? String(row[iconCol] || '').trim() : ''; // 原始引用: 如 skill/sect/101101
-        let gemIcon = gemIconRaw ? 'baoshi/' + gemIconRaw.split('/').pop() : ''; // 目标路径: baoshi/101101
+        // 图标: 优先按宝石 ID 取道具表 Item.icon; 缺失时回退 SkillGem.icon 列
+        const mappedIcon = gemSourceId && iconMap[gemSourceId] ? String(iconMap[gemSourceId]).trim() : '';
+        const rawIcon = iconCol ? String(row[iconCol] || '').trim() : '';
+        if (mappedIcon) iconHit++;
+        const gemIcon = mappedIcon || (rawIcon ? 'baoshi/' + rawIcon.split('/').pop() : '');
         gems.push({
             id: 'GEM' + String(gemCounter).padStart(4, '0'),
             name: name, type: '辅助宝石', desc: desc, effects: effects,
             rank: rankCol ? String(row[rankCol] || '').trim() : '',
             sourceId: gemSourceId, isNew: true, source: 'sync',
             icon: gemIcon,
-            iconSrc: gemIconRaw
+            iconSrc: mappedIcon || rawIcon
         });
     });
-    console.log('     ✓ 解析宝石:', gems.length, '个');
+    console.log('     ✓ 解析宝石:', gems.length, '个, 图标命中', iconHit);
     return gems;
 }
 
@@ -2231,7 +2266,8 @@ function main() {
         const fp = smartResolvePath(config.gemPath.trim());
         if (fp && fs.existsSync(fp)) {
             try {
-                importData.gems = parseGems(fp);
+                const gemItemFp = config.itemPath && config.itemPath.trim() ? smartResolvePath(config.itemPath.trim()) : '';
+                importData.gems = parseGems(fp, gemItemFp);
                 if (importData.gems) hasAny = true;
             } catch (err) {
                 console.log('  ❌ 辅助技能库解析失败:', err.message);

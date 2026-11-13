@@ -33,11 +33,15 @@ const VIDEO_DIR = path.join(DATA_REPO_DIR, 'videos');
 //   3) 额外保留 itemType = 4 的普通装备行: 装备行 uesless=1, 仅用于「普通装备」
 //      卡片按 equip.id 关联取图标 (import.js parseNormalEquipment); 道具页
 //      展示仍由 import.js 按 itemType 1/2/3 过滤, 不会显示装备
+//   4) 额外保留 itemType = 7 的辅助技能宝石行: 宝石 ID 与道具表 id.p 一致,
+//      仅用于「辅助宝石」按 ID 取图标 (import.js parseGems); 其 icon 指向 baoshi/ 目录
 // 过滤后的表格导出到 data-sources/道具表.xlsx, 物品图标也仅保留被引用者
 // ============================================================
 const ITEM_TYPE_WHITELIST = new Set(['1', '2', '3']);
 // 装备道具类型: 4=普通装备, 5=传奇/特殊装备道具; 其 icon/spIcon 指向 zhuangbei/ 目录
 const EQUIP_ITEM_TYPES = new Set(['4', '5']);
+// 辅助技能宝石类型: 其 icon 指向 baoshi/ 目录
+const GEM_ITEM_TYPE = '7';
 
 // 数据源映射: 本地绝对路径(游戏引擎/策划导出) → 数据仓库 data-sources
 // 文件夹(target 为目录名)同步到 data-sources/xxx/; 表格文件(target 为文件名)直接平铺到 data-sources/
@@ -59,6 +63,7 @@ const MAPPINGS = [
     { source: 'D:\\NewProject\\preview-templates\\icon\\talent', target: 'talent', type: 'icon' },
     { source: 'D:\\NewProject\\preview-templates\\icon\\item', target: 'item', type: 'icon', onlyIcons: true },
     { source: 'D:\\NewProject\\preview-templates\\icon\\zhuangbei', target: 'zhuangbei', type: 'icon', onlyIcons: 'zhuangbei' },
+    { source: 'D:\\NewProject\\preview-templates\\icon\\baoshi', target: 'baoshi', type: 'icon', onlyIcons: 'baoshi' },
     { source: 'D:\\Users\\1250c\\Desktop\\技能视频', target: '', type: 'video' },
 ];
 
@@ -136,6 +141,7 @@ function filterItemRawRows(rawRows, headers, dataStartIdx) {
     const rows = [];
     const icons = new Set();
     const zhuangbeiIcons = new Set();
+    const baoshiIcons = new Set();
     for (let i = dataStartIdx; i < rawRows.length; i++) {
         const cols = rawRows[i];
         const id = idIdx >= 0 ? cleanNum(cols[idIdx]) : '';
@@ -155,12 +161,22 @@ function filterItemRawRows(rawRows, headers, dataStartIdx) {
                 }
             });
         }
-        // 导出规则: itemType 1/2/3 且非废弃 → 普通道具; itemType = 4 → 普通装备(供图标映射)
+        // 辅助技能宝石 (itemType 7) 的 icon 指向 baoshi/ 目录
+        if (itemType === GEM_ITEM_TYPE && iconIdx >= 0) {
+            const p = parseIconName(cols[iconIdx]);
+            if (/^baoshi\//i.test(p)) {
+                const rel = p.replace(/^baoshi\//i, '');
+                if (rel) baoshiIcons.add(rel);
+            }
+        }
+        // 导出规则: itemType 1/2/3 且非废弃 → 普通道具; itemType = 4 → 普通装备(供图标映射);
+        //          itemType = 7 → 辅助宝石(供宝石图标映射)
         const keepNormal = ITEM_TYPE_WHITELIST.has(itemType) && useless !== '1' && useless !== '1.0';
         const keepEquip = itemType === '4';
-        if (!keepNormal && !keepEquip) continue;
+        const keepGem = itemType === GEM_ITEM_TYPE;
+        if (!keepNormal && !keepEquip && !keepGem) continue;
         rows.push(cols);
-        // 仅收集 item/ 目录下的图标 (baoshi/ 等其它目录由各自映射整目录同步)
+        // 仅收集 item/ 目录下的图标 (zhuangbei/ baoshi/ 等其它目录由各自映射裁剪同步)
         if (keepNormal && iconIdx >= 0) {
             const iconPath = parseIconName(cols[iconIdx]);
             if (/^item\//i.test(iconPath)) {
@@ -169,7 +185,7 @@ function filterItemRawRows(rawRows, headers, dataStartIdx) {
             }
         }
     }
-    return { rows, icons, zhuangbeiIcons };
+    return { rows, icons, zhuangbeiIcons, baoshiIcons };
 }
 
 // 将过滤后的道具表写入数据仓库 (保留原工作簿其它子表与表头行)
@@ -177,11 +193,11 @@ function writeFilteredItemTable(srcPath, destFile, stats) {
     const parsed = readItemRawRows(srcPath);
     if (!parsed) {
         console.log('  ⚠️ 未找到 Item 子表, 跳过');
-        return { icons: null, zhuangbeiIcons: null };
+        return { icons: null, zhuangbeiIcons: null, baoshiIcons: null };
     }
     const { wb, sheetName, rawRows } = parsed;
     const { headers, dataStartIdx } = detectHeader(rawRows);
-    const { rows, icons, zhuangbeiIcons } = filterItemRawRows(rawRows, headers, dataStartIdx);
+    const { rows, icons, zhuangbeiIcons, baoshiIcons } = filterItemRawRows(rawRows, headers, dataStartIdx);
 
     wb.Sheets[sheetName] = XLSX.utils.aoa_to_sheet(rawRows.slice(0, dataStartIdx).concat(rows));
     // 注: 打包版 xlsx.min.js 的 writeFile 无法访问 fs, 这里自行生成 buffer 再落盘
@@ -191,7 +207,7 @@ function writeFilteredItemTable(srcPath, destFile, stats) {
         if (fs.readFileSync(destFile).equals(Buffer.from(buf))) {
             stats.skipped++;
             console.log(`  ✓ 过滤表无变化 → data-sources/${path.basename(destFile)}  (保留 ${rows.length} 行)`);
-            return { icons, zhuangbeiIcons };
+            return { icons, zhuangbeiIcons, baoshiIcons };
         }
     } catch (e) { /* 目标不存在或不可读, 正常写入 */ }
     fs.mkdirSync(path.dirname(destFile), { recursive: true });
@@ -199,7 +215,7 @@ function writeFilteredItemTable(srcPath, destFile, stats) {
     stats.copied++;
     const removed = rawRows.length - dataStartIdx - rows.length;
     console.log(`  ✓ 过滤导出 → data-sources/${path.basename(destFile)}  (保留 ${rows.length} 行, 剔除 ${removed} 行)`);
-    return { icons, zhuangbeiIcons };
+    return { icons, zhuangbeiIcons, baoshiIcons };
 }
 
 // 递归收集文件夹下的所有文件
@@ -416,6 +432,7 @@ function main() {
     // itemIconSet === null 表示无法过滤 (缺少 xlsx 库或源表不存在), 图标退化为全量同步
     let itemIconSet = null;
     let zhuangbeiIconSet = null;
+    let baoshiIconSet = null;
     const itemTableMap = MAPPINGS.find(m => m.filter === 'itemTable');
     if (itemTableMap) {
         if (!XLSX) {
@@ -426,10 +443,11 @@ function main() {
                 const parsed = readItemRawRows(itemTableMap.source);
                 if (parsed) {
                     const { headers, dataStartIdx } = detectHeader(parsed.rawRows);
-                    const { icons, zhuangbeiIcons } = filterItemRawRows(parsed.rawRows, headers, dataStartIdx);
+                    const { icons, zhuangbeiIcons, baoshiIcons } = filterItemRawRows(parsed.rawRows, headers, dataStartIdx);
                     itemIconSet = icons;
                     zhuangbeiIconSet = zhuangbeiIcons;
-                    console.log('🔎 道具表预扫描: 过滤后引用图标 ' + itemIconSet.size + ' 个, 装备图标 ' + zhuangbeiIconSet.size + ' 个');
+                    baoshiIconSet = baoshiIcons;
+                    console.log('🔎 道具表预扫描: 过滤后引用图标 ' + itemIconSet.size + ' 个, 装备图标 ' + zhuangbeiIconSet.size + ' 个, 宝石图标 ' + baoshiIconSet.size + ' 个');
                     console.log('');
                 }
             } catch (e) {
@@ -458,8 +476,9 @@ function main() {
         if (stat.isDirectory()) {
             const destDir = path.join(baseDir, m.target);
             let r;
-            // item/zhuangbei 图标: 按预扫描得到的引用集裁剪, 并清理仓库中未引用项
-            const refSet = m.onlyIcons === 'zhuangbei' ? zhuangbeiIconSet : itemIconSet;
+            // item/zhuangbei/baoshi 图标: 按预扫描得到的引用集裁剪, 并清理仓库中未引用项
+            const refSetMap = { zhuangbei: zhuangbeiIconSet, baoshi: baoshiIconSet };
+            const refSet = m.onlyIcons === true ? itemIconSet : refSetMap[m.onlyIcons];
             if (isIcon && m.onlyIcons && refSet) {
                 r = syncItemIconDir(src, destDir, refSet, stats);
                 const dirLabel = m.target ? m.target + '/' : '';

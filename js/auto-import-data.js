@@ -1,10 +1,10 @@
 // 此文件由 import.js 自动生成，请勿手动编辑
-// 生成时间: 2026-10-15T06:43:43.235Z
+// 生成时间: 2026-11-13T02:47:26.343Z
 window.__AUTO_IMPORT_DATA__ = {
   "activeSkills": [
     {
       "id": "1110000010",
-      "name": "月光斩",
+      "name": "月光斩一段",
       "category": "战斗技能",
       "subCategory": "战斗攻击",
       "isNew": false,
@@ -60,7 +60,7 @@ window.__AUTO_IMPORT_DATA__ = {
     },
     {
       "id": "1110000012",
-      "name": "月光斩1",
+      "name": "月光斩二段",
       "category": "战斗技能",
       "subCategory": "战斗攻击",
       "isNew": false,
@@ -496,7 +496,7 @@ window.__AUTO_IMPORT_DATA__ = {
     },
     {
       "id": "1120000010",
-      "name": "回响",
+      "name": "法术定序",
       "category": "法术技能",
       "subCategory": "法术释放",
       "isNew": false,
@@ -583,14 +583,16 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "2",
         "normal": [
           "4",
-          "7"
+          "7",
+          "12"
         ]
       },
       "tagsText": {
         "main": "法术",
         "normal": [
           "冰霜",
-          "范围"
+          "范围",
+          "回响"
         ]
       },
       "icon": "",
@@ -658,7 +660,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "法术技能",
       "subCategory": "法术释放",
       "isNew": false,
-      "description": "扔出1枚火球，碰到敌人时产生爆炸。\n火球的数量无法修改\n爆炸时尽量消耗一层毁灭注能，产生更大的爆炸，在爆炸位置生成火焰地面，并在爆炸时产生8发小型火球",
+      "description": "扔出1枚火球，碰到敌人时产生爆炸。\n尽量消耗一层毁灭注能，产生更大的爆炸，在爆炸位置生成火焰地面\n尽量消耗一层迅捷注能，使火球爆炸时产生8发小型火球",
       "tags": {
         "main": "2",
         "normal": [
@@ -742,21 +744,27 @@ window.__AUTO_IMPORT_DATA__ = {
     },
     {
       "id": "1120000101",
-      "name": "闪电法球",
+      "name": "我即闪电雷击",
       "category": "法术技能",
       "subCategory": "法术释放",
       "isNew": false,
       "description": "",
       "tags": {
         "main": "2",
-        "normal": []
+        "normal": [
+          "5",
+          "17"
+        ]
       },
       "tagsText": {
         "main": "法术",
-        "normal": []
+        "normal": [
+          "闪电",
+          "强化"
+        ]
       },
       "icon": "",
-      "skillCd": 1200
+      "skillCd": 0
     },
     {
       "id": "1120000120",
@@ -962,7 +970,8 @@ window.__AUTO_IMPORT_DATA__ = {
           "3",
           "7",
           "8",
-          "19"
+          "19",
+          "15"
         ]
       },
       "tagsText": {
@@ -972,7 +981,8 @@ window.__AUTO_IMPORT_DATA__ = {
           "火焰",
           "范围",
           "持续",
-          "旋风"
+          "旋风",
+          "15"
         ]
       },
       "icon": "skill/linshi/28",
@@ -1014,7 +1024,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "tags": {
         "main": "2",
         "normal": [
-          "2",
+          "3",
           "7",
           "21"
         ]
@@ -1022,7 +1032,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "tagsText": {
         "main": "法术",
         "normal": [
-          "物理",
+          "火焰",
           "范围",
           "诅咒"
         ]
@@ -1040,7 +1050,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "tags": {
         "main": "2",
         "normal": [
-          "2",
+          "4",
           "7",
           "21"
         ]
@@ -1048,7 +1058,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "tagsText": {
         "main": "法术",
         "normal": [
-          "物理",
+          "冰霜",
           "范围",
           "诅咒"
         ]
@@ -1066,7 +1076,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "tags": {
         "main": "2",
         "normal": [
-          "2",
+          "5",
           "7",
           "21"
         ]
@@ -1074,7 +1084,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "tagsText": {
         "main": "法术",
         "normal": [
-          "物理",
+          "闪电",
           "范围",
           "诅咒"
         ]
@@ -1092,7 +1102,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "tags": {
         "main": "2",
         "normal": [
-          "2",
+          "6",
           "7",
           "21"
         ]
@@ -1100,7 +1110,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "tagsText": {
         "main": "法术",
         "normal": [
-          "物理",
+          "混沌",
           "范围",
           "诅咒"
         ]
@@ -1109,8 +1119,187 @@ window.__AUTO_IMPORT_DATA__ = {
       "skillCd": 10000
     },
     {
+      "id": "1120100010",
+      "name": "法术定序",
+      "category": "法术技能",
+      "subCategory": "法术释放",
+      "isNew": false,
+      "description": "可以使下一个可重复技能额外释放1次。\n被强化60%\n消耗当前拥有的所有毁灭注能，每消耗两层毁灭注能，回响的额外释放次数增加1次",
+      "tags": {
+        "main": "2",
+        "normal": [
+          "17"
+        ]
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": [
+          "强化"
+        ]
+      },
+      "icon": "skill/linshi/27",
+      "skillCd": 6000
+    },
+    {
+      "id": "1120100080",
+      "name": "终极火球术",
+      "category": "法术技能",
+      "subCategory": "法术释放",
+      "isNew": false,
+      "description": "扔出1枚火球，碰到敌人时产生爆炸。\n尽量消耗一层毁灭注能，产生更大的爆炸，在爆炸位置生成火焰地面\n尽量消耗一层迅捷注能，使火球爆炸时产生8发小型火球",
+      "tags": {
+        "main": "2",
+        "normal": [
+          "0",
+          "3",
+          "7",
+          "11",
+          "15",
+          "17"
+        ]
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": [
+          "投射物",
+          "火焰",
+          "范围",
+          "可重复",
+          "15",
+          "强化"
+        ]
+      },
+      "icon": "skill/linshi/25",
+      "skillCd": 0
+    },
+    {
+      "id": "1120100100",
+      "name": "我即闪电强化",
+      "category": "法术技能",
+      "subCategory": "法术释放",
+      "isNew": false,
+      "description": "化身成为闪电，对碰撞到的敌人造成100%的闪电伤害。\n生成一片闪电场，吸收场内敌人的感电状态并触发一次200%的雷击，雷击不会造成感电状态",
+      "tags": {
+        "main": "2",
+        "normal": [
+          "5",
+          "7",
+          "8",
+          "17"
+        ]
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": [
+          "闪电",
+          "范围",
+          "持续",
+          "强化"
+        ]
+      },
+      "icon": "",
+      "skillCd": 15000
+    },
+    {
+      "id": "1120200010",
+      "name": "法术定序",
+      "category": "法术技能",
+      "subCategory": "法术释放",
+      "isNew": false,
+      "description": "可以使下一个可重复技能额外释放1次。\n被强化60%\n消耗当前拥有的所有毁灭注能，每消耗两层毁灭注能，回响的额外释放次数增加1次",
+      "tags": {
+        "main": "2",
+        "normal": [
+          "17"
+        ]
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": [
+          "强化"
+        ]
+      },
+      "icon": "skill/linshi/27",
+      "skillCd": 6000
+    },
+    {
+      "id": "1120200080",
+      "name": "共鸣火球术",
+      "category": "法术技能",
+      "subCategory": "法术释放",
+      "isNew": false,
+      "description": "扔出1枚火球，碰到敌人时产生爆炸。\n尽量消耗一层毁灭注能，产生更大的爆炸，在爆炸位置生成火焰地面\n尽量消耗一层迅捷注能，使火球爆炸时产生8发小型火球",
+      "tags": {
+        "main": "2",
+        "normal": [
+          "0",
+          "3",
+          "7",
+          "11",
+          "15",
+          "17"
+        ]
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": [
+          "投射物",
+          "火焰",
+          "范围",
+          "可重复",
+          "15",
+          "强化"
+        ]
+      },
+      "icon": "skill/linshi/25",
+      "skillCd": 0
+    },
+    {
+      "id": "1120200100",
+      "name": "我即闪电共鸣",
+      "category": "法术技能",
+      "subCategory": "法术释放",
+      "isNew": false,
+      "description": "化身成为闪电，对碰撞到的敌人造成100%的闪电伤害。\n生成一片闪电场，吸收场内敌人的感电状态并触发一次200%的雷击，雷击不会造成感电状态",
+      "tags": {
+        "main": "2",
+        "normal": [
+          "5",
+          "7",
+          "8",
+          "17"
+        ]
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": [
+          "闪电",
+          "范围",
+          "持续",
+          "强化"
+        ]
+      },
+      "icon": "",
+      "skillCd": 15000
+    },
+    {
+      "id": "1120300080",
+      "name": "终极火球术",
+      "category": "法术技能",
+      "subCategory": "法术释放",
+      "isNew": false,
+      "description": "扔出1枚火球，碰到敌人时产生爆炸。\n尽量消耗一层毁灭注能，产生更大的爆炸，在爆炸位置生成火焰地面\n尽量消耗一层迅捷注能，使火球爆炸时产生8发小型火球",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": "skill/linshi/25",
+      "skillCd": null
+    },
+    {
       "id": "1140000010",
-      "name": "月神赐福",
+      "name": "冰寒落刃",
       "category": "增益技能",
       "subCategory": "增益辅助",
       "isNew": false,
@@ -1446,6 +1635,34 @@ window.__AUTO_IMPORT_DATA__ = {
       "skillCd": null
     },
     {
+      "id": "2110000140",
+      "name": "怒火踏步",
+      "category": "捷系列",
+      "subCategory": "攻击",
+      "isNew": false,
+      "description": "每次移动时在脚下生成一片怒火震荡，造成物理伤害和火焰伤害",
+      "tags": {
+        "main": "1",
+        "normal": [
+          "1",
+          "2",
+          "3",
+          "18"
+        ]
+      },
+      "tagsText": {
+        "main": "攻击",
+        "normal": [
+          "近战",
+          "物理",
+          "火焰",
+          "18"
+        ]
+      },
+      "icon": "",
+      "skillCd": null
+    },
+    {
       "id": "2114000020",
       "name": "迅捷",
       "category": "捷系列",
@@ -1465,22 +1682,20 @@ window.__AUTO_IMPORT_DATA__ = {
     },
     {
       "id": "2120000010",
-      "name": "移形换影-闪现（子）",
+      "name": "闪现",
       "category": "捷系列",
       "subCategory": "法术",
       "isNew": false,
-      "description": "向移动方向闪现，并在原地留下一个幻影。幻影不可移动，不可攻击，在持续时间内持续释放技能1，幻影的上限为3",
+      "description": "闪现",
       "tags": {
         "main": "2",
         "normal": [
-          "13",
           "14"
         ]
       },
       "tagsText": {
         "main": "法术",
         "normal": [
-          "幻影",
           "位移"
         ]
       },
@@ -1591,19 +1806,17 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "法术",
       "isNew": false,
-      "description": "占位技能",
+      "description": "消耗一层穿透注能，可以使闪电在击中时生成一次闪电震荡\n每隔5秒消耗一层混乱注能，生成一片感电地面",
       "tags": {
         "main": "2",
         "normal": [
-          "5",
-          "17"
+          "5"
         ]
       },
       "tagsText": {
         "main": "法术",
         "normal": [
-          "闪电",
-          "强化"
+          "闪电"
         ]
       },
       "icon": "",
@@ -1676,6 +1889,72 @@ window.__AUTO_IMPORT_DATA__ = {
       "skillCd": null
     },
     {
+      "id": "2120000110",
+      "name": "火球术强化",
+      "category": "捷系列",
+      "subCategory": "法术",
+      "isNew": false,
+      "description": "占位技能",
+      "tags": {
+        "main": null,
+        "normal": [
+          "10"
+        ]
+      },
+      "tagsText": {
+        "main": "",
+        "normal": [
+          "10"
+        ]
+      },
+      "icon": "",
+      "skillCd": null
+    },
+    {
+      "id": "2120000120",
+      "name": "我即闪电强化",
+      "category": "捷系列",
+      "subCategory": "法术",
+      "isNew": false,
+      "description": "占位技能",
+      "tags": {
+        "main": null,
+        "normal": [
+          "10"
+        ]
+      },
+      "tagsText": {
+        "main": "",
+        "normal": [
+          "10"
+        ]
+      },
+      "icon": "",
+      "skillCd": null
+    },
+    {
+      "id": "2120000130",
+      "name": "法术定序强化",
+      "category": "捷系列",
+      "subCategory": "法术",
+      "isNew": false,
+      "description": "占位技能",
+      "tags": {
+        "main": null,
+        "normal": [
+          "17"
+        ]
+      },
+      "tagsText": {
+        "main": "",
+        "normal": [
+          "强化"
+        ]
+      },
+      "icon": "",
+      "skillCd": null
+    },
+    {
       "id": "2120100030",
       "name": "大地之怒驱散",
       "category": "捷系列",
@@ -1713,7 +1992,7 @@ window.__AUTO_IMPORT_DATA__ = {
     },
     {
       "id": "2140000010",
-      "name": "月神赐福",
+      "name": "冰寒落刃",
       "category": "捷系列",
       "subCategory": "增益",
       "isNew": false,
@@ -2291,7 +2570,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "捷系列",
       "subCategory": "特殊",
       "isNew": false,
-      "description": "造成一种元素伤害会使得，其他元素伤害获得15%额外伤害(加算），持续4秒",
+      "description": "造成一种元素伤害会使得，其他元素穿透+15%，持续4秒",
       "tags": {
         "main": null,
         "normal": []
@@ -2889,6 +3168,36 @@ window.__AUTO_IMPORT_DATA__ = {
       "skillCd": null
     },
     {
+      "id": "2150000530",
+      "name": "天赋-法杖-天生完美",
+      "category": "捷系列",
+      "subCategory": "特殊",
+      "isNew": false,
+      "description": "",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": "",
+      "skillCd": null
+    },
+    {
+      "id": "2150000540",
+      "name": "天赋-物理额外",
+      "category": "捷系列",
+      "subCategory": "特殊",
+      "isNew": false,
+      "description": "释放物理技能获得 20% 额外物理伤害，但只能造成物理伤害，持续 4 秒",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": "",
+      "skillCd": null
+    },
+    {
       "id": "2150100060",
       "name": "注能循环-洞察",
       "category": "捷系列",
@@ -3372,6 +3681,129 @@ window.__AUTO_IMPORT_DATA__ = {
       "skillCd": null
     },
     {
+      "id": "2340000120",
+      "name": "装备-暗金鞋子-闪电敕令",
+      "category": "传奇特技",
+      "subCategory": "增益",
+      "isNew": false,
+      "description": "每隔5秒在脚下生成一片火焰地面，造成相当于生命值上限10%的点燃伤害",
+      "tags": {
+        "main": "2",
+        "normal": []
+      },
+      "tagsText": {
+        "main": "法术",
+        "normal": []
+      },
+      "icon": "",
+      "skillCd": null
+    },
+    {
+      "id": "2340000130",
+      "name": "装备-星之护佑",
+      "category": "传奇特技",
+      "subCategory": "增益",
+      "isNew": false,
+      "description": "",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": "",
+      "skillCd": null
+    },
+    {
+      "id": "2340000140",
+      "name": "装备-透支与偿还",
+      "category": "传奇特技",
+      "subCategory": "增益",
+      "isNew": false,
+      "description": "占位技能",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": "",
+      "skillCd": null
+    },
+    {
+      "id": "2340000150",
+      "name": "装备-奇迹法衣",
+      "category": "传奇特技",
+      "subCategory": "增益",
+      "isNew": false,
+      "description": "",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": "",
+      "skillCd": null
+    },
+    {
+      "id": "2340000160",
+      "name": "装备-迅捷注能大于X层，旋风技能cd为零",
+      "category": "传奇特技",
+      "subCategory": "增益",
+      "isNew": false,
+      "description": "装备-迅捷注能大于X层，旋风技能cd为零",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": "",
+      "skillCd": null
+    },
+    {
+      "id": "2340000170",
+      "name": "装备-冬之花",
+      "category": "传奇特技",
+      "subCategory": "增益",
+      "isNew": false,
+      "description": "占位技能",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": "",
+      "skillCd": null
+    },
+    {
+      "id": "2340100100",
+      "name": "装备-凛冬寒风增伤",
+      "category": "传奇特技",
+      "subCategory": "增益",
+      "isNew": false,
+      "description": "占位技能",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": "",
+      "skillCd": null
+    },
+    {
+      "id": "2340100150",
+      "name": "装备-奇迹法衣",
+      "category": "传奇特技",
+      "subCategory": "增益",
+      "isNew": false,
+      "description": "",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": "",
+      "skillCd": null
+    },
+    {
       "id": "3140000020",
       "name": "辅助技能-击败时回蓝",
       "category": "传奇特技",
@@ -3437,7 +3869,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "category": "传奇特技",
       "subCategory": "增益",
       "isNew": false,
-      "description": "被辅助技能暴击敌人时，获得15%的额外冰冷伤害，持续6秒",
+      "description": "被辅助技能暴击敌人时，获得15%的额外火焰伤害，持续6秒",
       "tags": {
         "main": null,
         "normal": []
@@ -3449,6 +3881,21 @@ window.__AUTO_IMPORT_DATA__ = {
     {
       "id": "3140000070",
       "name": "辅助-冰冷冲击",
+      "category": "传奇特技",
+      "subCategory": "增益",
+      "isNew": false,
+      "description": "占位技能",
+      "tags": {
+        "main": null,
+        "normal": []
+      },
+      "tagsText": null,
+      "icon": "",
+      "skillCd": null
+    },
+    {
+      "id": "3140000080",
+      "name": "辅助-闪电引导",
       "category": "传奇特技",
       "subCategory": "增益",
       "isNew": false,
@@ -3928,7 +4375,7 @@ window.__AUTO_IMPORT_DATA__ = {
     {
       "id": "10085",
       "name": "天赋--太刀-第一个技能若是攻击技能，获得额外攻击速度",
-      "description": "天赋--太刀-第一个技能若是攻击技能，获得额外攻击速度",
+      "description": "第一个技能获得攻击速度额外提高20%",
       "category": "天赋",
       "subCategory": "通用",
       "isNew": false
@@ -3936,7 +4383,7 @@ window.__AUTO_IMPORT_DATA__ = {
     {
       "id": "10086",
       "name": "天赋--太刀-第一个技能若是攻击技能，获得额外冰冻累积",
-      "description": "天赋--太刀-第一个技能若是攻击技能，获得额外冰冻累积",
+      "description": "第一个技能的冻结积蓄值额外提高40%",
       "category": "天赋",
       "subCategory": "通用",
       "isNew": false
@@ -3944,7 +4391,7 @@ window.__AUTO_IMPORT_DATA__ = {
     {
       "id": "10087",
       "name": "天赋-太刀-暴击率转攻击伤害",
-      "description": "天赋-太刀-暴击率转攻击伤害",
+      "description": "每拥有1%的暴击率，就会增加1%的攻击伤害，最多增加100%的攻击伤害",
       "category": "天赋",
       "subCategory": "通用",
       "isNew": false
@@ -3960,7 +4407,7 @@ window.__AUTO_IMPORT_DATA__ = {
     {
       "id": "10089",
       "name": "天赋-太刀-移动速度转攻击伤害",
-      "description": "天赋-太刀-移动速度转攻击伤害",
+      "description": "对于移动速度的增加或减少的20% 同时作用于额外攻击伤害，最多额外+30% 攻击伤害",
       "category": "天赋",
       "subCategory": "通用",
       "isNew": false
@@ -4024,7 +4471,7 @@ window.__AUTO_IMPORT_DATA__ = {
     {
       "id": "10097",
       "name": "幻影施法比例额外提高",
-      "description": "幻影施法频率额外提高{0}",
+      "description": "+40% “幻影”的施法速度",
       "category": "天赋",
       "subCategory": "通用",
       "isNew": false
@@ -4032,7 +4479,7 @@ window.__AUTO_IMPORT_DATA__ = {
     {
       "id": "10098",
       "name": "幻影跟随",
-      "description": "魔典-天赋-幻影跟随",
+      "description": "自身无法释放核心技能，[幻影残响]产生的幻影变更为常驻形态，且所有幻影跟随移动并释放核心技能",
       "category": "天赋",
       "subCategory": "通用",
       "isNew": false
@@ -4040,7 +4487,7 @@ window.__AUTO_IMPORT_DATA__ = {
     {
       "id": "10099",
       "name": "天赋-魔典-冷却转施法速度",
-      "description": "天赋-魔典-冷却转施法速度{0}",
+      "description": "每有 +5% 冷却回复速度，+8%施法速度，上限50%",
       "category": "天赋",
       "subCategory": "通用",
       "isNew": false
@@ -4048,7 +4495,7 @@ window.__AUTO_IMPORT_DATA__ = {
     {
       "id": "10100",
       "name": "天赋-魔典-施法速度转幻影伤害",
-      "description": "天赋-魔典-施法速度转幻影伤害{0}",
+      "description": "对于施法速度加成的50%同样作用于幻影的额外伤害，上限 300%",
       "category": "天赋",
       "subCategory": "通用",
       "isNew": false
@@ -4072,7 +4519,7 @@ window.__AUTO_IMPORT_DATA__ = {
     {
       "id": "10103",
       "name": "天赋-魔典2-中毒层数翻倍",
-      "description": "天赋-魔典2-中毒层数翻倍",
+      "description": "中毒层数上限翻倍，中毒持续时间额外降低 50%",
       "category": "天赋",
       "subCategory": "通用",
       "isNew": false
@@ -4088,7 +4535,7 @@ window.__AUTO_IMPORT_DATA__ = {
     {
       "id": "10105",
       "name": "天赋-魔典2-全伤害中毒",
-      "description": "天赋-魔典2-全伤害中毒",
+      "description": "所有伤害均造成中毒",
       "category": "天赋",
       "subCategory": "通用",
       "isNew": false
@@ -4128,7 +4575,7 @@ window.__AUTO_IMPORT_DATA__ = {
     {
       "id": "10110",
       "name": "天赋-法杖-移动速度转投射物速度",
-      "description": "天赋-法杖-移动速度转投射物速度{0}",
+      "description": "移动速度加成同样作用于投射物速度加成，最多提高30%",
       "category": "天赋",
       "subCategory": "通用",
       "isNew": false
@@ -4192,7 +4639,7 @@ window.__AUTO_IMPORT_DATA__ = {
     {
       "id": "10119",
       "name": "专用-天赋-强效施法",
-      "description": "专用-天赋-强效施法",
+      "description": "强化技能有30%几率触发强化效果",
       "category": "天赋",
       "subCategory": "通用",
       "isNew": false
@@ -4280,7 +4727,7 @@ window.__AUTO_IMPORT_DATA__ = {
     {
       "id": "10130",
       "name": "天赋-魔典-毒咒侵蚀",
-      "description": "天赋-魔典-毒咒侵蚀",
+      "description": "法术击中时+25%中毒几率，中毒效果额外提高40%",
       "category": "天赋",
       "subCategory": "通用",
       "isNew": false
@@ -4304,7 +4751,7 @@ window.__AUTO_IMPORT_DATA__ = {
     {
       "id": "10134",
       "name": "幻影天赋-天生幻影",
-      "description": "幻影天赋-天生幻影",
+      "description": "幻影残响的幻影上限+1",
       "category": "天赋",
       "subCategory": "通用",
       "isNew": false
@@ -4328,7 +4775,7 @@ window.__AUTO_IMPORT_DATA__ = {
     {
       "id": "10137",
       "name": "天赋-法杖-注能亲和",
-      "description": "天赋-法杖-注能亲和",
+      "description": "所有注能的上限层数+1",
       "category": "天赋",
       "subCategory": "通用",
       "isNew": false
@@ -4344,7 +4791,7 @@ window.__AUTO_IMPORT_DATA__ = {
     {
       "id": "10139",
       "name": "天赋-法杖-共鸣",
-      "description": "天赋-法杖-共鸣",
+      "description": "技能所需的特定注能可以用其他类型的注能替代",
       "category": "天赋",
       "subCategory": "通用",
       "isNew": false
@@ -4360,7 +4807,7 @@ window.__AUTO_IMPORT_DATA__ = {
     {
       "id": "10141",
       "name": "天赋-法杖-强化之力",
-      "description": "天赋-法杖-强化之力",
+      "description": "每成功触发一次强化技能，可以获得一层强化之力，提高50%的伤害，最大可以获得5层，持续6秒",
       "category": "天赋",
       "subCategory": "通用",
       "isNew": false
@@ -4384,7 +4831,7 @@ window.__AUTO_IMPORT_DATA__ = {
     {
       "id": "10144",
       "name": "天赋-法杖-元素之子",
-      "description": "天赋-法杖-元素之子",
+      "description": "站在元素地面上时，可以获得对应元素50%的伤害",
       "category": "天赋",
       "subCategory": "通用",
       "isNew": false
@@ -4392,7 +4839,7 @@ window.__AUTO_IMPORT_DATA__ = {
     {
       "id": "10145",
       "name": "天赋-法杖-原爆点",
-      "description": "天赋-法杖-原爆点",
+      "description": "投射物飞行结束后会触发1次100%法术物理伤害的冲击波",
       "category": "天赋",
       "subCategory": "通用",
       "isNew": false
@@ -4424,7 +4871,7 @@ window.__AUTO_IMPORT_DATA__ = {
     {
       "id": "10149",
       "name": "毁灭注能层数增加",
-      "description": "毁灭注能层数上限增加{0}",
+      "description": "毁灭注能层数上限+{0}",
       "category": "通用",
       "subCategory": "通用",
       "isNew": false
@@ -4432,7 +4879,7 @@ window.__AUTO_IMPORT_DATA__ = {
     {
       "id": "10150",
       "name": "洞察注能层数增加",
-      "description": "洞察注能层数上限增加{0}",
+      "description": "洞察注能层数上限+{0}",
       "category": "通用",
       "subCategory": "通用",
       "isNew": false
@@ -4440,7 +4887,7 @@ window.__AUTO_IMPORT_DATA__ = {
     {
       "id": "10151",
       "name": "穿透注能层数增加",
-      "description": "穿透注能层数上限增加{0}",
+      "description": "穿透注能层数上限+{0}",
       "category": "通用",
       "subCategory": "通用",
       "isNew": false
@@ -4448,7 +4895,7 @@ window.__AUTO_IMPORT_DATA__ = {
     {
       "id": "10152",
       "name": "混乱注能层数增加",
-      "description": "混乱注能层数上限增加{0}",
+      "description": "混乱注能层数上限+{0}",
       "category": "通用",
       "subCategory": "通用",
       "isNew": false
@@ -4456,7 +4903,7 @@ window.__AUTO_IMPORT_DATA__ = {
     {
       "id": "10153",
       "name": "迅捷注能层数增加",
-      "description": "迅捷注能层数上限增加{0}",
+      "description": "迅捷注能层数上限+{0}",
       "category": "通用",
       "subCategory": "通用",
       "isNew": false
@@ -4536,7 +4983,7 @@ window.__AUTO_IMPORT_DATA__ = {
     {
       "id": "10167",
       "name": "每3%投射物速度提供的1%投射物额外伤害，最多提供15%投射物额外伤害",
-      "description": "每3%投射物速度提供的1%投射物额外伤害，最多提供15%投射物额外伤害",
+      "description": "每{0}投射物速度提供的1%投射物额外伤害，最多提供{1}投射物额外伤害",
       "category": "通用",
       "subCategory": "通用",
       "isNew": false
@@ -4856,7 +5303,7 @@ window.__AUTO_IMPORT_DATA__ = {
     {
       "id": "10207",
       "name": "火焰抗性总量转生命回复",
-      "description": "火焰抗性总量转生命回复",
+      "description": "每有 1% 火焰抗性总值，+2 每秒生命回复",
       "category": "",
       "subCategory": "通用",
       "isNew": false
@@ -5320,7 +5767,7 @@ window.__AUTO_IMPORT_DATA__ = {
     {
       "id": "10265",
       "name": "所有伤害均造成冻结",
-      "description": "所有伤害均造成冻结",
+      "description": "所有伤害均可造成冻结",
       "category": "",
       "subCategory": "通用",
       "isNew": false
@@ -5368,7 +5815,7 @@ window.__AUTO_IMPORT_DATA__ = {
     {
       "id": "10271",
       "name": "强化效果冷却缩减",
-      "description": "强化效果冷却缩减{0}",
+      "description": "技能的强化效果的冷却回复率提高{0}",
       "category": "",
       "subCategory": "通用",
       "isNew": false
@@ -5376,7 +5823,7 @@ window.__AUTO_IMPORT_DATA__ = {
     {
       "id": "10272",
       "name": "天赋-明目",
-      "description": "天赋-明目",
+      "description": "每层洞察注能可以使效果范围提高8%，攻击伤害额外提高6%",
       "category": "",
       "subCategory": "通用",
       "isNew": false
@@ -5384,7 +5831,7 @@ window.__AUTO_IMPORT_DATA__ = {
     {
       "id": "10273",
       "name": "天赋-冰寒之体",
-      "description": "天赋-冰寒之体",
+      "description": "你的冰冷抗性基础值等同于当前闪电抗性和火焰抗性中最低的那一项(抗性基础值为-25%)",
       "category": "",
       "subCategory": "通用",
       "isNew": false
@@ -5441,6 +5888,374 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "10280",
       "name": "施法速度额外提高（叠加）",
       "description": "施法速度额外提高{0}（叠加）",
+      "category": "",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10281",
+      "name": "对中毒目标附加额外伤害",
+      "description": "对中毒目标附加额外伤害{0}",
+      "category": "",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10282",
+      "name": "我即闪电强化效果",
+      "description": "我即闪电强化效果",
+      "category": "",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10283",
+      "name": "装备-战栗低语",
+      "description": "使用近战攻击技能时有10%的概率直接冻结敌人，冷却10秒",
+      "category": "",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10284",
+      "name": "技能的强化效果伤害提高",
+      "description": "技能的强化效果伤害提高{0}",
+      "category": "",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10285",
+      "name": "装备-护命匣",
+      "description": "装备-护命匣",
+      "category": "",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10286",
+      "name": "无法造成元素异常状态",
+      "description": "无法造成元素异常状态",
+      "category": "",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10287",
+      "name": "旋风斩-技能词缀染色",
+      "description": "旋风斩-技能词缀染色",
+      "category": "",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10288",
+      "name": "注能效果提高",
+      "description": "注能自身的增益效果提高{0}",
+      "category": "",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10289",
+      "name": "天赋-深度聚集",
+      "description": "每拥有一种不同种类的注能，法术伤害额外提高{0}，获得1%的额外减伤",
+      "category": "",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10290",
+      "name": "装备-狩猎礼节",
+      "description": "每层洞察注能使得暴击伤害提高{0}",
+      "category": "",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10291",
+      "name": "装备-毒蛛",
+      "description": "暴击时中毒概率增加{0}",
+      "category": "",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10292",
+      "name": "火球术强化2",
+      "description": "火球术强化2",
+      "category": "",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10293",
+      "name": "我即闪电强化2",
+      "description": "我即闪电强化2",
+      "category": "",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10294",
+      "name": "暴击时穿透闪电抗性",
+      "description": "暴击时穿透闪电抗性{0}",
+      "category": "",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10295",
+      "name": "我即闪电-雷击强化",
+      "description": "",
+      "category": "",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10296",
+      "name": "物理技能消耗{0}",
+      "description": "物理技能消耗{0}",
+      "category": "天赋",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10297",
+      "name": "冰冷技能消耗{0}",
+      "description": "冰冷技能消耗{0}",
+      "category": "天赋",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10298",
+      "name": "火焰技能消耗{0}",
+      "description": "火焰技能消耗{0}",
+      "category": "天赋",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10299",
+      "name": "闪电技能消耗{0}",
+      "description": "闪电技能消耗{0}",
+      "category": "天赋",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10300",
+      "name": "混沌技能消耗{0}",
+      "description": "混沌技能消耗{0}",
+      "category": "天赋",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10301",
+      "name": "只能造成物理伤害",
+      "description": "只能造成物理伤害",
+      "category": "天赋",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10302",
+      "name": "只能造成冰冷伤害",
+      "description": "只能造成冰冷伤害",
+      "category": "天赋",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10303",
+      "name": "超量的火焰抗性，作用于火焰穿透",
+      "description": "超量的火焰抗性，作用于火焰穿透",
+      "category": "天赋",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10304",
+      "name": "生命值上限百分比提高",
+      "description": "生命值上限百分比提高{0}",
+      "category": "天赋",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10305",
+      "name": "魔力上限百分比提高",
+      "description": "魔力上限百分比提高{0}",
+      "category": "天赋",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10306",
+      "name": "光环效果额外提高",
+      "description": "光环效果额外提高{0}",
+      "category": "",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10307",
+      "name": "诅咒效果额外提高",
+      "description": "诅咒效果额外提高{0}",
+      "category": "",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10308",
+      "name": "装备-星界投影1",
+      "description": "装备-星界投影1",
+      "category": "",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10309",
+      "name": "装备-星界投影2",
+      "description": "装备-星界投影2",
+      "category": "",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10310",
+      "name": "装备-星界投影3",
+      "description": "装备-星界投影3",
+      "category": "",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10311",
+      "name": "装备-星界投影4",
+      "description": "装备-星界投影4",
+      "category": "",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10312",
+      "name": "装备-星界投影5",
+      "description": "装备-星界投影5",
+      "category": "",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10313",
+      "name": "防御力提高",
+      "description": "防御力提高{0}",
+      "category": "",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10314",
+      "name": "专注斩-连击额外效果",
+      "description": "专注斩-连击额外效果",
+      "category": "",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10315",
+      "name": "旋风斩-物理转火附着",
+      "description": "旋风斩-物理转火附着",
+      "category": "",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10316",
+      "name": "旋风斩-物理转冰附着",
+      "description": "旋风斩-物理转冰附着",
+      "category": "",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10317",
+      "name": "旋风斩-物理转电附着",
+      "description": "旋风斩-物理转电附着",
+      "category": "",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10318",
+      "name": "暴击时流血概率提高",
+      "description": "暴击时流血概率提高{0}",
+      "category": "",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10319",
+      "name": "所有伤害造成中毒",
+      "description": "所有伤害造成中毒",
+      "category": "",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10320",
+      "name": "所有伤害造成流血",
+      "description": "所有伤害造成流血",
+      "category": "",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10321",
+      "name": "迅捷注能提高投射物速度",
+      "description": "",
+      "category": "",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10322",
+      "name": "迅捷注能会扣血",
+      "description": "每层[迅捷注能]会每秒扣除100点生命",
+      "category": "",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10323",
+      "name": "旋风冷却为0-迅捷传奇",
+      "description": "",
+      "category": "",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10324",
+      "name": "迅捷注能扣血数值注入",
+      "description": "",
+      "category": "",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10325",
+      "name": "环绕范围扩大",
+      "description": "环绕技能回旋的范围扩大{0}",
+      "category": "",
+      "subCategory": "通用",
+      "isNew": false
+    },
+    {
+      "id": "10326",
+      "name": "强化效果冷却恢复率额外提高",
+      "description": "技能的强化效果的冷却回复率额外提高{0}",
       "category": "",
       "subCategory": "通用",
       "isNew": false
@@ -5743,8 +6558,8 @@ window.__AUTO_IMPORT_DATA__ = {
     },
     {
       "id": "10310",
-      "name": "全局减伤",
-      "description": "全局减伤(未开发)",
+      "name": "所有抗性",
+      "description": "所有抗性",
       "category": "2",
       "isNew": false
     },
@@ -5932,8 +6747,8 @@ window.__AUTO_IMPORT_DATA__ = {
     },
     {
       "id": "10606",
-      "name": "元素攻击比例",
-      "description": "元素攻击百比",
+      "name": "元素倍率比例",
+      "description": "元素倍率百比",
       "category": "2",
       "isNew": false
     },
@@ -6699,11 +7514,117 @@ window.__AUTO_IMPORT_DATA__ = {
       "description": "药剂回复魔力效果",
       "category": "2",
       "isNew": false
+    },
+    {
+      "id": "11094",
+      "name": "防御力穿透",
+      "description": "防御力穿透",
+      "category": "2",
+      "isNew": false
+    },
+    {
+      "id": "11095",
+      "name": "物理转混沌",
+      "description": "物理转混沌",
+      "category": "2",
+      "isNew": false
+    },
+    {
+      "id": "11096",
+      "name": "词缀生效概率",
+      "description": "词缀生效概率",
+      "category": "2",
+      "isNew": false
     }
   ],
   "equipment": [
     {
       "id": "EQ0001",
+      "name": "强化法杖 - 物理法杖",
+      "type": "法杖",
+      "effects": [
+        {
+          "refId": "103201",
+          "name": "获得混沌伤害",
+          "desc": "获得混沌伤害30.00%~45.00%",
+          "random": false,
+          "poolId": "103201"
+        },
+        {
+          "refId": "103202",
+          "name": "法术技能等级增加",
+          "desc": "法术技能等级增加1~2",
+          "random": false,
+          "poolId": "103202"
+        },
+        {
+          "refId": "103203",
+          "name": "专用-天赋-强效施法",
+          "desc": "强化技能有30%几率触发强化效果 0.00%",
+          "random": false,
+          "poolId": "103203"
+        },
+        {
+          "refId": "103204",
+          "name": "技能的强化效果伤害提高",
+          "desc": "技能的强化效果伤害提高56.00%~94.00%",
+          "random": false,
+          "poolId": "103204"
+        },
+        {
+          "refId": "103205",
+          "name": "强化效果冷却缩减",
+          "desc": "技能的强化效果的冷却回复率额外提高10.00%~26.00%",
+          "random": false,
+          "poolId": "103205"
+        }
+      ],
+      "poolGroups": [
+        {
+          "poolId": "103201",
+          "ids": [
+            "103201"
+          ],
+          "total": 1
+        },
+        {
+          "poolId": "103202",
+          "ids": [
+            "103202"
+          ],
+          "total": 1
+        },
+        {
+          "poolId": "103203",
+          "ids": [
+            "103203"
+          ],
+          "total": 1
+        },
+        {
+          "poolId": "103204",
+          "ids": [
+            "103204"
+          ],
+          "total": 1
+        },
+        {
+          "poolId": "103205",
+          "ids": [
+            "103205"
+          ],
+          "total": 1
+        }
+      ],
+      "sourceId": "1100101",
+      "isNew": true,
+      "source": "sync",
+      "quality": "6",
+      "icon": "zhuangbei/113/109",
+      "spIcon": "zhuangbei/113/109_big"
+    },
+    {
+      "id": "EQ0002",
       "name": "风暴之眼 - 闪电法杖",
       "type": "法杖",
       "effects": [
@@ -6788,7 +7709,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "spIcon": "zhuangbei/110/109_big"
     },
     {
-      "id": "EQ0002",
+      "id": "EQ0003",
       "name": "鬼乡村正 - 物理长剑",
       "type": "长剑",
       "effects": [
@@ -6859,7 +7780,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "spIcon": "zhuangbei/104/106_big"
     },
     {
-      "id": "EQ0003",
+      "id": "EQ0004",
       "name": "霜之哀伤 - 冰霜长剑",
       "type": "长剑",
       "effects": [
@@ -6930,7 +7851,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "spIcon": "zhuangbei/131/106_big"
     },
     {
-      "id": "EQ0004",
+      "id": "EQ0005",
       "name": "圣焰 - 铸铁头盔",
       "type": "头盔",
       "effects": [
@@ -7001,7 +7922,106 @@ window.__AUTO_IMPORT_DATA__ = {
       "spIcon": ""
     },
     {
-      "id": "EQ0005",
+      "id": "EQ0006",
+      "name": "有限的祝福 - 铸铁头盔",
+      "type": "头盔",
+      "effects": [
+        {
+          "refId": "103001",
+          "name": "基础生命",
+          "desc": "基础生命增加200~400",
+          "random": false,
+          "poolId": "103001"
+        },
+        {
+          "refId": "103002",
+          "name": "防御力",
+          "desc": "防御力增加60~140",
+          "random": false,
+          "poolId": "103002"
+        },
+        {
+          "refId": "103003",
+          "name": "攻击格挡率",
+          "desc": "攻击格挡率增加12.00%~20.00%",
+          "random": false,
+          "poolId": "103003"
+        },
+        {
+          "refId": "103004",
+          "name": "基础魔力",
+          "desc": "基础魔力增加200~400",
+          "random": false,
+          "poolId": "103004"
+        },
+        {
+          "refId": "103005",
+          "name": "暴击率提高",
+          "desc": "暴击率提高60.00%~100.00%",
+          "random": false,
+          "poolId": "103005"
+        },
+        {
+          "refId": "103006",
+          "name": "元素抗性",
+          "desc": "元素抗性增加10.00%~16.00%",
+          "random": false,
+          "poolId": "103006"
+        }
+      ],
+      "poolGroups": [
+        {
+          "poolId": "103001",
+          "ids": [
+            "103001"
+          ],
+          "total": 1
+        },
+        {
+          "poolId": "103002",
+          "ids": [
+            "103002"
+          ],
+          "total": 1
+        },
+        {
+          "poolId": "103003",
+          "ids": [
+            "103003"
+          ],
+          "total": 1
+        },
+        {
+          "poolId": "103004",
+          "ids": [
+            "103004"
+          ],
+          "total": 1
+        },
+        {
+          "poolId": "103005",
+          "ids": [
+            "103005"
+          ],
+          "total": 1
+        },
+        {
+          "poolId": "103006",
+          "ids": [
+            "103006"
+          ],
+          "total": 1
+        }
+      ],
+      "sourceId": "1200101",
+      "isNew": true,
+      "source": "sync",
+      "quality": "6",
+      "icon": "zhuangbei/121/201",
+      "spIcon": ""
+    },
+    {
+      "id": "EQ0007",
       "name": "死骑之盔 - 银制头盔",
       "type": "头盔",
       "effects": [
@@ -7086,7 +8106,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "spIcon": ""
     },
     {
-      "id": "EQ0006",
+      "id": "EQ0008",
       "name": "龙怒之眼 - 银制头盔",
       "type": "头盔",
       "effects": [
@@ -7139,11 +8159,11 @@ window.__AUTO_IMPORT_DATA__ = {
       "isNew": true,
       "source": "sync",
       "quality": "6",
-      "icon": "zhuangbei/118/202",
+      "icon": "zhuangbei/107/201",
       "spIcon": ""
     },
     {
-      "id": "EQ0007",
+      "id": "EQ0009",
       "name": "元素衣 - 铸铁胸甲",
       "type": "胸甲",
       "effects": [
@@ -7228,7 +8248,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "spIcon": ""
     },
     {
-      "id": "EQ0008",
+      "id": "EQ0010",
       "name": "腐化侵蚀 - 皮制胸甲",
       "type": "胸甲",
       "effects": [
@@ -7299,7 +8319,92 @@ window.__AUTO_IMPORT_DATA__ = {
       "spIcon": ""
     },
     {
-      "id": "EQ0009",
+      "id": "EQ0011",
+      "name": "星之护佑 - 皮制胸甲",
+      "type": "胸甲",
+      "effects": [
+        {
+          "refId": "103301",
+          "name": "基础生命",
+          "desc": "基础生命增加500~700",
+          "random": false,
+          "poolId": "103301"
+        },
+        {
+          "refId": "103302",
+          "name": "法术格挡率",
+          "desc": "法术格挡率增加15.00%~25.00%",
+          "random": false,
+          "poolId": "103302"
+        },
+        {
+          "refId": "103303",
+          "name": "每6秒获得一层随机注能",
+          "desc": "每6秒获得一层随机注能 0",
+          "random": false,
+          "poolId": "103303"
+        },
+        {
+          "refId": "103304",
+          "name": "元素抗性",
+          "desc": "元素抗性增加8.00%~14.00%",
+          "random": false,
+          "poolId": "103304"
+        },
+        {
+          "refId": "103305",
+          "name": "消耗注能时回复魔力上限的4%",
+          "desc": "消耗注能时回复魔力上限的4% 0",
+          "random": false,
+          "poolId": "103305"
+        }
+      ],
+      "poolGroups": [
+        {
+          "poolId": "103301",
+          "ids": [
+            "103301"
+          ],
+          "total": 1
+        },
+        {
+          "poolId": "103302",
+          "ids": [
+            "103302"
+          ],
+          "total": 1
+        },
+        {
+          "poolId": "103303",
+          "ids": [
+            "103303"
+          ],
+          "total": 1
+        },
+        {
+          "poolId": "103304",
+          "ids": [
+            "103304"
+          ],
+          "total": 1
+        },
+        {
+          "poolId": "103305",
+          "ids": [
+            "103305"
+          ],
+          "total": 1
+        }
+      ],
+      "sourceId": "1300102",
+      "isNew": true,
+      "source": "sync",
+      "quality": "6",
+      "icon": "zhuangbei/106/303",
+      "spIcon": ""
+    },
+    {
+      "id": "EQ0012",
       "name": "大法袍 - 铁锁胸甲",
       "type": "胸甲",
       "effects": [
@@ -7380,11 +8485,11 @@ window.__AUTO_IMPORT_DATA__ = {
       "isNew": true,
       "source": "sync",
       "quality": "7",
-      "icon": "zhuangbei/132/304",
+      "icon": "zhuangbei/129/304",
       "spIcon": ""
     },
     {
-      "id": "EQ0010",
+      "id": "EQ0013",
       "name": "聚能爆发 - 钢制腿甲",
       "type": "裤子",
       "effects": [
@@ -7426,35 +8531,35 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "refId": "102606",
           "name": "毁灭注能层数增加",
-          "desc": "毁灭注能层数上限增加1",
+          "desc": "毁灭注能层数上限+1",
           "random": false,
           "poolId": "102602"
         },
         {
           "refId": "102607",
           "name": "洞察注能层数增加",
-          "desc": "洞察注能层数上限增加1",
+          "desc": "洞察注能层数上限+1",
           "random": false,
           "poolId": "102602"
         },
         {
           "refId": "102608",
           "name": "穿透注能层数增加",
-          "desc": "穿透注能层数上限增加1",
+          "desc": "穿透注能层数上限+1",
           "random": false,
           "poolId": "102602"
         },
         {
           "refId": "102609",
           "name": "混乱注能层数增加",
-          "desc": "混乱注能层数上限增加1",
+          "desc": "混乱注能层数上限+1",
           "random": false,
           "poolId": "102602"
         },
         {
           "refId": "102610",
           "name": "迅捷注能层数增加",
-          "desc": "迅捷注能层数上限增加1",
+          "desc": "迅捷注能层数上限+1",
           "random": false,
           "poolId": "102602"
         },
@@ -7515,11 +8620,217 @@ window.__AUTO_IMPORT_DATA__ = {
       "isNew": true,
       "source": "sync",
       "quality": "7",
-      "icon": "zhuangbei/101/1201",
+      "icon": "zhuangbei/102/1202",
       "spIcon": ""
     },
     {
-      "id": "EQ0011",
+      "id": "EQ0014",
+      "name": "能级维持 - 铸铁腿甲",
+      "type": "裤子",
+      "effects": [
+        {
+          "refId": "102701",
+          "name": "获得满层毁灭注能",
+          "desc": "拥有满层毁灭注能 0",
+          "random": false,
+          "poolId": "102701"
+        },
+        {
+          "refId": "102702",
+          "name": "获得满层洞察注能",
+          "desc": "拥有满层洞察注能 0",
+          "random": false,
+          "poolId": "102701"
+        },
+        {
+          "refId": "102703",
+          "name": "获得满层穿透注能",
+          "desc": "拥有满层穿透注能 0",
+          "random": false,
+          "poolId": "102701"
+        },
+        {
+          "refId": "102704",
+          "name": "获得满层混乱注能",
+          "desc": "拥有满层混乱注能 0",
+          "random": false,
+          "poolId": "102701"
+        },
+        {
+          "refId": "102705",
+          "name": "获得满层迅捷注能",
+          "desc": "拥有满层迅捷注能 0",
+          "random": false,
+          "poolId": "102701"
+        },
+        {
+          "refId": "102706",
+          "name": "毁灭注能层数增加",
+          "desc": "毁灭注能层数上限+1",
+          "random": false,
+          "poolId": "102702"
+        },
+        {
+          "refId": "102707",
+          "name": "洞察注能层数增加",
+          "desc": "洞察注能层数上限+1",
+          "random": false,
+          "poolId": "102702"
+        },
+        {
+          "refId": "102708",
+          "name": "穿透注能层数增加",
+          "desc": "穿透注能层数上限+1",
+          "random": false,
+          "poolId": "102702"
+        },
+        {
+          "refId": "102709",
+          "name": "混乱注能层数增加",
+          "desc": "混乱注能层数上限+1",
+          "random": false,
+          "poolId": "102702"
+        },
+        {
+          "refId": "102710",
+          "name": "迅捷注能层数增加",
+          "desc": "迅捷注能层数上限+1",
+          "random": false,
+          "poolId": "102702"
+        },
+        {
+          "refId": "102711",
+          "name": "移动速度增加",
+          "desc": "移速提高增加6.00%~10.00%",
+          "random": false,
+          "poolId": "102703"
+        },
+        {
+          "refId": "102712",
+          "name": "元素抗性",
+          "desc": "元素抗性增加9.00%~15.00%",
+          "random": false,
+          "poolId": "102704"
+        }
+      ],
+      "poolGroups": [
+        {
+          "poolId": "102701",
+          "ids": [
+            "102701",
+            "102702",
+            "102703",
+            "102704",
+            "102705"
+          ],
+          "total": 5
+        },
+        {
+          "poolId": "102702",
+          "ids": [
+            "102706",
+            "102707",
+            "102708",
+            "102709",
+            "102710"
+          ],
+          "total": 5
+        },
+        {
+          "poolId": "102703",
+          "ids": [
+            "102711"
+          ],
+          "total": 1
+        },
+        {
+          "poolId": "102704",
+          "ids": [
+            "102712"
+          ],
+          "total": 1
+        }
+      ],
+      "sourceId": "1400101",
+      "isNew": true,
+      "source": "sync",
+      "quality": "7",
+      "icon": "zhuangbei/103/1201",
+      "spIcon": ""
+    },
+    {
+      "id": "EQ0015",
+      "name": "闪电敕令 - 鞣制靴",
+      "type": "鞋子",
+      "effects": [
+        {
+          "refId": "103401",
+          "name": "移动速度增加",
+          "desc": "移速提高增加12.00%~18.00%",
+          "random": false,
+          "poolId": "103401"
+        },
+        {
+          "refId": "103402",
+          "name": "每隔5秒在脚下生成一片感电地面",
+          "desc": "每隔5秒在脚下生成一片感电地面 0",
+          "random": false,
+          "poolId": "103402"
+        },
+        {
+          "refId": "103403",
+          "name": "闪电伤害提高",
+          "desc": "闪电伤害提高56.00%~75.00%",
+          "random": false,
+          "poolId": "103403"
+        },
+        {
+          "refId": "103404",
+          "name": "闪电抗性",
+          "desc": "闪电抗性增加10.00%~20.00%",
+          "random": false,
+          "poolId": "103404"
+        }
+      ],
+      "poolGroups": [
+        {
+          "poolId": "103401",
+          "ids": [
+            "103401"
+          ],
+          "total": 1
+        },
+        {
+          "poolId": "103402",
+          "ids": [
+            "103402"
+          ],
+          "total": 1
+        },
+        {
+          "poolId": "103403",
+          "ids": [
+            "103403"
+          ],
+          "total": 1
+        },
+        {
+          "poolId": "103404",
+          "ids": [
+            "103404"
+          ],
+          "total": 1
+        }
+      ],
+      "sourceId": "1500102",
+      "isNew": true,
+      "source": "sync",
+      "quality": "6",
+      "icon": "zhuangbei/114/401",
+      "spIcon": ""
+    },
+    {
+      "id": "EQ0016",
       "name": "追风 - 符文靴",
       "type": "鞋子",
       "effects": [
@@ -7576,7 +8887,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "spIcon": ""
     },
     {
-      "id": "EQ0012",
+      "id": "EQ0017",
       "name": "烈火行军 - 符文靴",
       "type": "鞋子",
       "effects": [
@@ -7647,7 +8958,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "spIcon": ""
     },
     {
-      "id": "EQ0013",
+      "id": "EQ0018",
       "name": "苦行便鞋 - 符文靴",
       "type": "鞋子",
       "effects": [
@@ -7718,7 +9029,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "spIcon": ""
     },
     {
-      "id": "EQ0014",
+      "id": "EQ0019",
       "name": "轰天雷 - 铸铁护手",
       "type": "手套",
       "effects": [
@@ -7789,7 +9100,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "spIcon": ""
     },
     {
-      "id": "EQ0015",
+      "id": "EQ0020",
       "name": "元素之握 - 铸铁护手",
       "type": "手套",
       "effects": [
@@ -7810,21 +9121,21 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "refId": "100603",
           "name": "物理伤害转冰冷伤害增加",
-          "desc": "物理伤害转冰冷伤害增加100.00%",
+          "desc": "物理伤害转冰冷伤害增加30.00%~50.00%",
           "random": false,
           "poolId": "100603"
         },
         {
           "refId": "100604",
           "name": "物理伤害转火焰伤害增加",
-          "desc": "物理伤害转火焰伤害增加100.00%",
+          "desc": "物理伤害转火焰伤害增加30.00%~50.00%",
           "random": false,
           "poolId": "100604"
         },
         {
           "refId": "100605",
           "name": "物理伤害转闪电伤害增加",
-          "desc": "物理伤害转闪电伤害增加100.00%",
+          "desc": "物理伤害转闪电伤害增加30.00%~50.00%",
           "random": false,
           "poolId": "100605"
         }
@@ -7874,7 +9185,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "spIcon": ""
     },
     {
-      "id": "EQ0016",
+      "id": "EQ0021",
       "name": "刺骨之握 - 铸铁护手",
       "type": "手套",
       "effects": [
@@ -7945,7 +9256,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "spIcon": ""
     },
     {
-      "id": "EQ0017",
+      "id": "EQ0022",
       "name": "沉重掌控 - 铸铁护手",
       "type": "手套",
       "effects": [
@@ -8016,7 +9327,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "spIcon": ""
     },
     {
-      "id": "EQ0018",
+      "id": "EQ0023",
       "name": "寒冰血脉 - 皮制护手",
       "type": "手套",
       "effects": [
@@ -8087,7 +9398,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "spIcon": ""
     },
     {
-      "id": "EQ0019",
+      "id": "EQ0024",
       "name": "蚀骨 - 皮制护手",
       "type": "手套",
       "effects": [
@@ -8158,7 +9469,149 @@ window.__AUTO_IMPORT_DATA__ = {
       "spIcon": ""
     },
     {
-      "id": "EQ0020",
+      "id": "EQ0025",
+      "name": "炼金术士的徽记 - 精铁礼花",
+      "type": "礼花",
+      "effects": [
+        {
+          "refId": "103101",
+          "name": "药剂回复生命效果",
+          "desc": "药剂回复生命效果提高30.00%~50.00%",
+          "random": false,
+          "poolId": "103101"
+        },
+        {
+          "refId": "103102",
+          "name": "药剂冷却回复效率",
+          "desc": "药剂冷却效率增加14.00%~26.00%",
+          "random": false,
+          "poolId": "103102"
+        },
+        {
+          "refId": "103103",
+          "name": "元素抗性",
+          "desc": "元素抗性增加8.00%~14.00%",
+          "random": false,
+          "poolId": "103103"
+        },
+        {
+          "refId": "103104",
+          "name": "在使用药剂时，获得一层毁灭注能与洞察注能",
+          "desc": "在使用药剂时，获得一层毁灭注能与洞察注能 0",
+          "random": false,
+          "poolId": "103104"
+        }
+      ],
+      "poolGroups": [
+        {
+          "poolId": "103101",
+          "ids": [
+            "103101"
+          ],
+          "total": 1
+        },
+        {
+          "poolId": "103102",
+          "ids": [
+            "103102"
+          ],
+          "total": 1
+        },
+        {
+          "poolId": "103103",
+          "ids": [
+            "103103"
+          ],
+          "total": 1
+        },
+        {
+          "poolId": "103104",
+          "ids": [
+            "103104"
+          ],
+          "total": 1
+        }
+      ],
+      "sourceId": "1700101",
+      "isNew": true,
+      "source": "sync",
+      "quality": "6",
+      "icon": "zhuangbei/116/601",
+      "spIcon": ""
+    },
+    {
+      "id": "EQ0026",
+      "name": "永生 - 宝石礼花",
+      "type": "礼花",
+      "effects": [
+        {
+          "refId": "103601",
+          "name": "防御力",
+          "desc": "防御力增加300~500",
+          "random": false,
+          "poolId": "103601"
+        },
+        {
+          "refId": "103602",
+          "name": "基础生命",
+          "desc": "基础生命增加400~600",
+          "random": false,
+          "poolId": "103602"
+        },
+        {
+          "refId": "103603",
+          "name": "生命每秒恢复",
+          "desc": "每秒生命恢复增加300~600",
+          "random": false,
+          "poolId": "103603"
+        },
+        {
+          "refId": "103604",
+          "name": "元素抗性",
+          "desc": "元素抗性增加-15.00%~-10.00%",
+          "random": false,
+          "poolId": "103604"
+        }
+      ],
+      "poolGroups": [
+        {
+          "poolId": "103601",
+          "ids": [
+            "103601"
+          ],
+          "total": 1
+        },
+        {
+          "poolId": "103602",
+          "ids": [
+            "103602"
+          ],
+          "total": 1
+        },
+        {
+          "poolId": "103603",
+          "ids": [
+            "103603"
+          ],
+          "total": 1
+        },
+        {
+          "poolId": "103604",
+          "ids": [
+            "103604"
+          ],
+          "total": 1
+        }
+      ],
+      "sourceId": "1700102",
+      "isNew": true,
+      "source": "sync",
+      "quality": "7",
+      "icon": "zhuangbei/116/601",
+      "spIcon": ""
+    },
+    {
+      "id": "EQ0027",
       "name": "神意 - 华丽礼花",
       "type": "礼花",
       "effects": [
@@ -8377,129 +9830,65 @@ window.__AUTO_IMPORT_DATA__ = {
       "spIcon": ""
     },
     {
-      "id": "EQ0021",
-      "name": "能级维持 - 珠光耳环",
+      "id": "EQ0028",
+      "name": "风暴之心 - 珠光耳环",
       "type": "耳环",
       "effects": [
         {
-          "refId": "102701",
-          "name": "获得满层毁灭注能",
-          "desc": "拥有满层毁灭注能 0",
+          "refId": "103701",
+          "name": "防御力",
+          "desc": "防御力增加300~500",
           "random": false,
-          "poolId": "102701"
+          "poolId": "103701"
         },
         {
-          "refId": "102702",
-          "name": "获得满层洞察注能",
-          "desc": "拥有满层洞察注能 0",
+          "refId": "103702",
+          "name": "基础生命",
+          "desc": "基础生命增加400~600",
           "random": false,
-          "poolId": "102701"
+          "poolId": "103702"
         },
         {
-          "refId": "102703",
-          "name": "获得满层穿透注能",
-          "desc": "拥有满层穿透注能 0",
+          "refId": "103703",
+          "name": "装备-迅捷注能大于X层，旋风技能cd为零",
+          "desc": "当迅捷注能≥5层时，旋风技能的冷却时间为0 300~600",
           "random": false,
-          "poolId": "102701"
+          "poolId": "103703"
         },
         {
-          "refId": "102704",
-          "name": "获得满层混乱注能",
-          "desc": "拥有满层混乱注能 0",
+          "refId": "103704",
+          "name": "迅捷注能会扣血",
+          "desc": "每层[迅捷注能]会每秒扣除100点生命 20.00%~30.00%",
           "random": false,
-          "poolId": "102701"
-        },
-        {
-          "refId": "102705",
-          "name": "获得满层迅捷注能",
-          "desc": "拥有满层迅捷注能 0",
-          "random": false,
-          "poolId": "102701"
-        },
-        {
-          "refId": "102706",
-          "name": "毁灭注能层数增加",
-          "desc": "毁灭注能层数上限增加1",
-          "random": false,
-          "poolId": "102702"
-        },
-        {
-          "refId": "102707",
-          "name": "洞察注能层数增加",
-          "desc": "洞察注能层数上限增加1",
-          "random": false,
-          "poolId": "102702"
-        },
-        {
-          "refId": "102708",
-          "name": "穿透注能层数增加",
-          "desc": "穿透注能层数上限增加1",
-          "random": false,
-          "poolId": "102702"
-        },
-        {
-          "refId": "102709",
-          "name": "混乱注能层数增加",
-          "desc": "混乱注能层数上限增加1",
-          "random": false,
-          "poolId": "102702"
-        },
-        {
-          "refId": "102710",
-          "name": "迅捷注能层数增加",
-          "desc": "迅捷注能层数上限增加1",
-          "random": false,
-          "poolId": "102702"
-        },
-        {
-          "refId": "102711",
-          "name": "移动速度增加",
-          "desc": "移速提高增加6.00%~10.00%",
-          "random": false,
-          "poolId": "102703"
-        },
-        {
-          "refId": "102712",
-          "name": "元素抗性",
-          "desc": "元素抗性增加9.00%~15.00%",
-          "random": false,
-          "poolId": "102704"
+          "poolId": "103704"
         }
       ],
       "poolGroups": [
         {
-          "poolId": "102701",
+          "poolId": "103701",
           "ids": [
-            "102701",
-            "102702",
-            "102703",
-            "102704",
-            "102705"
-          ],
-          "total": 5
-        },
-        {
-          "poolId": "102702",
-          "ids": [
-            "102706",
-            "102707",
-            "102708",
-            "102709",
-            "102710"
-          ],
-          "total": 5
-        },
-        {
-          "poolId": "102703",
-          "ids": [
-            "102711"
+            "103701"
           ],
           "total": 1
         },
         {
-          "poolId": "102704",
+          "poolId": "103702",
           "ids": [
-            "102712"
+            "103702"
+          ],
+          "total": 1
+        },
+        {
+          "poolId": "103703",
+          "ids": [
+            "103703"
+          ],
+          "total": 1
+        },
+        {
+          "poolId": "103704",
+          "ids": [
+            "103704"
           ],
           "total": 1
         }
@@ -8512,7 +9901,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "spIcon": ""
     },
     {
-      "id": "EQ0022",
+      "id": "EQ0029",
       "name": "旋流之心 - 精铁项链",
       "type": "项链",
       "effects": [
@@ -8597,7 +9986,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "spIcon": ""
     },
     {
-      "id": "EQ0023",
+      "id": "EQ0030",
       "name": "分形 - 精铁项链",
       "type": "项链",
       "effects": [
@@ -8668,28 +10057,28 @@ window.__AUTO_IMPORT_DATA__ = {
       "spIcon": ""
     },
     {
-      "id": "EQ0024",
-      "name": "闪电纹章 - 精铁项链",
+      "id": "EQ0031",
+      "name": "闪电桎梏 - 精铁项链",
       "type": "项链",
       "effects": [
         {
           "refId": "102101",
-          "name": "获得闪电伤害",
-          "desc": "获得闪电伤害35.00%~65.00%",
+          "name": "攻击速度提高",
+          "desc": "攻击速度提高10.00%~20.00%",
           "random": false,
           "poolId": "102101"
         },
         {
           "refId": "102102",
-          "name": "闪电技能等级增加",
-          "desc": "闪电技能等级增加1~3",
+          "name": "暴击时穿透闪电抗性",
+          "desc": "暴击时穿透闪电抗性20.00%~35.00%",
           "random": false,
           "poolId": "102102"
         },
         {
           "refId": "102103",
           "name": "闪电抗性",
-          "desc": "闪电抗性增加10.00%~20.00%",
+          "desc": "闪电抗性增加24.00%~36.00%",
           "random": false,
           "poolId": "102103"
         },
@@ -8739,7 +10128,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "spIcon": ""
     },
     {
-      "id": "EQ0025",
+      "id": "EQ0032",
       "name": "无悔决心 - 宝石项链",
       "type": "项链",
       "effects": [
@@ -8806,11 +10195,153 @@ window.__AUTO_IMPORT_DATA__ = {
       "isNew": true,
       "source": "sync",
       "quality": "6",
+      "icon": "zhuangbei/112/801",
+      "spIcon": ""
+    },
+    {
+      "id": "EQ0033",
+      "name": "凛冬寒风 - 宝石项链",
+      "type": "项链",
+      "effects": [
+        {
+          "refId": "102801",
+          "name": "基础生命",
+          "desc": "基础生命增加240~360",
+          "random": false,
+          "poolId": "102801"
+        },
+        {
+          "refId": "102802",
+          "name": "你造成的冻结会扩散给周围3米的其他敌人",
+          "desc": "你造成的冻结会扩散给周围3米的其他敌人 0",
+          "random": false,
+          "poolId": "102802"
+        },
+        {
+          "refId": "102803",
+          "name": "近期造成冻结，伤害提高60%",
+          "desc": "近期造成冻结，伤害提高60%",
+          "random": false,
+          "poolId": "102803"
+        },
+        {
+          "refId": "102804",
+          "name": "造成冻结时间比例",
+          "desc": "冰冻时长比例增加15.00%~25.00%",
+          "random": false,
+          "poolId": "102804"
+        }
+      ],
+      "poolGroups": [
+        {
+          "poolId": "102801",
+          "ids": [
+            "102801"
+          ],
+          "total": 1
+        },
+        {
+          "poolId": "102802",
+          "ids": [
+            "102802"
+          ],
+          "total": 1
+        },
+        {
+          "poolId": "102803",
+          "ids": [
+            "102803"
+          ],
+          "total": 1
+        },
+        {
+          "poolId": "102804",
+          "ids": [
+            "102804"
+          ],
+          "total": 1
+        }
+      ],
+      "sourceId": "1900102",
+      "isNew": true,
+      "source": "sync",
+      "quality": "6",
+      "icon": "zhuangbei/127/801",
+      "spIcon": ""
+    },
+    {
+      "id": "EQ0034",
+      "name": "狩猎礼节 - 翡翠项链",
+      "type": "项链",
+      "effects": [
+        {
+          "refId": "102901",
+          "name": "防御力",
+          "desc": "防御力增加70~130",
+          "random": false,
+          "poolId": "102901"
+        },
+        {
+          "refId": "102902",
+          "name": "装备-狩猎礼节",
+          "desc": "每层洞察注能使得暴击伤害提高5.00%~10.00%",
+          "random": false,
+          "poolId": "102902"
+        },
+        {
+          "refId": "102903",
+          "name": "暴击率提高",
+          "desc": "暴击率提高70.00%~130.00%",
+          "random": false,
+          "poolId": "102903"
+        },
+        {
+          "refId": "102904",
+          "name": "洞察注能层数增加",
+          "desc": "洞察注能层数上限+1",
+          "random": false,
+          "poolId": "102904"
+        }
+      ],
+      "poolGroups": [
+        {
+          "poolId": "102901",
+          "ids": [
+            "102901"
+          ],
+          "total": 1
+        },
+        {
+          "poolId": "102902",
+          "ids": [
+            "102902"
+          ],
+          "total": 1
+        },
+        {
+          "poolId": "102903",
+          "ids": [
+            "102903"
+          ],
+          "total": 1
+        },
+        {
+          "poolId": "102904",
+          "ids": [
+            "102904"
+          ],
+          "total": 1
+        }
+      ],
+      "sourceId": "1900103",
+      "isNew": true,
+      "source": "sync",
+      "quality": "6",
       "icon": "zhuangbei/130/801",
       "spIcon": ""
     },
     {
-      "id": "EQ0026",
+      "id": "EQ0035",
       "name": "碎魔晶 - 精铁戒指",
       "type": "戒指",
       "effects": [
@@ -8838,7 +10369,7 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "refId": "102204",
           "name": "毁灭注能层数增加",
-          "desc": "毁灭注能层数上限增加1",
+          "desc": "毁灭注能层数上限+1",
           "random": false,
           "poolId": "102204"
         }
@@ -8881,7 +10412,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "spIcon": ""
     },
     {
-      "id": "EQ0027",
+      "id": "EQ0036",
       "name": "冰亡 - 护法戒指",
       "type": "戒指",
       "effects": [
@@ -8950,48 +10481,125 @@ window.__AUTO_IMPORT_DATA__ = {
       "quality": "6",
       "icon": "zhuangbei/131/901",
       "spIcon": ""
+    },
+    {
+      "id": "EQ0037",
+      "name": "火焰纹章 - 护法戒指",
+      "type": "戒指",
+      "effects": [
+        {
+          "refId": "103501",
+          "name": "火焰浸染",
+          "desc": "旋风技能视为被火焰浸染 0",
+          "random": false,
+          "poolId": "103501"
+        },
+        {
+          "refId": "103502",
+          "name": "火焰伤害提高",
+          "desc": "火焰伤害提高40.00%~60.00%",
+          "random": false,
+          "poolId": "103502"
+        },
+        {
+          "refId": "103503",
+          "name": "点燃效果比例",
+          "desc": "点燃效果比例增加22.00%~38.00%",
+          "random": false,
+          "poolId": "103503"
+        },
+        {
+          "refId": "103504",
+          "name": "火焰抗性",
+          "desc": "火焰抗性增加20.00%~30.00%",
+          "random": false,
+          "poolId": "103504"
+        }
+      ],
+      "poolGroups": [
+        {
+          "poolId": "103501",
+          "ids": [
+            "103501"
+          ],
+          "total": 1
+        },
+        {
+          "poolId": "103502",
+          "ids": [
+            "103502"
+          ],
+          "total": 1
+        },
+        {
+          "poolId": "103503",
+          "ids": [
+            "103503"
+          ],
+          "total": 1
+        },
+        {
+          "poolId": "103504",
+          "ids": [
+            "103504"
+          ],
+          "total": 1
+        }
+      ],
+      "sourceId": "2000102",
+      "isNew": true,
+      "source": "sync",
+      "quality": "6",
+      "icon": "zhuangbei/106/901",
+      "spIcon": ""
     }
   ],
   "gems": [
     {
       "id": "GEM0001",
-      "name": "大范围·一",
+      "name": "范围扩大Ⅰ",
       "type": "辅助宝石",
-      "desc": "辅助有范围标签的技能，范围效果扩大25%",
+      "desc": "辅助有范围标签的技能，范围效果扩大25%，造成的伤害额外提高15%",
       "effects": [
         {
           "refId": "10032"
+        },
+        {
+          "refId": "10146"
         }
       ],
       "rank": "1",
       "sourceId": "100101",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/101101",
-      "iconSrc": "skill/sect/101101"
+      "icon": "baoshi/fanweikuoda1",
+      "iconSrc": "baoshi/fanweikuoda1"
     },
     {
       "id": "GEM0002",
-      "name": "快攻·一",
+      "name": "攻击加速Ⅰ",
       "type": "辅助宝石",
-      "desc": "辅助有攻击标签的技能，攻击速度提高15%",
+      "desc": "辅助有攻击标签的技能，攻击速度提高15%，造成的伤害额外提高15%",
       "effects": [
         {
           "refId": "10031"
+        },
+        {
+          "refId": "10146"
         }
       ],
       "rank": "1",
       "sourceId": "100301",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/101301",
-      "iconSrc": "skill/sect/101301"
+      "icon": "baoshi/kuaisugongji1",
+      "iconSrc": "baoshi/kuaisugongji1"
     },
     {
       "id": "GEM0003",
-      "name": "集中·一",
+      "name": "集中伤害Ⅰ",
       "type": "辅助宝石",
-      "desc": "辅助有范围标签的技能，使其范围总降50%，伤害额外提高15%",
+      "desc": "辅助有范围标签的技能，使其范围总降50%，造成的伤害额外提高15%",
       "effects": [
         {
           "refId": "10037"
@@ -9001,12 +10609,12 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "100401",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102101",
-      "iconSrc": "skill/sect/102101"
+      "icon": "baoshi/fanweijizhong1",
+      "iconSrc": "baoshi/fanweijizhong1"
     },
     {
       "id": "GEM0004",
-      "name": "无限·一",
+      "name": "无限Ⅰ",
       "type": "辅助宝石",
       "desc": "使获得的能量提高25%",
       "effects": [
@@ -9018,12 +10626,12 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "100901",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102204",
-      "iconSrc": "skill/sect/102204"
+      "icon": "baoshi/wubiannengliang1",
+      "iconSrc": "baoshi/wubiannengliang1"
     },
     {
       "id": "GEM0005",
-      "name": "无限·二",
+      "name": "无限Ⅱ",
       "type": "辅助宝石",
       "desc": "使获得的能量提高50%",
       "effects": [
@@ -9035,31 +10643,34 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "100902",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102204",
-      "iconSrc": "skill/sect/102204"
+      "icon": "baoshi/wubiannengliang2",
+      "iconSrc": "baoshi/wubiannengliang2"
     },
     {
       "id": "GEM0006",
-      "name": "冻久·一",
+      "name": "冻结时长Ⅰ",
       "type": "辅助宝石",
-      "desc": "被冰冻敌人的冻结时间额外提高25%",
+      "desc": "被冰冻敌人的冻结时间额外提高25%，造成的伤害额外提高15%",
       "effects": [
         {
           "refId": "10041"
+        },
+        {
+          "refId": "10146"
         }
       ],
       "rank": "1",
       "sourceId": "101001",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102204",
-      "iconSrc": "skill/sect/102204"
+      "icon": "baoshi/dongjieyanchang1",
+      "iconSrc": "baoshi/dongjieyanchang1"
     },
     {
       "id": "GEM0007",
-      "name": "元素·一",
+      "name": "元素强化Ⅰ",
       "type": "辅助宝石",
-      "desc": "元素伤害额外提高15%",
+      "desc": "元素伤害额外提高25%",
       "effects": [
         {
           "refId": "10042"
@@ -9069,42 +10680,48 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "101101",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102204",
-      "iconSrc": "skill/sect/102204"
+      "icon": "baoshi/yuansujunxie1",
+      "iconSrc": "baoshi/yuansujunxie1"
     },
     {
       "id": "GEM0008",
-      "name": "弹速·一",
+      "name": "弹体速度Ⅰ",
       "type": "辅助宝石",
-      "desc": "辅助有投射物标签的技能，使其生成的投射物飞行速度额外加快20%",
+      "desc": "辅助有投射物标签的技能，使其生成的投射物飞行速度额外加快20%，造成的伤害额外提高15%",
       "effects": [
         {
           "refId": "10147"
+        },
+        {
+          "refId": "10146"
         }
       ],
       "rank": "1",
       "sourceId": "102101",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102101",
-      "iconSrc": "skill/sect/102101"
+      "icon": "baoshi/toushewujiasu1",
+      "iconSrc": "baoshi/toushewujiasu1"
     },
     {
       "id": "GEM0009",
-      "name": "快施·一",
+      "name": "施法速度Ⅰ",
       "type": "辅助宝石",
-      "desc": "辅助有法术标签的技能，法术释放速度提高15%",
+      "desc": "辅助有法术标签的技能，法术释放速度提高15%，额外造成15%的伤害",
       "effects": [
         {
           "refId": "10050"
+        },
+        {
+          "refId": "10146"
         }
       ],
       "rank": "1",
       "sourceId": "102301",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/101301",
-      "iconSrc": "skill/sect/101301"
+      "icon": "baoshi/kuaisushifa1",
+      "iconSrc": "baoshi/kuaisushifa1"
     },
     {
       "id": "GEM0010",
@@ -9120,8 +10737,8 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "102801",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102204",
-      "iconSrc": "skill/sect/102204"
+      "icon": "baoshi/panxuan",
+      "iconSrc": "baoshi/panxuan"
     },
     {
       "id": "GEM0011",
@@ -9137,14 +10754,14 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "104001",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102102",
-      "iconSrc": "skill/sect/102102"
+      "icon": "baoshi/dongjie",
+      "iconSrc": "baoshi/dongjie"
     },
     {
       "id": "GEM0012",
-      "name": "加弹·一",
+      "name": "弹体数量Ⅰ",
       "type": "辅助宝石",
-      "desc": "辅助有投射物标签的技能，使其生成的投射物数量+1，造成的伤害额外降低30%",
+      "desc": "辅助有投射物标签的技能，使其生成的投射物数量+1，造成的伤害额外提高15%",
       "effects": [
         {
           "refId": "10038"
@@ -9157,63 +10774,72 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "100201",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/101201",
-      "iconSrc": "skill/sect/101201"
+      "icon": "baoshi/toushewuzengjia1",
+      "iconSrc": "baoshi/toushewuzengjia1"
     },
     {
       "id": "GEM0013",
-      "name": "冰冻·一",
+      "name": "冰冻强化Ⅰ",
       "type": "辅助宝石",
-      "desc": "辅助有冰霜标签的技能，使其冻结的积蓄值额外提高25%",
+      "desc": "辅助有冰霜标签的技能，使其冻结的积蓄值额外提高25%，造成的伤害额外提高15%",
       "effects": [
         {
           "refId": "10033"
+        },
+        {
+          "refId": "10146"
         }
       ],
       "rank": "2",
       "sourceId": "100501",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102103",
-      "iconSrc": "skill/sect/102103"
+      "icon": "baoshi/dongjie1",
+      "iconSrc": "baoshi/dongjie1"
     },
     {
       "id": "GEM0014",
-      "name": "加时·一",
+      "name": "持续时长Ⅰ",
       "type": "辅助宝石",
-      "desc": "辅助有持续性技能标签的技能，使其持续时间提高20%",
+      "desc": "辅助有持续性技能标签的技能，使其持续时间提高20%，造成的伤害额外提高15%",
       "effects": [
         {
           "refId": "10034"
+        },
+        {
+          "refId": "10146"
         }
       ],
       "rank": "2",
       "sourceId": "100601",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102104",
-      "iconSrc": "skill/sect/102104"
+      "icon": "baoshi/chixuyanchang1",
+      "iconSrc": "baoshi/chixuyanchang1"
     },
     {
       "id": "GEM0015",
-      "name": "减冷·一",
+      "name": "冷却缩减Ⅰ",
       "type": "辅助宝石",
-      "desc": "辅助技能，使其冷却回复率增加15%",
+      "desc": "辅助技能，使其冷却回复率增加15%，造成的伤害额外提高15%",
       "effects": [
         {
           "refId": "10106"
+        },
+        {
+          "refId": "10146"
         }
       ],
       "rank": "2",
       "sourceId": "100701",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102202",
-      "iconSrc": "skill/sect/102202"
+      "icon": "baoshi/lengquehuifu1",
+      "iconSrc": "baoshi/lengquehuifu1"
     },
     {
       "id": "GEM0016",
-      "name": "闪偏",
+      "name": "闪电偏转",
       "type": "辅助宝石",
       "desc": "闪电倍率提高25%，火焰倍率和冰冷倍率下降25%",
       "effects": [
@@ -9225,12 +10851,12 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "101201",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102204",
-      "iconSrc": "skill/sect/102204"
+      "icon": "baoshi/shandianpianzhuan",
+      "iconSrc": "baoshi/shandianpianzhuan"
     },
     {
       "id": "GEM0017",
-      "name": "冰偏",
+      "name": "冰冷偏转",
       "type": "辅助宝石",
       "desc": "冰冷倍率提高25%，火焰倍率和闪电倍率下降25%",
       "effects": [
@@ -9242,12 +10868,12 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "101301",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102204",
-      "iconSrc": "skill/sect/102204"
+      "icon": "baoshi/binglengpianzhuan",
+      "iconSrc": "baoshi/binglengpianzhuan"
     },
     {
       "id": "GEM0018",
-      "name": "火偏",
+      "name": "火焰偏转",
       "type": "辅助宝石",
       "desc": "火焰倍率提高25%，闪电倍率和冰冷倍率下降25%",
       "effects": [
@@ -9259,12 +10885,12 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "101401",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102204",
-      "iconSrc": "skill/sect/102204"
+      "icon": "baoshi/huoyanpianzhuan",
+      "iconSrc": "baoshi/huoyanpianzhuan"
     },
     {
       "id": "GEM0019",
-      "name": "重击·一",
+      "name": "重击强化Ⅰ",
       "type": "辅助宝石",
       "desc": "攻击速度降低10%，近战物理伤害额外提高25%",
       "effects": [
@@ -9276,12 +10902,12 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "101501",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102101",
-      "iconSrc": "skill/sect/102101"
+      "icon": "baoshi/chenzhonghuiwu1",
+      "iconSrc": "baoshi/chenzhonghuiwu1"
     },
     {
       "id": "GEM0020",
-      "name": "迎寒·一",
+      "name": "寒冰强化Ⅰ",
       "type": "辅助宝石",
       "desc": "被辅助技能冻结敌人时，获得15%的额外冰冷伤害，持续6秒",
       "effects": [
@@ -9293,12 +10919,12 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "101601",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102101",
-      "iconSrc": "skill/sect/102101"
+      "icon": "baoshi/yinghanershang1",
+      "iconSrc": "baoshi/yinghanershang1"
     },
     {
       "id": "GEM0021",
-      "name": "猛毒·一",
+      "name": "中毒强化Ⅰ",
       "type": "辅助宝石",
       "desc": "被辅助技能，击中中毒目标时，每层中毒效果伤害额外提高3%，上限5层",
       "effects": [
@@ -9310,14 +10936,14 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "101701",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102101",
-      "iconSrc": "skill/sect/102101"
+      "icon": "baoshi/mengdu1",
+      "iconSrc": "baoshi/mengdu1"
     },
     {
       "id": "GEM0022",
-      "name": "毒化·一",
+      "name": "中毒增效Ⅰ",
       "type": "辅助宝石",
-      "desc": "被辅助技能，混沌伤害额外提高10% ，中毒几率增加20%",
+      "desc": "被辅助技能，混沌伤害额外提高15% ，中毒几率增加20%",
       "effects": [
         {
           "refId": "10128"
@@ -9330,15 +10956,18 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "101801",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102101",
-      "iconSrc": "skill/sect/102101"
+      "icon": "baoshi/duhua1",
+      "iconSrc": "baoshi/duhua1"
     },
     {
       "id": "GEM0023",
-      "name": "冻核",
+      "name": "冻结核心",
       "type": "辅助宝石",
-      "desc": "被辅助技能冻结敌人时，在被冻结者脚底生成一片冰冷地面",
+      "desc": "被辅助技能冻结敌人时，在被冻结者脚底生成一片冰缓地面，造成的伤害额外提高15%",
       "effects": [
+        {
+          "refId": "10146"
+        },
         {
           "refId": "3140000050"
         }
@@ -9347,15 +10976,18 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "102201",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102101",
-      "iconSrc": "skill/sect/102101"
+      "icon": "baoshi/fengdongshuniu",
+      "iconSrc": "baoshi/fengdongshuniu"
     },
     {
       "id": "GEM0024",
-      "name": "流血·一",
+      "name": "流血强化Ⅰ",
       "type": "辅助宝石",
-      "desc": "被辅助的技能，流血几率增加20%",
+      "desc": "被辅助的技能，流血几率增加20%，造成的伤害额外提高15%",
       "effects": [
+        {
+          "refId": "10146"
+        },
         {
           "refId": "[[11054,0.2]]"
         }
@@ -9364,15 +10996,18 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "102501",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102101",
-      "iconSrc": "skill/sect/102101"
+      "icon": "baoshi/chenzhonghuiwu1",
+      "iconSrc": "baoshi/chenzhonghuiwu1"
     },
     {
       "id": "GEM0025",
-      "name": "点燃·一",
+      "name": "点燃强化Ⅰ",
       "type": "辅助宝石",
-      "desc": "被辅助的技能，点燃几率增加20%",
+      "desc": "被辅助的技能，点燃几率增加20%，造成的伤害额外提高15%",
       "effects": [
+        {
+          "refId": "10146"
+        },
         {
           "refId": "[[11006,0.2]]"
         }
@@ -9381,15 +11016,18 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "102601",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102101",
-      "iconSrc": "skill/sect/102101"
+      "icon": "baoshi/huoyanpianzhuan",
+      "iconSrc": "baoshi/huoyanpianzhuan"
     },
     {
       "id": "GEM0026",
-      "name": "感电·一",
+      "name": "感电强化Ⅰ",
       "type": "辅助宝石",
-      "desc": "被辅助的技能，感电几率增加20%",
+      "desc": "被辅助的技能，感电几率增加20%，造成的伤害额外提高15%",
       "effects": [
+        {
+          "refId": "10146"
+        },
         {
           "refId": "[[11009,0.2]]"
         }
@@ -9398,15 +11036,18 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "102701",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102101",
-      "iconSrc": "skill/sect/102101"
+      "icon": "baoshi/wubiannengliang1",
+      "iconSrc": "baoshi/wubiannengliang1"
     },
     {
       "id": "GEM0027",
       "name": "物理穿透",
       "type": "辅助宝石",
-      "desc": "被辅助的技能物理穿透提高25%",
+      "desc": "被辅助的技能物理穿透提高25%，造成的伤害额外提高10%",
       "effects": [
+        {
+          "refId": "10146"
+        },
         {
           "refId": "[[11048,0.25]]"
         }
@@ -9415,15 +11056,18 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "102901",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102102",
-      "iconSrc": "skill/sect/102102"
+      "icon": "baoshi/baowei",
+      "iconSrc": "baoshi/baowei"
     },
     {
       "id": "GEM0028",
       "name": "火焰穿透",
       "type": "辅助宝石",
-      "desc": "被辅助的技能火焰穿透提高25%",
+      "desc": "被辅助的技能火焰穿透提高25%，造成的伤害额外提高10%",
       "effects": [
+        {
+          "refId": "10146"
+        },
         {
           "refId": "[[11049,0.25]]"
         }
@@ -9432,15 +11076,18 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "103001",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102102",
-      "iconSrc": "skill/sect/102102"
+      "icon": "baoshi/chenzhonghuiwu",
+      "iconSrc": "baoshi/chenzhonghuiwu"
     },
     {
       "id": "GEM0029",
       "name": "冰冷穿透",
       "type": "辅助宝石",
-      "desc": "被辅助的技能冰冷穿透提高25%",
+      "desc": "被辅助的技能冰冷穿透提高25%，造成的伤害额外提高10%",
       "effects": [
+        {
+          "refId": "10146"
+        },
         {
           "refId": "[[11050,0.25]]"
         }
@@ -9449,15 +11096,18 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "103101",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102102",
-      "iconSrc": "skill/sect/102102"
+      "icon": "baoshi/yinghanershang1",
+      "iconSrc": "baoshi/yinghanershang1"
     },
     {
       "id": "GEM0030",
       "name": "闪电穿透",
       "type": "辅助宝石",
-      "desc": "被辅助的技能闪电穿透提高25%",
+      "desc": "被辅助的技能闪电穿透提高25%，造成的伤害额外提高10%",
       "effects": [
+        {
+          "refId": "10146"
+        },
         {
           "refId": "[[11051,0.25]]"
         }
@@ -9466,15 +11116,18 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "103201",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102102",
-      "iconSrc": "skill/sect/102102"
+      "icon": "baoshi/wubiannengliang",
+      "iconSrc": "baoshi/wubiannengliang"
     },
     {
       "id": "GEM0031",
       "name": "混沌穿透",
       "type": "辅助宝石",
-      "desc": "被辅助的技能混沌穿透提高25%",
+      "desc": "被辅助的技能混沌穿透提高25%，造成的伤害额外提高10%",
       "effects": [
+        {
+          "refId": "10146"
+        },
         {
           "refId": "[[11052,0.25]]"
         }
@@ -9483,12 +11136,12 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "103301",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102102",
-      "iconSrc": "skill/sect/102102"
+      "icon": "baoshi/mengdu",
+      "iconSrc": "baoshi/mengdu"
     },
     {
       "id": "GEM0032",
-      "name": "精准",
+      "name": "精准强化",
       "type": "辅助宝石",
       "desc": "被辅助的技能暴击率额外提高80%，暴击伤害额外降低30%",
       "effects": [
@@ -9503,12 +11156,12 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "103401",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102102",
-      "iconSrc": "skill/sect/102102"
+      "icon": "baoshi/fanweijizhong",
+      "iconSrc": "baoshi/fanweijizhong"
     },
     {
       "id": "GEM0033",
-      "name": "绝杀",
+      "name": "终结",
       "type": "辅助宝石",
       "desc": "被辅助的技能暴击伤害额外提高60%，暴击率额外降低40%",
       "effects": [
@@ -9523,63 +11176,72 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "103501",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102102",
-      "iconSrc": "skill/sect/102102"
+      "icon": "baoshi/duhua",
+      "iconSrc": "baoshi/duhua"
     },
     {
       "id": "GEM0034",
-      "name": "狩猎",
+      "name": "猎杀",
       "type": "辅助宝石",
-      "desc": "被辅助的技能对满血敌人的暴击率额外提高80%",
+      "desc": "被辅助的技能对满血敌人的暴击率额外提高80%，造成的伤害额外提高10%",
       "effects": [
         {
           "refId": "10267"
+        },
+        {
+          "refId": "10146"
         }
       ],
       "rank": "2",
       "sourceId": "103801",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102102",
-      "iconSrc": "skill/sect/102102"
+      "icon": "baoshi/fanweikuoda",
+      "iconSrc": "baoshi/fanweikuoda"
     },
     {
       "id": "GEM0035",
       "name": "弱点观察",
       "type": "辅助宝石",
-      "desc": "被辅助的技能对冻结敌人的暴击率额外提高40%",
+      "desc": "被辅助的技能对冻结敌人的暴击率额外提高40%，造成的伤害额外提高10%",
       "effects": [
         {
           "refId": "10268"
+        },
+        {
+          "refId": "10146"
         }
       ],
       "rank": "2",
       "sourceId": "103901",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102102",
-      "iconSrc": "skill/sect/102102"
+      "icon": "baoshi/duochongfanwei",
+      "iconSrc": "baoshi/duochongfanwei"
     },
     {
       "id": "GEM0036",
-      "name": "快攻·二",
+      "name": "攻击加速Ⅱ",
       "type": "辅助宝石",
-      "desc": "辅助有攻击标签的技能，攻击速度提高25%",
+      "desc": "辅助有攻击标签的技能，攻击速度提高25%，造成的伤害额外提高15%",
       "effects": [
         {
           "refId": "10031"
+        },
+        {
+          "refId": "10146"
         }
       ],
       "rank": "3",
       "sourceId": "100302",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/101302",
-      "iconSrc": "skill/sect/101302"
+      "icon": "baoshi/kuaisugongji2",
+      "iconSrc": "baoshi/kuaisugongji2"
     },
     {
       "id": "GEM0037",
-      "name": "多重",
+      "name": "多重投射",
       "type": "辅助宝石",
       "desc": "辅助有触发标签的技能，使其伤害总降20%，重复使用技能3次，不能对同一目标使用",
       "effects": [
@@ -9591,31 +11253,34 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "100801",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102204",
-      "iconSrc": "skill/sect/102204"
+      "icon": "baoshi/duochongfanwei",
+      "iconSrc": "baoshi/duochongfanwei"
     },
     {
       "id": "GEM0038",
-      "name": "冻久·二",
+      "name": "冻结时长Ⅱ",
       "type": "辅助宝石",
-      "desc": "被冰冻敌人的冻结时间额外提高50%",
+      "desc": "被冰冻敌人的冻结时间额外提高50%，造成的伤害额外提高15%",
       "effects": [
         {
           "refId": "10041"
+        },
+        {
+          "refId": "10146"
         }
       ],
       "rank": "3",
       "sourceId": "101002",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102204",
-      "iconSrc": "skill/sect/102204"
+      "icon": "baoshi/dongjieyanchang2",
+      "iconSrc": "baoshi/dongjieyanchang2"
     },
     {
       "id": "GEM0039",
-      "name": "包围·一",
+      "name": "范围包围Ⅰ",
       "type": "辅助宝石",
-      "desc": "辅助有环绕标签的技能，环绕子弹数量+1，造成的伤害额外降低30%",
+      "desc": "辅助有环绕标签的技能，环绕子弹数量+1，造成的伤害额外提高15%",
       "effects": [
         {
           "refId": "10131"
@@ -9628,14 +11293,14 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "101901",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102101",
-      "iconSrc": "skill/sect/102101"
+      "icon": "baoshi/baowei1",
+      "iconSrc": "baoshi/baowei1"
     },
     {
       "id": "GEM0040",
-      "name": "盘旋·一",
+      "name": "环绕攻击Ⅰ",
       "type": "辅助宝石",
-      "desc": "辅助有环绕标签的技能，被辅助技能的环绕子弹速度提高30%",
+      "desc": "辅助有环绕标签的技能，被辅助技能的环绕子弹速度提高30%，造成的伤害额外提高15%",
       "effects": [
         {
           "refId": "10132"
@@ -9645,25 +11310,28 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "102001",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102101",
-      "iconSrc": "skill/sect/102101"
+      "icon": "baoshi/panxuan1",
+      "iconSrc": "baoshi/panxuan1"
     },
     {
       "id": "GEM0041",
-      "name": "弹速·二",
+      "name": "弹体速度Ⅱ",
       "type": "辅助宝石",
-      "desc": "辅助有投射物标签的技能，使其生成的投射物飞行速度额外加快40%",
+      "desc": "辅助有投射物标签的技能，使其生成的投射物飞行速度额外加快40%，造成的伤害额外提高15%",
       "effects": [
         {
           "refId": "10147"
+        },
+        {
+          "refId": "10146"
         }
       ],
       "rank": "3",
       "sourceId": "102102",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102102",
-      "iconSrc": "skill/sect/102102"
+      "icon": "baoshi/toushewujiasu2",
+      "iconSrc": "baoshi/toushewujiasu2"
     },
     {
       "id": "GEM0042",
@@ -9682,31 +11350,54 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "103601",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102102",
-      "iconSrc": "skill/sect/102102"
+      "icon": "baoshi/yuansujunxie",
+      "iconSrc": "baoshi/yuansujunxie"
     },
     {
       "id": "GEM0043",
-      "name": "大范围·二",
+      "name": "施法速度Ⅱ",
       "type": "辅助宝石",
-      "desc": "辅助有范围标签的技能，范围效果扩大50%",
+      "desc": "辅助有法术标签的技能，法术施放速度提高25%，造成的伤害额外提高15%",
+      "effects": [
+        {
+          "refId": "10050"
+        },
+        {
+          "refId": "10146"
+        }
+      ],
+      "rank": "3",
+      "sourceId": "102302",
+      "isNew": true,
+      "source": "sync",
+      "icon": "baoshi/kuaisushifa2",
+      "iconSrc": "baoshi/kuaisushifa2"
+    },
+    {
+      "id": "GEM0044",
+      "name": "范围扩大Ⅱ",
+      "type": "辅助宝石",
+      "desc": "辅助有范围标签的技能，范围效果扩大50%，造成的伤害额外提高15%",
       "effects": [
         {
           "refId": "10032"
+        },
+        {
+          "refId": "10146"
         }
       ],
       "rank": "4",
       "sourceId": "100102",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/101102",
-      "iconSrc": "skill/sect/101102"
+      "icon": "baoshi/fanweikuoda2",
+      "iconSrc": "baoshi/fanweikuoda2"
     },
     {
-      "id": "GEM0044",
-      "name": "加弹·二",
+      "id": "GEM0045",
+      "name": "弹体数量Ⅱ",
       "type": "辅助宝石",
-      "desc": "辅助有投射物标签的技能，使其生成的投射物数量+2，造成的伤害额外降低30%",
+      "desc": "辅助有投射物标签的技能，使其生成的投射物数量+2，造成的伤害额外提高15%",
       "effects": [
         {
           "refId": "10038"
@@ -9719,12 +11410,12 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "100202",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/101201",
-      "iconSrc": "skill/sect/101201"
+      "icon": "baoshi/toushewuzengjia2",
+      "iconSrc": "baoshi/toushewuzengjia2"
     },
     {
-      "id": "GEM0045",
-      "name": "集中·二",
+      "id": "GEM0046",
+      "name": "集中伤害Ⅱ",
       "type": "辅助宝石",
       "desc": "辅助有范围标签的技能，使其范围总降50%，伤害额外提高30%",
       "effects": [
@@ -9736,29 +11427,32 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "100402",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102102",
-      "iconSrc": "skill/sect/102102"
+      "icon": "baoshi/fanweijizhong2",
+      "iconSrc": "baoshi/fanweijizhong2"
     },
     {
-      "id": "GEM0046",
-      "name": "加时·二",
+      "id": "GEM0047",
+      "name": "持续时长Ⅱ",
       "type": "辅助宝石",
-      "desc": "辅助有持续性技能标签的技能，使其持续时间提高30%",
+      "desc": "辅助有持续性技能标签的技能，使其持续时间提高30%，造成的伤害额外提高15%",
       "effects": [
         {
           "refId": "10034"
+        },
+        {
+          "refId": "10146"
         }
       ],
       "rank": "4",
       "sourceId": "100602",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102201",
-      "iconSrc": "skill/sect/102201"
+      "icon": "baoshi/chixuyanchang2",
+      "iconSrc": "baoshi/chixuyanchang2"
     },
     {
-      "id": "GEM0047",
-      "name": "元素·二",
+      "id": "GEM0048",
+      "name": "元素强化Ⅱ",
       "type": "辅助宝石",
       "desc": "元素伤害额外提高25%",
       "effects": [
@@ -9770,12 +11464,12 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "101102",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102204",
-      "iconSrc": "skill/sect/102204"
+      "icon": "baoshi/yuansujunxie2",
+      "iconSrc": "baoshi/yuansujunxie2"
     },
     {
-      "id": "GEM0048",
-      "name": "重击·二",
+      "id": "GEM0049",
+      "name": "重击强化Ⅱ",
       "type": "辅助宝石",
       "desc": "攻击速度降低10%，近战物理伤害额外提高40%",
       "effects": [
@@ -9787,14 +11481,14 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "101502",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102102",
-      "iconSrc": "skill/sect/102102"
+      "icon": "baoshi/chenzhonghuiwu2",
+      "iconSrc": "baoshi/chenzhonghuiwu2"
     },
     {
-      "id": "GEM0049",
-      "name": "毒化·二",
+      "id": "GEM0050",
+      "name": "中毒增效Ⅱ",
       "type": "辅助宝石",
-      "desc": "被辅助技能，混沌伤害额外提高20% ，中毒几率增加40%",
+      "desc": "被辅助技能，混沌伤害额外提高30% ，中毒几率增加40%",
       "effects": [
         {
           "refId": "10128"
@@ -9807,29 +11501,12 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "101802",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102102",
-      "iconSrc": "skill/sect/102102"
-    },
-    {
-      "id": "GEM0050",
-      "name": "快施·二",
-      "type": "辅助宝石",
-      "desc": "辅助有法术标签的技能，法术施放速度提高25%",
-      "effects": [
-        {
-          "refId": "10050"
-        }
-      ],
-      "rank": "4",
-      "sourceId": "102302",
-      "isNew": true,
-      "source": "sync",
-      "icon": "baoshi/101302",
-      "iconSrc": "skill/sect/101302"
+      "icon": "baoshi/duhua2",
+      "iconSrc": "baoshi/duhua2"
     },
     {
       "id": "GEM0051",
-      "name": "炽烈",
+      "name": "火焰爆发",
       "type": "辅助宝石",
       "desc": "被辅助的技能造成暴击时，获得15%的额外火焰伤害，持续6秒",
       "effects": [
@@ -9841,12 +11518,12 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "103701",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102102",
-      "iconSrc": "skill/sect/102102"
+      "icon": "baoshi/huoyanpianzhuan",
+      "iconSrc": "baoshi/huoyanpianzhuan"
     },
     {
       "id": "GEM0052",
-      "name": "新星",
+      "name": "新星爆发",
       "type": "辅助宝石",
       "desc": "投射物数量+5，投射物变更为环形发射，投射物伤害总降50%",
       "effects": [
@@ -9858,46 +11535,52 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "100204",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/101201",
-      "iconSrc": "skill/sect/101201"
+      "icon": "baoshi/xinxingtoushe",
+      "iconSrc": "baoshi/xinxingtoushe"
     },
     {
       "id": "GEM0053",
-      "name": "冰冻·二",
+      "name": "冰冻强化Ⅱ",
       "type": "辅助宝石",
-      "desc": "辅助有冰霜标签的技能，使其冻结的积蓄值额外提高50%",
+      "desc": "辅助有冰霜标签的技能，使其冻结的积蓄值额外提高50%，造成的伤害额外提高15%",
       "effects": [
         {
           "refId": "10033"
+        },
+        {
+          "refId": "10146"
         }
       ],
       "rank": "5",
       "sourceId": "100502",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102104",
-      "iconSrc": "skill/sect/102104"
+      "icon": "baoshi/dongjie2",
+      "iconSrc": "baoshi/dongjie2"
     },
     {
       "id": "GEM0054",
-      "name": "减冷·二",
+      "name": "冷却缩减Ⅱ",
       "type": "辅助宝石",
-      "desc": "辅助技能，使其冷却回复率增加25%",
+      "desc": "辅助技能，使其冷却回复率增加25%，造成的伤害额外提高15%",
       "effects": [
         {
           "refId": "10106"
+        },
+        {
+          "refId": "10146"
         }
       ],
       "rank": "5",
       "sourceId": "100702",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102203",
-      "iconSrc": "skill/sect/102203"
+      "icon": "baoshi/lengquehuifu2",
+      "iconSrc": "baoshi/lengquehuifu2"
     },
     {
       "id": "GEM0055",
-      "name": "迎寒·二",
+      "name": "寒冰强化Ⅱ",
       "type": "辅助宝石",
       "desc": "被辅助技能冻结敌人时，获得30%的额外冰冷伤害，持续6秒",
       "effects": [
@@ -9909,12 +11592,12 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "101602",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102102",
-      "iconSrc": "skill/sect/102102"
+      "icon": "baoshi/yinghanershang2",
+      "iconSrc": "baoshi/yinghanershang2"
     },
     {
       "id": "GEM0056",
-      "name": "猛毒·二",
+      "name": "中毒强化Ⅱ",
       "type": "辅助宝石",
       "desc": "被辅助技能，击中中毒目标时，每层中毒效果伤害额外提高6%，上限5层",
       "effects": [
@@ -9926,14 +11609,14 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "101702",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102102",
-      "iconSrc": "skill/sect/102102"
+      "icon": "baoshi/mengdu2",
+      "iconSrc": "baoshi/mengdu2"
     },
     {
       "id": "GEM0057",
-      "name": "包围·二",
+      "name": "范围包围Ⅱ",
       "type": "辅助宝石",
-      "desc": "辅助有环绕标签的技能，环绕子弹数量+1",
+      "desc": "辅助有环绕标签的技能，环绕子弹数量+2",
       "effects": [
         {
           "refId": "10131"
@@ -9943,52 +11626,58 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "101902",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102102",
-      "iconSrc": "skill/sect/102102"
+      "icon": "baoshi/baowei2",
+      "iconSrc": "baoshi/baowei2"
     },
     {
       "id": "GEM0058",
-      "name": "盘旋·二",
+      "name": "环绕攻击Ⅱ",
       "type": "辅助宝石",
-      "desc": "辅助有环绕标签的技能，被辅助技能的环绕子弹速度提高50%",
+      "desc": "辅助有环绕标签的技能，被辅助技能的环绕子弹速度提高50%，造成的伤害额外提高15%",
       "effects": [
         {
           "refId": "10132"
+        },
+        {
+          "refId": "10146"
         }
       ],
       "rank": "5",
       "sourceId": "102002",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102102",
-      "iconSrc": "skill/sect/102102"
+      "icon": "baoshi/panxuan2",
+      "iconSrc": "baoshi/panxuan2"
     },
     {
       "id": "GEM0059",
-      "name": "弹速·三",
+      "name": "弹体速度Ⅲ",
       "type": "辅助宝石",
-      "desc": "辅助有投射物标签的技能，使其生成的投射物飞行速度额外加快40%。投射物伤害增加25%",
+      "desc": "辅助有投射物标签的技能，使其生成的投射物飞行速度额外加快40%，造成的伤害额外提高15%",
       "effects": [
         {
           "refId": "10147"
         },
         {
-          "refId": "10064"
+          "refId": "10146"
         }
       ],
       "rank": "5",
       "sourceId": "102103",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102103",
-      "iconSrc": "skill/sect/102103"
+      "icon": "baoshi/toushewujiasu3",
+      "iconSrc": "baoshi/toushewujiasu3"
     },
     {
       "id": "GEM0060",
-      "name": "流血·二",
+      "name": "流血强化Ⅱ",
       "type": "辅助宝石",
-      "desc": "被辅助的技能，流血几率增加35%",
+      "desc": "被辅助的技能，流血几率增加35%，造成的伤害额外提高15%",
       "effects": [
+        {
+          "refId": "10146"
+        },
         {
           "refId": "[[11054,0.35]]"
         }
@@ -9997,15 +11686,18 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "102502",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102102",
-      "iconSrc": "skill/sect/102102"
+      "icon": "baoshi/chenzhonghuiwu2",
+      "iconSrc": "baoshi/chenzhonghuiwu2"
     },
     {
       "id": "GEM0061",
-      "name": "点燃·二",
+      "name": "点燃强化Ⅱ",
       "type": "辅助宝石",
-      "desc": "被辅助的技能，点燃几率增加35%",
+      "desc": "被辅助的技能，点燃几率增加35%，造成的伤害额外提高15%",
       "effects": [
+        {
+          "refId": "10146"
+        },
         {
           "refId": "[[11006,0.35]]"
         }
@@ -10014,15 +11706,18 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "102602",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102102",
-      "iconSrc": "skill/sect/102102"
+      "icon": "baoshi/huoyanpianzhuan",
+      "iconSrc": "baoshi/huoyanpianzhuan"
     },
     {
       "id": "GEM0062",
-      "name": "感电·二",
+      "name": "感电强化Ⅱ",
       "type": "辅助宝石",
-      "desc": "被辅助的技能，感电几率增加35%",
+      "desc": "被辅助的技能，感电几率增加35%，造成的伤害额外提高15%",
       "effects": [
+        {
+          "refId": "10146"
+        },
         {
           "refId": "[[11009,0.35]]"
         }
@@ -10031,15 +11726,18 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "102702",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102102",
-      "iconSrc": "skill/sect/102102"
+      "icon": "baoshi/wubiannengliang2",
+      "iconSrc": "baoshi/wubiannengliang2"
     },
     {
       "id": "GEM0063",
-      "name": "暴击",
+      "name": "暴击强化",
       "type": "辅助宝石",
-      "desc": "辅助法术技能，技能携带该辅助宝石时，当你对敌人造成暴击时会获得20点能量，达到100点能量后触发镶嵌的法术；被辅助的技能无法主动释放",
+      "desc": "辅助法术技能，技能携带该辅助宝石时，当你对敌人造成暴击时会获得10点能量，有固定0.03秒获得冷却时间，达到100点能量后触发镶嵌的法术\\n被辅助的技能无法主动释放\\n消耗+35",
       "effects": [
+        {
+          "refId": "10274"
+        },
         {
           "refId": "10244"
         }
@@ -10048,15 +11746,18 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "102401",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102101",
-      "iconSrc": "skill/sect/102101"
+      "icon": "baoshi/duochongfanwei",
+      "iconSrc": "baoshi/duochongfanwei"
     },
     {
       "id": "GEM0064",
-      "name": "移动",
+      "name": "移动强化",
       "type": "辅助宝石",
-      "desc": "辅助法术技能，技能携带该辅助宝石时，当你移动一定距离后会获得20点能量，达到100点能量后触发镶嵌的法术；被辅助的技能无法主动释放",
+      "desc": "辅助法术技能，技能携带该辅助宝石时，当你移动一定距离后会获得20点能量，有固定0.03秒获得冷却时间，达到100点能量后触发镶嵌的法术\\n被辅助的技能无法主动释放\\n消耗+35",
       "effects": [
+        {
+          "refId": "10274"
+        },
         {
           "refId": "10245"
         }
@@ -10065,15 +11766,18 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "102402",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102102",
-      "iconSrc": "skill/sect/102102"
+      "icon": "baoshi/binglengpianzhuan",
+      "iconSrc": "baoshi/binglengpianzhuan"
     },
     {
       "id": "GEM0065",
-      "name": "格挡",
+      "name": "格挡强化",
       "type": "辅助宝石",
-      "desc": "辅助法术技能，技能携带该辅助宝石时，当你格挡时会获得20点能量，达到100点能量后触发镶嵌的法术；被辅助的技能无法主动释放",
+      "desc": "辅助法术技能，技能携带该辅助宝石时，当你格挡时会获得20点能量，有固定0.03秒获得冷却时间，达到100点能量后触发镶嵌的法术\\n被辅助的技能无法主动释放\\n消耗+35",
       "effects": [
+        {
+          "refId": "10274"
+        },
         {
           "refId": "10246"
         }
@@ -10082,8 +11786,167 @@ window.__AUTO_IMPORT_DATA__ = {
       "sourceId": "102403",
       "isNew": true,
       "source": "sync",
-      "icon": "baoshi/102103",
-      "iconSrc": "skill/sect/102103"
+      "icon": "baoshi/xinxingtoushe",
+      "iconSrc": "baoshi/xinxingtoushe"
+    },
+    {
+      "id": "GEM0066",
+      "name": "闪电领域",
+      "type": "辅助宝石",
+      "desc": "被辅助技能造成敌人触电时，在被触电者脚底生成一片感电地面，造成的伤害额外提高15%",
+      "effects": [
+        {
+          "refId": "10146"
+        },
+        {
+          "refId": "3140000080"
+        }
+      ],
+      "rank": "2",
+      "sourceId": "104101",
+      "isNew": true,
+      "source": "sync",
+      "icon": "baoshi/shandianpianzhuan",
+      "iconSrc": "baoshi/shandianpianzhuan"
+    },
+    {
+      "id": "GEM0067",
+      "name": "效能",
+      "type": "辅助宝石",
+      "desc": "被辅助技能消耗减少80%，伤害额外提高10%",
+      "effects": [
+        {
+          "refId": "10200"
+        },
+        {
+          "refId": "10146"
+        }
+      ],
+      "rank": "5",
+      "sourceId": "104201",
+      "isNew": true,
+      "source": "sync",
+      "icon": "baoshi/chixuyanchang",
+      "iconSrc": "baoshi/chixuyanchang"
+    },
+    {
+      "id": "GEM0068",
+      "name": "光环增幅",
+      "type": "辅助宝石",
+      "desc": "被辅助的技能，光环效果增强20%",
+      "effects": [
+        {
+          "refId": "10243"
+        }
+      ],
+      "rank": "3",
+      "sourceId": "104301",
+      "isNew": true,
+      "source": "sync",
+      "icon": "baoshi/duochongfanwei",
+      "iconSrc": "baoshi/duochongfanwei"
+    },
+    {
+      "id": "GEM0069",
+      "name": "诅咒增幅",
+      "type": "辅助宝石",
+      "desc": "被辅助的技能，诅咒效果增强20%",
+      "effects": [
+        {
+          "refId": "10237"
+        }
+      ],
+      "rank": "3",
+      "sourceId": "104401",
+      "isNew": true,
+      "source": "sync",
+      "icon": "baoshi/duochongfanwei",
+      "iconSrc": "baoshi/duochongfanwei"
+    },
+    {
+      "id": "GEM0070",
+      "name": "物理精通",
+      "type": "辅助宝石",
+      "desc": "被辅助的物理技能等级+1",
+      "effects": [
+        {
+          "refId": "10156"
+        }
+      ],
+      "rank": "2",
+      "sourceId": "104501",
+      "isNew": true,
+      "source": "sync",
+      "icon": "baoshi/baowei",
+      "iconSrc": "baoshi/baowei"
+    },
+    {
+      "id": "GEM0071",
+      "name": "火焰精通",
+      "type": "辅助宝石",
+      "desc": "被辅助的火焰技能等级+1",
+      "effects": [
+        {
+          "refId": "10157"
+        }
+      ],
+      "rank": "2",
+      "sourceId": "104601",
+      "isNew": true,
+      "source": "sync",
+      "icon": "baoshi/chenzhonghuiwu",
+      "iconSrc": "baoshi/chenzhonghuiwu"
+    },
+    {
+      "id": "GEM0072",
+      "name": "冰冷精通",
+      "type": "辅助宝石",
+      "desc": "被辅助的冰冷技能等级+1",
+      "effects": [
+        {
+          "refId": "10158"
+        }
+      ],
+      "rank": "2",
+      "sourceId": "104701",
+      "isNew": true,
+      "source": "sync",
+      "icon": "baoshi/yinghanershang1",
+      "iconSrc": "baoshi/yinghanershang1"
+    },
+    {
+      "id": "GEM0073",
+      "name": "闪电精通",
+      "type": "辅助宝石",
+      "desc": "被辅助的闪电技能等级+1",
+      "effects": [
+        {
+          "refId": "10159"
+        }
+      ],
+      "rank": "2",
+      "sourceId": "104801",
+      "isNew": true,
+      "source": "sync",
+      "icon": "baoshi/wubiannengliang",
+      "iconSrc": "baoshi/wubiannengliang"
+    },
+    {
+      "id": "GEM0074",
+      "name": "混沌精通",
+      "type": "辅助宝石",
+      "desc": "被辅助的混沌技能等级+1",
+      "effects": [
+        {
+          "refId": "10160"
+        }
+      ],
+      "rank": "2",
+      "sourceId": "104901",
+      "isNew": true,
+      "source": "sync",
+      "icon": "baoshi/mengdu",
+      "iconSrc": "baoshi/mengdu"
     }
   ],
   "skills": [
@@ -10091,7 +11954,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "专注斩",
       "type": "主动技能",
-      "desc": "向前方目标连续造成3次共计63%物理伤害，随后再造成更高的117%物理伤害",
+      "desc": "向前方目标连续造成3次63%物理伤害，再造成117%物理伤害，最后一段可以向目标突刺\n该技能每次释放获得1连击点，最后一击消耗所有的连击点，每消耗1连击点获得12%暴击率提高",
       "sourceId": "1110000050",
       "tags": {
         "main": "攻击",
@@ -10117,7 +11980,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "旋风斩",
       "type": "主动技能",
-      "desc": "对自身一定范围内的敌人造成一次288%物理伤害\n当该技能100%物理伤害转火焰伤害时，还会释放火焰旋龙\n当该技能100%物理伤害转闪电伤害时，还会释放闪电旋龙\n当该技能100%物理伤害转冰冷伤害时，还会释放冰冷旋龙",
+      "desc": "对自身一定范围内的敌人造成一次242%物理伤害\n当该技能拥有物理伤害转对应元素伤害几率时，会有对应几率获得80%匹配的元素额外伤害，且该次视为可浸染的旋风",
       "sourceId": "1110000040",
       "tags": {
         "main": "攻击",
@@ -10142,9 +12005,9 @@ window.__AUTO_IMPORT_DATA__ = {
     },
     {
       "id": "",
-      "name": "月光斩",
+      "name": "月光斩一段",
       "type": "主动技能",
-      "desc": "对前方小范围的敌人快速造成两次12.4%物理伤害和49.6%冰冷伤害。\n攻击冻结敌人时会出现月光残影，对范围内敌人造成23.4%物理伤害和93.6%冰冷伤害",
+      "desc": "对前方小范围的敌人快速造成两次62%物理伤害。\n物理伤害的80%转化为冰冷伤害\n攻击冻结敌人时会出现月光残影，对范围内敌人造成117%冰冷伤害",
       "sourceId": "1110000010",
       "tags": {
         "main": "攻击",
@@ -10249,7 +12112,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "移形换影",
       "type": "被动技能",
-      "desc": "向移动方向闪现，并在原地留下一个幻影幻影不可移动，不可攻击，持续4秒内持续释放技能1，幻影的上限为1\n幻影造成原技能伤害的11%",
+      "desc": "使用任意造成伤害后，在原地处生成“幻影”，幻影默认上限为3\n幻影造成原技能伤害的11%",
       "sourceId": "2120000011",
       "tags": {
         "main": "法术",
@@ -10274,7 +12137,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "法术旋龙",
       "type": "主动技能",
-      "desc": "释放一道旋龙，旋龙会不规则移动，穿透并对沿途的所有敌人造成100%物理伤害，持续3秒。\n当旋龙碰到其他技能产生的旋风时，可以吸收并生成一个新的旋龙，旋龙分裂后造成130%物理伤害\n旋龙只可以分裂一次。\n同时生成的旋龙对同一个目标每0.6秒只能造成一次伤害",
+      "desc": "释放一道旋龙，旋龙会不规则移动，穿透并对沿途的所有敌人造成70%物理伤害，持续3秒。\n当旋龙碰到其他技能产生的旋风时，可以吸收并生成一个新的旋龙，旋龙分裂后造成100%物理伤害\n旋龙只可以分裂一次。\n同时生成的旋龙对同一个目标每0.6秒只能造成一次伤害\n旋风可以被元素地面浸染，并获得对应40%额外元素类型的伤害",
       "sourceId": "1120000020",
       "tags": {
         "main": "法术",
@@ -10304,7 +12167,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "火球术",
       "type": "主动技能",
-      "desc": "扔出一枚火球，碰到敌人时产生135%火焰伤害。\n火球的数量上限为3\n爆炸时尽量消耗一层毁灭注能，生成更加强大的爆炸，造成216%火焰伤害，并且在爆炸位置生成火焰地面，并在爆炸时产生8发小型火球，小型火球造成45%火焰伤害\n散射火球术的数量无法被修改\n爆炸每4秒只会被强化一次",
+      "desc": "扔出一枚火球，碰到敌人时产生135%火焰伤害。\n火球的数量上限为3\n消耗一层毁灭注能，可以使火球术生成更加强大的爆炸，造成216%火焰伤害，并且在爆炸位置生成火焰地面\n消耗一层洞察注能，可以使火球术爆炸时产生8发小型火球，小型火球造成45%火焰伤害\n散射火球的数量无法被修改\n火球术每4秒只会被强化一次",
       "sourceId": "1120000080",
       "tags": {
         "main": "法术",
@@ -10385,7 +12248,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "拔刀斩",
       "type": "主动技能",
-      "desc": "对前方大范围内的敌人造成伤害，造成33.8%物理伤害和135.2%冰冷伤害\n冻结效果提高100%",
+      "desc": "对前方大范围内的敌人造成伤害，造成169%物理伤害\n物理伤害的80%转化为冰冷伤害\n冻结效果提高100%",
       "sourceId": "1110000020",
       "tags": {
         "main": "攻击",
@@ -10413,7 +12276,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "气刃纵斩",
       "type": "主动技能",
-      "desc": "对前方发出一道巨大的剑波，造成144.2%物理伤害和295.8%冰冷伤害，攻击沿途的所有敌人\n在目标位置生成一片冰冷地面，每秒产生70.3%冰冷伤害，持续4秒",
+      "desc": "对前方发出一道巨大的剑波，造成440%物理伤害，攻击沿途的所有敌人\n物理伤害的75%转化为冰冷伤害\n在目标位置生成一片冰冷地面，每秒产生70.3%冰冷伤害，持续4秒",
       "sourceId": "1110000060",
       "tags": {
         "main": "攻击",
@@ -10440,7 +12303,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "回旋龙卷",
       "type": "主动技能",
-      "desc": "在身边召唤3个围绕自身盘旋的龙卷旋风，对碰撞到的敌人造成108%物理伤害。",
+      "desc": "在身边召唤3个围绕自身盘旋的龙卷旋风，对碰撞到的敌人造成78%物理伤害。\n旋风可以被元素地面浸染，并获得对应40%额外元素类型的伤害",
       "sourceId": "1120000050",
       "tags": {
         "main": "法术",
@@ -10492,9 +12355,9 @@ window.__AUTO_IMPORT_DATA__ = {
     },
     {
       "id": "",
-      "name": "月神赐福",
+      "name": "冰寒落刃",
       "type": "主动技能",
-      "desc": "进入月神赐福状态，使用冰冷近战技能击中敌人时会对目标敌人召唤1发剑影，造成67.5%冰冷伤害，月神赐福状态持续8秒\n1发剑影最多攻击5名敌人\n对冻结敌人伤害额外提高100%",
+      "desc": "进入冰寒落刃状态，使用冰冷近战技能击中敌人时会对目标敌人召唤1发剑影，造成67.5%冰冷伤害，冰寒落刃状态持续8秒\n1发剑影最多攻击5名敌人\n对冻结敌人伤害额外提高100%",
       "sourceId": "1140000010",
       "tags": {
         "main": "攻击",
@@ -10518,7 +12381,7 @@ window.__AUTO_IMPORT_DATA__ = {
     },
     {
       "id": "",
-      "name": "回响",
+      "name": "法术定序",
       "type": "主动技能",
       "desc": "可以使下一个可重复技能额外释放1次\n伤害额外降低59%\n消耗当前拥有的所有毁灭注能，每消耗2层毁灭注能，回响的额外释放次数增加1次",
       "sourceId": "1120000010",
@@ -10601,7 +12464,8 @@ window.__AUTO_IMPORT_DATA__ = {
         "main": "法术",
         "normal": [
           "冰霜",
-          "范围"
+          "范围",
+          "回响"
         ]
       },
       "icon": "skill/zengyi/dadizhinu",
@@ -10805,7 +12669,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "tags": {
         "main": "法术",
         "normal": [
-          "物理",
+          "火焰",
           "范围",
           "诅咒"
         ]
@@ -10831,7 +12695,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "tags": {
         "main": "法术",
         "normal": [
-          "物理",
+          "冰霜",
           "范围",
           "诅咒"
         ]
@@ -10857,7 +12721,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "tags": {
         "main": "法术",
         "normal": [
-          "物理",
+          "闪电",
           "范围",
           "诅咒"
         ]
@@ -10883,7 +12747,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "tags": {
         "main": "法术",
         "normal": [
-          "物理",
+          "混沌",
           "范围",
           "诅咒"
         ]
@@ -10941,7 +12805,8 @@ window.__AUTO_IMPORT_DATA__ = {
           "火焰",
           "范围",
           "持续",
-          "旋风"
+          "旋风",
+          "15"
         ]
       },
       "icon": "skill/linshi/6",
@@ -10985,7 +12850,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "id": "",
       "name": "我即闪电",
       "type": "主动技能",
-      "desc": "变身成为一个电球，碰撞敌人时造成102%闪电伤害，消耗闪电场中敌人的感电状态，产生一次闪电对敌人造成102%闪电伤害\n消耗当前拥有的所有迅捷注能，每消耗2层迅捷注能，电球的持续时间增加2秒",
+      "desc": "变身成为一个电球，碰撞敌人时造成102%闪电伤害，消耗闪电场中敌人的感电状态，产生一次雷击对敌人造成102%闪电伤害，每名敌人每秒只会产生一次雷击\n消耗当前拥有的所有毁灭注能，使雷击概率强化为闪电震荡，造成153%闪电伤害，每消耗一层毁灭注能，雷击强化概率增加20%",
       "sourceId": "1120000100",
       "tags": {
         "main": "法术",
@@ -11018,7 +12883,7 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "id": "1003002",
           "name": "偶尔漏电",
-          "desc": "攻击伤害击中时，有10%的几率触发10级[电圈]",
+          "desc": "攻击伤害击中时，有50%的几率触发10级[电圈]",
           "occupation": 2,
           "viewPos": {
             "x": 240,
@@ -11227,8 +13092,8 @@ window.__AUTO_IMPORT_DATA__ = {
       "talentPoints": [
         {
           "id": "1007002",
-          "name": "注能轮转",
-          "desc": "每6秒获得一层随机注能，注能的持续时间额外提高30%",
+          "name": "天生完美",
+          "desc": "每次使用核心技能时，有25%的概率获得随机一层注能，注能的持续时间额外提高30%",
           "occupation": 4,
           "viewPos": {
             "x": 0,
@@ -11241,8 +13106,8 @@ window.__AUTO_IMPORT_DATA__ = {
         },
         {
           "id": "1007004",
-          "name": "轮转一心",
-          "desc": "注能轮转的冷却时间变为3秒",
+          "name": "内在潜力",
+          "desc": "注能自身的增益效果提高30%",
           "occupation": 4,
           "viewPos": {
             "x": 0,
@@ -11270,7 +13135,7 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "id": "1007008",
           "name": "术法掌握",
-          "desc": "技能的强化效果的冷却时间额外降低50%",
+          "desc": "强化效果的冷却回复率额外提高40%",
           "occupation": 4,
           "viewPos": {
             "x": -300,
@@ -11284,7 +13149,7 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "id": "1007010",
           "name": "强化之力",
-          "desc": "每成功触发一次强化技能，可以获得一层强化之力，提高20%的伤害，最大可以获得5层，持续6秒",
+          "desc": "每成功触发一次强化技能，可以获得一层强化之力，提高50%的伤害，最大可以获得5层，持续6秒",
           "occupation": 4,
           "viewPos": {
             "x": -250,
@@ -11297,8 +13162,8 @@ window.__AUTO_IMPORT_DATA__ = {
         },
         {
           "id": "1007012",
-          "name": "共鸣",
-          "desc": "技能所需的特定注能可以用其他类型的注能替代，只可以被一种注能替代",
+          "name": "深度聚集",
+          "desc": "每拥有一种不同种类的注能，法术伤害额外提高6%，获得1%的额外减伤",
           "occupation": 4,
           "viewPos": {
             "x": 250,
@@ -11306,13 +13171,13 @@ window.__AUTO_IMPORT_DATA__ = {
           },
           "size": 2,
           "icon": "🔶",
-          "iconSrc": "talent/zhuneng/zhuneng06",
+          "iconSrc": "talent/zhuneng/zhuneng07",
           "linkPoint": "1007002|1007014"
         },
         {
           "id": "1007014",
-          "name": "深度聚集",
-          "desc": "每拥有一种不同种类的注能，法术伤害额外提高10%，魔力回复率提高20%",
+          "name": "共鸣",
+          "desc": "技能所需的特定注能可以用其他类型的注能替代，只可以被一种注能替代",
           "occupation": 4,
           "viewPos": {
             "x": 225,
@@ -11320,7 +13185,7 @@ window.__AUTO_IMPORT_DATA__ = {
           },
           "size": 2,
           "icon": "🔶",
-          "iconSrc": "talent/zhuneng/zhuneng07",
+          "iconSrc": "talent/zhuneng/zhuneng06",
           "linkPoint": "1007012"
         }
       ]
@@ -11346,8 +13211,8 @@ window.__AUTO_IMPORT_DATA__ = {
         },
         {
           "id": "1004004",
-          "name": "急速回流",
-          "desc": "每有 +5% 冷却回复速度，+8%施法速度，上限50%",
+          "name": "幻影疾咏",
+          "desc": "+40% “幻影”的施法速度",
           "occupation": 5,
           "viewPos": {
             "x": 0,
@@ -11374,8 +13239,8 @@ window.__AUTO_IMPORT_DATA__ = {
         },
         {
           "id": "1004008",
-          "name": "虚影增幅",
-          "desc": "对于施法速度加成的50%同样作用于幻影的额外伤害，上限 300%",
+          "name": "归一",
+          "desc": "你的分身技能仅能产生一个幻影，每个幻影数量会增加该幻影的25%的体型和50%的技能范围效果，幻影额外造成20%伤害",
           "occupation": 5,
           "viewPos": {
             "x": 160,
@@ -11402,8 +13267,8 @@ window.__AUTO_IMPORT_DATA__ = {
         },
         {
           "id": "1004012",
-          "name": "幻影疾咏",
-          "desc": "+40% “幻影”的施法速度",
+          "name": "虚影增幅",
+          "desc": "对于施法速度加成的50%同样作用于幻影的额外伤害，上限 300%",
           "occupation": 5,
           "viewPos": {
             "x": -240,
@@ -11411,7 +13276,7 @@ window.__AUTO_IMPORT_DATA__ = {
           },
           "size": 2,
           "icon": "✨",
-          "iconSrc": "talent/skill/huanying07",
+          "iconSrc": "talent/skill/huanying05",
           "linkPoint": "1004002"
         },
         {
@@ -11645,32 +13510,32 @@ window.__AUTO_IMPORT_DATA__ = {
     {
       "id": "GRID1001",
       "gridId": "1001",
-      "name": "奠基之石",
-      "desc": "影响伤害的基础数值，包括武器附加的点伤、不同伤害类型之间的转换，魔力消耗，以及部分武器流派的核心加成。",
+      "name": "裂锋之刃",
+      "desc": "强化物理伤害、流血、物理穿透和伤害注能，并提供概率双倍伤害及物理系转化能力。",
       "icon": "🔶",
       "iconSrc": "talent/common_0/1",
       "advanceRequireBasePoint": 9,
       "coreRequireAdvancePoint": 3,
       "coreTalentLimit": 1,
-      "total": 25,
-      "baseCount": 12,
-      "advanceCount": 8,
-      "coreCount": 5,
+      "total": 23,
+      "baseCount": 13,
+      "advanceCount": 7,
+      "coreCount": 3,
       "points": [
         {
           "id": "1001101",
           "name": "基础天赋",
-          "desc": "将20%的物理伤害转化为火焰伤害",
+          "desc": "物理伤害提高 9%",
           "size": 1,
           "tier": "基础天赋",
           "tierIndex": 1,
           "icon": "🔶",
-          "iconSrc": "talent/common_1/huoyanshanghai",
-          "maxLv": 5,
+          "iconSrc": "talent/common_1/wulishanghai",
+          "maxLv": 9,
           "attr": [
             {
-              "id": "11022",
-              "value": 0.2
+              "id": "10303",
+              "value": 0.09
             }
           ],
           "affix": [],
@@ -11679,51 +13544,13 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "id": "1001102",
           "name": "基础天赋",
-          "desc": "将20%的物理伤害转化为冰冷伤害",
+          "desc": "获得额外 0.04 倍物理伤害",
           "size": 1,
           "tier": "基础天赋",
           "tierIndex": 1,
           "icon": "🔶",
-          "iconSrc": "talent/common_1/binglengshanghai",
-          "maxLv": 5,
-          "attr": [
-            {
-              "id": "11021",
-              "value": 0.2
-            }
-          ],
-          "affix": [],
-          "stunt": []
-        },
-        {
-          "id": "1001103",
-          "name": "基础天赋",
-          "desc": "将20%的物理伤害转化为闪电伤害",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/shandianshanghai",
-          "maxLv": 5,
-          "attr": [
-            {
-              "id": "11020",
-              "value": 0.2
-            }
-          ],
-          "affix": [],
-          "stunt": []
-        },
-        {
-          "id": "1001104",
-          "name": "基础天赋",
-          "desc": "获得额外4%物理伤害",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/wulishanghai",
-          "maxLv": 7,
+          "iconSrc": "talent/common_1/wulinengliangqiu",
+          "maxLv": 9,
           "attr": [
             {
               "id": "10500",
@@ -11734,91 +13561,34 @@ window.__AUTO_IMPORT_DATA__ = {
           "stunt": []
         },
         {
-          "id": "1001105",
+          "id": "1001103",
           "name": "基础天赋",
-          "desc": "获得额外4%火焰伤害",
+          "desc": "流血几率提高 5%",
           "size": 1,
           "tier": "基础天赋",
           "tierIndex": 1,
           "icon": "🔶",
-          "iconSrc": "talent/common_1/huoyanshanghai",
-          "maxLv": 7,
+          "iconSrc": "talent/common_1/wulishanghai",
+          "maxLv": 9,
           "attr": [
             {
-              "id": "10501",
-              "value": 0.04
+              "id": "11054",
+              "value": 0.05
             }
           ],
           "affix": [],
           "stunt": []
         },
         {
-          "id": "1001106",
+          "id": "1001104",
           "name": "基础天赋",
-          "desc": "获得额外4%冰冷伤害",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/binglengshanghai",
-          "maxLv": 7,
-          "attr": [
-            {
-              "id": "10502",
-              "value": 0.04
-            }
-          ],
-          "affix": [],
-          "stunt": []
-        },
-        {
-          "id": "1001107",
-          "name": "基础天赋",
-          "desc": "获得额外4%闪电伤害",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/shandianshanghai",
-          "maxLv": 7,
-          "attr": [
-            {
-              "id": "10503",
-              "value": 0.04
-            }
-          ],
-          "affix": [],
-          "stunt": []
-        },
-        {
-          "id": "1001108",
-          "name": "基础天赋",
-          "desc": "获得额外4%混沌伤害",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/hundunshanghai",
-          "maxLv": 7,
-          "attr": [
-            {
-              "id": "10504",
-              "value": 0.04
-            }
-          ],
-          "affix": [],
-          "stunt": []
-        },
-        {
-          "id": "1001109",
-          "name": "基础天赋",
-          "desc": "毁灭注能持续时间提高9%",
+          "desc": "伤害注能持续时间提高 9%",
           "size": 1,
           "tier": "基础天赋",
           "tierIndex": 1,
           "icon": "🔶",
           "iconSrc": "talent/common_1/chixushijian",
-          "maxLv": 7,
+          "maxLv": 9,
           "attr": [],
           "affix": [
             {
@@ -11829,58 +13599,172 @@ window.__AUTO_IMPORT_DATA__ = {
           "stunt": []
         },
         {
-          "id": "1001110",
+          "id": "1001105",
           "name": "基础天赋",
-          "desc": "获得相当于最大生命0.5%的攻击力",
+          "desc": "物理技能伤害消耗 - 5",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/wulinengliangqiu",
+          "maxLv": 9,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10296",
+              "value": -5
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1001106",
+          "name": "基础天赋",
+          "desc": "攻击伤害提高 8%",
           "size": 1,
           "tier": "基础天赋",
           "tierIndex": 1,
           "icon": "🔶",
           "iconSrc": "talent/common_1/gongjili",
-          "maxLv": 7,
+          "maxLv": 9,
           "attr": [],
           "affix": [
             {
-              "id": "10186",
-              "value": 0.005
+              "id": "10066",
+              "value": 0.08
             }
           ],
+          "stunt": []
+        },
+        {
+          "id": "1001107",
+          "name": "基础天赋",
+          "desc": "法术伤害提高 8%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/yuansushanghai",
+          "maxLv": 9,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10067",
+              "value": 0.08
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1001108",
+          "name": "基础天赋",
+          "desc": "近战伤害提高 8%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/gongjili",
+          "maxLv": 9,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10063",
+              "value": 0.08
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1001109",
+          "name": "基础天赋",
+          "desc": "投射物伤害提高 8%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/zidanfeixingsudu",
+          "maxLv": 9,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10064",
+              "value": 0.08
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1001110",
+          "name": "基础天赋",
+          "desc": "生命值增加 100",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/zhiliaosudu",
+          "maxLv": 9,
+          "attr": [
+            {
+              "id": "10001",
+              "value": 100
+            }
+          ],
+          "affix": [],
           "stunt": []
         },
         {
           "id": "1001111",
           "name": "基础天赋",
-          "desc": "获得相当于最大魔力0.5%的攻击力",
+          "desc": "防御力增加 50",
           "size": 1,
           "tier": "基础天赋",
           "tierIndex": 1,
           "icon": "🔶",
-          "iconSrc": "talent/common_1/gongjili",
-          "maxLv": 7,
-          "attr": [],
-          "affix": [
+          "iconSrc": "talent/common_1/baoshangjianmian",
+          "maxLv": 9,
+          "attr": [
             {
-              "id": "10187",
-              "value": 0.005
+              "id": "10014",
+              "value": 50
             }
           ],
+          "affix": [],
           "stunt": []
         },
         {
           "id": "1001112",
           "name": "基础天赋",
-          "desc": "减少5点魔力消耗",
+          "desc": "物理抗性增加 5%",
           "size": 1,
           "tier": "基础天赋",
           "tierIndex": 1,
           "icon": "🔶",
-          "iconSrc": "talent/common_1/gongjili",
-          "maxLv": 3,
+          "iconSrc": "talent/common_1/wulishanghaikangxing",
+          "maxLv": 9,
+          "attr": [
+            {
+              "id": "10311",
+              "value": 0.05
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1001113",
+          "name": "基础天赋",
+          "desc": "范围伤害提高 8%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/baojishanghai",
+          "maxLv": 9,
           "attr": [],
           "affix": [
             {
-              "id": "10274",
-              "value": -5
+              "id": "10062",
+              "value": 0.08
             }
           ],
           "stunt": []
@@ -11888,7 +13772,7 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "id": "1001201",
           "name": "进阶天赋",
-          "desc": "物理技能等级+1",
+          "desc": "物理技能等级增加 1",
           "size": 2,
           "tier": "进阶天赋",
           "tierIndex": 2,
@@ -11907,26 +13791,418 @@ window.__AUTO_IMPORT_DATA__ = {
         {
           "id": "1001202",
           "name": "进阶天赋",
-          "desc": "火焰技能等级+1",
+          "desc": "造成流血时，有 20% 几率获得伤害注能",
           "size": 2,
           "tier": "进阶天赋",
           "tierIndex": 2,
           "icon": "🔶",
-          "iconSrc": "talent/common_2/jinengdengji",
+          "iconSrc": "talent/common_2/wulinengliangqiu",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [],
+          "stunt": [
+            "2150000170"
+          ]
+        },
+        {
+          "id": "1001203",
+          "name": "进阶天赋",
+          "desc": "伤害注能上限 +1",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/wulinengliangqiu",
           "maxLv": 1,
           "attr": [],
           "affix": [
             {
-              "id": "10157",
+              "id": "10149",
               "value": 1
             }
           ],
           "stunt": []
         },
         {
-          "id": "1001203",
+          "id": "1001204",
           "name": "进阶天赋",
-          "desc": "冰冷技能等级+1",
+          "desc": "物理穿透增加 10%",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/wulishanghaichuantou",
+          "maxLv": 1,
+          "attr": [
+            {
+              "id": "11048",
+              "value": 0.1
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1001205",
+          "name": "进阶天赋",
+          "desc": "释放物理技能获得 20% 额外物理伤害，但只能造成物理伤害，持续 4 秒",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/wulishanghai",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [],
+          "stunt": [
+            "2150000540"
+          ]
+        },
+        {
+          "id": "1001206",
+          "name": "进阶天赋",
+          "desc": "有 10% 几率产生双倍伤害",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/wulishanghai",
+          "maxLv": 1,
+          "attr": [
+            {
+              "id": "11057",
+              "value": 0.1
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1001207",
+          "name": "进阶天赋",
+          "desc": "对流血敌人，物理伤害增加 50%",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/wulishanghai",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10214",
+              "value": 0.5
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1001208",
+          "name": "越打越猛",
+          "desc": "击中时，获得伤害注能，伤害注能上限 +1",
+          "size": 3,
+          "tier": "核心天赋",
+          "tierIndex": 3,
+          "icon": "🔶",
+          "iconSrc": "talent/common_3/stronger_as_you_fight",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10149",
+              "value": 1
+            }
+          ],
+          "stunt": [
+            "2150000300"
+          ]
+        },
+        {
+          "id": "1001301",
+          "name": "硬刚到底",
+          "desc": "物理伤害额外提高 40%，周围敌人获得 10% 的受伤缓冲",
+          "size": 3,
+          "tier": "核心天赋",
+          "tierIndex": 3,
+          "icon": "🔶",
+          "iconSrc": "talent/common_3/stand_your_ground",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10124",
+              "value": 0.4
+            }
+          ],
+          "stunt": [
+            "2150000270"
+          ]
+        },
+        {
+          "id": "1001302",
+          "name": "五系通吃",
+          "desc": "装备「物理之捷」时，物理伤害额外提高 20%；装备「灰烬之捷」时，火焰伤害额外提高 20%；装备「寒冰之捷」时，冰冷伤害额外提高 20%；装备「闪电之捷」时，闪电伤害额外提高 20%；装备「混沌之捷」时，混沌伤害额外提高 20%",
+          "size": 3,
+          "tier": "核心天赋",
+          "tierIndex": 3,
+          "icon": "🔶",
+          "iconSrc": "talent/common_3/all_five_elements",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [],
+          "stunt": [
+            "2150000150"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GRID1002",
+      "gridId": "1002",
+      "name": "寒霜之眼",
+      "desc": "强化冰冷伤害、暴击、冰冻和冰冷穿透，并针对异常或冰冻敌人进一步提升输出。",
+      "icon": "🔶",
+      "iconSrc": "talent/common_0/2",
+      "advanceRequireBasePoint": 9,
+      "coreRequireAdvancePoint": 3,
+      "coreTalentLimit": 1,
+      "total": 22,
+      "baseCount": 12,
+      "advanceCount": 7,
+      "coreCount": 3,
+      "points": [
+        {
+          "id": "1002101",
+          "name": "基础天赋",
+          "desc": "冰冷伤害提高 9%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/binglengshanghai",
+          "maxLv": 9,
+          "attr": [
+            {
+              "id": "10305",
+              "value": 0.09
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1002102",
+          "name": "基础天赋",
+          "desc": "获得额外 0.04 倍冰冷伤害",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/binglengnengliangqiu",
+          "maxLv": 9,
+          "attr": [
+            {
+              "id": "10502",
+              "value": 0.04
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1002103",
+          "name": "基础天赋",
+          "desc": "冰冻效果提高 12%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/binglengshanghai",
+          "maxLv": 9,
+          "attr": [
+            {
+              "id": "11008",
+              "value": 0.12
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1002104",
+          "name": "基础天赋",
+          "desc": "暴击注能持续时间提高 9%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/chixushijian",
+          "maxLv": 9,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10189",
+              "value": 0.09
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1002105",
+          "name": "基础天赋",
+          "desc": "冰冷技能伤害消耗降低 - 5",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/binglengnengliangqiu",
+          "maxLv": 9,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10297",
+              "value": -5
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1002106",
+          "name": "基础天赋",
+          "desc": "暴击率提高 18%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/baojilv",
+          "maxLv": 9,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10039",
+              "value": 0.18
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1002107",
+          "name": "基础天赋",
+          "desc": "暴击伤害提高 9%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/baojishanghai",
+          "maxLv": 9,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10084",
+              "value": 0.09
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1002108",
+          "name": "基础天赋",
+          "desc": "暴击造成的非伤害性异常状态效果提升 30%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/fumianxiaoguotisheng",
+          "maxLv": 9,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10204",
+              "value": 0.06
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1002109",
+          "name": "基础天赋",
+          "desc": "物理转冰冷 10%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/binglengshanghai",
+          "maxLv": 5,
+          "attr": [
+            {
+              "id": "11021",
+              "value": 0.1
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1002110",
+          "name": "基础天赋",
+          "desc": "生命值增加 100",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/zhiliaosudu",
+          "maxLv": 9,
+          "attr": [
+            {
+              "id": "10001",
+              "value": 100
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1002111",
+          "name": "基础天赋",
+          "desc": "防御力增加 50",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/baoshangjianmian",
+          "maxLv": 9,
+          "attr": [
+            {
+              "id": "10014",
+              "value": 50
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1002112",
+          "name": "基础天赋",
+          "desc": "冰冷抗性增加 5%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/binglengshanghaikangxing",
+          "maxLv": 9,
+          "attr": [
+            {
+              "id": "10313",
+              "value": 0.05
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1002201",
+          "name": "进阶天赋",
+          "desc": "冰冻技能等级增加 1",
           "size": 2,
           "tier": "进阶天赋",
           "tierIndex": 2,
@@ -11943,9 +14219,909 @@ window.__AUTO_IMPORT_DATA__ = {
           "stunt": []
         },
         {
-          "id": "1001204",
+          "id": "1002202",
           "name": "进阶天赋",
-          "desc": "闪电技能等级+1",
+          "desc": "造成冰冻效果时，有 20% 概率获得暴击注能",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/binglengnengliangqiu",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [],
+          "stunt": [
+            "2150000180"
+          ]
+        },
+        {
+          "id": "1002203",
+          "name": "进阶天赋",
+          "desc": "暴击注能上限 +1",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/binglengnengliangqiu",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10150",
+              "value": 1
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1002204",
+          "name": "进阶天赋",
+          "desc": "冰冷穿透增加 10%",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/binglengshanghaichuantou",
+          "maxLv": 1,
+          "attr": [
+            {
+              "id": "11050",
+              "value": 0.1
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1002205",
+          "name": "进阶天赋",
+          "desc": "物理转冰冷 50%",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/binglengshanghai",
+          "maxLv": 1,
+          "attr": [
+            {
+              "id": "11021",
+              "value": 0.5
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1002206",
+          "name": "进阶天赋",
+          "desc": "对异常状态敌人时，暴击率提高 150%",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/baojilv",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10196",
+              "value": 1.5
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1002207",
+          "name": "进阶天赋",
+          "desc": "对冰冻敌人，冰冷伤害增加 50%",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/binglengshanghai",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10212",
+              "value": 0.5
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1002208",
+          "name": "暴击上头",
+          "desc": "击中时，获得暴击注能，暴击注能上限 +1",
+          "size": 3,
+          "tier": "核心天赋",
+          "tierIndex": 3,
+          "icon": "🔶",
+          "iconSrc": "talent/common_3/critical_frenzy",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10150",
+              "value": 1
+            }
+          ],
+          "stunt": [
+            "2150000310"
+          ]
+        },
+        {
+          "id": "1002301",
+          "name": "冻到骨髓",
+          "desc": "冰冷伤害额外提高 30%，冰冻效果提高 100%，但只能造成冰冷伤害",
+          "size": 3,
+          "tier": "核心天赋",
+          "tierIndex": 3,
+          "icon": "🔶",
+          "iconSrc": "talent/common_3/frozen_to_the_bone",
+          "maxLv": 1,
+          "attr": [
+            {
+              "id": "11008",
+              "value": 1
+            }
+          ],
+          "affix": [
+            {
+              "id": "10118",
+              "value": 1
+            },
+            {
+              "id": "10302",
+              "value": null
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1002302",
+          "name": "暴击连发",
+          "desc": "暴击幸运（一次伤害的暴击判定进行两次，两次取有利结果）；暴击时获得增益，伤害额外提高 9%，但暴击率额外降低 4%，层数上限 5 层，持续时间 3 秒",
+          "size": 3,
+          "tier": "核心天赋",
+          "tierIndex": 3,
+          "icon": "🔶",
+          "iconSrc": "talent/common_3/critical_burst",
+          "maxLv": 1,
+          "attr": [
+            {
+              "id": "11067",
+              "value": 1
+            }
+          ],
+          "affix": [],
+          "stunt": [
+            "2150000350"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GRID1003",
+      "gridId": "1003",
+      "name": "余烬之核",
+      "desc": "强化火焰伤害、点燃、火焰穿透和抗性收益，并增强对点燃敌人的伤害。",
+      "icon": "🔶",
+      "iconSrc": "talent/common_0/4",
+      "advanceRequireBasePoint": 9,
+      "coreRequireAdvancePoint": 3,
+      "coreTalentLimit": 1,
+      "total": 23,
+      "baseCount": 13,
+      "advanceCount": 7,
+      "coreCount": 3,
+      "points": [
+        {
+          "id": "1003101",
+          "name": "基础天赋",
+          "desc": "火焰伤害提高 9%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/huoyanshanghai",
+          "maxLv": 9,
+          "attr": [
+            {
+              "id": "10304",
+              "value": 0.09
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1003102",
+          "name": "基础天赋",
+          "desc": "获得额外 0.04 倍火焰伤害",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/huoyannengliangqiu",
+          "maxLv": 9,
+          "attr": [
+            {
+              "id": "10501",
+              "value": 0.04
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1003103",
+          "name": "基础天赋",
+          "desc": "点燃几率增加 5%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/huoyanshanghai",
+          "maxLv": 9,
+          "attr": [
+            {
+              "id": "11006",
+              "value": 0.05
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1003104",
+          "name": "基础天赋",
+          "desc": "穿透注能持续时间提高 9%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/chixushijian",
+          "maxLv": 9,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10190",
+              "value": 0.09
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1003105",
+          "name": "基础天赋",
+          "desc": "火焰技能伤害消耗降低 - 5",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/huoyannengliangqiu",
+          "maxLv": 9,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10298",
+              "value": -5
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1003106",
+          "name": "基础天赋",
+          "desc": "元素穿透增加 1%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/huoyanshanghaichuantou",
+          "maxLv": 9,
+          "attr": [
+            {
+              "id": "11049",
+              "value": 0.01
+            },
+            {
+              "id": "11050",
+              "value": 0.01
+            },
+            {
+              "id": "11051",
+              "value": 0.01
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1003107",
+          "name": "基础天赋",
+          "desc": "防御力穿透增加 1%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/baoshangjianmian",
+          "maxLv": 9,
+          "attr": [
+            {
+              "id": "11094",
+              "value": 0.01
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1003108",
+          "name": "基础天赋",
+          "desc": "点燃效果增加 12%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/huoyanshanghai",
+          "maxLv": 9,
+          "attr": [
+            {
+              "id": "11007",
+              "value": 0.12
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1003109",
+          "name": "基础天赋",
+          "desc": "物理转火焰 10%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/huoyanshanghai",
+          "maxLv": 5,
+          "attr": [
+            {
+              "id": "11022",
+              "value": 0.1
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1003110",
+          "name": "基础天赋",
+          "desc": "生命值增加 100",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/zhiliaosudu",
+          "maxLv": 9,
+          "attr": [
+            {
+              "id": "10001",
+              "value": 100
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1003111",
+          "name": "基础天赋",
+          "desc": "防御力增加 50",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/baoshangjianmian",
+          "maxLv": 9,
+          "attr": [
+            {
+              "id": "10014",
+              "value": 50
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1003112",
+          "name": "基础天赋",
+          "desc": "火焰抗性增加 5%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/huoyanshanghaikangxing",
+          "maxLv": 9,
+          "attr": [
+            {
+              "id": "10312",
+              "value": 0.05
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1003113",
+          "name": "基础天赋",
+          "desc": "物理/混沌抗性穿透 1%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/huoyanshanghaichuantou",
+          "maxLv": 9,
+          "attr": [
+            {
+              "id": "11048",
+              "value": 0.01
+            },
+            {
+              "id": "11052",
+              "value": 0.01
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1003201",
+          "name": "进阶天赋",
+          "desc": "火焰技能等级增加 1",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/jinengdengji",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10157",
+              "value": 1
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1003202",
+          "name": "进阶天赋",
+          "desc": "造成点燃时，有 20% 概率获得穿透注能",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/huoyanshanghaichuantou",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [],
+          "stunt": [
+            "2150000220"
+          ]
+        },
+        {
+          "id": "1003203",
+          "name": "进阶天赋",
+          "desc": "穿透注能上限 +1",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/huoyanshanghaichuantou",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10151",
+              "value": 1
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1003204",
+          "name": "进阶天赋",
+          "desc": "火焰穿透增加 10%",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/huoyanshanghaichuantou",
+          "maxLv": 1,
+          "attr": [
+            {
+              "id": "11049",
+              "value": 0.1
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1003205",
+          "name": "进阶天赋",
+          "desc": "物理转火焰 50%",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/huoyanshanghai",
+          "maxLv": 1,
+          "attr": [
+            {
+              "id": "11022",
+              "value": 0.5
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1003206",
+          "name": "进阶天赋",
+          "desc": "额外点燃层数 +1",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/huoyanshanghai",
+          "maxLv": 1,
+          "attr": [
+            {
+              "id": "11019",
+              "value": 1
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1003207",
+          "name": "进阶天赋",
+          "desc": "对点燃敌人，火焰伤害增加 50%",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/huoyanshanghai",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10211",
+              "value": 0.5
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1003208",
+          "name": "穿透拉满",
+          "desc": "击中时，获得穿透注能，抗性注能上限 +1",
+          "size": 3,
+          "tier": "核心天赋",
+          "tierIndex": 3,
+          "icon": "🔶",
+          "iconSrc": "talent/common_3/max_penetration",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10151",
+              "value": 1
+            }
+          ],
+          "stunt": [
+            "2150000280"
+          ]
+        },
+        {
+          "id": "1003301",
+          "name": "火抗续命",
+          "desc": "每有 1% 火焰抗性总值，+2 每秒生命回复；超量的火焰抗性，作用于火焰穿透",
+          "size": 3,
+          "tier": "核心天赋",
+          "tierIndex": 3,
+          "icon": "🔶",
+          "iconSrc": "talent/common_3/fire_resistance_lifeline",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10207",
+              "value": null
+            },
+            {
+              "id": "10303",
+              "value": null
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1003302",
+          "name": "元素串烧",
+          "desc": "造成一种元素伤害时，其他元素穿透 +15%（加算），持续 4 秒",
+          "size": 3,
+          "tier": "核心天赋",
+          "tierIndex": 3,
+          "icon": "🔶",
+          "iconSrc": "talent/common_3/elemental_skewer",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [],
+          "stunt": [
+            "2150000160"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GRID1004",
+      "gridId": "1004",
+      "name": "疾电之径",
+      "desc": "强化闪电伤害、感电、攻击与移动速度，并通过速度和击败叠层提升持续作战能力。",
+      "icon": "🔶",
+      "iconSrc": "talent/common_0/3",
+      "advanceRequireBasePoint": 9,
+      "coreRequireAdvancePoint": 3,
+      "coreTalentLimit": 1,
+      "total": 22,
+      "baseCount": 12,
+      "advanceCount": 7,
+      "coreCount": 3,
+      "points": [
+        {
+          "id": "1004101",
+          "name": "基础天赋",
+          "desc": "闪电伤害提高 0.09",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/shandianshanghai",
+          "maxLv": 9,
+          "attr": [
+            {
+              "id": "10306",
+              "value": 0.09
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1004102",
+          "name": "基础天赋",
+          "desc": "获得额外 0.04 倍闪电伤害",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/shandiannengliangqiu",
+          "maxLv": 9,
+          "attr": [
+            {
+              "id": "10503",
+              "value": 0.04
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1004103",
+          "name": "基础天赋",
+          "desc": "感电几率增加 12%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/shandianshanghai",
+          "maxLv": 9,
+          "attr": [
+            {
+              "id": "11009",
+              "value": 0.12
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1004104",
+          "name": "基础天赋",
+          "desc": "速度注能持续时间提高 9%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/chixushijian",
+          "maxLv": 9,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10192",
+              "value": 0.09
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1004105",
+          "name": "基础天赋",
+          "desc": "闪电技能伤害消耗降低 - 5",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/shandiannengliangqiu",
+          "maxLv": 9,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10299",
+              "value": -5
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1004106",
+          "name": "基础天赋",
+          "desc": "移动速度增加 2%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/yidongsudu",
+          "maxLv": 9,
+          "attr": [
+            {
+              "id": "10007",
+              "value": 0.02
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1004107",
+          "name": "基础天赋",
+          "desc": "攻击速度/施法速度增加 3%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/gongjisudu",
+          "maxLv": 9,
+          "attr": [
+            {
+              "id": "10034",
+              "value": 0.03
+            },
+            {
+              "id": "10035",
+              "value": 0.03
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1004108",
+          "name": "基础天赋",
+          "desc": "投射物速度/环绕速度增加 9%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/zidanfeixingsudu",
+          "maxLv": 9,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10049",
+              "value": 0.09
+            },
+            {
+              "id": "10132",
+              "value": 0.09
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1004109",
+          "name": "基础天赋",
+          "desc": "物理转闪电 10%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/shandianshanghai",
+          "maxLv": 5,
+          "attr": [
+            {
+              "id": "11020",
+              "value": 0.1
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1004110",
+          "name": "基础天赋",
+          "desc": "生命值增加 100",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/zhiliaosudu",
+          "maxLv": 9,
+          "attr": [
+            {
+              "id": "10001",
+              "value": 100
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1004111",
+          "name": "基础天赋",
+          "desc": "防御力增加 50",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/baoshangjianmian",
+          "maxLv": 9,
+          "attr": [
+            {
+              "id": "10014",
+              "value": 50
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1004112",
+          "name": "基础天赋",
+          "desc": "闪电抗性增加 5%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/shandianshanghaikangxing",
+          "maxLv": 9,
+          "attr": [
+            {
+              "id": "10314",
+              "value": 0.05
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1004201",
+          "name": "进阶天赋",
+          "desc": "闪电技能等级增加 1",
           "size": 2,
           "tier": "进阶天赋",
           "tierIndex": 2,
@@ -11962,9 +15138,425 @@ window.__AUTO_IMPORT_DATA__ = {
           "stunt": []
         },
         {
-          "id": "1001205",
+          "id": "1004202",
           "name": "进阶天赋",
-          "desc": "混沌技能等级+1",
+          "desc": "造成感电时，有 20% 概率获得速度注能",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/shandiannengliangqiu",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [],
+          "stunt": [
+            "2150000190"
+          ]
+        },
+        {
+          "id": "1004203",
+          "name": "进阶天赋",
+          "desc": "速度注能上限 +1",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/shandiannengliangqiu",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10153",
+              "value": 1
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1004204",
+          "name": "进阶天赋",
+          "desc": "闪电穿透增加 10%",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/shandianshanghaichuantou",
+          "maxLv": 1,
+          "attr": [
+            {
+              "id": "11051",
+              "value": 0.1
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1004205",
+          "name": "进阶天赋",
+          "desc": "物理转闪电 50%",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/shandianshanghai",
+          "maxLv": 1,
+          "attr": [
+            {
+              "id": "11020",
+              "value": 0.5
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1004206",
+          "name": "进阶天赋",
+          "desc": "击败时，移动速度增加 1%，层数上限 20 层，持续 4 秒",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/yidongsudu",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [],
+          "stunt": [
+            "2150000340"
+          ]
+        },
+        {
+          "id": "1004207",
+          "name": "进阶天赋",
+          "desc": "对感电敌人，闪电伤害增加 50%",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/shandianshanghai",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10213",
+              "value": 0.5
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1004208",
+          "name": "越打越快",
+          "desc": "击中时，获得速度注能，速度注能上限 +1",
+          "size": 3,
+          "tier": "核心天赋",
+          "tierIndex": 3,
+          "icon": "🔶",
+          "iconSrc": "talent/common_3/faster_as_you_fight",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10153",
+              "value": 1
+            }
+          ],
+          "stunt": [
+            "2150000320"
+          ]
+        },
+        {
+          "id": "1004301",
+          "name": "电到起飞",
+          "desc": "闪电伤害额外提高 35%；闪电伤害有 50% 作用于触电几率",
+          "size": 3,
+          "tier": "核心天赋",
+          "tierIndex": 3,
+          "icon": "🔶",
+          "iconSrc": "talent/common_3/lightning_overdrive",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10127",
+              "value": 0.35
+            },
+            {
+              "id": "10090",
+              "value": 0.5
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1004302",
+          "name": "速度转伤",
+          "desc": "投射物速度有 60% 作用于额外的投射物伤害",
+          "size": 3,
+          "tier": "核心天赋",
+          "tierIndex": 3,
+          "icon": "🔶",
+          "iconSrc": "talent/common_3/speed_to_damage",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10167",
+              "value": 0.01
+            }
+          ],
+          "stunt": []
+        }
+      ]
+    },
+    {
+      "id": "GRID1005",
+      "gridId": "1005",
+      "name": "蚀毒之触",
+      "desc": "强化混沌伤害、中毒、诅咒和混沌穿透，并增强对中毒敌人的输出及额外诅咒能力。",
+      "icon": "🔶",
+      "iconSrc": "talent/common_0/6",
+      "advanceRequireBasePoint": 9,
+      "coreRequireAdvancePoint": 3,
+      "coreTalentLimit": 1,
+      "total": 22,
+      "baseCount": 12,
+      "advanceCount": 7,
+      "coreCount": 3,
+      "points": [
+        {
+          "id": "1005101",
+          "name": "基础天赋",
+          "desc": "混沌伤害提高 9%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/hundunshanghai",
+          "maxLv": 9,
+          "attr": [
+            {
+              "id": "10307",
+              "value": 0.09
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1005102",
+          "name": "基础天赋",
+          "desc": "获得额外 0.04 倍混沌伤害",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/hundunnengliangqiu",
+          "maxLv": 9,
+          "attr": [
+            {
+              "id": "10504",
+              "value": 0.04
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1005103",
+          "name": "基础天赋",
+          "desc": "中毒几率增加 5%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/hundunshanghai",
+          "maxLv": 9,
+          "attr": [
+            {
+              "id": "11038",
+              "value": 0.05
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1005104",
+          "name": "基础天赋",
+          "desc": "异常注能持续时间提高 9%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/chixushijian",
+          "maxLv": 9,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10191",
+              "value": 0.09
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1005105",
+          "name": "基础天赋",
+          "desc": "混沌技能伤害消耗降低 - 5",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/hundunnengliangqiu",
+          "maxLv": 9,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10300",
+              "value": -5
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1005106",
+          "name": "基础天赋",
+          "desc": "瘫痪效果提高 5%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/fumianxiaoguotisheng",
+          "maxLv": 9,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10225",
+              "value": 0.05
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1005107",
+          "name": "基础天赋",
+          "desc": "软弱效果提高 5%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/fumianxiaoguotisheng",
+          "maxLv": 9,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10226",
+              "value": 0.05
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1005108",
+          "name": "基础天赋",
+          "desc": "诅咒效果提高 2.5%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/fumianxiaoguotisheng",
+          "maxLv": 9,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10237",
+              "value": 0.025
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1005109",
+          "name": "基础天赋",
+          "desc": "物理转混沌 10%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/hundunshanghai",
+          "maxLv": 5,
+          "attr": [
+            {
+              "id": "11095",
+              "value": 0.1
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1005110",
+          "name": "基础天赋",
+          "desc": "生命值增加 100",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/zhiliaosudu",
+          "maxLv": 9,
+          "attr": [
+            {
+              "id": "10001",
+              "value": 100
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1005111",
+          "name": "基础天赋",
+          "desc": "防御力增加 50",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/baoshangjianmian",
+          "maxLv": 9,
+          "attr": [
+            {
+              "id": "10014",
+              "value": 50
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1005112",
+          "name": "基础天赋",
+          "desc": "混沌抗性增加 5%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/hundunshanghaikangxing",
+          "maxLv": 9,
+          "attr": [
+            {
+              "id": "10315",
+              "value": 0.05
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1005201",
+          "name": "进阶天赋",
+          "desc": "混沌技能等级增加 1",
           "size": 2,
           "tier": "进阶天赋",
           "tierIndex": 2,
@@ -11981,2040 +15573,9 @@ window.__AUTO_IMPORT_DATA__ = {
           "stunt": []
         },
         {
-          "id": "1001206",
-          "name": "进阶天赋",
-          "desc": "毁灭注能层数上限+1",
-          "size": 2,
-          "tier": "进阶天赋",
-          "tierIndex": 2,
-          "icon": "🔶",
-          "iconSrc": "talent/common_2/wusenengliangqiu",
-          "maxLv": 1,
-          "attr": [],
-          "affix": [
-            {
-              "id": "10149",
-              "value": 1
-            }
-          ],
-          "stunt": []
-        },
-        {
-          "id": "1001207",
-          "name": "进阶天赋",
-          "desc": "造成流血时，有20%几率获得毁灭注能",
-          "size": 2,
-          "tier": "进阶天赋",
-          "tierIndex": 2,
-          "icon": "🔶",
-          "iconSrc": "talent/common_2/wusenengliangqiu",
-          "maxLv": 1,
-          "attr": [],
-          "affix": [],
-          "stunt": [
-            "2150000170"
-          ]
-        },
-        {
-          "id": "1001208",
-          "name": "进阶天赋",
-          "desc": "减少15点魔力消耗",
-          "size": 2,
-          "tier": "进阶天赋",
-          "tierIndex": 2,
-          "icon": "🔶",
-          "iconSrc": "talent/common_2/binglengnengliangqiu",
-          "maxLv": 1,
-          "attr": [],
-          "affix": [
-            {
-              "id": "10274",
-              "value": -15
-            }
-          ],
-          "stunt": []
-        },
-        {
-          "id": "1001301",
-          "name": "狂怒",
-          "desc": "击败敌人获得1%的随机额外伤害，上限100层，持续时间5秒",
-          "size": 3,
-          "tier": "核心天赋",
-          "tierIndex": 3,
-          "icon": "🔶",
-          "iconSrc": "talent/common_3/kuangnu",
-          "maxLv": 1,
-          "attr": [],
-          "affix": [],
-          "stunt": [
-            "2150000240",
-            "2150100240",
-            "2150200240"
-          ]
-        },
-        {
-          "id": "1001302",
-          "name": "元素专精",
-          "desc": "元素伤害额外提高35%，只能造成元素伤害",
-          "size": 3,
-          "tier": "核心天赋",
-          "tierIndex": 3,
-          "icon": "🔶",
-          "iconSrc": "talent/common_3/yuansu_jingtong",
-          "maxLv": 1,
-          "attr": [],
-          "affix": [],
-          "stunt": [
-            "2150000250"
-          ]
-        },
-        {
-          "id": "1001303",
-          "name": "通识",
-          "desc": "核心技能等级+4，魔力消耗增加30%",
-          "size": 3,
-          "tier": "核心天赋",
-          "tierIndex": 3,
-          "icon": "🔶",
-          "iconSrc": "talent/common_3/modian_jingtong",
-          "maxLv": 1,
-          "attr": [],
-          "affix": [],
-          "stunt": [
-            "2150000260"
-          ]
-        },
-        {
-          "id": "1001304",
-          "name": "紧握",
-          "desc": "未装备手套时，可获得相当于当前防御力15%的攻击力",
-          "size": 3,
-          "tier": "核心天赋",
-          "tierIndex": 3,
-          "icon": "🔶",
-          "iconSrc": "talent/common_3/jinwo",
-          "maxLv": 1,
-          "attr": [],
-          "affix": [],
-          "stunt": [
-            "2150000420"
-          ]
-        },
-        {
-          "id": "1001305",
-          "name": "毁灭之力",
-          "desc": "击中时，获得毁灭注能，毁灭注能层数上限+1",
-          "size": 3,
-          "tier": "核心天赋",
-          "tierIndex": 3,
-          "icon": "🔶",
-          "iconSrc": "talent/common_3/huimie_zhili",
-          "maxLv": 1,
-          "attr": [],
-          "affix": [
-            {
-              "id": "10149",
-              "value": 1
-            }
-          ],
-          "stunt": [
-            "2150000300"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "GRID1002",
-      "gridId": "1002",
-      "name": "致命之眼",
-      "desc": "影响暴击相关的所有属性，包括暴击率、暴击伤害，以及暴击时触发的特殊效果。",
-      "icon": "🔶",
-      "iconSrc": "talent/common_0/2",
-      "advanceRequireBasePoint": 9,
-      "coreRequireAdvancePoint": 3,
-      "coreTalentLimit": 1,
-      "total": 22,
-      "baseCount": 12,
-      "advanceCount": 6,
-      "coreCount": 4,
-      "points": [
-        {
-          "id": "1002101",
-          "name": "基础天赋",
-          "desc": "暴击伤害增加8%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/baojishanghai",
-          "maxLv": 7,
-          "attr": [
-            {
-              "id": "10200",
-              "value": 0.08
-            }
-          ],
-          "affix": [],
-          "stunt": []
-        },
-        {
-          "id": "1002102",
-          "name": "基础天赋",
-          "desc": "暴击率提高15%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/baojilv",
-          "maxLv": 7,
-          "attr": [],
-          "affix": [
-            {
-              "id": "10039",
-              "value": 0.15
-            }
-          ],
-          "stunt": []
-        },
-        {
-          "id": "1002103",
-          "name": "基础天赋",
-          "desc": "法术暴击率提高18%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/baojilv",
-          "maxLv": 7,
-          "attr": [],
-          "affix": [
-            {
-              "id": "10170",
-              "value": 0.18
-            }
-          ],
-          "stunt": []
-        },
-        {
-          "id": "1002104",
-          "name": "基础天赋",
-          "desc": "攻击暴击率提高18%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/baojilv",
-          "maxLv": 7,
-          "attr": [],
-          "affix": [
-            {
-              "id": "10176",
-              "value": 0.18
-            }
-          ],
-          "stunt": []
-        },
-        {
-          "id": "1002105",
-          "name": "基础天赋",
-          "desc": "法术暴击伤害提高9%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/baojishanghai",
-          "maxLv": 7,
-          "attr": [],
-          "affix": [
-            {
-              "id": "10083",
-              "value": 0.09
-            }
-          ],
-          "stunt": []
-        },
-        {
-          "id": "1002106",
-          "name": "基础天赋",
-          "desc": "攻击暴击伤害提高9%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/baojishanghai",
-          "maxLv": 7,
-          "attr": [],
-          "affix": [
-            {
-              "id": "10082",
-              "value": 0.09
-            }
-          ],
-          "stunt": []
-        },
-        {
-          "id": "1002107",
-          "name": "基础天赋",
-          "desc": "暴击造成的非伤害性异常状态效果提升6%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/fumianxiaoguotisheng",
-          "maxLv": 7,
-          "attr": [],
-          "affix": [
-            {
-              "id": "10204",
-              "value": 0.06
-            }
-          ],
-          "stunt": []
-        },
-        {
-          "id": "1002108",
-          "name": "基础天赋",
-          "desc": "受到的暴击伤害降低1.5%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/baoshangjianmian",
-          "maxLv": 7,
-          "attr": [
-            {
-              "id": "11079",
-              "value": 0.015
-            }
-          ],
-          "affix": [],
-          "stunt": []
-        },
-        {
-          "id": "1002109",
-          "name": "基础天赋",
-          "desc": "洞察注能持续时间增加9%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/chixushijian",
-          "maxLv": 7,
-          "attr": [],
-          "affix": [
-            {
-              "id": "10189",
-              "value": 0.09
-            }
-          ],
-          "stunt": []
-        },
-        {
-          "id": "1002110",
-          "name": "基础天赋",
-          "desc": "投射物暴击率对10M外的敌人提高24%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/baojilv",
-          "maxLv": 7,
-          "attr": [],
-          "affix": [
-            {
-              "id": "10227",
-              "value": 0.24
-            }
-          ],
-          "stunt": []
-        },
-        {
-          "id": "1002111",
-          "name": "基础天赋",
-          "desc": "如果你近期没有造成暴击，则暴击率提高36%（近期为4秒）",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/baojilv",
-          "maxLv": 7,
-          "attr": [],
-          "affix": [
-            {
-              "id": "10039",
-              "value": 0.36
-            }
-          ],
-          "stunt": [
-            "2150000520"
-          ]
-        },
-        {
-          "id": "1002112",
-          "name": "基础天赋",
-          "desc": "对异常状态敌人时，暴击率提高18%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/baojilv",
-          "maxLv": 7,
-          "attr": [],
-          "affix": [
-            {
-              "id": "10196",
-              "value": 0.18
-            }
-          ],
-          "stunt": []
-        },
-        {
-          "id": "1002201",
-          "name": "进阶天赋",
-          "desc": "洞察注能上限+1",
-          "size": 2,
-          "tier": "进阶天赋",
-          "tierIndex": 2,
-          "icon": "🔶",
-          "iconSrc": "talent/common_2/wusenengliangqiu",
-          "maxLv": 1,
-          "attr": [],
-          "affix": [
-            {
-              "id": "10150",
-              "value": 1
-            }
-          ],
-          "stunt": []
-        },
-        {
-          "id": "1002202",
-          "name": "进阶天赋",
-          "desc": "对满血敌人的暴击伤害提高20%",
-          "size": 2,
-          "tier": "进阶天赋",
-          "tierIndex": 2,
-          "icon": "🔶",
-          "iconSrc": "talent/common_2/baojishanghai",
-          "maxLv": 1,
-          "attr": [],
-          "affix": [
-            {
-              "id": "10194",
-              "value": 0.2
-            }
-          ],
-          "stunt": []
-        },
-        {
-          "id": "1002203",
-          "name": "进阶天赋",
-          "desc": "造成冰冻效果时，有20%概率获得洞察注能",
-          "size": 2,
-          "tier": "进阶天赋",
-          "tierIndex": 2,
-          "icon": "🔶",
-          "iconSrc": "talent/common_2/binglengnengliangqiu",
-          "maxLv": 1,
-          "attr": [],
-          "affix": [],
-          "stunt": [
-            "2150000180"
-          ]
-        },
-        {
-          "id": "1002204",
-          "name": "进阶天赋",
-          "desc": "暴击伤害对精英敌人提高10%",
-          "size": 2,
-          "tier": "进阶天赋",
-          "tierIndex": 2,
-          "icon": "🔶",
-          "iconSrc": "talent/common_2/baojishanghai",
-          "maxLv": 1,
-          "attr": [],
-          "affix": [
-            {
-              "id": "10195",
-              "value": 0.1
-            }
-          ],
-          "stunt": []
-        },
-        {
-          "id": "1002205",
-          "name": "进阶天赋",
-          "desc": "攻击打出暴击时，有5%几率施加瘫痪",
-          "size": 2,
-          "tier": "进阶天赋",
-          "tierIndex": 2,
-          "icon": "🔶",
-          "iconSrc": "talent/common_2/fumianxiaoguotisheng",
-          "maxLv": 1,
-          "attr": [],
-          "affix": [],
-          "stunt": [
-            "2150000200"
-          ]
-        },
-        {
-          "id": "1002206",
-          "name": "进阶天赋",
-          "desc": "法术打出暴击时，有5%几率施加软弱",
-          "size": 2,
-          "tier": "进阶天赋",
-          "tierIndex": 2,
-          "icon": "🔶",
-          "iconSrc": "talent/common_2/fumianxiaoguotisheng",
-          "maxLv": 1,
-          "attr": [],
-          "affix": [],
-          "stunt": [
-            "2150000210"
-          ]
-        },
-        {
-          "id": "1002301",
-          "name": "稳定攻势",
-          "desc": "暴击伤害无增伤，但伤害额外提高60%",
-          "size": 3,
-          "tier": "核心天赋",
-          "tierIndex": 3,
-          "icon": "🔶",
-          "iconSrc": "talent/common_3/wending_gongshi",
-          "maxLv": 1,
-          "attr": [
-            {
-              "id": "10200",
-              "value": -10
-            }
-          ],
-          "affix": [
-            {
-              "id": "10146",
-              "value": 0.6
-            }
-          ],
-          "stunt": []
-        },
-        {
-          "id": "1002302",
-          "name": "洞察之力",
-          "desc": "击中时，获得洞察注能，洞察注能上限+1",
-          "size": 3,
-          "tier": "核心天赋",
-          "tierIndex": 3,
-          "icon": "🔶",
-          "iconSrc": "talent/common_3/dongcha_zhili",
-          "maxLv": 1,
-          "attr": [],
-          "affix": [
-            {
-              "id": "10150",
-              "value": 1
-            }
-          ],
-          "stunt": [
-            "2150000310"
-          ]
-        },
-        {
-          "id": "1002303",
-          "name": "失序猛攻",
-          "desc": "暴击时，获得增益，伤害额外提高9%，但暴击率额外降低4%，层数上限5层，持续时间3秒",
-          "size": 3,
-          "tier": "核心天赋",
-          "tierIndex": 3,
-          "icon": "🔶",
-          "iconSrc": "talent/common_3/shixu_menggong",
-          "maxLv": 1,
-          "attr": [],
-          "affix": [],
-          "stunt": [
-            "2150000350"
-          ]
-        },
-        {
-          "id": "1002304",
-          "name": "暴击幸运",
-          "desc": "暴击幸运（一次伤害的暴击判定进行两次，两次取有利结果）",
-          "size": 3,
-          "tier": "核心天赋",
-          "tierIndex": 3,
-          "icon": "🔶",
-          "iconSrc": "talent/common_3/baoji_xingyun",
-          "maxLv": 1,
-          "attr": [
-            {
-              "id": "11067",
-              "value": 1
-            }
-          ],
-          "affix": [],
-          "stunt": []
-        }
-      ]
-    },
-    {
-      "id": "GRID1003",
-      "gridId": "1003",
-      "name": "疾风之径",
-      "desc": "影响所有与“速度”相关的能力，包括攻击速度、施法速度、移动速度，以及冷却缩减和持续伤害的结算频率。",
-      "icon": "🔶",
-      "iconSrc": "talent/common_0/3",
-      "advanceRequireBasePoint": 9,
-      "coreRequireAdvancePoint": 3,
-      "coreTalentLimit": 1,
-      "total": 23,
-      "baseCount": 14,
-      "advanceCount": 5,
-      "coreCount": 4,
-      "points": [
-        {
-          "id": "1003101",
-          "name": "基础天赋",
-          "desc": "攻击速度提高3%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/gongjisudu",
-          "maxLv": 7,
-          "attr": [
-            {
-              "id": "10034",
-              "value": 0.03
-            }
-          ],
-          "affix": [],
-          "stunt": []
-        },
-        {
-          "id": "1003102",
-          "name": "基础天赋",
-          "desc": "施法速度提高3%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/gongjisudu",
-          "maxLv": 7,
-          "attr": [
-            {
-              "id": "10035",
-              "value": 0.03
-            }
-          ],
-          "affix": [],
-          "stunt": []
-        },
-        {
-          "id": "1003103",
-          "name": "基础天赋",
-          "desc": "移动速度提高2%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/yidongsudu",
-          "maxLv": 7,
-          "attr": [
-            {
-              "id": "10007",
-              "value": 0.02
-            }
-          ],
-          "affix": [],
-          "stunt": []
-        },
-        {
-          "id": "1003104",
-          "name": "基础天赋",
-          "desc": "投射物速度提高6%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/zidanfeixingsudu",
-          "maxLv": 7,
-          "attr": [
-            {
-              "id": "10033",
-              "value": 0.06
-            }
-          ],
-          "affix": [],
-          "stunt": []
-        },
-        {
-          "id": "1003105",
-          "name": "基础天赋",
-          "desc": "生命恢复率增加0.2%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/zhiliaosudu",
-          "maxLv": 7,
-          "attr": [
-            {
-              "id": "10004",
-              "value": 0.002
-            }
-          ],
-          "affix": [],
-          "stunt": []
-        },
-        {
-          "id": "1003106",
-          "name": "基础天赋",
-          "desc": "魔力恢复率增加0.2%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/zhiliaosudu",
-          "maxLv": 7,
-          "attr": [
-            {
-              "id": "10006",
-              "value": 0.002
-            }
-          ],
-          "affix": [],
-          "stunt": []
-        },
-        {
-          "id": "1003107",
-          "name": "基础天赋",
-          "desc": "点燃伤害结算速度提高3%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/huoyanshanghai",
-          "maxLv": 7,
-          "attr": [
-            {
-              "id": "11065",
-              "value": 0.03
-            }
-          ],
-          "affix": [],
-          "stunt": []
-        },
-        {
-          "id": "1003108",
-          "name": "基础天赋",
-          "desc": "流血伤害结算速度提高3%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/chixushanghai",
-          "maxLv": 7,
-          "attr": [
-            {
-              "id": "11063",
-              "value": 0.03
-            }
-          ],
-          "affix": [],
-          "stunt": []
-        },
-        {
-          "id": "1003109",
-          "name": "基础天赋",
-          "desc": "中毒伤害结算速度提高3%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/hundunshanghai",
-          "maxLv": 7,
-          "attr": [
-            {
-              "id": "11064",
-              "value": 0.03
-            }
-          ],
-          "affix": [],
-          "stunt": []
-        },
-        {
-          "id": "1003110",
-          "name": "基础天赋",
-          "desc": "冷却回复效率提高3%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/chixushijian",
-          "maxLv": 7,
-          "attr": [
-            {
-              "id": "11037",
-              "value": 0.03
-            }
-          ],
-          "affix": [],
-          "stunt": []
-        },
-        {
-          "id": "1003111",
-          "name": "基础天赋",
-          "desc": "速度注能持续时间提高3%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/chixushijian",
-          "maxLv": 7,
-          "attr": [],
-          "affix": [
-            {
-              "id": "10192",
-              "value": 0.03
-            }
-          ],
-          "stunt": []
-        },
-        {
-          "id": "1003112",
-          "name": "基础天赋",
-          "desc": "环绕速度提高9%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/gongjisudu",
-          "maxLv": 7,
-          "attr": [],
-          "affix": [
-            {
-              "id": "10132",
-              "value": 0.09
-            }
-          ],
-          "stunt": []
-        },
-        {
-          "id": "1003113",
-          "name": "基础天赋",
-          "desc": "药剂充能速度提高9%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/zhiliaosudu",
-          "maxLv": 7,
-          "attr": [
-            {
-              "id": "11066",
-              "value": 0.09
-            }
-          ],
-          "affix": [],
-          "stunt": []
-        },
-        {
-          "id": "1003114",
-          "name": "基础天赋",
-          "desc": "强化效果冷却回复效率提高9%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/chixushijian",
-          "maxLv": 7,
-          "attr": [
-            {
-              "id": "11076",
-              "value": 0.09
-            }
-          ],
-          "affix": [],
-          "stunt": []
-        },
-        {
-          "id": "1003201",
-          "name": "进阶天赋",
-          "desc": "速度注能上限+1",
-          "size": 2,
-          "tier": "进阶天赋",
-          "tierIndex": 2,
-          "icon": "🔶",
-          "iconSrc": "talent/common_2/wusenengliangqiu",
-          "maxLv": 1,
-          "attr": [],
-          "affix": [
-            {
-              "id": "10153",
-              "value": 1
-            }
-          ],
-          "stunt": []
-        },
-        {
-          "id": "1003202",
-          "name": "进阶天赋",
-          "desc": "造成感电效果时，有20%几率获得速度注能",
-          "size": 2,
-          "tier": "进阶天赋",
-          "tierIndex": 2,
-          "icon": "🔶",
-          "iconSrc": "talent/common_2/shandiannengliangqiu",
-          "maxLv": 1,
-          "attr": [],
-          "affix": [],
-          "stunt": [
-            "2150000190"
-          ]
-        },
-        {
-          "id": "1003203",
-          "name": "进阶天赋",
-          "desc": "击败时，移动速度增加1%，层数上限20层，持续4秒",
-          "size": 2,
-          "tier": "进阶天赋",
-          "tierIndex": 2,
-          "icon": "🔶",
-          "iconSrc": "talent/common_2/yidongsudu",
-          "maxLv": 1,
-          "attr": [],
-          "affix": [],
-          "stunt": [
-            "2150000340"
-          ]
-        },
-        {
-          "id": "1003204",
-          "name": "进阶天赋",
-          "desc": "周围有精英敌人时，攻击速度提高20%",
-          "size": 2,
-          "tier": "进阶天赋",
-          "tierIndex": 2,
-          "icon": "🔶",
-          "iconSrc": "talent/common_2/gongjisudu",
-          "maxLv": 1,
-          "attr": [],
-          "affix": [],
-          "stunt": [
-            "2150000360"
-          ]
-        },
-        {
-          "id": "1003205",
-          "name": "进阶天赋",
-          "desc": "周围有精英敌人时，施法速度提高20%",
-          "size": 2,
-          "tier": "进阶天赋",
-          "tierIndex": 2,
-          "icon": "🔶",
-          "iconSrc": "talent/common_2/gongjisudu",
-          "maxLv": 1,
-          "attr": [],
-          "affix": [],
-          "stunt": [
-            "2150000370"
-          ]
-        },
-        {
-          "id": "1003301",
-          "name": "迅捷之力",
-          "desc": "击中时，获得速度注能，速度注能上限+1",
-          "size": 3,
-          "tier": "核心天赋",
-          "tierIndex": 3,
-          "icon": "🔶",
-          "iconSrc": "talent/common_3/xunjie_zhili",
-          "maxLv": 1,
-          "attr": [],
-          "affix": [
-            {
-              "id": "10153",
-              "value": 1
-            }
-          ],
-          "stunt": [
-            "2150000320"
-          ]
-        },
-        {
-          "id": "1003302",
-          "name": "热身",
-          "desc": "移动距离大于20M时，近战伤害额外提高30%，持续5秒",
-          "size": 3,
-          "tier": "核心天赋",
-          "tierIndex": 3,
-          "icon": "🔶",
-          "iconSrc": "talent/common_3/reshen",
-          "maxLv": 1,
-          "attr": [],
-          "affix": [],
-          "stunt": [
-            "2150000330"
-          ]
-        },
-        {
-          "id": "1003303",
-          "name": "魔血",
-          "desc": "生命恢复速度同样作用于魔力回复，魔力回复速度也同样作用于生命回复",
-          "size": 3,
-          "tier": "核心天赋",
-          "tierIndex": 3,
-          "icon": "🔶",
-          "iconSrc": "talent/common_3/moxue",
-          "maxLv": 1,
-          "attr": [
-            {
-              "id": "11091",
-              "value": 1
-            }
-          ],
-          "affix": [],
-          "stunt": []
-        },
-        {
-          "id": "1003304",
-          "name": "苦难行者",
-          "desc": "你在近期每对一名敌人造成点燃、中毒、流血，攻击速度和施法速度额外提高4%，最多40%",
-          "size": 3,
-          "tier": "核心天赋",
-          "tierIndex": 3,
-          "icon": "🔶",
-          "iconSrc": "talent/common_3/kunan_xingzhe",
-          "maxLv": 1,
-          "attr": [],
-          "affix": [],
-          "stunt": [
-            "2150000400"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "GRID1004",
-      "gridId": "1004",
-      "name": "焚炉之核",
-      "desc": "提供各类伤害加成，包括对特定技能类型或特定元素伤害的提升，也包含元素之间的联动增益。",
-      "icon": "🔶",
-      "iconSrc": "talent/common_0/4",
-      "advanceRequireBasePoint": 9,
-      "coreRequireAdvancePoint": 3,
-      "coreTalentLimit": 1,
-      "total": 19,
-      "baseCount": 12,
-      "advanceCount": 3,
-      "coreCount": 4,
-      "points": [
-        {
-          "id": "1004101",
-          "name": "基础天赋",
-          "desc": "攻击伤害提高9%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/gongjili",
-          "maxLv": 7,
-          "attr": [],
-          "affix": [
-            {
-              "id": "10066",
-              "value": 0.09
-            }
-          ],
-          "stunt": []
-        },
-        {
-          "id": "1004102",
-          "name": "基础天赋",
-          "desc": "法术伤害提高9%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/yuansushanghai",
-          "maxLv": 7,
-          "attr": [],
-          "affix": [
-            {
-              "id": "10067",
-              "value": 0.09
-            }
-          ],
-          "stunt": []
-        },
-        {
-          "id": "1004103",
-          "name": "基础天赋",
-          "desc": "物理伤害提高9%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/wulishanghai",
-          "maxLv": 7,
-          "attr": [
-            {
-              "id": "10303",
-              "value": 0.09
-            }
-          ],
-          "affix": [],
-          "stunt": []
-        },
-        {
-          "id": "1004104",
-          "name": "基础天赋",
-          "desc": "火焰伤害提高9%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/huoyanshanghai",
-          "maxLv": 7,
-          "attr": [
-            {
-              "id": "10304",
-              "value": 0.09
-            }
-          ],
-          "affix": [],
-          "stunt": []
-        },
-        {
-          "id": "1004105",
-          "name": "基础天赋",
-          "desc": "冰冷伤害提高9%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/binglengshanghai",
-          "maxLv": 7,
-          "attr": [
-            {
-              "id": "10305",
-              "value": 0.09
-            }
-          ],
-          "affix": [],
-          "stunt": []
-        },
-        {
-          "id": "1004106",
-          "name": "基础天赋",
-          "desc": "闪电伤害提高9%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/shandianshanghai",
-          "maxLv": 7,
-          "attr": [
-            {
-              "id": "10306",
-              "value": 0.09
-            }
-          ],
-          "affix": [],
-          "stunt": []
-        },
-        {
-          "id": "1004107",
-          "name": "基础天赋",
-          "desc": "混沌伤害提高9%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/hundunshanghai",
-          "maxLv": 7,
-          "attr": [
-            {
-              "id": "10307",
-              "value": 0.09
-            }
-          ],
-          "affix": [],
-          "stunt": []
-        },
-        {
-          "id": "1004108",
-          "name": "基础天赋",
-          "desc": "近战伤害提高9%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/gongjili",
-          "maxLv": 7,
-          "attr": [],
-          "affix": [
-            {
-              "id": "10063",
-              "value": 0.09
-            }
-          ],
-          "stunt": []
-        },
-        {
-          "id": "1004109",
-          "name": "基础天赋",
-          "desc": "投射物伤害提高9%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/gongjili",
-          "maxLv": 7,
-          "attr": [],
-          "affix": [
-            {
-              "id": "10064",
-              "value": 0.09
-            }
-          ],
-          "stunt": []
-        },
-        {
-          "id": "1004110",
-          "name": "基础天赋",
-          "desc": "范围伤害提高5%，且范围效果扩大5%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/shanghaifanwei",
-          "maxLv": 7,
-          "attr": [],
-          "affix": [
-            {
-              "id": "10032",
-              "value": 0.05
-            },
-            {
-              "id": "10062",
-              "value": 0.05
-            }
-          ],
-          "stunt": []
-        },
-        {
-          "id": "1004111",
-          "name": "基础天赋",
-          "desc": "持续伤害提高9%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/chixushanghai",
-          "maxLv": 7,
-          "attr": [],
-          "affix": [
-            {
-              "id": "10193",
-              "value": 0.09
-            }
-          ],
-          "stunt": []
-        },
-        {
-          "id": "1004112",
-          "name": "基础天赋",
-          "desc": "强化伤害提高9%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/gongjili",
-          "maxLv": 7,
-          "attr": [],
-          "affix": [
-            {
-              "id": "10140",
-              "value": 0.09
-            }
-          ],
-          "stunt": []
-        },
-        {
-          "id": "1004201",
-          "name": "进阶天赋",
-          "desc": "拥有注能时，伤害额外提高10%",
-          "size": 2,
-          "tier": "进阶天赋",
-          "tierIndex": 2,
-          "icon": "🔶",
-          "iconSrc": "talent/common_2/wusenengliangqiu",
-          "maxLv": 1,
-          "attr": [],
-          "affix": [],
-          "stunt": [
-            "2150000140"
-          ]
-        },
-        {
-          "id": "1004202",
-          "name": "进阶天赋",
-          "desc": "击败敌人时，回复2%魔力值",
-          "size": 2,
-          "tier": "进阶天赋",
-          "tierIndex": 2,
-          "icon": "🔶",
-          "iconSrc": "talent/common_2/fumianxiaoguotisheng",
-          "maxLv": 1,
-          "attr": [],
-          "affix": [],
-          "stunt": [
-            "3140000020"
-          ]
-        },
-        {
-          "id": "1004203",
-          "name": "进阶天赋",
-          "desc": "击败敌人时，回复2%生命值",
-          "size": 2,
-          "tier": "进阶天赋",
-          "tierIndex": 2,
-          "icon": "🔶",
-          "iconSrc": "talent/common_2/yuansushanghai",
-          "maxLv": 1,
-          "attr": [],
-          "affix": [],
-          "stunt": [
-            "3140000030"
-          ]
-        },
-        {
-          "id": "1004301",
-          "name": "五捷共鸣",
-          "desc": "装备「物理之捷」时，物理伤害额外提高 20%；装备「灰烬之捷」时，火焰伤害额外提高 20%；装备「寒冰之捷」时，冰冷伤害额外提高 20%；装备「闪电之捷」时，闪电伤害额外提高 20%；装备「混沌之捷」时，混沌伤害额外提高 20%",
-          "size": 3,
-          "tier": "核心天赋",
-          "tierIndex": 3,
-          "icon": "🔶",
-          "iconSrc": "talent/common_3/wujie_gongming",
-          "maxLv": 1,
-          "attr": [],
-          "affix": [],
-          "stunt": [
-            "2150000150"
-          ]
-        },
-        {
-          "id": "1004302",
-          "name": "元素嬗变",
-          "desc": "造成一种元素伤害会使得，其他元素伤害获得15%额外伤害(加算），持续4秒",
-          "size": 3,
-          "tier": "核心天赋",
-          "tierIndex": 3,
-          "icon": "🔶",
-          "iconSrc": "talent/common_3/yuansu_shanbian",
-          "maxLv": 1,
-          "attr": [],
-          "affix": [],
-          "stunt": [
-            "2150000160"
-          ]
-        },
-        {
-          "id": "1004303",
-          "name": "蚀界之力",
-          "desc": "混沌伤害额外增加 35%，元素抗性减少 15%",
-          "size": 3,
-          "tier": "核心天赋",
-          "tierIndex": 3,
-          "icon": "🔶",
-          "iconSrc": "talent/common_3/shijie_zhili",
-          "maxLv": 1,
-          "attr": [
-            {
-              "id": "10312",
-              "value": -0.15
-            },
-            {
-              "id": "10313",
-              "value": -0.15
-            },
-            {
-              "id": "10314",
-              "value": -0.15
-            }
-          ],
-          "affix": [
-            {
-              "id": "10128",
-              "value": 0.35
-            }
-          ],
-          "stunt": []
-        },
-        {
-          "id": "1004304",
-          "name": "钝锋重势",
-          "desc": "物理伤害额外提高 40%，周围敌人获得 10% 的受伤缓冲",
-          "size": 3,
-          "tier": "核心天赋",
-          "tierIndex": 3,
-          "icon": "🔶",
-          "iconSrc": "talent/common_3/dunfeng_zhongshi",
-          "maxLv": 1,
-          "attr": [],
-          "affix": [
-            {
-              "id": "10124",
-              "value": 0.4
-            }
-          ],
-          "stunt": [
-            "2150000270"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "GRID1005",
-      "gridId": "1005",
-      "name": "坚毅之壁",
-      "desc": "影响对元素伤害和物理伤害的防御能力，包括抗性数值、抗性穿透，以及突破抗性上限带来的额外收益。",
-      "icon": "🔶",
-      "iconSrc": "talent/common_0/5",
-      "advanceRequireBasePoint": 9,
-      "coreRequireAdvancePoint": 3,
-      "coreTalentLimit": 1,
-      "total": 22,
-      "baseCount": 11,
-      "advanceCount": 7,
-      "coreCount": 4,
-      "points": [
-        {
-          "id": "1005101",
-          "name": "基础天赋",
-          "desc": "物理抗性增加5%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/wulishanghaikangxing",
-          "maxLv": 7,
-          "attr": [
-            {
-              "id": "10311",
-              "value": 0.05
-            }
-          ],
-          "affix": [],
-          "stunt": []
-        },
-        {
-          "id": "1005102",
-          "name": "基础天赋",
-          "desc": "火焰抗性增加5%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/huoyanshanghaikangxing",
-          "maxLv": 7,
-          "attr": [
-            {
-              "id": "10315",
-              "value": 0.05
-            }
-          ],
-          "affix": [],
-          "stunt": []
-        },
-        {
-          "id": "1005103",
-          "name": "基础天赋",
-          "desc": "冰冷抗性增加5%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/binglengshanghaikangxing",
-          "maxLv": 7,
-          "attr": [
-            {
-              "id": "10313",
-              "value": 0.05
-            }
-          ],
-          "affix": [],
-          "stunt": []
-        },
-        {
-          "id": "1005104",
-          "name": "基础天赋",
-          "desc": "闪电抗性增加5%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/shandianshanghaikangxing",
-          "maxLv": 7,
-          "attr": [
-            {
-              "id": "10314",
-              "value": 0.05
-            }
-          ],
-          "affix": [],
-          "stunt": []
-        },
-        {
-          "id": "1005105",
-          "name": "基础天赋",
-          "desc": "混沌抗性增加5%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/hundunshanghaikangxing",
-          "maxLv": 7,
-          "attr": [
-            {
-              "id": "10315",
-              "value": 0.05
-            }
-          ],
-          "affix": [],
-          "stunt": []
-        },
-        {
-          "id": "1005106",
-          "name": "基础天赋",
-          "desc": "物理抗性穿透增加1%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/wulishanghaichuantou",
-          "maxLv": 7,
-          "attr": [
-            {
-              "id": "11048",
-              "value": 0.01
-            }
-          ],
-          "affix": [],
-          "stunt": []
-        },
-        {
-          "id": "1005107",
-          "name": "基础天赋",
-          "desc": "火焰抗性穿透增加1%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/huoyanshanghaichuantou",
-          "maxLv": 7,
-          "attr": [
-            {
-              "id": "11049",
-              "value": 0.01
-            }
-          ],
-          "affix": [],
-          "stunt": []
-        },
-        {
-          "id": "1005108",
-          "name": "基础天赋",
-          "desc": "冰冷抗性穿透增加1%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/binglengshanghaichuantou",
-          "maxLv": 7,
-          "attr": [
-            {
-              "id": "11050",
-              "value": 0.01
-            }
-          ],
-          "affix": [],
-          "stunt": []
-        },
-        {
-          "id": "1005109",
-          "name": "基础天赋",
-          "desc": "闪电抗性穿透增加1%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/shandianshanghaichuantou",
-          "maxLv": 7,
-          "attr": [
-            {
-              "id": "11051",
-              "value": 0.01
-            }
-          ],
-          "affix": [],
-          "stunt": []
-        },
-        {
-          "id": "1005110",
-          "name": "基础天赋",
-          "desc": "混沌抗性穿透增加1%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/hundunshanghaichuantou",
-          "maxLv": 7,
-          "attr": [
-            {
-              "id": "11052",
-              "value": 0.01
-            }
-          ],
-          "affix": [],
-          "stunt": []
-        },
-        {
-          "id": "1005111",
-          "name": "基础天赋",
-          "desc": "抗性注能持续时间提高1%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/chixushijian",
-          "maxLv": 7,
-          "attr": [],
-          "affix": [
-            {
-              "id": "10190",
-              "value": 0.3
-            }
-          ],
-          "stunt": []
-        },
-        {
-          "id": "1005201",
-          "name": "进阶天赋",
-          "desc": "造成点燃时，有 20% 概率获得抗性注能",
-          "size": 2,
-          "tier": "进阶天赋",
-          "tierIndex": 2,
-          "icon": "🔶",
-          "iconSrc": "talent/common_2/huoyannengliangqiu",
-          "maxLv": 1,
-          "attr": [],
-          "affix": [],
-          "stunt": [
-            "2150000220"
-          ]
-        },
-        {
           "id": "1005202",
           "name": "进阶天赋",
-          "desc": "穿透注能上限+1",
-          "size": 2,
-          "tier": "进阶天赋",
-          "tierIndex": 2,
-          "icon": "🔶",
-          "iconSrc": "talent/common_2/shanghaichuantou",
-          "maxLv": 1,
-          "attr": [],
-          "affix": [
-            {
-              "id": "10151",
-              "value": 1
-            }
-          ],
-          "stunt": []
-        },
-        {
-          "id": "1005203",
-          "name": "进阶天赋",
-          "desc": "物理抗性上限增加3%",
-          "size": 2,
-          "tier": "进阶天赋",
-          "tierIndex": 2,
-          "icon": "🔶",
-          "iconSrc": "talent/common_2/wulishanghaikangxing",
-          "maxLv": 1,
-          "attr": [
-            {
-              "id": "11058",
-              "value": 0.03
-            }
-          ],
-          "affix": [],
-          "stunt": []
-        },
-        {
-          "id": "1005204",
-          "name": "进阶天赋",
-          "desc": "火焰抗性上限增加3%",
-          "size": 2,
-          "tier": "进阶天赋",
-          "tierIndex": 2,
-          "icon": "🔶",
-          "iconSrc": "talent/common_2/huoyanshanghaikangxing",
-          "maxLv": 1,
-          "attr": [
-            {
-              "id": "11059",
-              "value": 0.03
-            }
-          ],
-          "affix": [],
-          "stunt": []
-        },
-        {
-          "id": "1005205",
-          "name": "进阶天赋",
-          "desc": "冰冷抗性上限增加3%",
-          "size": 2,
-          "tier": "进阶天赋",
-          "tierIndex": 2,
-          "icon": "🔶",
-          "iconSrc": "talent/common_2/binglengshanghaikangxing",
-          "maxLv": 1,
-          "attr": [
-            {
-              "id": "11060",
-              "value": 0.03
-            }
-          ],
-          "affix": [],
-          "stunt": []
-        },
-        {
-          "id": "1005206",
-          "name": "进阶天赋",
-          "desc": "闪电抗性上限增加3%",
-          "size": 2,
-          "tier": "进阶天赋",
-          "tierIndex": 2,
-          "icon": "🔶",
-          "iconSrc": "talent/common_2/shandianshanghaikangxing",
-          "maxLv": 1,
-          "attr": [
-            {
-              "id": "11061",
-              "value": 0.03
-            }
-          ],
-          "affix": [],
-          "stunt": []
-        },
-        {
-          "id": "1005207",
-          "name": "进阶天赋",
-          "desc": "混沌抗性上限增加3%",
-          "size": 2,
-          "tier": "进阶天赋",
-          "tierIndex": 2,
-          "icon": "🔶",
-          "iconSrc": "talent/common_2/hundunshanghaikangxing",
-          "maxLv": 1,
-          "attr": [
-            {
-              "id": "11062",
-              "value": 0.03
-            }
-          ],
-          "affix": [],
-          "stunt": []
-        },
-        {
-          "id": "1005301",
-          "name": "混沌定性",
-          "desc": "每有 1% 混沌抗性，+1% 元素异常状态抵抗",
-          "size": 3,
-          "tier": "核心天赋",
-          "tierIndex": 3,
-          "icon": "🔶",
-          "iconSrc": "talent/common_3/hundun_dingxing",
-          "maxLv": 1,
-          "attr": [],
-          "affix": [
-            {
-              "id": "10094",
-              "value": null
-            }
-          ],
-          "stunt": []
-        },
-        {
-          "id": "1005302",
-          "name": "炎息再生",
-          "desc": "每有 1% 火焰抗性总值，+2 每秒生命回复",
-          "size": 3,
-          "tier": "核心天赋",
-          "tierIndex": 3,
-          "icon": "🔶",
-          "iconSrc": "talent/common_3/yanxi_zaisheng",
-          "maxLv": 1,
-          "attr": [],
-          "affix": [
-            {
-              "id": "10207",
-              "value": null
-            }
-          ],
-          "stunt": []
-        },
-        {
-          "id": "1005303",
-          "name": "元素均衡",
-          "desc": "当有元素抗性相等时，获得额外受到伤害减少5%(累乘)",
-          "size": 3,
-          "tier": "核心天赋",
-          "tierIndex": 3,
-          "icon": "🔶",
-          "iconSrc": "talent/common_3/yuansu_junheng",
-          "maxLv": 1,
-          "attr": [],
-          "affix": [],
-          "stunt": [
-            "2150000290"
-          ]
-        },
-        {
-          "id": "1005304",
-          "name": "破界蓄势",
-          "desc": "击中时，获得穿透注能，抗性注能上限 +1",
-          "size": 3,
-          "tier": "核心天赋",
-          "tierIndex": 3,
-          "icon": "🔶",
-          "iconSrc": "talent/common_3/pojie_xushi",
-          "maxLv": 1,
-          "attr": [],
-          "affix": [
-            {
-              "id": "10151",
-              "value": 1
-            }
-          ],
-          "stunt": [
-            "2150000280"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "GRID1006",
-      "gridId": "1006",
-      "name": "凋零之触",
-      "desc": "影响异常状态和诅咒的施加与效果，让敌人因中毒、点燃、冰冻、感电等状态而承受更多伤害。",
-      "icon": "🔶",
-      "iconSrc": "talent/common_0/6",
-      "advanceRequireBasePoint": 9,
-      "coreRequireAdvancePoint": 3,
-      "coreTalentLimit": 1,
-      "total": 18,
-      "baseCount": 10,
-      "advanceCount": 6,
-      "coreCount": 2,
-      "points": [
-        {
-          "id": "1006101",
-          "name": "基础天赋",
-          "desc": "点燃几率增加10%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/huoyanshanghai",
-          "maxLv": 7,
-          "attr": [
-            {
-              "id": "11006",
-              "value": 0.1
-            }
-          ],
-          "affix": [],
-          "stunt": []
-        },
-        {
-          "id": "1006102",
-          "name": "基础天赋",
-          "desc": "感电几率提高20%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/shandianshanghai",
-          "maxLv": 7,
-          "attr": [
-            {
-              "id": "11009",
-              "value": 0.2
-            }
-          ],
-          "affix": [],
-          "stunt": []
-        },
-        {
-          "id": "1006103",
-          "name": "基础天赋",
-          "desc": "流血几率增加10%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/chixushanghai",
-          "maxLv": 7,
-          "attr": [
-            {
-              "id": "11054",
-              "value": 0.1
-            }
-          ],
-          "affix": [],
-          "stunt": []
-        },
-        {
-          "id": "1006104",
-          "name": "基础天赋",
-          "desc": "中毒几率增加10%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/hundunshanghai",
-          "maxLv": 7,
-          "attr": [
-            {
-              "id": "11038",
-              "value": 0.1
-            }
-          ],
-          "affix": [],
-          "stunt": []
-        },
-        {
-          "id": "1006105",
-          "name": "基础天赋",
-          "desc": "感电效果比例提高13%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/fumianxiaoguotisheng",
-          "maxLv": 7,
-          "attr": [
-            {
-              "id": "11010",
-              "value": 0.13
-            }
-          ],
-          "affix": [],
-          "stunt": []
-        },
-        {
-          "id": "1006106",
-          "name": "基础天赋",
-          "desc": "冰冻效果比例提高13%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/fumianxiaoguotisheng",
-          "maxLv": 7,
-          "attr": [
-            {
-              "id": "11008",
-              "value": 0.13
-            }
-          ],
-          "affix": [],
-          "stunt": []
-        },
-        {
-          "id": "1006107",
-          "name": "基础天赋",
-          "desc": "点燃效果比例提高20%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/fumianxiaoguotisheng",
-          "maxLv": 7,
-          "attr": [
-            {
-              "id": "11007",
-              "value": 0.2
-            }
-          ],
-          "affix": [],
-          "stunt": []
-        },
-        {
-          "id": "1006108",
-          "name": "基础天赋",
-          "desc": "中毒效果比例提高20%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/fumianxiaoguotisheng",
-          "maxLv": 7,
-          "attr": [
-            {
-              "id": "11039",
-              "value": 0.2
-            }
-          ],
-          "affix": [],
-          "stunt": []
-        },
-        {
-          "id": "1006109",
-          "name": "基础天赋",
-          "desc": "流血效果比例提高20%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/fumianxiaoguotisheng",
-          "maxLv": 7,
-          "attr": [
-            {
-              "id": "11055",
-              "value": 0.2
-            }
-          ],
-          "affix": [],
-          "stunt": []
-        },
-        {
-          "id": "1006110",
-          "name": "基础天赋",
-          "desc": "混乱注能持续时间提高30%",
-          "size": 1,
-          "tier": "基础天赋",
-          "tierIndex": 1,
-          "icon": "🔶",
-          "iconSrc": "talent/common_1/chixushijian",
-          "maxLv": 7,
-          "attr": [],
-          "affix": [
-            {
-              "id": "10191",
-              "value": 0.3
-            }
-          ],
-          "stunt": []
-        },
-        {
-          "id": "1006201",
-          "name": "进阶天赋",
-          "desc": "造成中毒时，有 20% 几率获得混乱注能",
+          "desc": "造成中毒时，有 20% 概率获得混乱注能",
           "size": 2,
           "tier": "进阶天赋",
           "tierIndex": 2,
@@ -14028,7 +15589,7 @@ window.__AUTO_IMPORT_DATA__ = {
           ]
         },
         {
-          "id": "1006202",
+          "id": "1005203",
           "name": "进阶天赋",
           "desc": "混乱注能上限 +1",
           "size": 2,
@@ -14047,117 +15608,90 @@ window.__AUTO_IMPORT_DATA__ = {
           "stunt": []
         },
         {
-          "id": "1006203",
+          "id": "1005204",
           "name": "进阶天赋",
-          "desc": "每拥有 +2% 点燃、流血、中毒几率，分别 +1% 火焰伤害、流血伤害、中毒伤害",
+          "desc": "混沌穿透增加 10%",
           "size": 2,
           "tier": "进阶天赋",
           "tierIndex": 2,
           "icon": "🔶",
-          "iconSrc": "talent/common_2/fumianxiaoguotisheng",
+          "iconSrc": "talent/common_2/hundunshanghaichuantou",
           "maxLv": 1,
-          "attr": [],
-          "affix": [
+          "attr": [
             {
-              "id": "10222",
-              "value": null
-            },
-            {
-              "id": "10223",
-              "value": null
-            },
-            {
-              "id": "10224",
-              "value": null
+              "id": "11052",
+              "value": 0.1
             }
           ],
+          "affix": [],
           "stunt": []
         },
         {
-          "id": "1006204",
+          "id": "1005205",
           "name": "进阶天赋",
-          "desc": "瘫痪效果提高60%",
+          "desc": "物理转混沌 50%",
           "size": 2,
           "tier": "进阶天赋",
           "tierIndex": 2,
           "icon": "🔶",
-          "iconSrc": "talent/common_2/fumianxiaoguotisheng",
+          "iconSrc": "talent/common_2/hundunshanghai",
           "maxLv": 1,
-          "attr": [],
-          "affix": [
+          "attr": [
             {
-              "id": "10225",
-              "value": 0.6
+              "id": "11095",
+              "value": 0.5
             }
           ],
+          "affix": [],
           "stunt": []
         },
         {
-          "id": "1006205",
+          "id": "1005206",
           "name": "进阶天赋",
-          "desc": "软弱效果提高60%",
+          "desc": "额外中毒层数 +1",
           "size": 2,
           "tier": "进阶天赋",
           "tierIndex": 2,
           "icon": "🔶",
-          "iconSrc": "talent/common_2/fumianxiaoguotisheng",
+          "iconSrc": "talent/common_2/hundunshanghai",
           "maxLv": 1,
-          "attr": [],
-          "affix": [
+          "attr": [
             {
-              "id": "10226",
-              "value": 0.6
+              "id": "11046",
+              "value": 1
             }
           ],
+          "affix": [],
           "stunt": []
         },
         {
-          "id": "1006206",
+          "id": "1005207",
           "name": "进阶天赋",
-          "desc": "诅咒效果提高60%",
+          "desc": "对中毒敌人，混沌伤害增加 50%",
           "size": 2,
           "tier": "进阶天赋",
           "tierIndex": 2,
           "icon": "🔶",
-          "iconSrc": "talent/common_2/fumianxiaoguotisheng",
+          "iconSrc": "talent/common_2/hundunshanghai",
           "maxLv": 1,
           "attr": [],
           "affix": [
             {
-              "id": "10237",
-              "value": 0.6
+              "id": "10215",
+              "value": 0.5
             }
           ],
           "stunt": []
         },
         {
-          "id": "1006301",
-          "name": "叠咒之言",
-          "desc": "你可以额外施加一个诅咒",
-          "size": 3,
-          "tier": "核心天赋",
-          "tierIndex": 3,
-          "icon": "🔶",
-          "iconSrc": "talent/common_3/diezhou_zhiyan",
-          "maxLv": 1,
-          "attr": [],
-          "affix": [
-            {
-              "id": "10238",
-              "value": null
-            }
-          ],
-          "stunt": []
-        },
-        {
-          "id": "1006302",
-          "name": "乱咒灌注",
+          "id": "1005208",
+          "name": "混沌开花",
           "desc": "击中时，获得混乱注能，混乱注能上限 +1",
           "size": 3,
           "tier": "核心天赋",
           "tierIndex": 3,
           "icon": "🔶",
-          "iconSrc": "talent/common_3/luanzhou_guanzhu",
+          "iconSrc": "talent/common_3/chaos_bloom",
           "maxLv": 1,
           "attr": [],
           "affix": [
@@ -14169,6 +15703,521 @@ window.__AUTO_IMPORT_DATA__ = {
           "stunt": [
             "2150000380"
           ]
+        },
+        {
+          "id": "1005301",
+          "name": "全都腐化",
+          "desc": "混沌伤害额外增加 40%；元素抗性减少 15%",
+          "size": 3,
+          "tier": "核心天赋",
+          "tierIndex": 3,
+          "icon": "🔶",
+          "iconSrc": "talent/common_3/corrupt_everything",
+          "maxLv": 1,
+          "attr": [
+            {
+              "id": "10312",
+              "value": -0.15
+            },
+            {
+              "id": "10313",
+              "value": -0.15
+            },
+            {
+              "id": "10314",
+              "value": -0.15
+            }
+          ],
+          "affix": [
+            {
+              "id": "10128",
+              "value": 0.4
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1005302",
+          "name": "再咒一下",
+          "desc": "你可以额外施加一个诅咒",
+          "size": 3,
+          "tier": "核心天赋",
+          "tierIndex": 3,
+          "icon": "🔶",
+          "iconSrc": "talent/common_3/curse_again",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10238",
+              "value": 1
+            }
+          ],
+          "stunt": []
+        }
+      ]
+    },
+    {
+      "id": "GRID1006",
+      "gridId": "1006",
+      "name": "磐石之壁",
+      "desc": "全面强化生命、防御、格挡、抗性上限、恢复和技能辅助效果，并提供元素专精或击败叠伤能力。",
+      "icon": "🔶",
+      "iconSrc": "talent/common_0/5",
+      "advanceRequireBasePoint": 9,
+      "coreRequireAdvancePoint": 3,
+      "coreTalentLimit": 1,
+      "total": 23,
+      "baseCount": 13,
+      "advanceCount": 7,
+      "coreCount": 3,
+      "points": [
+        {
+          "id": "1006101",
+          "name": "基础天赋",
+          "desc": "生命值增加 100",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/zhiliaosudu",
+          "maxLv": 9,
+          "attr": [
+            {
+              "id": "10001",
+              "value": 100
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1006102",
+          "name": "基础天赋",
+          "desc": "防御力增加 50",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/baoshangjianmian",
+          "maxLv": 9,
+          "attr": [
+            {
+              "id": "10014",
+              "value": 50
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1006103",
+          "name": "基础天赋",
+          "desc": "攻击格挡率 10%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/baoshangjianmian",
+          "maxLv": 9,
+          "attr": [
+            {
+              "id": "10013",
+              "value": 0.1
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1006104",
+          "name": "基础天赋",
+          "desc": "法术格挡率 10%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/baoshangjianmian",
+          "maxLv": 9,
+          "attr": [
+            {
+              "id": "10011",
+              "value": 0.1
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1006105",
+          "name": "基础天赋",
+          "desc": "生命恢复率增加 0.2%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/zhiliaosudu",
+          "maxLv": 9,
+          "attr": [
+            {
+              "id": "10004",
+              "value": 0.002
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1006106",
+          "name": "基础天赋",
+          "desc": "魔力恢复率增加 0.2%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/wusenengliangqiu",
+          "maxLv": 9,
+          "attr": [
+            {
+              "id": "10006",
+              "value": 0.002
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1006107",
+          "name": "基础天赋",
+          "desc": "魔力上限增加",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/wusenengliangqiu",
+          "maxLv": 9,
+          "attr": [
+            {
+              "id": "10002",
+              "value": 100
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1006108",
+          "name": "基础天赋",
+          "desc": "技能范围 9%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/shanghaifanwei",
+          "maxLv": 9,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10032",
+              "value": 0.09
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1006109",
+          "name": "基础天赋",
+          "desc": "光环效果 1%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/shanghaifanwei",
+          "maxLv": 9,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10243",
+              "value": 0.01
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1006110",
+          "name": "基础天赋",
+          "desc": "冷却回复效率提高 3%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/chixushijian",
+          "maxLv": 9,
+          "attr": [
+            {
+              "id": "11037",
+              "value": 0.03
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1006111",
+          "name": "基础天赋",
+          "desc": "药剂冷却回复效率 10%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/chixushijian",
+          "maxLv": 9,
+          "attr": [
+            {
+              "id": "11066",
+              "value": 0.1
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1006112",
+          "name": "基础天赋",
+          "desc": "药剂回复生命效果/药剂回复魔力效果 10%",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/zhiliaosudu",
+          "maxLv": 9,
+          "attr": [
+            {
+              "id": "11092",
+              "value": 0.1
+            },
+            {
+              "id": "11093",
+              "value": 0.1
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1006113",
+          "name": "基础天赋",
+          "desc": "强化效果冷却缩减",
+          "size": 1,
+          "tier": "基础天赋",
+          "tierIndex": 1,
+          "icon": "🔶",
+          "iconSrc": "talent/common_1/chixushijian",
+          "maxLv": 9,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10271",
+              "value": 0.09
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1006201",
+          "name": "进阶天赋",
+          "desc": "物理抗性上限增加 1%",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/wulishanghaikangxing",
+          "maxLv": 1,
+          "attr": [
+            {
+              "id": "11058",
+              "value": 0.01
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1006202",
+          "name": "进阶天赋",
+          "desc": "元素抗性上限增加 1%",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/shanghaikangxing",
+          "maxLv": 1,
+          "attr": [
+            {
+              "id": "11059",
+              "value": 0.01
+            },
+            {
+              "id": "11060",
+              "value": 0.01
+            },
+            {
+              "id": "11061",
+              "value": 0.01
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1006203",
+          "name": "进阶天赋",
+          "desc": "混沌抗性上限增加 1%",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/hundunshanghaikangxing",
+          "maxLv": 1,
+          "attr": [
+            {
+              "id": "11062",
+              "value": 0.01
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1006204",
+          "name": "进阶天赋",
+          "desc": "生命百分比增加 40%",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/zhiliaosudu",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10304",
+              "value": 0.4
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1006205",
+          "name": "进阶天赋",
+          "desc": "防御百分比增加 30%",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/baoshangjianmian",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10305",
+              "value": 0.3
+            }
+          ],
+          "stunt": []
+        },
+        {
+          "id": "1006206",
+          "name": "进阶天赋",
+          "desc": "受伤缓冲 20%",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/baoshangjianmian",
+          "maxLv": 1,
+          "attr": [
+            {
+              "id": "11042",
+              "value": 0.2
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1006207",
+          "name": "进阶天赋",
+          "desc": "格挡比例 15%",
+          "size": 2,
+          "tier": "进阶天赋",
+          "tierIndex": 2,
+          "icon": "🔶",
+          "iconSrc": "talent/common_2/baoshangjianmian",
+          "maxLv": 1,
+          "attr": [
+            {
+              "id": "10012",
+              "value": 0.15
+            }
+          ],
+          "affix": [],
+          "stunt": []
+        },
+        {
+          "id": "1006208",
+          "name": "杀人叠层",
+          "desc": "击败敌人获得随机 0.1 伤害倍率，上限 100 层，持续时间 5 秒",
+          "size": 3,
+          "tier": "核心天赋",
+          "tierIndex": 3,
+          "icon": "🔶",
+          "iconSrc": "talent/common_3/kill_stack",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [],
+          "stunt": [
+            "2150000240"
+          ]
+        },
+        {
+          "id": "1006301",
+          "name": "纯元素流",
+          "desc": "获得 30% 的额外元素伤害，只能造成元素伤害",
+          "size": 3,
+          "tier": "核心天赋",
+          "tierIndex": 3,
+          "icon": "🔶",
+          "iconSrc": "talent/common_3/pure_element_build",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [],
+          "stunt": [
+            "2150000250"
+          ]
+        },
+        {
+          "id": "1006302",
+          "name": "技能加价",
+          "desc": "核心技能等级 +4，魔力消耗增加 30%",
+          "size": 3,
+          "tier": "核心天赋",
+          "tierIndex": 3,
+          "icon": "✨",
+          "iconSrc": "talent/common_3/skill_surcharge",
+          "maxLv": 1,
+          "attr": [],
+          "affix": [
+            {
+              "id": "10199",
+              "value": 4
+            },
+            {
+              "id": "10200",
+              "value": 0.3
+            }
+          ],
+          "stunt": []
         }
       ]
     }
@@ -17743,7 +19792,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "name": "经验",
       "desc": "用于人物升级。",
       "icon": "item/jingyan",
-      "quality": "5",
+      "quality": "2",
       "itemType": "1"
     },
     {
@@ -17751,7 +19800,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "name": "天赋点",
       "desc": "用于天赋加点，通过角色升级获取。",
       "icon": "item/tianfudian",
-      "quality": "1",
+      "quality": "6",
       "itemType": "1"
     },
     {
@@ -17767,7 +19816,23 @@ window.__AUTO_IMPORT_DATA__ = {
       "name": "专属天赋点",
       "desc": "用于激活角色专属天赋。",
       "icon": "item/zhuanjingtianfu",
-      "quality": "5",
+      "quality": "8",
+      "itemType": "1"
+    },
+    {
+      "id": "191",
+      "name": "异界天赋1",
+      "desc": "用于激活异界天赋，击败xx获得。",
+      "icon": "item/yijietianfu1",
+      "quality": "6",
+      "itemType": "1"
+    },
+    {
+      "id": "192",
+      "name": "异界天赋2",
+      "desc": "用于激活异界天赋，击败yy获得。",
+      "icon": "item/yijietianfu2",
+      "quality": "6",
       "itemType": "1"
     },
     {
@@ -18123,6 +20188,30 @@ window.__AUTO_IMPORT_DATA__ = {
       "itemType": "2"
     },
     {
+      "id": "10000",
+      "name": "测试罗盘2",
+      "desc": "放入异界关卡的罗盘插槽，增加异界关卡的奖励，开启后消耗",
+      "icon": "item/jingyanyaoshui1",
+      "quality": "7",
+      "itemType": "2"
+    },
+    {
+      "id": "10009",
+      "name": "测试罗盘3",
+      "desc": "放入异界关卡的罗盘插槽，增加异界关卡的奖励，开启后消耗",
+      "icon": "item/jingyanyaoshui1",
+      "quality": "6",
+      "itemType": "2"
+    },
+    {
+      "id": "10010",
+      "name": "测试罗盘1",
+      "desc": "放入异界关卡的罗盘插槽，增加异界关卡的奖励，开启后消耗",
+      "icon": "item/jingyanyaoshui1",
+      "quality": "8",
+      "itemType": "2"
+    },
+    {
       "id": "10011",
       "name": "掉落罗盘1",
       "desc": "放入异界关卡的罗盘插槽，增加异界关卡的奖励，开启后消耗",
@@ -18428,7 +20517,7 @@ window.__AUTO_IMPORT_DATA__ = {
     }
   ],
   "skillDisplayLevel": 1,
-  "importTime": "2026-10-15T06:43:43.235Z",
+  "importTime": "2026-11-13T02:47:26.343Z",
   "normalEquipment": [
     {
       "id": "1100101",
@@ -18586,7 +20675,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "头盔",
       "modifierId": "1200101",
       "modifierDesc": "攻击格挡率增加15%",
-      "icon": "zhuangbei/101/201",
+      "icon": "zhuangbei/109/201",
       "isNew": true,
       "source": "sync"
     },
@@ -18596,7 +20685,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "头盔",
       "modifierId": "1200102",
       "modifierDesc": "法术格挡率增加15%",
-      "icon": "zhuangbei/101/201",
+      "icon": "zhuangbei/120/201",
       "isNew": true,
       "source": "sync"
     },
@@ -18616,7 +20705,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "胸甲",
       "modifierId": "1300102",
       "modifierDesc": "冰冷抗性增加20%",
-      "icon": "zhuangbei/101/301",
+      "icon": "zhuangbei/113/303",
       "isNew": true,
       "source": "sync"
     },
@@ -18626,7 +20715,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "胸甲",
       "modifierId": "1300103",
       "modifierDesc": "闪电抗性增加20%",
-      "icon": "zhuangbei/101/301",
+      "icon": "zhuangbei/108/302",
       "isNew": true,
       "source": "sync"
     },
@@ -18636,7 +20725,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "裤子",
       "modifierId": "1400101",
       "modifierDesc": "物理抗性增加20%",
-      "icon": "zhuangbei/101/1201",
+      "icon": "zhuangbei/102/1201",
       "isNew": true,
       "source": "sync"
     },
@@ -18646,7 +20735,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "裤子",
       "modifierId": "1400102",
       "modifierDesc": "混沌抗性增加10%",
-      "icon": "zhuangbei/101/1201",
+      "icon": "zhuangbei/101/1202",
       "isNew": true,
       "source": "sync"
     },
@@ -18666,7 +20755,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "鞋子",
       "modifierId": "1500102",
       "modifierDesc": "基础魔力增加50",
-      "icon": "zhuangbei/101/401",
+      "icon": "zhuangbei/101/403",
       "isNew": true,
       "source": "sync"
     },
@@ -18676,7 +20765,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "鞋子",
       "modifierId": "1500103",
       "modifierDesc": "装备稀有度增加15%",
-      "icon": "zhuangbei/101/401",
+      "icon": "zhuangbei/110/403",
       "isNew": true,
       "source": "sync"
     },
@@ -18696,7 +20785,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "手套",
       "modifierId": "1600102",
       "modifierDesc": "施法速度提高10%",
-      "icon": "zhuangbei/101/502",
+      "icon": "zhuangbei/108/503",
       "isNew": true,
       "source": "sync"
     },
@@ -18706,7 +20795,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "手套",
       "modifierId": "1600103",
       "modifierDesc": "冷却回复效率10%",
-      "icon": "zhuangbei/101/503",
+      "icon": "zhuangbei/101/504",
       "isNew": true,
       "source": "sync"
     },
@@ -18726,7 +20815,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "礼花",
       "modifierId": "1700102",
       "modifierDesc": "元素伤害提高15%",
-      "icon": "zhuangbei/103/601",
+      "icon": "zhuangbei/104/601",
       "isNew": true,
       "source": "sync"
     },
@@ -18736,7 +20825,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "礼花",
       "modifierId": "1700103",
       "modifierDesc": "混沌伤害提高20%",
-      "icon": "zhuangbei/103/601",
+      "icon": "zhuangbei/105/601",
       "isNew": true,
       "source": "sync"
     },
@@ -18766,7 +20855,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "耳环",
       "modifierId": "1800102",
       "modifierDesc": "法术暴击率提高20%",
-      "icon": "zhuangbei/103/701",
+      "icon": "zhuangbei/120/701",
       "isNew": true,
       "source": "sync"
     },
@@ -18776,7 +20865,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "耳环",
       "modifierId": "1800103",
       "modifierDesc": "暴击伤害增加10%",
-      "icon": "zhuangbei/103/701",
+      "icon": "zhuangbei/124/701",
       "isNew": true,
       "source": "sync"
     },
@@ -18806,7 +20895,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "项链",
       "modifierId": "1900103",
       "modifierDesc": "投射物伤害提高20%",
-      "icon": "zhuangbei/103/801",
+      "icon": "zhuangbei/109/801",
       "isNew": true,
       "source": "sync"
     },
@@ -18826,7 +20915,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "戒指",
       "modifierId": "2000102",
       "modifierDesc": "法术伤害提高20%",
-      "icon": "zhuangbei/101/901",
+      "icon": "zhuangbei/103/901",
       "isNew": true,
       "source": "sync"
     },
@@ -18836,7 +20925,7 @@ window.__AUTO_IMPORT_DATA__ = {
       "type": "戒指",
       "modifierId": "2000103",
       "modifierDesc": "召唤物伤害提高20%",
-      "icon": "zhuangbei/101/901",
+      "icon": "zhuangbei/104/901",
       "isNew": true,
       "source": "sync"
     }
